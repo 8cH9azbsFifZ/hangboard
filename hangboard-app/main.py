@@ -62,31 +62,38 @@ class Exercise:
         with open(self.filename) as json_file:
             self.data = json.load(json_file)
             self.session = (self.data["Sessions"][0])
-            self.name = self.session["Name"]
-            self.num_exercises = len (self.session["Exercise"])
-        
-    def hang_textmode (self):
-        print (self.session["Name"])
-        for e in self.session["Exercise"]:
-            rest_to_start = e["Rest-to-Start"]
-            pbar (rest_to_start, "Rest to start - upcoming " + e["Type"])
+            self.session_name = self.session["Name"]
+            self.total_exercises = len (self.session["Exercise"])
+            self.current_exercise = 0
+            self.current_exercise_name = "Rest to start"
+    
+    def run_exercise (self): 
+        e = self.session["Exercise"][self.current_exercise]
+        self.current_exercise_name = e["Type"]
+        self.current_exercise_reps_counter = 0
+        self.current_exercise_reps_total = e["Reps"]
+        self.current_exercise_duration = e["Counter"]
+        self.current_exercise_counter = 0
+        self.current_exercise_rest_to_start = e["Rest-to-Start"]
+        #pbar (rest_to_start, "Rest to start - upcoming " + e["Type"])
+        for r in range (1, 1+e["Reps"]):
+                        start_detected = 2
+                        if (start_detected == 1):
+                            if (e["Type"] == "Hang"):
+                                pbar (e["Counter"], e["Type"])
+                            elif (e["Type"] == "Maximal Hang"):
+                                print (e["Type"] + "Key press?")
+                            elif (e["Type"] == "Assisted Pull Ups"):
+                                print (e["Type"] + "Key press?")
+                                #pbar (e["Counter"], e["Type"])
+                            else:
+                                print ("Key press?")
 
-            for r in range (1, 1+e["Reps"]):
-                start_detected = 1
-                if (start_detected):
-                    if (e["Type"] == "Hang"):
-                        pbar (e["Counter"], e["Type"])
-                    elif (e["Type"] == "Maximal Hang"):
-                        print (e["Type"] + "Key press?")
-                    elif (e["Type"] == "Assisted Pull Ups"):
-                        print (e["Type"] + "Key press?")
-                        #pbar (e["Counter"], e["Type"])
-                    else:
-                        print ("Key press?")
+                            pbar (e["Pause"], "Pause")
 
-                pbar (e["Pause"], "Pause")
 
 ex = Exercise()
+ex.run_exercise()
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -104,7 +111,7 @@ def index():
     elif request.method == 'GET':
         # return render_template("index.html")
         print("No Post Back Call")
-    return render_template("index.html")
+    return render_template("index.html", Exercise_Name = ex.current_exercise_name, Current_Exercise = ex.current_exercise, Total_Exercises = ex.total_exercises)
 
 @app.route('/progress')
 def progress():
