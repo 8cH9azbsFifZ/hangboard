@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, Response
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import Flask, render_template, request, Response, redirect, url_for, session
 
 import time
 import json
@@ -101,7 +100,7 @@ def progress():
     return Response(generate(), mimetype= 'text/event-stream')
 
 
-
+# Timer App
 @app.route("/test", methods=["GET", "POST"])
 def setup():
     if request.method == "POST":
