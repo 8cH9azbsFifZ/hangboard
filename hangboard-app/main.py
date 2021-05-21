@@ -35,8 +35,7 @@ class Exercise:
             self.current_exercise = 0
             self.current_exercise_name = "Rest to start"
     
-    def run_exercise (self): 
-        print ("Run one exercise")
+    def config_exercise (self):
         e = self.session["Exercise"][self.current_exercise]
         self.current_exercise_name = e["Type"]
         self.current_exercise_reps_counter = 0
@@ -45,6 +44,11 @@ class Exercise:
         self.current_exercise_counter = 0
         self.current_exercise_pause_duration = e["Pause"]
         self.current_exercise_rest_to_start = e["Rest-to-Start"]
+
+    def run_exercise (self): 
+        print ("Run one exercise")
+        self.config_exercise()
+
         for self.current_exercise_reps_counter in range (1, 1+self.current_exercise_reps_total):
             start_detected = 1
             if (start_detected == 1):
@@ -98,6 +102,21 @@ def progress():
 
     
     return Response(generate(), mimetype= 'text/event-stream')
+
+@app.route("/hang", methods=["GET", "POST"])
+def config():
+    if request.method == "POST":
+        #exercise = int(request.form["exercise"])
+        #rest = int(request.form["rest"])
+        #sets = int(request.form["sets"])
+        ex.config_exercise()
+        session["exercise"] = ex.current_exercise_duration
+        session["rest"] = ex.current_exercise_pause_duration
+        session["sets"] = ex.current_exercise_reps_total
+        session["set_counter"] = 0
+
+        return redirect(url_for("rest"))
+    return render_template("hang_config.jinja2")
 
 
 # Timer App
