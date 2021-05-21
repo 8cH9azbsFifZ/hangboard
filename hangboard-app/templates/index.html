@@ -18,10 +18,19 @@
 		}
 	</script>
 	<style>
-		.overflow-box {
-			position: fixed;
-			top: 200px;
-			left: 200px;
+		.jug-left {
+			position: relative;
+			top: -200px;
+			left: 50px;
+			width: 80px;
+			background-color:rgba(255,255,0,0.5);
+			padding: 20px;
+		}
+		.jug-right {
+			position: relative;
+			top: -240px;
+			left: 800px;
+			width: 80px;
 			background-color:rgba(255,255,0,0.5);
 			padding: 20px;
 		}
@@ -39,7 +48,8 @@
 
 		<div>
 			<img style="width: 50%" src="{{url_for('static', filename='zlagboard.jpg')}}" />
-			<div class="overflow-box"></div>
+			<div class="jug-left"></div>
+			<div class="jug-right"></div>
 		</div>
 	</div>
 
