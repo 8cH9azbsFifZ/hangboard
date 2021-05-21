@@ -1,0 +1,18 @@
+{
+    "Sessions":[
+        {
+            "Name": "First Session",
+            "Exercise":[
+                { "Rest-to-Start": 5,       "Type": "Hang", 			    "Counter": 10, 	"Pause": 20,    "Reps": 5, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 60,      "Type": "Assisted Pull Ups",	"Counter": 3,  	"Pause": 30,    "Reps": 5, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 60,      "Type": "Hang", 			    "Counter": 10, 	"Pause": 20,    "Reps": 5, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 120,     "Type": "Assisted Pull Ups", 	"Counter": 4,  	"Pause": 30,    "Reps": 5, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 300,     "Type": "Full Lock-Off", 		"Counter": 7,  	"Pause": 10,    "Reps": 3, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 60,      "Type": "90° Lock-Off", 		"Counter": 7,  	"Pause": 10,    "Reps": 3, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 60,      "Type": "120° Lock-Off", 		"Counter": 7,  	"Pause": 10,    "Reps": 3, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 300,     "Type": "Assisted Pull Ups", 	"Counter": 5,  	"Pause": 60,    "Reps": 6, "Edge": "Jugs"} ,
+                { "Rest-to-Start": 300,     "Type": "Hang", 			    "Counter": 60,	"Pause": 300,   "Reps": 2, "Edge": "Jugs"} 
+            ]
+        }
+    ]
+}
