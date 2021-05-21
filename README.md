@@ -6,6 +6,8 @@
 cd hangboard-app
 python3 -m venv venv
 source venv/bin/activate
+# sudo apt-get install -y python3-pip
+# pip3 install 
 python3 -m pip install -r requirements.txt
 python3 main.py
 ```
