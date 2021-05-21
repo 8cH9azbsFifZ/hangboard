@@ -109,13 +109,13 @@ def index():
 @app.route('/progress')
 def progress():
     def generate():
-        #x = 0
-        x = ex.session["Exercise"][0]["Rest-to-Start"]
+        x = 0
+        #x = ex.session["Exercise"][0]["Rest-to-Start"]
 
-        while x > 0:
+        while x <= 100:
             yield "data:" + str(x) + "\n\n"
-            x = x - 1
-            time.sleep(1)
+            x = x + 10
+            time.sleep(.11)
 
     
     return Response(generate(), mimetype= 'text/event-stream')
