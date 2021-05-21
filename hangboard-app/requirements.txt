@@ -1,3 +1,3 @@
-Flask==1.1.2
+Flask
 HX711 
 #RPi.GPIO

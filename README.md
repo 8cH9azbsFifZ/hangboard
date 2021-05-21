@@ -23,3 +23,5 @@ https://stackoverflow.com/questions/12888584/is-there-a-way-to-tell-chrome-web-d
 + https://realpython.com/python-web-applications/
 + https://github.com/djdmorrison/flask-progress-example
 + https://github.com/adrianlzt/piclimbing
++ https://github.com/helloflask/timer
++ https://github.com/tecladocode/hiit-timer
