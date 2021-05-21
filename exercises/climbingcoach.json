@@ -1,0 +1,398 @@
+{
+"Endurance":{
+	"Aerobic Capacity":{
+		"1 On 1 Off":{
+			"Exercices":"10sets x 1min moderate/pumpy climbing\nTarget grade: 2 Grades Below Onsight\nRest 1min between sets",
+			"Description":"The goal of this workout is to maintain a high level of blood flow throughout the session and force recovery during each rest period.\nChoose a moderately difficult route or circuit - climb this for one minute. \nAfter 1 minute you should NOT feel really pumped.  Complete this same climb 10 times total whilst resting for 1 minute between each rep.  You should  feel an increasing pump throughout the session. At the end of all 10 reps you should be tired, pumped and find it challenging to finish the final minute of climbing.\nIf climbing on a rope or auto belay, maintain normal climbing speed and ensure that rep duration is no longer than 1 minute despite not reaching the top of your route.",
+			"duration":20,
+			"coefficient":100
+		},
+		"50-50":{
+			"Exercices":"3 sets x 4 reps x 30 mouvs half easy/half moderate\nRest 10:00 between sets & 00:20 between reps",
+			"Description":"The goal of this workout is to improve the forearm's ability to work aerobically on easy terrain and recover from harder climbing whilst still on the wall.\nFind an easy route or circuit of 30 moves or more which shares the same section of wall as a harder climb of a similar length.\nPart 1: Climb the first half of the easy route which is 15 moves long. This route must be far easier than your on-sight limit grade.\nPart 2: At 15 moves switch to the harder climb and continue for a further 15 moves until 30 moves are completed in total. This harder section should be around your on-sight grade.\nBy finishing parts 1 and 2 you should have climbed one route or circuit and therefore completed rep 1. \nComplete 4 reps with as little rest as possible between each climb. If you are on a rope you can be lowered to the start quickly between reps. If using a circuit board, aim to continue climbing non stop for all 4 reps.\nDuring the easier section of climbing, try to recover as much as possible in order to feel fresh before the harder section of climbing. Rest 10 minutes between sets, completing 3 sets total.\nWhat to record? When logging this session please choose a grade which is half way between the difficulty of the two chosen sections of climbing.\ne.g. 5:10 + 5:12 = 5:11 logged for this session.\nIf climbing on a rope using routes which are shorter than 30 moves in length, complete the first 15 moves on an easier climb, lower to the ground and immediately climb the next 15 moves on a separate harder route. This will mean each set will include 8 climbs up rather than 4. ",
+			"duration":45,
+			"coefficient":100
+		},
+		"Hangboard 7:3s 40%":{
+			"Exercices":"10 sets x 6 reps x 00:07 per rep\nRest 00:03 between reps & 01:00 between sets",
+			"Description":"The goal of this workout is to improve the forearm's ability to work aerobically and become metabolically adapted. \nFor this workout you will need a comfortable fingerboard / hangboard or flat edge with a depth of about 20mm. You should use the same hold as used in max hang 'Testing Session'.\nCreate your two arm 40% hang intensity by using the 'Testing Session' under the Finger Strength category on the App.  This is calculated as 40% of your bodyweight + your score from the testing session. e.g. If you weigh 70kg and add 30kg in your maximal test, then your 40% intensity would be at 40kg total load, or -30kg off bodyweight.\nOnce you know your 40% intensity, set up an appropriate pulley system to add or take away weight.  Each set will consist of 6 reps of 7 second two arm hangs at 40% in the tested grip position.  Between each 7 second hang you have a 3 second rest, so that you alternate between 7 second hangs and 3 second rest periods.\nOnce a set is complete (~60 seconds) rest 1 minute until you complete your next set at the same intensity.  You should feel either a light pump or no pump at all - this is a much easier fingerboard session than any other you are likely to have experienced. ",
+			"duration":20,
+			"coefficient":500	
+		},
+		"Aero 4's":{
+			"Exercices":"4 circuits x 4 reps x 1-3min boulder circuit\nTarget grade : 4 grades below Onsight\nRest 10:00 between circuits",
+			"Description":"The goal of this workout is to maintain an increased level of blood flow to the forearms without creating a high level of muscle pump until the final rep.\nChoose 4 easy routes or circuits which are around 4 grades below your max on-sight level. Each rep should last between 1 and 3 minutes. This means each set should last between 4 and 12 minutes. Ideally each set needs to be completed on a different route or circuit but if you need to repeat a climb this is fine also.\nClimb 4 laps of your chosen climb. Aim to keep a consistent pace and avoid shaking out for too long on resting positions. The climb should be easier enough for you to focus on good technique throughout.",
+			"duration":65,
+			"coefficient":230
+		},
+		"Drop Intervals":{
+			"Exercices":"6 sets x 6 boulders\nEasy/moderate bouldering dropping in intensity\nRest 02:00 between sets & 00:00 between boulders",
+			"Description":"The goal of this workout is to improve the forearm's ability to work aerobically on easy-to-moderate terrain and recover whilst resting.\nFind a collection of 6 boulders that are in close proximaty and range from a moderate difficulty to easy for you.\nOrder each boulder in difficulty and then start with the hardest one first.  Continue to climb each boulder in quick succession until you have completed all 6 boulders.  As you become fatigued the grade should become easier and easier.  Aim to complete all 6 boulders with as little rest as possible whilst still focusing on your technique.\nComplete 6 sets of this on the same group of 6 boulders with 2 minutes rest between sets.  This session should only be moderate in intensity so please drop the grade further if failing or getting too pumped. ",
+			"duration":30,
+			"coefficient":250
+		},
+		"1 On 2 Off":{
+			"Exercices":"10sets x 1min circuit\nTarget grade: 2 Grades Below Onsight, slightly overhanging wall\nRest 2min between sets",
+			"Description":"Using your chosen circuit, complete one minute of climbing at a steady pace with constant movements. After one minute you should feel only a slight pump in your forearms at which point you should step off the Board and rest for 2 minutes. This is one set. Complete 10 sets of this exercise, 30 minutes total. By the 10th set, you should feel extremely pumped and close to falling off.\nChoosing the circuit:\nChoose a circuit on the Lattice Board that allows you to complete 1 minute of climbing without becoming totally pumped. To help choose the correct circuit difficulty, consider how your forearms feel throughout the session. You will want to feel mildly pumped at the start of this 'session' (sets 1-3) and close to failure by the final sets (sets 8-10). If you fall off before the end of this session then the difficulty is too hard and therefore you should use an easier circuit.",
+			"duration":30,
+			"coefficient":150
+		}
+	},
+	"Regeneration":{
+		"Continuity 10x10":{
+			"Exercices":"3sets x 10min very easy climb\nTarget grade: Several Grades Below Onsight\nRest 10min between sets",
+			"Description":"The aim of this workout is to maintain an increased level of blood flow to the forearms without creating a high level of muscle pump.\nFind an easy route, circuit or section wall where you can climb for 10 minutes without stopping.  You should not feel pumped during this session as the intensity should remain very low.\nComplete this 10 minute rep 3 times in total and rest for 10 minutes between each set. This is a great session to complete on routes with a climbing partner.",
+			"duration":60,
+			"coefficient":90
+		},
+		"Continuity 5x3":{
+			"Exercices":"3sets x 5min very easy climb\nTarget grade: Several Grades Below Onsight\nRest 3min between sets",
+			"Description":"The goal of this workout is to maintain an increased level of blood flow to the forearms without creating a high level of muscle pump.\nFind an easy route, circuit or section wall where you can climb for 5 minutes without stopping.  You should not feel pumped during this session as the intensity should remain low.\nComplete this 5 minute rep 3 times in total and rest for 3 minutes between each set.  Circuit boards and auto belays are useful during this session.",
+			"duration":25,
+			"coefficient":40
+		},
+		"Continuity 8x3":{
+			"Exercices":"3sets x 1 rep x 08:00 easy climbing\nTarget : 3 sets of climbing on varied wall angle\nRest 03:00 between sets",
+			"Description":"The goal of this workout is to maintain an increased level of blood flow to the forearms without creating a high level of muscle pump.\nFind 3 easy routes, circuits or sections of wall where you can climb for 8 minutes without stopping.  Each set needs to be completed on a different angle. One should be steep, one should be slightly over hanging and one should be vertical.\nClimb for 8 minutes at a easy intensity. You should not feel pumped as session intensity is low.  Complete an 8 minute rep once on each angle and rest for 3 minutes between each set. ",
+			"duration":35,
+			"coefficient":50
+		}
+	}
+},
+"Power Endurance":{
+	"Aerobic Power":{
+		"Hangboard 7:3s 50%":{
+			"Exercices":"Deadhang 20mm 6sets x 12reps x 7s per rep\nResistance 80% of Maximum\nRest 04:00 between sets & 00:03 between reps",
+			"Description":"The goal of this workout is to improve the forearm's power endurance through metabolically adaption at a higher intensity.\nFor this workout you will need a comfortable fingerboard / hangboard or flat edge with a depth of about 20mm. You should use the same hold as used in max hang 'Testing Session'.\nCreate your two arm 50% hang intensity by using the 'Testing Session' under the Finger Strength category on the App.  This is calculated as 50% of your bodyweight + your score from the testing session. e.g. If you weigh 70kg and add 30kg in your maximal test, then your 50% intensity would be at 50kg total load, or -20kg off bodyweight.\nOnce you know your 50% intensity, set up an appropriate pulley system to add or take away weight.  Each set will consist of 12 reps of 7 second two arm hangs at 50% in the tested grip position.  Between each 7 second hang you have a 3 second rest, so that you alternate between 7 second hangs and 3 second rest periods.\nOnce a set is complete (~120 seconds) rest 4 minutes until you complete your next set at the same intensity.  You should feel a moderate to high pump level - this is a classic 'repeater' fingerboard session but with limited rest so that power endurance is increased.\nIf you cannot complete the 12 reps for each set - reduce the intensity used.  If you feel this intensity is too easy for each set and you do not feel pumped and powered out - increase intensity.",
+			"duration":40,
+			"coefficient":800
+		},
+		"Boulder Intervals":{
+			"Exercices":"20 problems in 20:00 \nTarget intensity : moderate\nRest 00:30 between problems",
+			"Description":"The goal of this workout is to increase power endurance levels on medium intensity boulders.\nFind a collection of boulders which vary in style and represent a moderate intensity for you.  Aim to climb 20 boulder problems within 20 minutes by moving quickly and efficiently through each problem. You will need to carefully control the difficulty of your chosen problems so that you're getting up at least 75% of the problems in just a single go and are able to complete the full set of 20 boulders with very little rest.  Typically, you will aim to climb a boulder in 20-30 seconds and then take the remaining 30 secs to rest before starting the next problem.\nWithin 20 minutes you should develop a moderate to high level of forearm pump.  By varying the style and angle of boulders in this session you will see both physical training gains and technical improvements. ",
+			"duration":40,
+			"coefficient":200
+		},
+		"Broken Quarters":{
+			"Exercices":"4 sets x a 40 mouvs pumpy circuit or route broken in 4 parts of 10 mouvs\nTarget grade : 1-2 grades above on-sight\nRest 00:15 between parts & 10:00 between sets",
+			"Description":"The goal of this workout is to increase power endurance on short to medium length routes.\nFind a route or circuit 1-2 grades above your max on-sight grade where you are capable of climbing all the sections in isolation.  Break your chosen route or circuit into 4 equal sections - ideally each part will be around 10 moves long.  Climb section one (10 moves) and take 15 seconds rest, before completing section 2.  Continue to climb each of the four sections or 'quarters' with just 15 seconds rest between each rep.\nThis should feel both powerful and pumpy.  It may be possible that you fall on the occasional move even in set 1, in this instance immediately get back on the wall and continue where you fell. You should aim to only fail in sets 3 and 4 due to fatigue and forearm pump.  With subsequent sessions you may find that you can reduce the rest periods on the same climb down to 10 or even 5 seconds.\nThis session can also be completed on longer boulder sequences if routes and circuits are not available.",
+			"duration":55,
+			"coefficient":200
+		},
+		"Foot on Campus Board":{
+			"Exercices":"6 sets x 1 rep x max time per rep\nTarget intensity : set 1 should last 2-6 minutes, set 6 only 30sec\nRest between sets = time on the wall",
+			"Description":"To increase power endurance levels for short to medium length routes.\nKeep your feet on a foot rung, hold or chair underneath the campus board. Make sure to position a soft object or matting underneath you incase you fall off! Whilst keeping your feet in the same place ladder up and down the campus rungs using a sequence such as 1-2-3-4-3-2-1.\nThe difficulty of this exercise is highly dependant on where your body is positioned under the campus board. You can increase load by positioning your hips further under your hands. Use a body position and rung size which means you fail within 2-6 minutes.\nComplete foot on campus ladders until you become extremely pumped and fall off. Using the timer, your rest period will be the same as the length of time you managed to stay on the campus board. Once the rest period is over, you will then complete a further 5 sets to maximum using this 1 to 1 work rest ratio.\nFor example: \nSet 1 max time = 4 minutes. The following rest period is 4 minutes.\nSet 2 max time = 2 minutes and 50 seconds. The rest period is now 2 minutes and 50 seconds long.\nThis pattern continues until set 6 which may only last 30 seconds long. At which point you will be extremely pumped and fatigued.",
+			"duration":20,
+			"coefficient":100
+		},
+		"Capacity Power":{
+			"Exercices":"5 sets x 2 reps x 1 pumpy route or circuit\nTarget grade : 1-2 grades below on-sight\nRest 10:00 between sets & 01:00 between reps",
+			"Description":"The goal of this workout is to increase power endurance on medium to long length sustained routes.\nFind a collection of routes or circuits 1-2 grades below your on-sight where the climbing is sustained in style.  Climb your chosen route or circuit once and take 1 minute rest.\nRepeat this same route once more so that you've done two reps on the route/circuit in total. After set one you should feel moderately pumped but by sets 3-5 you should aim to be extremely pumped and possibly falling off the 2nd rep of each set.\nIdeally you should do this session on 5 different routes each at roughly the same grade to create movement variety.",
+			"duration":80,
+			"coefficient":450
+		},
+		"Route Pyramid":{
+			"Exercices":"8 sets x 1 route or circuit\nTarget : set 1 to 5 increase by 1-3 grades until max effort & set 6 to 8 reduce difficulty by 1-3 grades \nRest 10:00 between sets",
+			"Description":"The goal of this workout is to increase specific power endurance on routes. You can use circuits for this session if you are not able to complete the workout on routes but this is less ideal. Circuits are only the best if the routes available are too easy or your aim is to train for boulder link ups.\nReference the hardest climb COMPLETED when logging this workout.\nChoose a list of routes which range in difficulty from easy to maximum effort. Ideally you will have 8 different climbs available but if this is not possible, you can repeat climbs more than once. It does not matter if the climbing is on-sight or has been practiced before. The main consideration is perception of effort.\nStart by climbing the easiest of your chosen climbs. This can be used as part of your warm up.\nFor each subsequent set, the difficulty of climb should increase by 1-3 grades until you reach a point of maximum effort. Ideally, your hardest climb attempted will result in either completing it at max effort or falling off close to the end. \nOnce the hardest climb has been attempted, reduce the difficulty of each subsequent climb by 1-3 grades..\nA climber who can (at best) red-point 7b/5:12b and on-sight 6c+/5:11b may use the following list of climbs. As this is completed at their local gym, they may have already attempted routes above 7a/5:11d in previous sessions.\n1- 5+\n2-6a+\n3-6c\n4-7a+\n5-7b\n6-7a\n7-6b+\n8-6b",
+			"duration":100,
+			"coefficient":470
+		}
+	},
+	"Anaerobic Capacity":{
+		"Hangboard 7:3s 80%":{
+			"Exercices":"Deadhang 20mm 6sets x 5reps x 7s per rep\nResistance 80% of Maximum\nRest 03:00 between sets & 00:03 between reps",
+			"Description":"The goal of this workout is to improve the forearm's short power endurance through metabolic adaptation at a very high intensity.\nFor this workout you will need a comfortable fingerboard / hangboard or flat edge with a depth of about 20mm. You should use the same hold as used in max hang 'Testing Session'.\nCreate your two arm 80% hang intensity by using the 'Testing Session' under the Finger Strength category on the App.  This is calculated as 80% of your bodyweight + your score from the testing session. e.g. If you weigh 70kg and add 30kg in your maximal test, then your 80% intensity would be at 80kg total load, or bodyweight + 10kg.\nOnce you know your 80% intensity, set up an appropriate pulley system to add or take away weight.  Each set will consist of 5 reps of 7 second two arm hangs at 80% in the tested grip position.  Between each 7 second hang you have a 3 second rest, so that you alternate between 7 second hangs and 3 second rest periods.\nOnce a set is complete (~50 seconds) rest 3 minute until you complete your next set at the same intensity.  You should feel increasingly powered out as the session progresses. This is a classic 'repeater' fingerboard session but set at a high intensity so that short power endurance is improved.\nIf you cannot complete the 5 reps for each set - reduce the intensity used.  If you feel this is too easy for each set and you do not feel powered out - increase intensity..",
+			"duration":25,
+			"coefficient":400
+		},
+		"6 in 6":{
+			"Exercices":"3 sets x 6 hard boulders, 06:00 per set\nTarget grade : Flash grade\nRest 05:00 between sets",
+			"Description":"For this exercise you will need choose 6 boulder problems that are hard for you to climb (flash grade). They should be physically hard but not droppable due to low percentage moves (i.e. weird moves you can only sometimes do). \nYou have 6 minutes to climb the 6 problems. You are allowed one attempt at each problem unless you fall of the start of a problem. In this instance you can pull straight back on and give it another go. \nTry to choose and practice each problem on its own before starting this session. If you top the problem you have the remainder of the minute to rest before moving on. \nAll six problems = one set. \nComplete 3 sets total resting 5 minutes between sets.",
+			"duration":35,
+			"coefficient":400
+		},
+		"Boulder Triples":{
+			"Exercices":"3 boulders x 2 sets x 3 reps\nTarget grade : Flash grade\nRest 01:00 between reps & 03:00 between sets",
+			"Description":"The goal of this workout is to increase very short power endurance for short routes, crux sequences or long boulders.\nFind 3 boulders that are around 6-8 moves long and around your flash grade, so they feel challenging in isolation. \nClimb your first boulder problem once. Rest for 60 seconds before repeating a second time. Rest for a further 60 seconds and repeat once more (3 total) to complete one set.\nBetween each set rest for 3 minutes. Complete 6 sets of 3 reps total.  Ideally you will complete 2 sets on each of the 3 boulders.\nIt is okay to fail on the third rep of sets 4-6 but if you consistently fall off during the earlier sets reduce the difficulty of the boulder problems. If you easily complete 100% of every set you can increase the difficulty during the next session.\nThe aim is to feel powered out but not pumped. Create movement variety by choosing problems which represent different styles of climbing and use a variety of holds. ",
+			"duration":40,
+			"coefficient":264
+		},
+		"Broken Redpoint":{
+			"Exercices":"3 sets x 3 reps of the 6-8 mouvs crux section of a route or circuit\nTarget grade : Redpoint level\nRest 01:00 between reps & 10:00 between sets",
+			"Description":"The goal of this workout is to increase power endurance on short length routes and improve efficiency on crux sections of routes at your project grade.\nFind a route or circuit at your redpoint grade where you are capable of climbing all moves in isolation.  Take the crux section of your route and find the hardest 6-8 move sequence. You should be able to climb this sequence in isolation.\nClimb the 6-8 move section 3 times taking 60 seconds to rest between each climb. This is one set.  Once you have completed one set (3 laps of your crux) rest for 10 minutes before attempting to complete 2 more sets.\nThis is an extremely useful session for climbers aiming to project a hard route or when learning to perform on harder terrain whilst route climbing. Once you can complete the entire training session on your chosen crux, it should be much more likely that you will redpoint your project! ",
+			"duration":45,
+			"coefficient":400
+		},
+		"Linked Boulders":{
+			"Exercices":"3 sets x 4 reps of a 12 mouvs boulder\nTarget grade : Flash grade\nRest 02:00 between reps & 05:00 between sets",
+			"Description":"The goal of this workout is to increase short power endurance for short routes, crux sequences or longer boulder problems.\nFind a boulder that is 12 moves long and is around your flash grade.  Try to choose a problem that is sustained in difficulty throughout the climb. In many gyms you may struggle to find 12 move boulder problems, in this instance add 2-4 hard traverse moves into the start of the problem. \nClimb your chosen problem 4 times resting for 2 minutes before each rep. This is one set.  Complete 3 sets in total with 5 minutes rest between sets.\nIt is okay to fail on the last few moves at the end of each set but if you consistently fall off before getting half way through the problem you should look to drop the difficulty of climbing.  If you complete 100% of this session with no falls, increase the difficulty in the next session.  Change the boulder problem used every few sessions.",
+			"duration":45,
+			"coefficient":264
+		}
+	}
+},
+"Strength & Power":{
+	"Bouldering":{
+		"Competition Boulder Set":{
+			"Exercices":"6 boulders x 4min per boulder \nRest 04:00 between problems",
+			"Description":"This type of training can be used in conjunction with or to replace longer bouldering sessions depending on the time of year. It’s designed to replicate the kind of effort you make in a boulder comp and is a way of forcing the discipline to fit a high intensity effort into a short time period.\nOnce warmed up you will aim to complete 6 competition/hard problems at your training venue in each allocated 4 minute block. These need to be at around 80-110% of your maximum, so you may not get up all of the problems. A success rate of 30-50% is fine.\n1. Aim to always do problems in your first couple of goes (you get more rest this way!). Be accurate, be perfect. If you flash your problem you should attempt it one more time in the 4 minute work block.\n2. You have a total of 4 minutes to complete each bloc. You can rest as you wish within that 4 minutes, but aim to be working extremely hard and giving very high quality efforts.\n3. You have 4 minutes rest between each problem. Use your time to read and prepare the next problem. It is important that you use different problems every week.\nEXAMPLE: A V10 climber selects a circuit of 6 boulder problems of V8-V11. They spend 4 minutes on each problem using as many attempts as they need but taking adequate rest between each. They rest 4 minutes between each boulder problem and use this time to plan and visualise.",
+			"duration":40,
+			"coefficient":700
+		},
+		"Board 10":{
+			"Exercices":"10 boulders x 2 tries max\nTarget grade : half at Flash half at max\nRest 03:00 between sets",
+			"Description":"Choose 10 different boulder problems on your chosen training board.\nThe first 5 problems should be at a moderate difficulty for you and will ideally be already practiced. Treat this as the last stage of your warm up. You should only attempt each of these problems for a maximum of 2 times each.\nThe second 5 problems should be very challenging to complete. Each problem should be close to your max. You can attempt each problem several times in a row BUT you must save enough energy to attempt all the problems. Aim to try each problem for a maximum of 10 attempts. It is okay to fail on several problem during this part of the session. If you complete 100% of the problems easily, increase the difficulty of the list of problem.",
+			"duration":40,
+			"coefficient":384
+		},
+		"Pyramids":{
+			"Exercices":"set 1 to 8 : 8 problems increasing in difficulty, set 9 to 15 : reverse order\nTarget : from hard to max, 3 tries max per problems\nRest 03:00 between attempts",
+			"Description":"The aim of this workout is to increase strength and power using boulder problems.\nChoose 8 different boulder problems on vertical to steep terrain which range from hard to max effort.  It is important to choose and test each problem before beginning this session to get the intensity correct. Order the problems by difficulty. Difficulty may be determined by your weaknesses rather than grade alone.\nClimb each problem starting from the easiest and working up to the hardest - each problem is considered 1 set.  After attempting the hardest problem, re-climb the problems in reverse order (15 sets total). \nEach problem may be attempted up to 3 times.  Failure on the two hardest climbs is okay as they should represent a maximum effort.\nExample: V8 Cimber (weak on pinches)\nClimb 1 = V5\nClimb 2 = V5\nClimb 3 = V6\nClimb 4 = V5 (pinches)\nClimb 5 = V6\nClimb 6 = V7\nClimb 7 = V7 (pinches)\nClimb 8 = V8",
+			"duration":60,
+			"coefficient":550
+		},
+		"Strength Intervals":{
+			"Exercices":"6 hard boulders x 3 reps\nTarget grade : 1 or 2 grade below max\nRest 03:00 between boulders & 03:00 between reps",
+			"Description":"The goal of this session is to increase strength and power using boulder problems.\nChoose 6 different boulder problems on vertical to steep terrain.  Each problem chosen should be very challenging to climb.  Every problem should be practiced before beginning this session to reduce the risk of failure whilst keeping the intensity high.\nClimb each boulder problem 3 times with 3 minutes rest between attempts. Complete all 3 attempts on one problem before moving to the next. Rest 3 minutes between each problem also.\nIt is okay to fail on several attempts during this session but try to complete most of the reps attempted. If you complete 100% of the reps easily, increase the difficulty of climbing.",
+			"duration":65,
+			"coefficient":200
+		},
+		"Projects try hard":{
+			"Exercices":"3 boulders x 5 attempts\nTarget grade : Limit\nRest 03:00 between attempts & 05:00 between sets",
+			"Description":"The goal of this workout is to increase strength and power on limit boulder problems.\nChoose 3 different boulder problems which would require a maximal effort to complete.  The grade of each problem is not important. It is better to focus on how difficult you find each problem based on the movements and holds involved.\nWork each problem for 20 minutes using good tactics and rest periods between attempts. Once a climb is complete or the 20 minutes is up, rest for 5 minutes before starting to work the next climb.\nThis session requires a maximal effort so high failure rates should occur. If you complete all problems in the session the intensity was too low. If you cannot make good links on each problem during the set time, the problems are too hard.",
+			"duration":60,
+			"coefficient":450
+		}
+	},
+	"Finger Strength":{
+		"Hangboard Finger Strength testing Session":{
+			"Exercices":"8sets x 1 rep x 00:07 per rep\nResistance up to Max Load\nRest 02:00 between sets",
+			"Description":"This testing session is designed to assess finger strength using a 2 arm dead-hang protocol.\nYou should use this session before and after several weeks or months of training to measure the effectiveness of your training. Results from this session also provide an excellent baseline from which to calculate the intensities of other sessions, such as max hangs and 50% aerobic power repeaters.\nComplete this session after at least 24 hours of rest. Remember to warm up thoroughly before starting this session and warm up your fingers specifically for the hold size and grip position used in testing.\nComplete up to 8 sets of progressively heavier hangs until you reach a maximum score.\nEach hang must follow the rules below;\n- Hang from 2 arms at the same time\n- Complete each hangs using a strict half crimp position\n- Each hang must last a full 7 seconds.\n- Your arms should be straight or bent slightly. Do not lock off at 90 degrees.\nA max score is the highest load completed for the set time staying in the same grip position. Once the load is too high for you to complete a full 7 second hang in a half crimp position. you have reached failure. \nIf you cannot complete this session hanging with body weight alone, remove weight from your body by using a pulley system and counterweight To add load to your body, hang additional weight from a climbing harness. \nRecording your score:\nMaximal total loading (1RM) = Body weight + additional weight\nMaximal body weight % = (Total load / bodyweight) x 100.\nFor example;\n80kg (total load) = 70kg (body weight) + 10kg (max load)\n14.3% (body weight %) = 80kg (total load) / 70kg (body weight)\nSafety guidance:\nAny maximal testing session includes some form of risk. Please follow the rules below to reduce the risk of injury and seek advice from a professional coach if you are unsure how to perform this testing safely. \n- Do not change grip positions whilst hanging. If your fingers move or open out whilst you are hanging, you should immediately stop the set and place your feet back on the ground. \n- Load your fingers slowly when beginning a hang. \n- Increase the load of each set slowly. Increments of up to 5kg should be used.\n- If you have not reached a max load within 8 sets, finish testing and complete this session on another day.",
+			"duration":20,
+			"coefficient":150
+		},
+		"Hangboard Max Hangs":{
+			"Exercices":"20-18mm edge : 6 sets x 1 rep x 00:10 per rep\nResistance 90% of maximum\nRest 02:00 between sets",
+			"Description":"PLEASE COMPLETE A FINGER STRENGTH TESTING SESSION BEFORE STARTING THIS EXERCISE.\nThe goal of this workout is to improve forearm and finger strength.\nComplete the following 6 sets of hangs using a fingerboard / hangboard or edge which is approximately 20mm deep. The edge used in training should be the same as that used in the finger strength testing session.\nProgressively build up the load used during your warm up until you are ready to train at maximal intensity on this specific hold and grip type.\nSets 1-6 = 90% of maximal total load scored in the 7 second FS self assessment.  This is calculated as 90% of your bodyweight + your score from the testing session. e.g. If you weigh 70kg and add 30kg in your maximal test, then your 90% intensity would be at 90kg total load, or bodyweight + 20kg.\nRetest every 4-8 weeks to work out new loadings for this session..\nIf you cannot complete the full 10 second hang please reduce the weight until you can complete the set time.  If you fail to complete a full 10 seconds during the last few sets of this workout then the intensity is okay and can remain the same.",
+			"duration":15,
+			"coefficient":153
+		},
+		"Hangboard Small Edge 10-13mm":{
+			"Exercices":"6 sets x 1 rep x 00:07 per rep\nResistance : maximal loading\nRest 02:00 between sets",
+			"Description":"YOU MUST WARM UP BEFORE ANY FINGERBOARD SESSION.\nThis training session is extremely hard and skin insensitive an is designed for climbers with a lot of training experience.\nThe goal of this workout is to improve forearm and finger strength and become accustomed to a smaller hold size. This training is useful to complete once you have followed a period of 4-8 weeks of max hangs.\nComplete the following 6 hangs using a fingerboard or edge that is skin friendly and around 10mm to 13mm deep. Progressively build up the load during a warm up protocol until you are ready to train at maximal intensity. It is useful to warm up on bigger edges and reduce the edge size in the warm up until you reach the smallest depth used within this workout.\nSets 1-6: Max intensity for 7 seconds on each hang. You can increase intensity by adding weight to your body or removing weight from an assistance (i.e. pulley system).\nAs this workout is working at maximal capacity you may be close to failure during the last few sets. Please only use a weight which is extremely challenging but allows you to complete the full 7 second hang time. If you fail to complete 7 seconds the intensity it too high. ",
+			"duration":15,
+			"coefficient":110
+		},
+		"Hangboard Small Edge 6-8mm":{
+			"Exercices":"6 sets x 1 rep x 00:07 per rep\nResistance : maximal loading\nRest 02:00 between sets",
+			"Description":"YOU MUST WARM UP BEFORE ANY FINGERBOARD SESSION.\nThis training session is extremely hard and skin insensitive. We generally advise that you train on holds of this size for shorter periods (approximately 4 weeks) before a performance peak. This workout is for climbers with a lot of training experience.\nThe goal of this workout is to improve forearm and finger strength and become accustomed to a smaller hold size. This training is useful to complete once you have followed a period of 4-8 weeks of max hangs and have progressed from training on slightly bigger edges (10-13mm).\nComplete the following 6 hangs using a fingerboard or edge that is skin friendly and around 6mm to 8mm deep. Progressively build up the load during a warm up protocol until you are ready to train at maximal intensity. It is useful to warm up on bigger edges and reduce the edge size in the warm up until you reach the smallest depth used within this workout.\nSets 1-6: Max intensity for 7 seconds on each hang. You can increase intensity by adding weight to your body or removing weight from an assistance (i.e. pulley system).\nAs this workout is working at maximal capacity you may be close to failure during the last few sets. Please only use a weight which is extremely challenging but allows you to complete the full 7 second hang time. If you fail to complete 7 seconds the intensity it too high. ",
+			"duration":15,
+			"coefficient":110
+		},
+		"Hangboard Varied Grips":{
+			"Exercices":"4 grips x 3 sets x 1 rep x 07:00 per rep\nGrips are : Half Crimp, Firsts 3 Fingers Half crimp, Lasts 3 fingers half crimp, Firsts 3 fingers open grip\nRest 02:00 between sets",
+			"Description":"YOU MUST WARM UP BEFORE ANY FINGERBOARD SESSION. \nThe goal of this workout is to improve forearm and finger strength in different grip positions.  Complete each hang at an intensity that is challenging but manageable and feels safe.  As the grip positions are varied you will need time to adapt to each position used. Always adjust the weight according to your ability to complete EACH DIFFERENT hang position. \nIncrease load by adding additional weight to your body. Reduce load by only using body weight or by increasing the size of hold used.\nSets 1-3: 4 Finger grip half crimp or open hand\nSets 4-6: Front 3 finger half crimp\nSets 7-9: Back three half crimp\nSets 10-12: Front three open hand drag\nThis session provides the most risk to climbers who are not practiced in using a variety of grip positions. \nPlease seek advice from a qualified coach if you are unsure about anything mentioned.",
+			"duration":30,
+			"coefficient":100
+		},
+		"Hangboard One arm 20-18mm":{
+			"Exercices":"2 angles x 2 sets x 2 arms x 5-7sec per arm\nTips : add/reduce weight if needed, angles are 90° & 5°\nRest 03:00 between sets, 00:10 between arms",
+			"Description":"YOU MUST WARM UP BEFORE ANY FINGERBOARD SESSION.\nThis training session is extremely hard and skin insensitive an is designed for climbers with a lot of training experience.\nThe goal of this workout is to improve one arm forearm and finger strength and become accustomed to one arm lock off and hanging. This training is useful to complete once you have followed a period of 4-8 weeks of max hangs.\nComplete the following 4 hangs using a fingerboard or edge that is skin friendly and around 18mm to 20mm deep. Progressively build up the load during a warm up protocol until you are ready to train at maximal intensity. It is useful to warm up on bigger edges and reduce the edge size in the warm up until you reach the smallest depth used within this workout.\nSets 1-4: Max intensity for 5-7 seconds on each hang. You can increase intensity by adding weight to your body or removing weight from an assistance (i.e. pulley system).\nAs this workout is working at maximal capacity you may be close to failure during the last few sets. Please only use a weight which is extremely challenging but allows you to complete at least a full 5 second hang time. If you fail to complete 5 seconds the intensity it too high. ",
+			"duration":15,
+			"coefficient":110
+
+		}
+	},
+	"Power":{
+		"Boulder Campus":{
+			"Exercices":"4 boulders x 3 rep x 00:07 per rep\nTarget grade: 5-6 grades below max\nRest 03:00 between sets & 03:00 between reps",
+			"Description":"The goal of this workout is to increase strength and power using boulder problems without footholds.\nChoose 4 different boulder problems on overhanging terrain with finger friendly holds.  Climb each problem without using your feet. You are not allowed to match at any point unless the problem is set that way.  Use problems which require bigger moves to improve dynamic pulling strength rather than locking off.  Avoid pockets and small edges unless your fingers are adapted enough to this type of hold.\nRest for 3 minutes between attempts of each climb and between climbs.  Failing near the top of the climbs on the last reps is okay.  You should feel powered out and fatigued at the end of the session.  If 100% success on all problems is easy, increase the difficulty.",
+			"duration":45,
+			"coefficient":420
+		},
+		"Campusboard - Advanced":{
+			"Exercices":"3 exercises x 4 sets x 1 rep\nExercises are : 1-3-5-7-9, 1-4-7, 1-5-7\nRest 02:00 between sets",
+			"Description":"The goal of this workout is to increase strength and power in the upper body and arms.  It is designed for climbers climbing at least 7B/V8 and with prior campus experience.\nUse the smallest rung size possible whilst still completing the prescribed sets.  Complete the following campus movements.  Start each set matched on the first numbered rung and finish each set matched on the last numbered rung.\nAll odd sets start with left hand first. All even sets start with right hand first.\nSets 1 to 4: 1-3-5-7-9\nSets 5 to 8: 1-4-7\nSets 9 to 12: 1-5-7\nIf these movements are not maximal, complete bigger gaps between rungs until max is reached for sets 5-12.",
+			"duration":30,
+			"coefficient":210
+		},
+		"Campusboard - Elite":{
+			"Exercices":"2 exercises x 6 sets x 1 rep\nExercises are : 1-4-7, 1-5-8\nRest 02:00 between sets",
+			"Description":"The goal of this workout is to increase strength and power in the upper body and arms.  It is designed for Elite climbers (8A+/V12) and with prior campus experience.\nUse the smallest rung size possible whilst still completing the prescribed sets.  Complete the following campus movements.  Start each set matched on the first numbered rung and finish each set matched on the last numbered rung.\nAll odd sets start with left hand first. All even sets start with right hand first.\nSets 1 to 6: 1-4-7\nSets 7 to 12: 1-5-8\nIf these movements are not maximal, complete 1-5-9 for sets 7 to 12.",
+			"duration":30,
+			"coefficient":310
+		},
+		"Campusboard - Intermediate":{
+			"Exercices":"3 exercises x 4 sets x 1 rep\nExercises are : 1-2-3, 1-3-5-7-9, 1-4-5\nRest 02:00 between sets",
+			"Description":"The goal of this workout is to increase strength and power in the upper body and arms.  It is designed for climbers climbing at least 6C+/V5.\nUse the smallest rung size possible whilst still completing the prescribed sets.  Complete the following campus movements.  Start each set matched on the first numbered rung and finish each set matched on the last numbered rung.\nAll odd sets start with left hand first. All even sets start with right hand first.\nSets 1 to 4: 1-2-3\nSets 5 to 8: 1-3-5\nSets 9 to 12: 1-4-5\nIf these movements are not maximal, complete bigger gaps between rungs until max is reached for sets 5-12.",
+			"duration":30,
+			"coefficient":75
+		},
+		"Campusboard - Wide Positions":{
+			"Exercices":"1-2-3 : 2 sets x 1 rep, 1-3-5 : 6sets x 1 rep\nRest 02:00 between sets",
+			"Description":"The goal of this workout is to increase strength and power in the upper body and arms in a wider square on position.\nUse either pinches, campus balls or slopers which are at least 50cm apart (as wide as possible).  Complete the following campus movements whilst maintaining a stable shoulder position.\nAll sets should begin and finish with both hands on the same level.  All odd sets start with left hand first.\n All even sets start with right hand first.\nSet 1 & 2: Ladder one step at time for 6 hands moves (e.g. 1-2-3-4-5-6)\nSets 3 to 8: Complete 4 hand moves as large as possible but evenly spaced (e.g. 1-3-5-7)",
+			"duration":20,
+			"coefficient":144
+		},
+		"One arm pull-ups":{
+			"Exercices":"3 sets x 2 arms x 3 reps\nTips : add/reduce weight to be able to do but only do 3 reps\nRest : 03:00 between sets and 10:00 between arms",
+			"Description":"Just pure Power",
+			"duration":15,
+			"coefficient":100
+		}
+	}
+},
+"Conditionning":{
+	"Antagonist Muscles":{
+		"Stabilizer Conditionning":{
+			"Exercices":"3 exos x 3 sets x 10 reps\nexos are : External Rotations, Standing Y, Triceps extension\nRest 01:00 between sets",
+			"Description":"Complete 3 sets of 10 reps of each exercise on each side of the body.  Rest 1 minute between sets and exercises.\nUse a Theraband with good resistance for each exercise\nProgression: Increase intensity by using a stiffer Theraband.",
+			"duration":20,
+			"coefficient":18
+		},
+		"Forearm Conditionning":{
+			"Exercices":"2 exos x 3 sets x 10 reps\nexos are : Flexor Curl, Extensor Curl\nRest 01:00 between sets",
+			"Description":"Complete 3 sets of 10 reps of each curl or both arms. Rest 1 minute between sets and exercises.\nStart in a sitting position on a chair or bench with your feet on the floor and knees at 90 degrees. Your thigh should be close to horizontal.\nRest your forearm along your thigh with your wrist hanging off the end of your knee. Each exercise involves holding a dumbbell in one hand off the end of your leg and your arm in a relaxed position. Then curl bend the wrist to lift the dumbbell in one small movement as high as possible without lifting your forearm off your thigh. Once at the top of the possible movement, pause and slowly lower the dombbell to the starting position.\nFlexor curl = Palms facing upwards\nExtensor curls = Palms facing downwards\nUse the maximum weight possible to complete the 3 sets of 10 reps. Extensor curls will use a considerably smaller weight than flexor curls.",
+			"duration":10,
+			"coefficient":16
+		}
+	}, 
+	"Core":{
+		"Static Holds":{
+			"Exercices":"2sets x 4 holds x 1min per hold\nRest 00:00 between holds & 01:00 between sets",
+			"Description":"Set 1 : Face Plank, Back arches, Left Side Plank, Hollow body hold \nSet 2 : Hollow body hold, Right Side Plank, Back arches, Face Plank\nIncrease time to one minute to make this harder and then reduce the rest.\nTo make the holds easier, reduce the time of each hold or increase rest periods.",
+			"duration":10,
+			"coefficient":14
+		},
+		"Extended Core":{
+			"Exercices":"3 exercices x 3 sets x 10 reps\nRest 02:00 between sets\nexos are : Hanging Leg Raises, Jack Knives, & V-Ups",
+			"Description":"Complete all sets and reps for each exercise in order.  Add ankle and/or wrist weights to increase the intensity.\nAdd a weight vest to make harder.\nReduce the rest between sets or add reps to increase the intensity.\nReduce the volume of reps to decrease the intensity.",
+			"duration":25,
+			"coefficient":30
+		},
+		"Floor Core":{
+			"Exercices":"3 exercices x 3 sets x 15 reps\nRest 01:00 between sets\nexos are : Bicycle, Tuck Dish, & Superman",
+			"Description":"Complete all sets and reps for each exercise in order.  Add ankle and/or wrist weights to increase the intensity.\nAdd a weight vest to make harder.\nReduce the rest between sets or add reps to increase the intensity.\nReduce the volume of reps to decrease the intensity.",
+			"duration":20,
+			"coefficient":32
+		},
+		"H-Core":{
+			"Exercices":"3 exercices x 4 sets x 20 reps\nRest 01:00 between sets\nexos are : Weighted upper abs crunches, Back Arches, Weighted Russian twist",
+			"Description":"Complete all sets and reps for each exercise in order.  Add ankle and/or wrist weights to increase the intensity for Leg Raises and V-Ups.\nAdd a weight vest to make Jack Knives harder.\nReduce the rest between sets or add reps to increase the intensity.\nReduce the volume of reps to decrease the intensity.",
+			"duration":25,
+			"coefficient":64
+		}
+
+	}, 
+	"Flexibility":{
+		"Forearm Mobility":{
+			"Exercices":"2exos x 4 sets x 2 reps x 01:00 per rep\nexos are :Flexors Strech & Extensor Strech\nRest 00:10 between reps & 01:00 between sets",
+			"Description":"Complete 8 sets total (4 on each arm) of each of the following static positions.  Hold the most stretched position possible where you feel slight discomfort but not pain.  Complete all sets of each position before moving to the next exercise.\nRest for 1 minute between sets and 2 minutes between exercises.\nTo maintain flexibility, hold each position for 30 seconds.  To develop flexibility, hold each position for 90 seconds.",
+			"duration":20,
+			"coefficient":4
+		},
+		"Hip & Leg Flexibility":{
+			"Exercices":"4 exos x 4 sets x 1 reps x 01:00 per rep \nexos : Split, Butterfly, Grab your feet, Hip flexors Strech\nRest 01:00 between sets",
+			"Description":"Complete 4 sets of each of the following static positions.  For exercises targeted one side of the body at a time - two reps will be included.\nComplete all sets of each position before moving to the next exercise, resting for 10 seconds between reps, 1 minute between sets and 2 minutes between exercises.\nTo maintain flexibility, hold each position for 30 seconds.  To develop flexibility, hold each position for 90 seconds.  Hold the most stretched position possible where you feel slight discomfort but not pain.",
+			"duration":30,
+			"coefficient":7
+		},
+		"Upper Body Flexibility":{
+			"Exercices":"3 exos x 4 sets x 1 reps x 01:00 per rep \nexos : Chest strech, Cat Strech, Biceps Strech\nRest 01:00 between sets",
+			"Description":"Complete 4 sets of each of the following static positions.  Hold the most stretched position possible where you feel slight discomfort but not pain.  Complete all sets of each position before moving to the next exercise.  Rest for 1 minute between sets and 2 minutes between exercises.\nTo maintain flexibility, hold each position for 30 seconds.  To develop flexibility, hold each position for 90 seconds.",
+			"duration":25,
+			"coefficient":4
+		}
+	}, 
+	"Upper Body":{
+		"Weighted Pull Ups":{
+			"Exercices":"5 sets x 5 reps\n Resistance : 85%-95% of 2RM\nRest 02:00 between sets",
+			"Description":"Complete 5 sets of 5 weighted pull ups.  Rest 3 minutes between sets.\nTry to use 85-95% of 2 rep max found during the testing session.  This is calculated as 85% to 95% of your bodyweight + your score from the testing session. e.g. If you weigh 70kg and add 30kg in your maximal test, then your 90% intensity would be at 90kg total load, or bodyweight + 20kg.",
+			"duration":20,
+			"coefficient":100
+		},
+		"Compression RTX":{
+			"Exercices":"3 exos x 4 sets x 4 reps\nExos are : Butterfly T, Butterfly Y, Low Rowing\nRest 02:00 between sets",
+			"Description":"Complete 4 sets of 4 reps of each of the following exercises using either a set of rings or TRX.\nRest 2 minutes between sets and exercises.\nForm: Keep your body strength throughout and do not allow your back to arch during any exercise.\nKeep your thumbs pointing towards your face and palms facing each other to avoid rounding your shoulders.\nProgression: Each exercise can be made harder by positioning your body in a more horizontal position.",
+			"duration":30,
+			"coefficient":20
+		},
+		"Simple Pull-ups":{
+			"Exercices":"5 sets x 5-10 reps\nIntensity : moderate, bodyweight\nRest 01:00 between sets",
+			"Description":"Perform 5 sets of 5 pull ups, resting 1 minute between sets.\nIf you can complete 5 sets of 5 reps at body weight, add weight to increase the intensity.   You may also reduce the rest between sets, perform the reps more slowly, or add reps to increase the intensity.\nTo decrease the overall intensity, reduce the volume of sets or reps.  If you are unable to complete 5 sets of 5 reps, use a band or pulley system for assistance.",
+			"duration":10,
+			"coefficient":100
+		},
+		"Press & Row":{
+			"Exercices":"2 exos x 4 sets x 2 arms x 6-10 reps\nExos are : One arm dumbbell shoulder press (or handstand push ups) & One arm dumbbell rowing\nRest 01:00 between sets",
+			"Description":"The shoulder press is a great exercise for training muscles in the upper body using movement patterns rarely seen in climbing. This can act as a great method of working the supporting muscles around the shoulder girdle. It is also a great exercise for competition climbers who need to perform strenuous pushing movements above their heads.\nThe bent over row is another great exercise to increase strength in the upper body muscles used in climbing. This exercise really targets the muscles used on steeper terrain and during longer rock over moves. Great for the comp climber and those looking to crank hard on anything from slabs to roofs.\nStart by using lower weights for this workout. Gradually increase the weight used over several sessions and weeks. If you are unsure about form, please seek guidance in person from a professional trainer.\nThere are 8 sets of each exercise in this workout. You must complete 4 sets of each arm NOT 8 sets on each arm.\n4 shoulder press sets on the left and 4 shoulder press sets on the right.\n4 bent over row sets on the left and 4 bent over row sets on the right. ",
+			"duration":25,
+			"coefficient":40
+		},
+		"Pull-Up testing session":{
+			"Exercices":"5 sets x 2 reps\nResistance : up to max\nRest 03:00 between sets",
+			"Description":"This session is designed to find your two rep max for pull ups.\nCreate a high intensity by adding additional weight to your body using a dipping belt or harness.  If you need to remove weight from you body to complete two pull ups, use a pulley system and counterbalance weights. Remember to use the same system as this if removing weight in subsequent training sessions.\nComplete 4-8 sets of 2 pull ups.\nRest 3 minutes between attempts.\nFor every following set increase the weight from an easy starting intensity in set 1 to a maximal effort.  Your maximal score is reached when you have completed 2 pull ups in good form with the maximum additional weight possible added to your body or removed from a pulley.\nFor example:\nSet 1 = Body weight only\nSet 2 = +10 kg\nSets 3-5 weight is increased in 2.5kg to 5kg increments based on feelings of effort.\nSet 6 = +30kg\nSet 7 = +32.5kg.\nDuring set 7 the climber fails to complete 2 full reps. Therefore the climber max score is taken from set 6 (+30kg)  Record this value using the Log Workout button.",
+			"duration":20,
+			"coefficient":100
+		},
+		"Tension RTX":{
+			"Exercices":"3 exos x 4 sets x 4-6 reps\nexos are : Reverse fly, Supermans RTX, Archer rows\nRest 02:00 between sets",
+			"Description":"Complete 4 sets of 4 reps of each of the following exercises using either a set of rings or TRX.\nRest 2 minutes between sets and exercises.\nForm: Keep your body strength throughout and do not allow your back to arch during any exercise.\nKeep your thumbs pointing towards your face and palms facing each other to avoid rounding your shoulders.\nProgression: Each exercise can be made harder by positioning your body in a more horizontal position.",
+			"duration":30,
+			"coefficient":38
+		}
+	},
+	"Cardio Training":{
+		"Footing":{
+			"Exercices":"30min of easy flat terrain running",
+			"Description":"Increase up to 40min and do not do it more than 3 times a week",
+			"duration":30,
+			"coefficient":40
+		},
+		"Jumping Rope":{
+			"Exercices":"5 sets x 8 reps x 20s\nRest 00:10 between reps",
+			"Description":"Increase rest time between SETS if really needed, do not do it more than 3 times a week",
+			"duration":30,
+			"coefficient":30
+		}
+	}
+},
+"Open Climbing":{
+	"Indoor":{
+		"Boulder":{
+			"Exercices":"Just climb",
+			"Description":"No timers, weights or protocols - just time spent in the gym climbing volume or working on projects.",
+			"coefficients":{"5":3,"5+":12,"6a":27,"6a+":48,"6b":75,"6b+":75,"6c":108,"6c+":105,"7a":147,"7a+":192,"7b":243,"7b+":243,"7c":300,"7c+":363,"8a":432,"8a+":507,"8b":588,"8b+":675,"8c":768},
+			"tries":10,
+			"coefficient":500,
+			"duration":120
+		},
+		"Route":{
+			"Exercices":"Just climb",
+			"Description":"No timers, weights or protocols - just time spent in the gym climbing volume or working on projects.",
+			"coefficients":{"5":24,"5+":24,"6a":24,"6a+":24,"6b":54,"6b+":54,"6c":96,"6c+":96,"7a":150,"7a+":216,"7b":294,"7b+":384,"7c":384,"7c+":486,"8a":600,"8a+":600,"8b":726,"8b+":864,"8c":1014,"8c+":1176,"9a":1350,"9a+":1536},
+			"tries":5,
+			"coefficient":500,
+			"duration":120
+		}
+	},
+	"Outdoor":{
+		"Boulder":{
+			"Exercices":"Just climb",
+			"Description":"No timers, weights or protocols - just time spent time volume outside or working on projects.",
+			"coefficients":{"5":3,"5+":12,"6a":27,"6a+":48,"6b":75,"6b+":75,"6c":108,"6c+":105,"7a":147,"7a+":192,"7b":243,"7b+":243,"7c":300,"7c+":363,"8a":432,"8a+":507,"8b":588,"8b+":675,"8c":768},
+			"tries":10,
+			"coefficient":500,
+			"duration":120
+		},
+		"Route":{
+			"Exercices":"Just climb",
+			"Description":"No timers, weights or protocols - just time spent time volume outside or working on projects.",
+			"coefficients":{"5":24,"5+":24,"6a":24,"6a+":24,"6b":54,"6b+":54,"6c":96,"6c+":96,"7a":150,"7a+":216,"7b":294,"7b+":384,"7c":384,"7c+":486,"8a":600,"8a+":600,"8b":726,"8b+":864,"8c":1014,"8c+":1176,"9a":1350,"9a+":1536},
+			"tries":5,
+			"coefficient":500,
+			"duration":120
+		}
+	}
+}
+}
