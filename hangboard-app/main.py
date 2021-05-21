@@ -5,41 +5,6 @@ import json
 
 app = Flask(__name__) 
 
-
-def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
-    """
-    Call in a loop to create terminal progress bar
-    @params:
-        iteration   - Required  : current iteration (Int)
-        total       - Required  : total iterations (Int)
-        prefix      - Optional  : prefix string (Str)
-        suffix      - Optional  : suffix string (Str)
-        decimals    - Optional  : positive number of decimals in percent complete (Int)
-        length      - Optional  : character length of bar (Int)
-        fill        - Optional  : bar fill character (Str)
-        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
-    """
-    total = len(iterable)
-    # Progress Bar Printing Function
-    def printProgressBar (iteration):
-        percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
-        filledLength = int(length * iteration // total)
-        bar = fill * filledLength + '-' * (length - filledLength)
-        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
-    # Initial Call
-    printProgressBar(0)
-    # Update Progress Bar
-    for i, item in enumerate(iterable):
-        yield item
-        printProgressBar(i + 1)
-    # Print New Line on Complete
-    print()
-
-def pbar(sec, what):
-    items = range (1, 1+sec)
-    for item in progressBar(items, prefix = what, suffix = 'Complete - ' + str(sec) + " seconds total", length = 50):
-        time.sleep (.1)
-
 #try:
 #    hx711 = HX711(
 #    dout_pin=5,
@@ -68,32 +33,36 @@ class Exercise:
             self.current_exercise_name = "Rest to start"
     
     def run_exercise (self): 
+        print ("Run one exercise")
         e = self.session["Exercise"][self.current_exercise]
         self.current_exercise_name = e["Type"]
         self.current_exercise_reps_counter = 0
         self.current_exercise_reps_total = e["Reps"]
         self.current_exercise_duration = e["Counter"]
         self.current_exercise_counter = 0
+        self.current_exercise_pause_duration = e["Pause"]
         self.current_exercise_rest_to_start = e["Rest-to-Start"]
-        #pbar (rest_to_start, "Rest to start - upcoming " + e["Type"])
-        for r in range (1, 1+e["Reps"]):
-                        start_detected = 2
-                        if (start_detected == 1):
-                            if (e["Type"] == "Hang"):
-                                pbar (e["Counter"], e["Type"])
-                            elif (e["Type"] == "Maximal Hang"):
-                                print (e["Type"] + "Key press?")
-                            elif (e["Type"] == "Assisted Pull Ups"):
-                                print (e["Type"] + "Key press?")
-                                #pbar (e["Counter"], e["Type"])
-                            else:
-                                print ("Key press?")
+        for self.current_exercise_reps_counter in range (1, 1+self.current_exercise_reps_total):
+            start_detected = 1
+            if (start_detected == 1):
+                print ("Start detected")
+                if (e["Type"] == "Hang"):
+                    print ("Hang")
+                    for self.current_exercise_counter in range (0, self.current_exercise_duration+1):
+                        time.sleep (1)
+                elif (e["Type"] == "Maximal Hang"):
+                    print ("Key press?")                    
+                elif (e["Type"] == "Assisted Pull Ups"):
+                    print ("Key press?")                    
+                else:
+                    print ("Key press?")
 
-                            pbar (e["Pause"], "Pause")
+                print ("Pause")
+                for self.current_exercise_counter in range (0, self.current_exercise_pause_duration+1):
+                    time.sleep (1)
 
 
 ex = Exercise()
-ex.run_exercise()
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -102,6 +71,7 @@ def index():
         if request.form.get('Encrypt') == 'Encrypt':
             # pass
             print("Encrypted")
+            ex.run_exercise()
         elif  request.form.get('Decrypt') == 'Decrypt':
             # pass # do something else
             print("Decrypted")
