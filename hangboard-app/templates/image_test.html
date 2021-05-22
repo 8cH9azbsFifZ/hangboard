@@ -12,13 +12,61 @@
 			$('.progress-bar').css('width', event.data+'%').attr('aria-valuenow', event.data);
 			$('.progress-bar-label').text(event.data+'%');
 
-			//if(event.data == 100){
-			//	source.close()
-			//}
+			if(event.data == 100){
+				source.close()
+			}
 		}
 	</script>
+	<style>
+		.jug-left {
+			position: relative;
+			top: -200px;
+			left: 50px;
+			width: 80px;
+			background-color:rgba(255,255,0,0.5);
+			padding: 20px;
+		}
+		.jug-right {
+			position: relative;
+			top: -240px;
+			left: 800px;
+			width: 80px;
+			background-color:rgba(255,255,0,0.5);
+			padding: 20px;
+		}
+	</style>
 </head>
 <body>
+
+<div>
+	 <img id="scream" src="{{url_for('static', filename='zlagboard.jpg')}}" alt="The Scream"> 
+
+<canvas id="myCanvas" style="width: 50%"> Your browser does not support the HTML5 canvas tag. </canvas>
+
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+   var img = document.getElementById("scream");
+ /*var img = new Image();
+ img.src = "{{url_for('static', filename='zlagboard.jpg')}}";
+
+ img.onload = function ()
+ {
+	ctx.drawImage(img, 10, 10);
+
+ }  ;
+ */
+ ctx.drawImage(img, 10, 10);
+
+  ctx.fillStyle='#fa002f';    // color of fill
+  ctx.globalAlpha = 0.5;       
+  ctx.fillRect(10, 10, 140, 50); // create rectangle  
+  ctx.fillRect(100, 100, 140, 50); // create rectangle  
+
+};
+</script>
+</div>
 
 	<div>
 		Exercise: {{Exercise_Name}} (# {{Current_Exercise}} of {{Total_Exercises}})
@@ -33,6 +81,8 @@
 
 		<div>
 			<img style="width: 50%" src="{{url_for('static', filename='zlagboard.jpg')}}" />
+			<div class="jug-left"></div>
+			<div class="jug-right"></div>
 		</div>
 	</div>
 

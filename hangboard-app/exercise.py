@@ -41,7 +41,8 @@ class Exercise():
                     print ("Hang")
                     for counter in range (0, duration+1):
                         time.sleep (1)
-                        self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter}))
+                        completed = counter / duration *100
+                        self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter, "Completed": completed}))
 
                 elif (name == "Maximal Hang"):
                     print ("Key press?")                    
@@ -53,7 +54,8 @@ class Exercise():
                 print ("Pause")
                 for counter in range (0, pause_duration+1):
                     time.sleep (1)
-                    self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter}))
+                    completed = counter / pause_duration *100
+                    self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed}))
 
 
 if __name__ == "__main__":
