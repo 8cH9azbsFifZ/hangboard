@@ -1,5 +1,6 @@
 Flask
 HX711 
+zmq
 #RPi.GPIO
 
 Jinja2
