@@ -5,8 +5,6 @@ import json
 
 HOST = '127.0.0.1'
 PORT = 9090
-TASK_SOCKET = zmq.Context().socket(zmq.REQ)
-TASK_SOCKET.connect('tcp://{}:{}'.format(HOST, PORT))
 
 class Exercise():
     def __init__(self):
@@ -27,45 +25,35 @@ class Exercise():
         self.zmq_count = 0
 
 
-    def config_exercise (self):
-        e = self.session["Exercise"][self.current_exercise]
-        self.current_exercise_name = e["Type"]
-        self.current_exercise_reps_counter = 0
-        self.current_exercise_reps_total = e["Reps"]
-        self.current_exercise_duration = e["Counter"]
-        self.current_exercise_counter = 0
-        self.current_exercise_pause_duration = e["Pause"]
-        self.current_exercise_rest_to_start = e["Rest-to-Start"]
-
     def run_exercise (self): 
         print ("Run one exercise")
-        self.config_exercise()
+        e = self.session["Exercise"][self.current_exercise]
+        name = e["Type"]
+        reps_total = e["Reps"]
+        duration = e["Counter"]
+        pause_duration = e["Pause"]
+        rest_to_start = e["Rest-to-Start"]
 
-        for self.current_exercise_reps_counter in range (1, 1+self.current_exercise_reps_total):
+        for reps_counter in range (1, 1+reps_total):
             start_detected = 1
             if (start_detected == 1):
-                print ("Start detected")
-                if (self.current_exercise_name == "Hang"):
+                if (name == "Hang"):
                     print ("Hang")
-                    counter = 0
-                    for self.current_exercise_counter in range (0, self.current_exercise_duration+1):
+                    for counter in range (0, duration+1):
                         time.sleep (1)
-                        self._socket.send_string("%d %d" % (1, counter))
-                        #send_json
-                        counter = counter + 1
-                        print ("x")
-                elif (self.current_exercise_name == "Maximal Hang"):
+                        self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter}))
+
+                elif (name == "Maximal Hang"):
                     print ("Key press?")                    
-                elif (self.current_exercise_name == "Assisted Pull Ups"):
+                elif (name == "Assisted Pull Ups"):
                     print ("Key press?")                    
                 else:
                     print ("Key press?")
 
                 print ("Pause")
-                for self.current_exercise_counter in range (0, self.current_exercise_pause_duration+1):
+                for counter in range (0, pause_duration+1):
                     time.sleep (1)
-
-
+                    self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter}))
 
 
 if __name__ == "__main__":
