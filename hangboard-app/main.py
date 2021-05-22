@@ -30,17 +30,39 @@ app.secret_key = "test"
 #print("\n".join(measures))
 
 
-class Exercise:
-    def __init__ (self):
+# MQTT
+class Exercise(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+
         self.filename = "../exercises/test.json" # TODO: as parameter
         with open(self.filename) as json_file:
             self.data = json.load(json_file)
-            self.session = (self.data["Sessions"][0])
-            self.session_name = self.session["Name"]
-            self.total_exercises = len (self.session["Exercise"])
-            self.current_exercise = 0
-            self.current_exercise_name = "Rest to start"
-    
+
+        self.session = (self.data["Sessions"][0])
+        self.session_name = self.session["Name"]
+        self.total_exercises = len (self.session["Exercise"])
+        self.current_exercise = 0
+        self.current_exercise_name = "Rest to start"
+
+        self._context = zmq.Context()
+        self._socket = self._context.socket(zmq.REP)
+
+        self.zmq_count = 0
+
+        self.active = True
+
+
+    def run(self):
+        self._socket.bind('tcp://{}:{}'.format(HOST, PORT))
+        self._socket.setsockopt(zmq.RCVTIMEO, 500)
+        while self.active:
+            ev = self._socket.poll(1000)
+            self.zmq_count = self.zmq_count + 1
+            if ev:
+                rec = self._socket.recv_json()
+                self._socket.send_json({"response": "ok", "payload": rec, "ZMQ Counter": self.zmq_count})
+
     def config_exercise (self):
         e = self.session["Exercise"][self.current_exercise]
         self.current_exercise_name = e["Type"]
@@ -74,6 +96,8 @@ class Exercise:
                 for self.current_exercise_counter in range (0, self.current_exercise_pause_duration+1):
                     time.sleep (1)
 
+
+
 # Ref: https://gist.github.com/blakebjorn/aab2f989a7b68fa83410153181aabbac
 class Worker(Thread):
     def __init__(self):
@@ -81,18 +105,19 @@ class Worker(Thread):
         self._context = zmq.Context()
         self._socket = self._context.socket(zmq.REP)
         self.active = True
+        self.counter = 0
+
 
     def run(self):
         self._socket.bind('tcp://{}:{}'.format(HOST, PORT))
         self._socket.setsockopt(zmq.RCVTIMEO, 500)
         while self.active:
+            self.counter = self.counter + 1
             ev = self._socket.poll(1000)
             if ev:
                 rec = self._socket.recv_json()
-                self._socket.send_json({"response": "ok", "payload": rec})
+                self._socket.send_json({"response": "ok", "payload": rec, "counter": self.counter})
 
-
-ex = Exercise()
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -123,7 +148,6 @@ def progress():
             x = x + 10
             time.sleep(.11)
 
-    
     return Response(generate(), mimetype= 'text/event-stream')
 
 @app.route("/hang", methods=["GET", "POST"])
@@ -193,6 +217,10 @@ def pause():
     return f"pausing {results}"
 
 if __name__ == "__main__":
-    worker = Worker()
-    worker.start() 
+    #worker = Worker()
+    #worker.start() 
+
+    ex = Exercise()
+    ex.start()
+
     app.run(host="127.0.0.1", port=8080, debug=True)
