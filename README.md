@@ -31,3 +31,4 @@ Use inkscape with layers
 # History
 - v0.3 - SVG layers working
 - v0.2 - ZMQ working
+- v0.1 - Timer and progress bar working

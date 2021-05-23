@@ -51,24 +51,6 @@ def svg():
         print("No Post Back Call")
     return render_template("svg.html")
 
-@app.route("/canvas", methods=['GET', 'POST'])
-def canvas():
-    print(request.method)
-    if request.method == 'POST':
-        if request.form.get('Encrypt') == 'Encrypt':
-            # pass
-            print("Encrypted")
-            ex.run_exercise()
-        elif  request.form.get('Decrypt') == 'Decrypt':
-            # pass # do something else
-            print("Decrypted")
-        else:
-            # pass # unknown
-            return render_template("index.html")
-    elif request.method == 'GET':
-        # return render_template("index.html")
-        print("No Post Back Call")
-    return render_template("image_test.html")
 
 @app.route('/progress')
 def progress():
@@ -91,71 +73,8 @@ def progress():
             time.sleep(.11)
     return Response(generate(), mimetype= 'text/event-stream')
 
-@app.route("/hang", methods=["GET", "POST"])
-def config():
-    if request.method == "POST":
-        #exercise = int(request.form["exercise"])
-        #rest = int(request.form["rest"])
-        #sets = int(request.form["sets"])
-        ex.config_exercise()
-        session["exercise"] = ex.current_exercise_duration
-        session["rest"] = ex.current_exercise_pause_duration
-        session["sets"] = ex.current_exercise_reps_total
-        session["set_counter"] = 0
-
-        return redirect(url_for("rest"))
-    return render_template("hang_config.jinja2")
 
 
-# Timer App
-@app.route("/test", methods=["GET", "POST"])
-def setup():
-    if request.method == "POST":
-        exercise = int(request.form["exercise"])
-        rest = int(request.form["rest"])
-        sets = int(request.form["sets"])
-
-        session["exercise"] = exercise
-        session["rest"] = rest
-        session["sets"] = sets
-        session["set_counter"] = 0
-
-        return redirect(url_for("rest"))
-    return render_template("home.jinja2")
-
-
-@app.route("/rest")
-def rest():
-    return render_template("rest.jinja2", rest=session["rest"])
-
-
-@app.route("/exercise")
-def exercise():
-    if session["set_counter"] == session["sets"]:
-        return redirect(url_for("completed"))
-    session["set_counter"] += 1
-    return render_template("exercise.jinja2", exercise=session["exercise"])
-
-
-@app.route("/complete")
-def completed():
-    return render_template("complete.jinja2", sets=session["set_counter"])
-
-
-# Worker App test
-
-@app.route("/start")
-def start():
-    TASK_SOCKET.send_json({"command": "start"})
-    results = TASK_SOCKET.recv_json()
-    return f"starting {results}"
-
-
-@app.route("/pause")
-def pause():
-    #TASK_SOCKET.send_json({"command": "pause"})
-    results = TASK_SOCKET.recv_json()
-    return f"pausing {results}"
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
