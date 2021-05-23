@@ -19,7 +19,11 @@
 	<script>
 		function DisplayHolds(hold)
 		{
-			hold.setAttribute("display","inline")
+			hold.setAttribute("display","inline");
+		}
+		function HideHolds(hold)
+		{
+			hold.setAttribute("display","none");
 		}
 	</script>
 
@@ -39,7 +43,8 @@
 			{
 				if (parsed.Left != "") { DisplayHolds(parsed.Left); } else { A1.setAttribute("display","none") }
 				if (parsed.Right != "") { DisplayHolds(parsed.Right); } else { A7.setAttribute("display","none") }
-			}
+			} 
+
 		}
 	</script>
 
