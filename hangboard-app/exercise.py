@@ -3,11 +3,15 @@ import zmq
 import time
 import json
 
+from threading import Thread
+
 HOST = '127.0.0.1'
 PORT = 9090
 
-class Exercise():
+class Exercise(Thread):
     def __init__(self):
+        Thread.__init__(self)
+        self.active = True
         self.filename = "../exercises/test.json" # TODO: as parameter
         with open(self.filename) as json_file:
             self.data = json.load(json_file)
@@ -64,4 +68,5 @@ class Exercise():
 
 if __name__ == "__main__":
     ex = Exercise()
+    #ex.start()
     ex.run_exercise()
