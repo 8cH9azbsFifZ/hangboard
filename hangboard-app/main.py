@@ -17,11 +17,11 @@ app.secret_key = "test"
 def index():
     print(request.method)
     if request.method == 'POST':
-        if request.form.get('Encrypt') == 'Encrypt':
+        if request.form.get('Start') == 'Start':
             # pass
             print("Start Exercise")
             # TODO include exercise class as thread (stoppable) here
-        elif  request.form.get('Decrypt') == 'Decrypt':
+        elif  request.form.get('Stop') == 'Stop':
             # pass # do something else
             print("Stop Exercise")
         else:
