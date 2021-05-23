@@ -19,11 +19,11 @@ def index():
     if request.method == 'POST':
         if request.form.get('Encrypt') == 'Encrypt':
             # pass
-            print("Encrypted")
-            ex.run_exercise()
+            print("Start Exercise")
+            # TODO include exercise class as thread (stoppable) here
         elif  request.form.get('Decrypt') == 'Decrypt':
             # pass # do something else
-            print("Decrypted")
+            print("Stop Exercise")
         else:
             # pass # unknown
             return render_template("index.html")
