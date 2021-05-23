@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<center>
+<div id="svgInlineDiv" ></div>
+<button onClick=toggleDisplay(A1)>toggle A1</button>
+<button onClick=toggleDisplay(A7)>toggle A7</button>
+<button onClick=toggleDisplay(Board)>toggle Board</button>
+</center>
+<script id=myScript>
+function toggleDisplay(me)
+{
+  if(me.getAttribute("display")=="inline")
+    me.setAttribute("display","none")
+   else
+    me.setAttribute("display","inline")
+}
+</script>
+<script>
+document.addEventListener("onload",inlineSVG(),false)
+function inlineSVG()
+{
+    var SVGFile="{{url_for('static', filename='zlagboard.svg')}}"
+    var loadXML = new XMLHttpRequest;
+    function handler(){
+    if(loadXML.readyState == 4 && loadXML.status == 200)
+        svgInlineDiv.innerHTML=loadXML.responseText
+    }
+    if (loadXML != null){
+        loadXML.open("GET", SVGFile, true);
+        loadXML.onreadystatechange = handler;
+        loadXML.send();
+    }
+}
+
+</script>
+
+
+
+</body>
+</html>
