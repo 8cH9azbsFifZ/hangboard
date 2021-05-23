@@ -24,25 +24,27 @@
 <body>
 
 <div>
-	 <img id="scream" src="{{url_for('static', filename='zlagboard.jpg')}}" alt="The Scream"> 
-
+<!--	 <img id="board1" src="{{url_for('static', filename='zlagboard.jpg')}}" > 
+	-->
+	 <img id="board" src="https://www.outdoor-climbing.de/media/image/product/25969/md/zlagboard-pro_2~2.jpg">
 <canvas id="myCanvas" style="width: 50%"> Your browser does not support the HTML5 canvas tag. </canvas>
 
 <script>
 window.onload = function() {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-   var img = document.getElementById("scream");
- /*var img = new Image();
- img.src = "{{url_for('static', filename='zlagboard.jpg')}}";
+   //var img = document.getElementById("board");
+ var img = new Image();
+ img.src = "https://www.outdoor-climbing.de/media/image/product/25969/md/zlagboard-pro_2~2.jpg";
 
  img.onload = function ()
  {
 	ctx.drawImage(img, 10, 10);
 
  }  ;
- */
- ctx.drawImage(img, 10, 10);
+ 
+
+ //ctx.drawImage(img, 0, 0);
 
   ctx.fillStyle='#fa002f';    // color of fill
   ctx.globalAlpha = 0.5;       
@@ -54,11 +56,6 @@ window.onload = function() {
 </div>
 
 
-		<div>
-			<img style="width: 50%" src="{{url_for('static', filename='zlagboard.jpg')}}" />
-			<div class="jug-left"></div>
-			<div class="jug-right"></div>
-		</div>
 
 
 
