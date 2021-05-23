@@ -35,25 +35,17 @@ def index():
 @app.route('/progress')
 def progress():
     def generate():
-        #x = 0
-        #
-        #while x <= 100:
-        #    yield "data:" + str(x) + "\n\n"
-        #    x = x + 10
-        #    time.sleep(.11)
+
         while 1:
             results = TASK_SOCKET.recv_json()
-            #x = results["Completed"]
             print (results)
             data = json.loads(results)
-            #completed = data["Completed"]
-            print (data["Completed"])
-            x=data["Completed"]
-            yield "data:" + str(x) + "\n\n"
+            #x=data["Completed"]
+            #yield "data:" + str(x) + "\n\n"
+            yield "data:" + results + "\n\n"
+
             time.sleep(.11)
     return Response(generate(), mimetype= 'text/event-stream')
-
-
 
 
 if __name__ == "__main__":
