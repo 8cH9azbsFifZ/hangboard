@@ -17,6 +17,35 @@
 			//}
 		}
 	</script>
+
+	<script>
+		document.addEventListener("onload",inlineSVG(),false)
+		function inlineSVG()
+		{
+			var SVGFile="{{url_for('static', filename='zlagboard.svg')}}"
+			var loadXML = new XMLHttpRequest;
+			function handler(){
+			if(loadXML.readyState == 4 && loadXML.status == 200)
+				svgInlineDiv.innerHTML=loadXML.responseText
+			}
+			if (loadXML != null){
+				loadXML.open("GET", SVGFile, true);
+				loadXML.onreadystatechange = handler;
+				loadXML.send();
+			}
+		}
+	</script>
+
+	<script id=myScript>
+		function toggleDisplay(me)
+		{
+		if(me.getAttribute("display")=="inline")
+			me.setAttribute("display","none")
+		else
+			me.setAttribute("display","inline")
+		}
+	</script>
+
 </head>
 <body>
 
@@ -31,8 +60,11 @@
 			</div>
 		</div>
 
-		<div>
-			<img style="width: 50%" src="{{url_for('static', filename='zlagboard.jpg')}}" />
+		<div style="width: 30%">
+			<div id="svgInlineDiv" style="width: 30%"></div>
+			<button onClick=toggleDisplay(A1)>toggle A1</button>
+<button onClick=toggleDisplay(A7)>toggle A7</button>
+<button onClick=toggleDisplay(Board)>toggle Board</button>
 		</div>
 	</div>
 

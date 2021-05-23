@@ -29,6 +29,7 @@ Use inkscape with layers
 + https://github.com/tecladocode/hiit-timer
 
 # History
-- v0.3 - SVG layers working
-- v0.2 - ZMQ working
-- v0.1 - Timer and progress bar working
+- v0.4 - SVG layers demonstrator integrated and cleanup
+- v0.3 - SVG layers proof of concept working
+- v0.2 - ZMQ demonstrator working
+- v0.1 - Timer and progress bar demonstrator working
