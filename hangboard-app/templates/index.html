@@ -31,14 +31,15 @@
 			var completed = parsed.Completed;
 
 			$('.progress-bar').css('width', completed+'%').attr('aria-valuenow', completed);
-			$('.progress-bar-label').text(completed+'%');
+			$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
+			var togo = parsed.Duration-parsed.Counter;
+			$('.exercise-label').text("Exercise: " + parsed.Type + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
 
 			if (parsed.Counter < 3)
 			{
 				if (parsed.Left != "") { DisplayHolds(parsed.Left); } else { A1.setAttribute("display","none") }
 				if (parsed.Right != "") { DisplayHolds(parsed.Right); } else { A7.setAttribute("display","none") }
 			}
-			//A7.setAttribute("display","none")
 		}
 	</script>
 
@@ -66,13 +67,13 @@
 <body>
 
 	<div>
-		Exercise: {{Exercise_Name}} (# {{Current_Exercise}} of {{Total_Exercises}})
+		<span class="exercise-label">Exercise: </span>
 	</div>
 	<!--- Progress Bar -->
 	<div style="margin: 50px;">
 		<div class="progress" style="width: 50%;">
 			<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-				<span class="progress-bar-label">0%</span>Test
+				<span class="progress-bar-label">0%</span>
 			</div>
 		</div>
 
