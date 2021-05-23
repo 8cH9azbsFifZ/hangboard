@@ -1,0 +1,29 @@
+{
+    "Name": "Zlagboard EVO",
+    "Holds": [
+        {"Name": "JUG"          , "Row": 1,     "Col": 1,    "Width": "4 Finger"},
+        {"Name": "32°"          , "Row": 1,     "Col": 2,    "Width": "4 Finger"},
+        {"Name": "20!°"         , "Row": 1,     "Col": 3,    "Width": "4 Finger"},
+        {"Name": "sloper JUG"   , "Row": 1,     "Col": 4,    "Width": "4 Finger"},
+        {"Name": "20!°"         , "Row": 1,     "Col": 5,    "Width": "4 Finger"},
+        {"Name": "32°"          , "Row": 1,     "Col": 6,    "Width": "4 Finger"},
+        {"Name": "JUG"          , "Row": 1,     "Col": 7,    "Width": "4 Finger"},
+
+        {"Name": "30mm"         , "Row": 2,     "Col": 1,    "Width": "4 Finger"},
+        {"Name": "sloper 30mm"  , "Row": 2,     "Col": 2,    "Width": "3 Finger"},
+        {"Name": "sloper 25mm"  , "Row": 2,     "Col": 3,    "Width": "2 Finger"},
+        {"Name": "35mm"         , "Row": 2,     "Col": 4,    "Width": "4 Finger"},
+        {"Name": "sloper 25mm"  , "Row": 2,     "Col": 5,    "Width": "2 Finger"},
+        {"Name": "sloper 30mm"  , "Row": 2,     "Col": 6,    "Width": "3 Finger"},
+        {"Name": "30mm"         , "Row": 2,     "Col": 7,    "Width": "4 Finger"},
+
+        {"Name": "20mm"         , "Row": 3,     "Col": 1,    "Width": "4 Finger"},
+        {"Name": "sloper 25mm"  , "Row": 3,     "Col": 2,    "Width": "3 Finger"},
+        {"Name": "30mm"         , "Row": 3,     "Col": 3,    "Width": "2 Finger"},
+        {"Name": "sloper 30mm"  , "Row": 3,     "Col": 4,    "Width": "4 Finger"},
+        {"Name": "30mm"         , "Row": 3,     "Col": 5,    "Width": "2 Finger"},
+        {"Name": "sloper 25mm"  , "Row": 3,     "Col": 6,    "Width": "3 Finger"},
+        {"Name": "20mm"         , "Row": 3,     "Col": 7,    "Width": "4 Finger"}
+
+    ]
+}
