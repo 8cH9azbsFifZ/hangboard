@@ -32,26 +32,6 @@ def index():
         print("No Post Back Call")
     return render_template("index.html")
 
-@app.route("/svg", methods=['GET', 'POST'])
-def svg():
-    print(request.method)
-    if request.method == 'POST':
-        if request.form.get('Encrypt') == 'Encrypt':
-            # pass
-            print("Encrypted")
-            ex.run_exercise()
-        elif  request.form.get('Decrypt') == 'Decrypt':
-            # pass # do something else
-            print("Decrypted")
-        else:
-            # pass # unknown
-            return render_template("index.html")
-    elif request.method == 'GET':
-        # return render_template("index.html")
-        print("No Post Back Call")
-    return render_template("svg.html")
-
-
 @app.route('/progress')
 def progress():
     def generate():
