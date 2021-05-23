@@ -27,3 +27,7 @@ Use inkscape with layers
 + https://github.com/adrianlzt/piclimbing
 + https://github.com/helloflask/timer
 + https://github.com/tecladocode/hiit-timer
+
+# History
+- v0.3 - SVG layers working
+- v0.2 - ZMQ working
