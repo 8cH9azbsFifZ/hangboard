@@ -40,8 +40,6 @@ def progress():
             results = TASK_SOCKET.recv_json()
             print (results)
             data = json.loads(results)
-            #x=data["Completed"]
-            #yield "data:" + str(x) + "\n\n"
             yield "data:" + results + "\n\n"
 
             time.sleep(.11)

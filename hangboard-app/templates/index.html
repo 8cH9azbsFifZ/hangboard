@@ -9,33 +9,36 @@
 	<script id=myScript>
 		function toggleDisplay(me)
 		{
-		if(me.getAttribute("display")=="inline")
-			me.setAttribute("display","none")
-		else
-			me.setAttribute("display","inline")
+			if(me.getAttribute("display")=="inline")
+				me.setAttribute("display","none")
+			else
+				me.setAttribute("display","inline")
 		}
 	</script>
 
+	<script>
+		function DisplayHolds(hold)
+		{
+			hold.setAttribute("display","inline")
+		}
+	</script>
 
 	<!--- Progress Bar -->
 	<script>
 		var source = new EventSource("/progress");
 		source.onmessage = function(event) {
-			//const newElement = document.createElement("li");
-			//const eventList = document.getElementById("list");
-
-			//newElement.textContent = "message: " + event.data;
-			//eventList.appendChild(newElement);
-			//const time = JSON.parse(event.data).time;
 			var parsed = JSON.parse(event.data);
 			var completed = parsed.Completed;
-			
-			//$('.progress-bar').css('width', event.data+'%').attr('aria-valuenow', event.data);
-			//$('.progress-bar-label').text(event.data+'%');
+
 			$('.progress-bar').css('width', completed+'%').attr('aria-valuenow', completed);
 			$('.progress-bar-label').text(completed+'%');
 
-			toggleDisplay(A1);
+			if (parsed.Counter < 3)
+			{
+				if (parsed.Left != "") { DisplayHolds(parsed.Left); } else { A1.setAttribute("display","none") }
+				if (parsed.Right != "") { DisplayHolds(parsed.Right); } else { A7.setAttribute("display","none") }
+			}
+			//A7.setAttribute("display","none")
 		}
 	</script>
 

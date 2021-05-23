@@ -39,10 +39,12 @@ class Exercise():
             if (start_detected == 1):
                 if (name == "Hang"):
                     print ("Hang")
+                    left = "A1" # TODO: select 1st jug in list
+                    right = "A7"  # TODO: select last jug in list
                     for counter in range (0, duration+1):
                         time.sleep (1)
                         completed = counter / duration *100
-                        self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter, "Completed": completed}))
+                        self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
 
                 elif (name == "Maximal Hang"):
                     print ("Key press?")                    
@@ -52,10 +54,12 @@ class Exercise():
                     print ("Key press?")
 
                 print ("Pause")
+                left = ""
+                right = ""
                 for counter in range (0, pause_duration+1):
                     time.sleep (1)
                     completed = counter / pause_duration *100
-                    self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed}))
+                    self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
 
 
 if __name__ == "__main__":
