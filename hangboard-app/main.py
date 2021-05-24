@@ -10,6 +10,15 @@ TASK_SOCKET = zmq.Context().socket(zmq.SUB)
 TASK_SOCKET.connect('tcp://{}:{}'.format(HOST, PORT))
 TASK_SOCKET.subscribe("")
 
+
+context = zmq.Context()
+
+#  Socket to talk to server
+print("Connecting to hello world server…")
+socket = context.socket(zmq.REQ)
+socket.connect("tcp://127.0.0.1:9091")
+
+
 app = Flask(__name__) 
 app.secret_key = "test"
 
@@ -20,10 +29,13 @@ def index():
         if request.form.get('Start') == 'Start':
             # pass
             print("Start Exercise")
-            # TODO include exercise class as thread (stoppable) here
+            socket.send(b"Start")
+            return render_template("index.html")
         elif  request.form.get('Stop') == 'Stop':
             # pass # do something else
             print("Stop Exercise")
+            socket.send(b"Stop")
+            return render_template("index.html")
         else:
             # pass # unknown
             return render_template("index.html")
