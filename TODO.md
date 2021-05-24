@@ -17,6 +17,9 @@
 - integrate velocity sensors
 - description build
 
+# LED 
+- integrate with LED hold displays
+
 # Integration
 - docker for backend portability?
 
