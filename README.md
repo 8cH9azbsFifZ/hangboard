@@ -1,9 +1,13 @@
 # Hangboard 
 
+*STATUS: In Development*
+
+Force and velocity sensing hangboard mount with exercise timers for all hangboards.
+![Hangboard Mount](hardware/images/IsometrixBoard.png)
+
 
 ## Preparation
 # sudo apt-get install -y python3-pip
-
 
 ## Developing
 ```
@@ -14,11 +18,6 @@ python3 -m pip install -r requirements.txt
 python3 main.py
 ```
 
-## Adding a new board
-Getting X and Y coordinates of an image in browser:
-https://stackoverflow.com/questions/12888584/is-there-a-way-to-tell-chrome-web-debugger-to-show-the-current-mouse-position-in
-
-Use inkscape with layers
 
 # References
 + https://github.com/gandalf15/HX711/
