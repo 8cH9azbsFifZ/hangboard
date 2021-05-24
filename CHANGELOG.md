@@ -1,4 +1,5 @@
 # History
+- v0.9 - Layout website fixes
 - v0.8 - Audio fixes, docker preparation, restructured directories
 - v0.7 - Add sound effects
 - v0.6 - Add some README.md and docs.

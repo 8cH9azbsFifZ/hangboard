@@ -94,7 +94,7 @@ class Exercise(Thread):
                 right = ""
                 for counter in range (0, pause_duration+1):
                     time.sleep (1)
-                    completed = counter / pause_duration *100
+                    completed = int(counter / pause_duration *100)
                     self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
 
 
