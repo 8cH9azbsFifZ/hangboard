@@ -21,14 +21,15 @@ python3 -m pip install -r requirements.txt
 + Start Exercises `python3 exercise.py`
 + Start CLI Dumper `python3 cli.py`
 
+## Software Used
+- Python Flask for Web App
+- Zero MQ for Communication
+- JSON for Board configuration
+- SVG Layers for hold configuration
 
 
 # References
-+ https://github.com/gandalf15/HX711/
-+ https://realpython.com/python-web-applications/
-+ https://github.com/djdmorrison/flask-progress-example
-+ https://github.com/adrianlzt/piclimbing
-+ https://github.com/helloflask/timer
-+ https://github.com/tecladocode/hiit-timer
-+ https://github.com/oalam/isometryx
++ [HX711 Python module](https://github.com/gandalf15/HX711/)
++ [Raspi W Zero Hangboard](https://github.com/adrianlzt/piclimbing)
++ [Arduino Hangboard](https://github.com/oalam/isometryx)
 

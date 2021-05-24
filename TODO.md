@@ -2,22 +2,26 @@
 - Finish Zlagboard EVO
 - Add Zlagboard Mini
 
-# Integration
-- docker for backend portability?
+# Exercise
+- Receive start / stop using ZMQ.
+- Select holds for specific board by exercise
+- Add exercise finger numbers
 
 # Webinterface
 - Audio counter
 - Add capability to select exercise
+- Button for exercise start
 
 # Hardware´
 - integrate force sensors
 - integrate velocity sensors
 - description build
 
+# Integration
+- docker for backend portability?
+
 # App
 - TBD
 - Integration with gyroscope sensors (ala zlagboard?)
 
-# Exercise
-- Select holds for specific board by exercise
-- Add exercise finger numbers
+
