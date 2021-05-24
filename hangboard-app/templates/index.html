@@ -2,13 +2,14 @@
 <html>
 <head>
 	<title>Hangboard</title>
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	<!--- Progress Bar -->
+
+	<!--- Load Audio Files -->
 	<script>
-		var source = new EventSource("/progress");
 		var one = new Audio('{{url_for('static', filename='sounds/1.mp3')}}');
 		var two = new Audio('{{url_for('static', filename='sounds/2.mp3')}}');
 		var three = new Audio('{{url_for('static', filename='sounds/3.mp3')}}');
@@ -19,9 +20,14 @@
 		var eight = new Audio('{{url_for('static', filename='sounds/8.mp3')}}');
 		var nine = new Audio('{{url_for('static', filename='sounds/9.mp3')}}');
 		var ten = new Audio('{{url_for('static', filename='sounds/10.mp3')}}');
-		var done = new Audio('{{url_for('static', filename='sounds/completed.mp3')}}');
+		var done = new Audio('{{url_for('static', filename='sounds/done.mp3')}}');
 		var failed = new Audio('{{url_for('static', filename='sounds/failed.mp3')}}');
+	</script>
 
+	<!--- Visualize Progress -->
+	<script>
+		var source = new EventSource("/progress");
+	
 		source.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
 			var completed = parsed.Completed;
@@ -30,7 +36,6 @@
 			$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
 			var togo = parsed.Duration-parsed.Counter;
 			$('.exercise-label').text("Exercise: " + parsed.Type + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
-
 
 			if (parsed.Left != "") { A1.setAttribute("display","inline") } else { A1.setAttribute("display","none") }
 			if (parsed.Right != "") { A7.setAttribute("display","inline")  } else { A7.setAttribute("display","none") }			
@@ -50,6 +55,7 @@
 		}
 	</script>
 
+	<!--- Load Board Image -->
 	<script>
 		document.addEventListener("onload",inlineSVG(),false)
 		function inlineSVG()
@@ -71,11 +77,30 @@
 </head>
 <body>
 
-	<div>
+	<!--- Navigation Bar -->
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+		  <a class="nav-link active" aria-current="page" href="#">Exercise</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="#">Select Extercise</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="#">Weight Measurement</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Velocity Measurement</a>
+		</li>
+	  </ul>
+
+
+	<!--- Exercise Info -->
+  	<div class="alert alert-light" role="alert">
 		<span class="exercise-label">Exercise: </span>
 	</div>
+
 	
-	<!--- Progress Bar -->
+	<!--- Progress Bar and Board with Holds-->
 	<div style="margin: 50px;">
 		<div class="progress" style="width: 50%;">
 			<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -88,10 +113,11 @@
 		</div>
 	</div>
 
+	<!--- Exercise Controls -->
 	<div>
         <form method="post" action="/">
-                <input type="submit" value="Start" name="Start"/>
-                <input type="submit" value="Stop" name="Stop" />
+                <input type="submit" class="btn btn-primary" value="Start" name="Start"/>
+                <input type="submit" class="btn btn-danger" value="Stop" name="Stop" />
         </form>
 	</div>
 

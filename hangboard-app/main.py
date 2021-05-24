@@ -13,9 +13,8 @@ TASK_SOCKET.subscribe("")
 
 context = zmq.Context()
 
-#  Socket to talk to server
-print("Connecting to hello world server…")
-socket = context.socket(zmq.REQ)
+#  Socket to talk to server 
+socket = context.socket(zmq.REQ) # FIXME
 socket.connect("tcp://127.0.0.1:9091")
 
 

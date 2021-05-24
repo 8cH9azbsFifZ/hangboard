@@ -79,7 +79,7 @@ class Exercise(Thread):
                     right = "A7"  # TODO: select last jug in list
                     for counter in range (0, duration+1):
                         time.sleep (1)
-                        completed = counter / duration *100
+                        completed = int(counter / duration *100)
                         self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
 
                 elif (name == "Maximal Hang"):
