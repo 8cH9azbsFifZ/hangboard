@@ -3,9 +3,9 @@
 - Add Zlagboard Mini
 
 # Exercise
-- Receive start / stop using ZMQ.
+- Receive start / stop using ZMQ. Async
 - Select holds for specific board by exercise
-- Add exercise finger numbers
+- Add exercise finger numbers or which fingers
 
 # Webinterface
 - Audio counter
