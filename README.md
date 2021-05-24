@@ -3,7 +3,7 @@
 *STATUS: In Development*
 
 Force and velocity sensing hangboard mount with exercise timers for all hangboards.
-![Hangboard Mount](./images/IsometrixBoard.png)
+![Hangboard Mount](./images/IsometrixBoard.png |width=100)
 
 # Developing
 
