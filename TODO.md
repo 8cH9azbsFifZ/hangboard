@@ -22,7 +22,7 @@
 - integrate with LED hold displays
 
 # Integration
-- docker for backend portability?
+- docker for backend portability? - not working yet due to hard coded hostnames
 
 # App
 - TBD

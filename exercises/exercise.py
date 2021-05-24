@@ -29,10 +29,10 @@ class Exercise(Thread):
     def init_receiver(self):
         self._context_recv = zmq.Context()
         self._socket_recv = self._context_recv.socket(zmq.REP)
-        self._socket_recv.bind('tcp://{}:{}'.format(HOST, PORT+1))
+        self._socket_recv.bind('tcp://{}:{}'.format(HOST, PORT+1)) # FIXME
 
     def init_exercise(self):
-        self.filename = "../exercises/test.json" # TODO: as parameter
+        self.filename = "./test.json" # TODO: as parameter
         with open(self.filename) as json_file:
             self.data = json.load(json_file)
 

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web:
+    build: ./hangboard-app
+    entrypoint:
+      - flask
+      - run
+      - --host=0.0.0.0
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_APP: ./main.py
+    ports: ['8080:5000']
+    volumes: ['./hangboard-app:/app']
+  exercise:
+    build: ./exercises
+    entrypoint:
+      - python3
+      - exercise.py
+    volumes: ['./exercises:/app']    
