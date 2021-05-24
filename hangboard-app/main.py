@@ -30,11 +30,15 @@ def index():
             # pass
             print("Start Exercise")
             socket.send(b"Start")
+            message = socket.recv()
+            print (message)
             return render_template("index.html")
         elif  request.form.get('Stop') == 'Stop':
             # pass # do something else
             print("Stop Exercise")
             socket.send(b"Stop")
+            message = socket.recv()
+            print (message)
             return render_template("index.html")
         else:
             # pass # unknown

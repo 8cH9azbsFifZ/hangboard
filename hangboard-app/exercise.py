@@ -49,6 +49,8 @@ class Exercise(Thread):
             print('Doing something imporant in the background')
 
             message = self._socket_recv.recv()
+            self._socket_recv.send(b"Ok")
+
             print("Received request: %s" % message)
             if (message == b"Start"):
                 self.run_exercise()
@@ -56,7 +58,6 @@ class Exercise(Thread):
             time.sleep(1)
 
             #  Send reply back to client
-            #socket.send(b"World")
 
             #time.sleep(1)
 
