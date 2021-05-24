@@ -18,7 +18,11 @@ python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install -r requirements.txt
 python3 main.py
+
 ```
++ Start Exercises `python3 exercise.py`
++ Start CLI Dumper `python3 cli.py`
+
 
 
 # References
