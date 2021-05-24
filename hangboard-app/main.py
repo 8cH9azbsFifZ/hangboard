@@ -4,9 +4,6 @@ import zmq
 import time
 import json
 
-#from threading import Thread
-#from exercise import Exercise
-
 HOST = '127.0.0.1'
 PORT = 9090
 TASK_SOCKET = zmq.Context().socket(zmq.SUB)
