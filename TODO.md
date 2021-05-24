@@ -8,7 +8,6 @@
 - Add exercise finger numbers or which fingers
 
 # Webinterface
-- Improve audio stability
 - Cleanup hold selection
 - Add capability to select exercise
 - Button for exercise start
@@ -30,3 +29,7 @@
 - Integration with gyroscope sensors (ala zlagboard?)
 
 
+
+# Known Problems
+## Webinterface
+- Audio will not autostartm, if started too quickly (browser policies)

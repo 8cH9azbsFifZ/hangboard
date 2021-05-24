@@ -19,7 +19,8 @@
 		var eight = new Audio('{{url_for('static', filename='sounds/8.mp3')}}');
 		var nine = new Audio('{{url_for('static', filename='sounds/9.mp3')}}');
 		var ten = new Audio('{{url_for('static', filename='sounds/10.mp3')}}');
-		var completed = new Audio('{{url_for('static', filename='sounds/completed.mp3')}}');
+		var done = new Audio('{{url_for('static', filename='sounds/completed.mp3')}}');
+		var failed = new Audio('{{url_for('static', filename='sounds/failed.mp3')}}');
 
 		source.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
@@ -29,6 +30,7 @@
 			$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
 			var togo = parsed.Duration-parsed.Counter;
 			$('.exercise-label').text("Exercise: " + parsed.Type + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
+
 
 			if (parsed.Left != "") { A1.setAttribute("display","inline") } else { A1.setAttribute("display","none") }
 			if (parsed.Right != "") { A7.setAttribute("display","inline")  } else { A7.setAttribute("display","none") }			
@@ -43,7 +45,8 @@
 			if (togo == 3) { three.play() ; }		
 			if (togo == 2) { two.play() ; }		
 			if (togo == 1) { one.play() ; }		
-			if (togo == 0) { completed.play() ; }		
+			if (togo == 0) { done.play() ; }		
+
 		}
 	</script>
 
