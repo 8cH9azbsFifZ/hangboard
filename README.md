@@ -27,6 +27,7 @@ Use inkscape with layers
 + https://github.com/adrianlzt/piclimbing
 + https://github.com/helloflask/timer
 + https://github.com/tecladocode/hiit-timer
++ https://github.com/oalam/isometryx
 
 # History
 - v0.5 - Jug selection and timer integrated demonstrator
