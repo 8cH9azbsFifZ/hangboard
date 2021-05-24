@@ -1,3 +1,6 @@
+# Integration
+- docker for backend portability?
+
 # Webinterface
 - Audio counter
 
