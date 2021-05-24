@@ -51,7 +51,7 @@
 		document.addEventListener("onload",inlineSVG(),false)
 		function inlineSVG()
 		{
-			var SVGFile="{{url_for('static', filename='zlagboard.svg')}}"
+			var SVGFile="{{url_for('static', filename='zlagboard_evo.svg')}}"
 			var loadXML = new XMLHttpRequest;
 			function handler(){
 			if(loadXML.readyState == 4 && loadXML.status == 200)
