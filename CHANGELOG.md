@@ -1,4 +1,5 @@
 # History
+- v0.7 - Add sound effects
 - v0.6 - Add some README.md and docs.
 - v0.5 - Jug selection and timer integrated demonstrator
 - v0.4 - SVG layers demonstrator integrated and cleanup
