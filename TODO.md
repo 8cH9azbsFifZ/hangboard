@@ -8,7 +8,7 @@
 - Add exercise finger numbers or which fingers
 
 # Webinterface
-- Audio counter - https://stackoverflow.com/questions/9419263/how-to-play-audio
+- Cleanup hold selection
 - Add capability to select exercise
 - Button for exercise start
 

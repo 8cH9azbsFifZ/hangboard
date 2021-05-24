@@ -30,6 +30,18 @@
 	<!--- Progress Bar -->
 	<script>
 		var source = new EventSource("/progress");
+		var one = new Audio('{{url_for('static', filename='sounds/1.mp3')}}');
+		var two = new Audio('{{url_for('static', filename='sounds/2.mp3')}}');
+		var three = new Audio('{{url_for('static', filename='sounds/3.mp3')}}');
+		var four = new Audio('{{url_for('static', filename='sounds/4.mp3')}}');
+		var five = new Audio('{{url_for('static', filename='sounds/5.mp3')}}');
+		var six = new Audio('{{url_for('static', filename='sounds/6.mp3')}}');
+		var seven = new Audio('{{url_for('static', filename='sounds/7.mp3')}}');
+		var eight = new Audio('{{url_for('static', filename='sounds/8.mp3')}}');
+		var nine = new Audio('{{url_for('static', filename='sounds/9.mp3')}}');
+		var ten = new Audio('{{url_for('static', filename='sounds/10.mp3')}}');
+		var completed = new Audio('{{url_for('static', filename='sounds/completed.mp3')}}');
+
 		source.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
 			var completed = parsed.Completed;
@@ -39,12 +51,20 @@
 			var togo = parsed.Duration-parsed.Counter;
 			$('.exercise-label').text("Exercise: " + parsed.Type + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
 
-			if (parsed.Counter < 3)
-			{
-				if (parsed.Left != "") { DisplayHolds(parsed.Left); } else { A1.setAttribute("display","none") }
-				if (parsed.Right != "") { DisplayHolds(parsed.Right); } else { A7.setAttribute("display","none") }
-			} 
+			if (parsed.Left != "") { A1.setAttribute("display","inline") } else { A1.setAttribute("display","none") }
+			if (parsed.Right != "") { A7.setAttribute("display","inline")  } else { A7.setAttribute("display","none") }			
 
+			if (togo == 10) { ten.play() ; }		
+			if (togo == 9) { nine.play() ; }		
+			if (togo == 8) { eight.play() ; }		
+			if (togo == 7) { seven.play() ; }		
+			if (togo == 6) { six.play() ; }		
+			if (togo == 5) { five.play() ; }		
+			if (togo == 4) { four.play() ; }		
+			if (togo == 3) { three.play() ; }		
+			if (togo == 2) { two.play() ; }		
+			if (togo == 1) { one.play() ; }		
+			if (togo == 0) { completed.play() ; }		
 		}
 	</script>
 
@@ -68,6 +88,12 @@
 		}
 	</script>
 
+
+	<script>
+		var completed = new Audio('{{url_for('static', filename='sounds/completed.mp3')}}');
+		//audio.play();
+
+	</script>
 
 
 </head>
@@ -94,7 +120,11 @@
                 <input type="submit" value="Start" name="Start"/>
                 <input type="submit" value="Stop" name="Stop" />
         </form>
+
+
+
 	</div>
+
 
 
 
