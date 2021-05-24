@@ -6,27 +6,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	<script id=myScript>
-		function toggleDisplay(me)
-		{
-			if(me.getAttribute("display")=="inline")
-				me.setAttribute("display","none")
-			else
-				me.setAttribute("display","inline")
-		}
-	</script>
-
-	<script>
-		function DisplayHolds(hold)
-		{
-			hold.setAttribute("display","inline");
-		}
-		function HideHolds(hold)
-		{
-			hold.setAttribute("display","none");
-		}
-	</script>
-
 	<!--- Progress Bar -->
 	<script>
 		var source = new EventSource("/progress");
@@ -83,18 +62,8 @@
 				loadXML.onreadystatechange = handler;
 				loadXML.send();
 			}
-			//toggleDisplay(A1)
-			//A7.setAttribute("display","none")
 		}
 	</script>
-
-
-	<script>
-		var completed = new Audio('{{url_for('static', filename='sounds/completed.mp3')}}');
-		//audio.play();
-
-	</script>
-
 
 </head>
 <body>
@@ -102,6 +71,7 @@
 	<div>
 		<span class="exercise-label">Exercise: </span>
 	</div>
+	
 	<!--- Progress Bar -->
 	<div style="margin: 50px;">
 		<div class="progress" style="width: 50%;">
@@ -120,15 +90,7 @@
                 <input type="submit" value="Start" name="Start"/>
                 <input type="submit" value="Stop" name="Stop" />
         </form>
-
-
-
 	</div>
-
-
-
-
-
 
 </body>
 </html>
