@@ -8,12 +8,13 @@
 - Add exercise finger numbers or which fingers
 
 # Webinterface
+- Improve audio stability
 - Cleanup hold selection
 - Add capability to select exercise
 - Button for exercise start
 - Scale the image correctly https://vecta.io/blog/best-way-to-embed-svg
 
-# Hardware´
+# Hardware
 - integrate force sensors
 - integrate velocity sensors
 - description build
