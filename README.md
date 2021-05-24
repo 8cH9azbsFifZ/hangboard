@@ -2,8 +2,9 @@
 
 *STATUS: In Development*
 
-Force and velocity sensing hangboard mount with exercise timers for all hangboards.
+A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.
 ![Hangboard Mount](./images/IsometrixBoard.png)
+
 
 # Developing
 
@@ -26,6 +27,9 @@ python3 -m pip install -r requirements.txt
 - Zero MQ for Communication
 - JSON for Board configuration
 - SVG Layers for hold configuration
+
+## Hardware Used
+- Raspberry Pi Zero W
 
 
 # References
