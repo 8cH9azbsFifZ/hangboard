@@ -11,6 +11,7 @@
 - Cleanup hold selection
 - Add capability to select exercise
 - Button for exercise start
+- Scale the image correctly https://vecta.io/blog/best-way-to-embed-svg
 
 # Hardware´
 - integrate force sensors
