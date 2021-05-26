@@ -1,4 +1,5 @@
 # History
+- v0.10 - Startup scripts
 - v0.9 - Layout website fixes
 - v0.8 - Audio fixes, docker preparation, restructured directories
 - v0.7 - Add sound effects
