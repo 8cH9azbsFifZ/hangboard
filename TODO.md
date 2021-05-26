@@ -1,5 +1,4 @@
 # Board configuration
-- Finish Zlagboard EVO
 - Add Zlagboard Mini
 
 # Exercise
