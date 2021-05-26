@@ -3,11 +3,21 @@ import zmq
 
 import time
 import json
-import os
+import argparse
 
-HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
-PORTRECV = os.getenv("PORTRECV")
+from threading import Thread
+
+parser = argparse.ArgumentParser(description="Exercise Timer Backend.")
+parser.add_argument ('--host')
+parser.add_argument ('--port')
+parser.add_argument ('--portrecv')
+args = parser.parse_args()
+
+HOST = args.host 
+PORT = args.port 
+PORTRECV = args.portrecv
+
+
 TASK_SOCKET = zmq.Context().socket(zmq.SUB)
 TASK_SOCKET.connect('tcp://{}:{}'.format(HOST, PORT))
 TASK_SOCKET.subscribe("")
