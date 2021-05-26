@@ -9,11 +9,17 @@ services:
     environment:
       FLASK_DEBUG: 1
       FLASK_APP: ./main.py
+      HOST: exercise
+      PORT: 9090
+      PORTRECV: 9091
     ports: ['8080:5000']
     volumes: ['./hangboard-app:/app']
   exercise:
     build: ./exercises
     entrypoint:
-      - python3
-      - exercise.py
+      - ./startup.sh
+    environment: 
+      HOST: exercise
+      PORT: 9090
+      PORTRECV: 9091
     volumes: ['./exercises:/app']    

@@ -3,9 +3,11 @@ import zmq
 
 import time
 import json
+import os
 
-HOST = '127.0.0.1'
-PORT = 9090
+HOST = os.getenv("HOST")
+PORT = os.getenv("PORT")
+PORTRECV = os.getenv("PORTRECV")
 TASK_SOCKET = zmq.Context().socket(zmq.SUB)
 TASK_SOCKET.connect('tcp://{}:{}'.format(HOST, PORT))
 TASK_SOCKET.subscribe("")
@@ -15,7 +17,7 @@ context = zmq.Context()
 
 #  Socket to talk to server 
 socket = context.socket(zmq.REQ) # FIXME
-socket.connect("tcp://127.0.0.1:9091")
+socket.connect("tcp://"+HOST+":"+PORTRECV+"")
 
 
 app = Flask(__name__) 

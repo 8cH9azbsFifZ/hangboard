@@ -4,6 +4,6 @@ FROM python:3.9
 WORKDIR app
 COPY * /app/
 RUN pip install -r requirements.txt
-CMD python3 exercise.py
+CMD ./startup.sh
 
-EXPOSE 5000 9090 9091
+EXPOSE 9090 9091

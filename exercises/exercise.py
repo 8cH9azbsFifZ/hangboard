@@ -2,11 +2,19 @@ import zmq
 
 import time
 import json
+import argparse
 
 from threading import Thread
 
-HOST = '127.0.0.1'
-PORT = 9090
+parser = argparse.ArgumentParser(description="Exercise Timer Backend.")
+parser.add_argument ('--host')
+parser.add_argument ('--port')
+parser.add_argument ('--portrecv')
+args = parser.parse_args()
+
+HOST = args.host 
+PORT = args.port 
+PORTRECV = args.portrecv
 
 class Exercise(Thread):
     def __init__(self):
@@ -23,13 +31,13 @@ class Exercise(Thread):
     def init_sender(self):
         self._context = zmq.Context()
         self._socket = self._context.socket(zmq.PUB)
-        self._socket.bind('tcp://{}:{}'.format(HOST, PORT))
+        self._socket.bind('tcp://'+HOST+':'+PORT) #.format(HOST, PORT))
         self.zmq_count = 0
 
     def init_receiver(self):
         self._context_recv = zmq.Context()
         self._socket_recv = self._context_recv.socket(zmq.REP)
-        self._socket_recv.bind('tcp://{}:{}'.format(HOST, PORT+1)) # FIXME
+        self._socket_recv.bind('tcp://{}:{}'.format(HOST, PORTRECV)) 
 
     def init_exercise(self):
         self.filename = "./test.json" # TODO: as parameter
