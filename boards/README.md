@@ -12,6 +12,9 @@ This directory contains the hold configurations for different boards
 ## Beastmaker 2000
 
 # Implement new board configurations
+## Preparation
++ Install inkscape `brew install inkscape`
+## Work
 + Create a new board json file 
 + Use inkscape with layers for overlay image creation
 + Edit layer "id" names manually afterwards
