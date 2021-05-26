@@ -27,7 +27,7 @@
 	<!--- Visualize Progress -->
 	<script>
 		var source = new EventSource("/progress");
-	
+
 		source.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
 			var completed = parsed.Completed;
@@ -52,6 +52,10 @@
 			if (togo == 1) { one.play() ; }		
 			if (togo == 0) { done.play() ; }		
 
+			for(var i = 0; i < holds.Holds.length; i++) {
+				var obj = holds.Holds[i];
+				console.log(obj.id);
+			}
 		}
 	</script>
 

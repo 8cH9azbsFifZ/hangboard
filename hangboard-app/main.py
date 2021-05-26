@@ -59,6 +59,10 @@ def index():
         print("No Post Back Call")
     return render_template("index.html")
 
+@app.route('/holds')
+def holds():
+    return render_template("holds.json")
+
 @app.route('/progress')
 def progress():
     def generate():
