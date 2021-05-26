@@ -3,23 +3,17 @@
 *STATUS: In Development*
 
 A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.
-![Hangboard Mount](./images/IsometrixBoard.png)
+![Hangboard Mount](./hardware/board_mount/IsometrixBoard.png)
 
 
 # Developing
 
 ## Preparation
-``` 
-sudo apt-get install -y python3-pip
-cd hangboard-app
-python3 -m venv venv
-source venv/bin/activate
-python3 -m pip install -r requirements.txt
-```
++ Follow the instructions in README.md in exercises and hangboard-app
 
 ## Running the Demonstrator
-+ Start the Web App: `python3 main.py`
-+ Start Exercises `python3 exercise.py`
++ Start Exercises `cd exercises && ./startup.sh`
++ Start the Web App: `cd hangboard-app && ./startup.sh``
 + Start CLI Dumper `python3 cli.py`
 
 ## Software Used
