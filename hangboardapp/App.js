@@ -93,9 +93,10 @@ const App: () => Node = () => {
     }
 
     var parsed = JSON.parse(e.data);
-    setMyText(parsed.Counter); 
-
     var togo = parsed.Duration - parsed.Counter;
+
+    setMyText("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining."); 
+
 
     if (parsed.TimerStatus == false)
     {
