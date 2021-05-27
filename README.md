@@ -13,8 +13,7 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 
 ## Running the Demonstrator
 + Start Exercises `cd exercises && ./startup.sh`
-+ Start the Web App: `cd hangboard-app && ./startup.sh``
-+ Start CLI Dumper `python3 cli.py`
++ Start the Web App: `cd hangboard-web && ./startup.sh``
 
 ## Software Used
 - Python Flask for Web App
