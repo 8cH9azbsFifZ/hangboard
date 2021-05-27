@@ -26,6 +26,13 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { useState } from 'react';
+
+
+/*
+ 
+*/
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -59,31 +66,34 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  var client = new WebSocket ('ws://127.0.0.1:4321/'); // FIXME
+  const [myText, setMyText] = useState("My Original Text");
+
+  client.onmessage = function(e) {
+    if (typeof e.data === 'string') {
+      mydata = e.data;
+      setMyText(e.data)
+      console.log("Received: '" + e.data + "'");
+    }
+  }; 
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="Backend Exercise">
+    
+          <Text onPress = {() => setMyText("My Changed Text1")}>
+            {myText}
+          </Text>
           </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+  
         </View>
       </ScrollView>
     </SafeAreaView>
