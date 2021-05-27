@@ -16,6 +16,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Button
 } from 'react-native';
 
 import {
@@ -87,12 +88,11 @@ const App: () => Node = () => {
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
       mydata = e.data;
-      //setMyText(e.data)
       console.log("Received: '" + e.data + "'");
     }
 
     var parsed = JSON.parse(e.data);
-    setMyText(parsed.Counter); //parsed.Counter);
+    setMyText(parsed.Counter); 
 
     var togo = parsed.Duration - parsed.Counter;
 
@@ -113,6 +113,18 @@ const App: () => Node = () => {
     
   }; 
 
+  const sendStart = () =>
+  {
+    //console.log("Sending");
+    client.send("Start");
+  }
+
+  const sendStop = () =>
+  {
+    //console.log("Sending");
+    client.send("Stop");
+  }
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -127,6 +139,10 @@ const App: () => Node = () => {
             <Text onPress = {() => SFXdone.play()}>
               {myText}
             </Text>
+          </Section>
+          <Section title="Controls">
+            <Button title="Start" onPress = {() => sendStart()} />
+            <Button title="Stop" onPress = {() => sendStop()} />
           </Section>
   
         </View>
