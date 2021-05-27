@@ -13,13 +13,16 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 
 ## Running the Demonstrator
 + Start Exercises `cd exercises && ./startup.sh`
-+ Start the Web App: `cd hangboard-web && ./startup.sh``
++ Start the Web App: `cd hangboard-web && ./startup.sh`
++ Start the iOS App: `cd hangboardapp && yarn run ios`
 
 ## Software Used
 - Python Flask for Web App
-- Zero MQ for Communication
-- JSON for Board configuration
+- Websockets for Communication
+- Python backends
+- JSON for Board configuration and finger grip positions
 - SVG Layers for hold configuration
+- React Native for App
 
 ## Hardware Used
 - Raspberry Pi Zero W
