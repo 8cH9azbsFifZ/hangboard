@@ -8,6 +8,7 @@ This directory contains the hold configurations for different boards
 ## Zlagboard Mini
 
 ## Beastmaker 1000
++ Hold sizes: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
 
 ## Beastmaker 2000
 

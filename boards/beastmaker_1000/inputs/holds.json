@@ -1,0 +1,31 @@
+{
+    "Name": "Beastmaker 1000",
+    "Holds": [
+        {"Name": "JUG"          , "Row": 1,     "Col": 1,    "Width": "4 Finger",   "ImgLayerName": "A1"},
+        {"Name": "35°"          , "Row": 1,     "Col": 2,    "Width": "4 Finger",   "ImgLayerName": "A2"},
+        {"Name": "20°"          , "Row": 1,     "Col": 3,    "Width": "4 Finger",   "ImgLayerName": "A3"},
+        {"Name": "32°"          , "Row": 1,     "Col": 4,    "Width": "4 Finger",   "ImgLayerName": "A4"},
+        {"Name": "JUG"          , "Row": 1,     "Col": 5,    "Width": "4 Finger",   "ImgLayerName": "A5"},
+
+        {"Name": "15mm"         , "Row": 2,     "Col": 1,    "Width": "4 Finger",   "ImgLayerName": "B1"},
+        {"Name": "30mm"         , "Row": 2,     "Col": 2,    "Width": "3 Finger",   "ImgLayerName": "B2"},
+        {"Name": "30mm"         , "Row": 2,     "Col": 3,    "Width": "3 Finger",   "ImgLayerName": "B3"},
+        {"Name": "15mm"         , "Row": 2,     "Col": 4,    "Width": "4 Finger",   "ImgLayerName": "B4"},
+
+        {"Name": "45mm"         , "Row": 3,     "Col": 1,    "Width": "4 Finger",   "ImgLayerName": "C1"},
+        {"Name": "50mm"         , "Row": 3,     "Col": 2,    "Width": "2 Finger",   "ImgLayerName": "C2"},
+        {"Name": "45mm"         , "Row": 3,     "Col": 3,    "Width": "3 Finger",   "ImgLayerName": "C3"},
+        {"Name": "53mm"         , "Row": 3,     "Col": 4,    "Width": "4 Finger",   "ImgLayerName": "C4"},
+        {"Name": "45mm"         , "Row": 3,     "Col": 5,    "Width": "3 Finger",   "ImgLayerName": "C5"},
+        {"Name": "50mm"         , "Row": 3,     "Col": 6,    "Width": "2 Finger",   "ImgLayerName": "C6"},
+        {"Name": "45mm"         , "Row": 3,     "Col": 7,    "Width": "4 Finger",   "ImgLayerName": "C7"},
+
+        {"Name": "20mm"         , "Row": 4,     "Col": 1,    "Width": "4 Finger",   "ImgLayerName": "D1"},
+        {"Name": "25mm"         , "Row": 4,     "Col": 2,    "Width": "2 Finger",   "ImgLayerName": "D2"},
+        {"Name": "20mm"         , "Row": 4,     "Col": 3,    "Width": "3 Finger",   "ImgLayerName": "D3"},
+        {"Name": "20mm"         , "Row": 4,     "Col": 4,    "Width": "3 Finger",   "ImgLayerName": "D4"},
+        {"Name": "25mm"         , "Row": 4,     "Col": 5,    "Width": "2 Finger",   "ImgLayerName": "D5"},
+        {"Name": "20mm"         , "Row": 4,     "Col": 6,    "Width": "4 Finger",   "ImgLayerName": "D6"}
+
+    ]
+}
