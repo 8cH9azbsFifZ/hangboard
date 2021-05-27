@@ -23,3 +23,8 @@ services:
       PORT: 9090
       PORTRECV: 9091
     volumes: ['./exercises:/app']    
+
+#  sensors:
+#    build: ./hardware
+    #devices:
+    #  - /dev/gpiomem:/dev/gpiomem
