@@ -16,6 +16,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Image,
   Button
 } from 'react-native';
 
@@ -126,20 +127,29 @@ const App: () => Node = () => {
   }
 
   return (
+    
     <SafeAreaView style={backgroundStyle}>
+     
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
+
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Image 
+            source={require('./board.jpg')}
+            style={{flex:1, height: 200, width: undefined}}
+            resizeMode="contain"
+             />
           <Section title="Backend Exercise">
             <Text onPress = {() => SFXdone.play()}>
               {myText}
             </Text>
           </Section>
+     
           <Section title="Controls">
             <Button title="Start" onPress = {() => sendStart()} />
             <Button title="Stop" onPress = {() => sendStop()} />
