@@ -35,7 +35,7 @@
 			$('.progress-bar').css('width', completed+'%').attr('aria-valuenow', completed);
 			$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
 			var togo = parsed.Duration-parsed.Counter;
-			$('.exercise-label').text("Exercise: " + parsed.Type + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
+			$('.exercise-label').text("Exercise: " + parsed. + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
 
 			if (parsed.Left != "") { A1.setAttribute("display","inline") } else { A1.setAttribute("display","none") }
 			if (parsed.Right != "") { A7.setAttribute("display","inline")  } else { A7.setAttribute("display","none") }			

@@ -6,7 +6,7 @@ import argparse
 
 from threading import Thread
 
-parser = argparse.ArgumentParser(description="Exercise Timer Backend.")
+parser = argparse.ArgumentParser(description="Workout Timer Backend.")
 parser.add_argument ('--host')
 parser.add_argument ('--port')
 parser.add_argument ('--portrecv')
@@ -16,9 +16,11 @@ HOST = args.host
 PORT = args.port 
 PORTRECV = args.portrecv
 
-class Exercise(Thread):
+workoutfile = "workout-test.json"
+
+class Workout(Thread):
     def __init__(self):
-        self.init_exercise()
+        self.init_workout()
         self.init_sender()
         self.init_receiver()
 
@@ -31,7 +33,7 @@ class Exercise(Thread):
     def init_sender(self):
         self._context = zmq.Context()
         self._socket = self._context.socket(zmq.PUB)
-        self._socket.bind('tcp://'+HOST+':'+PORT) #.format(HOST, PORT))
+        self._socket.bind('tcp://{}:{}'.format(HOST, PORT)) 
         self.zmq_count = 0
 
     def init_receiver(self):
@@ -39,40 +41,41 @@ class Exercise(Thread):
         self._socket_recv = self._context_recv.socket(zmq.REP)
         self._socket_recv.bind('tcp://{}:{}'.format(HOST, PORTRECV)) 
 
-    def init_exercise(self):
-        self.filename = "./test.json" # TODO: as parameter
+    def init_workout(self):
+        self.filename = workoutfile
+
         with open(self.filename) as json_file:
             self.data = json.load(json_file)
 
-        self.session = (self.data["Sessions"][0])
-        self.session_name = self.session["Name"]
-        self.total_exercises = len (self.session["Exercise"])
-        self.current_exercise = 0
-        self.current_exercise_name = "Rest to start"
+        self.workout_number = 0
+        self.workout = (self.data["Workouts"][self.workout_number])
+        self.workout_name = self.workout["Name"]
+        self.total_sets = len (self.workout["Sets"])
+        self.current_set = 0
+        self.current_set_name = "Rest to start"
 
     def run(self):
         """ Method that runs forever """
         while True:
-            # Do something
-            print('Doing something imporant in the background')
-
             message = self._socket_recv.recv()
-            self._socket_recv.send(b"Ok")
+            self._socket_recv.send(b"Ok") # FIXME
 
             print("Received request: %s" % message)
             if (message == b"Start"):
-                self.run_exercise()
-            #  Do some 'work'
+                self.run_set()
+
             time.sleep(1)
 
-            #  Send reply back to client
+    def run_workout (self):
+        for w in range (0, self.total_sets+1):
+            self.current_set = w
+            self.run_set()
 
-            #time.sleep(1)
 
-    def run_exercise (self): 
-        print ("Run one exercise")
-        e = self.session["Exercise"][self.current_exercise]
-        name = e["Type"]
+    def run_set (self): 
+        print ("Run one set")
+        e = self.workout["Sets"][self.current_set]
+        name = e["Exercise"]
         reps_total = e["Reps"]
         duration = e["Counter"]
         pause_duration = e["Pause"]
@@ -88,7 +91,7 @@ class Exercise(Thread):
                     for counter in range (0, duration+1):
                         time.sleep (1)
                         completed = int(counter / duration *100)
-                        self._socket.send_json(json.dumps({"Type": name, "Duration": duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
+                        self._socket.send_json(json.dumps({"Exercise": name, "Duration": duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
 
                 elif (name == "Maximal Hang"):
                     print ("Key press?")                    
@@ -103,12 +106,11 @@ class Exercise(Thread):
                 for counter in range (0, pause_duration+1):
                     time.sleep (1)
                     completed = int(counter / pause_duration *100)
-                    self._socket.send_json(json.dumps({"Type": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
+                    self._socket.send_json(json.dumps({"Exercise": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed, "Left": left, "Right": right}))
 
 
 if __name__ == "__main__":
-    ex = Exercise()
-    #ex.run_exercise()
+    ex = Workout()
     while True:
-        print ("Main Task waiting")
+        print ("Exercise Timer Backend running")
         time.sleep(1)
