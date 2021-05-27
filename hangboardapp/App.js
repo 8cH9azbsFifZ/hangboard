@@ -17,7 +17,8 @@ import {
   useColorScheme,
   View,
   Image,
-  Button
+  Button,
+  ImageBackground
 } from 'react-native';
 
 import {
@@ -140,11 +141,19 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Image 
+          <ImageBackground 
             source={require('./board.jpg')}
             style={{flex:1, height: 200, width: undefined}}
             resizeMode="contain"
-             />
+             >
+               <Image      source={require('./A7.png')}
+            style={{flex:1, height: 200, width: undefined}}
+            resizeMode="contain"/>
+                      
+
+             </ImageBackground>
+             <View style={styles.square} />
+
           <Section title="Backend Exercise">
             <Text onPress = {() => SFXdone.play()}>
               {myText}
@@ -178,6 +187,22 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: 'red',
+    opacity: 0.3
+  },
+  square: {
+    width: 100,
+    height: 100,
+    top: 10,
+    backgroundColor: "red",
+    opacity: 0.5
   },
 });
 
