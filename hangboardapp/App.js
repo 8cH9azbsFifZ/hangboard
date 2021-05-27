@@ -27,7 +27,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { useState } from 'react';
-
+import 'react-native-sound';
+var Sound = require('react-native-sound');
 
 /*
  
@@ -77,6 +78,21 @@ const App: () => Node = () => {
     }
   }; 
 
+  Sound.setCategory('Playback');
+
+  var SFXone = new Sound('1.mp3', Sound.MAIN_BUNDLE);
+  var SFXtwo = new Sound('2.mp3', Sound.MAIN_BUNDLE);
+  var SFXthree = new Sound('3.mp3', Sound.MAIN_BUNDLE);
+  var SFXfour = new Sound('4.mp3', Sound.MAIN_BUNDLE);
+  var SFXfive = new Sound('5.mp3', Sound.MAIN_BUNDLE);
+  var SFXsix = new Sound('6.mp3', Sound.MAIN_BUNDLE);
+  var SFXseven = new Sound('7.mp3', Sound.MAIN_BUNDLE);
+  var SFXeight = new Sound('8.mp3', Sound.MAIN_BUNDLE);
+  var SFXnine = new Sound('9.mp3', Sound.MAIN_BUNDLE);
+  var SFXten = new Sound('10.mp3', Sound.MAIN_BUNDLE);
+  var SFXdone = new Sound('done.mp3', Sound.MAIN_BUNDLE);
+  var SFXfailed = new Sound('failed.mp3', Sound.MAIN_BUNDLE);
+  
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -89,7 +105,7 @@ const App: () => Node = () => {
           }}>
           <Section title="Backend Exercise">
     
-          <Text onPress = {() => setMyText("My Changed Text1")}>
+          <Text onPress = {() => SFXdone.play()}>
             {myText}
           </Text>
           </Section>

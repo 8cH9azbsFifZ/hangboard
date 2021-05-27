@@ -15,3 +15,7 @@ npx react-native init hangboardapp
 ## Build
 yarn install
 cd ios && pod install && cd ..
+
+## Add sounds
+iOS: Open Xcode and add your sound files to the project (Right-click the project and select Add Files to [PROJECTNAME])
+TBD: Android
