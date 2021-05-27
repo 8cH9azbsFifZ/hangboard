@@ -1,4 +1,5 @@
 # History
+- v0.11 - Switch to websockets, board completion, exercise backend
 - v0.10 - Startup scripts
 - v0.9 - Layout website fixes
 - v0.8 - Audio fixes, docker preparation, restructured directories
