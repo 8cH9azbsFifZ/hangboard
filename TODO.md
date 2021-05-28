@@ -7,6 +7,7 @@
 - Fix threading (sound problem with app?)
 - Exercise 2 JSON https://www.journaldev.com/33335/python-excel-to-json-conversion
 - Implement more exercises
+- Calculate total exercise time
 
 # Webinterface
 - Scale the image correctly https://vecta.io/blog/best-way-to-embed-svg

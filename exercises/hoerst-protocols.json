@@ -1,0 +1,22 @@
+{
+    "Reference": "4 Fingerboard Training Protocols That Work",
+    "Author": "Eric Hörst",
+    "URL": "https://trainingforclimbing.com/4-fingerboard-strength-protocols-that-work/",
+    "Workouts": [   
+        {
+            "Name": "Minimum Edge Protocol",
+            "Type": "Maximal Strength",
+            "Description": "Based on research by Eva Lopez-Rivera, this low-volume protocol is what I recommend as an entry-level fingerboard program (not to be confused with a “beginner climber’s” program—beginners shouldn’t fingerboard train). A few multi-week cycles will bring noticeable gains in finger strength for intermediate climbers, as well as serve as preparation for delving into weighted fingerboard hangs (described next). You’ll need a fingerboard with many different-size edges and pockets, and then you’ll need to experiment a little to identify what features you can hang on for just 15 seconds or so. Actual training hangs should terminate a few seconds before failure of the grip, so I recommend making each hang exactly 12 seconds in length. By design, this training protocol will produce little or no muscle pump as it primarily targets the anaerobic alactic energy system. Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort.
+            Rest for exactly 3 minutes.
+            Do four more hangs following the above protocol. Each hang should be near maximal (rating of perceived exertion of 9 to 9.5 out of 10), but not quite take you to failure.
+            After doing the first set of five hangs, rest for 5 minutes before doing a second set of five hangs. Initially focus on training the half-crimp and open-crimp grip—one set each. Advanced climbers can do additional sets that target two-finger pockets (open-hand grip) and pinch grip. Be sure to rest at least 5 minutes between sets.
+            ",
+            "Sets":
+            [
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+            ]
+        }
+    ]
+}
