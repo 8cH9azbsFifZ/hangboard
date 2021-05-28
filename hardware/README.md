@@ -5,6 +5,9 @@ This directory contains the hardware build instructions.
 # Gyroscope Sensor
 - Used: MPU-6050
 
+## More possibilities?
+- There is a bluetooth version, too: https://github.com/fundiZX48/pymotiontracker
+
 ## Wiring
 + https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/
 
