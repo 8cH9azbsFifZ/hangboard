@@ -5,6 +5,8 @@
 - Select holds for specific board by exercise
 - Add exercise finger numbers or which fingers
 - Fix threading (sound problem with app?)
+- Exercise 2 JSON https://www.journaldev.com/33335/python-excel-to-json-conversion
+- Implement more exercises
 
 # Webinterface
 - Scale the image correctly https://vecta.io/blog/best-way-to-embed-svg
@@ -42,3 +44,11 @@
 # Known Problems
 ## Webinterface
 - Audio will not autostart, if started too quickly (browser policies)
+
+# Roadmap
+- User Management
+- User Exercises (Anonymous QR Code generated URI?)
+- Upload Exercises
+- Ad Hoc WiFi with QR Code
+- BLE Support
+- Fix Sounds / Images (Sources)

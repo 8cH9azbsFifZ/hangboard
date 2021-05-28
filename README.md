@@ -32,4 +32,3 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 + [HX711 Python module](https://github.com/gandalf15/HX711/)
 + [Raspi W Zero Hangboard](https://github.com/adrianlzt/piclimbing)
 + [Arduino Hangboard](https://github.com/oalam/isometryx)
-
