@@ -1,4 +1,5 @@
 # History
+- v0.13 - Hold display in app works as demonstrator
 - v0.12 - Demonstrator with iOS app
 - v0.11 - Switch to websockets, board completion, exercise backend
 - v0.10 - Startup scripts
