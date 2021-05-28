@@ -28,7 +28,38 @@ args = parser.parse_args()
 WSHOST = args.host 
 WSPORT = args.port 
 
-ws = websockets.connect("ws://"+WSHOST+":"+WSPORT)
+
+
+async def producer_handler(websocket, path):
+	while True:
+		message = await producer()
+		await websocket.send(message)
+		#await asyncio.sleep(1) #new
+
+async def consumer_handler(websocket, path):
+	async for message in websocket:
+		print ("Received it:")
+		print (message)
+		#await consumer(message)
+
+async def handler(websocket, path):
+	consumer_task = asyncio.ensure_future(
+		consumer_handler(websocket, path))
+	producer_task = asyncio.ensure_future(
+		producer_handler(websocket, path))
+
+	done, pending = await asyncio.wait(
+		[consumer_task, producer_task],
+		return_when=asyncio.FIRST_COMPLETED,
+	)
+	for task in pending:
+		task.cancel()
+
+def run_handler():
+	print ("start handler")
+	start_server = websockets.serve(handler, WSHOST, WSPORT)
+	asyncio.get_event_loop().run_until_complete(start_server)
+	asyncio.get_event_loop().run_forever()
 
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
