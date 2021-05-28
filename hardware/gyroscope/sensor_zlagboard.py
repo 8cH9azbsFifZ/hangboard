@@ -186,5 +186,6 @@ while True:
 	    #print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 	    #ws.send("1234")
 		time.sleep(0.005)
-#	except Exception as exc:
-#		flag += 1
+
+		except Exception as exc:
+			flag += 1
