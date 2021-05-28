@@ -86,6 +86,15 @@ const App: () => Node = () => {
   };
 
   const [myText, setMyText] = useState("My Original Text");
+  const [myState, setMyState] = useState("");
+
+  const ImageBoard = require("./board.png");
+  const ImageA1 = require("./A1.png");
+  const ImageA7 = require("./A7.png");
+  
+  const [ImageHold1, SetImageHold1] = useState(ImageBoard);
+  const [ImageHold2, SetImageHold2] = useState(ImageBoard);
+  //var ImageHold2 = ImageBoard;
 
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
@@ -96,8 +105,16 @@ const App: () => Node = () => {
     var parsed = JSON.parse(e.data);
     var togo = parsed.Duration - parsed.Counter;
 
+    setMyState(parsed);
     setMyText("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining."); 
 
+    if (parsed.HoldsActive.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }
+    if (parsed.HoldsActive.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
+
+  
+    //var array = parsed.HoldsActive; 
+    //array.forEach(element => ImageHold1 = element);
+    //array.forEach(element => window[element].setAttribute("display","inline") );
 
     if (parsed.TimerStatus == false)
     {
@@ -128,6 +145,7 @@ const App: () => Node = () => {
     client.send("Stop");
   }
 
+  
   return (
     
     <SafeAreaView style={backgroundStyle}>
@@ -141,18 +159,11 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <ImageBackground 
-            source={require('./board.jpg')}
-            style={{flex:1, height: 200, width: undefined}}
-            resizeMode="contain"
-             >
-               <Image      source={require('./A7.png')}
-            style={{flex:1, height: 200, width: undefined}}
-            resizeMode="contain"/>
-                      
-
-             </ImageBackground>
-             <View style={styles.square} />
+          <ImageBackground source={require('./board.png')} style={{flex:1, height: 200, width: undefined}} resizeMode="contain">
+               <ImageBackground source={ImageHold1} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain">
+                <ImageBackground source={ImageHold2} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain"/>     
+              </ImageBackground>
+          </ImageBackground>
 
           <Section title="Backend Exercise">
             <Text onPress = {() => SFXdone.play()}>
@@ -164,7 +175,11 @@ const App: () => Node = () => {
             <Button title="Start" onPress = {() => sendStart()} />
             <Button title="Stop" onPress = {() => sendStop()} />
           </Section>
-  
+          <Section title="Parsed">
+            <Text>
+              {myState.Duration}
+            </Text>
+          </Section>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -187,22 +202,6 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    backgroundColor: 'red',
-    opacity: 0.3
-  },
-  square: {
-    width: 100,
-    height: 100,
-    top: 10,
-    backgroundColor: "red",
-    opacity: 0.5
   },
 });
 

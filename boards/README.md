@@ -1,7 +1,6 @@
 # Hangboard Hold configuration
 This directory contains the hold configurations for different boards
 
-
 # Boards
 ## Zlagboard EVO
 
@@ -20,4 +19,4 @@ This directory contains the hold configurations for different boards
 + Use inkscape with layers for overlay image creation 
 + Edit layer "id" names manually afterwards
 + change all style:: display:inline => inline
-
++ Export all layers as svg and convert them to png (i.e. https://svgtopng.com/de/)
