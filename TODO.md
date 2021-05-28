@@ -24,10 +24,8 @@
 - description build
 
 # App
-- TBD iOS
 - Fix sounds
-- Add image
-- Add buttons
+- Add hold selection (other than hard coded)
 
 # Integration
 - docker for backend portability? - not working yet due to hard coded hostnames
