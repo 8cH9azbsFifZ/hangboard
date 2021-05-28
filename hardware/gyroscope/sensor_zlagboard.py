@@ -9,7 +9,7 @@
 
 
 
-from Kalman-Filter-Python-for-mpu6050-master.Kalman import KalmanAngle
+from Kalman import KalmanAngle
 import smbus			#import SMBus module of I2C
 import time
 import math
