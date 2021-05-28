@@ -1,14 +1,3 @@
-# Exercise
-- Implement JSON commands
-- Implement board status (read from file)
-- Image from Backend
-- Select holds for specific board by exercise
-- Add exercise finger numbers or which fingers
-- Fix threading (sound problem with app?)
-- Exercise 2 JSON https://www.journaldev.com/33335/python-excel-to-json-conversion
-- Implement more exercises
-- Calculate total exercise time
-
 # Webinterface
 - Scale the image correctly https://vecta.io/blog/best-way-to-embed-svg
 - Restart button for exercise
