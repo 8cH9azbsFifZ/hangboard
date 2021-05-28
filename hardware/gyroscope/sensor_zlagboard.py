@@ -28,9 +28,10 @@ parser.add_argument ('--host')
 parser.add_argument ('--port')
 args = parser.parse_args()
 
-WSHOST = "127.0.0.1"# = args.host 
-WSPORT = 4321 #= args.port 
+WSHOST = args.host 
+WSPORT = args.port 
 
+#start_server = websockets.serve(self.exercisestatus, WSHOST, WSPORT)
 
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
@@ -186,7 +187,11 @@ while True:
 
 	    print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
 	    #print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
-	    time.sleep(0.005)
+	    
+        # Detect critical angle
+        #websocket.send(self.exercise_status)
+        
+        time.sleep(0.005)
 
 	except Exception as exc:
 		flag += 1
