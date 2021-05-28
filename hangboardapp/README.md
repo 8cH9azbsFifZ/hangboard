@@ -16,6 +16,7 @@ yarn run web
 ```
 npx react-native init hangboardapp
 brew install yarn
+brew install cocoapods
 ```
 
 ## Build

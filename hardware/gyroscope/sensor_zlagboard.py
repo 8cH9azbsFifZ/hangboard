@@ -23,6 +23,15 @@ import threading
 import asyncio
 import websockets
 
+parser = argparse.ArgumentParser(description="Workout Timer Backend.")
+parser.add_argument ('--host')
+parser.add_argument ('--port')
+args = parser.parse_args()
+
+WSHOST = "127.0.0.1"# = args.host 
+WSPORT = 4321 #= args.port 
+
+
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
 
