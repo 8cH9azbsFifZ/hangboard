@@ -184,8 +184,7 @@ while True:
 
 	    print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
 	    #print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
-	    ws.send("1234")
-        # Detect critical angle
-        time.sleep(0.005)
+	    #ws.send("1234")
+		time.sleep(0.005)
 #	except Exception as exc:
 #		flag += 1
