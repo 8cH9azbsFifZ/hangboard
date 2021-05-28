@@ -14,6 +14,15 @@ import smbus			#import SMBus module of I2C
 import time
 import math
 
+import json
+import argparse
+
+from threading import Thread
+import threading
+
+import asyncio
+import websockets
+
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
 
