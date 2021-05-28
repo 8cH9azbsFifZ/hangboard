@@ -183,6 +183,7 @@ while True:
 
 	print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
 	#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
-	#ws.send("1234")
+	if (kalAngleX < 0):
+		ws.send("1234")
 	time.sleep(0.005)
 
