@@ -12,8 +12,10 @@ yarn run web
 
 # Development information
 ## Initial setup
++ Have Xcode and HomeBrew installed
 ```
 npx react-native init hangboardapp
+brew install yarn
 ```
 
 ## Build
