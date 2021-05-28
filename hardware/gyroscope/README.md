@@ -14,7 +14,7 @@ Pin 6 (GND)	    - GND
 ## Software
 + Enable I2C I/O using `sudo raspi-config`
 + Add the following modules to `/etc/modules`: `i2c-bcm2708` and `i2c-dev`
-+ Install the I2C tools `sudo apt-get install i2c-tools python-smbus`
++ Install the I2C tools `sudo apt-get install i2c-tools `
 + Check whether 68 exists in `sudo i2cdetect -y 1`
 ```
 python3 -m pip install -r requirements.txt
