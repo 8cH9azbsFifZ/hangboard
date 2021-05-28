@@ -17,9 +17,6 @@ import math
 import json
 import argparse
 
-from threading import Thread
-import threading
-
 import asyncio
 import websockets
 
@@ -190,6 +187,5 @@ while True:
 	    ws.send("1234")
         # Detect critical angle
         time.sleep(0.005)
-
 	except Exception as exc:
 		flag += 1
