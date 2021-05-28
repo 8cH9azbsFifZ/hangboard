@@ -1,6 +1,40 @@
 # Hardware build
 This directory contains the hardware build instructions.
 
+
+# Gyroscope Sensor
+- MPU-6050 
+
+## Wiring
+https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/
+
+Raspberry Pi	MPU 6050
+Pin 1 (3.3V)	VCC
+Pin 3 (SDA)	SDA
+Pin 5 (SCL)	SCL
+Pin 6 (GND)	GND
+
+## Software
+ 
+sudo raspi-config
+
+Unter „8. Advanced Options“ gibt es den Eintrag „A7 I2C“, welchen wir aktivieren. 
+
+Dann:
+sudo nano /etc/modules
+
+
+i2c-bcm2708
+i2c-dev
+
+Dann:
+sudo apt-get install i2c-tools python-smbus
+
+Dann:
+sudo i2cdetect -y 1
+
+
+
 # Force Sensors
 - *Not implemented yet*
 - HX711 analog-to-digital converter
