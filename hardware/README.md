@@ -22,6 +22,7 @@ Pin 6 (GND)	    - GND
 + Add the following modules to `/etc/modules`: `i2c-bcm2708` and `i2c-dev`
 + Install the I2C tools `sudo apt-get install i2c-tools python-smbus`
 + Check whether 68 exists in `sudo i2cdetect -y 1`
++ Ref: https://github.com/rocheparadox/Kalman-Filter-Python-for-mpu6050
 
 
 # Force Sensors
