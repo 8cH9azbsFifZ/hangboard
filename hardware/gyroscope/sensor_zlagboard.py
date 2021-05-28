@@ -187,5 +187,5 @@ while True:
 	    ws.send("1234")
         # Detect critical angle
         time.sleep(0.005)
-	except Exception as exc:
-		flag += 1
+#	except Exception as exc:
+#		flag += 1
