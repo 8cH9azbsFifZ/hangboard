@@ -94,7 +94,7 @@ class Gyroscope():
 
 
 
-	def measure_loop (self):
+	def run_measure (self):
 		print ("Set initial parameters")
 		self.kalmanX = KalmanAngle()
 		self.kalmanY = KalmanAngle()
