@@ -324,7 +324,8 @@ class Gyroscope():
 			#print(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
-			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
+			self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY)})
+
 			time.sleep(self.delay_measures)
 
 
