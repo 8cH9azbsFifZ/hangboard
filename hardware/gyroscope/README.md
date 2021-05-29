@@ -6,6 +6,8 @@
 ```
 ssh -lpi raspi-hangboard
 ```
+wscat -c "ws://10.101.40.40:4321/"
+
 
 # Setup
 ## Wiring

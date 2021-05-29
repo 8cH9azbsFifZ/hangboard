@@ -61,6 +61,9 @@ def run_handler():
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
 
+
+run_handler()
+
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
 
