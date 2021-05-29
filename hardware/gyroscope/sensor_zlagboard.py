@@ -20,6 +20,10 @@ import argparse
 import asyncio
 import websockets
 
+from threading import Thread
+import threading
+
+
 parser = argparse.ArgumentParser(description="Gyroscope Sensor Backend.")
 parser.add_argument ('--host')
 parser.add_argument ('--port')
@@ -60,8 +64,9 @@ def run_handler():
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
 
+th = threading.Thread(target=run_handler())
+th.start()
 
-run_handler()
 
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
