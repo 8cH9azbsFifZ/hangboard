@@ -217,7 +217,7 @@ class Gyroscope():
 			print ("Received it:")
 			print (message)
 			#await consumer(message)
-			measure_loop()
+			self._run_measure()
 
 	async def handler(websocket, path):
 		consumer_task = asyncio.ensure_future(
@@ -231,6 +231,16 @@ class Gyroscope():
 		)
 		for task in pending:
 			task.cancel()
+
+    def _run_measure (self):
+        print ("Run thread measure")
+        self.run_measure_thread = threading.Thread(target=self.run_measure)
+        self.run_measure_thread.do_stop = False
+        self.run_measure_thread.start()
+
+    def _stop_set (self):
+        print ("Stop thread measure")
+        self.run_measure_thread.do_stop = True
 
 	def run_handler():
 		print ("start handler")
