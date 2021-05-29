@@ -210,7 +210,8 @@ class Gyroscope():
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
 			self.message = self.kalAngleX
-			time.sleep(0.005)
+			#time.sleep(0.005)
+			time.sleep(1)
 
 	async def producer_handler(self, websocket, path):
 		while True:
