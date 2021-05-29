@@ -98,6 +98,7 @@ def read_raw_data(addr):
         return value
 
 
+print ("Initialize BUS")
 bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
 DeviceAddress = 0x68   # MPU6050 device address
 
@@ -126,10 +127,13 @@ gyroYAngle = pitch;
 compAngleX = roll;
 compAngleY = pitch;
 
-timer = time.time()
-flag = 0
+
 
 def measure_loop ():
+	print ("Start measuring loop")
+	timer = time.time()
+	flag = 0
+
 	while True:
 		if(flag >100): #Problem with the connection
 			print("There is a problem with the connection")
