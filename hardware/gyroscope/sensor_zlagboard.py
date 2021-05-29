@@ -25,8 +25,8 @@ parser.add_argument ('--host')
 parser.add_argument ('--port')
 args = parser.parse_args()
 
-WSHOST = args.host 
-WSPORT = args.port 
+WSHOST = "10.101.40.40" # args.host  # FIXME
+WSPORT = 4321 #args.port 
 
 
 

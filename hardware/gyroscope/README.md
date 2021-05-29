@@ -2,6 +2,11 @@
 
 - Used: MPU-6050
 
+# Developing
+```
+ssh -lpi raspi-hangboard
+```
+
 # Setup
 ## Wiring
 
