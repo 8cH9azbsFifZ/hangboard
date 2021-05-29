@@ -227,8 +227,8 @@ class Gyroscope():
 			if (message == "StartCalibration"):
 				self._run_measure()
 			if (message == "StopCalibration"):
-                self._stop_measure()  
-
+				self._stop_measure()  
+	
 	async def handler(self, websocket, path):
 		consumer_task = asyncio.ensure_future(
 			self.consumer_handler(websocket, path))
