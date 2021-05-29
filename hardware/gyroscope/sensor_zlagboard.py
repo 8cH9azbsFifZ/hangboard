@@ -250,9 +250,10 @@ class Gyroscope():
 			gyroY = self.read_raw_data(self.GYRO_YOUT_H)
 			gyroZ = self.read_raw_data(self.GYRO_ZOUT_H)
 
-			self.dt = time.time() - timer
+			dt = time.time() - timer
+			self.counter = dt
 			#timer = time.time()
-			if (self.dt > self.calibration_duration):
+			if (dt > self.calibration_duration):
 				break
 
 			if (self.RestrictPitch):
