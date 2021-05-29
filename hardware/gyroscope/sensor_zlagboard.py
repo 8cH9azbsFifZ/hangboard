@@ -100,8 +100,8 @@ class Gyroscope():
 		self.kalmanY = KalmanAngle()
 
 		print ("Read startup parameters")
-		RestrictPitch = True	#Comment out to restrict roll to +-90deg instead - please read: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf
-		radToDeg = 57.2957786
+		self.RestrictPitch = True	#Comment out to restrict roll to +-90deg instead - please read: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf
+		self.radToDeg = 57.2957786
 		self.kalAngleX = 0
 		self.kalAngleY = 0
 		#some MPU6050 Registers and their Address
@@ -113,12 +113,12 @@ class Gyroscope():
 
 		#print(accX,accY,accZ)
 		#print(math.sqrt((accY**2)+(accZ**2)))
-		if (RestrictPitch):
-			roll = math.atan2(accY,accZ) * radToDeg
-			pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
+		if (self.RestrictPitch):
+			roll = math.atan2(accY,accZ) * self.radToDeg
+			pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * self.radToDeg
 		else:
-			roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
-			pitch = math.atan2(-accX,accZ) * radToDeg
+			roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * self.radToDeg
+			pitch = math.atan2(-accX,accZ) * self.radToDeg
 		print(roll)
 		self.kalmanX.setAngle(roll)
 		self.kalmanY.setAngle(pitch)
@@ -158,17 +158,17 @@ class Gyroscope():
 			dt = time.time() - timer
 			timer = time.time()
 
-			if (RestrictPitch):
-				roll = math.atan2(accY,accZ) * radToDeg
-				pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
+			if (self.RestrictPitch):
+				roll = math.atan2(accY,accZ) * self.radToDeg
+				pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * self.radToDeg
 			else:
-				roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
-				pitch = math.atan2(-accX,accZ) * radToDeg
+				roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * self.radToDeg
+				pitch = math.atan2(-accX,accZ) * self.radToDeg
 
 			gyroXRate = gyroX/131
 			gyroYRate = gyroY/131
 
-			if (RestrictPitch):
+			if (self.RestrictPitch):
 
 				if((roll < -90 and self.kalAngleX >90) or (roll > 90 and self.kalAngleX < -90)):
 					self.kalmanX.setAngle(roll)
