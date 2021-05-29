@@ -57,6 +57,7 @@ class Gyroscope():
 
 		self.AngleX_NoHang = 0
 		self.AngleX_Hang = 0
+		self.HangDetected = False
 
 
 	def init_gyro(self):
@@ -219,8 +220,15 @@ class Gyroscope():
 			#print(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
-			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
+			self.create_message()
 			time.sleep(self.delay_measures)
+
+	def create_message(self):
+		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
+		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang),
+		"HangDetected": self.HangDetected
+		})
+
 
 	def measure_angle_extremum (self):
 		self.init_measurements()
@@ -234,11 +242,8 @@ class Gyroscope():
 
 		self.measure_angle_extremum_one_shot()
 		self.AngleX_Hang = self.kalAngleX
-		
-		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
-		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang)
-		})
 
+		self.create_message()
 
 	def measure_angle_extremum_one_shot (self):
 		print ("Start measuring loop")
@@ -328,9 +333,8 @@ class Gyroscope():
 			#print(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
-			self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
-			"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang)
-			})
+			self.create_message()
+
 
 			time.sleep(self.delay_measures)
 
