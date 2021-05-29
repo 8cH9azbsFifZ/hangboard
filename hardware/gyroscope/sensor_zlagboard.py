@@ -234,6 +234,10 @@ class Gyroscope():
 
 		self.measure_angle_extremum_one_shot()
 		self.AngleX_Hang = self.kalAngleX
+		
+		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
+		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang)
+		})
 
 
 	def measure_angle_extremum_one_shot (self):

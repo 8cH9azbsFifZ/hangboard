@@ -62,7 +62,7 @@
 	<script>
 		ws1.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
-			$('.sensor-label').text("X: " + parsed.AngleX + " Y " + parsed.AngleY + " ...");
+			$('.sensor-label').text("X: " + parsed.AngleX + " Y: " + parsed.AngleY + " NoHang: " + parsed.AngleX_NoHang + " Hang: " + parsed.AngleX_Hang);
 		}
 	</script>
 
