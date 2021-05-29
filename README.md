@@ -5,6 +5,9 @@
 A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.
 ![Hangboard Mount](./hardware/board_mount/IsometrixBoard.png)
 
+Website: https://8ch9azbsfifz.github.io/hangboard/
+Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
+Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
 
 # Developing
 
