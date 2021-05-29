@@ -172,7 +172,7 @@ class Gyroscope():
 
 				if((roll < -90 and self.kalAngleX >90) or (roll > 90 and self.kalAngleX < -90)):
 					self.kalmanX.setAngle(roll)
-					complAngleX = roll
+					self.compAngleX = roll
 					self.kalAngleX   = roll
 					self.gyroXAngle  = roll
 				else:
@@ -185,7 +185,7 @@ class Gyroscope():
 
 				if((pitch < -90 and self.kalAngleY >90) or (pitch > 90 and self.kalAngleY < -90)):
 					self.kalmanY.setAngle(pitch)
-					complAngleY = pitch
+					self.compAngleY = pitch
 					self.kalAngleY   = pitch
 					self.gyroYAngle  = pitch
 				else:
