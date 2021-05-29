@@ -205,13 +205,13 @@ class Gyroscope():
 			if ((gyroYAngle < -180) or (gyroYAngle > 180)):
 				gyroYAngle = self.kalAngleY
 
-			print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
+			#print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
+			
 			#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
 			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
-			#time.sleep(0.005)
-			time.sleep(1)
+			time.sleep(0.005)
 
 	async def producer_handler(self, websocket, path):
 		while True:
