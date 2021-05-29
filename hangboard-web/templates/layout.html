@@ -29,10 +29,16 @@
 			ws.send ("GetBoard");
 		}
 
-		function sendCalibration ()
+		function sendStartCalibration ()
 		{
 			ws1.send ("StartCalibration");
 		}
+
+		function sendStopCalibration ()
+		{
+			ws1.send ("StopCalibration");
+		}
+
 	</script>
 
 
