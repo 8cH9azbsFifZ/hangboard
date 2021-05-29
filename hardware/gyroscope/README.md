@@ -18,7 +18,7 @@ Pin 6 (GND)	    - GND
 + Check whether 68 exists in `sudo i2cdetect -y 1`
 ```
 python3 -m pip install -r requirements.txt
-````
+```
 
 # References
 + Ref: https://github.com/rocheparadox/Kalman-Filter-Python-for-mpu6050
