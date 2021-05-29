@@ -202,8 +202,9 @@ def measure_loop ():
 
 		print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
 		#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
-		if (kalAngleX < 0):
-			message = 1234; #ws.send("1234")
+		#if (kalAngleX < 0):
+		#	message = kalAngleX
+		message = kalAngleX
 		time.sleep(0.005)
 
 
@@ -240,6 +241,7 @@ def run_handler():
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
 
+
 print ("Initialize BUS")
 bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
 DeviceAddress = 0x68   # MPU6050 device address
@@ -247,11 +249,6 @@ DeviceAddress = 0x68   # MPU6050 device address
 MPU_Init()
 
 time.sleep(1)
-
-
-
-
-
 
 
 run_handler()
