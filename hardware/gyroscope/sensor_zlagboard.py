@@ -94,9 +94,7 @@ class Gyroscope():
 				value = value - 65536
 		return value
 
-
-
-	def run_measure (self):
+	def init_measurements (self):
 		print ("Set initial parameters")
 		self.kalmanX = KalmanAngle()
 		self.kalmanY = KalmanAngle()
@@ -129,11 +127,14 @@ class Gyroscope():
 		compAngleX = roll;
 		compAngleY = pitch;
 
+	def run_measure (self):
+		self.init_measurements()
+
+		t = threading.currentThread()
+
 		print ("Start measuring loop")
 		timer = time.time()
 		flag = 0
-
-		t = threading.currentThread()
 
 		while True:
 			if (getattr(t, "do_stop", False)):
@@ -214,6 +215,9 @@ class Gyroscope():
 			#	message = kalAngleX
 			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
 			time.sleep(self.delay_measures)
+
+	def measure_angle_extremumg (self):
+		print ("Measure angle configuration for extremum")
 
 	async def producer_handler(self, websocket, path):
 		while True:

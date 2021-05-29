@@ -58,6 +58,14 @@
 		var failed = new Audio('{{url_for('static', filename='sounds/failed.mp3')}}');
 	</script>
 
+	<!-- Connection to Sensors -->
+	<script>
+		ws1.onmessage = function(event) {
+			var parsed = JSON.parse(event.data);
+			$('.sensor-label').text("X: " + parsed.AngleX + " Y " + parsed.AngleY + " ...");
+		}
+	</script>
+
 	<!--- Visualize Progress -->
 	<script>
 		var boardimagename = "";
