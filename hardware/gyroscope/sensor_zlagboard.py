@@ -227,7 +227,6 @@ class Gyroscope():
 		
 		print ("Measure angle configuration for extremum")
 
-		t = threading.currentThread()
 
 		self.measure_angle_extremum_one_shot()
 
@@ -238,8 +237,9 @@ class Gyroscope():
 
 
 	def measure_angle_extremum_one_shot (self):
-
 		print ("Start measuring loop")
+		t = threading.currentThread()
+
 		timer = time.time()
 		flag = 0
 
