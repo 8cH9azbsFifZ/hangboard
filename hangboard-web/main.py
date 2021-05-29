@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, redirect, url_for, session
+from flask import Flask, render_template, request, Response, session
 
 app = Flask(__name__) 
 app.secret_key = "test"
