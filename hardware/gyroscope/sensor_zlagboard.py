@@ -42,42 +42,7 @@ def get_or_create_eventloop():
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             return asyncio.get_event_loop()
-
-async def producer_handler(websocket, path):
-	while True:
-		#message = await producer()
-		message ="test"
-		await websocket.send(message)
-		#await asyncio.sleep(1) #new
-
-async def consumer_handler(websocket, path):
-	async for message in websocket:
-		print ("Received it:")
-		print (message)
-		#await consumer(message)
-
-async def handler(websocket, path):
-	consumer_task = asyncio.ensure_future(
-		consumer_handler(websocket, path))
-	producer_task = asyncio.ensure_future(
-		producer_handler(websocket, path))
-
-	done, pending = await asyncio.wait(
-		[consumer_task, producer_task],
-		return_when=asyncio.FIRST_COMPLETED,
-	)
-	for task in pending:
-		task.cancel()
-
-def run_handler():
-	print ("start handler")
-	start_server = websockets.serve(handler, WSHOST, WSPORT)
-	asyncio.get_or_create_eventloop().run_until_complete(start_server)
-	asyncio.get_or_create_eventloop().run_forever()
-
-#th = threading.Thread(target=run_handler)
-#th.start()
-
+			
 
 kalmanX = KalmanAngle()
 kalmanY = KalmanAngle()
@@ -139,6 +104,7 @@ DeviceAddress = 0x68   # MPU6050 device address
 MPU_Init()
 
 time.sleep(1)
+
 #Read Accelerometer raw value
 accX = read_raw_data(ACCEL_XOUT_H)
 accY = read_raw_data(ACCEL_YOUT_H)
@@ -162,77 +128,112 @@ compAngleY = pitch;
 
 timer = time.time()
 flag = 0
-while True:
-	if(flag >100): #Problem with the connection
-		print("There is a problem with the connection")
-		flag=0
-		continue
-	#Read Accelerometer raw value
-	accX = read_raw_data(ACCEL_XOUT_H)
-	accY = read_raw_data(ACCEL_YOUT_H)
-	accZ = read_raw_data(ACCEL_ZOUT_H)
 
-	#Read Gyroscope raw value
-	gyroX = read_raw_data(GYRO_XOUT_H)
-	gyroY = read_raw_data(GYRO_YOUT_H)
-	gyroZ = read_raw_data(GYRO_ZOUT_H)
+def measure_loop ():
+	while True:
+		if(flag >100): #Problem with the connection
+			print("There is a problem with the connection")
+			flag=0
+			continue
+		#Read Accelerometer raw value
+		accX = read_raw_data(ACCEL_XOUT_H)
+		accY = read_raw_data(ACCEL_YOUT_H)
+		accZ = read_raw_data(ACCEL_ZOUT_H)
 
-	dt = time.time() - timer
-	timer = time.time()
+		#Read Gyroscope raw value
+		gyroX = read_raw_data(GYRO_XOUT_H)
+		gyroY = read_raw_data(GYRO_YOUT_H)
+		gyroZ = read_raw_data(GYRO_ZOUT_H)
 
-	if (RestrictPitch):
-		roll = math.atan2(accY,accZ) * radToDeg
-		pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
-	else:
-		roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
-		pitch = math.atan2(-accX,accZ) * radToDeg
+		dt = time.time() - timer
+		timer = time.time()
 
-	gyroXRate = gyroX/131
-	gyroYRate = gyroY/131
-
-	if (RestrictPitch):
-
-		if((roll < -90 and kalAngleX >90) or (roll > 90 and kalAngleX < -90)):
-			kalmanX.setAngle(roll)
-			complAngleX = roll
-			kalAngleX   = roll
-			gyroXAngle  = roll
+		if (RestrictPitch):
+			roll = math.atan2(accY,accZ) * radToDeg
+			pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
 		else:
-			kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+			roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
+			pitch = math.atan2(-accX,accZ) * radToDeg
 
-		if(abs(kalAngleX)>90):
-			gyroYRate  = -gyroYRate
-			kalAngleY  = kalmanY.getAngle(pitch,gyroYRate,dt)
-	else:
+		gyroXRate = gyroX/131
+		gyroYRate = gyroY/131
 
-		if((pitch < -90 and kalAngleY >90) or (pitch > 90 and kalAngleY < -90)):
-			kalmanY.setAngle(pitch)
-			complAngleY = pitch
-			kalAngleY   = pitch
-			gyroYAngle  = pitch
+		if (RestrictPitch):
+
+			if((roll < -90 and kalAngleX >90) or (roll > 90 and kalAngleX < -90)):
+				kalmanX.setAngle(roll)
+				complAngleX = roll
+				kalAngleX   = roll
+				gyroXAngle  = roll
+			else:
+				kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+
+			if(abs(kalAngleX)>90):
+				gyroYRate  = -gyroYRate
+				kalAngleY  = kalmanY.getAngle(pitch,gyroYRate,dt)
 		else:
-			kalAngleY = kalmanY.getAngle(pitch,gyroYRate,dt)
 
-		if(abs(kalAngleY)>90):
-			gyroXRate  = -gyroXRate
-			kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+			if((pitch < -90 and kalAngleY >90) or (pitch > 90 and kalAngleY < -90)):
+				kalmanY.setAngle(pitch)
+				complAngleY = pitch
+				kalAngleY   = pitch
+				gyroYAngle  = pitch
+			else:
+				kalAngleY = kalmanY.getAngle(pitch,gyroYRate,dt)
 
-	#angle = (rate of change of angle) * change in time
-	gyroXAngle = gyroXRate * dt
-	gyroYAngle = gyroYAngle * dt
+			if(abs(kalAngleY)>90):
+				gyroXRate  = -gyroXRate
+				kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
 
-	#compAngle = constant * (old_compAngle + angle_obtained_from_gyro) + constant * angle_obtained from accelerometer
-	compAngleX = 0.93 * (compAngleX + gyroXRate * dt) + 0.07 * roll
-	compAngleY = 0.93 * (compAngleY + gyroYRate * dt) + 0.07 * pitch
+		#angle = (rate of change of angle) * change in time
+		gyroXAngle = gyroXRate * dt
+		gyroYAngle = gyroYAngle * dt
 
-	if ((gyroXAngle < -180) or (gyroXAngle > 180)):
-		gyroXAngle = kalAngleX
-	if ((gyroYAngle < -180) or (gyroYAngle > 180)):
-		gyroYAngle = kalAngleY
+		#compAngle = constant * (old_compAngle + angle_obtained_from_gyro) + constant * angle_obtained from accelerometer
+		compAngleX = 0.93 * (compAngleX + gyroXRate * dt) + 0.07 * roll
+		compAngleY = 0.93 * (compAngleY + gyroYRate * dt) + 0.07 * pitch
 
-	print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
-	#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
-	if (kalAngleX < 0):
-		message = 1234; #ws.send("1234")
-	time.sleep(0.005)
+		if ((gyroXAngle < -180) or (gyroXAngle > 180)):
+			gyroXAngle = kalAngleX
+		if ((gyroYAngle < -180) or (gyroYAngle > 180)):
+			gyroYAngle = kalAngleY
 
+		print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
+		#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
+		if (kalAngleX < 0):
+			message = 1234; #ws.send("1234")
+		time.sleep(0.005)
+
+
+async def producer_handler(websocket, path):
+	while True:
+		#message = await producer()
+		message ="test"
+		await websocket.send(message)
+		#await asyncio.sleep(1) #new
+
+async def consumer_handler(websocket, path):
+	async for message in websocket:
+		print ("Received it:")
+		print (message)
+		#await consumer(message)
+		measure_loop()
+
+async def handler(websocket, path):
+	consumer_task = asyncio.ensure_future(
+		consumer_handler(websocket, path))
+	producer_task = asyncio.ensure_future(
+		producer_handler(websocket, path))
+
+	done, pending = await asyncio.wait(
+		[consumer_task, producer_task],
+		return_when=asyncio.FIRST_COMPLETED,
+	)
+	for task in pending:
+		task.cancel()
+
+def run_handler():
+	print ("start handler")
+	start_server = websockets.serve(handler, WSHOST, WSPORT)
+	asyncio.get_event_loop().run_until_complete(start_server)
+	asyncio.get_event_loop().run_forever()
