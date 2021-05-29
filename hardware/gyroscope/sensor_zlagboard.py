@@ -131,7 +131,7 @@ class Gyroscope():
 		timer = time.time()
 		flag = 0
 
-        t = threading.currentThread()
+		t = threading.currentThread()
 
 		while True:
 			if (getattr(t, "do_stop", False)):
@@ -212,7 +212,6 @@ class Gyroscope():
 			self.message = self.kalAngleX
 			time.sleep(0.005)
 
-
 	async def producer_handler(self, websocket, path):
 		while True:
 			#message = await producer()
@@ -227,7 +226,7 @@ class Gyroscope():
 			#await consumer(message)
 			if (message == "StartCalibration"):
 				self._run_measure()
-			if (message == "Stop"):
+			if (message == "StopCalibration"):
                 self._stop_measure()  
 
 	async def handler(self, websocket, path):
