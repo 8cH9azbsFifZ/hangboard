@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request, Response, session
 
+import argparse
+parser = argparse.ArgumentParser(description="Webinterface Frontend.")
+parser.add_argument ('--host')
+parser.add_argument ('--port')
+args = parser.parse_args()
+
 app = Flask(__name__) 
 app.secret_key = "test"
 
@@ -19,4 +25,4 @@ def selectexercise():
     return render_template("selectexercise.html")
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host=args.host, port=args.port, debug=True)
