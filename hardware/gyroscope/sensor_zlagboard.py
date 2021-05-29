@@ -131,7 +131,13 @@ class Gyroscope():
 		timer = time.time()
 		flag = 0
 
+        t = threading.currentThread()
+
 		while True:
+			if (getattr(t, "do_stop", False)):
+				print ("Stop this stuff")
+				return
+
 			if(flag >100): #Problem with the connection
 				print("There is a problem with the connection")
 				flag=0
@@ -219,7 +225,10 @@ class Gyroscope():
 			print ("Received it:")
 			print (message)
 			#await consumer(message)
-			self._run_measure()
+			if (message == "StartCalibration"):
+				self._run_measure()
+			if (message == "Stop"):
+                self._stop_measure()  
 
 	async def handler(self, websocket, path):
 		consumer_task = asyncio.ensure_future(
@@ -240,7 +249,7 @@ class Gyroscope():
 		self.run_measure_thread.do_stop = False
 		self.run_measure_thread.start()
 
-	def _stop_set(self):
+	def _stop_measure(self):
 		print ("Stop thread measure")
 		self.run_measure_thread.do_stop = True
 
