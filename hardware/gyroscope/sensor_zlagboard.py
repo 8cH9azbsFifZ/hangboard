@@ -218,6 +218,96 @@ class Gyroscope():
 
 	def measure_angle_extremumg (self):
 		print ("Measure angle configuration for extremum")
+	def run_measure (self):
+		self.init_measurements()
+
+		t = threading.currentThread()
+
+		print ("Start measuring loop")
+		timer = time.time()
+		flag = 0
+
+		while True:
+			if (getattr(t, "do_stop", False)):
+				print ("Stop this stuff")
+				break
+
+			if(flag >100): #Problem with the connection
+				print("There is a problem with the connection")
+				flag=0
+				continue
+			#Read Accelerometer raw value
+			accX = self.read_raw_data(self.ACCEL_XOUT_H)
+			accY = self.read_raw_data(self.ACCEL_YOUT_H)
+			accZ = self.read_raw_data(self.ACCEL_ZOUT_H)
+
+			#Read Gyroscope raw value
+			gyroX = self.read_raw_data(self.GYRO_XOUT_H)
+			gyroY = self.read_raw_data(self.GYRO_YOUT_H)
+			gyroZ = self.read_raw_data(self.GYRO_ZOUT_H)
+
+			dt = time.time() - timer
+			#timer = time.time()
+			print (dt)
+
+			if (self.RestrictPitch):
+				roll = math.atan2(accY,accZ) * self.radToDeg
+				pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * self.radToDeg
+			else:
+				roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * self.radToDeg
+				pitch = math.atan2(-accX,accZ) * self.radToDeg
+
+			gyroXRate = gyroX/131
+			gyroYRate = gyroY/131
+
+			if (self.RestrictPitch):
+
+				if((roll < -90 and self.kalAngleX >90) or (roll > 90 and self.kalAngleX < -90)):
+					self.kalmanX.setAngle(roll)
+					complAngleX = roll
+					self.kalAngleX   = roll
+					self.gyroXAngle  = roll
+				else:
+					self.kalAngleX = self.kalmanX.getAngle(roll,gyroXRate,dt)
+
+				if(abs(self.kalAngleX)>90):
+					gyroYRate  = -gyroYRate
+					self.kalAngleY  = self.kalmanY.getAngle(pitch,gyroYRate,dt)
+			else:
+
+				if((pitch < -90 and self.kalAngleY >90) or (pitch > 90 and self.kalAngleY < -90)):
+					self.kalmanY.setAngle(pitch)
+					compAngleY = pitch
+					self.kalAngleY   = pitch
+					self.gyroYAngle  = pitch
+				else:
+					self.kalAngleY = self.kalmanY.getAngle(pitch,gyroYRate,dt)
+
+				if(abs(self.kalAngleY)>90):
+					gyroXRate  = -gyroXRate
+					self.kalAngleX = self.kalmanX.getAngle(roll,gyroXRate,dt)
+
+			#angle = (rate of change of angle) * change in time
+			self.gyroXAngle = gyroXRate * dt
+			self.gyroYAngle = self.gyroYAngle * dt
+
+			#compAngle = constant * (old_compAngle + angle_obtained_from_gyro) + constant * angle_obtained from accelerometer
+			self.compAngleX = 0.93 * (self.compAngleX + gyroXRate * dt) + 0.07 * roll
+			self.compAngleY = 0.93 * (self.compAngleY + gyroYRate * dt) + 0.07 * pitch
+
+			if ((self.gyroXAngle < -180) or (self.gyroXAngle > 180)):
+				self.gyroXAngle = self.kalAngleX
+			if ((self.gyroYAngle < -180) or (self.gyroYAngle > 180)):
+				self.gyroYAngle = self.kalAngleY
+
+			#print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
+
+			#print(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(kalAngleY))
+			#if (kalAngleX < 0):
+			#	message = kalAngleX
+			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
+			time.sleep(self.delay_measures)
+
 
 	async def producer_handler(self, websocket, path):
 		while True:
