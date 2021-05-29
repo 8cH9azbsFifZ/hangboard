@@ -135,14 +135,14 @@ class Gyroscope():
 				flag=0
 				continue
 			#Read Accelerometer raw value
-			accX = read_raw_data(ACCEL_XOUT_H)
-			accY = read_raw_data(ACCEL_YOUT_H)
-			accZ = read_raw_data(ACCEL_ZOUT_H)
+			accX = self.read_raw_data(self.ACCEL_XOUT_H)
+			accY = self.read_raw_data(self.ACCEL_YOUT_H)
+			accZ = self.read_raw_data(self.ACCEL_ZOUT_H)
 
 			#Read Gyroscope raw value
-			gyroX = read_raw_data(GYRO_XOUT_H)
-			gyroY = read_raw_data(GYRO_YOUT_H)
-			gyroZ = read_raw_data(GYRO_ZOUT_H)
+			gyroX = self.read_raw_data(self.GYRO_XOUT_H)
+			gyroY = self.read_raw_data(self.GYRO_YOUT_H)
+			gyroZ = self.read_raw_data(self.GYRO_ZOUT_H)
 
 			dt = time.time() - timer
 			timer = time.time()
