@@ -46,6 +46,8 @@ class Gyroscope():
 		self.GYRO_XOUT_H = 0x43
 		self.GYRO_YOUT_H = 0x45
 		self.GYRO_ZOUT_H = 0x47
+		
+		self.init_gyro()
 
 	def init_gyro(self):
 		print ("Initialize BUS")
