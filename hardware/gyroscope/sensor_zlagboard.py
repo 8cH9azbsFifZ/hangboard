@@ -223,9 +223,9 @@ class Gyroscope():
 
 	async def handler(self, websocket, path):
 		consumer_task = asyncio.ensure_future(
-			consumer_handler(websocket, path))
+			self.consumer_handler(websocket, path))
 		producer_task = asyncio.ensure_future(
-			producer_handler(websocket, path))
+			self.producer_handler(websocket, path))
 
 		done, pending = await asyncio.wait(
 			[consumer_task, producer_task],
