@@ -32,6 +32,8 @@ args = parser.parse_args()
 WSHOST = "10.101.40.40" # args.host  # FIXME
 WSPORT = 4321 #args.port 
 
+message = "start"
+
 async def producer_handler(websocket, path):
 	while True:
 		#message = await producer()
@@ -222,6 +224,6 @@ while True:
 	print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
 	#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 	if (kalAngleX < 0):
-		ws.send("1234")
+		message = 1234; #ws.send("1234")
 	time.sleep(0.005)
 
