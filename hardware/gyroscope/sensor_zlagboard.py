@@ -243,7 +243,7 @@ class Gyroscope():
 		print ("Stop thread measure")
 		self.run_measure_thread.do_stop = True
 
-	def run_handler():
+	def run_handler(self):
 		print ("start handler")
 		start_server = websockets.serve(handler, WSHOST, WSPORT)
 		asyncio.get_event_loop().run_until_complete(start_server)
