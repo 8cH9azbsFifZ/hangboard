@@ -55,6 +55,9 @@ class Gyroscope():
 
 		self.calibration_duration = 10
 
+		self.AngleX_NoHang = 0
+		self.AngleX_Hang = 0
+
 
 	def init_gyro(self):
 		print ("Initialize BUS")
@@ -225,6 +228,16 @@ class Gyroscope():
 		print ("Measure angle configuration for extremum")
 
 		t = threading.currentThread()
+
+		self.measure_angle_extremum_one_shot()
+
+		self.AngleX_NoHang = self.kalAngleX
+
+		self.measure_angle_extremum_one_shot()
+		self.AngleX_Hang = self.kalAngleX
+
+
+	def measure_angle_extremum_one_shot (self):
 
 		print ("Start measuring loop")
 		timer = time.time()
