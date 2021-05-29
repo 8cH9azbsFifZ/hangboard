@@ -9,6 +9,7 @@
 
 
 
+from io import TextIOBase
 from Kalman import KalmanAngle
 import smbus			#import SMBus module of I2C
 import time
@@ -231,14 +232,14 @@ class Gyroscope():
 		)
 		for task in pending:
 			task.cancel()
-
-    def _run_measure (self):
+	
+	def _run_measure(self):
 		print ("Run thread measure")
 		self.run_measure_thread = threading.Thread(target=self.run_measure)
 		self.run_measure_thread.do_stop = False
 		self.run_measure_thread.start()
 
-    def _stop_set (self):
+	def _stop_set(self):
 		print ("Stop thread measure")
 		self.run_measure_thread.do_stop = True
 
