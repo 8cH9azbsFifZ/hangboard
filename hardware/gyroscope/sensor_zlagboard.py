@@ -20,7 +20,7 @@ import argparse
 import asyncio
 import websockets
 
-parser = argparse.ArgumentParser(description="Workout Timer Backend.")
+parser = argparse.ArgumentParser(description="Gyroscope Sensor Backend.")
 parser.add_argument ('--host')
 parser.add_argument ('--port')
 args = parser.parse_args()
