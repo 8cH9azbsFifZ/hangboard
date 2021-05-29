@@ -252,7 +252,8 @@ class Gyroscope():
 
 			self.dt = time.time() - timer
 			#timer = time.time()
-			if (self.dt > self.calibration_duration)
+			if (self.dt > self.calibration_duration):
+				break
 
 			if (self.RestrictPitch):
 				roll = math.atan2(accY,accZ) * self.radToDeg
