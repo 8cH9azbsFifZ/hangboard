@@ -53,6 +53,9 @@ class Gyroscope():
 		self.delay_measures = 0.005
 		self.delay_sending = 0.005
 
+		self.calibration_duration = 10
+
+
 	def init_gyro(self):
 		print ("Initialize BUS")
 		self.bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
@@ -247,9 +250,9 @@ class Gyroscope():
 			gyroY = self.read_raw_data(self.GYRO_YOUT_H)
 			gyroZ = self.read_raw_data(self.GYRO_ZOUT_H)
 
-			dt = time.time() - timer
+			self.dt = time.time() - timer
 			#timer = time.time()
-			print (dt)
+			if (self.dt > self.calibration_duration)
 
 			if (self.RestrictPitch):
 				roll = math.atan2(accY,accZ) * self.radToDeg
