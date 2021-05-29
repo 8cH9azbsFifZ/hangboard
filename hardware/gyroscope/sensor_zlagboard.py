@@ -253,5 +253,5 @@ class Gyroscope():
 
 
 a = Gyroscope()
-a.measure_loop()
-#run_handler()
+#a.measure_loop()
+a.run_handler()
