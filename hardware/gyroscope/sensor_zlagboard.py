@@ -215,7 +215,6 @@ class Gyroscope():
 	async def producer_handler(self, websocket, path):
 		while True:
 			#message = await producer()
-			self.message ="test"
 			await websocket.send(self.message)
 			await asyncio.sleep(1) #new
 
