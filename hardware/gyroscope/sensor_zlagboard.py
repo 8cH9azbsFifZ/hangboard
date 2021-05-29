@@ -211,7 +211,7 @@ def run_handler():
 	start_server = websockets.serve(handler, WSHOST, WSPORT)
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
-	
+
 print ("Initialize BUS")
 bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
 DeviceAddress = 0x68   # MPU6050 device address
@@ -236,10 +236,10 @@ else:
 print(roll)
 kalmanX.setAngle(roll)
 kalmanY.setAngle(pitch)
-gyroXAngle = roll;
-gyroYAngle = pitch;
-compAngleX = roll;
-compAngleY = pitch;
+#gyroXAngle = roll;
+#gyroYAngle = pitch;
+#compAngleX = roll;
+#compAngleY = pitch;
 
 
 
