@@ -136,7 +136,7 @@ class Gyroscope():
 		while True:
 			if (getattr(t, "do_stop", False)):
 				print ("Stop this stuff")
-				return
+				break
 
 			if(flag >100): #Problem with the connection
 				print("There is a problem with the connection")
