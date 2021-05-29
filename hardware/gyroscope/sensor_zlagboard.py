@@ -34,7 +34,7 @@ WSPORT = 4321 #args.port
 
 message = "start"
 class Gyroscope():
-    def __init__(self):
+	def __init__(self):
 		self.PWR_MGMT_1 = 0x6B
 		self.SMPLRT_DIV = 0x19
 		self.CONFIG = 0x1A
