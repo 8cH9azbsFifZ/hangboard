@@ -122,10 +122,10 @@ class Gyroscope():
 		print(roll)
 		self.kalmanX.setAngle(roll)
 		self.kalmanY.setAngle(pitch)
-		gyroXAngle = roll;
-		gyroYAngle = pitch;
-		compAngleX = roll;
-		compAngleY = pitch;
+		self.gyroXAngle = roll;
+		self.gyroYAngle = pitch;
+		self.compAngleX = roll;
+		self.compAngleY = pitch;
 
 	def run_measure (self):
 		self.init_measurements()
@@ -174,7 +174,7 @@ class Gyroscope():
 					self.kalmanX.setAngle(roll)
 					complAngleX = roll
 					self.kalAngleX   = roll
-					gyroXAngle  = roll
+					self.gyroXAngle  = roll
 				else:
 					self.kalAngleX = self.kalmanX.getAngle(roll,gyroXRate,dt)
 
@@ -187,7 +187,7 @@ class Gyroscope():
 					self.kalmanY.setAngle(pitch)
 					complAngleY = pitch
 					self.kalAngleY   = pitch
-					gyroYAngle  = pitch
+					self.gyroYAngle  = pitch
 				else:
 					self.kalAngleY = self.kalmanY.getAngle(pitch,gyroYRate,dt)
 
@@ -196,21 +196,21 @@ class Gyroscope():
 					self.kalAngleX = self.kalmanX.getAngle(roll,gyroXRate,dt)
 
 			#angle = (rate of change of angle) * change in time
-			gyroXAngle = gyroXRate * dt
-			gyroYAngle = gyroYAngle * dt
+			self.gyroXAngle = gyroXRate * dt
+			self.gyroYAngle = self.gyroYAngle * dt
 
 			#compAngle = constant * (old_compAngle + angle_obtained_from_gyro) + constant * angle_obtained from accelerometer
-			compAngleX = 0.93 * (compAngleX + gyroXRate * dt) + 0.07 * roll
-			compAngleY = 0.93 * (compAngleY + gyroYRate * dt) + 0.07 * pitch
+			self.compAngleX = 0.93 * (self.compAngleX + gyroXRate * dt) + 0.07 * roll
+			self.compAngleY = 0.93 * (self.compAngleY + gyroYRate * dt) + 0.07 * pitch
 
-			if ((gyroXAngle < -180) or (gyroXAngle > 180)):
-				gyroXAngle = self.kalAngleX
-			if ((gyroYAngle < -180) or (gyroYAngle > 180)):
-				gyroYAngle = self.kalAngleY
+			if ((self.gyroXAngle < -180) or (self.gyroXAngle > 180)):
+				self.gyroXAngle = self.kalAngleX
+			if ((self.gyroYAngle < -180) or (self.gyroYAngle > 180)):
+				self.gyroYAngle = self.kalAngleY
 
 			#print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
 
-			#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
+			#print(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
 			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
