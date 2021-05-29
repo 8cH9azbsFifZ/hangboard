@@ -33,7 +33,6 @@ args = parser.parse_args()
 WSHOST = "10.101.40.40" # args.host  # FIXME
 WSPORT = 4321 #args.port 
 
-message = "start"
 class Gyroscope():
 	def __init__(self):
 		self.PWR_MGMT_1 = 0x6B
@@ -49,6 +48,8 @@ class Gyroscope():
 		self.GYRO_ZOUT_H = 0x47
 
 		self.init_gyro()
+
+		self.message = "start"
 
 	def init_gyro(self):
 		print ("Initialize BUS")
@@ -202,25 +203,25 @@ class Gyroscope():
 			#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
-			message = self.kalAngleX
+			self.message = self.kalAngleX
 			time.sleep(0.005)
 
 
-	async def producer_handler(websocket, path):
+	async def producer_handler(self, websocket, path):
 		while True:
 			#message = await producer()
-			message ="test"
-			await websocket.send(message)
+			self.message ="test"
+			await websocket.send(self.message)
 			await asyncio.sleep(1) #new
 
-	async def consumer_handler(websocket, path):
+	async def consumer_handler(self, websocket, path):
 		async for message in websocket:
 			print ("Received it:")
 			print (message)
 			#await consumer(message)
 			self._run_measure()
 
-	async def handler(websocket, path):
+	async def handler(self, websocket, path):
 		consumer_task = asyncio.ensure_future(
 			consumer_handler(websocket, path))
 		producer_task = asyncio.ensure_future(
@@ -245,8 +246,8 @@ class Gyroscope():
 
 	def run_handler(self):
 		print ("start handler")
-		start_server = websockets.serve(self.handler, WSHOST, WSPORT)
-		asyncio.get_event_loop().run_until_complete(start_server)
+		self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+		asyncio.get_event_loop().run_until_complete(self.start_server)
 		asyncio.get_event_loop().run_forever()
 
 
