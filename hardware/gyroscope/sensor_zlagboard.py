@@ -237,3 +237,6 @@ def run_handler():
 	start_server = websockets.serve(handler, WSHOST, WSPORT)
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
+
+
+run_handler()
