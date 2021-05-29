@@ -46,7 +46,7 @@ class Gyroscope():
 		self.GYRO_XOUT_H = 0x43
 		self.GYRO_YOUT_H = 0x45
 		self.GYRO_ZOUT_H = 0x47
-		
+
 		self.init_gyro()
 
 	def init_gyro(self):
@@ -118,8 +118,8 @@ class Gyroscope():
 			roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
 			pitch = math.atan2(-accX,accZ) * radToDeg
 		print(roll)
-		kalmanX.setAngle(roll)
-		kalmanY.setAngle(pitch)
+		self.kalmanX.setAngle(roll)
+		self.kalmanY.setAngle(pitch)
 		gyroXAngle = roll;
 		gyroYAngle = pitch;
 		compAngleX = roll;
