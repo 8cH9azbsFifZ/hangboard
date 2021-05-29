@@ -245,7 +245,7 @@ class Gyroscope():
 
 	def run_handler(self):
 		print ("start handler")
-		start_server = websockets.serve(handler, WSHOST, WSPORT)
+		start_server = websockets.serve(self.handler, WSHOST, WSPORT)
 		asyncio.get_event_loop().run_until_complete(start_server)
 		asyncio.get_event_loop().run_forever()
 
