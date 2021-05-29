@@ -210,7 +210,7 @@ async def producer_handler(websocket, path):
 		#message = await producer()
 		message ="test"
 		await websocket.send(message)
-		#await asyncio.sleep(1) #new
+		await asyncio.sleep(1) #new
 
 async def consumer_handler(websocket, path):
 	async for message in websocket:
