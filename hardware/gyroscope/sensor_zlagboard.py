@@ -159,30 +159,30 @@ class Gyroscope():
 
 			if (RestrictPitch):
 
-				if((roll < -90 and kalAngleX >90) or (roll > 90 and self.kalAngleX < -90)):
-					kalmanX.setAngle(roll)
+				if((roll < -90 and self.kalAngleX >90) or (roll > 90 and self.kalAngleX < -90)):
+					self.kalmanX.setAngle(roll)
 					complAngleX = roll
 					self.kalAngleX   = roll
 					gyroXAngle  = roll
 				else:
-					self.kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+					self.kalAngleX = self.kalmanX.getAngle(roll,gyroXRate,dt)
 
-				if(abs(kalAngleX)>90):
+				if(abs(self.kalAngleX)>90):
 					gyroYRate  = -gyroYRate
-					self.kalAngleY  = kalmanY.getAngle(pitch,gyroYRate,dt)
+					self.kalAngleY  = self.kalmanY.getAngle(pitch,gyroYRate,dt)
 			else:
 
-				if((pitch < -90 and kalAngleY >90) or (pitch > 90 and kalAngleY < -90)):
-					kalmanY.setAngle(pitch)
+				if((pitch < -90 and self.kalAngleY >90) or (pitch > 90 and self.kalAngleY < -90)):
+					self.kalmanY.setAngle(pitch)
 					complAngleY = pitch
 					self.kalAngleY   = pitch
 					gyroYAngle  = pitch
 				else:
-					self.kalAngleY = kalmanY.getAngle(pitch,gyroYRate,dt)
+					self.kalAngleY = self.kalmanY.getAngle(pitch,gyroYRate,dt)
 
 				if(abs(self.kalAngleY)>90):
 					gyroXRate  = -gyroXRate
-					self.kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+					self.kalAngleX = self.kalmanX.getAngle(roll,gyroXRate,dt)
 
 			#angle = (rate of change of angle) * change in time
 			gyroXAngle = gyroXRate * dt
@@ -197,7 +197,7 @@ class Gyroscope():
 			if ((gyroYAngle < -180) or (gyroYAngle > 180)):
 				gyroYAngle = self.kalAngleY
 
-			print("Angle X: " + str(kalAngleX)+"   " +"Angle Y: " + str(kalAngleY))
+			print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
 			#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
