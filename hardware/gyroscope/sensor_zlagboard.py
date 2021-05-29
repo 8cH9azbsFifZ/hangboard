@@ -103,9 +103,9 @@ class Gyroscope():
 		#some MPU6050 Registers and their Address
 
 		#Read Accelerometer raw value
-		accX = read_raw_data(self.ACCEL_XOUT_H)
-		accY = read_raw_data(self.ACCEL_YOUT_H)
-		accZ = read_raw_data(self.ACCEL_ZOUT_H)
+		accX = self.read_raw_data(self.ACCEL_XOUT_H)
+		accY = self.read_raw_data(self.ACCEL_YOUT_H)
+		accZ = self.read_raw_data(self.ACCEL_ZOUT_H)
 
 		#print(accX,accY,accZ)
 		#print(math.sqrt((accY**2)+(accZ**2)))
