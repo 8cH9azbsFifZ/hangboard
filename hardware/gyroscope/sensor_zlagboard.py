@@ -216,10 +216,10 @@ class Gyroscope():
 			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
 			time.sleep(self.delay_measures)
 
-	def measure_angle_extremumg (self):
-		print ("Measure angle configuration for extremum")
-	def run_measure (self):
+	def measure_angle_extremum (self):
 		self.init_measurements()
+		
+		print ("Measure angle configuration for extremum")
 
 		t = threading.currentThread()
 
@@ -236,6 +236,7 @@ class Gyroscope():
 				print("There is a problem with the connection")
 				flag=0
 				continue
+
 			#Read Accelerometer raw value
 			accX = self.read_raw_data(self.ACCEL_XOUT_H)
 			accY = self.read_raw_data(self.ACCEL_YOUT_H)
@@ -341,6 +342,12 @@ class Gyroscope():
 	def _run_measure(self):
 		print ("Run thread measure")
 		self.run_measure_thread = threading.Thread(target=self.run_measure)
+		self.run_measure_thread.do_stop = False
+		self.run_measure_thread.start()
+
+	def _run_measure(self):
+		print ("Run thread measure")
+		self.run_measure_thread = threading.Thread(target=self.measure_angle_extremum)
 		self.run_measure_thread.do_stop = False
 		self.run_measure_thread.start()
 
