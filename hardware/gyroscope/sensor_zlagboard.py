@@ -64,7 +64,7 @@ def run_handler():
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
 
-th = threading.Thread(target=run_handler())
+th = threading.Thread(target=run_handler)
 th.start()
 
 
