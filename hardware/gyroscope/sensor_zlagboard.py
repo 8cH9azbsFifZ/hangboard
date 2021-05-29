@@ -49,7 +49,7 @@ class Gyroscope():
 
 		self.init_gyro()
 
-		self.message = "start"
+		self.message = "Started Gyroscope"
 
 	def init_gyro(self):
 		print ("Initialize BUS")
@@ -209,7 +209,7 @@ class Gyroscope():
 			#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
-			self.message = self.kalAngleX
+			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
 			#time.sleep(0.005)
 			time.sleep(1)
 
