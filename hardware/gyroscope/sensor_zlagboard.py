@@ -34,24 +34,6 @@ WSPORT = 4321 #args.port
 
 message = "start"
 
-def get_or_create_eventloop():
-    try:
-        return asyncio.get_event_loop()
-    except RuntimeError as ex:
-        if "There is no current event loop in thread" in str(ex):
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            return asyncio.get_event_loop()
-			
-
-kalmanX = KalmanAngle()
-kalmanY = KalmanAngle()
-
-RestrictPitch = True	#Comment out to restrict roll to +-90deg instead - please read: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf
-radToDeg = 57.2957786
-kalAngleX = 0
-kalAngleY = 0
-#some MPU6050 Registers and their Address
 PWR_MGMT_1   = 0x6B
 SMPLRT_DIV   = 0x19
 CONFIG       = 0x1A
@@ -63,6 +45,18 @@ ACCEL_ZOUT_H = 0x3F
 GYRO_XOUT_H  = 0x43
 GYRO_YOUT_H  = 0x45
 GYRO_ZOUT_H  = 0x47
+
+def get_or_create_eventloop():
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+			
+
+
 
 
 #Read the gyro and acceleromater values from MPU6050
@@ -100,8 +94,19 @@ def read_raw_data(addr):
 
 
 def measure_loop ():
+	print ("Set initial parameters")
+	kalmanX = KalmanAngle()
+	kalmanY = KalmanAngle()
+
+	RestrictPitch = True	#Comment out to restrict roll to +-90deg instead - please read: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf
+	radToDeg = 57.2957786
+	kalAngleX = 0
+	kalAngleY = 0
+	#some MPU6050 Registers and their Address
+
+
 	print ("Read startup parameters")
-	
+
 	#Read Accelerometer raw value
 	accX = read_raw_data(ACCEL_XOUT_H)
 	accY = read_raw_data(ACCEL_YOUT_H)
