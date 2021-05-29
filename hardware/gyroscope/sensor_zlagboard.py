@@ -98,36 +98,6 @@ def read_raw_data(addr):
         return value
 
 
-print ("Initialize BUS")
-bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
-DeviceAddress = 0x68   # MPU6050 device address
-
-MPU_Init()
-
-time.sleep(1)
-
-#Read Accelerometer raw value
-accX = read_raw_data(ACCEL_XOUT_H)
-accY = read_raw_data(ACCEL_YOUT_H)
-accZ = read_raw_data(ACCEL_ZOUT_H)
-
-#print(accX,accY,accZ)
-#print(math.sqrt((accY**2)+(accZ**2)))
-if (RestrictPitch):
-    roll = math.atan2(accY,accZ) * radToDeg
-    pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
-else:
-    roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
-    pitch = math.atan2(-accX,accZ) * radToDeg
-print(roll)
-kalmanX.setAngle(roll)
-kalmanY.setAngle(pitch)
-gyroXAngle = roll;
-gyroYAngle = pitch;
-compAngleX = roll;
-compAngleY = pitch;
-
-
 
 def measure_loop ():
 	print ("Start measuring loop")
@@ -241,6 +211,38 @@ def run_handler():
 	start_server = websockets.serve(handler, WSHOST, WSPORT)
 	asyncio.get_event_loop().run_until_complete(start_server)
 	asyncio.get_event_loop().run_forever()
+	
+print ("Initialize BUS")
+bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
+DeviceAddress = 0x68   # MPU6050 device address
+
+MPU_Init()
+
+time.sleep(1)
+
+#Read Accelerometer raw value
+accX = read_raw_data(ACCEL_XOUT_H)
+accY = read_raw_data(ACCEL_YOUT_H)
+accZ = read_raw_data(ACCEL_ZOUT_H)
+
+#print(accX,accY,accZ)
+#print(math.sqrt((accY**2)+(accZ**2)))
+if (RestrictPitch):
+    roll = math.atan2(accY,accZ) * radToDeg
+    pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
+else:
+    roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
+    pitch = math.atan2(-accX,accZ) * radToDeg
+print(roll)
+kalmanX.setAngle(roll)
+kalmanY.setAngle(pitch)
+gyroXAngle = roll;
+gyroYAngle = pitch;
+compAngleX = roll;
+compAngleY = pitch;
+
+
+
 
 
 run_handler()
