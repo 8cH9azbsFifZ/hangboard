@@ -1,9 +1,39 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<script>
+
+function makeUL(array) {
+    var list = document.createElement('ul');
+
+    for (var i = 0; i < array.length; i++) {
+        var item = document.createElement('li');
+        item.appendChild(document.createTextNode(array[i]));
+        list.appendChild(item);
+    }
+
+    return list;
+}
+
+var options = ['Workout Series - First Session','Minimum Edge Protocol','Maximum Weight 10-Second Protocol'];
+
+</script>
+
+<div>
     Select an exercise?
-	<div>
-		<span class="sensor-label">Exercise: TBD</span>
-	</div>
-	
+</div>
+
+<div>
+	<p id="ListExercises"></p>
+</div>
+
+
+<!-- Run this after load of site or there will be errors -->
+<script>
+	function neuerdiv(){
+		document.getElementById('ListExercises').appendChild(makeUL(options));
+	}
+	window.onload = neuerdiv();
+</script>
+
 {% endblock %}
