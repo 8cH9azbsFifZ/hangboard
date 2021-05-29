@@ -233,14 +233,14 @@ class Gyroscope():
 			task.cancel()
 
     def _run_measure (self):
-        print ("Run thread measure")
-        self.run_measure_thread = threading.Thread(target=self.run_measure)
-        self.run_measure_thread.do_stop = False
-        self.run_measure_thread.start()
+		print ("Run thread measure")
+		self.run_measure_thread = threading.Thread(target=self.run_measure)
+		self.run_measure_thread.do_stop = False
+		self.run_measure_thread.start()
 
     def _stop_set (self):
-        print ("Stop thread measure")
-        self.run_measure_thread.do_stop = True
+		print ("Stop thread measure")
+		self.run_measure_thread.do_stop = True
 
 	def run_handler():
 		print ("start handler")
