@@ -50,6 +50,8 @@ class Gyroscope():
 		self.init_gyro()
 
 		self.message = "Started Gyroscope"
+		self.delay_measures = 0.005
+		self.delay_sending = 0.005
 
 	def init_gyro(self):
 		print ("Initialize BUS")
@@ -206,18 +208,18 @@ class Gyroscope():
 				gyroYAngle = self.kalAngleY
 
 			#print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
-			
+
 			#print(str(roll)+"  "+str(gyroXAngle)+"  "+str(compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(gyroYAngle)+"  "+str(compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
 			self.message = json.dumps({"AngleX": self.kalAngleX, "AngleY": self.kalAngleY})
-			time.sleep(0.005)
+			time.sleep(self.delay_measures)
 
 	async def producer_handler(self, websocket, path):
 		while True:
 			#message = await producer()
 			await websocket.send(self.message)
-			await asyncio.sleep(1) #new
+			await asyncio.sleep(self.delay_sending) #new
 
 	async def consumer_handler(self, websocket, path):
 		async for message in websocket:
