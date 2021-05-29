@@ -34,6 +34,15 @@ WSPORT = 4321 #args.port
 
 message = "start"
 
+def get_or_create_eventloop():
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+
 async def producer_handler(websocket, path):
 	while True:
 		#message = await producer()
@@ -63,8 +72,8 @@ async def handler(websocket, path):
 def run_handler():
 	print ("start handler")
 	start_server = websockets.serve(handler, WSHOST, WSPORT)
-	asyncio.get_event_loop().run_until_complete(start_server)
-	#asyncio.get_event_loop().run_forever()
+	asyncio.get_or_create_eventloop().run_until_complete(start_server)
+	asyncio.get_or_create_eventloop().run_forever()
 
 #th = threading.Thread(target=run_handler)
 #th.start()
