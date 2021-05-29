@@ -1,4 +1,5 @@
 # History
+- v0.16 - Integrated kalman filter for calibration 
 - v0.15 - Merge kalman filter for raspi mpu6050
 - v0.14 - Add iOS and Android App Sources
 - v0.13 - Hold display in app works as demonstrator
