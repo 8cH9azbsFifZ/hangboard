@@ -28,11 +28,10 @@ args = parser.parse_args()
 WSHOST = "10.101.40.40" # args.host  # FIXME
 WSPORT = 4321 #args.port 
 
-
-
 async def producer_handler(websocket, path):
 	while True:
-		message = await producer()
+		#message = await producer()
+		message ="test"
 		await websocket.send(message)
 		#await asyncio.sleep(1) #new
 

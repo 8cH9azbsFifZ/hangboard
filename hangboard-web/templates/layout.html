@@ -12,6 +12,7 @@
 	<!-- Websocket to backend server -->
 	<script>
 		var ws = new WebSocket("ws://127.0.0.1:4321/");
+		var ws1 = new WebSocket("ws://10.101.40.40:4321/");
 
 		function sendStartSignal ()
 		{
@@ -30,7 +31,7 @@
 
 		function sendCalibration ()
 		{
-			ws.send ("StartCalibration");
+			ws1.send ("StartCalibration");
 		}
 	</script>
 
