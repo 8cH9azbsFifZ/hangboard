@@ -100,6 +100,29 @@ def read_raw_data(addr):
 
 
 def measure_loop ():
+	print ("Read startup parameters")
+	
+	#Read Accelerometer raw value
+	accX = read_raw_data(ACCEL_XOUT_H)
+	accY = read_raw_data(ACCEL_YOUT_H)
+	accZ = read_raw_data(ACCEL_ZOUT_H)
+
+	#print(accX,accY,accZ)
+	#print(math.sqrt((accY**2)+(accZ**2)))
+	if (RestrictPitch):
+		roll = math.atan2(accY,accZ) * radToDeg
+		pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
+	else:
+		roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
+		pitch = math.atan2(-accX,accZ) * radToDeg
+	print(roll)
+	kalmanX.setAngle(roll)
+	kalmanY.setAngle(pitch)
+	gyroXAngle = roll;
+	gyroYAngle = pitch;
+	compAngleX = roll;
+	compAngleY = pitch;
+
 	print ("Start measuring loop")
 	timer = time.time()
 	flag = 0
@@ -220,26 +243,7 @@ MPU_Init()
 
 time.sleep(1)
 
-#Read Accelerometer raw value
-accX = read_raw_data(ACCEL_XOUT_H)
-accY = read_raw_data(ACCEL_YOUT_H)
-accZ = read_raw_data(ACCEL_ZOUT_H)
 
-#print(accX,accY,accZ)
-#print(math.sqrt((accY**2)+(accZ**2)))
-if (RestrictPitch):
-    roll = math.atan2(accY,accZ) * radToDeg
-    pitch = math.atan(-accX/math.sqrt((accY**2)+(accZ**2))) * radToDeg
-else:
-    roll = math.atan(accY/math.sqrt((accX**2)+(accZ**2))) * radToDeg
-    pitch = math.atan2(-accX,accZ) * radToDeg
-print(roll)
-kalmanX.setAngle(roll)
-kalmanY.setAngle(pitch)
-#gyroXAngle = roll;
-#gyroYAngle = pitch;
-#compAngleX = roll;
-#compAngleY = pitch;
 
 
 
