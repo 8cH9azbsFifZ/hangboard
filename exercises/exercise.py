@@ -74,7 +74,7 @@ class Workout():
             await websocket.send(self.exercise_status)
             await asyncio.sleep(sleept)
 
-    async def consumer_handler(self, websocket, path):
+    async def consumer_handler(self, websocket, path): # TODO: https://www.w3schools.com/python/python_inheritance.asp
         async for message in websocket:
             print ("Received it:")
             print (message)
