@@ -44,8 +44,7 @@ class SensorForce():
         self.pin_dout = 17
         self.pin_pd_sck = 27
 
-        #referenceUnit = 1
-        self.referenceUnit = 17145 # Convert to kg
+        self.referenceUnit = 1
 
         self.init_hx711()
 
@@ -123,4 +122,5 @@ class SensorForce():
 
 
 a = SensorForce()
+a.set_reference_unit(17145)# Convert to kg
 a.run_main_measure()
