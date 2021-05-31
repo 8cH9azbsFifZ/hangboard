@@ -1,0 +1,14 @@
+exercises package
+*****************
+
+
+Submodules
+==========
+
+
+exercises.exercise module
+=========================
+
+
+Module contents
+===============

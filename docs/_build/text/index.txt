@@ -1,0 +1,24 @@
+Welcome to hangboard's documentation!
+*************************************
+
+
+Contents:
+^^^^^^^^^
+
+* exercises package
+
+  * Submodules
+
+  * exercises.exercise module
+
+  * Module contents
+
+
+Indices and tables
+******************
+
+* Index
+
+* Module Index
+
+* Search Page
