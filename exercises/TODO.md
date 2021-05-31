@@ -1,4 +1,5 @@
 + Create modular building blocks for workouts
+
 + Basic training plan calculations
 + Add field for a type of exercise
 + Add Protocol description
