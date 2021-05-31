@@ -15,6 +15,9 @@ Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
 + Follow the instructions in README.md in exercises and hangboard-app
 
 ## Running the Demonstrator
+### Using docker
+```docker-compose up --build```
+### Manually
 + Start Exercises `cd exercises && ./startup.sh`
 + Start the Web App: `cd hangboard-web && ./startup.sh`
 + Start the iOS App: `cd hangboardapp && yarn run ios`
