@@ -1,4 +1,5 @@
 # History
+- v0.18 - Merged HX711 examples from library
 - v0.17 - Calibration prototype for gyroscope
 - v0.16 - Integrated kalman filter for calibration 
 - v0.15 - Merge kalman filter for raspi mpu6050
