@@ -42,7 +42,8 @@ class Workout():
         asyncio.get_event_loop().run_forever()
 
     def init_board (self):
-        self.boardfilename = "../boards/zlagboard_evo/holds.json"
+        #self.boardfilename = "../boards/zlagboard_evo/holds.json"
+        self.boardfilename = "./holds.json"
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
