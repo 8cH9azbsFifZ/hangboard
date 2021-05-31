@@ -3,10 +3,10 @@
 import time
 import sys
 
-EMULATE_HX711=False
+EMULATE_HX711 = False
 
 referenceUnit = 1
-referenceUnit = 17145
+referenceUnit = 17145 # Convert to kg
 
 
 if not EMULATE_HX711:
@@ -25,24 +25,10 @@ def cleanAndExit():
     sys.exit()
 
 
-#    def __init__(self, dout, pd_sck, gain=128):
-
-#hx = HX711(5, 6)
-GPIO.setmode(GPIO.BCM)
-#hx = HX711(11, 13)
-hx = HX711(17, 27)
+GPIO.setmode(GPIO.BCM) # Set PIN names to "GPIO**", such that these number correspond to the images.
+hx = HX711(17, 27) # DOUT = 17 and PD_SCK=27
 # https://raspi.tv/2013/rpi-gpio-basics-4-setting-up-rpi-gpio-numbering-systems-and-inputs
-# sodass die 17 und 27 verwendet werden
 
-
-
-
-"""
-
-The hx711 outputs a value corresponding to the ratio of difference voltage divided by the voltage applied to the load cell. This ratio is factored by the gain. Full scale output is 800000 to 7FFFFF in hexadecimal and corresponds to 0.5 to - 0.5 difference ratio V/V. The load cell calibration certificate tells me the output at a particular voltage with a defined load applied. My certificate says 1.996 mV at 5 V with 50 kg applied. The difference ratio is then 0.0003992 V/V at 50 kg. I am using a gain of 128 so this difference ratio becomes 0.0511 V/V. This is then 10.2 % of the full scale 0.5 V and will correspond to 800000 x 10.2 % in hexadecimal. This will be a decimal value of 857275 for 50 kg. The sensitivity is therefore 17145 per kg.
-"""
-
-scalefactor=1/17145.0
 
 
 # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
