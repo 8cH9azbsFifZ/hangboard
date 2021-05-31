@@ -1,9 +1,35 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
+
+	<!-- Automatic Connect of Webservices -->
+	<!-- FIXME -->
+	
+	<script>
+		function checkGyroscope ()
+		{
+			if (wsGyroscope.readyState === WebSocket.CLOSED) {
+				$('.gyro-status').text("Close");
+			}
+		}
+		window.onload = checkGyroscope();
+
+		function checkExercise ()
+		{
+			if (wsExercise.readyState != WebSocket.CLOSED) {
+				$('.exercise-status').text("Close");
+			}
+		}
+		window.onload = checkExercise();		
+	</script>
+
+
 	<!--- Sensor Output -->
 	<div>
 		<span class="sensor-label">Sensor: </span>
+		<span class="gyro-status">Gyroscope Status: Open</span>
+		<span class="exercise-status">Exercise Status: Open</span>
 	</div>
 	
 	<!--- Calibration Controls -->
@@ -11,5 +37,6 @@
 		<button class="btn btn-primary" onclick="sendStartCalibration()">Start Calibration</button>
 		<button class="btn btn-primary" onclick="sendStopCalibration()">Stop Calibration</button>
 	</div>
-	
+
+
 {% endblock %}
