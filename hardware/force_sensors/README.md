@@ -4,10 +4,16 @@
 - Load Cells
 
 # Software
+Running on raspi
 ```
 python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install -r requirements.txt
+```
+Or using docker
+```
+docker build . -t force
+docker run --rm -it -p 4322:4322 force
 ```
 
 # Hardware Setup
