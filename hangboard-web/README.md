@@ -14,8 +14,17 @@ convert ../hardware/board_mount/IsometrixBoard.png -bordercolor white -border 0 
 
 
 # Running the application
+On OSX: 
 ```
-./startup.sh
+python3 -m venv venv
+source venv/bin/activate
+./startup_local.sh
+```
+
+Using docker
+```
+docker build . -t web
+docker run -p 8080:8080 --rm -it web
 ```
 
 
