@@ -2,10 +2,10 @@
 
 + Basic training plan calculations
 + Add field for a type of exercise
-+ Add Protocol description
-+ Add Architecture documentation
+
 + Select an Exercise 
 + Calculate increases in workouts
+
 + Google Sheet Exercise Input
 + Implement Assessment
 + Upload Exercises
