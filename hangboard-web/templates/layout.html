@@ -18,32 +18,33 @@
 
 	<!-- Websocket to backend server -->
 	<script>
-		var ws = new WebSocket("ws://127.0.0.1:4321/");
-		var ws1 = new WebSocket("ws://10.101.40.40:4321/");
+		var wsExercise = new WebSocket("ws://127.0.0.1:4321/");
+		var wsGyroscope = new WebSocket("ws://10.101.40.40:4323/");
+		var wsForce = new WebSocket("ws://10.101.40.40:4322/");
 
 		function sendStartSignal ()
 		{
-			ws.send ("Start");
+			wsExercise.send ("Start");
 		}
 
 		function sendStopSignal ()
 		{
-			ws.send ("Stop");
+			wsExercise.send ("Stop");
 		}
 
 		function sendGetBoard ()
 		{
-			ws.send ("GetBoard");
+			wsExercise.send ("GetBoard");
 		}
 
 		function sendStartCalibration ()
 		{
-			ws1.send ("StartCalibration");
+			wsGyroscope.send ("StartCalibration");
 		}
 
 		function sendStopCalibration ()
 		{
-			ws1.send ("StopCalibration");
+			wsGyroscope.send ("StopCalibration");
 		}
 
 	</script>
@@ -67,7 +68,7 @@
 
 	<!-- Connection to Sensors -->
 	<script>
-		ws1.onmessage = function(event) {
+		wsGyroscope.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
 			$('.sensor-label').text("X: " + parsed.AngleX + " Y: " + parsed.AngleY 
 			+ " NoHang: " + parsed.AngleX_NoHang + " Hang: " + parsed.AngleX_Hang
@@ -80,7 +81,7 @@
 		var boardimagename = "";
 		var boardname = "";
 
-		ws.onmessage = function(event) {
+		wsExercise.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
 			var completed = parsed.Completed;
 			console.log (parsed);

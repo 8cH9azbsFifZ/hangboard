@@ -3,14 +3,26 @@
 - Used: MPU-6050
 
 # Developing
+Running on raspi
 ```
 ssh -lpi raspi-hangboard
+cd hangboard/...
+git pull
 ```
-wscat -c "ws://10.101.40.40:4321/"
+Or using docker
+```
+docker build . -t gyroscope
+docker run --rm -it -p 4323:4323 gyroscope
+```
 
 
-# Setup
-## Wiring
+## Debugging the websockets
+wscat -c "ws://10.101.40.40:4323/"
+
+
+
+# Setup 
+## Wiring the Hardware
 
 Raspberry Pi	- MPU 6050
 Pin 1 (3.3V)	- VCC

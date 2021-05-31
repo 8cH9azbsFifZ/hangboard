@@ -1,7 +1,7 @@
 # use kalman filter module
 
+# TODO 
 # initialize / calibrate
-
 # measure state
 # connect to websocket of exercise timer
 # send start / stop events to exercise timer
@@ -30,8 +30,8 @@ parser.add_argument ('--host')
 parser.add_argument ('--port')
 args = parser.parse_args()
 
-WSHOST = "10.101.40.40" # args.host  # FIXME
-WSPORT = 4321 #args.port 
+WSHOST = args.host 
+WSPORT = args.port 
 
 class Gyroscope():
 	def __init__(self):

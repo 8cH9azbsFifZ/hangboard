@@ -9,6 +9,9 @@ services:
   force:
     build: ./hardware/force_sensors
     ports: [4322:4322]
+  gyroscope:
+    build: ./hardware/gyroscope
+    ports: [4323:4323]
 
 #  sensors:
 #    build: ./hardware
