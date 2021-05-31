@@ -3,7 +3,7 @@
 import time
 import sys
 
-#EMULATE_HX711 = False
+#EMULATE_HX711 = False # FIXME
 EMULATE_HX711 = True
 
 referenceUnit = 1

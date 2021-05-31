@@ -6,6 +6,9 @@ services:
   exercise:
     build: ./exercises
     ports: [4321:4321]
+  force:
+    build: ./hardware/force_sensors
+    ports: [4322:4322]
 
 #  sensors:
 #    build: ./hardware
