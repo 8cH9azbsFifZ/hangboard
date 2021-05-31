@@ -1,3 +1,7 @@
+"""
+Exercise Backend
+"""
+
 # Exercise Backend
 import time
 import json
@@ -30,6 +34,9 @@ class Workout():
         #self.start()
 
     def run_sender(self):
+        """
+        print ("start sender")
+        """
         print ("start sender")
         self.start_server = websockets.serve(self.exercisestatus, WSHOST, WSPORT)
         asyncio.get_event_loop().run_until_complete(self.start_server)
@@ -130,6 +137,9 @@ class Workout():
         self.run_set_thread.do_stop = True
 
     def run_set (self):
+    """
+    Run Set Function
+    """
         print ("Run one set")
         t = threading.currentThread()
         e = self.workout["Sets"][self.current_set]
