@@ -1,10 +1,29 @@
-#! /usr/bin/python2
+"""
+Force Measurement Backend
+"""
+
 
 import time
 import sys
 
-#EMULATE_HX711 = False # FIXME
-EMULATE_HX711 = True
+import json
+import argparse
+
+import asyncio
+import websockets
+
+from threading import Thread
+import threading
+
+parser = argparse.ArgumentParser(description="Gyroscope Sensor Backend.")
+parser.add_argument ('--host')
+parser.add_argument ('--port')
+parser.add_argument ('--emulate')
+args = parser.parse_args()
+
+WSHOST = args.host 
+WSPORT = args.port 
+EMULATE_HX711 = args.emulate # True / False
 
 referenceUnit = 1
 referenceUnit = 17145 # Convert to kg

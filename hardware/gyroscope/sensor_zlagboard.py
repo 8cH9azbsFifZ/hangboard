@@ -1,13 +1,9 @@
-# use kalman filter module
+"""
+Zlagboard sensor backend (gyroscope)
 
-# TODO 
-# initialize / calibrate
-# measure state
-# connect to websocket of exercise timer
-# send start / stop events to exercise timer
+Using a kalman filter.
 
-
-
+"""
 
 from io import TextIOBase
 from Kalman import KalmanAngle
