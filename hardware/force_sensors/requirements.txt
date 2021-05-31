@@ -1,3 +1,2 @@
 HX711 
 websockets
-emulated_hx711
