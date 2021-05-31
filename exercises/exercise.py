@@ -14,8 +14,8 @@ parser.add_argument ('--host')
 parser.add_argument ('--port')
 args = parser.parse_args()
 
-WSHOST = "127.0.0.1"# = args.host 
-WSPORT = 4321 #= args.port 
+WSHOST = args.host 
+WSPORT = args.port 
 
 workoutfile = "workout-test.json"
 
@@ -43,7 +43,7 @@ class Workout():
 
     def init_board (self):
         #self.boardfilename = "../boards/zlagboard_evo/holds.json"
-        self.boardfilename = "./holds.json"
+        self.boardfilename = "./boards/holds.json" # FIXME
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)

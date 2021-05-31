@@ -16,13 +16,7 @@ services:
     volumes: ['./hangboard-app:/app']
   exercise:
     build: ./exercises
-    entrypoint:
-      - ./startup.sh
-    environment: 
-      HOST: exercise
-      PORT: 9090
-      PORTRECV: 9091
-    volumes: ['./exercises:/app']    
+    ports: [4321:4321]
 
 #  sensors:
 #    build: ./hardware

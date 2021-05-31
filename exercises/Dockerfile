@@ -8,9 +8,9 @@ RUN pip install -r requirements.txt
 WORKDIR /app/boards
 COPY ./boards/* .
 
-WORKDIR /app/exercises
+WORKDIR /app/
 COPY * .
 
-CMD ./startup.sh
+CMD python3 exercise.py --host 0.0.0.0 --port 4321
 
-EXPOSE 9090 9091
+EXPOSE 4321
