@@ -3,7 +3,8 @@
 import time
 import sys
 
-EMULATE_HX711 = False
+#EMULATE_HX711 = False
+EMULATE_HX711 = True
 
 referenceUnit = 1
 referenceUnit = 17145 # Convert to kg
@@ -12,6 +13,8 @@ referenceUnit = 17145 # Convert to kg
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
     from hx711 import HX711
+    GPIO.setmode(GPIO.BCM) # Set PIN names to "GPIO**", such that these number correspond to the images.
+
 else:
     from emulated_hx711 import HX711
 
@@ -25,7 +28,6 @@ def cleanAndExit():
     sys.exit()
 
 
-GPIO.setmode(GPIO.BCM) # Set PIN names to "GPIO**", such that these number correspond to the images.
 hx = HX711(17, 27) # DOUT = 17 and PD_SCK=27
 # https://raspi.tv/2013/rpi-gpio-basics-4-setting-up-rpi-gpio-numbering-systems-and-inputs
 
