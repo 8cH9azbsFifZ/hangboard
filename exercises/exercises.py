@@ -228,5 +228,4 @@ if __name__ == "__main__":
     """
     ex = Workout()
     ex.run_handler()
-    #ex.list_workouts()
 

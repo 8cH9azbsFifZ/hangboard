@@ -21,8 +21,12 @@ Using docker
 docker build . -t exercise
 docker run -p 4321:4321 --rm -it exercises
 ```
+## Running the tests
+```
+python3 ./test.py
+```
 
-# Debugging the websockets
+## Debugging the websockets
 wscat -c "ws://127.0.0.1:4321/"
 
 
