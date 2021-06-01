@@ -6,7 +6,7 @@ Open
 + Calculate total exercise time
 + Implement Assessment
 + Google Sheet Exercise Input
-
++ Validator for JSON files!!
 
 + Create modular building blocks for workouts
 

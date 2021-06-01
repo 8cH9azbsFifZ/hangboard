@@ -83,7 +83,8 @@
 
 			for (var i = 0; i < array.length; i++) {
 				var item = document.createElement('li');
-				item.appendChild(document.createTextNode(array[i]));
+				item.appendChild(document.createTextNode(array[i].ID));
+				item.appendChild(document.createTextNode(array[i].Name));
 				list.appendChild(item);
 			}
 
