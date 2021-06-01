@@ -2,22 +2,23 @@
     "Workouts": [
         {
             "Name": "Maximal Hang Bodyweight",
-            "Type": "Assessment"
+            "Type": "Assessment",
+            "ID": 1
         },
         {
             "Name": "Maximum Number of Pullups",            
-            "Type": "Assessment"
-
+            "Type": "Assessment",
+            "ID": 2
         },
         {
             "Name": "Maximal Weight Hangs",            
-            "Type": "Assessment"
-
+            "Type": "Assessment",
+            "ID": 3,
         },
         {
             "Name": "One handed pull",            
-            "Type": "Assessment"
-
+            "Type": "Assessment",
+            "ID": 4
         }
     ]
 }
