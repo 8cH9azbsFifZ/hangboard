@@ -1,4 +1,5 @@
 # History
+- v0.20 - Display workout list in web frontend mockup
 - v0.19 - Distance sensor doc
 - v0.18 - Merged HX711 examples from library
 - v0.17 - Calibration prototype for gyroscope
