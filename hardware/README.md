@@ -30,3 +30,6 @@ python3 -m pip install -r requirements.txt
 ./startup.sh
 ```
 
+
+## Drawing the wires
+```brew install fritzing```
