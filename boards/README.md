@@ -19,6 +19,11 @@ source venv/bin/activate
 python3 -m pip install -r requirements.txt
 ```
 
+## Test the module
+```
+python3 test_boards.py      
+```
+
 # Implement new board configurations
 
 ## Preparation

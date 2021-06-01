@@ -13,13 +13,13 @@ import asyncio
 import websockets
 
 # Parse commandline
-parser = argparse.ArgumentParser(description="Boards Backend.")
-parser.add_argument ('--host')
-parser.add_argument ('--port')
-args = parser.parse_args()
+# parser = argparse.ArgumentParser(description="Boards Backend.")
+# parser.add_argument ('--host')
+# parser.add_argument ('--port')
+# args = parser.parse_args()
 
-WSHOST = args.host 
-WSPORT = args.port 
+# WSHOST = args.host 
+# WSPORT = args.port 
 
 class Boards():
     def __init__(self, boardname = "zlagboard_evo"):
