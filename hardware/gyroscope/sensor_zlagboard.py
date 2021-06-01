@@ -31,6 +31,9 @@ WSPORT = args.port
 
 class Gyroscope():
 	def __init__(self):
+		"""
+		Initialize gyroscope class
+		"""
 		self.PWR_MGMT_1 = 0x6B
 		self.SMPLRT_DIV = 0x19
 		self.CONFIG = 0x1A
@@ -57,6 +60,9 @@ class Gyroscope():
 
 
 	def init_gyro(self):
+		"""
+		Initialize GPIO BUS
+		"""
 		print ("Initialize BUS")
 		self.bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
 		self.DeviceAddress = 0x68   # MPU6050 device address
@@ -65,8 +71,11 @@ class Gyroscope():
 
 		time.sleep(1)
 
-	#Read the gyro and acceleromater values from MPU6050
 	def MPU_Init(self):
+		"""
+		Read the gyro and acceleromater values from MPU6050
+		"""
+
 		#write to sample rate register
 		self.bus.write_byte_data(self.DeviceAddress, self.SMPLRT_DIV, 7)
 
@@ -85,6 +94,9 @@ class Gyroscope():
 
 
 	def read_raw_data(self, addr):
+		"""
+		Reading raw data from gyroscope
+		"""
 		#Accelero and Gyro value are 16-bit
 		high = self.bus.read_byte_data(self.DeviceAddress, addr)
 		low = self.bus.read_byte_data(self.DeviceAddress, addr+1)
@@ -98,6 +110,9 @@ class Gyroscope():
 		return value
 
 	def init_measurements (self):
+		"""
+		Initialize measurements
+		"""
 		print ("Set initial parameters")
 		self.kalmanX = KalmanAngle()
 		self.kalmanY = KalmanAngle()
@@ -131,6 +146,9 @@ class Gyroscope():
 		self.compAngleY = pitch;
 
 	def run_measure (self):
+		"""
+		Start to measure from gyroscope sensor
+		"""
 		self.init_measurements()
 
 		t = threading.currentThread()
@@ -220,6 +238,9 @@ class Gyroscope():
 			time.sleep(self.delay_measures)
 
 	def create_message(self):
+		"""
+		Assemble the websocket status message
+		"""
 		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
 		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang),
 		"HangDetected": self.HangDetected
@@ -227,6 +248,10 @@ class Gyroscope():
 
 
 	def measure_angle_extremum (self):
+		"""
+		Routine for measure the extrema -> measure two times ten seconds one shot
+		"""
+		# FIXME: this can be merged with a continous running measurements loop
 		self.init_measurements()
 		
 		print ("Measure angle configuration for extremum")
@@ -242,6 +267,10 @@ class Gyroscope():
 		self.create_message()
 
 	def measure_angle_extremum_one_shot (self):
+		"""
+		One shot measurement for measuring the extrema
+		"""
+		# FIXME: this can be merged with a continous running measurements loop
 		print ("Start measuring loop")
 		t = threading.currentThread()
 
@@ -336,12 +365,18 @@ class Gyroscope():
 
 
 	async def producer_handler(self, websocket, path):
+		""" 
+		Handler for websocket sending
+		"""
 		while True:
 			#message = await producer()
 			await websocket.send(self.message)
 			await asyncio.sleep(self.delay_sending) #new
 
 	async def consumer_handler(self, websocket, path):
+		"""
+		Handler for websocket receiving
+		"""
 		async for message in websocket:
 			print ("Received it:")
 			print (message)
@@ -352,6 +387,9 @@ class Gyroscope():
 				self._stop_measure()  
 	
 	async def handler(self, websocket, path):
+		""" 
+		Websocket handler - sending and receiving
+		"""
 		consumer_task = asyncio.ensure_future(
 			self.consumer_handler(websocket, path))
 		producer_task = asyncio.ensure_future(
@@ -365,22 +403,31 @@ class Gyroscope():
 			task.cancel()
 	
 	def _run_measure(self):
+		"""
+		Run continous measurement in a thread
+		"""
 		print ("Run thread measure")
 		self.run_measure_thread = threading.Thread(target=self.run_measure)
 		self.run_measure_thread.do_stop = False
 		self.run_measure_thread.start()
 
-	def _run_measure(self):
-		print ("Run thread measure")
-		self.run_measure_thread = threading.Thread(target=self.measure_angle_extremum)
-		self.run_measure_thread.do_stop = False
-		self.run_measure_thread.start()
+	# def _run_measure(self): # FIXME this can be merged with above code
+	# 	print ("Run thread measure")
+	# 	self.run_measure_thread = threading.Thread(target=self.measure_angle_extremum)
+	# 	self.run_measure_thread.do_stop = False
+	# 	self.run_measure_thread.start()
 
 	def _stop_measure(self):
+		"""
+		Stopping the measurement thread
+		"""
 		print ("Stop thread measure")
 		self.run_measure_thread.do_stop = True
 
 	def run_handler(self):
+		""" 
+		Start the websocket handler and wait for commands
+		"""
 		print ("start handler")
 		self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
 		asyncio.get_event_loop().run_until_complete(self.start_server)
