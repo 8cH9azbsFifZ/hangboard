@@ -83,9 +83,17 @@
 
 			for (var i = 0; i < array.length; i++) {
 				var item = document.createElement('li');
-				item.appendChild(document.createTextNode(array[i].ID));
-				item.appendChild(document.createTextNode(array[i].Name));
+				var a = document.createElement('a');
+				//a.href = "http://example.com";
+				a.title = array[i].ID;
+				a.onclick = sendStartSignal();
+				a.appendChild(document.createTextNode(array[i].ID + " " + array[i].Name));
+				// TODO: send exercises number to backend
+				//item.appendChild(document.createTextNode(array[i].ID + '< a href="">test</a>'));
+				//item.appendChild(document.createTextNode(array[i].Name));
 				list.appendChild(item);
+				item.appendChild(a);
+
 			}
 
 			return list;

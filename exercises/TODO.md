@@ -1,6 +1,6 @@
 WIP: 
 + Add capability to select exercise
-
+OPEN: receive the selected exercise
 
 Open
 + Calculate total exercise time
