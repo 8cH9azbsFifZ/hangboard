@@ -43,6 +43,10 @@
 			wsGyroscope.send ("StopCalibration");
 		}
 
+		function sendListWorkouts ()
+		{
+			wsExercise.send ("ListWorkouts");
+		}
 	</script>
 
 
@@ -72,6 +76,22 @@
 		}
 	</script>
 
+	<!-- Create a dynamic list-->
+	<script>
+		function makeUL(array) {
+			var list = document.createElement('ul');
+
+			for (var i = 0; i < array.length; i++) {
+				var item = document.createElement('li');
+				item.appendChild(document.createTextNode(array[i]));
+				list.appendChild(item);
+			}
+
+			return list;
+		}
+	</script>
+
+
 	<!--- Visualize Progress -->
 	<script>
 		var boardimagename = "";
@@ -79,40 +99,55 @@
 
 		wsExercise.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
-			var completed = parsed.Completed;
 			console.log (parsed);
 
-			boardimagename = parsed.BoardImageName;
-			boardname = parsed.BoardName;
-			
-			$('.progress-bar').css('width', completed+'%').attr('aria-valuenow', completed);
-			$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
-			var togo = parsed.Duration-parsed.Counter;
-			$('.exercise-label').text("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
+			var completed = 0
 
-			if (parsed.TimerStatus == false) 
+			if ("TimerStatus" in parsed)
 			{
-				if (togo == 10) { ten.play() ; }		
-				if (togo == 9) { nine.play() ; }		
-				if (togo == 8) { eight.play() ; }		
-				if (togo == 7) { seven.play() ; }		
-				if (togo == 6) { six.play() ; }		
-				if (togo == 5) { five.play() ; }		
-				if (togo == 4) { four.play() ; }		
-				if (togo == 3) { three.play() ; }		
-				if (togo == 2) { two.play() ; }		
-				if (togo == 1) { one.play() ; }		
-				if (togo == 0) { done.play() ; }		
+				completed = parsed.Completed;
+
+				boardimagename = parsed.BoardImageName;
+				boardname = parsed.BoardName;
+				
+				$('.progress-bar').css('width', completed+'%').attr('aria-valuenow', completed);
+				$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
+				var togo = parsed.Duration-parsed.Counter;
+				$('.exercise-label').text("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining.");
+
+				// Play Sound
+				if (parsed.TimerStatus == false) 
+				{
+					if (togo == 10) { ten.play() ; }		
+					if (togo == 9) { nine.play() ; }		
+					if (togo == 8) { eight.play() ; }		
+					if (togo == 7) { seven.play() ; }		
+					if (togo == 6) { six.play() ; }		
+					if (togo == 5) { five.play() ; }		
+					if (togo == 4) { four.play() ; }		
+					if (togo == 3) { three.play() ; }		
+					if (togo == 2) { two.play() ; }		
+					if (togo == 1) { one.play() ; }		
+					if (togo == 0) { done.play() ; }		
+				}
+
+				// Highlight holds to be used
+				var array = parsed.HoldsActive; 
+				array.forEach(element => console.log(element));
+				array.forEach(element => window[element].setAttribute("display","inline") );
+
+				var array = parsed.HoldsInactive;
+				array.forEach(element => console.log(element));
+				array.forEach(element => window[element].setAttribute("display","none") );
+
 			}
 
-			var array = parsed.HoldsActive; 
-			array.forEach(element => console.log(element));
-			array.forEach(element => window[element].setAttribute("display","inline") );
-
-			var array = parsed.HoldsInactive;
-			array.forEach(element => console.log(element));
-			array.forEach(element => window[element].setAttribute("display","none") );
-
+			// Update list of workouts
+			if ("WorkoutList" in parsed)
+			{
+				document.getElementById('ListExercises').appendChild(makeUL(parsed.WorkoutList));
+				$('.list-label').text("oikok"); //parsed.WorkoutList);
+			}
 		}
 	</script>
 
