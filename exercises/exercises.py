@@ -227,6 +227,6 @@ if __name__ == "__main__":
     Main Task
     """
     ex = Workout()
-    #ex.run_handler()
-    ex.list_workouts()
+    ex.run_handler()
+    #ex.list_workouts()
 
