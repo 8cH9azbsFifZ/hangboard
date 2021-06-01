@@ -5,6 +5,8 @@ Boards Backend
 import time
 import json
 import argparse
+import base64
+
 
 from threading import Thread
 import threading
@@ -13,13 +15,13 @@ import asyncio
 import websockets
 
 # Parse commandline
-# parser = argparse.ArgumentParser(description="Boards Backend.")
-# parser.add_argument ('--host')
-# parser.add_argument ('--port')
-# args = parser.parse_args()
+parser = argparse.ArgumentParser(description="Boards Backend.")
+parser.add_argument ('--host')
+parser.add_argument ('--port')
+args = parser.parse_args()
 
-# WSHOST = args.host 
-# WSPORT = args.port 
+WSHOST = args.host 
+WSPORT = args.port 
 
 class Boards():
     def __init__(self, boardname = "zlagboard_evo"):
@@ -36,6 +38,8 @@ class Boards():
         asyncio.get_event_loop().run_forever()
 
     def init_board (self):
+        self.board_status = ""
+        self.boardimage_base64 = ""
         self.boardfilename = "./" + self.boardname + "/holds.json" 
 
         with open(self.boardfilename) as json_file:
@@ -43,15 +47,18 @@ class Boards():
 
         self.get_all_holds()
 
-        self.boardname = self.boarddata["Name"]
-        self.boardimagename = self.boardname + "board.svg" 
+        self.boardname_full = self.boarddata["Name"]
+        self.boardimagename = "./" + self.boardname + "/board.png" 
+
+        self.get_image()
 
     def get_image(self):
-        # TBD
-        # PNG -> Base64 -> Websocket -> Display
-        #https://stackoverflow.com/questions/50266553/send-json-with-image-as-bytes-using-websocket
-        #https://stackoverflow.com/questions/8499633/how-to-display-base64-images-in-html
-        print ("Test")
+        """
+        Send board image as base64 over websocket
+        """
+        with open(self.boardimagename, "rb") as image_file:
+            self.boardimage_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+        self.board_status = self.boardimage_base64 
 
     def set_active_holds(self, array_holds):
         self.holds_active = array_holds
@@ -133,9 +140,6 @@ if __name__ == "__main__":
     Main Task
     """
     bb = Boards(boardname="zlagboard_evo")
-    bb.set_active_holds(["A1", "A7"])
-    bb.get_all_holds()
-    bb.get_hold_for_type("JUG")
-    bb.get_hold_for_type("20mm")
+
     
-    #bb.run_handler()
+    bb.run_handler()

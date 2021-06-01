@@ -30,4 +30,5 @@ docker run -p 8080:8080 --rm -it web
 
 
 
-
+# Debugging the websockets
+wscat -c "ws://127.0.0.1:4321/"
