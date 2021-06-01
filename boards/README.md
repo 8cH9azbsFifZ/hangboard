@@ -11,9 +11,19 @@ This directory contains the hold configurations for different boards
 
 ## Beastmaker 2000
 
+# Run the module
+On OSX: 
+```
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
 # Implement new board configurations
+
 ## Preparation
 + Install inkscape `brew install inkscape`
+
 ## Work
 + Create a new board json file 
 + Use inkscape with layers for overlay image creation 

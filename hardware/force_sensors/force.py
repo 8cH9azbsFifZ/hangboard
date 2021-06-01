@@ -21,11 +21,10 @@ parser.add_argument ('--port')
 parser.add_argument ('--emulate')
 args = parser.parse_args()
 
+
 WSHOST = args.host 
 WSPORT = args.port 
-EMULATE_HX711 = args.emulate # True / False
-
-
+EMULATE_HX711 = True
 
 
 if not EMULATE_HX711:
@@ -92,10 +91,10 @@ class SensorForce():
         self.referenceUnit = unit
 
     def run_handler(self):
-		print ("Start handler")
-		self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
-		asyncio.get_event_loop().run_until_complete(self.start_server)
-		asyncio.get_event_loop().run_forever()
+        print ("Start handler")
+        self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+        asyncio.get_event_loop().run_until_complete(self.start_server)
+        asyncio.get_event_loop().run_forever()
 
     def run_main_measure(self):
         while True:

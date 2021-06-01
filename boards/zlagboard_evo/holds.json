@@ -3,9 +3,9 @@
     "Holds": [
         {"Name": "JUG"          , "Row": 1,     "Col": 1,    "Width": "4 Finger",   "ImgLayerName": "A1"},
         {"Name": "32°"          , "Row": 1,     "Col": 2,    "Width": "4 Finger",   "ImgLayerName": "A2"},
-        {"Name": "20!°"         , "Row": 1,     "Col": 3,    "Width": "4 Finger",   "ImgLayerName": "A3"},
+        {"Name": "20°"          , "Row": 1,     "Col": 3,    "Width": "4 Finger",   "ImgLayerName": "A3"},
         {"Name": "sloper JUG"   , "Row": 1,     "Col": 4,    "Width": "4 Finger",   "ImgLayerName": "A4"},
-        {"Name": "20!°"         , "Row": 1,     "Col": 5,    "Width": "4 Finger",   "ImgLayerName": "A5"},
+        {"Name": "20° "         , "Row": 1,     "Col": 5,    "Width": "4 Finger",   "ImgLayerName": "A5"},
         {"Name": "32°"          , "Row": 1,     "Col": 6,    "Width": "4 Finger",   "ImgLayerName": "A6"},
         {"Name": "JUG"          , "Row": 1,     "Col": 7,    "Width": "4 Finger",   "ImgLayerName": "A7"},
 

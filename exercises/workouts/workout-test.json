@@ -14,5 +14,20 @@
                 { "Rest-to-Start": 300,     "Exercise": "Hang", 			    "Counter": 60,	"Pause": 300,   "Reps": 2, "Left": "JUG", "Right": "JUG"} 
             ]
         }
+        ,
+        {
+            "Name": "Workout Series - Test Session",
+            "Sets":[
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 10, 	"Pause": 20,    "Reps": 5, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 60,      "Exercise": "Assisted Pull Ups",	"Counter": 3,  	"Pause": 30,    "Reps": 5, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 60,      "Exercise": "Hang", 			    "Counter": 10, 	"Pause": 20,    "Reps": 5, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 120,     "Exercise": "Assisted Pull Ups", 	"Counter": 4,  	"Pause": 30,    "Reps": 5, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 300,     "Exercise": "Full Lock-Off", 		"Counter": 7,  	"Pause": 10,    "Reps": 3, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 60,      "Exercise": "90° Lock-Off", 		"Counter": 7,  	"Pause": 10,    "Reps": 3, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 60,      "Exercise": "120° Lock-Off", 		"Counter": 7,  	"Pause": 10,    "Reps": 3, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 300,     "Exercise": "Assisted Pull Ups", 	"Counter": 5,  	"Pause": 60,    "Reps": 6, "Left": "JUG", "Right": "JUG"} ,
+                { "Rest-to-Start": 300,     "Exercise": "Hang", 			    "Counter": 60,	"Pause": 300,   "Reps": 2, "Left": "JUG", "Right": "JUG"} 
+            ]
+        }        
     ]
 }

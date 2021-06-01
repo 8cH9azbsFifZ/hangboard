@@ -11,6 +11,6 @@ COPY ./boards/* .
 WORKDIR /app/
 COPY * .
 
-CMD python3 exercise.py --host 0.0.0.0 --port 4321
+CMD python3 exercises.py --host 0.0.0.0 --port 4321 
 
 EXPOSE 4321

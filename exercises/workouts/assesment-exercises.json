@@ -1,0 +1,23 @@
+{
+    "Workouts": [
+        {
+            "Name": "Maximal Hang Bodyweight",
+            "Type": "Assessment"
+        },
+        {
+            "Name": "Maximum Number of Pullups",            
+            "Type": "Assessment"
+
+        },
+        {
+            "Name": "Maximal Weight Hangs",            
+            "Type": "Assessment"
+
+        },
+        {
+            "Name": "One handed pull",            
+            "Type": "Assessment"
+
+        }
+    ]
+}

@@ -6,6 +6,7 @@ Exercise Backend
 import time
 import json
 import argparse
+import os
 
 from threading import Thread
 import threading
@@ -22,7 +23,7 @@ args = parser.parse_args()
 WSHOST = args.host 
 WSPORT = args.port 
 
-workoutfile = "workout-test.json" # FIXME
+workoutfile = "./workouts/workout-test.json" # FIXME
 
 class Workout():
     def __init__(self):
@@ -50,7 +51,22 @@ class Workout():
         self.holds_active = ["A1", "A7"] # FIXME
         self.holds_inactive = ["A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7"]
 
-        self.get_board()
+        self.get_board() # FIXME: link to new board class
+
+    def list_workouts(self):
+        self.workoutdir = "./workouts"
+        for filename in os.listdir (self.workoutdir):
+            if filename.endswith ("json"):
+                fn = os.path.join(self.workoutdir, filename)
+                with open(fn) as json_file:
+                    data = json.load(json_file)
+                    #print (data)
+                    #workout = (data["Workouts"])
+                    #print (workout)
+                    for workout in (data["Workouts"]):
+                    #    print ("ok")
+                        print (workout["Name"], fn)
+
 
     def init_workout(self):
         """
@@ -89,6 +105,8 @@ class Workout():
             self._stop_set()     
         if (message == "GetBoard"):
             self.get_board()
+        if (message == "ListWorkouts"): # TBD: Implement in webinterface
+            self.list_workouts()
 
     def get_board(self):
         """
@@ -209,5 +227,6 @@ if __name__ == "__main__":
     Main Task
     """
     ex = Workout()
-    ex.run_handler()
+    #ex.run_handler()
+    ex.list_workouts()
 
