@@ -1,0 +1,22 @@
+# Distance sensor
+
+# Hardware setup
+
+HC-SR04 - Raspi
+VCC - Pin 2 (VCC)
+GND - Pin 6 (GND)
+TRIG - Pin 12 (GPIO18)
+ECHO - R1: 330Ω 
+R1: 330Ω  - Pin 18 (GPIO24) 
+R1: 330Ω -  R2: 10kΩ 
+R2: 10kΩ -  Pin6 (GND)
+
+
+# Software Setup
+
+
+
+
+# References
++ AZDelivery HC-SR04 Ultraschall Modul Entfernungsmesser Sensor kompatibel mit Raspberry Pi inklusive E-Book!
++ https://tutorials-raspberrypi.de/entfernung-messen-mit-ultraschallsensor-hc-sr04/
