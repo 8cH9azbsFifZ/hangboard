@@ -1,4 +1,5 @@
 # Distance sensor
+![Sensor HC-SR04](./doc/71YRg95095L._SL1500_.jpg)
 
 # Hardware setup
 

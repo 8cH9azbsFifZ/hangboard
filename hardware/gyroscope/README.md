@@ -1,5 +1,5 @@
 # Gyroscope sensor
-
+![Sensore MPU-6050](./doc/SEN-MPU6050-01.png)
 - Used: MPU-6050
 
 # Developing
