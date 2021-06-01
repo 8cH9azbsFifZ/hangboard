@@ -10,6 +10,31 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 * Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
 * Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
 
+# Design
+This is a brief design layout of the project.
+
+## Frontend
++ Web client (Running on the backend Raspberry Pi)
++ iOS App
++ Android App 
+
+## Backend
++ Running on a Raspberry Pi.
++ Every task is running as a microservice and communicating the the frontend using websockets.
+
+## Software Used
+- Python Flask for Web App
+- Websockets for Communication
+- Python backends
+- JSON for Board configuration and finger grip positions
+- SVG Layers for hold configuration
+- React Native for App
+
+## Hardware Used
+- Raspberry Pi Zero W
+- Sensors: cf. hardware directory
+
+
 # Developing
 
 ## Preparation
@@ -27,16 +52,7 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 + Start the Web App: `cd hangboard-web && ./startup_local.sh`
 + Start the iOS App: `cd hangboardapp && yarn run ios`
 
-## Software Used
-- Python Flask for Web App
-- Websockets for Communication
-- Python backends
-- JSON for Board configuration and finger grip positions
-- SVG Layers for hold configuration
-- React Native for App
 
-## Hardware Used
-- Raspberry Pi Zero W
 
 
 # References
