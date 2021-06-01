@@ -5,9 +5,10 @@
 A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.
 ![Hangboard Mount](./hardware/board_mount/IsometrixBoard.png)
 
-Website: https://8ch9azbsfifz.github.io/hangboard/
-Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
-Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
+
+* Website: https://8ch9azbsfifz.github.io/hangboard/
+* Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
+* Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
 
 # Developing
 
@@ -15,11 +16,15 @@ Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
 + Follow the instructions in README.md in exercises and hangboard-app
 
 ## Running the Demonstrator
+
 ### Using docker
 ```docker-compose up --build```
+
 ### Manually
-+ Start Exercises `cd exercises && ./startup.sh`
-+ Start the Web App: `cd hangboard-web && ./startup.sh`
++ Start Exercises `cd exercises && ./startup_local.sh`
++ Start Gyroscope Sensors `cd hardware/gyroscope && python3 sensor_zlagboard.py --host 0.0.0.0 --port 4323`
++ Start Force Sensors `cd hardware/force_sensors && python3 force.py --host 0.0.0.0 --port 4322`
++ Start the Web App: `cd hangboard-web && ./startup_local.sh`
 + Start the iOS App: `cd hangboardapp && yarn run ios`
 
 ## Software Used
