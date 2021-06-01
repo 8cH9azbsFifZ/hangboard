@@ -12,7 +12,9 @@ services:
   gyroscope:
     build: ./hardware/gyroscope
     ports: [4323:4323]
-
+  boards:
+    build: ./boards
+    ports: [4324:4324]
 #  sensors:
 #    build: ./hardware
     #devices:
