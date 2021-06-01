@@ -6,3 +6,4 @@
 + Image from Backend
 + Implement board status (read from file)
 + Implement JSON commands
++ Add a task for handling all board actions
