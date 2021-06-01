@@ -91,6 +91,12 @@ class SensorForce():
     def set_reference_unit(self, unit):
         self.referenceUnit = unit
 
+    def run_handler(self):
+		print ("Start handler")
+		self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+		asyncio.get_event_loop().run_until_complete(self.start_server)
+		asyncio.get_event_loop().run_forever()
+
     def run_main_measure(self):
         while True:
             try:
@@ -124,3 +130,4 @@ class SensorForce():
 a = SensorForce()
 a.set_reference_unit(17145)# Convert to kg
 a.run_main_measure()
+#a.run_handler()
