@@ -52,7 +52,7 @@ class Gyroscope():
 		self.delay_measures = 0.005
 		self.delay_sending = 0.005
 
-		self.calibration_duration = 10
+		self.calibration_duration = 10.0
 
 		""" AngleX_NoHang: Calibrated Angle for no hang detection """
 		""" AngleX_Hang: Calibrated Angle for hang detection """
