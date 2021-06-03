@@ -18,6 +18,10 @@ This is a brief design layout of the project.
 + Running on a Raspberry Pi.
 + Every task is running as a microservice and communicating to the frontend using websockets.
 
+### Installation on a Raspi W zero
++ Install docker and git
++ Clone this repo: `git clone https://github.com/8cH9azbsFifZ/hangboard.git`
+
 ## Software Used
 - Python Flask for Web App
 - Websockets for Communication
