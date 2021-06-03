@@ -36,7 +36,11 @@ var Sound = require('react-native-sound');
 /*
  
 */
-var client = new WebSocket ('ws://127.0.0.1:4321/'); // FIXME
+//var client = new WebSocket ('ws://127.0.0.1:4321/'); // FIXME
+var client = new WebSocket ('ws://10.101.40.81:4321/'); // FIXME
+
+
+
 Sound.setCategory('Playback');
 
 var SFXone = new Sound('1.mp3', Sound.MAIN_BUNDLE);
