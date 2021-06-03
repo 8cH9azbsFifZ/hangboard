@@ -150,6 +150,19 @@ class Gyroscope():
 		self.compAngleX = roll;
 		self.compAngleY = pitch;
 
+	def detect_hang(self, angle):
+		self.HangDetected = False
+		if (self.AngleX_Hang > self.AngleX_NoHang):
+			delta = self.AngleX_Hang - self.AngleX_NoHang
+			if (angle + delta > self.AngleX_Hang):
+				self.HangDetected = True
+		else:
+			delta = self.AngleX_NoHang - self.AngleX_Hang
+			if (angle - delta < self.AngleX_Hang):
+				self.HangDetected = True
+
+		return self.HangDetected
+
 	def run_measure (self):
 		"""
 		Start to measure from gyroscope sensor with kalman filter
@@ -239,6 +252,9 @@ class Gyroscope():
 			#print(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(kalAngleY))
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
+
+			self.detect_hang(kalAngleX)
+
 			self.create_message()
 			time.sleep(self.delay_measures)
 
