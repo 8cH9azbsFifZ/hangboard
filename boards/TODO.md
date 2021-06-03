@@ -1,8 +1,10 @@
 WIP
 + Image from Backend - example: with test html
 + TBD: transfer to frontend and include single holds
++ Implement Command for getting the image (JSON commands)
 
 
+Others
 + Add hold selection (other than hard coded)
 
 + Add Zlagboard Mini Layout
