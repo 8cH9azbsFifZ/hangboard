@@ -10,11 +10,25 @@
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 
+	<!-- Configure Server Name-->
+
+	<script>
+
+		function doConfigServerName()
+		{
+		  var nameElement = document.getElementById("ServerName");
+		  var ServerName = nameElement.value;
+		  document.getElementById("ServerNameField").innerHTML = "Server Name: " + ServerName;
+		}
+  
+	</script>
+
 
 	<!-- Websocket to backend server -->
 	<script>
 		var wsExercise = new WebSocket("ws://127.0.0.1:4321/");
 		var wsGyroscope = new WebSocket("ws://10.101.40.81:4323/");
+		//var wsGyroscope = new WebSocket("ws://" + ServerName + ":4323/");
 		var wsForce = new WebSocket("ws://10.101.40.40:4322/");
 		var wsBoard = new WebSocket("ws://10.101.40.40:4324/");
 
@@ -203,6 +217,9 @@
 		<li class="nav-item">
 			<a class="nav-link active" href="/calibration" tabindex="3">Calibration</a>
 		</li>		
+		<li class="nav-item">
+			<a class="nav-link active" href="/config" tabindex="3">Config</a>
+		</li>	
 	</ul>
 
 

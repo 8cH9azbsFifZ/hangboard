@@ -24,5 +24,11 @@ def selectexercise():
     print(request.method)
     return render_template("selectexercise.html")
 
+@app.route("/config")
+def config():
+    print(request.method)
+    return render_template("config.html")
+
+
 if __name__ == "__main__":
     app.run(host=args.host, port=args.port, debug=True)
