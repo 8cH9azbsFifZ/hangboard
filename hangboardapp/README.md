@@ -2,28 +2,11 @@
 Status: WIP on iOS ...
 
 # Running
-```
-yarn install
-yarn start
-yarn run ios
-yarn run android
-yarn run web
-```
++ Build pods etc `./build.sh`
++ Run the iOS app in simulator `yarn run ios`
 
 # Development information
-## Initial setup
-+ Have Xcode and HomeBrew installed
-```
-npx react-native init hangboardapp
-brew install yarn
-brew install cocoapods
-```
 
-## Build
-```
-yarn install
-cd ios && pod install && cd ..
-```
 
 ### Build for Testflight
 + Xcode > Product > Archive
@@ -43,3 +26,15 @@ Projet -> Release Scheme to Release (instead debug)
 ## Add sounds
 iOS: Open Xcode and add your sound files to the project (Right-click the project and select Add Files to [PROJECTNAME])
 TBD: Android
+
+## Initial setup
++ Have Xcode and HomeBrew installed
+```
+npx react-native init hangboardapp
+brew install yarn
+brew install cocoapods
+```
+
+## Stay awake? 
++ Variant Expo - Does not compile as described [here](https://docs.expo.io/bare/installing-unimodules/) and [here](https://www.npmjs.com/package/expo-keep-awake).
++ The "deprecated" [version](https://github.com/corbt/react-native-keep-awake#readme) works :) 

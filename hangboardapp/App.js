@@ -29,6 +29,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import KeepAwake from 'react-native-keep-awake';
+
+
 import { useState } from 'react';
 import 'react-native-sound';
 var Sound = require('react-native-sound');
@@ -83,18 +86,20 @@ const Section = ({children, title}): Node => {
 };
 
 const App: () => Node = () => {
+  KeepAwake.activate();
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const [myText, setMyText] = useState("My Original Text");
+  const [myText, setMyText] = useState("My Original Text");// FIXME 
   const [myState, setMyState] = useState("");
 
-  const ImageBoard = require("./board.png");
-  const ImageA1 = require("./A1.png");
-  const ImageA7 = require("./A7.png");
+  const ImageBoard = require("./board.png"); // FIXME 
+  const ImageA1 = require("./A1.png");// FIXME 
+  const ImageA7 = require("./A7.png");// FIXME 
   
   const [ImageHold1, SetImageHold1] = useState(ImageBoard);
   const [ImageHold2, SetImageHold2] = useState(ImageBoard);
@@ -112,13 +117,13 @@ const App: () => Node = () => {
     setMyState(parsed);
     setMyText("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining."); 
 
-    if (parsed.HoldsActive.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }
+    if (parsed.HoldsActive.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
     if (parsed.HoldsActive.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
 
   
     //var array = parsed.HoldsActive; 
     //array.forEach(element => ImageHold1 = element);
-    //array.forEach(element => window[element].setAttribute("display","inline") );
+    //array.forEach(element => window[element].setAttribute("display","inline") ); // FIXME 
 
     if (parsed.TimerStatus == false)
     {
@@ -163,7 +168,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <ImageBackground source={require('./board.png')} style={{flex:1, height: 200, width: undefined}} resizeMode="contain">
+          <ImageBackground source={require('./board.png')} style={{flex:1, height: 200, width: undefined}} resizeMode="contain"> 
                <ImageBackground source={ImageHold1} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain">
                 <ImageBackground source={ImageHold2} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain"/>     
               </ImageBackground>
