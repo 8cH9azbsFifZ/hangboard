@@ -6,6 +6,10 @@
 + Fix sounds
    i.e. festival or freesound.org or https://sfxr.me/
 
+### Configure without metro
++ http://dev.diogomachado.com/how-run-your-app-react-on-iphone-without-metro-server-running/
+Projet -> Release Scheme to Release (instead debug)
+
 + Build without metro
   https://github.com/react-native-community/cli/issues/1191
 FORCE_BUNDLING=true yarn run ios
