@@ -4,10 +4,11 @@
 
 
 + Fix sounds
-   i.e. festival or freesound.org
+   i.e. festival or freesound.org or https://sfxr.me/
 
 + Build without metro
   https://github.com/react-native-community/cli/issues/1191
+FORCE_BUNDLING=true yarn run:ios
 
 + Raspi as BLE Agent
   https://raspberrypi.stackexchange.com/questions/70697/is-it-possible-to-use-the-raspi-3-as-a-bluetooth-le-sensor
