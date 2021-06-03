@@ -265,6 +265,7 @@ class Gyroscope():
 		print ("No hang time")
 		tt = 0.0	
 		while (tt < self.calibration_duration):
+		
 			tt = tt + dt
 			time.sleep(dt)
 			print ("t = %.1f angle = %.1f" %(tt, self.kalAngleX))
@@ -312,11 +313,11 @@ class Gyroscope():
 			if (message == "StartCalibration"):
 				self._run_measure_angle_extremum()
 			if (message == "StopCalibration"):
-				self._stop_measure_angle_extremum()  
+				self._stop_measure_angle_extremum()   # TBD to be implemented
 			if (message == "StartHangdetection"):
 				self._run_start_hangdetection()
 			if (message == "StopHangdetection"):
-				self._stop_hangdetection()
+				self._stop_hangdetection()		# TBD to be implemented
 
 	async def handler(self, websocket, path):
 		""" 

@@ -1,7 +1,9 @@
 + Implement Calibration for Gyroscope
++ Implement Hang detection
+
+
 + implement backend for current status
 + Implement Gyroscope Sensor Test
-+ Implement Hang detection
 
 
 
