@@ -3,9 +3,6 @@
    https://www.ralfebert.de/ios/testflight-tutorial/
 
 
-+ Fix sounds
-   i.e. festival or freesound.org or https://sfxr.me/
-
 ### Configure without metro
 + http://dev.diogomachado.com/how-run-your-app-react-on-iphone-without-metro-server-running/
 Projet -> Release Scheme to Release (instead debug)
