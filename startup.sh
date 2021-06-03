@@ -1,6 +1,8 @@
 #!/bin/bash
-python3 -m venv venv
-source venv/bin/activate
+
+# Only for OSX
+#python3 -m venv venv
+#source venv/bin/activate
 
 # Startup exercises task
 cd exercises
