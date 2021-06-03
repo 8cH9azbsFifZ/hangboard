@@ -21,4 +21,10 @@ cd ../..
 cd Board
 #python3 -m pip install -r requirements.txt
 python3 boards.py --host 0.0.0.0 --port 4324 &
-cd ../..
+cd ..
+
+# Webinterface
+cd hangboard-web
+#python3 -m pip install -r requirements.txt
+python3 main.py --host 0.0.0.0 --port 8080 &
+cd ..
