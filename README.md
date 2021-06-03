@@ -19,7 +19,7 @@ This is a brief design layout of the project.
 + Every task is running as a microservice and communicating to the frontend using websockets.
 
 ### Installation on a Raspi W zero
-+ Install docker and git
++ Install [docker](https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo) and git
 + Clone this repo: `git clone https://github.com/8cH9azbsFifZ/hangboard.git`
 
 ## Software Used
