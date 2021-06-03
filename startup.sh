@@ -1,0 +1,12 @@
+#!/bin/bash
+python3 -m venv venv
+source venv/bin/activate
+
+# Startup exercises task
+cd exercises
+python3 -m pip install -r requirements.txt
+
+python3 exercises.py --host 0.0.0.0 --port 4321
+
+cd ..
+
