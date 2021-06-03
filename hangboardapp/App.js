@@ -106,6 +106,13 @@ const App: () => Node = () => {
   const [ImageHold2, SetImageHold2] = useState(ImageBoard);
   //var ImageHold2 = ImageBoard;
 
+  const [ImageTest, SetImageTest] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='); // Test image
+
+  clientBoard.onmessage = function(e) {
+    SetImageTest('data:image/png;base64,' + e.data);
+  }
+
+
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
       mydata = e.data;
@@ -199,6 +206,7 @@ const App: () => Node = () => {
           
         <Section title="Testing Image transfer"> 
         </Section>
+        <ImageBackground source={{ uri: ImageTest}} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain"/>     
 
 <Image
   style={{flex:1, height: 200, width: undefined}}

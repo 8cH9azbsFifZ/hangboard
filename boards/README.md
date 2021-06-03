@@ -24,6 +24,11 @@ docker build . -t boards
 docker run -p 4324:4324 --rm -it boards
 ```
 
+
+## Debugging the websockets
+wscat -c "ws://10.101.40.81:4324/"
+
+
 ## Test the module
 ```
 python3 test_boards.py      
