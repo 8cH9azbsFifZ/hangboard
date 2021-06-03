@@ -24,7 +24,9 @@ brew install cocoapods
 yarn install
 cd ios && pod install && cd ..
 ```
-
+### Configure without metro
++ http://dev.diogomachado.com/how-run-your-app-react-on-iphone-without-metro-server-running/
+Projet -> Release Scheme to Release (instead debug)
 
 
 ## Add App Icon
