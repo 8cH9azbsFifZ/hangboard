@@ -39,11 +39,14 @@ var Sound = require('react-native-sound');
 /*
  
 */
+import ReconnectingWebSocket from 'reconnecting-websocket';
+
 //var client = new WebSocket ('ws://127.0.0.1:4321/'); // FIXME
-var client = new WebSocket ('ws://10.101.40.81:4321/'); // FIXME
-var clientBoard = new WebSocket ('ws://10.101.40.81:4324/'); // FIXME
+//var client = new WebSocket ('ws://10.101.40.81:4321/'); // FIXME
+//var clientBoard = new WebSocket ('ws://10.101.40.81:4324/'); // FIXME
 
-
+var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
+var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
 
 Sound.setCategory('Playback');
 
