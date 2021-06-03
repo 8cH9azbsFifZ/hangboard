@@ -12,6 +12,7 @@ R1: 330Ω  - Pin 18 (GPIO24)
 R1: 330Ω -  R2: 10kΩ 
 R2: 10kΩ -  Pin6 (GND)
 
+![Wiring with resistors, 3.3V on Raspi...](hardware/distance_sensors/doc/ultraschall_Steckplatine.png)
 
 # Software Setup
 
