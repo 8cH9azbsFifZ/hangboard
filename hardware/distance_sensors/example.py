@@ -8,11 +8,30 @@ GPIO.setmode(GPIO.BCM)
 #GPIO Pins zuweisen
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
- 
+
 #Richtung der GPIO-Pins festlegen (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
- 
+
+R = 40
+H = 1
+Q = 10
+P = 0
+U_hat = 0
+K = 0
+
+def kalman(U):
+    global R
+    global P
+    global H
+    global Q
+    global U_hat
+    K = P*H/(H*P*H+R)
+    U_hat += + K*(U-H*U_hat)
+    P = (1-K*H)*P+Q
+    return U_hat
+
+
 def distanz():
     # setze Trigger auf HIGH
     GPIO.output(GPIO_TRIGGER, True)
@@ -44,8 +63,10 @@ if __name__ == '__main__':
     try:
         while True:
             abstand = distanz()
-            print ("Gemessene Entfernung = %.1f cm" % abstand)
-            time.sleep(.05)
+            if (abstand < 5000):
+                fabs = kalman (abstand)
+                print ("Gemessene Entfernung = %.1f cm und %.1f" % (abstand, fabs))
+            time.sleep(.005)
  
         # Beim Abbruch durch STRG+C resetten
     except KeyboardInterrupt:

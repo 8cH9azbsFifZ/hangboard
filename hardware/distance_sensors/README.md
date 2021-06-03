@@ -17,8 +17,12 @@ R2: 10kΩ -  Pin6 (GND)
 # Software Setup
 
 
+# Information
++ Must be used in conjunction with a kalman filter.
 
 
 # References
 + AZDelivery HC-SR04 Ultraschall Modul Entfernungsmesser Sensor kompatibel mit Raspberry Pi inklusive E-Book!
 + https://tutorials-raspberrypi.de/entfernung-messen-mit-ultraschallsensor-hc-sr04/
++ https://github.com/rizkymille/ultrasonic-hc-sr04-kalman-filter
++ https://github.com/NagarajSMurthy/Kalman-estimation-of-ultrasonic-sensor
