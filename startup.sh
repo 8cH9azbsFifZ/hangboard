@@ -6,7 +6,13 @@ source venv/bin/activate
 cd exercises
 python3 -m pip install -r requirements.txt
 
-python3 exercises.py --host 0.0.0.0 --port 4321
+python3 exercises.py --host 0.0.0.0 --port 4321 &
 
 cd ..
 
+# Gyroscope
+cd hardware/gyroscope
+python3 -m pip install -r requirements.txt
+python3 sensor_zlagboard.py --host 0.0.0.0 --port 4323 &
+
+cd ../..
