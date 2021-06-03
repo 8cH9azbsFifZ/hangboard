@@ -1,6 +1,4 @@
 + Configure the server name for websockets
-
-
 + Automatic detection of services
 + Timer front end as single element 
 + start and stop exercise timer by buttons
