@@ -18,7 +18,7 @@ cd ../..
 
 
 # Board
-cd Board
+cd board
 #python3 -m pip install -r requirements.txt
 python3 boards.py --host 0.0.0.0 --port 4324 &
 cd ..
