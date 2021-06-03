@@ -31,10 +31,15 @@ Pin 5 (SCL)	    - SCL
 Pin 6 (GND)	    - GND
 
 ## Software
-+ Enable I2C I/O using `sudo raspi-config`
-+ Add the following modules to `/etc/modules`: `i2c-bcm2708` and `i2c-dev`
-+ Install the I2C tools `sudo apt-get install i2c-tools `
-+ Check whether 68 exists in `sudo i2cdetect -y 1`
+Enable I2C I/O, load user space module and install I2C tools
+```
+sudo sed -i 's/\#dtparam=i2c_arm=on/dtparam=i2c_arm=on/g' /boot/config.txt
+grep i2c-dev /etc/modules ||echo i2c-dev |sudo tee -a /etc/modules
+sudo apt-get -y install i2c-tools
+```
++ Reboot
++ Check whether 68 exists in `sudo i2cdetect -y 1 | grep 68`
++ Install requirements 
 ```
 python3 -m pip install -r requirements.txt
 ```
