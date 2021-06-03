@@ -54,9 +54,9 @@ class Gyroscope():
 
 		self.calibration_duration = 10
 
-		self.AngleX_NoHang = 0
-		self.AngleX_Hang = 0
-		self.HangDetected = False
+		self.AngleX_NoHang = 0 		""" AngleX_NoHang: Calibrated Angle for no hang detection """
+		self.AngleX_Hang = 0		""" AngleX_Hang: Calibrated Angle for hang detection """
+		self.HangDetected = False	""" HangDetected: Flag whether a hang is detected or not """
 
 
 	def init_gyro(self):
@@ -437,5 +437,4 @@ class Gyroscope():
 
 
 a = Gyroscope()
-#a.measure_loop()
 a.run_handler()
