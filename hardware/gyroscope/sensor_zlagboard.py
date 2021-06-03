@@ -257,10 +257,13 @@ class Gyroscope():
 		Routine for measure the extrema -> measure two times ten seconds one shot
 		"""
 		# FIXME: this can be merged with a continous running measurements loop
-		self.init_measurements()
+		#self.init_measurements()
 		
+		dt = 0.1
 		print ("Measure angle configuration for extremum")
 
+		for tt in range(0,self.calibration_duration,dt):
+			print (tt)
 		#self.measure_angle_extremum_one_shot()
 
 		self.AngleX_NoHang = self.kalAngleX
@@ -272,9 +275,13 @@ class Gyroscope():
 
 	def _run_measure_angle_extremum (self):
 		print ("Starting Extremum angle measurement")
+		self.run_measure_angle_extremum_thread = threading.Thread(target=self.measure_angle_extremum)
+		self.run_measure_angle_extremum_thread.do_stop = False
+		self.run_measure_angle_extremum_thread.start()
 
 	def _stop_measure_angle_extremum (self):
 		print ("Stopping Extremum angle measurement")
+		self._run_measure_angle_extremum_thread.do_stop = True
 
 	async def producer_handler(self, websocket, path):
 		""" 
@@ -320,11 +327,14 @@ class Gyroscope():
 	
 	def _run_start_hangdetection(self):
 		print ("Starting Hang detection loop.")
-		#TBD
+		# TBD
+		#self.run_start_hangdetection_thread = threading.Thread(target=self.TBD)
+		#self.run_start_hangdetection_thread.do_stop = False
+		#self.run_start_hangdetection_thread.start()
 
 	def _stop_hangdetection(self):
 		print ("Stopping Hang detection loop.")
-		#TBD
+		self.run_start_hangdetection_thread.do_stop = True
 
 	def _run_measure(self):
 		"""
