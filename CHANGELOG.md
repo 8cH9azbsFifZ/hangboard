@@ -1,4 +1,5 @@
 # History
+- v0.24 - iOS app: reconnection of websockets and websocket image transfer prototype 
 - v0.23 - 2nd demonstrator with iOS app
 - v0.22 - Logo, Sound fixes, raspi installation notes for gyroscope
 - v0.21 - Merged distance sensor example and a kalman filter
