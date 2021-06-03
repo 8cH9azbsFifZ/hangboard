@@ -264,9 +264,9 @@ class Gyroscope():
 		tt = 0.0
 		while (tt < self.calibration_duration):
 			tt = tt + dt
+			time.sleep(dt)
 			print (tt)
-		#for tt in range(0.0,self.calibration_duration,dt):
-		#	print (tt)
+
 		#self.measure_angle_extremum_one_shot()
 
 		#self.AngleX_NoHang = self.kalAngleX
