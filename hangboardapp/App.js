@@ -41,6 +41,7 @@ var Sound = require('react-native-sound');
 */
 //var client = new WebSocket ('ws://127.0.0.1:4321/'); // FIXME
 var client = new WebSocket ('ws://10.101.40.81:4321/'); // FIXME
+var clientBoard = new WebSocket ('ws://10.101.40.81:4324/'); // FIXME
 
 
 
@@ -188,16 +189,27 @@ const App: () => Node = () => {
             <Text>
               {myState.Duration}
             </Text>
-
-            <Image
-        style={styles.logo}
-        source={{
-          uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-        }}
-      />
-
           </Section>
+
+        
         </View>
+
+        <View >
+
+          
+        <Section title="Testing Image transfer"> 
+        </Section>
+
+<Image
+  style={{flex:1, height: 200, width: undefined}}
+  source={{
+    uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+  }}
+/>
+
+</View>
+
+
       </ScrollView>
     </SafeAreaView>
   );
