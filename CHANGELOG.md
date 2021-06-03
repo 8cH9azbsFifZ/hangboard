@@ -1,4 +1,5 @@
 # History
+- v0.23 - First demonstrator for testflight
 - v0.22 - Logo, Sound fixes, raspi installation notes for gyroscope
 - v0.21 - Merged distance sensor example and a kalman filter
 - v0.20 - Display workout list in web frontend mockup
