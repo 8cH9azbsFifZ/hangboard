@@ -253,7 +253,7 @@ class Gyroscope():
 			#if (kalAngleX < 0):
 			#	message = kalAngleX
 
-			self.detect_hang(kalAngleX)
+			self.detect_hang(self.kalAngleX)
 
 			self.create_message()
 			time.sleep(self.delay_measures)
