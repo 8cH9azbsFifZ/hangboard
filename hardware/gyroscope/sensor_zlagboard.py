@@ -261,20 +261,26 @@ class Gyroscope():
 		
 		dt = 0.1
 		print ("Measure angle configuration for extremum")
-		tt = 0.0
+
+		print ("No hang time")
+		tt = 0.0	
 		while (tt < self.calibration_duration):
 			tt = tt + dt
 			time.sleep(dt)
-			print (tt)
+			print ("t = %.1f angle = %.1f" %(tt, self.kalAngleX))
 
-		#self.measure_angle_extremum_one_shot()
+		self.AngleX_NoHang = self.kalAngleX
 
-		#self.AngleX_NoHang = self.kalAngleX
+		print ("Time to hang")
+		tt = 0.0	
+		while (tt < self.calibration_duration):
+			tt = tt + dt
+			time.sleep(dt)
+			print ("t = %.1f angle = %.1f" %(tt, self.kalAngleX))
 
-		#self.measure_angle_extremum_one_shot()
-		#self.AngleX_Hang = self.kalAngleX
+		self.AngleX_Hang = self.kalAngleX
 
-		#self.create_message()
+		self.create_message()
 
 	def _run_measure_angle_extremum (self):
 		print ("Starting Extremum angle measurement")
