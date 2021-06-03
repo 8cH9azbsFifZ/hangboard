@@ -46,3 +46,4 @@ Hx711.A- - Cell2.Red
 + https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
 + https://arduino.stackexchange.com/questions/17542/connect-hx711-to-a-three-wire-load-cell
 + https://github.com/tatobari/hx711py
++ [HX711 Python module](https://github.com/gandalf15/HX711/)

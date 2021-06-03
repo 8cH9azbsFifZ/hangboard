@@ -6,10 +6,6 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 ![Hangboard Mount](./hardware/board_mount/IsometrixBoard.png)
 
 
-* Website: https://8ch9azbsfifz.github.io/hangboard/
-* Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
-* Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
-
 # Design
 This is a brief design layout of the project.
 
@@ -20,7 +16,7 @@ This is a brief design layout of the project.
 
 ## Backend
 + Running on a Raspberry Pi.
-+ Every task is running as a microservice and communicating the the frontend using websockets.
++ Every task is running as a microservice and communicating to the frontend using websockets.
 
 ## Software Used
 - Python Flask for Web App
@@ -56,6 +52,8 @@ This is a brief design layout of the project.
 
 
 # References
-+ [HX711 Python module](https://github.com/gandalf15/HX711/)
+* Website: https://8ch9azbsfifz.github.io/hangboard/
+* Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
+* Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
 + [Raspi W Zero Hangboard](https://github.com/adrianlzt/piclimbing)
 + [Arduino Hangboard](https://github.com/oalam/isometryx)
