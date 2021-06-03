@@ -205,20 +205,10 @@ const App: () => Node = () => {
         </View>
 
         <View >
-
-          
-        <Section title="Testing Image transfer"> 
-        </Section>
-        <ImageBackground source={{ uri: ImageTest}} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain"/>     
-
-<Image
-  style={{flex:1, height: 200, width: undefined}}
-  source={{
-    uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-  }}
-/>
-
-</View>
+          <Section title="Testing Image Transfer"> 
+          </Section>
+          <ImageBackground source={{ uri: ImageTest}} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain"/>     
+        </View>
 
 
       </ScrollView>
