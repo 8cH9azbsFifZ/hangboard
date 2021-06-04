@@ -1,4 +1,5 @@
 # History
+- v0.27 - Get ready sound and stopping timer on no hang detected
 - v0.26 - Demonstrator iOS app with integrated gyroscope sensor and sound
 - v0.25 - Prototype of gyroscrope integrated with web application working
 - v0.24 - iOS app: reconnection of websockets and websocket image transfer prototype 
