@@ -86,6 +86,7 @@
 		var ten = new Audio('{{url_for('static', filename='sounds/10.mp3')}}');
 		var done = new Audio('{{url_for('static', filename='sounds/done.mp3')}}');
 		var failed = new Audio('{{url_for('static', filename='sounds/failed.mp3')}}');
+		var ready = new Audio('{{url_for('static', filename='sounds/ready.mp3')}}');
 		var starthang = new Audio('{{url_for('static', filename='sounds/starthang.mp3')}}');
 		var stophang = new Audio('{{url_for('static', filename='sounds/stophang.mp3')}}');
 	</script>
@@ -179,7 +180,17 @@
 					if (togo == 3) { three.play() ; }		
 					if (togo == 2) { two.play() ; }		
 					if (togo == 1) { one.play() ; }		
-					if (togo == 0) { done.play() ; }		
+					if (togo == 0) { 
+						if (parsed.Exercise == "Pause")
+						{
+							ready.play();
+							// TBD: Implement - Ready signal 
+						}
+						else
+						{
+							done.play() ;
+						}						 
+					}		
 				}
 
 				// Highlight holds to be used

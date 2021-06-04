@@ -95,6 +95,12 @@ class Workout():
         self.current_set = 0
         self.current_set_name = "Rest to start"
 
+        # Variables for the status of one exercise in a set / run
+        self.exercise_duration = 0
+        self.exercise_name = ""
+        self.exercise_completed = 0
+        self.exercise_counter = 0
+
     async def consumer_handler(self, websocket, path): # TODO: https://www.w3schools.com/python/python_inheritance.asp
         """
         Handler for receicing commands 
@@ -219,18 +225,18 @@ class Workout():
     def run_exercise_hang(self):
         t = threading.currentThread()
         e = self.workout["Sets"][self.current_set]
-        duration = e["Counter"]
-        name = e["Exercise"]
+        self.exercise_duration = e["Counter"]
+        self.exercise_name = e["Exercise"]
 
         print ("Run a hang exercise")
         self.holds_active = ["A1", "A7"] # FIXME
         self.holds_inactive = ["A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7"]
 
 
-        for counter in range (0, duration+1):
+        for self.exercise_counter in range (0, self.exercise_duration+1):
             time.sleep (1)
-            completed = int(counter / duration *100)
-            self.exercise_status = json.dumps({"Exercise": name, "Duration": duration, "Counter": counter, "Completed": completed, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": self.run_set_thread.do_stop})
+            self.exercise_completed = int(self.exercise_counter / self.exercise_duration*100)
+            self.assemble_message()
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
@@ -245,24 +251,27 @@ class Workout():
 
     def run_exercise_pause(self):
         print ("Run a pause between exercises")
-
-        t = threading.currentThread()
         e = self.workout["Sets"][self.current_set]
-        pause_duration = e["Pause"]
+        t = threading.currentThread()
+        self.exercise_duration = e["Pause"]
+        self.exercise_name = "Pause"
 
         self.holds_active = [] # FIXME
         self.holds_inactive = ["A1", "A7", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7"]
 
-        for counter in range (0, pause_duration+1):
+        for self.exercise_counter in range (0, self.exercise_duration+1):
             time.sleep (1)
-            completed = int(counter / pause_duration *100)
-            self.exercise_status = json.dumps({"Exercise": "Pause", "Duration": pause_duration, "Counter": counter, "Completed": completed, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": self.run_set_thread.do_stop})
+            self.exercise_completed = int(self.exercise_counter / self.exercise_duration*100)
+            self.assemble_message()
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
 
     def assemble_message(self):
-        print ("Assemble a new message")
+        """
+        Assemble a message of the current exercise and workout status
+        """
+        self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": self.run_set_thread.do_stop})
 
 if __name__ == "__main__":
     """
