@@ -7,11 +7,14 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 
 	<!-- Global variables -->
 	<script>
+		var boardimagename = "";
+		var boardname = "";
 		var timerstatus = "";
 	</script>
 
@@ -112,10 +115,7 @@
 					} else {
 						//sendStartSignal(); // TBD
 					}
-
 				}
-
-
 			}
 		}
 	</script>
@@ -147,9 +147,7 @@
 
 	<!--- Visualize Progress -->
 	<script>
-		var boardimagename = "";
-		var boardname = "";
-		var timerstatus = "";
+
 
 		wsExercise.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
