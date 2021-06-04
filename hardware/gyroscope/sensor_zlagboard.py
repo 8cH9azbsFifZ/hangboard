@@ -32,7 +32,7 @@ WSPORT = args.port
 class Gyroscope():
 	def __init__(self):
 		"""
-		Initialize gyroscope class
+		Initialize gyroscope class with the neccessary variables for the SMBus module (I2C).
 		"""
 		self.PWR_MGMT_1 = 0x6B
 		self.SMPLRT_DIV = 0x19
@@ -48,11 +48,18 @@ class Gyroscope():
 
 		self.init_gyro()
 
+		"""
+		Parameters for gyroscope sensor sampling delay (delay_measures) 
+		and delay for sending the values (delay_sending).
+		"""
 		self.message = "Started Gyroscope"
 		self.delay_measures = 0.005
 		self.delay_sending = 0.005
 
 		self.calibration_duration = 10.0
+		"""
+		Parameter for calibration duration.
+		"""
 
 		""" AngleX_NoHang: Calibrated Angle for no hang detection """
 		""" AngleX_Hang: Calibrated Angle for hang detection """
@@ -79,7 +86,7 @@ class Gyroscope():
 
 	def MPU_Init(self):
 		"""
-		Read the gyro and acceleromater values from MPU6050
+		Read the gyro and acceleromater values from MPU6050.
 		"""
 
 		#write to sample rate register
@@ -117,7 +124,7 @@ class Gyroscope():
 
 	def init_measurements (self):
 		"""
-		Initialize measurements
+		Initialize measurements.
 		"""
 		print ("Set initial parameters")
 		self.kalmanX = KalmanAngle()
@@ -152,6 +159,11 @@ class Gyroscope():
 		self.compAngleY = pitch;
 
 	def detect_hang(self, angle):
+		"""
+		Detect a hang based on the calibrated hang / no hang angles.
+		A state change variable will also be set.
+		"""
+
 		oldstate = self.HangDetected
 		self.HangDetected = False
 		if (self.AngleX_Hang > self.AngleX_NoHang):
@@ -267,7 +279,7 @@ class Gyroscope():
 
 	def create_message(self):
 		"""
-		Assemble the websocket status message
+		Assemble the websocket status message.
 		"""
 		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
 		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang),
@@ -307,12 +319,18 @@ class Gyroscope():
 		self.create_message()
 
 	def _run_measure_angle_extremum (self):
+		"""
+		Process to start the thread for calibration.
+		"""
 		print ("Starting Extremum angle measurement")
 		self.run_measure_angle_extremum_thread = threading.Thread(target=self.measure_angle_extremum)
 		self.run_measure_angle_extremum_thread.do_stop = False
 		self.run_measure_angle_extremum_thread.start()
 
 	def _stop_measure_angle_extremum (self):
+		"""
+		Process to stop the thread for calibration.
+		"""
 		print ("Stopping Extremum angle measurement")
 		self._run_measure_angle_extremum_thread.do_stop = True
 
@@ -358,17 +376,6 @@ class Gyroscope():
 		for task in pending:
 			task.cancel()
 	
-	def _run_start_hangdetection(self):
-		print ("Starting Hang detection loop.")
-		# TBD
-		#self.run_start_hangdetection_thread = threading.Thread(target=self.TBD)
-		#self.run_start_hangdetection_thread.do_stop = False
-		#self.run_start_hangdetection_thread.start()
-
-	def _stop_hangdetection(self):
-		print ("Stopping Hang detection loop.")
-		self.run_start_hangdetection_thread.do_stop = True
-
 	def _run_measure(self):
 		"""
 		Run continous measurement in a thread
