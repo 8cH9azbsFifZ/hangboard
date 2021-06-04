@@ -18,10 +18,11 @@
 		var timerstatus = false; // Means timer is currently running
 		//var ServerName = "10.101.40.81";
 		var ServerName = "127.0.0.1";
+		var HangboardName = "TO BE IMPLEMENTED - STATIC ZLAGBOARD EVO";
 	</script>
 
-	<!-- Configure Server Name-->
 
+	<!-- Configure Server Name-->
 	<script>
 
 		function doConfigServerName()
@@ -30,9 +31,18 @@
 		  var ServerName = nameElement.value;
 		  document.getElementById("ServerNameField").innerHTML = "Server Name: " + ServerName;
 		}
-  
 	</script>
 
+	<!-- Configure Hangboard Name-->
+	<script>
+
+		function doConfigHangboardName()
+		{
+		  var nameElement = document.getElementById("HangboardName");
+		  var HangboardName = nameElement.value;
+		  document.getElementById("HangboardNameField").innerHTML = "Hangboard Name: " + ServerName;
+		}
+	</script>
 
 	<!-- Websocket to backend server -->
 	<script>
@@ -71,6 +81,11 @@
 		function sendListWorkouts ()
 		{
 			wsExercise.send ("ListWorkouts");
+		}
+
+		function sendListHangboards ()
+		{
+			wsExercise.send ("ListHangboards");
 		}
 	</script>
 
