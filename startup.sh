@@ -26,5 +26,5 @@ cd ..
 # Webinterface
 cd hangboard-web
 #python3 -m pip install -r requirements.txt
-python3 main.py --host 0.0.0.0 --port 8080 &
+python3 main.py --host 0.0.0.0 --port 8080 
 cd ..
