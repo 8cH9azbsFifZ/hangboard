@@ -60,6 +60,7 @@ class Gyroscope():
 		self.AngleX_NoHang = 0 		
 		self.AngleX_Hang = 0		
 		self.HangDetected = False	
+		self.HangStateChanged = False
 
 		# Start running the measurements
 		self._run_measure()
@@ -151,6 +152,7 @@ class Gyroscope():
 		self.compAngleY = pitch;
 
 	def detect_hang(self, angle):
+		oldstate = self.HangDetected
 		self.HangDetected = False
 		if (self.AngleX_Hang > self.AngleX_NoHang):
 			delta = self.AngleX_Hang - self.AngleX_NoHang
@@ -160,6 +162,11 @@ class Gyroscope():
 			delta = self.AngleX_NoHang - self.AngleX_Hang
 			if (angle - delta < self.AngleX_Hang):
 				self.HangDetected = True
+		
+		if (oldstate == self.HangDetected):
+			self.HangStateChanged = False
+		else:
+			self.HangStateChanged = True
 
 		return self.HangDetected
 
@@ -264,7 +271,7 @@ class Gyroscope():
 		"""
 		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
 		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang),
-		"HangDetected": self.HangDetected
+		"HangDetected": self.HangDetected, "HangStateChanged": self.HangStateChanged 
 		})
 
 

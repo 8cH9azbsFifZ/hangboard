@@ -87,6 +87,9 @@
 			$('.sensor-label').text("X: " + parsed.AngleX + " Y: " + parsed.AngleY 
 			+ " NoHang: " + parsed.AngleX_NoHang + " Hang: " + parsed.AngleX_Hang
 			+ " HangDetected: " + parsed.HangDetected);
+
+			if (parsed.HangDetected == true) { done.play() ; }
+			if (parsed.HangDetected == false) { failed.play() ; }
 		}
 	</script>
 
