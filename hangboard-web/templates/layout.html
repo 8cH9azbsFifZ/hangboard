@@ -78,6 +78,8 @@
 		var ten = new Audio('{{url_for('static', filename='sounds/10.mp3')}}');
 		var done = new Audio('{{url_for('static', filename='sounds/done.mp3')}}');
 		var failed = new Audio('{{url_for('static', filename='sounds/failed.mp3')}}');
+		var starthang = new Audio('{{url_for('static', filename='sounds/starthang.mp3')}}');
+		var stophang = new Audio('{{url_for('static', filename='sounds/stophang.mp3')}}');
 	</script>
 
 	<!-- Connection to Sensors -->
@@ -90,8 +92,8 @@
 
 			if (parsed.HangStateChanged == true)
 			{
-				if (parsed.HangDetected == true) { done.play() ; }
-				if (parsed.HangDetected == false) { failed.play() ; }
+				if (parsed.HangDetected == true) { starthang.play() ; }
+				if (parsed.HangDetected == false) { stophang.play() ; }
 			}
 		}
 	</script>
