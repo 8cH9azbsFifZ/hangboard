@@ -15,7 +15,7 @@
 	<script>
 		var boardimagename = "";
 		var boardname = "";
-		var timerstatus = "";
+		var timerstatus = false; // Means timer is currently running
 	</script>
 
 	<!-- Configure Server Name-->
@@ -107,7 +107,7 @@
 
 
 				// If a timer is running
-				if (timerstatus == false) // if a timer is running - stop it when released sensor
+				if (timerstatus == false) // if a timer is running - stop it when released sensor // TODO : Implement a get ready for hang
 				{
 					console.log ("no timer running.")
 					if (parsed.HangDetected == false) {
@@ -145,10 +145,8 @@
 	</script>
 
 
-	<!--- Visualize Progress -->
+	<!--- Visualize Progress of an Exercise -->
 	<script>
-
-
 		wsExercise.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
 			console.log (parsed);
