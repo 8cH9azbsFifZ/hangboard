@@ -12,6 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DA0E12F7D4BC7BDE1BF4A04 /* libPods-hangboardapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DD5881659A73CBA137634E /* libPods-hangboardapp.a */; };
+		3178BDE22669A95600C356D4 /* starthang.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3178BDE02669A95600C356D4 /* starthang.mp3 */; };
+		3178BDE32669A95600C356D4 /* stophang.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3178BDE12669A95600C356D4 /* stophang.mp3 */; };
 		5753DA9BFB22D9AD4C0E339B /* libPods-hangboardapp-hangboardappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D32CDD80A42572B302A57991 /* libPods-hangboardapp-hangboardappTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D19761709FE88E30E57C57C2 /* libPods-hangboardapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DD5881659A73CBA137634E /* libPods-hangboardapp.a */; };
@@ -65,6 +67,8 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = hangboardapp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = hangboardapp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = hangboardapp/main.m; sourceTree = "<group>"; };
+		3178BDE02669A95600C356D4 /* starthang.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = starthang.mp3; path = ../sounds/starthang.mp3; sourceTree = "<group>"; };
+		3178BDE12669A95600C356D4 /* stophang.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = stophang.mp3; path = ../sounds/stophang.mp3; sourceTree = "<group>"; };
 		68DCD9843AF9A55D6E7E6AD6 /* Pods-hangboardapp-hangboardappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangboardapp-hangboardappTests.release.xcconfig"; path = "Target Support Files/Pods-hangboardapp-hangboardappTests/Pods-hangboardapp-hangboardappTests.release.xcconfig"; sourceTree = "<group>"; };
 		71DD5881659A73CBA137634E /* libPods-hangboardapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hangboardapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B7C1DE275280C5A9E94334F /* Pods-hangboardapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangboardapp.debug.xcconfig"; path = "Target Support Files/Pods-hangboardapp/Pods-hangboardapp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3178BDE02669A95600C356D4 /* starthang.mp3 */,
+				3178BDE12669A95600C356D4 /* stophang.mp3 */,
 				E3FAB1772660269900E6C2C8 /* 1.mp3 */,
 				E3FAB1702660269900E6C2C8 /* 2.mp3 */,
 				E3FAB16F2660269900E6C2C8 /* 3.mp3 */,
@@ -339,7 +345,9 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E3FAB17E2660269900E6C2C8 /* 10.mp3 in Resources */,
 				E3FAB1862660269900E6C2C8 /* 4.mp3 in Resources */,
+				3178BDE22669A95600C356D4 /* starthang.mp3 in Resources */,
 				E3FAB17F2660269900E6C2C8 /* done.mp3 in Resources */,
+				3178BDE32669A95600C356D4 /* stophang.mp3 in Resources */,
 				E3FAB1822660269900E6C2C8 /* 6.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

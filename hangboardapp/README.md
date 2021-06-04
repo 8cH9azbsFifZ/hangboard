@@ -24,6 +24,7 @@ Projet -> Release Scheme to Release (instead debug)
 + Import a new IconSet 
 
 ## Add sounds
++ Start Xcode `open ios/hangboardapp.xcworkspace`
 iOS: Open Xcode and add your sound files to the project (Right-click the project and select Add Files to [PROJECTNAME])
 TBD: Android
 

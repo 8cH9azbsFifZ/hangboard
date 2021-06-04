@@ -43,6 +43,7 @@ import ReconnectingWebSocket from 'reconnecting-websocket';
 
 var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
 var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
+var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
 
 Sound.setCategory('Playback');
 
@@ -58,6 +59,8 @@ var SFXnine = new Sound('9.mp3', Sound.MAIN_BUNDLE);
 var SFXten = new Sound('10.mp3', Sound.MAIN_BUNDLE);
 var SFXdone = new Sound('done.mp3', Sound.MAIN_BUNDLE);
 var SFXfailed = new Sound('failed.mp3', Sound.MAIN_BUNDLE);
+var SFXstarthang = new Sound('starthang.mp3', Sound.MAIN_BUNDLE);
+var SFXstophang = new Sound('stophang.mp3', Sound.MAIN_BUNDLE);
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -111,6 +114,19 @@ const App: () => Node = () => {
     SetImageTest('data:image/png;base64,' + e.data);
   }
 
+  wsGyroscope.onmessage = function(e) {
+    if (typeof e.data === 'string') {
+      mydata = e.data;
+      console.log("Received: '" + e.data + "'");
+    }
+
+    var parsed = JSON.parse(e.data);
+    if (parsed.HangStateChanged == true)
+    {
+      if (parsed.HangDetected == true) { SFXstarthang.play() ; }
+      if (parsed.HangDetected == false) { SFXstophang.play() ; }
+    }
+  }
 
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
