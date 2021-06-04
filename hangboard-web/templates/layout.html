@@ -10,6 +10,11 @@
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 
+	<!-- Global variables -->
+	<script>
+		var timerstatus = "";
+	</script>
+
 	<!-- Configure Server Name-->
 
 	<script>
@@ -82,7 +87,7 @@
 		var stophang = new Audio('{{url_for('static', filename='sounds/stophang.mp3')}}');
 	</script>
 
-	<!-- Connection to Sensors -->
+	<!-- Connection to Sensors: Gyroscope -->
 	<script>
 		wsGyroscope.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
@@ -90,10 +95,29 @@
 			+ " NoHang: " + parsed.AngleX_NoHang + " Hang: " + parsed.AngleX_Hang
 			+ " HangDetected: " + parsed.HangDetected + "HangStateChanged: " + parsed.HangStateChanged);
 
+
+
+
+			// Play sounds on start and stop of hang
 			if (parsed.HangStateChanged == true)
 			{
 				if (parsed.HangDetected == true) { starthang.play() ; }
 				if (parsed.HangDetected == false) { stophang.play() ; }
+
+
+				// If a timer is running
+				if (timerstatus == false) // if a timer is running - stop it whewn released sensor
+				{
+					console.log ("no timer running.")
+					if (parsed.HangDetected == false) {
+						sendStopSignal();
+					} else {
+						//sendStartSignal(); // TBD
+					}
+
+				}
+
+
 			}
 		}
 	</script>
@@ -127,6 +151,7 @@
 	<script>
 		var boardimagename = "";
 		var boardname = "";
+		var timerstatus = "";
 
 		wsExercise.onmessage = function(event) {
 			var parsed = JSON.parse(event.data);
@@ -140,6 +165,7 @@
 
 				boardimagename = parsed.BoardImageName;
 				boardname = parsed.BoardName;
+				timerstatus = parsed.TimerStatus;
 				
 				$('.progress-bar').css('width', completed+'%').attr('aria-valuenow', completed);
 				$('.progress-bar-label').text(completed+'% of ' + parsed.Duration + "(s)");
