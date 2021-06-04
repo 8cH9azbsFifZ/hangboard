@@ -13,7 +13,7 @@ On OSX:
 ```
 python3 -m venv venv
 source venv/bin/activate
-./startup_local.sh
+python3 exercises.py --host 0.0.0.0 --port 4321 
 ```
 
 Using docker
