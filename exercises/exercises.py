@@ -101,7 +101,6 @@ class Workout():
         self.exercise_counter = 0
 
         # Variable to check if ready or somebody hanging
-        self.exercise_ready_to_start = False
         self.exercise_hanging = False
 
     async def consumer_handler(self, websocket, path): # TODO: https://www.w3schools.com/python/python_inheritance.asp
@@ -132,10 +131,16 @@ class Workout():
             self.set_stop_hang()
 
     def set_start_hang(self):
+        """
+        Set flag wether a hang is detected or not.
+        """ 
         print ("Start to hang")
         self.exercise_hanging = True
 
     def set_stop_hang(self):
+        """
+        Set flag wether a hang is detected or not.
+        """ 
         print ("Stopped to hang")
         self.exercise_hanging = False
 
@@ -238,7 +243,6 @@ class Workout():
                 time.sleep(0.1)
 
             self.run_exercise_pause()
-            self.exercise_ready_to_start = True # FIXME - can leave
 
     def run_exercise_hang(self):
         t = threading.currentThread()
@@ -292,8 +296,6 @@ class Workout():
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
-
-
 
     def assemble_message(self):
         """
