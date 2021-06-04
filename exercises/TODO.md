@@ -19,3 +19,4 @@ Open
 + Implement more exercises
 + Exercise 2 JSON
 + Add exercise finger numbers or which fingers
++ Make conjunction with hang detection configurable

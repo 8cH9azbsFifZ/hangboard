@@ -133,8 +133,8 @@
 			// Play sounds on start and stop of hang
 			if (parsed.HangStateChanged == true)
 			{
-				if (parsed.HangDetected == true) { sendStartHang(); }
-				if (parsed.HangDetected == false) { sendStopHang() ; }
+				if (parsed.HangDetected == true) { 	starthang.play() ; }
+				if (parsed.HangDetected == false) { stophang.play() ; }
 			}
 		}
 	</script>
