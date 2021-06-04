@@ -53,7 +53,9 @@ This is a brief design layout of the project.
 + Start the iOS App: `cd hangboardapp && yarn run ios`
 
 
-
+## Creating software documentation
++ Run doxygen `doxygen`
++ Check output in `html`
 
 # References
 * Website: https://8ch9azbsfifz.github.io/hangboard/
