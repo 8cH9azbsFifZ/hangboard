@@ -19,16 +19,15 @@ docker run --rm -it -p 4323:4323 gyroscope
 ## Debugging the websockets
 wscat -c "ws://10.101.40.40:4323/"
 
-
-
 # Setup 
 ## Wiring the Hardware
+| Raspi GPIO   | Module   | Module Pin |
+|--------------|----------|------------|
+| Pin 1 (3.3V) | MPU 6050 | VCC        |
+| Pin 3 (SDA)  | MPU 6050 | SDA        |
+| Pin 5 (SCL)  | MPU 6050 | SCL        |
+| Pin 6 (GND)  | MPU 6050 | GND        |
 
-Raspberry Pi	- MPU 6050
-Pin 1 (3.3V)	- VCC
-Pin 3 (SDA)	    - SDA
-Pin 5 (SCL)	    - SCL
-Pin 6 (GND)	    - GND
 
 ## Software
 Enable I2C I/O, load user space module and install I2C tools

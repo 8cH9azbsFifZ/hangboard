@@ -24,10 +24,12 @@ docker run --rm -it -p 4322:4322 force
 ![HX711 Fix](./doc/hx711_fix.png)
 
 ## Raspi Wiring - HX711
-3v3    - Vcc
-GPIO17 - DT
-GPIO27 - SCK
-![Raspi GPIO](./raspi_w_gpio.jpg)
+
+| Raspi GPIO | Module | Module Pin |
+|------------|--------|------------|
+| 3v3        | HX711  | Vcc        |
+| GPIO17     | HX711  | DT         |
+| GPIO27     | HX711  | SCK        |
 
 
 ## HX711 Wiring - Load Cell

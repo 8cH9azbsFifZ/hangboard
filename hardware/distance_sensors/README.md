@@ -2,15 +2,16 @@
 ![Sensor HC-SR04](./doc/71YRg95095L._SL1500_.jpg)
 
 # Hardware setup
+| Raspi GPIO      | Module   | Module Pin |
+|-----------------|----------|------------|
+| Pin 2 (VCC)     | HC-SR04  | VCC        |
+| Pin 6 (GND)     | HC-SR04  | GND        |
+| Pin 12 (GPIO18) | HC-SR04  | TRIG       |
+|                 | R1: 330Ω | ECHO       |
+| Pin 18 (GPIO24) | R1: 330Ω |            |
+|                 | R1: 330Ω | R2: 10kΩ   |
+| Pin6 (GND)      |          |  R2: 10kΩ  |
 
-HC-SR04 - Raspi
-VCC - Pin 2 (VCC)
-GND - Pin 6 (GND)
-TRIG - Pin 12 (GPIO18)
-ECHO - R1: 330Ω 
-R1: 330Ω  - Pin 18 (GPIO24) 
-R1: 330Ω -  R2: 10kΩ 
-R2: 10kΩ -  Pin6 (GND)
 
 ![Wiring with resistors, 3.3V on Raspi...](hardware/distance_sensors/doc/ultraschall_Steckplatine.png)
 
