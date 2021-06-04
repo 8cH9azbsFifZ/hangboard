@@ -1,8 +1,9 @@
 """
-Exercise Backend
+Exercise Backend:
+Containes all features for running a hangboard timer.
+It provides timer for exercises and sets, which can be controlled via websockets.
 """
 
-# Exercise Backend
 import time
 import json
 import argparse
@@ -76,8 +77,6 @@ class Workout():
         self.exercise_status = json.dumps({"WorkoutList": workout_array, "OneMessageOnly": True})
             #{"Exercise": name, "Duration": duration, "Counter": counter, "Completed": completed, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": self.run_set_thread.do_stop})
 
-
-
     def init_workout(self):
         """
         Initialize a new workout run
@@ -101,6 +100,10 @@ class Workout():
         self.exercise_completed = 0
         self.exercise_counter = 0
 
+        # Variable to check if ready or somebody hanging
+        self.exercise_ready_to_start = False
+        self.exercise_hanging = False
+
     async def consumer_handler(self, websocket, path): # TODO: https://www.w3schools.com/python/python_inheritance.asp
         """
         Handler for receicing commands 
@@ -123,12 +126,24 @@ class Workout():
             self.get_board()
         if (message == "ListWorkouts"): # TBD: Implement in webinterface
             self.list_workouts()
+        if (message == "StartHang"):
+            self.set_start_hang()
+        if (message == "StopHang"):
+            self.set_stop_hang()
+
+    def set_start_hang(self):
+        print ("Start to hang")
+        self.exercise_hanging = True
+
+    def set_stop_hang(self):
+        print ("Stopped to hang")
+        self.exercise_hanging = False
 
     def get_board(self):
         """
         Get the board configuration (STUB)
         """
-        self.holds_active = [] # FIXME
+        self.holds_active = [] # FIXME: get from board service
         self.holds_inactive = ["A1", "A7", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7"]
         self.exercise_status = json.dumps({"Exercise": "Pause", "Duration": 0, "Counter": 0, "Completed": 0, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": True})
 
@@ -201,26 +216,29 @@ class Workout():
                 print ("Stop this stuff")
                 return
 
-            # TBD: Implement a get ready
-            # TBD: Implement a start exercise signal
-            start_detected = 1
+            while not self.exercise_hanging:
+                print ("No hang yet")
+                time.sleep(0.1)
 
-            if (start_detected == 1):
-                if (name == "Hang"):
-                    self.run_exercise_hang()
-                elif (name == "Maximal Hang"):
-                    self.run_exercise_maximal_hang()
-                elif (name == "Assisted Pull Ups"):
-                    self.run_exercise_pull_ups()
-                else:
-                    print ("Key press?")
+            if (name == "Hang"):
+                self.run_exercise_hang()
+            elif (name == "Maximal Hang"):
+                self.run_exercise_maximal_hang()
+            elif (name == "Assisted Pull Ups"):
+                self.run_exercise_pull_ups()
+            else:
+                print ("Key press?")
 
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
 
-            self.run_exercise_pause()
+            while self.exercise_hanging:
+                print ("Still hanging around")
+                time.sleep(0.1)
 
+            self.run_exercise_pause()
+            self.exercise_ready_to_start = True # FIXME - can leave
 
     def run_exercise_hang(self):
         t = threading.currentThread()
@@ -234,9 +252,13 @@ class Workout():
 
 
         for self.exercise_counter in range (0, self.exercise_duration+1):
-            time.sleep (1)
+            time.sleep (1) # FIXME: smaller timer interval
             self.exercise_completed = int(self.exercise_counter / self.exercise_duration*100)
             self.assemble_message()
+
+            if (self.exercise_hanging == False): # of nobody hanging - quit
+                return
+
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
@@ -263,9 +285,15 @@ class Workout():
             time.sleep (1)
             self.exercise_completed = int(self.exercise_counter / self.exercise_duration*100)
             self.assemble_message()
+
+            if (self.exercise_hanging == True): # of somebody hanging - quit
+                return
+
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
+
+
 
     def assemble_message(self):
         """

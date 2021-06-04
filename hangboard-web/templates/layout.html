@@ -87,6 +87,18 @@
 		{
 			wsExercise.send ("ListHangboards");
 		}
+
+		function sendStartHang ()
+		{
+			wsExercise.send ("StartHang");
+			starthang.play() ;
+		}
+
+		function sendStopHang ()
+		{
+			wsExercise.send ("StopHang");
+			stophang.play() ;
+		}
 	</script>
 
 
@@ -121,20 +133,8 @@
 			// Play sounds on start and stop of hang
 			if (parsed.HangStateChanged == true)
 			{
-				if (parsed.HangDetected == true) { starthang.play() ; }
-				if (parsed.HangDetected == false) { stophang.play() ; }
-
-
-				// If a timer is running
-				if (timerstatus == false) // if a timer is running - stop it when released sensor // TODO : Implement a get ready for hang
-				{
-					console.log ("no timer running.")
-					if (parsed.HangDetected == false) {
-						sendStopSignal();
-					} else {
-						//sendStartSignal(); // TBD
-					}
-				}
+				if (parsed.HangDetected == true) { sendStartHang(); }
+				if (parsed.HangDetected == false) { sendStopHang() ; }
 			}
 		}
 	</script>
