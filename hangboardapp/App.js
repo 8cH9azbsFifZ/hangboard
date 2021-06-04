@@ -59,8 +59,10 @@ var SFXnine = new Sound('9.mp3', Sound.MAIN_BUNDLE);
 var SFXten = new Sound('10.mp3', Sound.MAIN_BUNDLE);
 var SFXdone = new Sound('done.mp3', Sound.MAIN_BUNDLE);
 var SFXfailed = new Sound('failed.mp3', Sound.MAIN_BUNDLE);
+var SFXready = new Sound('ready.mp3', Sound.MAIN_BUNDLE);
 var SFXstarthang = new Sound('starthang.mp3', Sound.MAIN_BUNDLE);
 var SFXstophang = new Sound('stophang.mp3', Sound.MAIN_BUNDLE);
+
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
