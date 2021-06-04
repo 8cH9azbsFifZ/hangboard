@@ -142,7 +142,7 @@ if __name__ == "__main__":
     """
     Main Task
     """
-    bb = Boards(boardname="zlagboard_evo")
+    bb = Boards(boardname="zlagboard_evo") # FIXME set dynamicalls
 
     
     bb.run_handler()
