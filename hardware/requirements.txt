@@ -1,6 +1,0 @@
-zmq
-websockets
-
-
-#hx711
-#RPi.GPIO
