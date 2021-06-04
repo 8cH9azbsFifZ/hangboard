@@ -1,14 +1,10 @@
-+ Implement Calibration for Gyroscope
-+ Implement Hang detection
 
++ start timer on hang
++ stop timer on no hang
++ automatic calibration on start
 
 + implement backend for current status
 + Implement Gyroscope Sensor Test
 
 
 
-# TODO 
-# initialize / calibrate
-# measure state
-# connect to websocket of exercise timer
-# send start / stop events to exercise timer
