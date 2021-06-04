@@ -16,6 +16,8 @@
 		var boardimagename = "";
 		var boardname = "";
 		var timerstatus = false; // Means timer is currently running
+		//var ServerName = "10.101.40.81";
+		var ServerName = "127.0.0.1";
 	</script>
 
 	<!-- Configure Server Name-->
@@ -34,11 +36,12 @@
 
 	<!-- Websocket to backend server -->
 	<script>
-		var wsExercise = new WebSocket("ws://127.0.0.1:4321/");
+		var wsExercise = new WebSocket("ws://" + ServerName + ":4321/");
 		var wsGyroscope = new WebSocket("ws://10.101.40.81:4323/");
 		//var wsGyroscope = new WebSocket("ws://" + ServerName + ":4323/");
 		var wsForce = new WebSocket("ws://10.101.40.40:4322/");
-		var wsBoard = new WebSocket("ws://10.101.40.81:4324/");
+		//var wsBoard = new WebSocket("ws://10.101.40.81:4324/");
+		var wsBoard = new WebSocket("ws://" + ServerName + ":4324/");
 
 		function sendStartSignal ()
 		{
