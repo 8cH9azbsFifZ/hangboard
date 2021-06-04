@@ -1,6 +1,4 @@
-"""
-Boards Backend
-"""
+"""! @brief Boards Backend with Doxygen comments."""
 
 import time
 import json
