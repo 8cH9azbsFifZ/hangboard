@@ -1,4 +1,5 @@
 # History
+- v0.29 - Integration of gyroscope and exercise timer with the backend-mesh (prototype)
 - v0.28 - Integration of hang detection with exercise timer
 - v0.27 - Get ready sound and stopping timer on no hang detected
 - v0.26 - Demonstrator iOS app with integrated gyroscope sensor and sound
