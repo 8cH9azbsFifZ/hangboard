@@ -302,7 +302,7 @@ class Gyroscope():
 			time.sleep(dt)
 			print ("t = %.1f angle = %.1f" %(tt, self.kalAngleX))
 
-		self.AngleX_Hang = self.kalAngleX
+		self.AngleX_Hang = self.kalAngleX # FIXME: sum of both angles - direction indenpendent?!
 
 		self.create_message()
 
