@@ -35,6 +35,11 @@ class Boards():
         asyncio.get_event_loop().run_until_complete(self.start_server)
         asyncio.get_event_loop().run_forever()
 
+    def list_boards(self):
+        print ("List all available boards")
+        # TBD: Implement
+
+
     def init_board (self):
         self.board_status = ""
         self.boardimage_base64 = ""
