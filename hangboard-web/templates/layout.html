@@ -35,7 +35,7 @@
 		var wsGyroscope = new WebSocket("ws://10.101.40.81:4323/");
 		//var wsGyroscope = new WebSocket("ws://" + ServerName + ":4323/");
 		var wsForce = new WebSocket("ws://10.101.40.40:4322/");
-		var wsBoard = new WebSocket("ws://10.101.40.40:4324/");
+		var wsBoard = new WebSocket("ws://10.101.40.81:4324/");
 
 		function sendStartSignal ()
 		{
@@ -94,8 +94,6 @@
 			$('.sensor-label').text("X: " + parsed.AngleX + " Y: " + parsed.AngleY 
 			+ " NoHang: " + parsed.AngleX_NoHang + " Hang: " + parsed.AngleX_Hang
 			+ " HangDetected: " + parsed.HangDetected + "HangStateChanged: " + parsed.HangStateChanged);
-
-
 
 
 			// Play sounds on start and stop of hang
