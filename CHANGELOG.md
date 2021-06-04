@@ -1,4 +1,5 @@
 # History
+- v0.26 - Demonstrator iOS app with integrated gyroscope sensor and sound
 - v0.25 - Prototype of gyroscrope integrated with web application working
 - v0.24 - iOS app: reconnection of websockets and websocket image transfer prototype 
 - v0.23 - 2nd demonstrator with iOS app
