@@ -3,7 +3,7 @@ This directory contains the hardware build instructions.
 
 
 # Sensors
-![Wiring](hardware/hangboard_wiring.png)
+![Wiring](hangboard_wiring.png)
 
 + Gyroscope Sensor: Look at README.md in gyroscope.
 + Force Sensors: Look at README.md in force_sensors.
