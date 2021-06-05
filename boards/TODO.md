@@ -1,10 +1,12 @@
 WIP
-+ Image from Backend - example: with test html
-+ TBD: transfer to frontend and include single holds
-+ Implement Command for getting the image (JSON commands)
++ Image from Backend - receiving works - TBD correct implementation including fixed fallback on frontend side
 
 
 Others
++ Dissection of SVG to PNG images with holds (automatic)
++ Implement Command for getting the image (JSON commands)
++ TBD: transfer image to frontend and include single holds
+
 + Add hold selection (other than hard coded)
 
 + Add Zlagboard Mini Layout
