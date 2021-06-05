@@ -68,6 +68,13 @@ class Gyroscope():
 		self.AngleX_Hang = 0		
 		self.HangDetected = False	
 		self.HangStateChanged = False
+		"""
+		Time for state changes in order to calculate the hang time
+		"""
+		self.TimeStateChangePrevious = 0
+		self.TimeStateChangeCurrent = 0
+		self.LastHangTime = 0
+		self.LastPauseTime = 0
 
 		# Start running the measurements
 		self._run_measure()
@@ -180,6 +187,14 @@ class Gyroscope():
 		else:
 			self.HangStateChanged = True
 
+			self.TimeStateChangePrevious = self.TimeStateChangeCurrent
+			self.TimeStateChangeCurrent = time.time()
+
+			if (self.HangDetected == True):
+				self.LastHangTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
+			else:
+				self.LastPauseTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
+
 		return self.HangDetected
 
 	def run_measure (self):
@@ -283,7 +298,8 @@ class Gyroscope():
 		"""
 		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
 		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang),
-		"HangDetected": self.HangDetected, "HangStateChanged": self.HangStateChanged 
+		"HangDetected": self.HangDetected, "HangStateChanged": self.HangStateChanged,
+		"LastHangTime": self.LastHangTime, "LastPauseTime": self.LastPauseTime
 		})
 
 
