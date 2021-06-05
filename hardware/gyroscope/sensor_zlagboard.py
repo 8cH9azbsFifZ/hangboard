@@ -356,7 +356,8 @@ class Gyroscope():
 		"""
 		while True:
 			#message = await producer()
-			await websocket.send(self.message)
+			if (self.HangStateChanged == True):
+				await websocket.send(self.message)
 			await asyncio.sleep(self.delay_sending) #new
 
 	async def consumer_handler(self, websocket, path):

@@ -34,6 +34,7 @@ async def gyroscope2exercise():
         async with websockets.connect(WS_GYROSCOPE) as ws_gyroscope:
             async for message in ws_gyroscope:
                 d = json.loads(message)
+                print (d)
                 if (d["HangStateChanged"] == True):
                     print ("State changed")
                     if (d["HangDetected"] == True):
