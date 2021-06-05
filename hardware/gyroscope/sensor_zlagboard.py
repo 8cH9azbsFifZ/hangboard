@@ -385,12 +385,6 @@ class Gyroscope():
 		self.run_measure_thread.do_stop = False
 		self.run_measure_thread.start()
 
-	# def _run_measure(self): # FIXME this can be merged with above code
-	# 	print ("Run thread measure")
-	# 	self.run_measure_thread = threading.Thread(target=self.measure_angle_extremum)
-	# 	self.run_measure_thread.do_stop = False
-	# 	self.run_measure_thread.start()
-
 	def _stop_measure(self):
 		"""
 		Stopping the measurement thread

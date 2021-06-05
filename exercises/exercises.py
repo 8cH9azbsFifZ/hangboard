@@ -89,6 +89,9 @@ class Workout():
         self.current_set = 0
         self.current_set_name = "Rest to start"
 
+        # Time increment for counter
+        self.exercise_dt = 0.1
+
         # Variables for the status of one exercise in a set / run
         self.exercise_duration = 0
         self.exercise_name = ""
