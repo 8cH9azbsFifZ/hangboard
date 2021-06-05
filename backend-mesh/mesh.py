@@ -1,3 +1,10 @@
+"""
+Backend mesh:
+Integration of the hangboard sensors with the exercise timer.
+This logic should not be implemented in the frontend...
+"""
+
+
 import time
 import json
 import argparse
