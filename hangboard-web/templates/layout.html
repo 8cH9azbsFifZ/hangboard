@@ -138,13 +138,13 @@
 				{ 	
 					starthang.play() ; 
 					document.getElementById("hang-detected").className = "alert alert-success"; 
-					$('.hang-detected-label').text("Hang"); 
+					$('.hang-detected-label').text("Hang detected"); 
 				}
 				if (parsed.HangDetected == false) 
 				{ 
 					stophang.play() ; 
 					document.getElementById("hang-detected").className = "alert alert-light"; 
-					$('.hang-detected-label').text("Pause"); 
+					$('.hang-detected-label').text("Pause detected"); 
 				}
 			}
 		}
