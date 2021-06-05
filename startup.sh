@@ -15,6 +15,7 @@ cd ..
 cd hardware/gyroscope
 #python3 -m pip install -r requirements.txt
 #python3 sensor_zlagboard.py --host 0.0.0.0 --port 4323 &
+#PID_GYROSCOPE=$!
 cd ../..
 
 
@@ -38,7 +39,8 @@ python3 -m pip install -r requirements.txt
 python3 main.py --host 0.0.0.0 --port 8080 
 cd ..
 
+# Terminate services
 kill $PID_MESH
 kill $PID_BOARDS
 kill $PID_EXERCISES
-
+#kill $PID_GYROSCOPE
