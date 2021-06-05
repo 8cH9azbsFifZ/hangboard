@@ -183,6 +183,21 @@
 
 			var completed = 0
 
+			if ("WorkoutName" in parsed)
+			{
+				$('.workout-label').text("Workout Name: " + parsed.WorkoutName);
+			}
+
+			if ("CurrentExercise" in parsed)
+			{
+				$('.current-exercise-label').text("Current Exercise: " + parsed.CurrentExercise + " " + parsed.CurrentExerciseCounter + " (s) - Current Rep: " + parsed.CurrentSetRep + " of " + parsed.CurrentSetRepTotal);
+			}
+
+			if ("CurrentSet" in parsed)
+			{
+				$('.current-set-label').text("Current Set: " + parsed.CurrentSet + " of " + parsed.TotalSets + " ");
+			}
+
 			if ("TimerStatus" in parsed)
 			{
 				completed = parsed.Completed;

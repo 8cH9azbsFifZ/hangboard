@@ -88,6 +88,8 @@ class Workout():
         self.total_sets = len (self.workout["Sets"])
         self.current_set = 0
         self.current_set_name = "Rest to start"
+        self.current_set_reps_total = 0
+        self.current_set_reps_current = 0
 
         # Time increment for counter
         self.exercise_dt = 0.1
@@ -148,7 +150,8 @@ class Workout():
         """
         self.holds_active = [] # FIXME: get from board service
         self.holds_inactive = ["A1", "A7", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7"]
-        self.exercise_status = json.dumps({"Exercise": "Pause", "Duration": 0, "Counter": 0, "Completed": 0, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": True})
+        #self.exercise_status = json.dumps({"Exercise": "Pause", "Duration": 0, "Counter": 0, "Completed": 0, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": True})
+        self.assemble_message()
 
     async def producer_handler(self, websocket, path):
         """
@@ -214,7 +217,10 @@ class Workout():
         pause_duration = e["Pause"]
         rest_to_start = e["Rest-to-Start"]
 
+        self.current_set_reps_total = reps_total
+
         for reps_counter in range (1, 1+reps_total):
+            self.current_set_reps_current = reps_counter
             if (getattr(t, "do_stop", False)):
                 print ("Stop this stuff")
                 return
@@ -299,7 +305,21 @@ class Workout():
         """
         Assemble a message of the current exercise and workout status
         """
-        self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": self.run_set_thread.do_stop})
+        if (hasattr(self, "run_set_thread")):
+            self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, 
+            "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, 
+            "BoardName": self.boardname, "BordImageName": self.boardimagename, 
+            "TimerStatus": self.run_set_thread.do_stop,
+            "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
+            "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
+            })
+        else:
+            self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, 
+            "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, 
+            "BoardName": self.boardname, "BordImageName": self.boardimagename, 
+            "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
+            "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
+            })
 
 if __name__ == "__main__":
     """
