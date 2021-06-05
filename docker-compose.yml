@@ -4,6 +4,10 @@ services:
     build: ./hangboard-web
     ports: ['8080:8080']
     restart: unless-stopped
+  mesh: # TBD
+    build: ./backend-mesh
+    #ports: [4321:4321]
+    restart: unless-stopped
   exercise:
     build: ./exercises
     ports: [4321:4321]
@@ -24,7 +28,7 @@ services:
     build: ./boards
     ports: [4324:4324]
     restart: unless-stopped
-  #distance:
+  #distance: # TBD
   #  build: ./hardware/distance_sensors
   #  ports: [4323:4323]
     #devices:
