@@ -26,12 +26,8 @@ cd ..
 # Mesh
 cd backend-mesh
 #python3 -m pip install -r requirements.txt
-python3 mesh.py --host 0.0.0.0 --port 4323 &
+python3 mesh.py --socket_exercise ws://127.0.0.1:4321  --socket_gyroscope ws://10.101.40.81:4323 &
 cd ..
-
-parser.add_argument ('--socket_exercise')
-parser.add_argument ('--socket_gyroscope')
-
 
 # Webinterface
 cd hangboard-web
