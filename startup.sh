@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ $1 eq "OSX"];
+then
+echo "OK"
+fi
 
 # Only for OSX
 python3 -m venv venv

@@ -7,6 +7,7 @@ services:
   mesh: # TBD
     build: ./backend-mesh
     #ports: [4321:4321]
+    command: python3 mesh.py --socket_exercise ws://exercise:4321  --socket_gyroscope ws://10.101.40.81:4323
     restart: unless-stopped
   exercise:
     build: ./exercises
@@ -18,10 +19,10 @@ services:
     restart: unless-stopped
     #devices:
     #  - /dev/gpiomem:/dev/gpiomem
-  gyroscope:
-    build: ./hardware/gyroscope
-    ports: [4323:4323]
-    restart: unless-stopped
+  #gyroscope:
+  #  build: ./hardware/gyroscope
+  #  ports: [4323:4323]
+  #  restart: unless-stopped
     #devices:
     #  - /dev/gpiomem:/dev/gpiomem    
   boards:

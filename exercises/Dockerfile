@@ -9,6 +9,7 @@ WORKDIR /app/boards
 COPY ./boards/* .
 
 WORKDIR /app/
+ADD workouts /app/workouts
 COPY * .
 
 CMD python3 exercises.py --host 0.0.0.0 --port 4321 
