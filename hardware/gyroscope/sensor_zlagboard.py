@@ -299,7 +299,7 @@ class Gyroscope():
 		self.message = json.dumps({"AngleX": "{:.2f}".format(self.kalAngleX), "AngleY": "{:.2f}".format(self.kalAngleY),
 		"AngleX_NoHang": "{:.2f}".format(self.AngleX_NoHang), "AngleX_Hang": "{:.2f}".format(self.AngleX_Hang),
 		"HangDetected": self.HangDetected, "HangStateChanged": self.HangStateChanged,
-		"LastHangTime": self.LastHangTime, "LastPauseTime": self.LastPauseTime
+		"LastHangTime": "{:.2f}".format(self.LastHangTime), "LastPauseTime": "{:.2f}".format(self.LastPauseTime)
 		})
 
 
