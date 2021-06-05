@@ -23,6 +23,16 @@ cd boards
 python3 boards.py --host 0.0.0.0 --port 4324 &
 cd ..
 
+# Mesh
+cd backend-mesh
+#python3 -m pip install -r requirements.txt
+python3 mesh.py --host 0.0.0.0 --port 4323 &
+cd ..
+
+parser.add_argument ('--socket_exercise')
+parser.add_argument ('--socket_gyroscope')
+
+
 # Webinterface
 cd hangboard-web
 #python3 -m pip install -r requirements.txt
