@@ -354,12 +354,12 @@ class Gyroscope():
 		""" 
 		Handler for websocket sending
 		"""
-		curtime = time.timer()
+		curtime = time.time()
 		prevtime = curtime
 		while True:
 			if (self.HangStateChanged == True):
 				await websocket.send(self.message)
-			curtime = time.timer()
+			curtime = time.time()
 			if (curtime - prevtime > 1):
 				prevtime = curtime
 				await websocket.send(self.message)
