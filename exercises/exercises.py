@@ -64,18 +64,13 @@ class Workout():
                 fn = os.path.join(self.workoutdir, filename)
                 with open(fn) as json_file:
                     data = json.load(json_file)
-                    #print (data)
-                    #workout = (data["Workouts"])
-                    #print (workout)
+
                     for workout in (data["Workouts"]):
-                    #    print ("ok")
                         print (workout["Name"], fn)
-                        #workout_array.append(workout["Name"])
                         workout_array.append({"Name": workout["Name"], "ID": workout["ID"]})
         print (workout_array)
         
         self.exercise_status = json.dumps({"WorkoutList": workout_array, "OneMessageOnly": True})
-            #{"Exercise": name, "Duration": duration, "Counter": counter, "Completed": completed, "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, "BoardName": self.boardname, "BordImageName": self.boardimagename, "TimerStatus": self.run_set_thread.do_stop})
 
     def init_workout(self):
         """
@@ -103,7 +98,7 @@ class Workout():
         # Variable to check if ready or somebody hanging
         self.exercise_hanging = False
 
-    async def consumer_handler(self, websocket, path): # TODO: https://www.w3schools.com/python/python_inheritance.asp
+    async def consumer_handler(self, websocket, path): 
         """
         Handler for receicing commands 
         """
