@@ -129,12 +129,23 @@
 			+ " NoHang: " + parsed.AngleX_NoHang + " Hang: " + parsed.AngleX_Hang
 			+ " HangDetected: " + parsed.HangDetected + "HangStateChanged: " + parsed.HangStateChanged);
 
+			$('.last-hang-label').text("Last Hang Time: " + parsed.LastHangTime + " (s)   Last Pause Time " + parsed.LastPauseTime + "(s)");
 
 			// Play sounds on start and stop of hang
 			if (parsed.HangStateChanged == true)
 			{
-				if (parsed.HangDetected == true) { 	starthang.play() ; }
-				if (parsed.HangDetected == false) { stophang.play() ; }
+				if (parsed.HangDetected == true) 
+				{ 	
+					starthang.play() ; 
+					document.getElementById("hang-detected").className = "alert alert-success"; 
+					$('.hang-detected-label').text("Hang"); 
+				}
+				if (parsed.HangDetected == false) 
+				{ 
+					stophang.play() ; 
+					document.getElementById("hang-detected").className = "alert alert-light"; 
+					$('.hang-detected-label').text("Pause"); 
+				}
 			}
 		}
 	</script>
