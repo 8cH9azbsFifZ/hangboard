@@ -38,10 +38,17 @@ async def gyroscope2exercise():
                     print ("State changed")
                     if (d["HangDetected"] == True):
                         print ("Hang detected")
-                        await ws_exercise.send("StartHang")
+                        try:
+                            await ws_exercise.send("StartHang")
+                        except asyncio.TimeoutError:
+                            print("Time's up!")
                     else:
                         print ("No Hang detected")
-                        await ws_exercise.send("StopHang")   
+                        try:
+                            await ws_exercise.send("StopHang")   
+                        except asyncio.TimeoutError:
+                            print("Time's up!")                   
 
 asyncio.get_event_loop().run_until_complete(gyroscope2exercise())
 asyncio.get_event_loop().run_forever()
+
