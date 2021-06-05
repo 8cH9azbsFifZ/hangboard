@@ -1,4 +1,5 @@
 # History
+- v0.30  Hang time display and fix lost websocket message by reducing send inerval in gyroscope to only on state changes
 - v0.29 - Integration of gyroscope and exercise timer with the backend-mesh (prototype)
 - v0.28 - Integration of hang detection with exercise timer
 - v0.27 - Get ready sound and stopping timer on no hang detected
