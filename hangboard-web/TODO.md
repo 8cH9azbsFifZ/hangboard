@@ -8,3 +8,4 @@
 + Skip Set Button
 + Restart button for exercise
 + Scale the image correctly
++ Switch to PNG? https://www.w3docs.com/snippets/css/how-to-position-one-image-on-top-of-another-in-html-css.html

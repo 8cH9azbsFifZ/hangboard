@@ -11,3 +11,4 @@
 
 + Ad Hoc WiFi with QR Code
 + Fix threading (sound problem with app?)
++ Multi User Frontend for one backend
