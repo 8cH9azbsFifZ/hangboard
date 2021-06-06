@@ -3,40 +3,41 @@
 
 
 	<!--- Progress Bar and Board with Holds-->
-	<div style="margin: 50px;">
+	<div id="MainView" style="margin: 50px;">
 
-
-		<div style="width: 30%;">
-			<div id="svgInlineDiv" style="width: 30%;"></div>
+		<!--- Workout Info -->
+		<div id="WorkoutInfo">
+			<span class="workout-label">Current Workout information</span><br/>
 		</div>
 
 
-
-
-
-
 		<!--- Exercise Info -->
-		<div class="alert alert-light" role="alert">
+		<div id="ExerciseInfo">
+			<span class="exercise-label">Exercise: </span>
+			<span class="current-exercise-label">Current Exercise information</span><br/>
+		</div>
+
+		<!--- Board Info -->
+		<div id="BoadInfo" style="width: 30%;">
+			<div id="svgInlineDiv" style="width: 30%;"></div>
+		</div>
+
+		<!-- Timer Info -->
+		<div id="TimerInfo">
 			<div class="progress" style="width: 75%;">
 				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 					<span class="progress-bar-label">0%</span>
 				</div>
 			</div>
-			<span class="exercise-label">Exercise: </span>
-			<span class="current-exercise-label">Current Exercise information</span><br/>
 		</div>
 
-		<!-- Performance information -->
-		<div>
+		<!-- Last Exercise Info -->
+		<div id="LastExerciseInfo">
 			<span class="last-hang-label">Last Hang: None</span>
-			<div id="hang-detected" class="alert alert-light" role="alert">
-				<span class="hang-detected-label">This will show whether a hang is detected.</span>
-			</div>
 		</div>
 
 
 		<div>
-			<span class="workout-label">Current Workout information</span><br/>
 			<span class="current-set-label">Current Set information</span><br/>
 		</div>
 

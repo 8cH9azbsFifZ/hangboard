@@ -90,13 +90,13 @@
 
 		function sendStartHang ()
 		{
-			wsExercise.send ("StartHang");
+			//wsExercise.send ("StartHang");
 			starthang.play() ;
 		}
 
 		function sendStopHang ()
 		{
-			wsExercise.send ("StopHang");
+			//wsExercise.send ("StopHang");
 			stophang.play() ;
 		}
 	</script>
@@ -137,14 +137,16 @@
 				if (parsed.HangDetected == true) 
 				{ 	
 					starthang.play() ; 
-					document.getElementById("hang-detected").className = "alert alert-success"; 
-					$('.hang-detected-label').text("Hang detected"); 
+					document.getElementById("MainView").style.backgroundColor = "greenyellow";
+					//document.getElementById("hang-detected").className = "alert alert-success"; 
+					//$('.hang-detected-label').text("Hang detected"); 
 				}
 				if (parsed.HangDetected == false) 
 				{ 
 					stophang.play() ; 
-					document.getElementById("hang-detected").className = "alert alert-light"; 
-					$('.hang-detected-label').text("Pause detected"); 
+					document.getElementById("MainView").style.backgroundColor = "red";
+					//document.getElementById("hang-detected").className = "alert alert-light"; 
+					//$('.hang-detected-label').text("Pause detected"); 
 				}
 			}
 		}
@@ -228,6 +230,8 @@
 						if (parsed.Exercise == "Pause")
 						{
 							ready.play();
+							// TBD: Ready for hang overwrite colors?
+							document.getElementById("MainView").style.backgroundColor = "dodgerblue";
 						}
 						else
 						{
