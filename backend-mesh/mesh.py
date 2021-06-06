@@ -39,12 +39,13 @@ async def gyroscope2exercise():
     the exercise timer.
     """
     print ("Link gyroscope hang detection to exercise timer")
-    async with websockets.connect(WS_EXERCISE, ping_interval=None) as ws_exercise: # Workaround 1006
-        async with websockets.connect(WS_GYROSCOPE, ping_interval=None) as ws_gyroscope: # Workaround 1006
-            async for message in ws_gyroscope:
-                d = json.loads(message)
-                print (d)
-                if (d["HangStateChanged"] == True):
+    #async with websockets.connect(WS_EXERCISE, ping_interval=None) as ws_exercise: # Workaround 1006
+    async with websockets.connect(WS_GYROSCOPE, ping_interval=None) as ws_gyroscope: # Workaround 1006
+        async for message in ws_gyroscope:
+            d = json.loads(message)
+            print (d)
+            if (d["HangStateChanged"] == True):
+                async with websockets.connect(WS_EXERCISE, ping_interval=None) as ws_exercise: # Workaround 1006
                     print ("State changed")
                     if (d["HangDetected"] == True):
                         print ("Hang detected")
@@ -58,11 +59,12 @@ async def gyroscope2exercise():
                             await ws_exercise.send("StopHang")   
                         except asyncio.TimeoutError: # Workaround 1006
                             print("Time's up!")   
-                await ws_gyroscope.recv() # Workaround 1006
-                await ws_exercise.recv() # Workaround 1006
-
-            await ws_exercise.recv() # Workaround 1006
+                ws_exercise.close() # Workaround 1006
             await ws_gyroscope.recv() # Workaround 1006
+            #await ws_exercise.recv() # Workaround 1006
+
+        #await ws_exercise.recv() # Workaround 1006
+        await ws_gyroscope.recv() # Workaround 1006
 
 
 asyncio.get_event_loop().run_until_complete(gyroscope2exercise())
