@@ -26,6 +26,10 @@ import { useState } from 'react';
 
 import AudioTest from "./AudioTest.web"; // FIXME
 
+import ImageBoard from "./board.png"; // FIXME
+import ImageA7 from "./A7.png"; 
+import ImageA1 from "./A1.png"; 
+
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
@@ -64,14 +68,9 @@ const App: () => Node = () => {
 
   const [myText, setMyText] = useState("My Original Text");// FIXME 
   const [myState, setMyState] = useState("");
-
-  const ImageBoard = require("./board.png"); // FIXME 
-  const ImageA1 = require("./A1.png");// FIXME 
-  const ImageA7 = require("./A7.png");// FIXME 
-  
+ 
   const [ImageHold1, SetImageHold1] = useState(ImageBoard);
   const [ImageHold2, SetImageHold2] = useState(ImageBoard);
-  //var ImageHold2 = ImageBoard;
 
   const TestImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
   const [ImageTest, SetImageTest] = useState(TestImage); // Test image
@@ -82,7 +81,6 @@ const App: () => Node = () => {
 
   wsGyroscope.onmessage = function(e) {
     if (typeof e.data === 'string') {
-      var mydata = e.data;
       console.log("Received: '" + e.data + "'");
     }
 
@@ -96,7 +94,6 @@ const App: () => Node = () => {
 
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
-      var mydata = e.data;
       console.log("Received: '" + e.data + "'");
     }
 
