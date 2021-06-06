@@ -56,13 +56,6 @@ const Section = ({children, title}): Node => {
 };
 
 
-const gz1: () => Node = () => {
-  return (
-    <Text>Test</Text>
-   )
-}
-
-
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -178,7 +171,7 @@ const App: () => Node = () => {
           </ImageBackground>
 
           <Section title="Backend Exercise">
-            <Text onPress = {() => gz1()}>
+            <Text>
               {myText}
             </Text>
           </Section>
