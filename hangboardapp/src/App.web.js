@@ -27,26 +27,10 @@ import { useState, useEffect } from 'react';
 //var Sound = require('react-native-web-sound');
 //Sound.setCategory('Playback');
 
-import soundfile from './done.mp3';
 import Sound from 'react-sound';
 
+import AudioTest from "./AudioTest.web";
 
-class AudioTest extends React.Component{
-
-  playAudio = () => {
-    new Audio(soundfile).play();
-  }
-
-  render() {
-    return (
-        <div>
-          <button onClick={this.playAudio}>PLAY AUDIO</button>
-        </div>
-    );
-  }
-}
-
-//export default AudioTest;
 
 /*
  
