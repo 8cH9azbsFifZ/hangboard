@@ -37,6 +37,7 @@ brew install cocoapods
 ```
 ## Add web support
 + Follow these instructions: https://medium.com/@aureliomerenda/create-a-native-web-app-with-react-native-web-419acac86b82
++ https://blog.bitsrc.io/learn-to-share-code-between-react-native-and-react-js-14065ce5b0c3
 
 ## Stay awake? 
 + Variant Expo - Does not compile as described [here](https://docs.expo.io/bare/installing-unimodules/) and [here](https://www.npmjs.com/package/expo-keep-awake).

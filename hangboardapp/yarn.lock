@@ -6192,6 +6192,11 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
   integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
+howler@^2.1.3, howler@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/howler/-/howler-2.2.1.tgz#a521a9b495841e8bb9aa12e651bebba0affc179e"
+  integrity sha512-0iIXvuBO/81CcrQ/HSSweYmbT50fT2mIc9XMFb+kxIfk2pW/iKzDbX1n3fZmDXMEIpYvyyfrB+gXwPYSDqUxIQ==
+
 hpack.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/hpack.js/-/hpack.js-2.1.6.tgz#87774c0949e513f42e84575b3c45681fade2a0b2"
@@ -10050,7 +10055,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.0, prop-types@^15.7.2:
+prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -10302,6 +10307,13 @@ react-native-sound@^0.11.0:
   resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.11.0.tgz#ad60b55ba8c6dc89917f381ad3713f2738de530f"
   integrity sha512-4bGAZfni6E2L695NQjOZwNLBQGXgBGYC4Sy+h99K5h0HqNZjCqR0+aLel+ezASxEJDpaH83gylNObXpiqJgdwg==
 
+react-native-web-sound@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-web-sound/-/react-native-web-sound-0.1.1.tgz#ca81a9919b46f6f2f0b1fc95292b591fb0986866"
+  integrity sha512-q7MePluGoDEDIzzwESBBdt2k+5/NHyu8+HpsdKWnhqulPfOm6wSH9N67NgYmIkRXlhhYpZUbVC6Ujg26YUzN9g==
+  dependencies:
+    howler "^2.2.1"
+
 react-native-web@^0.16.3:
   version "0.16.3"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.16.3.tgz#98a846b3ff83c694c4cc967d5e4504640b7abb19"
@@ -10438,6 +10450,14 @@ react-shallow-renderer@^16.13.1:
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0"
+
+react-sound@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-sound/-/react-sound-1.2.0.tgz#1bb7e1ec8494ecc57b03dbdecd1496b10f6541f2"
+  integrity sha512-pc2l8f7Oy3VePRRVesBwSSJ0mrCeD/lE5GVCT1RPdEQ7lgbZTDyWI8HokXHmS1v79aiLnd3WTRhfsBAY0NTb8g==
+  dependencies:
+    prop-types "^15.5.7"
+    soundmanager2 "^2.97.20170602"
 
 react-test-renderer@17.0.1:
   version "17.0.1"
@@ -11316,6 +11336,11 @@ sort-keys@^1.0.0:
   integrity sha1-RBttTTRnmPG05J6JIK37oOVD+a0=
   dependencies:
     is-plain-obj "^1.0.0"
+
+soundmanager2@^2.97.20170602:
+  version "2.97.20170602"
+  resolved "https://registry.yarnpkg.com/soundmanager2/-/soundmanager2-2.97.20170602.tgz#fe3bc731bfc4d54c1364e71980263e6816981879"
+  integrity sha512-2ee7ES9SJ++WkD7PGHMeT4QUuJr7uC3wacD6RoCDlKjdSp9lpEOaKm3lKWKld119DLILjS2l9U6xpXJN6U0KPQ==
 
 source-list-map@^2.0.0:
   version "2.0.1"
@@ -12251,6 +12276,13 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-sound@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/use-sound/-/use-sound-4.0.0.tgz#45d5f1f4552a38b377d37def3a6458b44dfd5ea6"
+  integrity sha512-2KP2d7MerJSEeRy6BSUJ9fZ2mjhMvSS9GT8DJJmcGwXuf0N+mx5kYGBXZTGYIP6xuuU55N/0az2sbrr0/PXCkA==
+  dependencies:
+    howler "^2.1.3"
 
 use-subscription@^1.0.0:
   version "1.5.1"

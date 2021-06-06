@@ -21,12 +21,32 @@ import {
   ImageBackground
 } from 'react-native';
 
-import KeepAwake from 'react-native-keep-awake';
+import { useState, useEffect } from 'react';
+//import useSound from 'use-sound';
+
+//var Sound = require('react-native-web-sound');
+//Sound.setCategory('Playback');
+
+import soundfile from './done.mp3';
+import Sound from 'react-sound';
 
 
-import { useState } from 'react';
-import 'react-native-sound';
-var Sound = require('react-native-sound');
+class AudioTest extends React.Component{
+
+  playAudio = () => {
+    new Audio(soundfile).play();
+  }
+
+  render() {
+    return (
+        <div>
+          <button onClick={this.playAudio}>PLAY AUDIO</button>
+        </div>
+    );
+  }
+}
+
+//export default AudioTest;
 
 /*
  
@@ -37,9 +57,10 @@ var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
 var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
 var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
 
-Sound.setCategory('Playback');
-
-var SFXone = new Sound('1.mp3', Sound.MAIN_BUNDLE);
+/*
+import SFXone from './1.mp3';
+// cf: https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/
+//var SFXone = new Sound('1.mp3', Sound.MAIN_BUNDLE);
 var SFXtwo = new Sound('2.mp3', Sound.MAIN_BUNDLE);
 var SFXthree = new Sound('3.mp3', Sound.MAIN_BUNDLE);
 var SFXfour = new Sound('4.mp3', Sound.MAIN_BUNDLE);
@@ -49,12 +70,25 @@ var SFXseven = new Sound('7.mp3', Sound.MAIN_BUNDLE);
 var SFXeight = new Sound('8.mp3', Sound.MAIN_BUNDLE);
 var SFXnine = new Sound('9.mp3', Sound.MAIN_BUNDLE);
 var SFXten = new Sound('10.mp3', Sound.MAIN_BUNDLE);
-var SFXdone = new Sound('done.mp3', Sound.MAIN_BUNDLE);
+*/
+//var SFXdone = Sound('done.mp3', Sound.MAIN_BUNDLE);
+/*
 var SFXfailed = new Sound('failed.mp3', Sound.MAIN_BUNDLE);
 var SFXready = new Sound('ready.mp3', Sound.MAIN_BUNDLE);
 var SFXstarthang = new Sound('starthang.mp3', Sound.MAIN_BUNDLE);
 var SFXstophang = new Sound('stophang.mp3', Sound.MAIN_BUNDLE);
+*/
+//import SFXdone from './1.mp3';
 
+/*
+alert = (tSc) => {
+  this.myRef = React.createRef();
+  if(tSc === timerStates.COMPLETE)
+   return (
+    <audio ref={this.myRef} src={soundfile} autoPlay/>
+   )
+ }
+*/
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -77,9 +111,15 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
-  KeepAwake.activate();
 
+const gz1: () => Node = () => {
+  return (
+    <Text>Test</Text>
+   )
+}
+
+
+const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -99,27 +139,33 @@ const App: () => Node = () => {
 
   const [ImageTest, SetImageTest] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='); // Test image
 
+  //const [SFXdonePlay] = useSound(SFXdone);
+
   clientBoard.onmessage = function(e) {
     SetImageTest('data:image/png;base64,' + e.data);
   }
 
   wsGyroscope.onmessage = function(e) {
     if (typeof e.data === 'string') {
-      mydata = e.data;
+      var mydata = e.data;
       console.log("Received: '" + e.data + "'");
     }
 
     var parsed = JSON.parse(e.data);
     if (parsed.HangStateChanged == true)
     {
-      if (parsed.HangDetected == true) { SFXstarthang.play() ; }
-      if (parsed.HangDetected == false) { SFXstophang.play() ; }
+      //if (parsed.HangDetected == true) { SFXstarthang.play() ; }
+      //if (parsed.HangDetected == false) { SFXstophang.play() ; }
     }
   }
 
+  var done = new Audio('./done.mp3');
+
+
+
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
-      mydata = e.data;
+      var mydata = e.data;
       console.log("Received: '" + e.data + "'");
     }
 
@@ -139,7 +185,7 @@ const App: () => Node = () => {
 
     if (parsed.TimerStatus == false)
     {
-      if (togo == 10) { SFXten.play(); } 
+    /*  if (togo == 10) { SFXten.play(); } 
       if (togo == 9) { SFXnine.play(); } 
       if (togo == 8) { SFXeight.play(); } 
       if (togo == 7) { SFXseven.play(); } 
@@ -148,8 +194,8 @@ const App: () => Node = () => {
       if (togo == 4) { SFXfour.play(); } 
       if (togo == 3) { SFXthree.play(); } 
       if (togo == 2) { SFXtwo.play(); } 
-      if (togo == 1) { SFXone.play(); } 
-      if (togo == 0) { SFXdone.play(); } 
+      if (togo == 1) { SFXone.play(); } */
+      //if (togo == 0) { SFXdone.play(); } 
     }
     
   }; 
@@ -166,9 +212,17 @@ const App: () => Node = () => {
     client.send("Stop");
   }
 
-  
+  let audio = new Audio("./done.mp3");
+
+  const startit = () => {
+    audio.play();
+  }
+
+ 
+
   return (
-    
+ 
+
     <SafeAreaView style={backgroundStyle}>
      
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -186,7 +240,7 @@ const App: () => Node = () => {
           </ImageBackground>
 
           <Section title="Backend Exercise">
-            <Text onPress = {() => SFXdone.play()}>
+            <Text onPress = {() => gz1()}>
               {myText}
             </Text>
           </Section>
@@ -198,10 +252,10 @@ const App: () => Node = () => {
           <Section title="Parsed">
             <Text>
               {myState.Duration}
+              <button onClick={startit}>Play</button>
+<AudioTest/>
             </Text>
-          </Section>
-
-        
+          </Section>        
         </View>
 
         <View >
