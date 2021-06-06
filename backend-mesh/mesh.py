@@ -28,6 +28,9 @@ WS_GYROSCOPE = args.socket_gyroscope
 TO be fixed:
 websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
 ...
+All pieces marked with "# Workaround 1006" contain a part of the proposed solutions
+cf. https://stackoverflow.com/questions/54101923/1006-connection-closed-abnormally-error-with-python-3-7-websockets
+
 """
 
 async def gyroscope2exercise():
@@ -36,8 +39,8 @@ async def gyroscope2exercise():
     the exercise timer.
     """
     print ("Link gyroscope hang detection to exercise timer")
-    async with websockets.connect(WS_EXERCISE, ping_interval=None) as ws_exercise:
-        async with websockets.connect(WS_GYROSCOPE, ping_interval=None) as ws_gyroscope:
+    async with websockets.connect(WS_EXERCISE, ping_interval=None) as ws_exercise: # Workaround 1006
+        async with websockets.connect(WS_GYROSCOPE, ping_interval=None) as ws_gyroscope: # Workaround 1006
             async for message in ws_gyroscope:
                 d = json.loads(message)
                 print (d)
@@ -45,17 +48,21 @@ async def gyroscope2exercise():
                     print ("State changed")
                     if (d["HangDetected"] == True):
                         print ("Hang detected")
-                        try: # 1006 error in pyhton websockets, cf. https://stackoverflow.com/questions/54101923/1006-connection-closed-abnormally-error-with-python-3-7-websockets
+                        try: # Workaround 1006
                             await ws_exercise.send("StartHang")
-                        except asyncio.TimeoutError:
+                        except asyncio.TimeoutError: # Workaround 1006
                             print("Time's up!")
                     else:
                         print ("No Hang detected")
-                        try:
+                        try: # Workaround 1006
                             await ws_exercise.send("StopHang")   
-                        except asyncio.TimeoutError:
+                        except asyncio.TimeoutError: # Workaround 1006
                             print("Time's up!")   
-                resp = await ws_gyroscope.recv() # cf. 1006 error
+                await ws_gyroscope.recv() # Workaround 1006
+                await ws_exercise.recv() # Workaround 1006
+
+            await ws_exercise.recv() # Workaround 1006
+            await ws_gyroscope.recv() # Workaround 1006
 
 
 asyncio.get_event_loop().run_until_complete(gyroscope2exercise())
