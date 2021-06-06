@@ -24,8 +24,7 @@ import {
 import { useState } from 'react';
 
 
-import AudioTest from "./AudioTest.web";
-
+import AudioTest from "./AudioTest.web"; // FIXME
 
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
@@ -74,7 +73,8 @@ const App: () => Node = () => {
   const [ImageHold2, SetImageHold2] = useState(ImageBoard);
   //var ImageHold2 = ImageBoard;
 
-  const [ImageTest, SetImageTest] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='); // Test image
+  const TestImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
+  const [ImageTest, SetImageTest] = useState(TestImage); // Test image
 
   clientBoard.onmessage = function(e) {
     SetImageTest('data:image/png;base64,' + e.data);
@@ -89,7 +89,7 @@ const App: () => Node = () => {
     var parsed = JSON.parse(e.data);
     if (parsed.HangStateChanged == true)
     {
-      //if (parsed.HangDetected == true) { SFXstarthang.play() ; }
+      //if (parsed.HangDetected == true) { SFXstarthang.play() ; } // FIXME
       //if (parsed.HangDetected == false) { SFXstophang.play() ; }
     }
   }
@@ -143,12 +143,6 @@ const App: () => Node = () => {
     client.send("Stop");
   }
 
-  let audio = new Audio("./done.mp3");
-
-  const startit = () => {
-    audio.play();
-  }
-
  
 
   return (
@@ -164,7 +158,7 @@ const App: () => Node = () => {
         <View
           style={{
           }}>
-          <ImageBackground source={require('./board.png')} style={{flex:1, height: 200, width: undefined}} resizeMode="contain"> 
+          <ImageBackground source={ImageBoard} style={{flex:1, height: 200, width: undefined}} resizeMode="contain"> 
                <ImageBackground source={ImageHold1} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain">
                 <ImageBackground source={ImageHold2} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain"/>     
               </ImageBackground>

@@ -18,7 +18,7 @@ import SFXstophang from './sounds/stophang.mp3';
 
 
 
-class AudioTest extends React.Component{
+class AudioTest extends React.Component{ // TBD: Parameter passing
 
     playAudio = () => {
       new Audio(SFXstarthang).play();
