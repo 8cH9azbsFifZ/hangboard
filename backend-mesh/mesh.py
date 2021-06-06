@@ -24,6 +24,12 @@ WS_EXERCISE = args.socket_exercise
 WS_GYROSCOPE = args.socket_gyroscope 
 
 
+"""
+TO be fixed:
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+...
+"""
+
 async def gyroscope2exercise():
     """
     If a hang is detected with the gyroscope sensor it shall send an event to 

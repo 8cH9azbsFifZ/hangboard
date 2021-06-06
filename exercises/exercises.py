@@ -226,7 +226,7 @@ class Workout():
                 return
 
             while not self.exercise_hanging:
-                print ("No hang yet")
+                #print ("No hang yet")
                 time.sleep(0.1)
 
             if (name == "Hang"):
@@ -243,7 +243,7 @@ class Workout():
                 return
 
             while self.exercise_hanging:
-                print ("Still hanging around")
+                #print ("Still hanging around")
                 time.sleep(0.1)
 
             self.run_exercise_pause()
