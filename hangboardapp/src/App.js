@@ -21,14 +21,6 @@ import {
   ImageBackground
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
 import KeepAwake from 'react-native-keep-awake';
 
 
@@ -70,10 +62,6 @@ const Section = ({children, title}): Node => {
     <View style={styles.sectionContainer}>
       <Text
         style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
         ]}>
         {title}
       </Text>
@@ -81,7 +69,6 @@ const Section = ({children, title}): Node => {
         style={[
           styles.sectionDescription,
           {
-            color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
         {children}
@@ -96,7 +83,7 @@ const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+
   };
 
   const [myText, setMyText] = useState("My Original Text");// FIXME 
@@ -191,7 +178,6 @@ const App: () => Node = () => {
 
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <ImageBackground source={require('./board.png')} style={{flex:1, height: 200, width: undefined}} resizeMode="contain"> 
                <ImageBackground source={ImageHold1} style={{flex:1, top:0, height: 200, width: undefined}} resizeMode="contain">

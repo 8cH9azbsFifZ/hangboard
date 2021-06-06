@@ -35,6 +35,8 @@ npx react-native init hangboardapp
 brew install yarn
 brew install cocoapods
 ```
+## Add web support
++ Follow these instructions: https://medium.com/@aureliomerenda/create-a-native-web-app-with-react-native-web-419acac86b82
 
 ## Stay awake? 
 + Variant Expo - Does not compile as described [here](https://docs.expo.io/bare/installing-unimodules/) and [here](https://www.npmjs.com/package/expo-keep-awake).
