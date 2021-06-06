@@ -21,58 +21,18 @@ import {
   ImageBackground
 } from 'react-native';
 
-import { useState, useEffect } from 'react';
-//import useSound from 'use-sound';
+import { useState } from 'react';
 
-//var Sound = require('react-native-web-sound');
-//Sound.setCategory('Playback');
-
-import Sound from 'react-sound';
 
 import AudioTest from "./AudioTest.web";
 
 
-/*
- 
-*/
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
 var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
 var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
 
-/*
-import SFXone from './1.mp3';
-// cf: https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/
-//var SFXone = new Sound('1.mp3', Sound.MAIN_BUNDLE);
-var SFXtwo = new Sound('2.mp3', Sound.MAIN_BUNDLE);
-var SFXthree = new Sound('3.mp3', Sound.MAIN_BUNDLE);
-var SFXfour = new Sound('4.mp3', Sound.MAIN_BUNDLE);
-var SFXfive = new Sound('5.mp3', Sound.MAIN_BUNDLE);
-var SFXsix = new Sound('6.mp3', Sound.MAIN_BUNDLE);
-var SFXseven = new Sound('7.mp3', Sound.MAIN_BUNDLE);
-var SFXeight = new Sound('8.mp3', Sound.MAIN_BUNDLE);
-var SFXnine = new Sound('9.mp3', Sound.MAIN_BUNDLE);
-var SFXten = new Sound('10.mp3', Sound.MAIN_BUNDLE);
-*/
-//var SFXdone = Sound('done.mp3', Sound.MAIN_BUNDLE);
-/*
-var SFXfailed = new Sound('failed.mp3', Sound.MAIN_BUNDLE);
-var SFXready = new Sound('ready.mp3', Sound.MAIN_BUNDLE);
-var SFXstarthang = new Sound('starthang.mp3', Sound.MAIN_BUNDLE);
-var SFXstophang = new Sound('stophang.mp3', Sound.MAIN_BUNDLE);
-*/
-//import SFXdone from './1.mp3';
-
-/*
-alert = (tSc) => {
-  this.myRef = React.createRef();
-  if(tSc === timerStates.COMPLETE)
-   return (
-    <audio ref={this.myRef} src={soundfile} autoPlay/>
-   )
- }
-*/
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -123,8 +83,6 @@ const App: () => Node = () => {
 
   const [ImageTest, SetImageTest] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='); // Test image
 
-  //const [SFXdonePlay] = useSound(SFXdone);
-
   clientBoard.onmessage = function(e) {
     SetImageTest('data:image/png;base64,' + e.data);
   }
@@ -142,10 +100,6 @@ const App: () => Node = () => {
       //if (parsed.HangDetected == false) { SFXstophang.play() ; }
     }
   }
-
-  var done = new Audio('./done.mp3');
-
-
 
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
@@ -236,8 +190,7 @@ const App: () => Node = () => {
           <Section title="Parsed">
             <Text>
               {myState.Duration}
-              <button onClick={startit}>Play</button>
-<AudioTest/>
+              <AudioTest effect="SFXone"/>
             </Text>
           </Section>        
         </View>
