@@ -16,7 +16,13 @@ import SFXready from './sounds/ready.mp3';
 import SFXstarthang from './sounds/starthang.mp3';
 import SFXstophang from './sounds/stophang.mp3';
 
-
+/*
+const AudioTest1 = ({effect}): Node => {
+    playAudio = () => {
+        new Audio({effect}).play();
+    }
+};
+*/
 
 class AudioTest extends React.Component{ // TBD: Parameter passing
 
@@ -31,6 +37,6 @@ class AudioTest extends React.Component{ // TBD: Parameter passing
           </div>
       );
     }
-  }
+  };
   
 export default AudioTest;
