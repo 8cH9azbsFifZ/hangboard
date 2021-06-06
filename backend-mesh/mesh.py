@@ -30,8 +30,8 @@ async def gyroscope2exercise():
     the exercise timer.
     """
     print ("Link gyroscope hang detection to exercise timer")
-    async with websockets.connect(WS_EXERCISE) as ws_exercise:
-        async with websockets.connect(WS_GYROSCOPE) as ws_gyroscope:
+    async with websockets.connect(WS_EXERCISE, ping_interval=None) as ws_exercise:
+        async with websockets.connect(WS_GYROSCOPE, ping_interval=None) as ws_gyroscope:
             async for message in ws_gyroscope:
                 d = json.loads(message)
                 print (d)
@@ -39,7 +39,7 @@ async def gyroscope2exercise():
                     print ("State changed")
                     if (d["HangDetected"] == True):
                         print ("Hang detected")
-                        try:
+                        try: # 1006 error in pyhton websockets, cf. https://stackoverflow.com/questions/54101923/1006-connection-closed-abnormally-error-with-python-3-7-websockets
                             await ws_exercise.send("StartHang")
                         except asyncio.TimeoutError:
                             print("Time's up!")
@@ -48,7 +48,9 @@ async def gyroscope2exercise():
                         try:
                             await ws_exercise.send("StopHang")   
                         except asyncio.TimeoutError:
-                            print("Time's up!")                   
+                            print("Time's up!")   
+                resp = await ws_gyroscope.recv() # cf. 1006 error
+
 
 asyncio.get_event_loop().run_until_complete(gyroscope2exercise())
 asyncio.get_event_loop().run_forever()
