@@ -1,0 +1,2 @@
+
+KeepAwake.activate();
