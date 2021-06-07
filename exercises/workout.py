@@ -42,6 +42,9 @@ SIGNAL_BOARD = 'Board'
 
 
 class Workout():
+    """
+    All stuff for handling workouts containing sets of exercises.
+    """
     def __init__(self, workoutfile="./workouts/workout-test.json"):
         self.select_workout(workoutfile)
         self.exercise_status = "Status"
@@ -152,6 +155,9 @@ class Workout():
         dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps(self.workout["Sets"][self.current_set]))
 
 class PauseTimer(threading.Thread):
+    """
+    All stuff for running a pause timer.
+    """
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1):
         super(PauseTimer,self).__init__()
         self.target = target
@@ -212,6 +218,9 @@ class PauseTimer(threading.Thread):
         return (msg)
 
 class ExerciseTimer(threading.Thread):
+    """
+    All stuff for running an exercise timer.
+    """
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1):
         super(ExerciseTimer,self).__init__()
         self.target = target
@@ -284,6 +293,9 @@ class ExerciseTimer(threading.Thread):
 
                 
 class Messager(threading.Thread):
+    """
+    All stuff for sending the data created in this file using websockets to the frontends.
+    """
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
         super(Messager,self).__init__()
         self.target = target
@@ -307,6 +319,9 @@ class Messager(threading.Thread):
         logging.debug('Messager: Signal detected with ' + str(message) )
 
 class Board(threading.Thread):
+    """
+    All stuff for handling hangboard configurations.
+    """
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, boardname = "zlagboard_evo"):
         super(Board,self).__init__()
         self.target = target
@@ -330,6 +345,9 @@ class Board(threading.Thread):
         logging.debug('Board: Signal detected with ' + str(message) )
 
 class AsciiBoard(threading.Thread):
+    """
+    All stuff for handling an ASCII output of the current hangboard configuration.
+    """
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
         super(AsciiBoard,self).__init__()
         self.target = target
@@ -377,6 +395,9 @@ class AsciiBoard(threading.Thread):
         print (self.board)
 
 
+"""
+The main loop is used for testing currently.
+"""
 if __name__ == "__main__":
     mm = Messager()
     mm.start()
