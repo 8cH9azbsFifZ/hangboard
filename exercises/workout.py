@@ -1,17 +1,38 @@
+"""
+This is the new thread based implementation of the classes.
+Lessons learned: Microservices are fine, but nanoservices not :)
+"""
+
 import json
 import os
 import time
-import threading
-from tabulate import tabulate
 
-from pydispatch import dispatcher
-
+"""
+Implement logging with debug level from start on now :)
+"""
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='(%(threadName)-10s) %(message)s',
                     )
 
-# Signals for communication
+
+import threading
+"""
+Use threading for threads
+"""
+from tabulate import tabulate 
+""" 
+Use tabulate for an ASCII Hanboard display for debugging purposes
+"""
+
+from pydispatch import dispatcher
+"""
+Use pydispatch and signals to transfer JSON data between the threads.
+"""
+
+"""
+Signals for communication
+"""
 SIGNAL_WORKOUT = 'SignalWorkout'
 SIGNAL_MESSAGER = 'SignalMessager'
 SIGNAL_EXERCISETIMER = 'SignalExerciseTimer'
@@ -21,8 +42,8 @@ SIGNAL_BOARD = 'Board'
 
 
 class Workout():
-    def __init__(self):
-        self.select_workout("./workouts/workout-test.json")
+    def __init__(self, workoutfile="./workouts/workout-test.json"):
+        self.select_workout(workoutfile)
         self.exercise_status = "Status"
         self.workout_number = 0
         self.workout = (self.data["Workouts"][self.workout_number])
