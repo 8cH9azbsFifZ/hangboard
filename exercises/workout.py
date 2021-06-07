@@ -46,7 +46,7 @@ class Workout():
             self.data = json.load(json_file)
 
     def list_workouts(self):
-        print ("List workouts")
+        logging.debug("List workouts")
         self.workoutdir = "./workouts"
         workout_array = []
         
@@ -83,11 +83,11 @@ class Workout():
             self.run_set()
 
     def run_exercise_maximal_hang(self):
-        print ("Run a maximal hang time exercise")
+        logging.debug("Run a maximal hang time exercise")
         # TBD Implement
 
     def run_exercise_pull_ups(self):
-        print ("Run a pull ups exercise")
+        logging.debug("Run a pull ups exercise")
         # TBD Implement
 
     def __get_current_set(self):
@@ -114,7 +114,7 @@ class Workout():
         self.rep_current = 0
         for self.rep_current in range (0, self.reps):
             self.__get_current_set()
-            print (self.rep_current)
+            #print (self.rep_current)
             self.run_rest_to_start()
             dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps(self.workout["Sets"][self.current_set]))
             dispatcher.send( signal=SIGNAL_PAUSETIMER, message=self.pause)
@@ -212,7 +212,7 @@ class ExerciseTimer(threading.Thread):
     def assemble_message_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
             "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
-        logging.debug(msg)
+        #logging.debug(msg)
         return (msg)
 
     def handle_signal (self, message):
@@ -250,74 +250,6 @@ class ExerciseTimer(threading.Thread):
             if (self.do_stop == True):
                 return
 
-class ExerciseTimer(threading.Thread):
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
-        super(ExerciseTimer,self).__init__()
-        self.target = target
-        self.name = name
-        self.do_stop = False
-        self.daemon = True
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_EXERCISETIMER, sender=dispatcher.Any )
-
-        # Time increment for counter in an exercise
-        self.exercise_dt = 0.1
-        self.exercise_t0 = 0
-        self.exercise_t1 = 10
-        self.exercise_t = 0
-        self.exercise_rest = 10
-        self.exercise_completed = 0
-
-    def stop(self):
-        self.do_stop = True
-        logging.debug ("Try to stop")
-
-    def run(self):
-        while True:
-            if (self.do_stop == True):
-                return
-            time.sleep(1)
-        return
-
-    def assemble_message_timerstatus(self):
-        msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
-            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
-        logging.debug(msg)
-        return (msg)
-
-    def handle_signal (self, message):
-        logging.debug('ExerciseTimer: Signal detected with ' + str(message) )
-
-        logging.debug('Get current set')
-        msg = json.loads(str(message))
-
-        self.exercise = msg["Exercise"]
-        self.rest_to_start = msg["Rest-to-Start"]
-        self.pause = msg["Pause"]
-        self.reps = msg["Reps"]
-        self.type = msg["Type"]
-        self.left = msg["Left"]
-        self.right = msg["Right"]
-        self.counter = msg["Counter"]
-
-        self.run_exercise()
-
-    def run_exercise(self): 
-        logging.debug('Run exercise')
-
-        self.exercise_t0 = 0
-        self.exercise_t1 = self.counter
-        self.exercise_t = 0
-        self.exercise_rest = self.counter
-        self.exercise_completed = 0
-
-        while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
-            #time.sleep (self.exercise_dt)
-            self.exercise_t = self.exercise_t + self.exercise_dt
-            self.exercise_rest = self.exercise_t1 - self.exercise_t
-            self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
-            self.assemble_message_timerstatus()
-            if (self.do_stop == True):
-                return
                 
 class Messager(threading.Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
@@ -349,12 +281,7 @@ if __name__ == "__main__":
     mm.start()
     ex = ExerciseTimer()
     ex.start()
-    wa = Workout()
     pa = PauseTimer()
     pa.start()
-    #wa.run_test()
-    #wa.list_workouts()
-    #wa.show_workout()
-    #wa.show_set()
-    #wa.show_exercise()
+    wa = Workout()
     wa.run_set()
