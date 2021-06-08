@@ -69,7 +69,7 @@ class Messager():
         #    time.sleep(self.sampling_interval)
         #return
 
-    def handle_signal (self, message):
+    async def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
         await self.start_server.send(message)
 
