@@ -9,8 +9,8 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 
-import threading
 from pydispatch import dispatcher
+from aio_pydispatch import Signal
 
 import time
 import asyncio
@@ -31,30 +31,43 @@ SIGNAL_ASCIIBOARD = 'AsciiBoard'
 SIGNAL_BOARD = 'Board'
 SIGNAL_ZLAGBOARD = "SignalZlagboard"
 
+SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
 
-class Messager(threading.Thread):
+def get_or_create_eventloop():
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+
+class Messager():
     """
     All stuff for sending the data created in this file using websockets to the frontends.
     """
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
-        super(Messager,self).__init__()
-        self.target = target
-        self.name = name
+    def __init__(self):
+        logging.debug ("Init class for messager")
         self.do_stop = False
-        self.daemon = True
 
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
+        self.sampling_interval = 1
+
+        #dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
+        SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
 
     def stop(self):
         self.do_stop = True
         logging.debug ("Try to stop")
 
     def run(self):
-        while True:
-            if (self.do_stop == True):
-                return
-            time.sleep(1)
-        return
+        logging.debug ("Starting thread for messager")
+
+        self.run_websocket_handler()
+        #while True:
+        #    if (self.do_stop == True):
+        #        return
+        #    time.sleep(self.sampling_interval)
+        #return
 
     def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
@@ -66,11 +79,11 @@ class Messager(threading.Thread):
         """
         # TODO rework for this version
         while True:
-            message = self.exercise_status 
+            message = "Test" #self.exercise_status 
             await websocket.send(message)
-            if "OneMessageOnly" in self.exercise_status:
-                self.exercise_status = ""
-            await asyncio.sleep(1) 
+            #if "OneMessageOnly" in self.exercise_status:
+            #    self.exercise_status = ""
+            await asyncio.sleep(self.sampling_interval) 
 
     async def handler(self, websocket, path):
         """
@@ -99,6 +112,8 @@ class Messager(threading.Thread):
             print ("Received it:")
             print (message)
             await self.consumer(message)
+            if (message == "RunSet"):
+                dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
 
     async def consumer (self, message):
         """
@@ -124,9 +139,14 @@ class Messager(threading.Thread):
         """
         Start the websocket server and wait for input
         """
-        # TODO rework for this version
-
-        print ("Start handler")
+        logging.debug ("Start websocket handler")
         self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+        #loop = asyncio.new_event_loop()
+        #asyncio.set_event_loop(loop)
+        
+        #get_or_create_eventloop
+        #loop = get_or_create_eventloop()
+        #loop.run_until_complete(self.start_server)
+        #loop.run_forever()
         asyncio.get_event_loop().run_until_complete(self.start_server)
         asyncio.get_event_loop().run_forever()

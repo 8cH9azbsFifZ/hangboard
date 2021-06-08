@@ -30,8 +30,7 @@ import pydispatch
 The main loop is used for testing currently.
 """
 if __name__ == "__main__":
-    #mm = Messager()
-    #mm.start()
+
     ex = ExerciseTimer(dt=1)
     ex.start()
     pa = PauseTimer(dt=1)
@@ -41,9 +40,11 @@ if __name__ == "__main__":
     ab = AsciiBoard()
     ab.start()
     zlb = SensorZlagboard()
-    zlb.start()
+    #zlb.start()
     #dispatcher.send( signal=SIGNAL_ZLAGBOARD, message="Calibrate")
     #zlb.calibrate()
+    #mm.run_websocket_handler()
     wa = Workout()
-    pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
-
+    #pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+    mm = Messager()
+    mm.run()
