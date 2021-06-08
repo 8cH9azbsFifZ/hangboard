@@ -123,8 +123,8 @@ class Messager():
 
         print("Received request: %s" % message)
         if (message == "RunSet"):
-            SIGNAL_AIO_WORKOUT.send("RunSet") #print ("AHA")
-            #dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+            #SIGNAL_AIO_WORKOUT.send("RunSet") #print ("AHA")
+            dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
         #if (message == "Start"):
         #    self._run_set()
         #if (message == "Stop"):
