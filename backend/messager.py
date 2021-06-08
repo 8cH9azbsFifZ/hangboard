@@ -112,8 +112,7 @@ class Messager():
             print ("Received it:")
             print (message)
             await self.consumer(message)
-            if (message == "RunSet"):
-                dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+
 
     async def consumer (self, message):
         """
@@ -122,18 +121,20 @@ class Messager():
         # TODO rework for this version
 
         print("Received request: %s" % message)
-        if (message == "Start"):
-            self._run_set()
-        if (message == "Stop"):
-            self._stop_set()     
-        if (message == "GetBoard"):
-            self.get_board()
-        if (message == "ListWorkouts"): # TBD: Implement in webinterface
-            self.list_workouts()
-        if (message == "StartHang"):
-            self.set_start_hang()
-        if (message == "StopHang"):
-            self.set_stop_hang()
+        if (message == "RunSet"):
+            dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+        #if (message == "Start"):
+        #    self._run_set()
+        #if (message == "Stop"):
+        #    self._stop_set()     
+        #if (message == "GetBoard"):
+        #    self.get_board()
+        #if (message == "ListWorkouts"): # TBD: Implement in webinterface
+        #    self.list_workouts()
+        #if (message == "StartHang"):
+        #    self.set_start_hang()
+        #if (message == "StopHang"):
+        #    self.set_stop_hang()
 
     def run_websocket_handler(self):
         """
