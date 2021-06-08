@@ -1,3 +1,7 @@
+""" 
+Class for handling all aspects of a hangboard configuration.
+"""
+
 import json
 import threading
 from pydispatch import dispatcher

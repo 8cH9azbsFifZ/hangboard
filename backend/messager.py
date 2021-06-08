@@ -1,3 +1,6 @@
+"""
+Class for handling all communications from the backend to the frontend.
+"""
 
 
 import logging

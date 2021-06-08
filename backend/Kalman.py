@@ -1,3 +1,7 @@
+"""
+Class for a kalman filter used by the gysoscope sensor.
+"""
+
 class KalmanAngle:
     def __init__(self):
         self.QAngle = 0.001
