@@ -138,6 +138,7 @@ class SensorZlagboard(Gyroscope):
             self.run_one_measure()
         self.AngleX_Hang = self.kalAngleX # FIXME: sum of both angles - direction indenpendent?!
 
+        print ('Calibration done with no hang angle ' + str(self.AngleX_NoHang) + " and hang angle " + str(self.AngleX_Hang))
         logging.debug('Calibration done with no hang angle ' + str(self.AngleX_NoHang) + " and hang angle " + str(self.AngleX_Hang))
 
     def handle_signal (self, message):
