@@ -1,3 +1,7 @@
+"""
+Commandline interface to the hangboard
+"""
+
 
 """
 Signals for communication

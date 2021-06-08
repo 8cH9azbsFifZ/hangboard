@@ -1,4 +1,6 @@
 """
+File containing all workout related classes.
+
 This is the new thread based implementation of the classes.
 Lessons learned: Microservices are fine, but nanoservices not :)
 """

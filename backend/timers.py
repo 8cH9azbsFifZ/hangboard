@@ -1,3 +1,6 @@
+""" 
+Classes containing all the timers
+"""
 import json
 import os
 import time
