@@ -1,5 +1,5 @@
 """
-Commandline interface to the hangboard
+Commandline interface to the hangboard - serving websockets
 """
 
 

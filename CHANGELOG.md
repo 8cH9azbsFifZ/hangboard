@@ -1,4 +1,5 @@
 # History
+- v0.33 - Link backend to websocket server implemented.
 - v0.32 - Reimplementation of backend using threads.
 - v0.31 - React JS webfrontend stub.
 - v0.30 - Hang time display and fix lost websocket message by reducing send inerval in gyroscope to only on state changes
