@@ -1,4 +1,5 @@
 # History
+- v0.32 - Reimplementation of backend using threads.
 - v0.31 - React JS webfrontend stub.
 - v0.30 - Hang time display and fix lost websocket message by reducing send inerval in gyroscope to only on state changes
 - v0.29 - Integration of gyroscope and exercise timer with the backend-mesh (prototype)
