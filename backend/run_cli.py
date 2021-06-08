@@ -22,8 +22,8 @@ from timers import PauseTimer
 from timers import ExerciseTimer
 from workout import Workout
 
-from pydispatch import dispatcher
-
+#from pydispatch import dispatcher
+import pydispatch
 
 
 """
@@ -43,5 +43,5 @@ if __name__ == "__main__":
     zlb = SensorZlagboard()
     zlb.start()
     wa = Workout()
-    dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+    pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
 
