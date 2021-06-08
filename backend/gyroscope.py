@@ -148,7 +148,8 @@ class Gyroscope():
 		if(self.flag >100): #Problem with the connection
 			logging.debug("There is a problem with the connection")
 			self.flag=0
-			continue
+			#continue
+
 		#Read Accelerometer raw value
 		accX = self.read_raw_data(self.ACCEL_XOUT_H)
 		accY = self.read_raw_data(self.ACCEL_YOUT_H)
