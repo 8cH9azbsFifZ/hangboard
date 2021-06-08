@@ -77,7 +77,7 @@ class Gyroscope(threading.Thread):
 
 	def read_raw_data(self, addr):
 		#Reading raw data from gyroscope
-		logging.debug('Read raw data')
+		#logging.debug('Read raw data')
 
 		#Accelero and Gyro value are 16-bit
 		high = self.bus.read_byte_data(self.DeviceAddress, addr)
