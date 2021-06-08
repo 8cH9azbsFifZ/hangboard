@@ -127,7 +127,8 @@ class ExerciseTimer(threading.Thread):
             if (self.do_stop == True):
                 return
             if (self.timer_shall_run == False):
-                return
+                break
+                
 
 
 
