@@ -31,8 +31,8 @@ class SensorZlagboard(Gyroscope):
 
         self.HangDetected = False
         self.HangStateChanged = False
-        self.AngleX_Hang = -30.0
-        self.AngleX_NoHang = 50.0
+        self.AngleX_Hang = -20.0
+        self.AngleX_NoHang = 30.0
 
         self.LastHangTime = 0
         self.LastPauseTime = 0
