@@ -14,14 +14,15 @@ import threading
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
-                    format='(%(threadName)-10s) %(message)s',
+                    format='Gyroscope(%(threadName)-10s) %(message)s',
                     )
 
 import smbus			#import SMBus module of I2C
 
 class Gyroscope():
-	def __init__(self):
-		logging.debug('Init Gyroscope Class')
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
+        super(Gyroscope, self).__init__()
+        logging.debug('Init Gyroscope Class')
 		"""
 		Initialize gyroscope class with the neccessary variables for the SMBus module (I2C).
 		"""
