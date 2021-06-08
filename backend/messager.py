@@ -126,7 +126,7 @@ class Messager():
         if (message == "RunSet"):
             #SIGNAL_AIO_WORKOUT.send("RunSet") #print ("AHA")
             #dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
-            asyncbg.call(dispatcher.send, signal=SIGNAL_WORKOUT, message="RunSet")
+            await asyncbg.call(dispatcher.send, signal=SIGNAL_WORKOUT, message="RunSet")
         #if (message == "Start"):
         #    self._run_set()
         #if (message == "Stop"):
