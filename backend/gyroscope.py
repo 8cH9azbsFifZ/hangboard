@@ -205,17 +205,8 @@ class Gyroscope(threading.Thread):
 			self.gyroYAngle = self.kalAngleY
 
 		#print("Angle X: " + str(self.kalAngleX)+"   " +"Angle Y: " + str(self.kalAngleY))
-		
-		logging.debug(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(self.kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(self.kalAngleY))
+		#logging.debug(str(roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(self.kalAngleX)+"  "+str(pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(self.kalAngleY))
 
-		#print()
-		#if (kalAngleX < 0):
-		#	message = kalAngleX
-
-		#self.detect_hang(self.kalAngleX)
-
-		#self.create_message()
-		#time.sleep(self.delay_measures)
 
 if __name__ == "__main__":
 	a = Gyroscope()
