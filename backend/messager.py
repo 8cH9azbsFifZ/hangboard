@@ -50,7 +50,7 @@ class Messager():
         logging.debug ("Init class for messager")
         self.do_stop = False
 
-        self.sampling_interval = 1
+        self.sampling_interval = 0.1
 
         #dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
         SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
@@ -69,9 +69,9 @@ class Messager():
         #    time.sleep(self.sampling_interval)
         #return
 
-    async def handle_signal (self, message):
+    def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
-        await self.start_server.send(message)
+        self.start_server.send(message)
 
     async def producer_handler(self, websocket, path):
         """
