@@ -157,10 +157,8 @@ class Workout():
             self.run_set()
         if (message == "NoHangDetected"):
             dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps({"StopExerciseTimer": True}))
-            print ("Stop Ex")
         if (message == "HangDetected"):
             dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps({"StartExerciseTimer": True}))
-            print ("Start Ex")
 
     def run_test (self):
         logging.debug('Run test')

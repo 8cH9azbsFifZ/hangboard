@@ -79,7 +79,7 @@ class ExerciseTimer(threading.Thread):
 
         logging.debug('Loading message')
         msg = json.loads(str(message))
-        if (hasattr(msg, "Exercise")):
+        if ("Exercise" in msg):
             logging.debug('Loading exercise setup')
 
             self.exercise = msg["Exercise"]
@@ -93,11 +93,11 @@ class ExerciseTimer(threading.Thread):
 
             self.run_exercise()
             
-        if (hasattr(msg, "StartExerciseTimer")):
+        if ("StartExerciseTimer" in msg):
             logging.debug('Starting exercise timer due to hang')
             self.timer_shall_run = True
 
-        if (hasattr(msg, "StopExerciseTimer")):
+        if ("StopExerciseTimer" in msg):
             logging.debug('Stopping exercise timer due to no hang')
             self.timer_shall_run = False
 
