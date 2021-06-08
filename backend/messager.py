@@ -54,6 +54,8 @@ class Messager():
 
         self.sampling_interval = 0.1
 
+        self.ws_msg = "Alive"
+
         #dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
         SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
 
@@ -73,7 +75,7 @@ class Messager():
 
     def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
-        self.start_server.send(message)
+        self.ws_msg = str(message)
 
     async def producer_handler(self, websocket, path):
         """
@@ -81,8 +83,7 @@ class Messager():
         """
         # TODO rework for this version
         while True:
-            message = "Alive" #self.exercise_status 
-            await websocket.send(message)
+            await websocket.send(self.ws_msg)
             #if "OneMessageOnly" in self.exercise_status:
             #    self.exercise_status = ""
             await asyncio.sleep(self.sampling_interval) 
