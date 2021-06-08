@@ -41,10 +41,78 @@ class Board(threading.Thread):
             time.sleep(1)
         return
 
+    def list_boards(self):
+        logging.debug ("List all available boards.")
+        # TODO implement
+
+
     def handle_signal (self, message):
         logging.debug('Board: Signal detected with ' + str(message) )
+        """
+        Execute commands as received from websocket (handler)
+        """
+        # TODO rework for this version
+        #print("Received request: %s" % message)
+        #if (message == "SetHolds"): # FIXME
+        #    self.set_active_holds()  # FIXME: Parameter
+        #if (message == "GetBoard"):
+        #    self.get_board()
+
+    def get_board(self):
+        """
+        Get the board configuration (STUB)
+        """
+        # TODO implement
+
+    def init_board (self):
+        # TODO rework for this version
+        self.board_status = ""
+        self.boardimage_base64 = ""
+        self.boardfilename = "./" + self.boardname + "/holds.json" 
+
+        with open(self.boardfilename) as json_file:
+            self.boarddata = json.load(json_file)
+
+        self.get_all_holds()
+
+        self.boardname_full = self.boarddata["Name"]
+        self.boardimagename = "./" + self.boardname + "/board.png" 
+
+        self.get_image()
+
+    def get_image(self):
+        """
+        Send board image as base64 over websocket
+        """
+        # TODO rework for this version
+        #    
+        with open(self.boardimagename, "rb") as image_file:
+            self.boardimage_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+        self.board_status = self.boardimage_base64 
 
 
+    def set_active_holds(self, array_holds):
+        # TODO rework for this version
+        self.holds_active = array_holds
+        self.holds_inactive = [x for x in self.all_holds if x not in array_holds]
+        print (self.holds_active)
+        print (self.holds_inactive)
+
+    def get_all_holds(self):
+        # TODO rework for this version
+        self.all_holds = []
+        #print (self.boarddata["Holds"])
+        for hold in self.boarddata["Holds"]:
+            #print (hold["ImgLayerName"])
+            self.all_holds.append(hold["ImgLayerName"])
+
+    def get_hold_for_type(self, type):
+        # TODO rework for this version
+        holds = []
+        for hold in self.boarddata["Holds"]:
+            if (hold["Name"] == type):
+                holds.append(hold["ImgLayerName"])
+        print (holds)
 
 
 class AsciiBoard(threading.Thread):
