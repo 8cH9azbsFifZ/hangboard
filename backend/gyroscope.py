@@ -42,6 +42,7 @@ class Gyroscope(threading.Thread):
 
 		self.flag = 0
 
+		self.timer = time.time()
 
 	def init_gyro(self):
 		#Initialize GPIO BUS
@@ -150,8 +151,8 @@ class Gyroscope(threading.Thread):
 		gyroY = self.read_raw_data(self.GYRO_YOUT_H)
 		gyroZ = self.read_raw_data(self.GYRO_ZOUT_H)
 
-		dt = time.time() - timer
-		timer = time.time()
+		dt = time.time() - self.timer
+		self.timer = time.time()
 
 		if (self.RestrictPitch):
 			roll = math.atan2(accY,accZ) * self.radToDeg
