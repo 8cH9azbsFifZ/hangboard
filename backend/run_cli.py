@@ -42,6 +42,8 @@ if __name__ == "__main__":
     ab.start()
     zlb = SensorZlagboard()
     zlb.start()
+    #dispatcher.send( signal=SIGNAL_ZLAGBOARD, message="Calibrate")
+    zlb.calibrate()
     wa = Workout()
     pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
 
