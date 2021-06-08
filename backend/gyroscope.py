@@ -23,9 +23,7 @@ class Gyroscope():
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
         super(Gyroscope, self).__init__()
         logging.debug('Init Gyroscope Class')
-		"""
-		Initialize gyroscope class with the neccessary variables for the SMBus module (I2C).
-		"""
+		#Initialize gyroscope class with the neccessary variables for the SMBus module (I2C).
 		self.PWR_MGMT_1 = 0x6B
 		self.SMPLRT_DIV = 0x19
 		self.CONFIG = 0x1A
@@ -45,9 +43,7 @@ class Gyroscope():
 
 
 	def init_gyro(self):
-		"""
-		Initialize GPIO BUS
-		"""
+		#Initialize GPIO BUS
 		logging.debug('Init GPIO Bus')
 		self.bus = smbus.SMBus(1) 	# or bus = smbus.SMBus(0) for older version boards
 		self.DeviceAddress = 0x68   # MPU6050 device address
@@ -57,9 +53,7 @@ class Gyroscope():
 		time.sleep(1)
 
 	def MPU_Init(self):
-		"""
-		Read the gyro and acceleromater values from MPU6050.
-		"""
+		#Read the gyro and acceleromater values from MPU6050.
 		logging.debug('Init MPU')
 
 		#write to sample rate register
@@ -80,9 +74,7 @@ class Gyroscope():
 
 
 	def read_raw_data(self, addr):
-		"""
-		Reading raw data from gyroscope
-		"""
+		#Reading raw data from gyroscope
 		logging.debug('Read raw data')
 
 		#Accelero and Gyro value are 16-bit
@@ -98,9 +90,7 @@ class Gyroscope():
 		return value
 
 	def init_measurements (self):
-		"""
-		Initialize measurements.
-		"""
+		#Initialize measurements.
 		logging.debug('Set initial parameters')
 
 		self.kalmanX = KalmanAngle()
@@ -137,9 +127,7 @@ class Gyroscope():
 
 
 	def run_measure (self):
-		"""
-		Start to measure from gyroscope sensor with kalman filter
-		"""
+		#Start to measure from gyroscope sensor with kalman filter
 		timer = time.time()
 
 		while True:
