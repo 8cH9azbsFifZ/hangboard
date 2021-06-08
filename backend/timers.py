@@ -32,7 +32,7 @@ Use pydispatch and signals to transfer JSON data between the threads.
 SIGNAL_EXERCISETIMER = 'SignalExerciseTimer'
 SIGNAL_PAUSETIMER = 'SignalPauseTimer'
 SIGNAL_ASCIIBOARD = 'AsciiBoard'
-
+SIGNAL_MESSAGER = 'SignalMessager'
 
 
 class ExerciseTimer(threading.Thread):
@@ -114,6 +114,8 @@ class ExerciseTimer(threading.Thread):
         self.exercise_completed = 0
 
         dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
+        dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
+
 
         while not self.timer_shall_run:
             time.sleep (self.exercise_dt)
