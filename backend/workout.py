@@ -155,6 +155,10 @@ class Workout():
         logging.debug('Signal detected with ' + str(message) )
         if (message == "RunSet"):
             self.run_set()
+        if (message == "NoHangDetected"):
+            print ("Stop Ex")
+        if (message == "HangDetected"):
+            print ("Start Ex")
 
     def run_test (self):
         logging.debug('Run test')

@@ -53,8 +53,10 @@ class SensorZlagboard(Gyroscope):
             if (self.HangStateChanged == True):
                 if (self.HangDetected == True):
                     logging.debug ("HangStateChanged and HangDetected")
+                    dispatcher.send( signal=SIGNAL_WORKOUT, message="HangDetected")
                 else:
                     logging.debug ("HangStateChanged and no HangDetected")
+                    dispatcher.send( signal=SIGNAL_WORKOUT, message="NoHangDetected")
 
             if (self.do_stop == True):
                 return
