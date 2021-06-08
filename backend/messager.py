@@ -71,7 +71,7 @@ class Messager():
 
     def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
-
+        await self.start_server.send(message)
 
     async def producer_handler(self, websocket, path):
         """
@@ -79,7 +79,7 @@ class Messager():
         """
         # TODO rework for this version
         while True:
-            message = "Test" #self.exercise_status 
+            message = "Alive" #self.exercise_status 
             await websocket.send(message)
             #if "OneMessageOnly" in self.exercise_status:
             #    self.exercise_status = ""

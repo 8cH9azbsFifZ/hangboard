@@ -143,6 +143,8 @@ class Workout():
     def run_set(self):
         self.__get_current_set()
         logging.debug('Run exercise')
+        dispatcher.send( signal=SIGNAL_MESSAGER, message="Running it YEAH")
+        
         self.rep_current = 0
         dispatcher.send( signal=SIGNAL_PAUSETIMER, message=self.rest_to_start)
         for self.rep_current in range (0, self.reps):
