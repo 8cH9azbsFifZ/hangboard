@@ -27,7 +27,8 @@ from pydispatch import dispatcher
 """
 Use pydispatch and signals to transfer JSON data between the threads.
 """
-
+from aio_pydispatch import Signal
+SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
 
 SIGNAL_EXERCISETIMER = 'SignalExerciseTimer'
 SIGNAL_PAUSETIMER = 'SignalPauseTimer'
@@ -114,8 +115,8 @@ class ExerciseTimer(threading.Thread):
         self.exercise_completed = 0
 
         dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
-        dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
-
+        #dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
+        SIGNAL_AIO_MESSAGER.send("Hang")
 
         while not self.timer_shall_run:
             time.sleep (self.exercise_dt)
