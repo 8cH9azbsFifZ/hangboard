@@ -27,7 +27,7 @@ class SensorZlagboard(Gyroscope):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1):
         super(SensorZlagboard, self).__init__()
 
-        self.calibration_duration = 1
+        self.calibration_duration = 10
 
         self.HangDetected = False
         self.HangStateChanged = False
