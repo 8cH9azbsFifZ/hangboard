@@ -43,7 +43,7 @@ if __name__ == "__main__":
     zlb = SensorZlagboard()
     zlb.start()
     #dispatcher.send( signal=SIGNAL_ZLAGBOARD, message="Calibrate")
-    zlb.calibrate()
+    #zlb.calibrate()
     wa = Workout()
     pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
 
