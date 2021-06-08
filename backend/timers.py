@@ -115,7 +115,7 @@ class ExerciseTimer(threading.Thread):
         self.exercise_completed = 0
 
         dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
-        #dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
+        dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
         SIGNAL_AIO_MESSAGER.send("Hang")
 
         while not self.timer_shall_run:
