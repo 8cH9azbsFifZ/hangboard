@@ -2,3 +2,4 @@ websockets
 smbus
 pydispatch
 tabulate
+aio_pydispatch
