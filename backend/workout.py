@@ -40,6 +40,10 @@ SIGNAL_PAUSETIMER = 'SignalPauseTimer'
 SIGNAL_ASCIIBOARD = 'AsciiBoard'
 SIGNAL_BOARD = 'Board'
 SIGNAL_ZLAGBOARD = "SignalZlagboard"
+from aio_pydispatch import Signal
+
+SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
+SIGNAL_AIO_WORKOUT = Signal('SignalWorkout')
 
 from messager import Messager
 from sensor_zlagboard import SensorZlagboard

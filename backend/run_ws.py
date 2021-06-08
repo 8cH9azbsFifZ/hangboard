@@ -21,6 +21,10 @@ from board import AsciiBoard
 from timers import PauseTimer
 from timers import ExerciseTimer
 from workout import Workout
+from aio_pydispatch import Signal
+
+SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
+SIGNAL_AIO_WORKOUT = Signal('SignalWorkout')
 
 #from pydispatch import dispatcher
 import pydispatch
