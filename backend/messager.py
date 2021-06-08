@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 from pydispatch import dispatcher
 from aio_pydispatch import Signal
+import asyncbg
 
 import time
 import asyncio
@@ -124,7 +125,8 @@ class Messager():
         print("Received request: %s" % message)
         if (message == "RunSet"):
             #SIGNAL_AIO_WORKOUT.send("RunSet") #print ("AHA")
-            dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+            #dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+            asyncbg.call(dispatcher.send, signal=SIGNAL_WORKOUT, message="RunSet")
         #if (message == "Start"):
         #    self._run_set()
         #if (message == "Stop"):
