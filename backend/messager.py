@@ -73,7 +73,7 @@ class Messager():
 
     def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
-        await self.start_server.send(message)
+        self.start_server.send(message)
 
     async def producer_handler(self, websocket, path):
         """
