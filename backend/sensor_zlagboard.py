@@ -41,6 +41,8 @@ class SensorZlagboard(Gyroscope):
 
         self.do_stop = False
 
+        self.sampling_interval = 0.1
+
         dispatcher.connect( self.handle_signal, signal=SIGNAL_ZLAGBOARD, sender=dispatcher.Any )
 
     def run(self):
@@ -56,7 +58,7 @@ class SensorZlagboard(Gyroscope):
 
             if (self.do_stop == True):
                 return
-            time.sleep(1)
+            time.sleep(self.sampling_interval)
         return
 
     def stop(self):
