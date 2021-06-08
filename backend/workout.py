@@ -149,15 +149,17 @@ class Workout():
             self.__get_current_set()
             #print (self.rep_current)
             dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps(self.workout["Sets"][self.current_set]))
-            dispatcher.send( signal=SIGNAL_PAUSETIMER, message=self.pause)
+            #dispatcher.send( signal=SIGNAL_PAUSETIMER, message=self.pause)
 
     def handle_signal_workout (self, message):
         logging.debug('Signal detected with ' + str(message) )
         if (message == "RunSet"):
             self.run_set()
         if (message == "NoHangDetected"):
+            dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps({"StopExerciseTimer": True}))
             print ("Stop Ex")
         if (message == "HangDetected"):
+            dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps({"StartExerciseTimer": True}))
             print ("Start Ex")
 
     def run_test (self):

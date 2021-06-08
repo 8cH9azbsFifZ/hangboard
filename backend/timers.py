@@ -55,6 +55,8 @@ class ExerciseTimer(threading.Thread):
         self.exercise_rest = 10
         self.exercise_completed = 0
 
+        self.timer_shall_run = False
+
     def stop(self):
         self.do_stop = True
         logging.debug ("Try to stop")
@@ -75,19 +77,32 @@ class ExerciseTimer(threading.Thread):
     def handle_signal (self, message):
         logging.debug('ExerciseTimer: Signal detected with ' + str(message) )
 
-        logging.debug('Get current set')
+        logging.debug('Loading message')
         msg = json.loads(str(message))
+        if (hasattr(msg, "Exercise")):
+            logging.debug('Loading exercise setup')
 
-        self.exercise = msg["Exercise"]
-        self.rest_to_start = msg["Rest-to-Start"]
-        self.pause = msg["Pause"]
-        self.reps = msg["Reps"]
-        self.type = msg["Type"]
-        self.left = msg["Left"]
-        self.right = msg["Right"]
-        self.counter = msg["Counter"]
+            self.exercise = msg["Exercise"]
+            self.rest_to_start = msg["Rest-to-Start"]
+            self.pause = msg["Pause"]
+            self.reps = msg["Reps"]
+            self.type = msg["Type"]
+            self.left = msg["Left"]
+            self.right = msg["Right"]
+            self.counter = msg["Counter"]
 
-        self.run_exercise()
+            self.run_exercise()
+            
+        if (hasattr(msg, "StartExerciseTimer")):
+            logging.debug('Starting exercise timer due to hang')
+            self.timer_shall_run = True
+
+        if (hasattr(msg, "StopExerciseTimer")):
+            logging.debug('Stopping exercise timer due to no hang')
+            self.timer_shall_run = False
+
+
+
 
     def run_exercise(self): 
         logging.debug('Run exercise')
@@ -100,6 +115,9 @@ class ExerciseTimer(threading.Thread):
 
         dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
 
+        while not self.timer_shall_run:
+            time.sleep (self.exercise_dt)
+
         while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
@@ -107,6 +125,8 @@ class ExerciseTimer(threading.Thread):
             self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
             self.assemble_message_timerstatus()
             if (self.do_stop == True):
+                return
+            if (self.timer_shall_run == False):
                 return
 
 
