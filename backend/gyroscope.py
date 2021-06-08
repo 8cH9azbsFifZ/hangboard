@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 import smbus			#import SMBus module of I2C
 
-class Gyroscope():
+class Gyroscope(threading.Thread):
 	def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
 
 		super(Gyroscope, self).__init__()
