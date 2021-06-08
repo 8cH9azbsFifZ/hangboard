@@ -32,6 +32,7 @@ SIGNAL_BOARD = 'Board'
 SIGNAL_ZLAGBOARD = "SignalZlagboard"
 
 SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
+SIGNAL_AIO_WORKOUT = Signal('SignalWorkout')
 
 def get_or_create_eventloop():
     try:
@@ -122,7 +123,7 @@ class Messager():
 
         print("Received request: %s" % message)
         if (message == "RunSet"):
-            print ("AHA")
+            SIGNAL_AIO_WORKOUT.send("RunSet") #print ("AHA")
             #dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
         #if (message == "Start"):
         #    self._run_set()
