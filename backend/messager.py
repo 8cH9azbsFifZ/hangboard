@@ -108,7 +108,7 @@ class Messager():
 
         while True:
             print ("PIPE")
-            s = os.read(self.rf, 1024)
+            await s = os.read(self.rf, 1024)
             print (s)
             await asyncio.sleep(self.sampling_interval) 
 
