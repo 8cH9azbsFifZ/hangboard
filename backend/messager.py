@@ -150,7 +150,8 @@ class Messager():
         loop = asyncio.get_running_loop()
         self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
         f1 = loop.create_task(self.main_queue())
-        f2 = loop.create_task(self.start_server)
+        f2 = loop.create_task(self.main_queue())
+        #f2 = loop.create_task(self.start_server)
         await asyncio.wait([f1, f2])
 
     async def main_queue(self):
