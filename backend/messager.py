@@ -147,7 +147,7 @@ class Messager():
         #asyncio.get_event_loop().run_forever()
     
     async def main(self):
-        self.queue = janus.Queue()
+        queue = janus.Queue()
         loop = asyncio.get_running_loop()
         fut = loop.run_in_executor(None, self.threaded, queue.sync_q)
         await async_coro(queue.async_q)
