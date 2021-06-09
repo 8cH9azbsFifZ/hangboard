@@ -143,5 +143,5 @@ class Messager():
 
         self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
 
-        asyncio.get_event_loop().run_until_complete(self.start_server)
-        asyncio.get_event_loop().run_forever()
+        #asyncio.get_event_loop().run_until_complete(self.start_server)
+        #asyncio.get_event_loop().run_forever()
