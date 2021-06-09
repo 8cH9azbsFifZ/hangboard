@@ -34,6 +34,7 @@ import pydispatch
 The main loop is used for testing currently.
 """
 if __name__ == "__main__":
+    mm = Messager()
 
     ex = ExerciseTimer(dt=1)
     ex.start()
@@ -49,5 +50,4 @@ if __name__ == "__main__":
     #zlb.calibrate()
     wa = Workout()
     #pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
-    mm = Messager()
     mm.run()
