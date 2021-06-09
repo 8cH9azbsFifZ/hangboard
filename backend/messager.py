@@ -168,6 +168,8 @@ class Messager():
 
     def run_main(self):
         self.queue = janus.Queue()
+        self.loop = asyncio.get_event_loop()
+
         try:
             self.loop.run_until_complete(self.main())
         finally:
