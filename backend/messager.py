@@ -139,8 +139,8 @@ class Messager():
         Start the websocket server and wait for input
         """
         logging.debug ("Start websocket handler")
-        queue = janus.Queue()
-        
+        #queue = janus.Queue()
+
         self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
 
         asyncio.get_event_loop().run_until_complete(self.start_server)
