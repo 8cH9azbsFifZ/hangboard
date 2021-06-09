@@ -72,7 +72,7 @@ class ExerciseTimer(threading.Thread):
         #for i in range(1, 11):
         msg = message #"msg " + str(i)
         len_send = os.write(self.wf, msg)
-        print "sent msg: %s" % msg
+        print ("sent msg: %s" % msg)
         
             #if rf is None:
             #    rf = os.open(read_path, os.O_RDONLY)
