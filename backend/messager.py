@@ -168,10 +168,11 @@ class Messager():
             async_q.task_done()
 
     def run_main(self):
-        self.loop = asyncio.get_event_loop()
+        #self.loop = asyncio.get_event_loop()
         self.queue = janus.Queue()
+        asyncio.run(self.main())
 
-        try:
-            self.loop.run_until_complete(self.main())
-        finally:
-            self.loop.close()
+        #try:
+        #    self.loop.run_until_complete(self.main())
+        #finally:
+        #    self.loop.close()
