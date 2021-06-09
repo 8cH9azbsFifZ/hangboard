@@ -58,6 +58,39 @@ class ExerciseTimer(threading.Thread):
 
         self.timer_shall_run = False
 
+
+        write_path = "/tmp/pipe.in"
+        self.wf = os.open(write_path, os.O_SYNC | os.O_CREAT | os.O_RDWR)
+
+
+    def pipe(self, message):
+        
+        #read_path = "/tmp/pipe.out"
+        
+        #rf = None
+        
+        #for i in range(1, 11):
+        msg = message #"msg " + str(i)
+        len_send = os.write(self.wf, msg)
+        print "sent msg: %s" % msg
+        
+            #if rf is None:
+            #    rf = os.open(read_path, os.O_RDONLY)
+        
+            #s = os.read(rf, 1024)
+            #if len(s) == 0:
+            #    break
+            #print "received msg: %s" % s
+        
+            #time.sleep(1)
+        
+        #os.write(wf, 'exit')
+        
+        #os.close(rf)
+        #os.close(wf)
+
+
+
     def stop(self):
         self.do_stop = True
         logging.debug ("Try to stop")
@@ -116,7 +149,8 @@ class ExerciseTimer(threading.Thread):
 
         dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
         dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
-        SIGNAL_AIO_MESSAGER.send("Hang")
+        self.pipe ("Hang")
+        #SIGNAL_AIO_MESSAGER.send("Hang")
 
         while not self.timer_shall_run:
             time.sleep (self.exercise_dt)
