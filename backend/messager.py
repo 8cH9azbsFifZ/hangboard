@@ -139,55 +139,10 @@ class Messager():
         Start the websocket server and wait for input
         """
         logging.debug ("Start websocket handler")
-        #queue = janus.Queue()
 
-        #self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+        self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
 
-        #asyncio.get_event_loop().run_until_complete(self.start_server)
-        #asyncio.get_event_loop().run_forever()
+        asyncio.get_event_loop().run_until_complete(self.start_server)
+        asyncio.get_event_loop().run_forever()
     
-    async def main(self):
-        loop = asyncio.get_running_loop()
-        f2 = websockets.serve(self.handler, WSHOST, WSPORT)
-        f1 = loop.create_task(self.main_queue())
-        #f2 = loop.create_task(self.main_queue())
-        #f2 = loop.create_task(self.start_server)
-        await asyncio.wait([f1, f2])
-
-    async def main_queue(self):
-
-        queue = janus.Queue()
-        loop = asyncio.get_running_loop()
-        fut = loop.run_in_executor(None, self.threaded, queue.sync_q)
-        #await websockets.serve(self.handler, WSHOST, WSPORT)
-        await self.async_coro(queue.async_q)
-        await fut
-        queue.close()
-        await queue.wait_closed()
-
-    def threaded(self, sync_q):
-        for i in range(100):
-            sync_q.put(i)
-            #print ("thread: " + str(i))
-            #logging.debug("threaded")
-        sync_q.join()
-
-
-    async def async_coro(self, async_q):
-        for i in range(100):
-            val = await async_q.get()
-            #logging.debug ("async")
-
-            #print ("async: " + str(val))
-            assert val == i
-            async_q.task_done()
-
-    def run_main(self):
-        #self.loop = asyncio.get_event_loop()
-        
-        asyncio.run(self.main())
-
-        #try:
-        #    self.loop.run_until_complete(self.main())
-        #finally:
-        #    self.loop.close()
+   
