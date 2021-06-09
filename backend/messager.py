@@ -104,6 +104,7 @@ class Messager():
             task.cancel()
 
     async def pipe_handler(self):
+        #https://gist.github.com/mightymercado/4efba1f070a6ba6526c3e237f0eb0443 TODO
         self.rf = os.open(self.read_path, os.O_RDONLY)
 
         while True:
