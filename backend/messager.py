@@ -17,6 +17,7 @@ import time
 import asyncio
 import threading
 import websockets
+import os
 
 WSHOST = "0.0.0.0" #args.host 
 WSPORT = 4321 #args.port 
@@ -53,6 +54,12 @@ class Messager():
 
         dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
         #SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
+
+        read_path = "/tmp/pipe.in"
+        if os.path.exists(read_path):
+            os.remove(read_path)
+        os.mkfifo(read_path)
+        rf = os.open(read_path, os.O_RDONLY)
 
     def stop(self):
         self.do_stop = True
@@ -99,6 +106,8 @@ class Messager():
     async def pipe_handler(self):
         while True:
             print ("PIPE")
+            s = os.read(rf, 1024)
+            print (s)
             await asyncio.sleep(self.sampling_interval) 
 
     async def consumer_handler(self, websocket, path): 
