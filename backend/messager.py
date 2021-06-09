@@ -59,7 +59,7 @@ class Messager():
         if os.path.exists(read_path):
             os.remove(read_path)
         os.mkfifo(read_path)
-        rf = os.open(read_path, os.O_RDONLY)
+
 
     def stop(self):
         self.do_stop = True
@@ -104,9 +104,11 @@ class Messager():
             task.cancel()
 
     async def pipe_handler(self):
+        self.rf = os.open(read_path, os.O_RDONLY)
+
         while True:
             print ("PIPE")
-            s = os.read(rf, 1024)
+            s = os.read(self.rf, 1024)
             print (s)
             await asyncio.sleep(self.sampling_interval) 
 
