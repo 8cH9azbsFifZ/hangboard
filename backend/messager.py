@@ -97,7 +97,8 @@ class Messager():
             task.cancel()
 
     async def pipe_handler(self):
-        print ("PIPE")
+        while True:
+            print ("PIPE")
 
     async def consumer_handler(self, websocket, path): 
         """
