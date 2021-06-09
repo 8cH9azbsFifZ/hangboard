@@ -99,6 +99,7 @@ class Messager():
     async def pipe_handler(self):
         while True:
             print ("PIPE")
+            await asyncio.sleep(self.sampling_interval) 
 
     async def consumer_handler(self, websocket, path): 
         """
