@@ -159,7 +159,7 @@ class Messager():
         queue = janus.Queue()
         loop = asyncio.get_running_loop()
         fut = loop.run_in_executor(None, self.threaded, queue.sync_q)
-        await websockets.serve(self.handler, WSHOST, WSPORT)
+        #await websockets.serve(self.handler, WSHOST, WSPORT)
         await self.async_coro(queue.async_q)
         await fut
         queue.close()
