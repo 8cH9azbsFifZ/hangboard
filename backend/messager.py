@@ -51,7 +51,7 @@ class Messager():
 
         self.ws_msg = "Alive"
 
-        #dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
+        dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
         #SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
 
     def stop(self):
