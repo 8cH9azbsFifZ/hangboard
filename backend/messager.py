@@ -70,17 +70,7 @@ class Messager():
     def handle_signal (self, message):
         logging.debug('Messager: Signal detected with ' + str(message) )
         self.ws_msg = str(message)
-
-    async def producer_handler(self, websocket, path):
-        """
-        Send the current status of the exercise every second via websocket.
-        """
-        while True:
-            await websocket.send(self.ws_msg)
-            #if "OneMessageOnly" in self.exercise_status:
-            #    self.exercise_status = ""
-            await asyncio.sleep(self.sampling_interval) 
-
+        
     async def handler(self, websocket, path):
         """
         Handler for the websockets: Receiving and Sending
