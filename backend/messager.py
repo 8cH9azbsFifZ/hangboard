@@ -75,7 +75,6 @@ class Messager():
         """
         Send the current status of the exercise every second via websocket.
         """
-        # TODO rework for this version
         while True:
             await websocket.send(self.ws_msg)
             #if "OneMessageOnly" in self.exercise_status:
