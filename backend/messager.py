@@ -20,6 +20,8 @@ import websockets
 WSHOST = "0.0.0.0" #args.host 
 WSPORT = 4321 #args.port 
 
+import janus
+
 
 """
 Signals for communication
@@ -35,14 +37,6 @@ SIGNAL_ZLAGBOARD = "SignalZlagboard"
 SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
 SIGNAL_AIO_WORKOUT = Signal('SignalWorkout')
 
-def get_or_create_eventloop():
-    try:
-        return asyncio.get_event_loop()
-    except RuntimeError as ex:
-        if "There is no current event loop in thread" in str(ex):
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            return asyncio.get_event_loop()
 
 class Messager():
     """
@@ -147,12 +141,6 @@ class Messager():
         """
         logging.debug ("Start websocket handler")
         self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
-        #loop = asyncio.new_event_loop()
-        #asyncio.set_event_loop(loop)
-        
-        #get_or_create_eventloop
-        #loop = get_or_create_eventloop()
-        #loop.run_until_complete(self.start_server)
-        #loop.run_forever()
+
         asyncio.get_event_loop().run_until_complete(self.start_server)
         asyncio.get_event_loop().run_forever()
