@@ -55,10 +55,10 @@ class Messager():
         dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
         #SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
 
-        read_path = "/tmp/pipe.in"
-        if os.path.exists(read_path):
-            os.remove(read_path)
-        os.mkfifo(read_path)
+        self.read_path = "/tmp/pipe.in"
+        if os.path.exists(self.read_path):
+            os.remove(self.read_path)
+        os.mkfifo(self.read_path)
 
 
     def stop(self):
@@ -104,7 +104,7 @@ class Messager():
             task.cancel()
 
     async def pipe_handler(self):
-        self.rf = os.open(read_path, os.O_RDONLY)
+        self.rf = os.open(self.read_path, os.O_RDONLY)
 
         while True:
             print ("PIPE")
