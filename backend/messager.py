@@ -148,11 +148,12 @@ class Messager():
     
     async def main(self):
         self.queue = janus.Queue()
-        fut = self.loop.run_in_executor(None, threaded, self.queue.sync_q)
-        await async_coro(self.queue.async_q)
+        loop = asyncio.get_running_loop()
+        fut = loop.run_in_executor(None, self.threaded, queue.sync_q)
+        await async_coro(queue.async_q)
         await fut
-        self.queue.close()
-        await self.queue.wait_closed()
+        queue.close()
+        await queue.wait_closed()
 
     def threaded(self, sync_q):
         for i in range(100):
