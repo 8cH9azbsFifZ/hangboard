@@ -159,12 +159,15 @@ class Messager():
         for i in range(100):
             sync_q.put(i)
             print ("thread: " + str(i))
+            logging.debug("threaded")
         sync_q.join()
 
 
     async def async_coro(self, async_q):
         for i in range(100):
             val = await async_q.get()
+            logging.debug ("async")
+
             print ("async: " + str(val))
             assert val == i
             async_q.task_done()
