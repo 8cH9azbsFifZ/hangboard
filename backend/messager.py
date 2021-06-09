@@ -87,18 +87,18 @@ class Messager():
         Handler for the websockets: Receiving and Sending
         """
         # TODO rework for this version
-        consumer_task = asyncio.ensure_future(
-            self.consumer_handler(websocket, path))
-        producer_task = asyncio.ensure_future(
-            self.producer_handler(websocket, path))
+        consumer_task = asyncio.ensure_future(            self.consumer_handler(websocket, path))
+        producer_task = asyncio.ensure_future(            self.producer_handler(websocket, path))
+        pipe_task = asyncio.ensure_future(            self.pipe_handler(websocket, path))
 
-        done, pending = await asyncio.wait(
-            [consumer_task, producer_task],
-            return_when=asyncio.FIRST_COMPLETED,
+        done, pending = await asyncio.wait(            [consumer_task, producer_task, pipe_task],            return_when=asyncio.FIRST_COMPLETED,
         )
         for task in pending:
             task.cancel()
 
+    async def pipe_handler(self):
+        print ("PIPE")
+        
     async def consumer_handler(self, websocket, path): 
         """
         Handler for receicing commands 
