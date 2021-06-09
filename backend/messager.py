@@ -51,7 +51,7 @@ class Messager():
         self.ws_msg = "Alive"
 
         #dispatcher.connect( self.handle_signal, signal=SIGNAL_MESSAGER, sender=dispatcher.Any )
-        SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
+        #SIGNAL_AIO_MESSAGER.connect(self.handle_signal)
 
     def stop(self):
         self.do_stop = True
@@ -144,3 +144,31 @@ class Messager():
 
         #asyncio.get_event_loop().run_until_complete(self.start_server)
         #asyncio.get_event_loop().run_forever()
+    
+    async def main(self):
+        fut = self.loop.run_in_executor(None, threaded, self.queue.sync_q)
+        await async_coro(self.queue.async_q)
+        await fut
+        self.queue.close()
+        await queue.wait_closed()
+
+    def threaded(self, sync_q):
+        for i in range(100):
+            sync_q.put(i)
+            print ("thread: " + str(i))
+        sync_q.join()
+
+
+    async def async_coro(self, async_q):
+        for i in range(100):
+            val = await async_q.get()
+            print ("async: " + str(val))
+            assert val == i
+            async_q.task_done()
+
+    def run_main(self):
+        self.queue = janus.Queue()
+        try:
+            self.loop.run_until_complete(self.main())
+        finally:
+            self.loop.close()
