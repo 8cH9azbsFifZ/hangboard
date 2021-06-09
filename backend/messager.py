@@ -147,6 +147,7 @@ class Messager():
         #asyncio.get_event_loop().run_forever()
     
     async def main(self):
+        self.queue = janus.Queue()
         fut = self.loop.run_in_executor(None, threaded, self.queue.sync_q)
         await async_coro(self.queue.async_q)
         await fut
@@ -169,7 +170,7 @@ class Messager():
 
     def run_main(self):
         #self.loop = asyncio.get_event_loop()
-        self.queue = janus.Queue()
+        
         asyncio.run(self.main())
 
         #try:
