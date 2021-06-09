@@ -50,4 +50,5 @@ if __name__ == "__main__":
     wa = Workout()
     #pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
     mm = Messager()
-    mm.run()
+    #mm.run()
+    mm.run_main()
