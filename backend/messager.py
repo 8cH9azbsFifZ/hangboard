@@ -151,7 +151,7 @@ class Messager():
         await async_coro(self.queue.async_q)
         await fut
         self.queue.close()
-        await queue.wait_closed()
+        await self.queue.wait_closed()
 
     def threaded(self, sync_q):
         for i in range(100):
