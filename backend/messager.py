@@ -147,6 +147,14 @@ class Messager():
         #asyncio.get_event_loop().run_forever()
     
     async def main(self):
+        loop = asyncio.get_running_loop()
+        self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+        f1 = loop.create_task(self.main_queue())
+        f2 = loop.create_task(self.start_server)
+        await asyncio.wait([f1, f2])
+
+    async def main_queue(self):
+
         queue = janus.Queue()
         loop = asyncio.get_running_loop()
         fut = loop.run_in_executor(None, self.threaded, queue.sync_q)
