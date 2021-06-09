@@ -15,6 +15,7 @@ import asyncbg
 
 import time
 import asyncio
+import threading
 import websockets
 
 WSHOST = "0.0.0.0" #args.host 
@@ -140,7 +141,7 @@ class Messager():
         logging.debug ("Start websocket handler")
         #queue = janus.Queue()
 
-        self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+        #self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
 
         #asyncio.get_event_loop().run_until_complete(self.start_server)
         #asyncio.get_event_loop().run_forever()
@@ -167,8 +168,8 @@ class Messager():
             async_q.task_done()
 
     def run_main(self):
-        self.queue = janus.Queue()
         self.loop = asyncio.get_event_loop()
+        self.queue = janus.Queue()
 
         try:
             self.loop.run_until_complete(self.main())
