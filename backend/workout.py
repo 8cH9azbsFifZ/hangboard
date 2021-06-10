@@ -227,3 +227,44 @@ class Workout():
         print (msg)
         sys.stdout.flush()
         return (msg)        
+
+
+
+    def assemble_message1(self): # TODO rework for this version
+        """
+        Assemble a message of the current exercise and workout status
+        """
+        if (hasattr(self, "run_set_thread")):
+            self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, 
+            "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, 
+            "BoardName": self.boardname, "BordImageName": self.boardimagename, 
+            "TimerStatus": self.run_set_thread.do_stop,
+            "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
+            "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
+            })
+        else:
+            self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, 
+            "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, 
+            "BoardName": self.boardname, "BordImageName": self.boardimagename, 
+            "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
+            "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
+            })
+
+
+    async def consumer (self, message): # TODO rework for this version
+        """
+        Execute commands as received from websocket (handler)
+        """
+        print("Received request: %s" % message)
+        if (message == "Start"):
+            self._run_set()
+        if (message == "Stop"):
+            self._stop_set()     
+        if (message == "GetBoard"):
+            self.get_board()
+        if (message == "ListWorkouts"): # TBD: Implement in webinterface
+            self.list_workouts()
+        if (message == "StartHang"):
+            self.set_start_hang()
+        if (message == "StopHang"):
+            self.set_stop_hang()
