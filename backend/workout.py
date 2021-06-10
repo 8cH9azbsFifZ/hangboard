@@ -22,8 +22,6 @@ from messager import Messager
 from sensor_zlagboard import SensorZlagboard
 from board import Board
 from board import AsciiBoard
-from timers import PauseTimer
-from timers import ExerciseTimer
 
 class Workout():
     """
@@ -116,12 +114,31 @@ class Workout():
         logging.debug('Run pause')
 
     def run_set(self):
-        self.__get_current_set()
         logging.debug('Run exercise')
+
+        self.__get_current_set()
         
+        # Counter variables 
+        self.exercise_t0 = 0
+        self.exercise_t1 = self.counter
+        self.exercise_t = 0
+        self.exercise_rest = self.counter
+        self.exercise_completed = 0
+
+        # Set loop
         self.rep_current = 0
         for self.rep_current in range (0, self.reps):
-            print (self.rep_current)
+            print ("%s " % (self.type)) 
             print(self.sensor_zlagboard.Changed())
 
+            while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
 
+                time.sleep (self.exercise_dt)
+                self.exercise_t = self.exercise_t + self.exercise_dt
+                self.exercise_rest = self.exercise_t1 - self.exercise_t
+                self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
+                #self.assemble_message_timerstatus()
+                #if (self.do_stop == True):
+                #    return
+                #if (self.timer_shall_run == False):
+                #    break

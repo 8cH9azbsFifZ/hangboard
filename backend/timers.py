@@ -63,14 +63,6 @@ class ExerciseTimer():
     def run_exercise(self): 
         logging.debug('Run exercise')
 
-        self.exercise_t0 = 0
-        self.exercise_t1 = self.counter
-        self.exercise_t = 0
-        self.exercise_rest = self.counter
-        self.exercise_completed = 0
-
-        while not self.timer_shall_run:
-            time.sleep (self.exercise_dt)
 
         while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
             time.sleep (self.exercise_dt)
