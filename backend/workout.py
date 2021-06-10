@@ -19,7 +19,6 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 
-from messager import Messager
 from sensor_zlagboard import SensorZlagboard
 from board import Board
 from board import AsciiBoard
@@ -195,10 +194,10 @@ class Workout():
             # Pause after exercise
             self.run_pause_exercise()
 
-    # def assemble_message_timerstatus1(self):
-    #     msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
-    #         "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
-    #     logging.debug(msg)
+    def assemble_message_timerstatus(self, type=self.type, currentcounter=self.exercise_t1):
+        msg = json.dumps({"Exercise": self.exercise, "Type": type, "Left": self.left, "Right": self.right, 
+            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(currentcounter), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
+        logging.debug(msg)
 
     # def assemble_message_timerstatus2(self):
     #     msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
