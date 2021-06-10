@@ -130,9 +130,11 @@ class Workout():
         # Rest to start loop
         self.exercise_t = 0
         epsilon = 0.0001
+        logging.debug ("Assert nobody hanging")
         while (not (self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
 
+        logging.debug("Rest to start loop")
         while (float(self.exercise_t) < float(self.rest_to_start - epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
@@ -144,6 +146,7 @@ class Workout():
 
         # Set loop
         self.rep_current = 0
+        logging.debug("Set loop")
         for self.rep_current in range (0, self.reps):
             print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
             print(self.sensor_zlagboard.Changed())
