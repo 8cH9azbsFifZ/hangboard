@@ -40,6 +40,8 @@ class Workout():
         # Variable to check if ready or somebody hanging
         self.exercise_hanging = False
 
+        self.exercise_dt = dt
+
         self.init_sensors()
 
     def init_sensors(self):

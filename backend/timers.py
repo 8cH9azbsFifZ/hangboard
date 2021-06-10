@@ -19,7 +19,7 @@ class ExerciseTimer():
     """
     def __init__(self, verbose=None, dt=0.1):
         # Time increment for counter in an exercise
-        self.exercise_dt = dt
+        
         self.exercise_t0 = 0
         self.exercise_t1 = 10
         self.exercise_t = 0
@@ -64,16 +64,7 @@ class ExerciseTimer():
         logging.debug('Run exercise')
 
 
-        while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
-            time.sleep (self.exercise_dt)
-            self.exercise_t = self.exercise_t + self.exercise_dt
-            self.exercise_rest = self.exercise_t1 - self.exercise_t
-            self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
-            self.assemble_message_timerstatus()
-            if (self.do_stop == True):
-                return
-            if (self.timer_shall_run == False):
-                break
+
                 
 
 class PauseTimer():
