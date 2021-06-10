@@ -35,6 +35,9 @@ SIGNAL_PAUSETIMER = 'SignalPauseTimer'
 SIGNAL_ASCIIBOARD = 'AsciiBoard'
 SIGNAL_MESSAGER = 'SignalMessager'
 
+from queMorph import *
+import redis
+
 
 class ExerciseTimer(threading.Thread):
     """
@@ -58,10 +61,14 @@ class ExerciseTimer(threading.Thread):
 
         self.timer_shall_run = False
 
+        self.r = redis.Redis(host='localhost', port=6379, db=0)
+        self.rinput = self.r.pubsub()
 
         write_path = "/tmp/pipe.in"
         self.wf = os.open(write_path, os.O_SYNC | os.O_CREAT | os.O_RDWR)
 
+    def queue_sender(self, message):
+        qqq.put(message)
 
     def pipe(self, message):
         
@@ -106,6 +113,9 @@ class ExerciseTimer(threading.Thread):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
             "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
         logging.debug(msg)
+        #self.pipe ("Assemble Message Hang Exercise TEST\n")
+        self.r.publish('workout',"Assemble Message Hang Exercise TEST\n")
+
         return (msg)
 
     def handle_signal (self, message):
@@ -149,7 +159,6 @@ class ExerciseTimer(threading.Thread):
 
         dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
         dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
-        self.pipe ("Hang")
         #SIGNAL_AIO_MESSAGER.send("Hang")
 
         while not self.timer_shall_run:

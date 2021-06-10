@@ -52,11 +52,15 @@ from board import AsciiBoard
 from timers import PauseTimer
 from timers import ExerciseTimer
 
-class Workout():
+class Workout(threading.Thread):
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, workoutfile="./../exercises/workouts/workout-test.json"):
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1, workoutfile="./../exercises/workouts/workout-test.json"):
+        super(Workout,self).__init__()
+        self.target = target
+        self.name = name
+#     def __init__(self, workoutfile="./../exercises/workouts/workout-test.json"):
         self.select_workout(workoutfile)
         self.exercise_status = "Status"
         self.workout_number = 0
@@ -75,6 +79,7 @@ class Workout():
         # Signals handler setup
         dispatcher.connect( self.handle_signal_workout, signal=SIGNAL_WORKOUT, sender=dispatcher.Any )
 
+        #self.run_set()
 
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
@@ -119,6 +124,10 @@ class Workout():
         for w in range (0, self.total_sets+1):
             self.current_set = w
             self.run_set()
+
+    def run(self):
+        while True:
+            print ("Runnig workout")
 
     def run_exercise_maximal_hang(self):
         logging.debug("Run a maximal hang time exercise")

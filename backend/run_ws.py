@@ -28,7 +28,9 @@ SIGNAL_AIO_WORKOUT = Signal('SignalWorkout')
 
 #from pydispatch import dispatcher
 import pydispatch
+from queMorph import *
 
+from multiprocessing import Process, Queue
 
 """
 The main loop is used for testing currently.
@@ -48,6 +50,14 @@ if __name__ == "__main__":
     zlb.start()
     #dispatcher.send( signal=SIGNAL_ZLAGBOARD, message="Calibrate")
     #zlb.calibrate()
+
+    #p = Process(target=my_function, args=(queue, 1))
+    #p.start()
+    #p.join() # this blocks until the process terminates
+
     wa = Workout()
+    #wa.start()
     #pydispatch.dispatcher.send( signal=SIGNAL_WORKOUT, message="RunSet")
+    #wa.run_set()
     mm.run()
+    #mm.start()
