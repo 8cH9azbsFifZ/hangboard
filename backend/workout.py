@@ -191,13 +191,13 @@ class Workout():
             # Pause after exercise
             self.run_pause_exercise()
 
-    def assemble_message_timerstatus1(self):
-        msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
-            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
-        logging.debug(msg)
+    # def assemble_message_timerstatus1(self):
+    #     msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
+    #         "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
+    #     logging.debug(msg)
 
-    def assemble_message_timerstatus2(self):
-        msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-            "Counter": "{:.2f}".format(self.t1), "CurrentCounter": "{:.2f}".format(self.t), "Completed": "{:.0f}".format(self.completed), "Rest": "{:.2f}".format(self.rest)})
-        logging.debug(msg)
-        return (msg)        
+    # def assemble_message_timerstatus2(self):
+    #     msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
+    #         "Counter": "{:.2f}".format(self.t1), "CurrentCounter": "{:.2f}".format(self.t), "Completed": "{:.0f}".format(self.completed), "Rest": "{:.2f}".format(self.rest)})
+    #     logging.debug(msg)
+    #     return (msg)        
