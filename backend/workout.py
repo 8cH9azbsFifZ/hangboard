@@ -83,8 +83,7 @@ class Workout():
         Run a single workout
         """
         logging.debug("Running workout")
-        for w in range (0, self.total_sets):
-            self.current_set = w
+        for self.current_set in range (0, self.total_sets):
             self.run_set()
 
     def run_exercise_maximal_hang(self):
@@ -117,6 +116,5 @@ class Workout():
         
         self.rep_current = 0
         for self.rep_current in range (0, self.reps):
-            self.__get_current_set()
-            #print (self.rep_current)
+            print (self.rep_current)
 
