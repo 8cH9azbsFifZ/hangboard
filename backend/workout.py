@@ -130,12 +130,17 @@ class Workout():
         # Rest to start loop
         self.exercise_t = 0
         epsilon = 0.0001
+        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
+            time.sleep (self.exercise_dt)
+
         while (float(self.exercise_t) < float(self.rest_to_start - epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.rest_to_start - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
             print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
+            if (self.sensor_zlagboard.Changed() == "Hang"):
+                break
 
         # Set loop
         self.rep_current = 0
