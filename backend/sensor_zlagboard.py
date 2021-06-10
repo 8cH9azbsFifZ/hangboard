@@ -44,7 +44,7 @@ class SensorZlagboard(Gyroscope):
         self.detect_hang()
 
     def Changed(self):
-        self.run_one_measure()
+        self.run_one_measure_gyroscope()
 
         if (self.HangStateChanged == True):
             if (self.HangDetected == True):
@@ -93,7 +93,7 @@ class SensorZlagboard(Gyroscope):
             else:
                 self.LastPauseTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
 
-        logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in [" + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
+        logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in " + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
 
         return self.HangDetected
 
