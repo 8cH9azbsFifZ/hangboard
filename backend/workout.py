@@ -120,7 +120,7 @@ class Workout():
         while (not (self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
 
-    def rest_to_start(self):
+    def run_rest_to_start(self):
         logging.debug("Rest to start loop")
         self.exercise_t = 0
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
@@ -148,7 +148,7 @@ class Workout():
         # Rest to start loop
         self.epsilon = 0.0001
         self.assert_nobody_hanging()
-        self.rest_to_start()
+        self.run_rest_to_start()
 
 
 
