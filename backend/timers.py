@@ -13,23 +13,11 @@ logging.basicConfig(level=logging.DEBUG,
                     format='Timers(%(threadName)-10s) %(message)s',
                     )
 
-
-import threading
-"""
-Use threading for threads
-"""
-
-class ExerciseTimer(threading.Thread):
+class ExerciseTimer():
     """
     All stuff for running an exercise timer.
     """
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1):
-        super(ExerciseTimer,self).__init__()
-        self.target = target
-        self.name = name
-        self.do_stop = False
-        self.daemon = True
-
+    def __init__(self, verbose=None, dt=0.1):
         # Time increment for counter in an exercise
         self.exercise_dt = dt
         self.exercise_t0 = 0
@@ -38,16 +26,10 @@ class ExerciseTimer(threading.Thread):
         self.exercise_rest = 10
         self.exercise_completed = 0
 
-        self.timer_shall_run = False
-
-
-
     def assemble_message_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
             "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
         logging.debug(msg)
-        #self.pipe ("Assemble Message Hang Exercise TEST\n")
-        self.r.publish('workout',"Assemble Message Hang Exercise TEST\n")
 
         return (msg)
 
@@ -78,9 +60,6 @@ class ExerciseTimer(threading.Thread):
             logging.debug('Stopping exercise timer due to no hang')
             self.timer_shall_run = False
 
-
-
-
     def run_exercise(self): 
         logging.debug('Run exercise')
 
@@ -89,7 +68,6 @@ class ExerciseTimer(threading.Thread):
         self.exercise_t = 0
         self.exercise_rest = self.counter
         self.exercise_completed = 0
-
 
         while not self.timer_shall_run:
             time.sleep (self.exercise_dt)
@@ -105,8 +83,6 @@ class ExerciseTimer(threading.Thread):
             if (self.timer_shall_run == False):
                 break
                 
-
-
 
 class PauseTimer(threading.Thread):
     """

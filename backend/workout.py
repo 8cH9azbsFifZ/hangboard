@@ -42,6 +42,11 @@ class Workout():
         # Variable to check if ready or somebody hanging
         self.exercise_hanging = False
 
+        self.init_sensors()
+
+    def init_sensors(self):
+        self.sensor_zlagboard = SensorZlagboard()
+
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
         self.filename = self.workoutfile
@@ -117,4 +122,6 @@ class Workout():
         self.rep_current = 0
         for self.rep_current in range (0, self.reps):
             print (self.rep_current)
+            print(self.sensor_zlagboard.Changed())
+
 
