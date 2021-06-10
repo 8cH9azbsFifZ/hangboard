@@ -47,6 +47,9 @@ class Workout():
     def init_sensors(self):
         self.sensor_zlagboard = SensorZlagboard()
 
+    def init_board(self):
+        self.board = Board()
+
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
         self.filename = self.workoutfile
@@ -107,8 +110,13 @@ class Workout():
         self.pause = self.workout["Sets"][self.current_set]["Pause"]
         self.reps = self.workout["Sets"][self.current_set]["Reps"]
         self.type = self.workout["Sets"][self.current_set]["Type"]
-        self.left = self.workout["Sets"][self.current_set]["Left"]
-        self.right = self.workout["Sets"][self.current_set]["Right"]
+
+        holdtypeleft = self.workout["Sets"][self.current_set]["Left"]
+        holdtyperight = self.workout["Sets"][self.current_set]["Right"]
+        
+        self.left = self.board.get_hold_for_type(holdtypeleft)[0]
+        self.right = self.board.get_hold_for_type(holdtyperight)[-1]
+
         self.counter = self.workout["Sets"][self.current_set]["Counter"]
 
 

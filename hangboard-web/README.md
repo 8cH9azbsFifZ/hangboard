@@ -18,7 +18,7 @@ On OSX:
 ```
 python3 -m venv venv
 source venv/bin/activate
-./startup_local.sh
+python3 main.py --host 0.0.0.0 --port 8080
 ```
 
 Using docker

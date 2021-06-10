@@ -4,6 +4,7 @@ Class for handling all aspects of a hangboard configuration.
 
 import json
 import time
+import base64
 
 
 from tabulate import tabulate 
@@ -21,7 +22,9 @@ class Board():
     All stuff for handling hangboard configurations.
     """
     def __init__(self, verbose=None, boardname = "zlagboard_evo"):
-        super(Board,self).__init__()
+        self.boardname = boardname
+        self.init_board()
+
 
     def list_boards(self):
         logging.debug ("List all available boards.")
@@ -50,7 +53,7 @@ class Board():
         # TODO rework for this version
         self.board_status = ""
         self.boardimage_base64 = ""
-        self.boardfilename = "./" + self.boardname + "/holds.json" 
+        self.boardfilename = "../boards/" + self.boardname + "/holds.json" 
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
@@ -58,7 +61,7 @@ class Board():
         self.get_all_holds()
 
         self.boardname_full = self.boarddata["Name"]
-        self.boardimagename = "./" + self.boardname + "/board.png" 
+        self.boardimagename = "../boards/" + self.boardname + "/board.png" 
 
         self.get_image()
 
@@ -74,11 +77,12 @@ class Board():
 
 
     def set_active_holds(self, array_holds):
+        logging.debug("Set active holds")
         # TODO rework for this version
         self.holds_active = array_holds
         self.holds_inactive = [x for x in self.all_holds if x not in array_holds]
-        print (self.holds_active)
-        print (self.holds_inactive)
+        logging.debug (self.holds_active)
+        logging.debug (self.holds_inactive)
 
     def get_all_holds(self):
         # TODO rework for this version
@@ -89,12 +93,14 @@ class Board():
             self.all_holds.append(hold["ImgLayerName"])
 
     def get_hold_for_type(self, type):
+        logging.debug("Get holds for type " + str(type))
         # TODO rework for this version
         holds = []
         for hold in self.boarddata["Holds"]:
             if (hold["Name"] == type):
                 holds.append(hold["ImgLayerName"])
-        print (holds)
+        logging.debug (holds)
+        return holds
 
 
 class AsciiBoard():
@@ -125,3 +131,6 @@ class AsciiBoard():
 
 if __name__ == "__main__":
     a = Board()
+    h = a.get_hold_for_type("JUG")
+    print (h[0])
+    print (h[-1])
