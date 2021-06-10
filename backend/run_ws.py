@@ -5,7 +5,7 @@ Commandline interface to the hangboard - serving websockets
 from workout import Workout
 from messager import Messager
 
-class BackendWorkout(Workout):
+class BackendWorkout(Workout, Messager):
     def __init__(self, verbose=None):
         super(BackendWorkout, self).__init__()
 
