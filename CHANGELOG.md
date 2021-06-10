@@ -1,4 +1,5 @@
 # History
+- v0.35 - Backend with plain serial loop working.
 - v0.34 - Backend with threads - python signals with asyncio and threads not stable.
 - v0.33 - Link backend to websocket server implemented.
 - v0.32 - Reimplementation of backend using threads.
