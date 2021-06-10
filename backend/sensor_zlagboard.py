@@ -39,26 +39,24 @@ class SensorZlagboard(Gyroscope):
 
         self.sampling_interval = 0.1
 
-    def run(self):
-        while True:
-            self.run_one_measure()
-            self.detect_hang()
-
-            if (self.HangStateChanged == True):
-                if (self.HangDetected == True):
-                    logging.debug ("HangStateChanged and HangDetected")
-                    dispatcher.send( signal=SIGNAL_WORKOUT, message="HangDetected")
-                else:
-                    logging.debug ("HangStateChanged and no HangDetected")
-                    dispatcher.send( signal=SIGNAL_WORKOUT, message="NoHangDetected")
-
-            if (self.do_stop == True):
-                return
-            time.sleep(self.sampling_interval)
-        return
-
-
     def run_one_measure(self):
+        self.run_one_measure_gyroscope()
+        self.detect_hang()
+
+    def Changed(self):
+        self.run_one_measure()
+
+        if (self.HangStateChanged == True):
+            if (self.HangDetected == True):
+                logging.debug ("HangStateChanged and HangDetected")
+                return "Hang"
+            else:
+                logging.debug ("HangStateChanged and no HangDetected")
+                return "NoHang"
+        else:
+            return ""
+
+    def run_one_measure_gyroscope(self):
         super(SensorZlagboard, self).run_one_measure()
 
     def detect_hang(self):
@@ -139,5 +137,7 @@ class SensorZlagboard(Gyroscope):
 
 if __name__ == "__main__":
     a = SensorZlagboard()
-    a.run_one_measure()
+    while True:
+        a.Changed()
+        time.sleep(1)
 
