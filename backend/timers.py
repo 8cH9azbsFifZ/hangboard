@@ -84,17 +84,11 @@ class ExerciseTimer():
                 break
                 
 
-class PauseTimer(threading.Thread):
+class PauseTimer():
     """
     All stuff for running a pause timer.
     """
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1):
-        super(PauseTimer,self).__init__()
-        self.target = target
-        self.name = name
-        self.do_stop = False
-        self.daemon = True
-
+    def __init__(self, verbose=None, dt=0.1):
         # Time increment for counter in an exercise
         self.dt = dt
         self.t0 = 0
@@ -110,8 +104,6 @@ class PauseTimer(threading.Thread):
         self.t = 0
         self.rest = self.t1
         self.completed = 0
-
-        dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Pause")
 
         while (float(self.t) < float(self.t1 - 0.0001)):
             time.sleep (self.dt)
