@@ -1,9 +1,6 @@
 websockets
 smbus
-pydispatch
 tabulate
-aio_pydispatch
-asyncbg
-janus
-aiofile
-redis
+
+
+

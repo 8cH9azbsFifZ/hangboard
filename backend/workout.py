@@ -30,7 +30,6 @@ class Workout():
     All stuff for handling workouts containing sets of exercises.
     """
     def __init__(self, verbose=None, dt=0.1, workoutfile="./../exercises/workouts/workout-test.json"):
-        super(Workout,self).__init__()
         self.select_workout(workoutfile)
         self.exercise_status = "Status"
         self.workout_number = 0
@@ -42,10 +41,6 @@ class Workout():
 
         # Variable to check if ready or somebody hanging
         self.exercise_hanging = False
-
-        # Thread controlling
-        self.do_stop = False
-
 
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
@@ -90,8 +85,6 @@ class Workout():
         for w in range (0, self.total_sets+1):
             self.current_set = w
             self.run_set()
-
-
 
     def run_exercise_maximal_hang(self):
         logging.debug("Run a maximal hang time exercise")

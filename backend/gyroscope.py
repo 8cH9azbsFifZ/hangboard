@@ -206,4 +206,4 @@ class Gyroscope():
 
 if __name__ == "__main__":
 	a = Gyroscope()
-	#a.run_handler()
+	a.run_one_measure()
