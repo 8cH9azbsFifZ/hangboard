@@ -132,6 +132,9 @@ class Workout():
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
 
+    def assert_somebody_hanging(self):
+        while ((self.sensor_zlagboard.NobodyHanging() == True)):
+            time.sleep (self.exercise_dt)
 
     def run_set(self):
         logging.debug('Run exercise')
@@ -157,18 +160,17 @@ class Workout():
         for self.rep_current in range (0, self.reps):
             print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
 
+            # Hang exercise
             self.exercise_t = 0
-            self.assert_nobody_hanging()
+            self.assert_somebody_hanging()
             while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
 
                 time.sleep (self.exercise_dt)
                 self.exercise_t = self.exercise_t + self.exercise_dt
                 self.exercise_rest = self.exercise_t1 - self.exercise_t
                 self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
-                if (self.sensor_zlagboard.Changed() == "Hang"):
+                if (self.sensor_zlagboard.Changed() == "NoHang"):
                     break
-                #self.assemble_message_timerstatus()
-                #if (self.do_stop == True):
-                #    return
-                #if (self.timer_shall_run == False):
-                #    break
+
+            # Pause after exercise
+            self.assert_nobody_hanging()
