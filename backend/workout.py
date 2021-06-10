@@ -130,6 +130,7 @@ class Workout():
         # Rest to start loop
         self.exercise_t = 0
         epsilon = 0.0001
+        
         logging.debug ("Assert nobody hanging")
         while (not (self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
@@ -143,6 +144,11 @@ class Workout():
             print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
+
+        # Assert nobody
+        logging.debug ("Assert nobody hanging")
+        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
+            time.sleep (self.exercise_dt)
 
         # Set loop
         self.rep_current = 0
