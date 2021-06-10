@@ -44,10 +44,13 @@ class SensorZlagboard(Gyroscope):
         self.detect_hang()
 
     def NobodyHanging(self):
+        logging.debug("Check if nobody hangig")
         self.run_one_measure()
         if (self.HangDetected == True):
+            logging.debug("Somebody hanging")
             return False
         else:
+            logging.debug("Nobody hanging")
             return True
 
     def Changed(self):
