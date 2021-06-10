@@ -127,13 +127,25 @@ class Workout():
         self.exercise_rest = self.counter
         self.exercise_completed = 0
 
+        # Rest to start loop
+        self.exercise_t = 0
+        epsilon = 0.0001
+        while (float(self.exercise_t) < float(self.rest_to_start - epsilon)):
+            time.sleep (self.exercise_dt)
+            self.exercise_t = self.exercise_t + self.exercise_dt
+            self.exercise_rest = self.rest_to_start - self.exercise_t
+            self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
+            print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
+
         # Set loop
         self.rep_current = 0
         for self.rep_current in range (0, self.reps):
             print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
             print(self.sensor_zlagboard.Changed())
 
-            while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
+            self.exercise_t = 0
+
+            while (float(self.exercise_t) < float(self.exercise_t1 - epsilon)):
 
                 time.sleep (self.exercise_dt)
                 self.exercise_t = self.exercise_t + self.exercise_dt
