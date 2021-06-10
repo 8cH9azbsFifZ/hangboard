@@ -43,7 +43,8 @@ class Workout():
         self.exercise_dt = dt
 
         self.init_sensors()
-
+        self.init_board()
+        
     def init_sensors(self):
         self.sensor_zlagboard = SensorZlagboard()
 
