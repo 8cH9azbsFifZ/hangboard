@@ -30,19 +30,6 @@ class Board():
         logging.debug ("List all available boards.")
         # TODO implement
 
-
-    def handle_signal (self, message):
-        logging.debug('Board: Signal detected with ' + str(message) )
-        """
-        Execute commands as received from websocket (handler)
-        """
-        # TODO rework for this version
-        #print("Received request: %s" % message)
-        #if (message == "SetHolds"): # FIXME
-        #    self.set_active_holds()  # FIXME: Parameter
-        #if (message == "GetBoard"):
-        #    self.get_board()
-
     def get_board(self):
         """
         Get the board configuration (STUB)
@@ -94,7 +81,6 @@ class Board():
 
     def get_hold_for_type(self, type):
         logging.debug("Get holds for type " + str(type))
-        # TODO rework for this version
         holds = []
         for hold in self.boarddata["Holds"]:
             if (hold["Name"] == type):
@@ -112,12 +98,12 @@ class AsciiBoard():
         self.render_board()
 
     def set_board_default(self):
-        self.board_row1 = ["A1", "A2", "A3", "A4", "A5", "A6", "A7"]
+        self.board_row1 = ["A1", "A2", "A3", "A4", "A5", "A6", "A7"] # FIXME
         self.board_row2 = ["B1", "B2", "B3", "B4", "B5", "B6", "B7"]
         self.board_row3 = ["C1", "C2", "C3", "C4", "C5", "C6", "C7"]
 
     def set_active_holds(self):
-        hold1 = "A1"
+        hold1 = "A1" #FIXME 
         hold2 = "A7"
         for index, item in enumerate(self.board_row1):
             if ((item == hold1) or (item == hold2)):
