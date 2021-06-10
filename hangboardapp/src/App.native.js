@@ -129,13 +129,15 @@ const App: () => Node = () => {
     }
 
     var parsed = JSON.parse(e.data);
-    var togo = parsed.Duration - parsed.Counter;
+    var counter = parseFloat(parsed.Counter); //Counter
+    var currentcounter = parseFloat(parsed.CurrentCounter); // CurrentCounter
+    var togo = counter - currentcounter; 
 
     setMyState(parsed);
-    setMyText("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining."); 
+    setMyText("Exercise: " + parsed.Exercise + " for " + counter + "(s) and still " + togo + "(s) remaining."); 
 
-    if (parsed.HoldsActive.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
-    if (parsed.HoldsActive.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
+    if (parsed.Left.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
+    if (parsed.Right.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
 
   
     //var array = parsed.HoldsActive; 
