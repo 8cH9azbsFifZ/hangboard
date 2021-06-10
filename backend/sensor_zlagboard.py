@@ -73,12 +73,12 @@ class SensorZlagboard(Gyroscope):
 
         if (self.AngleX_Hang > self.AngleX_NoHang):
             delta = self.AngleX_Hang - self.AngleX_NoHang
-            logging.debug (str(delta))
+            logging.debug (str(delta) + " " + str(angle+delta))
             if (angle + delta > self.AngleX_Hang):
                 self.HangDetected = True
         else:
             delta = self.AngleX_NoHang - self.AngleX_Hang
-            logging.debug (str(delta))
+            logging.debug (str(delta) + " " + str(angle-delta))
             if (angle - delta < self.AngleX_Hang):
                 self.HangDetected = True
 
