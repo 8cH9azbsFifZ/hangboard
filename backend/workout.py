@@ -8,6 +8,7 @@ Lessons learned: Microservices are fine, but nanoservices not :)
 import json
 import os
 import time
+import sys
 
 """
 Implement logging with debug level from start on now :)
@@ -130,6 +131,7 @@ class Workout():
             self.exercise_rest = self.rest_to_start - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
             print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
+            sys.stdout.flush()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
 
@@ -147,6 +149,7 @@ class Workout():
             self.exercise_rest = self.exercise_t1 - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
             print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
+            sys.stdout.flush()
             if (self.sensor_zlagboard.Changed() == "NoHang"):
                 break
 
@@ -160,6 +163,7 @@ class Workout():
             self.exercise_rest = self.pause - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.pause) *100
             print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
+            sys.stdout.flush()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
 
