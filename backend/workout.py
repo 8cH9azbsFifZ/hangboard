@@ -150,8 +150,6 @@ class Workout():
         self.assert_nobody_hanging()
         self.run_rest_to_start()
 
-
-
         # Set loop
         self.assert_nobody_hanging()
         self.rep_current = 0

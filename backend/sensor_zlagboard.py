@@ -44,13 +44,13 @@ class SensorZlagboard(Gyroscope):
         self.detect_hang()
 
     def NobodyHanging(self):
-        logging.debug("Check if nobody hangig")
+        #logging.debug("Check if nobody hangig")
         self.run_one_measure()
         if (self.HangDetected == True):
-            logging.debug("Somebody hanging")
+            #logging.debug("Somebody hanging")
             return False
         else:
-            logging.debug("Nobody hanging")
+            #logging.debug("Nobody hanging")
             return True
 
     def Changed(self):
@@ -58,10 +58,10 @@ class SensorZlagboard(Gyroscope):
 
         if (self.HangStateChanged == True):
             if (self.HangDetected == True):
-                logging.debug ("HangStateChanged and HangDetected")
+                #logging.debug ("HangStateChanged and HangDetected")
                 return "Hang"
             else:
-                logging.debug ("HangStateChanged and no HangDetected")
+                #logging.debug ("HangStateChanged and no HangDetected")
                 return "NoHang"
         else:
             return ""
@@ -74,7 +74,7 @@ class SensorZlagboard(Gyroscope):
         Detect a hang based on the calibrated hang / no hang angles.
         A state change variable will also be set.
         """
-        logging.debug ("Detect hang")
+        #logging.debug ("Detect hang")
 
         angle = self.kalAngleX
 
@@ -83,12 +83,12 @@ class SensorZlagboard(Gyroscope):
 
         if (self.AngleX_Hang > self.AngleX_NoHang):
             delta = self.AngleX_Hang - self.AngleX_NoHang
-            logging.debug (str(delta) + " " + str(angle+delta))
+            #logging.debug (str(delta) + " " + str(angle+delta))
             if (angle + delta > self.AngleX_Hang):
                 self.HangDetected = True
         else:
             delta = self.AngleX_NoHang - self.AngleX_Hang
-            logging.debug (str(delta) + " " + str(angle-delta))
+            #logging.debug (str(delta) + " " + str(angle-delta))
             if (angle - delta < self.AngleX_Hang):
                 self.HangDetected = True
 
