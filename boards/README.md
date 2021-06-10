@@ -11,29 +11,6 @@ This directory contains the hold configurations for different boards
 
 ## Beastmaker 2000
 
-# Run the module
-On OSX: 
-```
-python3 -m venv venv
-source venv/bin/activate
-python3 -m pip install -r requirements.txt
-```
-Using docker
-```
-docker build . -t boards
-docker run -p 4324:4324 --rm -it boards
-```
-
-
-## Debugging the websockets
-wscat -c "ws://10.101.40.81:4324/"
-
-
-## Test the module
-```
-python3 test_boards.py      
-```
-
 # Implement new board configurations
 
 ## Preparation
