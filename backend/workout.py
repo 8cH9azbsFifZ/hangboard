@@ -115,6 +115,24 @@ class Workout():
     def run_pause(self):
         logging.debug('Run pause')
 
+    def assert_nobody_hanging(self):
+        logging.debug ("Assert nobody hanging")
+        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
+            time.sleep (self.exercise_dt)
+
+    def rest_to_start(self):
+        logging.debug("Rest to start loop")
+        self.exercise_t = 0
+        while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
+            time.sleep (self.exercise_dt)
+            self.exercise_t = self.exercise_t + self.exercise_dt
+            self.exercise_rest = self.rest_to_start - self.exercise_t
+            self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
+            print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
+            if (self.sensor_zlagboard.Changed() == "Hang"):
+                break
+
+
     def run_set(self):
         logging.debug('Run exercise')
 
@@ -128,43 +146,29 @@ class Workout():
         self.exercise_completed = 0
 
         # Rest to start loop
-        self.exercise_t = 0
-        epsilon = 0.0001
-        
-        logging.debug ("Assert nobody hanging")
-        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
-            time.sleep (self.exercise_dt)
+        self.epsilon = 0.0001
+        self.assert_nobody_hanging()
+        self.rest_to_start()
 
-        logging.debug("Rest to start loop")
-        while (float(self.exercise_t) < float(self.rest_to_start - epsilon)):
-            time.sleep (self.exercise_dt)
-            self.exercise_t = self.exercise_t + self.exercise_dt
-            self.exercise_rest = self.rest_to_start - self.exercise_t
-            self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
-            print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
-            if (self.sensor_zlagboard.Changed() == "Hang"):
-                break
 
-        # Assert nobody
-        logging.debug ("Assert nobody hanging")
-        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
-            time.sleep (self.exercise_dt)
 
         # Set loop
+        self.assert_nobody_hanging()
         self.rep_current = 0
         logging.debug("Set loop")
         for self.rep_current in range (0, self.reps):
             print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
-            print(self.sensor_zlagboard.Changed())
 
             self.exercise_t = 0
-
-            while (float(self.exercise_t) < float(self.exercise_t1 - epsilon)):
+            self.assert_nobody_hanging()
+            while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
 
                 time.sleep (self.exercise_dt)
                 self.exercise_t = self.exercise_t + self.exercise_dt
                 self.exercise_rest = self.exercise_t1 - self.exercise_t
                 self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
+                if (self.sensor_zlagboard.Changed() == "Hang"):
+                    break
                 #self.assemble_message_timerstatus()
                 #if (self.do_stop == True):
                 #    return
