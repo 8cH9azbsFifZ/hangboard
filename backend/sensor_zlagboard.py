@@ -40,11 +40,11 @@ class SensorZlagboard(Gyroscope):
         self.sampling_interval = 0.1
 
     def run_one_measure(self):
-        #self.run_one_measure_gyroscope()
+        self.run_one_measure_gyroscope()
         self.detect_hang()
 
     def Changed(self):
-        self.run_one_measure_gyroscope()
+        self.run_one_measure()
 
         if (self.HangStateChanged == True):
             if (self.HangDetected == True):
