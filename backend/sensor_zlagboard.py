@@ -8,8 +8,6 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 import time
-
-from pydispatch import dispatcher
 import json
 
 
@@ -24,7 +22,7 @@ SIGNAL_ZLAGBOARD = "SignalZlagboard"
 SIGNAL_WORKOUT = 'SignalWorkout'
 
 class SensorZlagboard(Gyroscope):
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1):
+    def __init__(self, verbose=None, dt=0.1):
         super(SensorZlagboard, self).__init__()
 
         self.calibration_duration = 10
@@ -39,11 +37,7 @@ class SensorZlagboard(Gyroscope):
         self.TimeStateChangeCurrent = time.time()       
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
 
-        self.do_stop = False
-
         self.sampling_interval = 0.1
-
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_ZLAGBOARD, sender=dispatcher.Any )
 
     def run(self):
         while True:
@@ -63,9 +57,6 @@ class SensorZlagboard(Gyroscope):
             time.sleep(self.sampling_interval)
         return
 
-    def stop(self):
-        self.do_stop = True
-        logging.debug ("Try to stop")
 
     def run_one_measure(self):
         super(SensorZlagboard, self).run_one_measure()
@@ -145,14 +136,8 @@ class SensorZlagboard(Gyroscope):
         print ('Calibration done with no hang angle ' + str(self.AngleX_NoHang) + " and hang angle " + str(self.AngleX_Hang))
         logging.debug('Calibration done with no hang angle ' + str(self.AngleX_NoHang) + " and hang angle " + str(self.AngleX_Hang))
 
-    def handle_signal (self, message):
-        logging.debug('Signal detected with ' + str(message) )
-        if (message == "Calibrate"):
-            self.calibrate()
 
 if __name__ == "__main__":
     a = SensorZlagboard()
-    a.start()
-    dispatcher.send( signal=SIGNAL_ZLAGBOARD, message="Calibrate")
-    a.stop()
+    a.run_one_measure()
 
