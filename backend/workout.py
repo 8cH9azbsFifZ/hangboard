@@ -147,7 +147,8 @@ class Workout():
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.exercise_t1 - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
-            print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
+            #print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
+            print (self.assemble_message_exercise_timerstatus())
             sys.stdout.flush()
             if (self.sensor_zlagboard.Changed() == "NoHang"):
                 break
@@ -161,7 +162,8 @@ class Workout():
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.pause - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.pause) *100
-            print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
+            #print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
+            print (assemble_message_pause_timerstatus())
             sys.stdout.flush()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
@@ -194,13 +196,14 @@ class Workout():
             # Pause after exercise
             self.run_pause_exercise()
 
-    def assemble_message_timerstatus(self, type=self.type, currentcounter=self.exercise_t1):
-        msg = json.dumps({"Exercise": self.exercise, "Type": type, "Left": self.left, "Right": self.right, 
-            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(currentcounter), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
+    def assemble_message_exercise_timerstatus(self):
+        msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
+            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
         logging.debug(msg)
+        return (msg)
 
-    # def assemble_message_timerstatus2(self):
-    #     msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-    #         "Counter": "{:.2f}".format(self.t1), "CurrentCounter": "{:.2f}".format(self.t), "Completed": "{:.0f}".format(self.completed), "Rest": "{:.2f}".format(self.rest)})
-    #     logging.debug(msg)
-    #     return (msg)        
+    def assemble_message_pause_timerstatus(self):
+        msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
+            "Counter": "{:.2f}".format(self.t1), "CurrentCounter": "{:.2f}".format(self.t), "Completed": "{:.0f}".format(self.completed), "Rest": "{:.2f}".format(self.rest)})
+        logging.debug(msg)
+        return (msg)        
