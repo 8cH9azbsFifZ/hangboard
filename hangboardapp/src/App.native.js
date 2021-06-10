@@ -37,8 +37,8 @@ var Sound = require('react-native-sound');
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
-var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
-var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
+//var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
+//var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
 
 Sound.setCategory('Playback');
 
@@ -102,10 +102,11 @@ const App: () => Node = () => {
 
   const [ImageTest, SetImageTest] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg=='); // Test image
 
-  clientBoard.onmessage = function(e) {
-    SetImageTest('data:image/png;base64,' + e.data);
-  }
+  //clientBoard.onmessage = function(e) {
+  //  SetImageTest('data:image/png;base64,' + e.data);
+  //}
 
+  /*
   wsGyroscope.onmessage = function(e) {
     if (typeof e.data === 'string') {
       mydata = e.data;
@@ -119,6 +120,7 @@ const App: () => Node = () => {
       if (parsed.HangDetected == false) { SFXstophang.play() ; }
     }
   }
+*/
 
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
