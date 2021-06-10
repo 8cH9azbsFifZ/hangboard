@@ -64,7 +64,7 @@ class SensorZlagboard(Gyroscope):
         Detect a hang based on the calibrated hang / no hang angles.
         A state change variable will also be set.
         """
-        #logging.debug ("Detect hang")
+        logging.debug ("Detect hang")
 
         angle = self.kalAngleX
 
@@ -93,7 +93,7 @@ class SensorZlagboard(Gyroscope):
             else:
                 self.LastPauseTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
 
-        #logging.debug ("Hang detected: " + str(self.HangDetected))
+        logging.debug ("Hang detected: " + str(self.HangDetected))
 
         return self.HangDetected
 
