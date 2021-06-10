@@ -136,7 +136,9 @@ class SensorZlagboard(Gyroscope):
 
 
 if __name__ == "__main__":
+    print ("Testing Zlagboard sensor")
     a = SensorZlagboard()
+    print ("Start loop")
     while True:
         print ("ok")
         print (a.Changed())
