@@ -139,7 +139,7 @@ class SensorZlagboard(Gyroscope):
 
 if __name__ == "__main__":
     a = SensorZlagboard()
-    #a.calibrate()
+    a.calibrate()
     while True:
         print (a.Changed())
         time.sleep(1)
