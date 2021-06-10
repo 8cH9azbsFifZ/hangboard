@@ -44,7 +44,7 @@ class Workout():
 
         self.init_sensors()
         self.init_board()
-        
+
     def init_sensors(self):
         self.sensor_zlagboard = SensorZlagboard()
 
@@ -205,21 +205,25 @@ class Workout():
 
     def assemble_message_exercise_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
-            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
+            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
+            "HangChangeDetected": self.sensor_zlagboard.Changed()})
+            
         print (msg)
         sys.stdout.flush()
         return (msg)
 
     def assemble_message_pause_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-            "Counter": "{:.2f}".format(self.pause), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
+            "Counter": "{:.2f}".format(self.pause), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
+            "HangChangeDetected": self.sensor_zlagboard.Changed()})
         print (msg)
         sys.stdout.flush()
         return (msg)        
 
     def assemble_message_resttostart_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Rest to start", "Left": "", "Right": "", 
-            "Counter": "{:.2f}".format(self.rest_to_start), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest)})
+            "Counter": "{:.2f}".format(self.rest_to_start), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
+            "HangChangeDetected": self.sensor_zlagboard.Changed()})
         print (msg)
         sys.stdout.flush()
         return (msg)        
