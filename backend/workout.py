@@ -164,11 +164,11 @@ class Workout():
             self.exercise_t = 0
             self.assert_somebody_hanging()
             while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
-
                 time.sleep (self.exercise_dt)
                 self.exercise_t = self.exercise_t + self.exercise_dt
                 self.exercise_rest = self.exercise_t1 - self.exercise_t
                 self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
+                print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
                 if (self.sensor_zlagboard.Changed() == "NoHang"):
                     break
 
