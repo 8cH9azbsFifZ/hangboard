@@ -17,4 +17,5 @@ if __name__ == "__main__":
     print ("Starting")
     wa = BackendWorkout()
     #wa.show_workout()
-    wa.run_workout()
+    #wa.run_workout()
+    wa.run_websocket_handler()
