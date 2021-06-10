@@ -119,7 +119,7 @@ class SensorZlagboard(Gyroscope):
         print ("No hang")	
         while (tt < self.calibration_duration):
             tt = tt + dt
-            self.run_one_measure()
+            self.run_one_measure_gyroscope()
             time.sleep(dt)
         self.AngleX_NoHang = self.kalAngleX
 
@@ -128,7 +128,7 @@ class SensorZlagboard(Gyroscope):
         while (tt < self.calibration_duration):
             tt = tt + dt
             time.sleep(dt)
-            self.run_one_measure()
+            self.run_one_measure_gyroscope()
         self.AngleX_Hang = self.kalAngleX # FIXME: sum of both angles - direction indenpendent?!
 
         print ('Calibration done with no hang angle ' + str(self.AngleX_NoHang) + " and hang angle " + str(self.AngleX_Hang))
@@ -136,11 +136,9 @@ class SensorZlagboard(Gyroscope):
 
 
 if __name__ == "__main__":
-    print ("Testing Zlagboard sensor")
     a = SensorZlagboard()
-    print ("Start loop")
+    a.calibrate()
     while True:
-        print ("ok")
         print (a.Changed())
         time.sleep(1)
 
