@@ -83,7 +83,7 @@ class Workout():
         Run a single workout
         """
         logging.debug("Running workout")
-        for w in range (0, self.total_sets+1):
+        for w in range (0, self.total_sets):
             self.current_set = w
             self.run_set()
 
