@@ -159,6 +159,10 @@ const App: () => Node = () => {
       if (togo == 0) { SFXdone.play(); } 
     }
     
+
+    if (parsed.HangChangeDetected == "Hang") { SFXstarthang.play() ; }
+    if (parsed.HangChangeDetected == "NoHang") { SFXstophang.play() ; }
+ 
   }; 
 
   const sendStart = () =>
