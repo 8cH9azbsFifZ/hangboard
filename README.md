@@ -41,9 +41,7 @@ This is a brief design layout of the project.
 + Starting on a Raspi W zero: Run `./startup.sh` for running the backend.
 
 ### Manual startup
-+ Start Exercises `cd exercises && python3 exercises.py --host 0.0.0.0 --port 4321 `
-+ Start Gyroscope Sensors `cd hardware/gyroscope && python3 sensor_zlagboard.py --host 0.0.0.0 --port 4323`
-+ Start Force Sensors `cd hardware/force_sensors && python3 force.py --host 0.0.0.0 --port 4322`
++ Start backend service ```cd backend; ../websocketd/websocketd --port=4321 python3 ./run_ws.py ```
 + Start the Web App: `cd hangboard-web && python3 main.py --host 0.0.0.0 --port 8080`
 + Start the iOS App: `cd hangboardapp && ./build && yarn run ios`
 
