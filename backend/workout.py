@@ -130,7 +130,7 @@ class Workout():
         # Set loop
         self.rep_current = 0
         for self.rep_current in range (0, self.reps):
-            print ("%s " % (self.type)) 
+            print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
             print(self.sensor_zlagboard.Changed())
 
             while (float(self.exercise_t) < float(self.exercise_t1 - 0.0001)):
