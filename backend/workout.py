@@ -18,33 +18,6 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 
-
-import threading
-"""
-Use threading for threads
-"""
-
-
-from pydispatch import dispatcher
-"""
-Use pydispatch and signals to transfer JSON data between the threads.
-"""
-
-"""
-Signals for communication
-"""
-SIGNAL_WORKOUT = 'SignalWorkout'
-SIGNAL_MESSAGER = 'SignalMessager'
-SIGNAL_EXERCISETIMER = 'SignalExerciseTimer'
-SIGNAL_PAUSETIMER = 'SignalPauseTimer'
-SIGNAL_ASCIIBOARD = 'AsciiBoard'
-SIGNAL_BOARD = 'Board'
-SIGNAL_ZLAGBOARD = "SignalZlagboard"
-from aio_pydispatch import Signal
-
-SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
-SIGNAL_AIO_WORKOUT = Signal('SignalWorkout')
-
 from messager import Messager
 from sensor_zlagboard import SensorZlagboard
 from board import Board
@@ -52,15 +25,12 @@ from board import AsciiBoard
 from timers import PauseTimer
 from timers import ExerciseTimer
 
-class Workout(threading.Thread):
+class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, dt=0.1, workoutfile="./../exercises/workouts/workout-test.json"):
+    def __init__(self, verbose=None, dt=0.1, workoutfile="./../exercises/workouts/workout-test.json"):
         super(Workout,self).__init__()
-        self.target = target
-        self.name = name
-#     def __init__(self, workoutfile="./../exercises/workouts/workout-test.json"):
         self.select_workout(workoutfile)
         self.exercise_status = "Status"
         self.workout_number = 0
@@ -76,10 +46,6 @@ class Workout(threading.Thread):
         # Thread controlling
         self.do_stop = False
 
-        # Signals handler setup
-        dispatcher.connect( self.handle_signal_workout, signal=SIGNAL_WORKOUT, sender=dispatcher.Any )
-
-        #self.run_set()
 
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
@@ -125,9 +91,7 @@ class Workout(threading.Thread):
             self.current_set = w
             self.run_set()
 
-    def run(self):
-        while True:
-            print ("Runnig workout")
+
 
     def run_exercise_maximal_hang(self):
         logging.debug("Run a maximal hang time exercise")
@@ -163,23 +127,4 @@ class Workout(threading.Thread):
         for self.rep_current in range (0, self.reps):
             self.__get_current_set()
             #print (self.rep_current)
-            dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps(self.workout["Sets"][self.current_set]))
-            dispatcher.send( signal=SIGNAL_PAUSETIMER, message=self.pause)
-
-    def handle_signal_workout (self, message):
-        logging.debug('Signal detected with ' + str(message) )
-        if (message == "RunSet"):
-            self.run_set()
-        if (message == "NoHangDetected"):
-            dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps({"StopExerciseTimer": True}))
-        if (message == "HangDetected"):
-            dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps({"StartExerciseTimer": True}))
-
-    def run_test (self):
-        logging.debug('Run test')
-
-        self.__get_current_set()
-        dispatcher.send( signal=SIGNAL_EXERCISETIMER, message=json.dumps(self.workout["Sets"][self.current_set]))
-
-                
 

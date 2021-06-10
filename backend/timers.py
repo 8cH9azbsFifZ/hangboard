@@ -18,26 +18,6 @@ import threading
 """
 Use threading for threads
 """
-from tabulate import tabulate 
-""" 
-Use tabulate for an ASCII Hanboard display for debugging purposes
-"""
-
-from pydispatch import dispatcher
-"""
-Use pydispatch and signals to transfer JSON data between the threads.
-"""
-from aio_pydispatch import Signal
-SIGNAL_AIO_MESSAGER = Signal('SignalMessager')
-
-SIGNAL_EXERCISETIMER = 'SignalExerciseTimer'
-SIGNAL_PAUSETIMER = 'SignalPauseTimer'
-SIGNAL_ASCIIBOARD = 'AsciiBoard'
-SIGNAL_MESSAGER = 'SignalMessager'
-
-from queMorph import *
-import redis
-
 
 class ExerciseTimer(threading.Thread):
     """
@@ -49,7 +29,6 @@ class ExerciseTimer(threading.Thread):
         self.name = name
         self.do_stop = False
         self.daemon = True
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_EXERCISETIMER, sender=dispatcher.Any )
 
         # Time increment for counter in an exercise
         self.exercise_dt = dt
@@ -61,53 +40,7 @@ class ExerciseTimer(threading.Thread):
 
         self.timer_shall_run = False
 
-        self.r = redis.Redis(host='localhost', port=6379, db=0)
-        self.rinput = self.r.pubsub()
 
-        write_path = "/tmp/pipe.in"
-        self.wf = os.open(write_path, os.O_SYNC | os.O_CREAT | os.O_RDWR)
-
-    def queue_sender(self, message):
-        qqq.put(message)
-
-    def pipe(self, message):
-        
-        #read_path = "/tmp/pipe.out"
-        
-        #rf = None
-        
-        #for i in range(1, 11):
-        msg = message.encode() #"msg " + str(i)
-        len_send = os.write(self.wf, msg)
-        #print ("sent msg: %s" % msg)
-        
-            #if rf is None:
-            #    rf = os.open(read_path, os.O_RDONLY)
-        
-            #s = os.read(rf, 1024)
-            #if len(s) == 0:
-            #    break
-            #print "received msg: %s" % s
-        
-            #time.sleep(1)
-        
-        #os.write(wf, 'exit')
-        
-        #os.close(rf)
-        #os.close(wf)
-
-
-
-    def stop(self):
-        self.do_stop = True
-        logging.debug ("Try to stop")
-
-    def run(self):
-        while True:
-            if (self.do_stop == True):
-                return
-            time.sleep(1)
-        return
 
     def assemble_message_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
@@ -157,9 +90,6 @@ class ExerciseTimer(threading.Thread):
         self.exercise_rest = self.counter
         self.exercise_completed = 0
 
-        dispatcher.send( signal=SIGNAL_ASCIIBOARD, message="Hang")
-        dispatcher.send( signal=SIGNAL_MESSAGER, message="Hang")
-        #SIGNAL_AIO_MESSAGER.send("Hang")
 
         while not self.timer_shall_run:
             time.sleep (self.exercise_dt)
@@ -188,7 +118,6 @@ class PauseTimer(threading.Thread):
         self.name = name
         self.do_stop = False
         self.daemon = True
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_PAUSETIMER, sender=dispatcher.Any )
 
         # Time increment for counter in an exercise
         self.dt = dt
@@ -197,24 +126,6 @@ class PauseTimer(threading.Thread):
         self.t = 0
         self.rest = 10
         self.completed = 0
-
-    def stop(self):
-        self.do_stop = True
-        logging.debug ("Try to stop")
-
-    def run(self):
-        while True:
-            if (self.do_stop == True):
-                return
-            time.sleep(1)
-        return
-
-    def handle_signal (self, message):
-        logging.debug('PauseTimer: Signal detected with ' + str(message) )
-
-        logging.debug('Get current pause time')
-        self.t1 = float(message)
-        self.run_pause()
 
     def run_pause(self): 
         logging.debug('Run pause')

@@ -3,8 +3,6 @@ Class for handling all aspects of a hangboard configuration.
 """
 
 import json
-import threading
-from pydispatch import dispatcher
 import time
 
 
@@ -18,32 +16,12 @@ logging.basicConfig(level=logging.DEBUG,
                     format='Board(%(threadName)-10s) %(message)s',
                     )
 
-
-SIGNAL_BOARD = 'Board'
-SIGNAL_ASCIIBOARD = 'AsciiBoard'
-
-class Board(threading.Thread):
+class Board():
     """
     All stuff for handling hangboard configurations.
     """
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None, boardname = "zlagboard_evo"):
+    def __init__(self, verbose=None, boardname = "zlagboard_evo"):
         super(Board,self).__init__()
-        self.target = target
-        self.name = name
-        self.do_stop = False
-        self.daemon = True
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_BOARD, sender=dispatcher.Any )
-
-    def stop(self):
-        self.do_stop = True
-        logging.debug ("Try to stop")
-
-    def run(self):
-        while True:
-            if (self.do_stop == True):
-                return
-            time.sleep(1)
-        return
 
     def list_boards(self):
         logging.debug ("List all available boards.")
@@ -119,38 +97,12 @@ class Board(threading.Thread):
         print (holds)
 
 
-class AsciiBoard(threading.Thread):
+class AsciiBoard():
     """
     All stuff for handling an ASCII output of the current hangboard configuration.
     """
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
-        super(AsciiBoard,self).__init__()
-        self.target = target
-        self.name = name
-        self.do_stop = False
-        self.daemon = True
-        dispatcher.connect( self.handle_signal, signal=SIGNAL_ASCIIBOARD, sender=dispatcher.Any )
-
+    def __init__(self, verbose=None):
         self.set_board_default()
-        self.render_board()
-
-    def stop(self):
-        self.do_stop = True
-        logging.debug ("Try to stop")
-
-    def run(self):
-        while True:
-            if (self.do_stop == True):
-                return
-            time.sleep(1)
-        return
-
-    def handle_signal (self, message):
-        logging.debug('Asciiboard: Signal detected with ' + str(message) )
-        if (message == "Hang"):
-            self.set_active_holds()
-        else:
-            self.set_board_default()
         self.render_board()
 
     def set_board_default(self):

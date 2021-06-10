@@ -9,9 +9,6 @@ import math
 
 import json
 
-from threading import Thread
-import threading
-
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='Gyroscope(%(threadName)-10s) %(message)s',
@@ -19,10 +16,9 @@ logging.basicConfig(level=logging.DEBUG,
 
 import smbus			#import SMBus module of I2C
 
-class Gyroscope(threading.Thread):
-	def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
+class Gyroscope():
+	def __init__(self, verbose=None):
 
-		super(Gyroscope, self).__init__()
 		logging.debug('Init Gyroscope Class')
 		#Initialize gyroscope class with the neccessary variables for the SMBus module (I2C).
 		self.PWR_MGMT_1 = 0x6B

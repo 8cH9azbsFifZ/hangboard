@@ -9,12 +9,10 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 import random
-import threading
 
 
-class Gyroscope(threading.Thread):
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, verbose=None):
-        super(Gyroscope, self).__init__()
+class Gyroscope():
+    def __init__(self, verbose=None):
         logging.debug('Init Emulated Gyroscope Class')
 
     def run_one_measure (self):
