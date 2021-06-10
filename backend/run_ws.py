@@ -15,7 +15,7 @@ The main loop is used for testing currently.
 """
 if __name__ == "__main__":
     print ("Starting")
-    wa = BackendWorkout()
+    wa = Workout()
     #wa.show_workout()
-    #wa.run_workout()
-    wa.run_websocket_handler()
+    wa.run_workout()
+    #wa.run_websocket_handler()
