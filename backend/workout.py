@@ -123,6 +123,7 @@ class Workout():
     def run_rest_to_start(self):
         logging.debug("Rest to start loop")
         self.exercise_t = 0
+        self.assert_nobody_hanging()
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
@@ -149,6 +150,20 @@ class Workout():
             if (self.sensor_zlagboard.Changed() == "NoHang"):
                 break
 
+    def run_pause_exercise(self):
+        # Pause exercise
+        self.exercise_t = 0
+        self.assert_nobody_hanging()
+        while (float(self.exercise_t) < float(self.pause - self.epsilon)):
+            time.sleep (self.exercise_dt)
+            self.exercise_t = self.exercise_t + self.exercise_dt
+            self.exercise_rest = self.pause - self.exercise_t
+            self.exercise_completed = float(self.exercise_t) / float(self.pause) *100
+            print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
+            if (self.sensor_zlagboard.Changed() == "Hang"):
+                break
+
+
     def run_set(self):
         logging.debug('Run exercise')
 
@@ -167,13 +182,11 @@ class Workout():
         self.run_rest_to_start()
 
         # Set loop
-        self.assert_nobody_hanging()
         self.rep_current = 0
         logging.debug("Set loop")
         for self.rep_current in range (0, self.reps):
             print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
             self.run_hang_exercise()
   
-
             # Pause after exercise
-            self.assert_nobody_hanging()
+            self.run_pause_exercise()
