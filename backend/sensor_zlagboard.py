@@ -22,15 +22,15 @@ SIGNAL_ZLAGBOARD = "SignalZlagboard"
 SIGNAL_WORKOUT = 'SignalWorkout'
 
 class SensorZlagboard(Gyroscope):
-    def __init__(self, verbose=None, dt=0.1):
+    def __init__(self, verbose=None, dt=0.1, AngleX_Hang=8., AngleX_NoHang=112.):
         super(SensorZlagboard, self).__init__()
 
         self.calibration_duration = 10
 
         self.HangDetected = False
         self.HangStateChanged = False
-        self.AngleX_Hang = -20.0
-        self.AngleX_NoHang = 30.0
+        self.AngleX_Hang = AngleX_Hang
+        self.AngleX_NoHang = AngleX_NoHang
 
         self.LastHangTime = 0
         self.LastPauseTime = 0
@@ -137,7 +137,7 @@ class SensorZlagboard(Gyroscope):
 
 if __name__ == "__main__":
     a = SensorZlagboard()
-    a.calibrate()
+    #a.calibrate()
     while True:
         print (a.Changed())
         time.sleep(1)
