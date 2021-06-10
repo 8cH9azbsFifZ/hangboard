@@ -106,22 +106,6 @@ const App: () => Node = () => {
   //  SetImageTest('data:image/png;base64,' + e.data);
   //}
 
-  /*
-  wsGyroscope.onmessage = function(e) {
-    if (typeof e.data === 'string') {
-      mydata = e.data;
-      console.log("Received: '" + e.data + "'");
-    }
-
-    var parsed = JSON.parse(e.data);
-    if (parsed.HangStateChanged == true)
-    {
-      if (parsed.HangDetected == true) { SFXstarthang.play() ; }
-      if (parsed.HangDetected == false) { SFXstophang.play() ; }
-    }
-  }
-*/
-
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
       mydata = e.data;
@@ -129,9 +113,10 @@ const App: () => Node = () => {
     }
 
     var parsed = JSON.parse(e.data);
-    var counter = parseFloat(parsed.Counter); //Counter
-    var currentcounter = parseFloat(parsed.CurrentCounter); // CurrentCounter
+    var counter = parseFloat(parsed.Counter).toFixed(2); //Counter
+    var currentcounter = parseFloat(parsed.CurrentCounter).toFixed(2); // CurrentCounter
     var togo = counter - currentcounter; 
+    togo.toFixed(2);
 
     setMyState(parsed);
     setMyText("Exercise: " + parsed.Exercise + " for " + counter + "(s) and still " + togo + "(s) remaining."); 
@@ -144,20 +129,19 @@ const App: () => Node = () => {
     //array.forEach(element => ImageHold1 = element);
     //array.forEach(element => window[element].setAttribute("display","inline") ); // FIXME 
 
-    if (parsed.TimerStatus == false)
-    {
-      if (togo == 10) { SFXten.play(); } 
-      if (togo == 9) { SFXnine.play(); } 
-      if (togo == 8) { SFXeight.play(); } 
-      if (togo == 7) { SFXseven.play(); } 
-      if (togo == 6) { SFXsix.play(); } 
-      if (togo == 5) { SFXfive.play(); } 
-      if (togo == 4) { SFXfour.play(); } 
-      if (togo == 3) { SFXthree.play(); } 
-      if (togo == 2) { SFXtwo.play(); } 
-      if (togo == 1) { SFXone.play(); } 
-      if (togo == 0) { SFXdone.play(); } 
-    }
+
+    if (togo == 10.) { SFXten.play(); } 
+    if (togo == 9.) { SFXnine.play(); } 
+    if (togo == 8.) { SFXeight.play(); } 
+    if (togo == 7.) { SFXseven.play(); } 
+    if (togo == 6.) { SFXsix.play(); } 
+    if (togo == 5.) { SFXfive.play(); } 
+    if (togo == 4.) { SFXfour.play(); } 
+    if (togo == 3.) { SFXthree.play(); } 
+    if (togo == 2.) { SFXtwo.play(); } 
+    if (togo == 1.) { SFXone.play(); } 
+    if (togo == 0.) { SFXdone.play(); } 
+  
     
 
     if (parsed.HangChangeDetected == "Hang") { SFXstarthang.play() ; }
