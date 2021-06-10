@@ -33,8 +33,6 @@ import ImageA1 from "./A1.png";
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
-var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
-var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
 
 
 const Section = ({children, title}): Node => {
@@ -75,57 +73,48 @@ const App: () => Node = () => {
   const TestImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
   const [ImageTest, SetImageTest] = useState(TestImage); // Test image
 
-  clientBoard.onmessage = function(e) {
-    SetImageTest('data:image/png;base64,' + e.data);
-  }
-
-  wsGyroscope.onmessage = function(e) {
-    if (typeof e.data === 'string') {
-      console.log("Received: '" + e.data + "'");
-    }
-
-    var parsed = JSON.parse(e.data);
-    if (parsed.HangStateChanged == true)
-    {
-      //if (parsed.HangDetected == true) { SFXstarthang.play() ; } // FIXME
-      //if (parsed.HangDetected == false) { SFXstophang.play() ; }
-    }
-  }
+  
 
   client.onmessage = function(e) {
     if (typeof e.data === 'string') {
       console.log("Received: '" + e.data + "'");
     }
-
     var parsed = JSON.parse(e.data);
-    var togo = parsed.Duration - parsed.Counter;
+    var counter = parseFloat(parsed.Counter).toFixed(2); //Counter
+    var currentcounter = parseFloat(parsed.CurrentCounter).toFixed(2); // CurrentCounter
+    var togo = counter - currentcounter; 
+    togo.toFixed(2);
 
     setMyState(parsed);
-    setMyText("Exercise: " + parsed.Exercise + " for " + parsed.Duration + "(s) and still " + togo + "(s) remaining."); 
+    setMyText("Exercise: " + parsed.Exercise + " for " + parseInt(counter) + "(s) and still " + parseInt(togo) + "(s) remaining."); 
 
-    if (parsed.HoldsActive.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
-    if (parsed.HoldsActive.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
+    if (parsed.Left.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
+    if (parsed.Right.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
 
   
     //var array = parsed.HoldsActive; 
     //array.forEach(element => ImageHold1 = element);
     //array.forEach(element => window[element].setAttribute("display","inline") ); // FIXME 
 
-    if (parsed.TimerStatus == false)
-    {
-    /*  if (togo == 10) { SFXten.play(); } 
-      if (togo == 9) { SFXnine.play(); } 
-      if (togo == 8) { SFXeight.play(); } 
-      if (togo == 7) { SFXseven.play(); } 
-      if (togo == 6) { SFXsix.play(); } 
-      if (togo == 5) { SFXfive.play(); } 
-      if (togo == 4) { SFXfour.play(); } 
-      if (togo == 3) { SFXthree.play(); } 
-      if (togo == 2) { SFXtwo.play(); } 
-      if (togo == 1) { SFXone.play(); } */
-      //if (togo == 0) { SFXdone.play(); } 
-    }
-    
+/*
+    if (togo-1 == 10.) { SFXten.play(); } 
+    if (togo-1 == 9.) { SFXnine.play(); } 
+    if (togo-1 == 8.) { SFXeight.play(); } 
+    if (togo-1 == 7.) { SFXseven.play(); } 
+    if (togo-1 == 6.) { SFXsix.play(); } 
+    if (togo-1 == 5.) { SFXfive.play(); } 
+    if (togo-1 == 4.) { SFXfour.play(); } 
+    if (togo-1 == 3.) { SFXthree.play(); } 
+    if (togo-1 == 2.) { SFXtwo.play(); } 
+    if (togo-1 == 1.) { SFXone.play(); } 
+    if (togo-1 == 0.) { SFXdone.play(); } 
+  
+    */
+
+   // if (parsed.HangChangeDetected == "Hang") { SFXstarthang.play() ; }
+   // if (parsed.HangChangeDetected == "NoHang") { SFXstophang.play() ; }
+ 
+
   }; 
 
   const sendStart = () =>

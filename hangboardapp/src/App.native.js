@@ -119,7 +119,7 @@ const App: () => Node = () => {
     togo.toFixed(2);
 
     setMyState(parsed);
-    setMyText("Exercise: " + parsed.Exercise + " for " + counter + "(s) and still " + togo + "(s) remaining."); 
+    setMyText("Exercise: " + parsed.Exercise + " for " + parseInt(counter+1) + "(s) and still " + parseInt(togo+1) + "(s) remaining."); 
 
     if (parsed.Left.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
     if (parsed.Right.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
