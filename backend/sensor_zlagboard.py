@@ -93,7 +93,7 @@ class SensorZlagboard(Gyroscope):
             else:
                 self.LastPauseTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
 
-        logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + angle + "in [" + self.AngleX_Hang + " and " + self.AngleX_NoHang)
+        logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in [" + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
 
         return self.HangDetected
 
