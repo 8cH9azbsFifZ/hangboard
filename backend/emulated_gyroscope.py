@@ -16,15 +16,17 @@ class Gyroscope():
         logging.debug('Init Emulated Gyroscope Class')
 
     def run_one_measure (self):
-        self.gyroXAngle = float(random.randint(-10,10))
-        self.compAngleX = float(random.randint(-10,10))
-        self.kalAngleX = float(random.randint(-10,10))
-        self.pitch = float(random.randint(-10,10))
-        self.roll = float(random.randint(-10,10))
-        self.gyroYAngle = float(random.randint(-10,10))
-        self.compAngleY = float(random.randint(-10,10))
-        self.kalAngleY = float(random.randint(-10,10))
-        logging.debug(str(self.roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(self.kalAngleX)+"  "+str(self.pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(self.kalAngleY))
+        mini = -100
+        maxi = 100
+        self.gyroXAngle = float(random.randint(mini,maxi))
+        self.compAngleX = float(random.randint(mini,maxi))
+        self.kalAngleX = float(random.randint(mini,maxi))
+        self.pitch = float(random.randint(mini,maxi))
+        self.roll = float(random.randint(mini,maxi))
+        self.gyroYAngle = float(random.randint(mini,maxi))
+        self.compAngleY = float(random.randint(mini,maxi))
+        self.kalAngleY = float(random.randint(mini,maxi))
+        #logging.debug(str(self.roll)+"  "+str(self.gyroXAngle)+"  "+str(self.compAngleX)+"  "+str(self.kalAngleX)+"  "+str(self.pitch)+"  "+str(self.gyroYAngle)+"  "+str(self.compAngleY)+"  "+str(self.kalAngleY))
 
     def run_measure(self):
         while True:
