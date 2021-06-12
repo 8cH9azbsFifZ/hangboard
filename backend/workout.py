@@ -122,7 +122,6 @@ class Workout():
 
         self.counter = self.workout["Sets"][self.current_set]["Counter"]
 
-
     def run_pause(self):
         logging.debug('Run pause')
 
@@ -146,7 +145,6 @@ class Workout():
                 break
             # TODO: Implement thread break
 
-            
     def assert_somebody_hanging(self):
         while ((self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
@@ -233,8 +231,6 @@ class Workout():
         sys.stdout.flush()
         return (msg)        
 
-
-
     def assemble_message1(self): # TODO rework for this version
         """
         Assemble a message of the current exercise and workout status
@@ -254,26 +250,6 @@ class Workout():
             "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
             "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
             })
-
-
-    async def consumer (self, message): # TODO rework for this version
-        """
-        Execute commands as received from websocket (handler)
-        """
-        print("Received request: %s" % message)
-        if (message == "Start"):
-            self._run_set()
-        if (message == "Stop"):
-            self._stop_set()     
-        if (message == "GetBoard"):
-            self.get_board()
-        if (message == "ListWorkouts"): # TBD: Implement in webinterface
-            self.list_workouts()
-        if (message == "StartHang"):
-            self.set_start_hang()
-        if (message == "StopHang"):
-            self.set_stop_hang()
-
 
     def _run_workout (self):
         """
