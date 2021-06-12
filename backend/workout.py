@@ -9,6 +9,8 @@ import json
 import os
 import time
 import sys
+import threading
+
 
 """
 Implement logging with debug level from start on now :)
@@ -142,7 +144,9 @@ class Workout():
             self.assemble_message_resttostart_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
+            # TODO: Implement thread break
 
+            
     def assert_somebody_hanging(self):
         while ((self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
@@ -160,6 +164,7 @@ class Workout():
             self.assemble_message_exercise_timerstatus()
             if (self.sensor_zlagboard.Changed() == "NoHang"):
                 break
+            # TODO: Implement thread break
 
     def run_pause_exercise(self):
         # Pause exercise
@@ -174,7 +179,7 @@ class Workout():
             self.assemble_message_pause_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
-
+            # TODO: Implement thread break
 
     def run_set(self):
         logging.debug('Run exercise')
@@ -268,3 +273,31 @@ class Workout():
             self.set_start_hang()
         if (message == "StopHang"):
             self.set_stop_hang()
+
+
+    def _run_workout (self):
+        """
+        Start a workout "set" in a thread
+        """
+        print ("Run thread set")
+        self.run_workout_thread = threading.Thread(target=self.run_workout)
+        self.run_workout_thread.do_stop = False
+        self.run_workout_thread.start()           
+
+
+    def _stop_workout (self):
+        """
+        Stop a workout "set" thread" by setting a flag, which must be caputured in "run_set".
+        """
+        print ("Stop thread set")
+        self.run_workout_thread.do_stop = True
+
+
+
+if __name__ == "__main__":
+    print ("Starting")
+    wa = Workout()
+    #wa.show_workout()
+    #wa.run_workout()
+    wa._run_workout()
+    #wa.run_websocket_handler()                
