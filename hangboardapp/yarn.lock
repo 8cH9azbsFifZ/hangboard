@@ -10302,11 +10302,6 @@ react-native-keep-awake@^4.0.0:
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-4.0.0.tgz#d89fdc3fb60b3cffa979ef37dc5816196df998a2"
   integrity sha512-0Fotox+eLXQooeibVs3P60yASYUWjtRw9MZNmbuHt5UZQrgUrAKsE4jm7gTr4tPU1m1RkwGzcgUFpcOkh/ec7g==
 
-react-native-rabbitmq@^0.6.7:
-  version "0.6.7"
-  resolved "https://registry.yarnpkg.com/react-native-rabbitmq/-/react-native-rabbitmq-0.6.7.tgz#651ce1bb2ab2821e805c3eeea8396ce63481c9e0"
-  integrity sha512-aEqOSIpeQsw8G4Jj+JnZ35MWPU/+CZwWLco45Zocq/cfMFtVHxuhcuGzkRFcsKJboR9niQd8Zlp9aNKO4dQ/fw==
-
 react-native-sound@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.11.0.tgz#ad60b55ba8c6dc89917f381ad3713f2738de530f"
