@@ -2,6 +2,7 @@
 Force Measurement Backend
 """
 
+# python3 force.py --host 0.0.0.0 --port 4333 
 
 import time
 import sys
