@@ -1,18 +1,25 @@
 import asyncio
 import websockets
 
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='Wensockets(%(threadName)-10s) %(message)s',
+                    )
 
 class WebsocketHandler():
+    def __init__(self, sampling_interval = 0.1):
+        logging.debug ("Init websocket handler")
+        self.message = "" # Message for sending around :) 
+        self.sampling_interval = sampling_interval
 
-    def __init__():
-        pass
-
-    def run_handler(self):
+    def run_handler(self, wshost="127.0.0.1", wsport=4321):
         """
         Start the websocket server and wait for input
         """
-        print ("Start handler")
-        self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
+        logging.debug ("Start handler")
+        self.WSHOST = wshost
+        self.WSPORT = wsport
+        self.start_server = websockets.serve(self.handler, self.WSHOST, self.WSPORT)
         asyncio.get_event_loop().run_until_complete(self.start_server)
         asyncio.get_event_loop().run_forever()
 
@@ -21,23 +28,23 @@ class WebsocketHandler():
         Handler for receicing commands 
         """
         async for message in websocket:
-            print ("Received it:")
-            print (message)
+            logging.debug ("Received it:")
+            logging.debug (message)
             await self.consumer(message)
 
     async def consumer (self, message):
         """
         Execute commands as received from websocket (handler)
         """
-        print("Received request: %s" % message)
+        logging.debug("Received request: %s" % message)
         if (message == "Start"):
-            self._run_set()
+            self._run_workout() # FIXME: Document this is a sibling class which depends on the class methods in workout :) 
         if (message == "Stop"):
-            self._stop_set()     
-        if (message == "GetBoard"):
-            self.get_board()
-        if (message == "ListWorkouts"): # TBD: Implement in webinterface
-            self.list_workouts()
+            self._stop_workout()     
+        #if (message == "GetBoard"):
+        #    self.get_board()
+        #if (message == "ListWorkouts"): # TBD: Implement in webinterface
+        #    self.list_workouts()
 
 
     async def producer_handler(self, websocket, path):
@@ -45,11 +52,11 @@ class WebsocketHandler():
         Send the current status of the exercise every second via websocket.
         """
         while True:
-            message = self.exercise_status 
+            message = self.message 
             await websocket.send(message)
-            if "OneMessageOnly" in self.exercise_status:
-                self.exercise_status = ""
-            await asyncio.sleep(1) 
+            if "OneMessageOnly" in self.message:
+                self.message = ""
+            await asyncio.sleep(self.sampling_interval) 
 
     async def handler(self, websocket, path):
         """

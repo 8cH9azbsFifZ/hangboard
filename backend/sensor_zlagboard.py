@@ -22,7 +22,7 @@ SIGNAL_ZLAGBOARD = "SignalZlagboard"
 SIGNAL_WORKOUT = 'SignalWorkout'
 
 class SensorZlagboard(Gyroscope):
-    def __init__(self, verbose=None, dt=0.1, AngleX_Hang=-43., AngleX_NoHang=43.):
+    def __init__(self, verbose=None, dt=0.1, AngleX_Hang=-43., AngleX_NoHang=43., sampling_interval = 0.1):
         super(SensorZlagboard, self).__init__()
 
         self.calibration_duration = 10
@@ -37,7 +37,7 @@ class SensorZlagboard(Gyroscope):
         self.TimeStateChangeCurrent = time.time()       
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
 
-        self.sampling_interval = 0.1
+        self.sampling_interval = sampling_interval
 
     def run_one_measure(self):
         self.run_one_measure_gyroscope()

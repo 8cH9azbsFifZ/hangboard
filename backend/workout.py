@@ -38,17 +38,21 @@ class Workout():
         self.total_sets = len (self.workout["Sets"])
         self.current_set = 0
         self.current_set_name = "Rest to start"
+        self.sampling_interval = dt
 
         # Variable to check if ready or somebody hanging
         self.exercise_hanging = False
 
         self.exercise_dt = dt
 
+        # Variable storing the message for the "middleware" -> Sending
+        self.message = ""
+
         self.init_sensors()
         self.init_board()
 
     def init_sensors(self):
-        self.sensor_zlagboard = SensorZlagboard()
+        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)
 
     def init_board(self):
         self.board = Board()
@@ -213,6 +217,7 @@ class Workout():
             
         print (msg)
         sys.stdout.flush()
+        self.message = msg
         return (msg)
 
     def assemble_message_pause_timerstatus(self):
@@ -221,6 +226,7 @@ class Workout():
             "HangChangeDetected": self.sensor_zlagboard.Changed()})
         print (msg)
         sys.stdout.flush()
+        self.message = msg
         return (msg)        
 
     def assemble_message_resttostart_timerstatus(self):
@@ -229,6 +235,7 @@ class Workout():
             "HangChangeDetected": self.sensor_zlagboard.Changed()})
         print (msg)
         sys.stdout.flush()
+        self.message = msg
         return (msg)        
 
     def assemble_message1(self): # TODO rework for this version
