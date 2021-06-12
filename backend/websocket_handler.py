@@ -12,7 +12,7 @@ class WebsocketHandler():
         self.message = "" # Message for sending around :) 
         self.sampling_interval = sampling_interval
 
-    def run_handler(self, wshost="127.0.0.1", wsport=4321):
+    def run_handler(self, wshost="0.0.0.0", wsport=4321):
         """
         Start the websocket server and wait for input
         """
