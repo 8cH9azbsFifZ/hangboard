@@ -144,6 +144,7 @@ class Workout():
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.rest_to_start - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
+            self.sensor_zlagboard.run_one_measure()
             #print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
             self.assemble_message_resttostart_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
@@ -165,6 +166,7 @@ class Workout():
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.exercise_t1 - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
+            self.sensor_zlagboard.run_one_measure()
             #print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
             self.assemble_message_exercise_timerstatus()
             if (self.sensor_zlagboard.Changed() == "NoHang"):
@@ -182,6 +184,7 @@ class Workout():
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.pause - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.pause) *100
+            self.sensor_zlagboard.run_one_measure()
             #print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
             self.assemble_message_pause_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
@@ -219,7 +222,7 @@ class Workout():
     def assemble_message_exercise_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
             "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensor_zlagboard.Changed()})
+            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
             
         print (msg)
         sys.stdout.flush()
@@ -229,7 +232,7 @@ class Workout():
     def assemble_message_pause_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
             "Counter": "{:.2f}".format(self.pause), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensor_zlagboard.Changed()})
+            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
         print (msg)
         sys.stdout.flush()
         self.message = msg
@@ -238,7 +241,7 @@ class Workout():
     def assemble_message_nothing(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
             "Counter": 0, "CurrentCounter": 0, "Completed": 0, "Rest": 0,
-            "HangChangeDetected": self.sensor_zlagboard.Changed()})
+            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
         print (msg)
         sys.stdout.flush()
         self.message = msg
@@ -247,7 +250,7 @@ class Workout():
     def assemble_message_resttostart_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Rest to start", "Left": "", "Right": "", 
             "Counter": "{:.2f}".format(self.rest_to_start), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensor_zlagboard.Changed()})
+            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
         print (msg)
         sys.stdout.flush()
         self.message = msg

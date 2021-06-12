@@ -115,8 +115,8 @@ const App: () => Node = () => {
     var parsed = JSON.parse(e.data);
     var counter = parseFloat(parsed.Counter).toFixed(2); //Counter
     var currentcounter = parseFloat(parsed.CurrentCounter).toFixed(2); // CurrentCounter
-    var togo = counter - currentcounter; 
-    togo.toFixed(2);
+    var rest = parseFloat(parsed.Rest).toFixed(2);
+    rest.toFixed(2);
 
     setMyState(parsed);
     setMyText("Exercise: " + parsed.Exercise + " for " + parseInt(counter+1) + "(s) and still " + parseInt(togo+1) + "(s) remaining."); 
@@ -130,17 +130,18 @@ const App: () => Node = () => {
     //array.forEach(element => window[element].setAttribute("display","inline") ); // FIXME 
 
 
-    if (togo == 10.) { SFXten.play(); } 
-    if (togo == 9.) { SFXnine.play(); } 
-    if (togo == 8.) { SFXeight.play(); } 
-    if (togo == 7.) { SFXseven.play(); } 
-    if (togo == 6.) { SFXsix.play(); } 
-    if (togo == 5.) { SFXfive.play(); } 
-    if (togo == 4.) { SFXfour.play(); } 
-    if (togo == 3.) { SFXthree.play(); } 
-    if (togo == 2.) { SFXtwo.play(); } 
-    if (togo == 1.) { SFXone.play(); } 
-    if (togo == 0.) { SFXdone.play(); } 
+    if (rest == 10.) { SFXten.play(); } 
+    if (rest == 9.) { SFXnine.play(); } 
+    if (rest == 8.) { SFXeight.play(); } 
+    if (rest == 7.) { SFXseven.play(); } 
+    if (rest == 6.) { SFXsix.play(); } 
+    if (rest == 5.) { SFXfive.play(); } 
+    if (rest == 4.) { SFXfour.play(); } 
+    if (rest == 3.) { SFXthree.play(); } 
+    if (rest == 2.) { SFXtwo.play(); } 
+    if (rest == 1.) { SFXone.play(); } 
+    if (rest == 0.) { SFXdone.play(); } 
+
   
     
 
