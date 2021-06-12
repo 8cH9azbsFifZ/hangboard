@@ -42,7 +42,7 @@ docker run --rm -it -p 4322:4322 force
 + NB: Spring mechanic / gyroscope mount disabled after placing the load cells...
 
 ![Zlagboard disassembled](./zlagboard_disassemble.png)
-![Zlagboard with load cells](doc/force/zlagboard_install_load_sensors.png)
+![Zlagboard with load cells](./zlagboard_install_load_sensors.png)
 
 # References
 + https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
