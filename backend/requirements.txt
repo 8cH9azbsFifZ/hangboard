@@ -1,6 +1,4 @@
 websockets
 smbus
 tabulate
-
-
-
+RPi.GPIO
