@@ -110,7 +110,7 @@ class SensorForce():
                 
                 # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
                 val = self.hx.get_weight(1)
-                val = self.hx.read_long()
+                #val = self.hx.read_long()
                 print(val)
 
                 # To get weight from both channels (if you have load cells hooked up 
