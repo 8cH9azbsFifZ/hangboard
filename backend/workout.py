@@ -147,8 +147,9 @@ class Workout():
             self.assemble_message_resttostart_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
-            # TODO: Implement thread break
-
+            if (self.run_workout_thread.do_stop == True):
+                break
+            
     def assert_somebody_hanging(self):
         while ((self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
@@ -166,7 +167,8 @@ class Workout():
             self.assemble_message_exercise_timerstatus()
             if (self.sensor_zlagboard.Changed() == "NoHang"):
                 break
-            # TODO: Implement thread break
+            if (self.run_workout_thread.do_stop == True):
+                break
 
     def run_pause_exercise(self):
         # Pause exercise
@@ -181,7 +183,8 @@ class Workout():
             self.assemble_message_pause_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
-            # TODO: Implement thread break
+            if (self.run_workout_thread.do_stop == True):
+                break
 
     def run_set(self):
         logging.debug('Run exercise')

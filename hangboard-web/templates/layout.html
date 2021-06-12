@@ -47,11 +47,6 @@
 	<!-- Websocket to backend server -->
 	<script>
 		var wsExercise = new WebSocket("ws://" + ServerName + ":4321/");
-		var wsGyroscope = new WebSocket("ws://10.101.40.81:4323/");
-		//var wsGyroscope = new WebSocket("ws://" + ServerName + ":4323/");
-		var wsForce = new WebSocket("ws://10.101.40.40:4322/");
-		//var wsBoard = new WebSocket("ws://10.101.40.81:4324/");
-		var wsBoard = new WebSocket("ws://" + ServerName + ":4324/");
 
 		function sendStartSignal ()
 		{
@@ -63,7 +58,7 @@
 			wsExercise.send ("Stop");
 		}
 
-		function sendGetBoard ()
+		/*function sendGetBoard ()
 		{
 			wsExercise.send ("GetBoard");
 		}
@@ -87,7 +82,7 @@
 		{
 			wsExercise.send ("ListHangboards");
 		}
-
+*/
 		function sendStartHang ()
 		{
 			//wsExercise.send ("StartHang");
