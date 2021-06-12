@@ -235,6 +235,15 @@ class Workout():
         self.message = msg
         return (msg)        
 
+    def assemble_message_nothing(self):
+        msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
+            "Counter": "{:.2f}".format(self.pause), "CurrentCounter": 0, "Completed": 0, "Rest": 0,
+            "HangChangeDetected": self.sensor_zlagboard.Changed()})
+        print (msg)
+        sys.stdout.flush()
+        self.message = msg
+        return (msg) 
+
     def assemble_message_resttostart_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Rest to start", "Left": "", "Right": "", 
             "Counter": "{:.2f}".format(self.rest_to_start), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
@@ -280,6 +289,7 @@ class Workout():
         """
         print ("Stop thread set")
         self.run_workout_thread.do_stop = True
+        self.assemble_message_nothing()
         #self.run_workout_thread.join()
 
 
