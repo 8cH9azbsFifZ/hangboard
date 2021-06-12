@@ -11,7 +11,7 @@ import time
 import json
 
 
-EMULATE_GYROSCOPE = True
+EMULATE_GYROSCOPE = False
 
 if not EMULATE_GYROSCOPE:
     from gyroscope import Gyroscope
