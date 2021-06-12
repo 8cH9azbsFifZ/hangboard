@@ -136,6 +136,7 @@ class Workout():
 
     def run_rest_to_start(self):
         logging.debug("Rest to start loop")
+        t = threading.currentThread()
         self.exercise_t = 0
         self.assert_nobody_hanging()
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
@@ -147,15 +148,16 @@ class Workout():
             self.assemble_message_resttostart_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
-            if (self.run_workout_thread.do_stop == True):
+            if (getattr(t, "do_stop", False)):                
                 break
-            
+
     def assert_somebody_hanging(self):
         while ((self.sensor_zlagboard.NobodyHanging() == True)):
             time.sleep (self.exercise_dt)
 
     def run_hang_exercise(self):
         # Hang exercise
+        t = threading.currentThread()
         self.exercise_t = 0
         self.assert_somebody_hanging()
         while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
@@ -167,11 +169,12 @@ class Workout():
             self.assemble_message_exercise_timerstatus()
             if (self.sensor_zlagboard.Changed() == "NoHang"):
                 break
-            if (self.run_workout_thread.do_stop == True):
+            if (getattr(t, "do_stop", False)):                
                 break
 
     def run_pause_exercise(self):
         # Pause exercise
+        t = threading.currentThread()
         self.exercise_t = 0
         self.assert_nobody_hanging()
         while (float(self.exercise_t) < float(self.pause - self.epsilon)):
@@ -183,7 +186,7 @@ class Workout():
             self.assemble_message_pause_timerstatus()
             if (self.sensor_zlagboard.Changed() == "Hang"):
                 break
-            if (self.run_workout_thread.do_stop == True):
+            if (getattr(t, "do_stop", False)):                
                 break
 
     def run_set(self):
@@ -277,7 +280,7 @@ class Workout():
         """
         print ("Stop thread set")
         self.run_workout_thread.do_stop = True
-
+        self.run_workout_thread.join()
 
 
 if __name__ == "__main__":
