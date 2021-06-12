@@ -3,6 +3,7 @@ Commandline interface to the hangboard - serving websockets
 """
 
 from workout import Workout
+import stomp
 
 
 """
