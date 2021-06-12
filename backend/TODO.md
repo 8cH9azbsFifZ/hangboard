@@ -1,3 +1,12 @@
+# Backend
++ Check for Rabbit or AMQ?
+--> Support for React ?! Instable
+
+
+# Force
++ Integrate with new backend
+
+
 # Workouts
 WIP: 
 + Add capability to select exercise
