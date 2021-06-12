@@ -23,6 +23,7 @@ docker run --rm -it -p 4322:4322 force
 
 ## HX711 Fix
 ![HX711 Fix](./hx711_fix.png)
++ https://github.com/bogde/HX711/issues/172
 
 ## Raspi Wiring - HX711
 
