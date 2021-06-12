@@ -7,6 +7,8 @@ Status: WIP on iOS ...
 
 # Development information
 
+# RabbitMQ:
+Follow patches here: https://www.npmjs.com/package/react-native-rabbitmq
 
 ### Build for Testflight
 + Xcode > Product > Archive
