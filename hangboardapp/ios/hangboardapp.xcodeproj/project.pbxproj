@@ -11,13 +11,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DA0E12F7D4BC7BDE1BF4A04 /* libPods-hangboardapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DD5881659A73CBA137634E /* libPods-hangboardapp.a */; };
 		3154D6B6266A9E05009837D5 /* ready.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3154D6B5266A9E05009837D5 /* ready.mp3 */; };
 		3178BDE22669A95600C356D4 /* starthang.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3178BDE02669A95600C356D4 /* starthang.mp3 */; };
 		3178BDE32669A95600C356D4 /* stophang.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3178BDE12669A95600C356D4 /* stophang.mp3 */; };
-		5753DA9BFB22D9AD4C0E339B /* libPods-hangboardapp-hangboardappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D32CDD80A42572B302A57991 /* libPods-hangboardapp-hangboardappTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D19761709FE88E30E57C57C2 /* libPods-hangboardapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DD5881659A73CBA137634E /* libPods-hangboardapp.a */; };
+		DC1BF73273A949792958F2FD /* Pods_hangboardapp_hangboardappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AC78CA7499B73DFCDA4642 /* Pods_hangboardapp_hangboardappTests.framework */; };
 		E3C7B11C2660F8A5008ECD00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		E3C7B11D2660F8A5008ECD00 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		E3C7B1212660F8A5008ECD00 /* 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FAB1772660269900E6C2C8 /* 1.mp3 */; };
@@ -46,6 +44,7 @@
 		E3FAB1842660269900E6C2C8 /* 7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FAB1782660269900E6C2C8 /* 7.mp3 */; };
 		E3FAB1852660269900E6C2C8 /* 5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FAB1792660269900E6C2C8 /* 5.mp3 */; };
 		E3FAB1862660269900E6C2C8 /* 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3FAB17A2660269900E6C2C8 /* 4.mp3 */; };
+		F5C2F3C356E3E066137A6546 /* Pods_hangboardapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B0CDB465B821EBD3D9F257 /* Pods_hangboardapp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,12 +70,12 @@
 		3154D6B5266A9E05009837D5 /* ready.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ready.mp3; path = ../sounds/ready.mp3; sourceTree = "<group>"; };
 		3178BDE02669A95600C356D4 /* starthang.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = starthang.mp3; path = ../sounds/starthang.mp3; sourceTree = "<group>"; };
 		3178BDE12669A95600C356D4 /* stophang.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = stophang.mp3; path = ../sounds/stophang.mp3; sourceTree = "<group>"; };
+		36B0CDB465B821EBD3D9F257 /* Pods_hangboardapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hangboardapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68DCD9843AF9A55D6E7E6AD6 /* Pods-hangboardapp-hangboardappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangboardapp-hangboardappTests.release.xcconfig"; path = "Target Support Files/Pods-hangboardapp-hangboardappTests/Pods-hangboardapp-hangboardappTests.release.xcconfig"; sourceTree = "<group>"; };
-		71DD5881659A73CBA137634E /* libPods-hangboardapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hangboardapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B7C1DE275280C5A9E94334F /* Pods-hangboardapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangboardapp.debug.xcconfig"; path = "Target Support Files/Pods-hangboardapp/Pods-hangboardapp.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = hangboardapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84AC78CA7499B73DFCDA4642 /* Pods_hangboardapp_hangboardappTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hangboardapp_hangboardappTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC2A11C0F3413069F845232 /* Pods-hangboardapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hangboardapp.release.xcconfig"; path = "Target Support Files/Pods-hangboardapp/Pods-hangboardapp.release.xcconfig"; sourceTree = "<group>"; };
-		D32CDD80A42572B302A57991 /* libPods-hangboardapp-hangboardappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hangboardapp-hangboardappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C7B1352660F8A5008ECD00 /* hangboardapp copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hangboardapp copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C7B1362660F8A5008ECD00 /* hangboardapp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "hangboardapp copy-Info.plist"; path = "/Users/gerolf.ziegenhain.dfs.de/src/hangboard/hangboardapp/ios/hangboardapp copy-Info.plist"; sourceTree = "<absolute>"; };
 		E3FAB16F2660269900E6C2C8 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 3.mp3; path = ../sounds/3.mp3; sourceTree = "<group>"; };
@@ -100,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5753DA9BFB22D9AD4C0E339B /* libPods-hangboardapp-hangboardappTests.a in Frameworks */,
+				DC1BF73273A949792958F2FD /* Pods_hangboardapp_hangboardappTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D19761709FE88E30E57C57C2 /* libPods-hangboardapp.a in Frameworks */,
-				2DA0E12F7D4BC7BDE1BF4A04 /* libPods-hangboardapp.a in Frameworks */,
+				F5C2F3C356E3E066137A6546 /* Pods_hangboardapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				71DD5881659A73CBA137634E /* libPods-hangboardapp.a */,
-				D32CDD80A42572B302A57991 /* libPods-hangboardapp-hangboardappTests.a */,
+				36B0CDB465B821EBD3D9F257 /* Pods_hangboardapp.framework */,
+				84AC78CA7499B73DFCDA4642 /* Pods_hangboardapp_hangboardappTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,7 +232,6 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				6868D039E4F5B11BD2FFA753 /* [CP] Embed Pods Frameworks */,
-				2CA5C6CDAF3349B827B75AFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,7 +254,6 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				93CED9BC5931D192607BD788 /* [CP] Embed Pods Frameworks */,
-				C2E213B5FB20D633769F27E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -394,23 +390,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		2CA5C6CDAF3349B827B75AFA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hangboardapp-hangboardappTests/Pods-hangboardapp-hangboardappTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hangboardapp-hangboardappTests/Pods-hangboardapp-hangboardappTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hangboardapp-hangboardappTests/Pods-hangboardapp-hangboardappTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2E1B3910C2A28D0448CF41F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,23 +466,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hangboardapp/Pods-hangboardapp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C2E213B5FB20D633769F27E2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hangboardapp/Pods-hangboardapp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hangboardapp/Pods-hangboardapp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hangboardapp/Pods-hangboardapp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3C7B11A2660F8A5008ECD00 /* Start Packager */ = {

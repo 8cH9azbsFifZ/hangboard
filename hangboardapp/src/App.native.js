@@ -39,6 +39,12 @@ import ReconnectingWebSocket from 'reconnecting-websocket';
 var client = new ReconnectingWebSocket ('ws://10.101.40.81:4321/'); // FIXME
 //var clientBoard = new ReconnectingWebSocket ('ws://10.101.40.81:4324/'); // FIXME
 //var wsGyroscope = new ReconnectingWebSocket("ws://10.101.40.81:4323/");// FIXME
+//var container = require('rhea');
+//container.connect({port: 5672, host: "127.0.0.1"});
+
+import { Connection, Exchange, Queue } from 'react-native-rabbitmq';
+
+
 
 Sound.setCategory('Playback');
 

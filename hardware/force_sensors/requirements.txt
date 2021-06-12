@@ -1,3 +1,2 @@
-HX711 
 websockets
 RPi.GPIO
