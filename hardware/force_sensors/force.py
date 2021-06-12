@@ -44,6 +44,7 @@ class SensorForce():
         self.pin_pd_sck = 27
 
         self.referenceUnit = 1
+        self.sampling_rate = 0.1
 
         self.init_hx711()
 
@@ -108,7 +109,7 @@ class SensorForce():
                 # print binary_string + " " + np_arr8_string
                 
                 # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                val = self.hx.get_weight(5)
+                val = self.hx.get_weight(1)
                 print(val)
 
                 # To get weight from both channels (if you have load cells hooked up 
