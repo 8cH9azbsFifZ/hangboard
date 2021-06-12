@@ -11,6 +11,7 @@ Running on raspi
 python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install -r requirements.txt
+python3 force.py --host 0.0.0.0 --port 4322
 ```
 Or using docker
 ```
@@ -21,7 +22,7 @@ docker run --rm -it -p 4322:4322 force
 # Hardware Setup
 
 ## HX711 Fix
-![HX711 Fix](./doc/hx711_fix.png)
+![HX711 Fix](./hx711_fix.png)
 
 ## Raspi Wiring - HX711
 
@@ -33,16 +34,15 @@ docker run --rm -it -p 4322:4322 force
 
 
 ## HX711 Wiring - Load Cell
-Red   - E+
-Black - E-
-White - A-
-Green - A+
+![HX711 Wiring Cells](./4_load_sensors.jpg)
 
-### Wiring two cells
-HX711.E+ - Cell1.White + Cell2.Black
-HX711.E- - Cell1.Black + Cell2.White
-HX711.A+ - Cell1.Red
-Hx711.A- - Cell2.Red
+## Mounting the load cells in a zlagboard
++ Disassemble the 4 screws and the gyroscope mount
++ Place the 4 load cells at bottom 
++ NB: Spring mechanic / gyroscope mount disabled after placing the load cells...
+
+![Zlagboard disassembled](./zlagboard_disassemble.png)
+![Zlagboard with load cells](doc/force/zlagboard_install_load_sensors.png)
 
 # References
 + https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
