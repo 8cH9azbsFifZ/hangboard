@@ -1,4 +1,5 @@
 # History
+- v0.37 - Backend with integrated websockets working again.
 - v0.36 - Backend with fifo websocketd working.
 - v0.35 - Backend with plain serial loop working.
 - v0.34 - Backend with threads - python signals with asyncio and threads not stable.
