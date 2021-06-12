@@ -115,11 +115,10 @@ const App: () => Node = () => {
     var parsed = JSON.parse(e.data);
     var counter = parseFloat(parsed.Counter).toFixed(2); //Counter
     var currentcounter = parseFloat(parsed.CurrentCounter).toFixed(2); // CurrentCounter
-    var rest = parseFloat(parsed.Rest).toFixed(2);
-    rest.toFixed(2);
+    var rest = parseFloat(parsed.Rest);
 
     setMyState(parsed);
-    setMyText("Exercise: " + parsed.Exercise + " for " + parseInt(counter+1) + "(s) and still " + parseInt(togo+1) + "(s) remaining."); 
+    setMyText("Exercise: " + parsed.Exercise + " for " + parseInt(counter+1) + "(s) and still " + parseInt(rest+1) + "(s) remaining."); 
 
     if (parsed.Left.includes("A1")) { SetImageHold1 (ImageA1);  } else { SetImageHold1(ImageBoard); }// FIXME 
     if (parsed.Right.includes("A7")) { SetImageHold2 (ImageA7); } else { SetImageHold2(ImageBoard); }
@@ -130,17 +129,17 @@ const App: () => Node = () => {
     //array.forEach(element => window[element].setAttribute("display","inline") ); // FIXME 
 
 
-    if (rest == 10.) { SFXten.play(); } 
-    if (rest == 9.) { SFXnine.play(); } 
-    if (rest == 8.) { SFXeight.play(); } 
-    if (rest == 7.) { SFXseven.play(); } 
-    if (rest == 6.) { SFXsix.play(); } 
-    if (rest == 5.) { SFXfive.play(); } 
-    if (rest == 4.) { SFXfour.play(); } 
-    if (rest == 3.) { SFXthree.play(); } 
-    if (rest == 2.) { SFXtwo.play(); } 
-    if (rest == 1.) { SFXone.play(); } 
-    if (rest == 0.) { SFXdone.play(); } 
+    if (rest == 10.00) { SFXten.play(); } 
+    if (rest == 9.00) { SFXnine.play(); } 
+    if (rest == 8.00) { SFXeight.play(); } 
+    if (rest == 7.00) { SFXseven.play(); } 
+    if (rest == 6.00) { SFXsix.play(); } 
+    if (rest == 5.00) { SFXfive.play(); } 
+    if (rest == 4.00) { SFXfour.play(); } 
+    if (rest == 3.00) { SFXthree.play(); } 
+    if (rest == 2.00) { SFXtwo.play(); } 
+    if (rest == 1.00) { SFXone.play(); } 
+    if (rest == 0.00) { SFXdone.play(); } 
 
   
     

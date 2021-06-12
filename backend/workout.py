@@ -138,6 +138,7 @@ class Workout():
         logging.debug("Rest to start loop")
         t = threading.currentThread()
         self.exercise_t = 0
+        self.sensor_zlagboard.run_one_measure()
         self.assert_nobody_hanging()
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
             time.sleep (self.exercise_dt)
@@ -160,6 +161,7 @@ class Workout():
         # Hang exercise
         t = threading.currentThread()
         self.exercise_t = 0
+        self.sensor_zlagboard.run_one_measure()
         self.assert_somebody_hanging()
         while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
             time.sleep (self.exercise_dt)
@@ -178,6 +180,7 @@ class Workout():
         # Pause exercise
         t = threading.currentThread()
         self.exercise_t = 0
+        self.sensor_zlagboard.run_one_measure()
         self.assert_nobody_hanging()
         while (float(self.exercise_t) < float(self.pause - self.epsilon)):
             time.sleep (self.exercise_dt)
