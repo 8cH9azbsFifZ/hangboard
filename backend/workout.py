@@ -237,7 +237,7 @@ class Workout():
 
     def assemble_message_nothing(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-            "Counter": "{:.2f}".format(self.pause), "CurrentCounter": 0, "Completed": 0, "Rest": 0,
+            "Counter": 0, "CurrentCounter": 0, "Completed": 0, "Rest": 0,
             "HangChangeDetected": self.sensor_zlagboard.Changed()})
         print (msg)
         sys.stdout.flush()
