@@ -280,7 +280,7 @@ class Workout():
         """
         print ("Stop thread set")
         self.run_workout_thread.do_stop = True
-        self.run_workout_thread.join()
+        #self.run_workout_thread.join()
 
 
 if __name__ == "__main__":
