@@ -1,5 +1,5 @@
 # Force Sensors
-![Sensor](./doc/71qJiNliMtL._SL1001_.jpg)
+![Sensor](./hx711_with_load_cells.jpg)
 
 - *Not implemented yet*
 - HX711 analog-to-digital converter
