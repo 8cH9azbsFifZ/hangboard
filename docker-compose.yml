@@ -4,33 +4,13 @@ services:
     build: ./hangboard-web
     ports: ['8080:8080']
     restart: unless-stopped
-  mesh: # TBD
-    build: ./backend-mesh
-    #ports: [4321:4321]
-    command: python3 mesh.py --socket_exercise ws://exercise:4321  --socket_gyroscope ws://10.101.40.81:4323
-    restart: unless-stopped
-  exercise:
-    build: ./exercises
-    ports: [4321:4321]
-    restart: unless-stopped
   force:
     build: ./hardware/force_sensors
     ports: [4322:4322]
     restart: unless-stopped
     #devices:
     #  - /dev/gpiomem:/dev/gpiomem
-  #gyroscope:
-  #  build: ./hardware/gyroscope
-  #  ports: [4323:4323]
-  #  restart: unless-stopped
-    #devices:
-    #  - /dev/gpiomem:/dev/gpiomem    
   boards:
     build: ./boards
     ports: [4324:4324]
     restart: unless-stopped
-  #distance: # TBD
-  #  build: ./hardware/distance_sensors
-  #  ports: [4323:4323]
-    #devices:
-    #  - /dev/gpiomem:/dev/gpiomem    

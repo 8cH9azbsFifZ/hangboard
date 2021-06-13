@@ -20,11 +20,11 @@ This is a brief design layout of the project.
 
 ## Software Used
 - Python Flask for Web App
-- Websockets for Communication
+- Websockets for Communication (or RabbitMQ? - currently testing)
 - Python backends
 - JSON for Board configuration and finger grip positions
 - SVG Layers for hold configuration
-- React Native for App
+- React Native for App (or flutter? - currently testing)
 
 ## Hardware Used
 - Raspberry Pi Zero W
@@ -32,13 +32,7 @@ This is a brief design layout of the project.
 
 
 # Developing
-
-## Preparation
-+ Follow the instructions in README.md in exercises and hangboard-app
-
-## Running the Demonstrator Backend (including web interface)
-+ Starting with docker (i.e. on OSX): ```docker-compose up --build```
-+ Starting on a Raspi W zero: Run `./startup.sh` for running the backend.
++  Running the Demonstrator Backend (including web interface)? -> Please look for the README.md instructions in the demonstrator releases.
 
 ### Manual startup
 + Start backend service ```cd backend; ../websocketd/websocketd --port=4321 python3 ./run_ws.py ```
@@ -47,12 +41,13 @@ This is a brief design layout of the project.
 
 
 ## Creating software documentation
-+ Run doxygen `doxygen`
-+ Check output in `html`
++ Run doxygen `doxygen` and check output in `html`
 
 # References
 * Website: https://8ch9azbsfifz.github.io/hangboard/
 * Discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
 * Issues: https://github.com/8cH9azbsFifZ/hangboard/issues
+
+## External references
 + [Raspi W Zero Hangboard](https://github.com/adrianlzt/piclimbing)
 + [Arduino Hangboard](https://github.com/oalam/isometryx)
