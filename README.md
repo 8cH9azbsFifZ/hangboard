@@ -6,7 +6,8 @@ A universal force and velocity sensing hangboard mount with exercise timers for 
 ![Hangboard Mount](./hangboardapp/logo/AppIcons/Assets.xcassets/AppIcon.appiconset/87.png)
 
 
-# Design
+
+# Software Design
 This is a brief design layout of the project.
 
 ## Frontend
@@ -26,22 +27,106 @@ This is a brief design layout of the project.
 - SVG Layers for hold configuration
 - React Native for App (or flutter? - currently testing)
 
-## Hardware Used
-- Raspberry Pi Zero W
-- Sensors: cf. hardware directory
-
-
 # Developing
-+  Running the Demonstrator Backend (including web interface)? -> Please look for the README.md instructions in the demonstrator releases.
++ Running the Demonstrator Backend (including web interface)? -> Please look for the README.md instructions in the demonstrator releases.
++ Debugging the websockets `wscat -c "ws://localhost:4323/"`
 
-### Manual startup
+
+## Manual startup
+Prepare the virtual python environment
+```
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
 + Start backend service ```cd backend; ../websocketd/websocketd --port=4321 python3 ./run_ws.py ```
 + Start the Web App: `cd hangboard-web && python3 main.py --host 0.0.0.0 --port 8080`
 + Start the iOS App: `cd hangboardapp && ./build && yarn run ios`
 
-
 ## Creating software documentation
 + Run doxygen `doxygen` and check output in `html`
+
+
+
+# Hardware Design
+- Raspberry Pi Zero W
+- Sensors: as listed below
+
+
+
+## Force Sensors with HX711
+![Sensor](./doc/force/hx711_with_load_cells.jpg)
+
+- HX711 analog-to-digital converter
+- Load Cells
+
+### HX711 Fix
+![HX711 Fix](./doc/force/hx711_fix.png)
++ https://github.com/bogde/HX711/issues/172
+
+### Raspi Wiring - HX711 to Load Cell
+
+| Raspi GPIO | Module | Module Pin |
+|------------|--------|------------|
+| 3v3        | HX711  | Vcc        |
+| GPIO17     | HX711  | DT         |
+| GPIO27     | HX711  | SCK        |
+
+
+![HX711 Wiring Cells](./doc/force/4_load_sensors.jpg)
+
+### Mounting the load cells in a zlagboard
++ Disassemble the 4 screws and the gyroscope mount
++ Place the 4 load cells at bottom 
++ Create small "U-shaped" holds for the load cells (i.e. made from paper)
++ NB: Gyroscope mount disabled after placing the load cells...
+
+![Zlagboard disassembled](./doc/force/zlagboard_disassemble.png)
+![Zlagboard with load cells](./doc/force/zlagboard_install_load_sensors.png)
+![U-Shaped load cell mount](./doc/force/load_sensor_zlagboard_mount.png)
+
+### References
++ Datasheet doc/force/hx711_english.pdf
++ https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
++ https://arduino.stackexchange.com/questions/17542/connect-hx711-to-a-three-wire-load-cell
++ https://github.com/tatobari/hx711py
++ [HX711 Python module](https://github.com/gandalf15/HX711/)
+
+
+
+
+
+
+
+## Gyroscope Sensor: MPU-6050
+![Sensore MPU-6050](./doc/gyroscope/SEN-MPU6050-01.png)
+
+### Wiring the Gyroscope
+| Raspi GPIO   | Module   | Module Pin |
+|--------------|----------|------------|
+| Pin 1 (3.3V) | MPU 6050 | VCC        |
+| Pin 3 (SDA)  | MPU 6050 | SDA        |
+| Pin 5 (SCL)  | MPU 6050 | SCL        |
+| Pin 6 (GND)  | MPU 6050 | GND        |
+
+
+### Software for the Gyroscope
+Enable I2C I/O, load user space module and install I2C tools
+```
+sudo sed -i 's/\#dtparam=i2c_arm=on/dtparam=i2c_arm=on/g' /boot/config.txt
+grep i2c-dev /etc/modules ||echo i2c-dev |sudo tee -a /etc/modules
+sudo apt-get -y install i2c-tools
+```
++ Reboot
++ Check whether 68 exists in `sudo i2cdetect -y 1 | grep 68`
+
+### References
++ Datasheet: doc/gyroscope/MPU-6000-Register-Map1.pdf
++ Ref: https://github.com/rocheparadox/Kalman-Filter-Python-for-mpu6050
++ https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/
++ More possibilities? There is a bluetooth version, too: https://github.com/fundiZX48/pymotiontracker
+
+
 
 # References
 * Website: https://8ch9azbsfifz.github.io/hangboard/
