@@ -53,10 +53,11 @@ class WebsocketHandler():
         """
         while True:
             message = self.message 
-            await websocket.send(message)
-            if "OneMessageOnly" in self.message:
+            if (self.message == ""):
+                await asyncio.sleep(self.sampling_interval) 
+            else:
+                await websocket.send(message)
                 self.message = ""
-            await asyncio.sleep(self.sampling_interval) 
 
     async def handler(self, websocket, path):
         """

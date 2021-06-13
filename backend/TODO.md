@@ -34,6 +34,7 @@ Open
 
 # Boards
 WIP
++ Distinguish Left and Right image only
 + Image from Backend - receiving works - TBD correct implementation including fixed fallback on frontend side
 
 

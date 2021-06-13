@@ -11,6 +11,8 @@ class Hangboard(Workout, WebsocketHandler):
         super(Hangboard, self).__init__()
     
 
+    
+
 """
 The main loop is used for testing currently.
 """
