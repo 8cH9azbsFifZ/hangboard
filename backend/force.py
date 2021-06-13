@@ -2,31 +2,19 @@
 Force Measurement Backend
 """
 
-# python3 force.py --host 0.0.0.0 --port 4333 
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='SensorForce(%(threadName)-10s) %(message)s',
+                    )
 
 import time
 import sys
 
 import json
-import argparse
 
-import asyncio
-import websockets
-
-from threading import Thread
 import threading
 
-parser = argparse.ArgumentParser(description="Gyroscope Sensor Backend.")
-parser.add_argument ('--host')
-parser.add_argument ('--port')
-parser.add_argument ('--emulate')
-args = parser.parse_args()
-
-
-WSHOST = args.host 
-WSPORT = args.port 
 EMULATE_HX711 = False
-
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
@@ -37,25 +25,41 @@ if not EMULATE_HX711:
 else:
     from emulated_hx711 import HX711
 
+
 class SensorForce():
-    def __init__(self, EMULATE_HX711 = True):
-        print ("Initialize")
+    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_rate = 0.1, referenceUnit = 1257528/79, load_hang = 1257528/79*0.2 ):
+        logging.debug ("Initialize")
 
-        self.pin_dout = 17
-        self.pin_pd_sck = 27
+        self.pin_dout = pin_dout
+        self.pin_pd_sck = pin_pd_sck
 
-        self.referenceUnit = 1
-        self.sampling_rate = 0.1
+        self.referenceUnit = referenceUnit
+        self.sampling_rate = sampling_rate
+
+        self.calibration_duration = 10
+
+        self.HangDetected = False
+        self.HangStateChanged = False
+
+        self.load_hang = load_hang
+        self.load_current = 0
+
+        self.LastHangTime = 0
+        self.LastPauseTime = 0
+        self.TimeStateChangeCurrent = time.time()       
+        self.TimeStateChangePrevious = self.TimeStateChangeCurrent
 
         self.init_hx711()
 
+
+
     def cleanAndExit(self):
-        print("Cleaning...")
+        logging.debug("Cleaning...")
 
         if not EMULATE_HX711:
             GPIO.cleanup()
             
-        print("Bye!")
+        logging.debug("Bye!")
         sys.exit()
 
     def init_hx711(self):
@@ -70,33 +74,32 @@ class SensorForce():
         # According to the HX711 Datasheet, the second parameter is MSB so you shouldn't need to modify it.
         self.hx.set_reading_format("MSB", "MSB")
 
-        # HOW TO CALCULATE THE REFFERENCE UNIT
-        # To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
-        # In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
-        # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
-        # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
-        #hx.set_reference_unit(113)
-        self.hx.set_reference_unit(self.referenceUnit)
+        self.set_reference_unit()
 
         self.hx.reset()
 
     def calibrate(self):
         self.hx.tare()
 
-        print("Tare done! Add weight now...")
+        logging.debug("Tare done! Add weight now...")
 
         # to use both channels, you'll need to tare them both
         #hx.tare_A()
         #hx.tare_B()
 
-    def set_reference_unit(self, unit):
-        self.referenceUnit = unit
+    def set_reference_unit(self):
+        """
+        HOW TO CALCULATE THE REFFERENCE UNIT
+        To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
+        In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
+        and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
+        If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
+        hx.set_reference_unit(113)
+        """
+        #unit = 92
+        #unit = 1257528 /79
 
-    def run_handler(self):
-        print ("Start handler")
-        self.start_server = websockets.serve(self.handler, WSHOST, WSPORT)
-        asyncio.get_event_loop().run_until_complete(self.start_server)
-        asyncio.get_event_loop().run_forever()
+        self.hx.set_reference_unit(self.referenceUnit)
 
     def run_main_measure(self):
         while True:
@@ -127,9 +130,49 @@ class SensorForce():
             except (KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
 
+    def run_one_measure(self):
+        self.load_current = self.hx.get_weight(1)
 
+        self.detect_hang()
 
-a = SensorForce()
-a.set_reference_unit(17145)# Convert to kg
-a.run_main_measure()
-#a.run_handler()
+        self.hx.power_down() #FIXME
+        self.hx.power_up()
+        time.sleep(self.sampling_rate)
+
+    def NobodyHanging(self):
+        pass
+        # TODO: implement
+
+    def Changed(self):
+        pass
+        # TODO: implement
+
+    def detect_hang(self):
+        oldstate = self.HangDetected
+
+        if (self.load_current > self.load_hang):
+            self.HangDetected = True
+        else:
+            self.HangDetected = False
+            
+
+        if (oldstate == self.HangDetected):
+            self.HangStateChanged = False
+        else:
+            self.HangStateChanged = True
+
+            self.TimeStateChangePrevious = self.TimeStateChangeCurrent
+            self.TimeStateChangeCurrent = time.time()
+
+            if (self.HangDetected == True):
+                self.LastHangTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
+            else:
+                self.LastPauseTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
+
+        #logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in " + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
+
+        return self.HangDetected
+
+if __name__ == "__main__":
+    a = SensorForce(referenceUnit = 1)
+    a.run_main_measure()
