@@ -22,3 +22,7 @@ This directory contains the hold configurations for different boards
 + Edit layer "id" names manually afterwards
 + change all style:: display:inline => inline
 + Export all layers as svg and convert them to png (i.e. https://svgtopng.com/de/)
+
+
+# References 
++ Excellent project with a similar idea: https://github.com/gitaaron/boards
