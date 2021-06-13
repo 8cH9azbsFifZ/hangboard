@@ -4,7 +4,3 @@
 - The pdf with the instructions (in spanish) the the 3d models are in `./linear_encoder`.
 
 
-
-
-## Raspi Wiring
-![Raspi GPIO](./raspi_w_gpio.jpg)
