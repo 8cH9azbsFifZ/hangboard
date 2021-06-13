@@ -141,6 +141,49 @@ class _MyHomePageState extends State<MyHomePage> {
     ],
   ));
 
+  Widget BoardSelection = Container(
+      child: Row(
+    children: [
+      Expanded(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+              child: DropdownButton<String>(
+            items: <String>[
+              'Zlagboard EVO',
+              'Zlagboard Mini',
+              'Linebreaker Basis',
+              'Beastmaker 1000'
+            ].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: new Text(value),
+              );
+            }).toList(),
+            onChanged: (_) {},
+          ))
+        ],
+      ))
+    ],
+  ));
+
+  Widget BoardSelection1 = Container(
+      child: Row(
+    children: [
+      Expanded(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+              child: Text(
+            "Testchen",
+          ))
+        ],
+      ))
+    ],
+  ));
+
   @override
   void dispose() {
     _channel.sink.close();
@@ -161,6 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 500,
             ),
             titleSection,
+            BoardSelection,
             origSection,
             StreamBuilder(
               stream: _channel.stream,
@@ -172,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: _sendMessage, //_incrementCounter,
-            tooltip: 'Increment',
+            tooltip: 'Send a Command to Backend',
             child: Icon(Icons.send)));
   }
 }
