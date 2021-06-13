@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="958px" height="409px" viewBox="0 0 958 409" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>board</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(1.992188, 1.000000)">
+            <g id="holds" transform="translate(0.007812, 0.000000)">
+                <g id="left" fill="#979797">
+                    <path d="M268.753906,46.3384637 L338.458984,46.3384637 C349.99621,45.8520248 362.229283,47.2608789 375.158203,50.5650262 C382.816649,52.5222378 395.205985,60.2177961 406.376953,64.2779168 C409.124758,65.2766145 411.563242,67.2370989 415.692405,68.1593698 C417.072762,68.4676801 371.452312,67.9853576 278.831055,66.7124023 L268.753906,46.3384637 Z" id="2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

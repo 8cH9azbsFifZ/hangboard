@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="128px" viewBox="0 0 500 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>beastmaker_2000</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(0.000145, -0.968750)" fill="#979797" stroke="#979797">
+            <g id="top" transform="translate(2.246681, 5.435547)">
+                <path d="M481.57285,34.4332038 L491.466625,18.3146846 L495.153071,0 L418.7636,0 C414.400474,8.06838021 411.481933,14.0123385 410.007978,17.8318749 C408.278238,22.0933706 406.790423,27.6271469 405.544535,34.4332038 L481.57285,34.4332038 Z" id="27" transform="translate(450.348803, 17.216602) scale(-1, 1) translate(-450.348803, -17.216602) "></path>
+            </g>
+      </g>
+    </g>
+</svg>

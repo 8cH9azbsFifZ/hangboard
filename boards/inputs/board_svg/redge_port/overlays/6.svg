@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1008px" height="325px" viewBox="0 0 1008 325" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>board</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(0.000000, 1.000000)">
+            <g id="hold_overlays" fill="#979797">
+                <path d="M504.5,177.25 L997.1042,177.25 L1000.40778,177.25 C1002.49237,177.833246 1003.89103,178.4976 1004.60375,179.243062 C1005.31646,179.988524 1006.00136,181.503445 1006.65843,183.787825 L1006.65843,210.349373 C1006.11707,212.49486 1005.43217,213.95862 1004.60375,214.740656 C1003.77532,215.522691 1002.37667,216.025806 1000.40778,216.25 L504.5,216.25 L504.5,177.25 Z" id="6-right"></path>
+            </g>
+        </g>
+    </g>
+</svg>

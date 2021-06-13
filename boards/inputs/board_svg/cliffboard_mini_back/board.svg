@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="433px" height="172px" viewBox="0 0 433 172" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>cliffboard_mini_back 2</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board">
+            <g id="background" fill="#D8D8D8" stroke="#979797">
+                <rect id="Rectangle" x="4.5" y="0.5" width="424" height="168" rx="2"></rect>
+                <rect id="Rectangle" x="0.5" y="150.5" width="431" height="21" rx="2"></rect>
+            </g>
+            <g id="middle" transform="translate(154.000000, 6.000000)" stroke="#979797">
+                <rect id="10" x="0.5" y="36.5" width="123" height="32" rx="9"></rect>
+                <rect id="9" x="34.5" y="0.5" width="55" height="28" rx="9"></rect>
+            </g>
+            <g id="right" transform="translate(324.250000, 87.500000) scale(-1, 1) translate(-324.250000, -87.500000) translate(216.000000, 3.000000)">
+                <path d="M2,147 L216.5,147 L216.5,147 L216.5,169 L2,169 C0.8954305,169 1.3527075e-16,168.104569 0,167 L0,149 C-1.3527075e-16,147.895431 0.8954305,147 2,147 Z" id="8"></path>
+                <rect id="7" stroke="#979797" x="31.5" y="97.5" width="126" height="38" rx="13"></rect>
+                <circle id="6" stroke="#979797" cx="149" cy="17" r="16.5"></circle>
+                <rect id="5" stroke="#979797" x="31.5" y="2.5" width="83" height="30" rx="13"></rect>
+            </g>
+            <g id="left" transform="translate(0.000000, 3.000000)">
+                <path d="M2,147 L216.5,147 L216.5,147 L216.5,169 L2,169 C0.8954305,169 1.3527075e-16,168.104569 0,167 L0,149 C-1.3527075e-16,147.895431 0.8954305,147 2,147 Z" id="4"></path>
+                <rect id="3" stroke="#979797" x="31.5" y="97.5" width="126" height="38" rx="13"></rect>
+                <circle id="2" stroke="#979797" cx="149" cy="17" r="16.5"></circle>
+                <rect id="1" stroke="#979797" x="31.5" y="2.5" width="83" height="30" rx="13"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
