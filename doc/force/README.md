@@ -40,10 +40,12 @@ docker run --rm -it -p 4322:4322 force
 ## Mounting the load cells in a zlagboard
 + Disassemble the 4 screws and the gyroscope mount
 + Place the 4 load cells at bottom 
-+ NB: Spring mechanic / gyroscope mount disabled after placing the load cells...
++ Create small "U-shaped" holds for the load cells (i.e. made from paper)
++ NB: Gyroscope mount disabled after placing the load cells...
 
 ![Zlagboard disassembled](./zlagboard_disassemble.png)
 ![Zlagboard with load cells](./zlagboard_install_load_sensors.png)
+![U-Shaped load cell mount](./load_sensor_zlagboard_mount.png)
 
 # References
 + https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
