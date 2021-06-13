@@ -1,0 +1,2133 @@
+[
+  {
+    "version": 101,
+    "displayName": "Top Out Project",
+    "type": {
+      "uniqueName": "topout_project"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 2,
+        "depth": 40,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 20,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 20,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 25,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 25,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 28,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 25,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 15,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 12,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 10,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": null,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 13,
+        "depth": 40,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 20,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 20,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 25,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 25,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 28,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 25,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 15,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 12,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 10,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.etsy.com/uk/listing/876885040/project-board-by-top-out-climbing?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=Project+Board+by+Top+Out+Climbing"
+  },
+  {
+    "version": 101,
+    "displayName": "Simond Ballsy",
+    "type": {
+      "uniqueName": "simond_ballsy_board"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 2,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 3,
+        "depth": 42,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 12,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 22,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 22,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 25,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 12,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": null,
+        "order": 9,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 12,
+        "depth": null,
+        "order": 10,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 13,
+        "depth": 42,
+        "order": 11,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 12,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 22,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 22,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 25,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 12,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": null,
+        "order": 17,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 9,
+        "depth": 27,
+        "order": 18,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 35,
+        "order": 19,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.simond.com/climbing-training-beam-ballsy-board-black-id_8360021"
+  },
+  {
+    "version": 101,
+    "displayName": "Roots Baseline",
+    "type": {
+      "uniqueName": "roots_baseline"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 2,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 3,
+        "depth": 22,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 12,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 52,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 35,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 20,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": null,
+        "order": 8,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 9,
+        "depth": null,
+        "order": 9,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 10,
+        "depth": 12,
+        "order": 10,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 22,
+        "order": 11,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 52,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 13,
+        "depth": 35,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 20,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": null,
+        "order": 15,
+        "location": "CENTER",
+        "type": "JUG"
+      },
+      {
+        "position": 16,
+        "depth": 25,
+        "order": 16,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 15,
+        "order": 17,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.roots-climbing.com/fingerboards-hangboards"
+  },
+  {
+    "version": 101,
+    "displayName": "Redge Port",
+    "type": {
+      "uniqueName": "redge_port"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 35,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 35,
+        "order": 2,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 25,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 25,
+        "order": 4,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 20,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 20,
+        "order": 6,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 15,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 15,
+        "order": 8,
+        "location": "RIGHT",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://redgeclimbing.com/product/redge-port-portable-hangboard/"
+  },
+  {
+    "version": 101,
+    "displayName": "Mountain Rocks",
+    "type": {
+      "uniqueName": "mountain_rocks"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 2,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 3,
+        "depth": 40,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 40,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 40,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 25,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 25,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 25,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 15,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 15,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 15,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": null,
+        "order": 12,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 13,
+        "depth": null,
+        "order": 13,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 14,
+        "depth": null,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 15,
+        "depth": null,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 16,
+        "depth": 40,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 40,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 40,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 25,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 25,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 25,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 15,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 23,
+        "depth": 15,
+        "order": 23,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 24,
+        "depth": 15,
+        "order": 24,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": null,
+        "order": 25,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 26,
+        "depth": null,
+        "order": 26,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      }
+    ],
+    "homePage": "http://mountainrocks.online/index.html#products"
+  },
+  {
+    "version": 101,
+    "displayName": "Mönster",
+    "type": {
+      "uniqueName": "monster"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 30,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 25,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 35,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 20,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 15,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 12,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 13,
+        "depth": 10,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 8,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 7,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 6,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 5,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 30,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 25,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 35,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 20,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 15,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 12,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 10,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 8,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 23,
+        "depth": 7,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 24,
+        "depth": 6,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": 5,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 23,
+        "order": 23,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 16,
+        "order": 24,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 9,
+        "order": 25,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://holdemporium.com/collections/training/products/monster-board"
+  },
+  {
+    "version": 101,
+    "displayName": "Metolius Wood Grips II Compact",
+    "type": {
+      "uniqueName": "metolius_wood_grips_2_compact"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 2,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 3,
+        "depth": 29,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 29,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 29,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 19,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 19,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 19,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": null,
+        "order": 9,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 13,
+        "depth": null,
+        "order": 10,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 14,
+        "depth": 29,
+        "order": 11,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 29,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 29,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 19,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 19,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 19,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": null,
+        "order": 17,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 10,
+        "depth": 29,
+        "order": 18,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 19,
+        "order": 19,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.metoliusclimbing.com/wood-grips_training_boards.html"
+  },
+  {
+    "version": 101,
+    "displayName": "Metolius Simulator 3D",
+    "type": {
+      "uniqueName": "metolius_simulator_3d"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 2,
+        "depth": 25,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": null,
+        "order": 3,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 4,
+        "depth": null,
+        "order": 4,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 5,
+        "depth": 19,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 13,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 38,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 13,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 32,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 13,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 13,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 32,
+        "order": 12,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 13,
+        "depth": 13,
+        "order": 13,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": null,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 15,
+        "depth": 25,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": null,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 17,
+        "depth": null,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 18,
+        "depth": 19,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 13,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 38,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 13,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 32,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 23,
+        "depth": 13,
+        "order": 23,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 24,
+        "depth": 13,
+        "order": 24,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": 32,
+        "order": 25,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 26,
+        "depth": 13,
+        "order": 26,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 27,
+        "depth": null,
+        "order": 27,
+        "location": "CENTER",
+        "type": "JUG"
+      },
+      {
+        "position": 28,
+        "depth": 44,
+        "order": 28,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 29,
+        "depth": 32,
+        "order": 29,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 30,
+        "depth": 25,
+        "order": 30,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 31,
+        "depth": 29,
+        "order": 31,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.metoliusclimbing.com/simulator.html"
+  },
+  {
+    "version": 101,
+    "displayName": "Metolius Project",
+    "type": {
+      "uniqueName": "metolius_project"
+    },
+    "holds": [
+      {
+        "position": 13,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 14,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 1,
+        "depth": 45,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 30,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 40,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 22,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 22,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": null,
+        "order": 8,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 16,
+        "depth": null,
+        "order": 9,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 8,
+        "depth": 45,
+        "order": 10,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 30,
+        "order": 11,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 40,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 22,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 22,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": null,
+        "order": 15,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 6,
+        "depth": 39,
+        "order": 16,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 16,
+        "order": 17,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.metoliusclimbing.com/project-board.html"
+  },
+  {
+    "version": 101,
+    "displayName": "Metolius Prime Rib",
+    "type": {
+      "uniqueName": "metolius_prime_rib"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 38,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 38,
+        "order": 2,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 23,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 23,
+        "order": 4,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 15,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 15,
+        "order": 6,
+        "location": "RIGHT",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.metoliusclimbing.com/prime-rib.html"
+  },
+  {
+    "version": 101,
+    "displayName": "Crusher 3",
+    "type": {
+      "uniqueName": "crusher_3"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 2,
+        "depth": 40,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 40,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 30,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 25,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 25,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 20,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 35,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 30,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 25,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 20,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": null,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 13,
+        "depth": 40,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 40,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 30,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 25,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 25,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 20,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 35,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 30,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 25,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 20,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 23,
+        "depth": null,
+        "order": 23,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 24,
+        "depth": 35,
+        "order": 24,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": 25,
+        "order": 25,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "http://crusherholds.co.uk/fingerboards/crusher-3-climbing-fingerboard-hangboard"
+  },
+  {
+    "version": 101,
+    "displayName": "Cliffboard Mini (front)",
+    "type": {
+      "uniqueName": "cliffboard_mini_front"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 30,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 18,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": null,
+        "order": 3,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 4,
+        "depth": 15,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 30,
+        "order": 5,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 18,
+        "order": 6,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": null,
+        "order": 7,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 8,
+        "depth": 15,
+        "order": 8,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": null,
+        "order": 9,
+        "location": "CENTER",
+        "type": "JUG"
+      }
+    ],
+    "homePage": "https://awesomewoodys.com/products/cliffboard-mini"
+  },
+  {
+    "version": 101,
+    "displayName": "Cliffboard Mini (back)",
+    "type": {
+      "uniqueName": "cliffboard_mini_back"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 25,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 30,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": null,
+        "order": 3,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 4,
+        "depth": 12,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 25,
+        "order": 5,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 30,
+        "order": 6,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": null,
+        "order": 7,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 8,
+        "depth": 12,
+        "order": 8,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 25,
+        "order": 9,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": null,
+        "order": 10,
+        "location": "CENTER",
+        "type": "JUG"
+      }
+    ],
+    "homePage": "https://awesomewoodys.com/products/cliffboard-mini"
+  },
+  {
+    "version": 101,
+    "displayName": "Beastmaker 2000",
+    "type": {
+      "uniqueName": "beastmaker_2000"
+    },
+    "holds": [
+      {
+        "position": 23,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 24,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 1,
+        "depth": 40,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 33,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 55,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 35,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 30,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 15,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 27,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 20,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 22,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 50,
+        "order": 12,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 27,
+        "depth": null,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 26,
+        "depth": null,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 12,
+        "depth": 20,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 33,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 55,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 35,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 13,
+        "depth": 30,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 15,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 27,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 20,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 22,
+        "order": 23,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 50,
+        "order": 24,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": null,
+        "order": 25,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 10,
+        "depth": 52,
+        "order": 26,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 21,
+        "order": 27,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.beastmaker.co.uk/products/beastmaker-2000-series"
+  },
+  {
+    "version": 101,
+    "displayName": "Beastmaker 1000",
+    "type": {
+      "uniqueName": "beastmaker_1000"
+    },
+    "holds": [
+      {
+        "position": 18,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 19,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 1,
+        "depth": 15,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 30,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 45,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 50,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 44,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 20,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 25,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 20,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": null,
+        "order": 11,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 21,
+        "depth": null,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 11,
+        "depth": 15,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 30,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 45,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 13,
+        "depth": 50,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 44,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 20,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 25,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 20,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": null,
+        "order": 21,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 6,
+        "depth": 52,
+        "order": 22,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.beastmaker.co.uk/products/beastmaker-1000-series"
+  }
+]
