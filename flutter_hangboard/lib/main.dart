@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _channel.sink.add(_controller.text);
     }
     _playLocal();
+    _channel.sink.add("Start"); // FIXME
   }
 
   Widget titleSection = Container(
