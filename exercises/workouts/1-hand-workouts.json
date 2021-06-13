@@ -1,0 +1,118 @@
+{
+    "Workouts":[
+        {
+            "Name": "Force Endurance",
+            "Session": 1,
+            "ID": "H1",
+            "Sets":[
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 6, 	"Pause": 2,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 6, 	"Pause": 2,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 6, 	"Pause": 2,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35} 
+            ]
+        }
+        ,
+        {
+            "Name": "Force Endurance",
+            "Session": 1,
+            "ID": "H2",
+            "Sets":[
+                { "Rest-to-Start": 160,       "Exercise": "1 Hand Pull", 			    "Counter": 6, 	"Pause": 3,    "Reps": 15, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35} ,
+                { "Rest-to-Start": 160,       "Exercise": "1 Hand Pull", 			    "Counter": 6, 	"Pause": 3,    "Reps": 15, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35}
+            ]
+        }       
+        ,
+        {
+            "Name": "Force Endurance",
+            "Session": 2,
+            "ID": "H3",
+            "Sets":[
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 2,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.55} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 2,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.55} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 2,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.55} 
+            ]
+        }
+        ,
+        {
+            "Name": "Force Endurance",
+            "Session": 2,
+            "ID": "H4",
+            "Sets":[
+                { "Rest-to-Start": 160,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 3,    "Reps": 15, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35} ,
+                { "Rest-to-Start": 160,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 3,    "Reps": 15, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35}
+            ]
+        }       
+        ,
+        {
+            "Name": "Force Endurance",
+            "Session": 3,
+            "ID": "H5",
+            "Sets":[
+                { "Rest-to-Start": 110,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 5,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.65} ,
+                { "Rest-to-Start": 110,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 5,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.65} ,
+                { "Rest-to-Start": 110,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 5,    "Reps": 10, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.65} 
+            ]
+        }
+        ,
+        {
+            "Name": "Force Endurance",
+            "Session": 3,
+            "ID": "H6",
+            "Sets":[
+                { "Rest-to-Start": 160,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 3,    "Reps": 15, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35} ,
+                { "Rest-to-Start": 160,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 3,    "Reps": 15, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.35}
+            ]
+        }    
+        ,
+        {
+            "Name": "Force Hypertrophy",
+            "Session": 4,
+            "ID": "H7",
+            "Sets":[
+                { "Rest-to-Start": 60,       "Exercise": "1 Hand Pull", 			    "Counter": 8, 	"Pause": 2,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.65} ,
+                { "Rest-to-Start": 60,       "Exercise": "1 Hand Pull", 			    "Counter": 8, 	"Pause": 2,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.65} ,
+                { "Rest-to-Start": 60,       "Exercise": "1 Hand Pull", 			    "Counter": 8, 	"Pause": 2,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.65} 
+            ]
+        }
+        ,
+        {
+            "Name": "Force Hypertrophy",
+            "Session": 4,
+            "ID": "H8",
+            "Sets":[
+                { "Rest-to-Start": 60,       "Exercise": "1 Hand Pull", 			    "Counter": 10, 	"Pause": 3,    "Reps": 4, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.6} ,
+                { "Rest-to-Start": 60,       "Exercise": "1 Hand Pull", 			    "Counter": 10, 	"Pause": 3,    "Reps": 4, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.6} ,
+                { "Rest-to-Start": 60,       "Exercise": "1 Hand Pull", 			    "Counter": 10, 	"Pause": 3,    "Reps": 4, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.6} 
+            ]
+        }   
+        ,
+        {
+            "Name": "Force Strength",
+            "Session": 5,
+            "ID": "H9",
+            "Sets":[
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 7, 	"Pause": 0,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.8} 
+            ]
+        }
+        ,
+        {
+            "Name": "Force Strength",
+            "Session": 5,
+            "ID": "H10",
+            "Sets":[
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} ,
+                { "Rest-to-Start": 90,       "Exercise": "1 Hand Pull", 			    "Counter": 5, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "1 Hand Pull", "Intensity": 0.9} 
+            ]
+        }   
+    ]
+}

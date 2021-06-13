@@ -4,21 +4,36 @@
             "Name": "Maximal Hang Bodyweight",
             "Type": "Assessment",
             "ID": 1
-        },
+        }
+        ,
         {
             "Name": "Maximum Number of Pullups",            
             "Type": "Assessment",
             "ID": 2
-        },
+        }
+        ,
         {
             "Name": "Maximal Weight Hangs",            
             "Type": "Assessment",
             "ID": 3
-        },
+        }
+        ,
         {
             "Name": "One handed pull",            
             "Type": "Assessment",
             "ID": 4
+        }
+        ,
+        {
+            "Name": "Maximal Strength",            
+            "Type": "Assessment",
+            "ID": 5
+        }        
+        ,
+        {
+            "Name": "Maximal Hang Time",            
+            "Type": "Assessment",
+            "ID": 6
         }
     ]
 }
