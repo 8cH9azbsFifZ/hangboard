@@ -93,6 +93,19 @@ class Workout():
         exercise = self.workout["Sets"][self.current_set]["Exercise"]
         print (exercise)
 
+    def run_exercise_1hand_pull(self):
+        """
+        Run an exercise for 1 hand pulls. Given a maximum load a climber can handle and the given intensity
+        the threshold load to be applied is:
+        Threshold >= Load_max * Intensity
+        """
+        intensity = 0.5
+        load_max = 44
+        threshold = intensity * load_max
+
+        pass
+
+
     def run_workout (self):
         """
         Run a single workout
