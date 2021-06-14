@@ -22,9 +22,10 @@ This directory contains the hold configurations for different boards
 + Edit layer "id" names manually afterwards
 + change all style:: display:inline => inline
 + Use colors: 979797 and d8d8d8
-+ Export layers as svg: https://github.com/james-bird/layer-to-svg
++ Export layers as svg: https://github.com/james-bird/layer-to-svg (cf. current dir)
 + Change colors of overlays to: d8d8d8 -> 979797
 + Export all layers as svg and convert them to png (i.e. https://svgtopng.com/de/)
++ Converting to PNG? `brew install librsvg`
 
 
 
