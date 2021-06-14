@@ -34,7 +34,7 @@ def Hold2SVG(left="A1", right="A7", filename="board.svg", outfile="./test.svg"):
 		elif (name == "Board_Shape"):
 			style = style.replace( 'display:none', 'display:inline' )
 		else:
-			style = style.replace( 'display:inline', 'display:none' )
+			style = style.replace( 'display:inline', 'display:inline' )
 			#print (h.get("style"))
 		g.set('style', style)
 
