@@ -8,6 +8,9 @@ import base64
 
 import xml.etree.ElementTree as ET
 
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPM
+
 from tabulate import tabulate 
 """ 
 Use tabulate for an ASCII Hanboard display for debugging purposes
@@ -92,6 +95,7 @@ class SVGBoard():
         self.current_image_filename = self._select_image(left,right)
         with open(self.current_image_filename, "rb") as image_file:
             self.current_image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+        return self.current_image_base64
 
     def generate_all_images(self, holds=[]):
         for left in holds:
@@ -99,6 +103,11 @@ class SVGBoard():
                 if (left == right):
                     break
                 self.Hold2SVG(left,right)
+
+    def _svg_to_png(self,filename): # TODO - finish implementation
+        outfile = filename.replace(".svg",".png")
+        drawing = svg2rlg(filename)
+        renderPM.drawToFile(drawing, outfile, fmt="PNG")
 
 
 

@@ -135,6 +135,11 @@ class Workout():
 
         self.counter = self.workout["Sets"][self.current_set]["Counter"]
 
+    def _get_board_image_base64(self):
+        image_base64 = self.board.svg._get_image_base64()
+        print (image_base64)
+        self.message = image_base64
+
     def run_pause(self):
         logging.debug('Run pause')
 

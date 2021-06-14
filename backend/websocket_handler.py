@@ -41,8 +41,8 @@ class WebsocketHandler():
             self._run_workout() # FIXME: Document this is a sibling class which depends on the class methods in workout :) 
         if (message == "Stop"):
             self._stop_workout()     
-        #if (message == "GetBoard"):
-        #    self.get_board()
+        if (message == "GetBoardImage"):
+            self._get_board_image_base64()
         #if (message == "ListWorkouts"): # TBD: Implement in webinterface
         #    self.list_workouts()
 
