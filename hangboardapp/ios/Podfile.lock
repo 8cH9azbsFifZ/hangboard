@@ -1,6 +1,5 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.64.1)
   - FBReactNativeSpec (0.64.1):
@@ -11,7 +10,6 @@ PODS:
     - React-jsi (= 0.64.1)
     - ReactCommon/turbomodule/core (= 0.64.1)
   - glog (0.3.5)
-  - JKVValue (1.3.3)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -207,9 +205,6 @@ PODS:
   - React-jsinspector (0.64.1)
   - react-native-keep-awake (4.0.0):
     - React
-  - react-native-rabbitmq (0.6.7):
-    - React
-    - RMQClient
   - React-perflogger (0.64.1)
   - React-RCTActionSheet (0.64.1):
     - React-Core/RCTActionSheetHeaders (= 0.64.1)
@@ -274,9 +269,6 @@ PODS:
     - React-cxxreact (= 0.64.1)
     - React-jsi (= 0.64.1)
     - React-perflogger (= 0.64.1)
-  - RMQClient (0.11.0):
-    - CocoaAsyncSocket (~> 7.6)
-    - JKVValue (~> 1.3)
   - RNSound (0.11.0):
     - React
     - RNSound/Core (= 0.11.0)
@@ -303,7 +295,6 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-keep-awake (from `../node_modules/react-native-keep-awake`)
-  - react-native-rabbitmq (from `../node_modules/react-native-rabbitmq`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -322,9 +313,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - CocoaAsyncSocket
-    - JKVValue
-    - RMQClient
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -359,8 +347,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-keep-awake:
     :path: "../node_modules/react-native-keep-awake"
-  react-native-rabbitmq:
-    :path: "../node_modules/react-native-rabbitmq"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -392,12 +378,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 7b423f9e248eae65987838148c36eec1dbfe0b53
-  FBReactNativeSpec: 221e714806ea7b97a72627e0c1e1c1fffab6e117
+  FBReactNativeSpec: 18b1e0d6a1bce2a661a02f72cdc5a5e0b5f679ca
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
-  JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: ec2ebc96b7bfba3ca5c32740f5a0c6a014a274d2
   RCTTypeSafety: 22567f31e67c3e088c7ac23ea46ab6d4779c0ea5
@@ -410,7 +394,6 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 124e8f99992490d0d13e0649d950d3e1aae06fe9
   React-jsinspector: 500a59626037be5b3b3d89c5151bc3baa9abf1a9
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-rabbitmq: 5528823c8ff0259e48578227ff2a6c45a28cc4d6
   React-perflogger: aad6d4b4a267936b3667260d1f649b6f6069a675
   React-RCTActionSheet: fc376be462c9c8d6ad82c0905442fd77f82a9d2a
   React-RCTAnimation: ba0a1c3a2738be224a08092fa7f1b444ab77d309
@@ -423,7 +406,6 @@ SPEC CHECKSUMS:
   React-RCTVibration: 4b99a7f5c6c0abbc5256410cc5425fb8531986e1
   React-runtimeexecutor: ff951a0c241bfaefc4940a3f1f1a229e7cb32fa6
   ReactCommon: bedc99ed4dae329c4fcf128d0c31b9115e5365ca
-  RMQClient: c77b0e715dbfcdfe81b304aa4f4e82b3d7ef6ff5
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: a7de31c64fe738607e7a3803e3f591a4b1df7393
 
