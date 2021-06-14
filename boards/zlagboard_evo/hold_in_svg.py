@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 import xml.etree.ElementTree as ET
 
-
 def Hold2SVG(left="A1", right="A7", filename="board.svg", outfile="./test.svg"):
 	tree = ET.parse(filename)
 	root = tree.getroot()

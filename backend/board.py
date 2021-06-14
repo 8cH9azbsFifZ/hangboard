@@ -6,6 +6,7 @@ import json
 import time
 import base64
 
+import xml.etree.ElementTree as ET
 
 from tabulate import tabulate 
 """ 
@@ -16,6 +17,53 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='Board(%(threadName)-10s) %(message)s',
                     )
+
+class SVGBoard():
+    def __init__(self, verbose=None, boardname = "zlagboard_evo"):
+        self.boardimagename = "../boards/" + boardname + "/board.svg" 
+        
+        self.left_color = "#00ff00"
+        self.right_color = "#ff0000"
+
+    def Hold2SVG(self, left="A1", right="A7"):
+        self.tree = ET.parse(self.boardimagename)
+        self.root = self.tree.getroot()
+
+        outfile = self.boardimagename.replace(".svg", "." + left + "." + right + ".svg")
+        print (outfile)
+
+        for g in self.root.findall('{http://www.w3.org/2000/svg}g'):
+            name = g.get('{http://www.inkscape.org/namespaces/inkscape}label')
+            style = g.get('style')
+            if (name == left):
+                style = style.replace( 'display:none', 'display:inline;' )
+                for h in g.findall('{http://www.w3.org/2000/svg}path'):
+                    style1 = h.get ("style")
+                    style1 = style1.replace("fill:#d8d8d8", "fill:" + self.left_color)
+                    h.set("style", style1)
+                for h in g.findall('{http://www.w3.org/2000/svg}rect'):
+                    style1 = h.get ("style")
+                    style1 = style1.replace("fill:#d8d8d8", "fill:" + self.left_color)
+                    h.set("style", style1)
+            elif (name == right):
+                style = style.replace( 'display:none', 'display:inline' )
+                for h in g.findall('{http://www.w3.org/2000/svg}path'):
+                    style1 = h.get ("style")
+                    style1 = style1.replace("fill:#d8d8d8", "fill:" + self.right_color)
+                    h.set("style", style1)		
+                for h in g.findall('{http://www.w3.org/2000/svg}rect'):
+                    style1 = h.get ("style")
+                    style1 = style1.replace("fill:#d8d8d8", "fill:" + self.right_color)
+                    h.set("style", style1)	
+            elif (name == "Board_Shape"):
+                style = style.replace( 'display:none', 'display:inline' )
+            else:
+                style = style.replace( 'display:inline', 'display:inline' )
+            g.set('style', style)
+
+        self.tree.write( outfile ) # FIXME
+
+
 
 class Board():
     """
@@ -88,7 +136,6 @@ class Board():
         logging.debug (holds)
         return holds
 
-
 class AsciiBoard():
     """
     All stuff for handling an ASCII output of the current hangboard configuration.
@@ -120,3 +167,6 @@ if __name__ == "__main__":
     h = a.get_hold_for_type("JUG")
     print (h[0])
     print (h[-1])
+    svg = SVGBoard()
+    svg.Hold2SVG()    
+    svg.Hold2SVG(left="B2",right="C6")
