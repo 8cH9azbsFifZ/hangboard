@@ -48,7 +48,7 @@ class Board():
         self.get_all_holds()
 
         self.boardname_full = self.boarddata["Name"]
-        self.boardimagename = "../boards/" + self.boardname + "/board.png" 
+        self.boardimagename = "../boards/" + self.boardname + "/board.svg" 
 
         self.get_image()
 
