@@ -40,7 +40,7 @@
      fit-margin-bottom="0" />
   <g
      inkscape:groupmode="layer"
-     id="layer25"
+     id="Board_Shape"
      inkscape:label="Board_Shape"
      style="display:inline"
      transform="translate(-19.210817,-509.14009)">
@@ -73,13 +73,13 @@
   </g>
   <g
      inkscape:groupmode="layer"
-     id="layer29"
+     id="Holds_C"
      inkscape:label="Holds C"
      style="display:inline"
      transform="translate(-19.210817,-509.14009)">
     <g
        inkscape:groupmode="layer"
-       id="layer17"
+       id="C1"
        inkscape:label="C1"
        style="display:inline">
       <rect
@@ -93,7 +93,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer18"
+       id="C2"
        inkscape:label="C2"
        style="display:inline">
       <rect
@@ -107,7 +107,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer20"
+       id="C4"
        inkscape:label="C4"
        style="display:inline">
       <rect
@@ -121,7 +121,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer19"
+       id="C3"
        inkscape:label="C3"
        style="display:inline">
       <rect
@@ -135,7 +135,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer21"
+       id="C6"
        inkscape:label="C6"
        style="display:inline">
       <rect
@@ -150,7 +150,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer22"
+       id="C5"
        inkscape:label="C5"
        style="display:inline">
       <rect
@@ -165,7 +165,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer23"
+       id="C7"
        inkscape:label="C7"
        style="display:inline">
       <rect
@@ -181,13 +181,13 @@
   </g>
   <g
      inkscape:groupmode="layer"
-     id="layer28"
+     id="Holds_B"
      inkscape:label="Holds_B"
      style="display:inline"
      transform="translate(-19.210817,-509.14009)">
     <g
        inkscape:groupmode="layer"
-       id="layer10"
+       id="B1"
        inkscape:label="B1"
        style="display:inline">
       <rect
@@ -201,7 +201,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer13"
+       id="B4"
        inkscape:label="B4"
        style="display:inline">
       <rect
@@ -215,7 +215,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer12"
+       id="B3"
        inkscape:label="B3"
        style="display:inline">
       <rect
@@ -229,7 +229,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer11"
+       id="B2"
        inkscape:label="B2"
        style="display:inline">
       <rect
@@ -243,7 +243,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer14"
+       id="B5"
        inkscape:label="B5"
        style="display:inline">
       <rect
@@ -258,7 +258,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer15"
+       id="B6"
        inkscape:label="B6"
        style="display:inline">
       <rect
@@ -273,7 +273,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer16"
+       id="B7"
        inkscape:label="B7"
        style="display:inline">
       <rect
@@ -289,13 +289,13 @@
   </g>
   <g
      inkscape:groupmode="layer"
-     id="layer27"
+     id="Holds_A"
      inkscape:label="Holds_A"
      style="display:inline"
      transform="translate(-19.210817,-509.14009)">
     <g
        inkscape:groupmode="layer"
-       id="layer5"
+       id="A3"
        inkscape:label="A3"
        style="display:inline">
       <path
@@ -305,7 +305,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer4"
+       id="A2"
        inkscape:label="A2"
        style="display:inline">
       <path
@@ -315,7 +315,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer6"
+       id="A4"
        inkscape:label="A4"
        style="display:inline">
       <path
@@ -326,7 +326,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer7"
+       id="A5"
        inkscape:label="A5"
        style="display:inline">
       <path
@@ -336,7 +336,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer2"
+       id="A1"
        inkscape:label="A1"
        style="display:inline">
       <path
@@ -347,7 +347,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer8"
+       id="A6"
        inkscape:label="A6"
        style="display:inline">
       <path
@@ -357,7 +357,7 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer9"
+       id="A7"
        inkscape:label="A7"
        style="display:inline">
       <path
