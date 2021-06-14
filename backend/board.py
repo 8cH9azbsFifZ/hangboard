@@ -20,8 +20,10 @@ logging.basicConfig(level=logging.DEBUG,
 
 class SVGBoard():
     def __init__(self, verbose=None, boardname = "zlagboard_evo"):
+        self.boardname = boardname
         self.boardimagename = "../boards/" + boardname + "/board.svg" 
-        
+        self.outdir = "./cache/"
+
         self.left_color = "#00ff00"
         self.right_color = "#ff0000"
 
@@ -29,8 +31,7 @@ class SVGBoard():
         self.tree = ET.parse(self.boardimagename)
         self.root = self.tree.getroot()
 
-        outfile = self.boardimagename.replace(".svg", "." + left + "." + right + ".svg")
-        print (outfile)
+        outfile = self.outdir + self.boardname + "." + left + "." + right + ".svg" #self.boardimagename.replace(".svg", "." + left + "." + right + ".svg")
 
         for g in self.root.findall('{http://www.w3.org/2000/svg}g'):
             name = g.get('{http://www.inkscape.org/namespaces/inkscape}label')
