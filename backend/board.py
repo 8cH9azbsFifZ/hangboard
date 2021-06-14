@@ -93,6 +93,12 @@ class SVGBoard():
         with open(self.current_image_filename, "rb") as image_file:
             self.current_image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
 
+    def generate_all_images(self, holds=[]):
+        for left in holds:
+            for right in holds:
+                if (left == right):
+                    break
+                self.Hold2SVG(left,right)
 
 
 
@@ -104,7 +110,6 @@ class Board():
     def __init__(self, verbose=None, boardname = "zlagboard_evo"):
         self.boardname = boardname
         self.init_board()
-
 
     def list_boards(self):
         logging.debug ("List all available boards.")
@@ -124,7 +129,7 @@ class Board():
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
 
-        self.get_all_holds()
+        self._get_all_holds()
 
         self.boardname_full = self.boarddata["Name"]
 
@@ -138,8 +143,7 @@ class Board():
         logging.debug (self.holds_active)
         logging.debug (self.holds_inactive)
 
-    def get_all_holds(self):
-        # TODO rework for this version
+    def _get_all_holds(self):
         self.all_holds = []
         #print (self.boarddata["Holds"])
         for hold in self.boarddata["Holds"]:
@@ -191,4 +195,5 @@ if __name__ == "__main__":
     svg = SVGBoard()
     svg.Hold2SVG()    
     svg.Hold2SVG(left="B2",right="C6")
+    svg.generate_all_images(holds=a.all_holds)
     #print (svg.current_image_base64)
