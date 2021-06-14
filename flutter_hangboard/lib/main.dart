@@ -5,6 +5,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:ui';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:convert';
 
 void main() {
   runApp(MyApp());
@@ -46,14 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
     //AudioCache audioCache = AudioCache(); // TODO: implement for iOS
 
     await audioPlayer.play("images/done.mp3", isLocal: true);
-  }
-
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
   }
 
   void _sendMessage() {
@@ -116,12 +109,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           SizedBox(height: 24),
-          StreamBuilder(
-            //stream: _channel.stream,
-            builder: (context, snapshot) {
-              return Text(snapshot.hasData ? '${snapshot.data}' : '');
-            },
-          )
         ],
       ))
     ],
@@ -199,7 +186,17 @@ class _MyHomePageState extends State<MyHomePage> {
             StreamBuilder(
               stream: _channel.stream,
               builder: (context, snapshot) {
-                return Text(snapshot.hasData ? '${snapshot.data}' : '');
+                var testchen = "Nix";
+                var left = "";
+                var right = "";
+                if (snapshot.hasData) {
+                  testchen = snapshot.data.toString();
+                  Map<String, dynamic> ok1 = jsonDecode(testchen);
+                  left = ok1['Left'];
+                  right = ok1['Right'];
+                }
+                //return Text(snapshot.hasData ? '${snapshot.data}' : '');
+                return Text("Left " + left + " Right " + right);
               },
             )
           ],
