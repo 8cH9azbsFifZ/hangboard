@@ -1,4 +1,5 @@
 # History
+- v0.40 - Zlagboard EVO images vector format (as in hangbird).
 - v0.39 - Testing with flutter for frontend started.
 - v0.38 - Force sensor on modified zlagboard - first measurement.
 - v0.37 - Backend with integrated websockets working again.
