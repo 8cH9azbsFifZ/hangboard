@@ -22,16 +22,37 @@ class SVGBoard():
     def __init__(self, verbose=None, boardname = "zlagboard_evo"):
         self.boardname = boardname
         self.boardimagename = "../boards/" + boardname + "/board.svg" 
-        self.outdir = "./cache/"
+        self.cachedir = "./cache/"
 
         self.left_color = "#00ff00"
         self.right_color = "#ff0000"
 
+        self._get_image_base64()
+
+    def _select_image (self, left="", right=""):
+        """
+        Select the correct image - with or without selected holds
+        """
+        filename = self.boardimagename
+        if ((left != "") or (right != "")):
+            filename = self._cache_svg_filename(left,right)
+        return filename
+
+    def _cache_svg_filename (self, left="A1", right="A7"):
+        """
+        Find Image name in cache dir
+        """
+        filename = self.cachedir + self.boardname + "." + left + "." + right + ".svg" 
+        return filename
+
     def Hold2SVG(self, left="A1", right="A7"):
+        """
+        Render image for hold configuration
+        """
         self.tree = ET.parse(self.boardimagename)
         self.root = self.tree.getroot()
 
-        outfile = self.outdir + self.boardname + "." + left + "." + right + ".svg" #self.boardimagename.replace(".svg", "." + left + "." + right + ".svg")
+        outfile = self._cache_svg_filename(left,right)
 
         for g in self.root.findall('{http://www.w3.org/2000/svg}g'):
             name = g.get('{http://www.inkscape.org/namespaces/inkscape}label')
@@ -62,7 +83,17 @@ class SVGBoard():
                 style = style.replace( 'display:inline', 'display:inline' )
             g.set('style', style)
 
-        self.tree.write( outfile ) # FIXME
+        self.tree.write( outfile ) # FIXME        
+
+    def _get_image_base64(self, left="", right=""):
+        """
+        Get board image as base64 for sending over websocket
+        """
+        self.current_image_filename = self._select_image(left,right)
+        with open(self.current_image_filename, "rb") as image_file:
+            self.current_image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+
+
 
 
 
@@ -88,7 +119,6 @@ class Board():
     def init_board (self):
         # TODO rework for this version
         self.board_status = ""
-        self.boardimage_base64 = ""
         self.boardfilename = "../boards/" + self.boardname + "/holds.json" 
 
         with open(self.boardfilename) as json_file:
@@ -97,20 +127,6 @@ class Board():
         self.get_all_holds()
 
         self.boardname_full = self.boarddata["Name"]
-        self.boardimagename = "../boards/" + self.boardname + "/board.svg" 
-
-        self.get_image()
-
-    def get_image(self):
-        """
-        Send board image as base64 over websocket
-        """
-        # TODO rework for this version
-        #    
-        with open(self.boardimagename, "rb") as image_file:
-            self.boardimage_base64 = base64.b64encode(image_file.read()).decode('utf-8')
-        self.board_status = self.boardimage_base64 
-
 
     def set_active_holds(self, array_holds):
         logging.debug("Set active holds")
@@ -136,6 +152,8 @@ class Board():
                 holds.append(hold["ImgLayerName"])
         logging.debug (holds)
         return holds
+
+
 
 class AsciiBoard():
     """
@@ -171,3 +189,4 @@ if __name__ == "__main__":
     svg = SVGBoard()
     svg.Hold2SVG()    
     svg.Hold2SVG(left="B2",right="C6")
+    #print (svg.current_image_base64)
