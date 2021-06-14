@@ -1,24 +1,10 @@
-import 'dart:async';
-//import 'dart:html';
-import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
-//import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-//import 'dart:io' show Platform; //at the top
-
 import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-import 'package:flutter_svg/avd.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-//final String assetName = 'assets/board.svg';
-//SvgPicture.asset("images/board.svg");
 
 void main() {
   runApp(MyApp());
@@ -38,8 +24,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// https://pub.dev/packages/audioplayers/example
-
+// TODO:  https://pub.dev/packages/audioplayers/example
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -53,25 +38,14 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _controller = TextEditingController();
 
   final _channel = WebSocketChannel.connect(
-    //Uri.parse('wss://echo.websocket.org'),
     Uri.parse('ws://127.0.0.1:4321'),
   );
 
-  //bool isIOS = Theme.of(context).platform == TargetPlatform.iOS;
-  //String os = dio.Platform.operatingSystem; //in your code
-
-  //dio.isIOS
-
   _playLocal() async {
     AudioPlayer audioPlayer = AudioPlayer();
-    AudioCache audioCache = AudioCache();
+    //AudioCache audioCache = AudioCache(); // TODO: implement for iOS
 
-    int result = await audioPlayer.play("images/done.mp3", isLocal: true);
-
-    /*int result = await audioPlayer.play(
-        "https://luan.xyz/files/audio/nasa_on_a_mission.mp3",
-        isLocal: false);
-  */
+    await audioPlayer.play("images/done.mp3", isLocal: true);
   }
 
   int _counter = 0;
@@ -236,14 +210,3 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Icon(Icons.send)));
   }
 }
-
-/*
-    Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-
-
-
-
-*/
