@@ -17,7 +17,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/avd.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-final String assetName = 'assets/board.svg';
+//final String assetName = 'assets/board.svg';
 //SvgPicture.asset("images/board.svg");
 
 void main() {
@@ -219,6 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
             */
 
             SvgPicture.asset('images/board.svg'),
+            SvgPicture.asset('images/overlays/A1.svg'), // FIXME
             titleSection,
             BoardSelection,
             origSection,
