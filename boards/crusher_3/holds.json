@@ -1,0 +1,185 @@
+{
+    "version": 101,
+    "displayName": "Crusher 3",
+    "type": {
+      "uniqueName": "crusher_3"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 2,
+        "depth": 40,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 40,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 30,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 25,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 25,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 20,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 35,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 30,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 25,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 20,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": null,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 13,
+        "depth": 40,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 40,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 30,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 25,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 25,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 20,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 35,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 30,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 25,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 20,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 23,
+        "depth": null,
+        "order": 23,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 24,
+        "depth": 35,
+        "order": 24,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": 25,
+        "order": 25,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "http://crusherholds.co.uk/fingerboards/crusher-3-climbing-fingerboard-hangboard"
+  },

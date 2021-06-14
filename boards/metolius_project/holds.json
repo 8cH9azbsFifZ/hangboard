@@ -1,0 +1,129 @@
+{
+    "version": 101,
+    "displayName": "Metolius Project",
+    "type": {
+      "uniqueName": "metolius_project"
+    },
+    "holds": [
+      {
+        "position": 13,
+        "depth": null,
+        "order": 1,
+        "location": "LEFT",
+        "type": "JUG"
+      },
+      {
+        "position": 14,
+        "depth": null,
+        "order": 2,
+        "location": "LEFT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 1,
+        "depth": 45,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 30,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 40,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 22,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 22,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": null,
+        "order": 8,
+        "location": "RIGHT",
+        "type": "JUG"
+      },
+      {
+        "position": 16,
+        "depth": null,
+        "order": 9,
+        "location": "RIGHT",
+        "type": "SLOPER"
+      },
+      {
+        "position": 8,
+        "depth": 45,
+        "order": 10,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 30,
+        "order": 11,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 40,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 22,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 22,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": null,
+        "order": 15,
+        "location": "CENTER",
+        "type": "SLOPER"
+      },
+      {
+        "position": 6,
+        "depth": 39,
+        "order": 16,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 16,
+        "order": 17,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.metoliusclimbing.com/project-board.html"
+  },
