@@ -218,8 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             */
 
-            SvgPicture.asset('images/board.svg'),
-            SvgPicture.asset('images/overlays/A1.svg'), // FIXME
+            SvgPicture.asset('images/zlagboard_evo.svg'),
             titleSection,
             BoardSelection,
             origSection,
