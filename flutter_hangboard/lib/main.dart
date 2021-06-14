@@ -9,6 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 //import 'dart:io' show Platform; //at the top
 
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+import 'package:flutter_svg/avd.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+final String assetName = 'assets/board.svg';
+//SvgPicture.asset("images/board.svg");
+
 void main() {
   runApp(MyApp());
 }
@@ -199,11 +210,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(
           children: [
+            /*
             Image.asset(
               'images/board.png',
               fit: BoxFit.cover,
-              width: 500,
+              //width: 500,
             ),
+            */
+
+            SvgPicture.asset('images/board.svg'),
             titleSection,
             BoardSelection,
             origSection,
