@@ -8,9 +8,16 @@ export_folder = os.path.splitext(sys.argv[1])[0]
 tree = ET.parse(sys.argv[1])
 root = tree.getroot()
 listoflayers=[]
+Left="A1"
+Right="A2"
 for g in root.findall('{http://www.w3.org/2000/svg}g'):
 	name = g.get('{http://www.inkscape.org/namespaces/inkscape}label')
-	listoflayers.append(name)
+	
+	#listoflayers.append(name)
+	
+	display:inline
+	inline
+
 print(listoflayers)
 
 if not os.path.exists(export_folder):
