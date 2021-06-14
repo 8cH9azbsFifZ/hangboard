@@ -128,6 +128,8 @@ class Board():
 
         self.boardname_full = self.boarddata["Name"]
 
+        self.svg = SVGBoard(boardname=self.boardname)
+
     def set_active_holds(self, array_holds):
         logging.debug("Set active holds")
         # TODO rework for this version

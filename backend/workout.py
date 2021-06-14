@@ -23,7 +23,6 @@ logging.basicConfig(level=logging.DEBUG,
 
 from sensor_zlagboard import SensorZlagboard
 from board import Board
-from board import AsciiBoard
 
 class Workout():
     """
@@ -49,13 +48,10 @@ class Workout():
         self.message = ""
 
         self.init_sensors()
-        self.init_board()
+        self.board = Board()
 
     def init_sensors(self):
-        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)
-
-    def init_board(self):
-        self.board = Board()
+        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)        
 
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
