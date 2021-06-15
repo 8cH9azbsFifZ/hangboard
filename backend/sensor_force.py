@@ -57,7 +57,7 @@ else:
 
 
 class SensorForce():
-    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, referenceUnit = 1257528/79, load_hang = 1257528/79*0.2 ):
+    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, referenceUnit = 1257528/79, load_hang = 5.0): #//1257528/79*0.2 ):
         logging.debug ("Initialize")
 
         self.pin_dout = pin_dout
@@ -167,7 +167,7 @@ class SensorForce():
                 self.cleanAndExit()
 
     def run_one_measure(self):
-        self.load_current = self.hx.get_weight(1)
+        self.load_current = -1*self.hx.get_weight(1)
 
         self.detect_hang()
 
@@ -184,27 +184,11 @@ class SensorForce():
         # TODO: implement
 
     def detect_hang(self):
-        oldstate = self.HangDetected
-
+        self.HangDetected = False
         if (self.load_current > self.load_hang):
             self.HangDetected = True
-        else:
-            self.HangDetected = False
-            
 
-        if (oldstate == self.HangDetected):
-            self.HangStateChanged = False
-        else:
-            self.HangStateChanged = True
-
-            self.TimeStateChangePrevious = self.TimeStateChangeCurrent
-            self.TimeStateChangeCurrent = time.time()
-
-            if (self.HangDetected == True):
-                self.LastHangTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
-            else:
-                self.LastPauseTime = self.TimeStateChangeCurrent - self.TimeStateChangePrevious
-
+        logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
         #logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in " + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
 
         return self.HangDetected
