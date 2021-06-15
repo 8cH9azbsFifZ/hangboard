@@ -45,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
   _playLocal() async {
     AudioPlayer audioPlayer = AudioPlayer();
     //AudioCache audioCache = AudioCache(); // TODO: implement for iOS
-
     await audioPlayer.play("images/done.mp3", isLocal: true);
   }
 
@@ -55,6 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     _playLocal();
     _channel.sink.add("Start"); // FIXME
+  }
+
+  void _sendMessageStart() {
+    _channel.sink.add("Start"); // FIXME
+  }
+
+  void _sendMessageStop() {
+    _channel.sink.add("Stop"); // FIXME
   }
 
   Widget titleSection = Container(
@@ -176,27 +183,64 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: _channel.stream,
               builder: (context, snapshot) {
                 var testchen = "Nix";
-                var left = "";
-                var right = "";
-                var rest = 0.0;
+                var LeftHold = "";
+                var RightHold = "";
+                var Rest = 0.0;
+                var Exercise = "";
+                var ExerciseType = "";
+                var Counter = 0.0;
+                var CurrentCounter = 0.0;
+                var Completed = 0.0;
+                var HangChangeDetected = "";
+                var HangDetected = "";
                 if (snapshot.hasData) {
                   testchen = snapshot.data.toString();
                   Map<String, dynamic> ok1 = jsonDecode(testchen);
-                  left = ok1['Left'];
-                  right = ok1['Right'];
-                  rest = double.parse(ok1['Rest']);
+                  LeftHold = ok1['Left'];
+                  RightHold = ok1['Right'];
+                  if (ok1['Rest'] != 0) {
+                    // FIXME Type detection
+                    Rest = double.parse(ok1['Rest']);
+                  } else {
+                    Rest = 0.0;
+                  }
+                  Exercise = ok1['Exercise'];
+                  //ExerciseType = ok1['ExerciseType'];
+                  //Counter = double.parse(ok1['Counter']);
+                  //CurrentCounter = double.parse(ok1['CurrentCounter']);
+                  //Completed = double.parse(ok1['Completed']);
+                  //HangChangeDetected = ok1['HangChangeDetected'];
+                  //HangDetected = ok1['HangDetected'];
                 }
                 //return Text(snapshot.hasData ? '${snapshot.data}' : '');
                 //return Text("Left " + left + " Right " + right);
-                var imagename = 'images/zlagboard_evo.png';
-                if (left != "") {
-                  imagename =
-                      'images/zlagboard_evo.' + left + '.' + right + '.png';
+                var imagename = 'images/zlagboard_evo.png'; // FIXME
+                if (LeftHold != "") {
+                  imagename = 'images/zlagboard_evo.' +
+                      LeftHold +
+                      '.' +
+                      RightHold +
+                      '.png';
                 }
+
                 return (Column(
                   children: [
+                    Text("Exercise: " + Exercise),
                     Image.asset(imagename, fit: BoxFit.cover, width: 500),
-                    Text("Rest: " + rest.toString())
+                    Text("Rest: " + Rest.toString()),
+                    Row(children: [
+                      Text("Start"),
+                      Text("Stop"),
+                      FloatingActionButton(
+                          onPressed: _sendMessageStart,
+                          child: Icon(Icons.skateboarding)),
+                      FloatingActionButton(
+                          onPressed: _sendMessageStop,
+                          child: Icon(Icons.exit_to_app)),
+                      FloatingActionButton(
+                          onPressed: _sendMessage,
+                          child: Icon(Icons.restart_alt))
+                    ])
                   ],
                 ));
               },
