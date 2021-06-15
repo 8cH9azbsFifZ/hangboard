@@ -182,8 +182,9 @@ class SensorForce():
         self.time_current = time.time()
         self.load_current = -1*self.hx.get_weight(1)
 
-        self.detect_hang()
+        self._detect_hang()
         self._fill_series()
+        self._calc_avg_load()
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -208,7 +209,7 @@ class SensorForce():
         pass
         # TODO: implement
 
-    def detect_hang(self):
+    def _detect_hang(self):
         self.HangDetected = False
         if (self.load_current > self.load_hang):
             self.HangDetected = True
