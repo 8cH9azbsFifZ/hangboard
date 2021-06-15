@@ -3,7 +3,6 @@
 --> Support for React ?! Instable
 
 # Workouts
-+ List rest of Workout
 + Calculate time of workout in total
 
 WIP: 
