@@ -38,6 +38,7 @@ logging.basicConfig(level=logging.DEBUG,
 import time
 import sys
 from scipy import integrate
+from numpy import diff
 
 import json
 
@@ -282,26 +283,19 @@ class SensorForce():
         """
         pass # TODO implement
 
+    def _Calc_RFD(self):
+        """
+        RFD the highest positive value from the first derivative of the force signal (kg/s)
+        https://journals.lww.com/nsca-jscr/Fulltext/2013/02000/Differences_in_Climbing_Specific_Strength_Between.5.aspx
+        FIXME: ref in docs.
+        """
+        pass
     
 """
-// Difference calculate the difference between values of a slice of float64 values
-func Difference(data []float64) []float64 {
 
 
-// Derivate calculates the discrete derivative for an slice of StrengthData values
-func Derivate(data []Data) []float64 {
-	res := []float64{}
-	for i := 1; i < len(data); i++ {
-		df := data[i].Strength - data[i-1].Strength
-		dt := data[i].Time.Sub(data[i-1].Time)
-		res = append(res, df/float64(dt.Seconds()))
-	}
-	return res
-}
 
-
-// RFD the highest positive value from the first derivative of the force signal (kg/s)
-// https://journals.lww.com/nsca-jscr/Fulltext/2013/02000/Differences_in_Climbing_Specific_Strength_Between.5.aspx
+/
 func RFD(data []Data) float64 {
 	max := 0.0
 	firstDerivateData := Derivate(data)
