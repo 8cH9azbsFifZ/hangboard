@@ -1,3 +1,9 @@
+"""
+This class provices all methods for websocket communication.
+It is used in conjunction with the workout class in run_ws.py 
+to start the backend serivce.
+"""
+
 import asyncio
 import websockets
 
@@ -43,8 +49,8 @@ class WebsocketHandler():
             self._stop_workout()     
         if (message == "GetBoardImage"):
             self._get_board_image_base64()
-        #if (message == "ListWorkouts"): # TBD: Implement in webinterface
-        #    self.list_workouts()
+        if (message == "ListWorkouts"): 
+           self._list_workouts()
 
 
     async def producer_handler(self, websocket, path):

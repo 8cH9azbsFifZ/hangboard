@@ -28,8 +28,9 @@ class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, verbose=None, dt=0.1, workoutfile="./../exercises/workouts/workout-test.json"):
-        self.select_workout(workoutfile)
+    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json"):
+        self.workoutdir = workoutdir
+        self.select_workout(workoutdir + "/" + workoutfile)
         self.exercise_status = "Status"
         self.workout_number = 0
         self.workout = (self.data["Workouts"][self.workout_number])
@@ -58,9 +59,8 @@ class Workout():
         with open(self.filename) as json_file:
             self.data = json.load(json_file)
 
-    def list_workouts(self):
+    def _list_workouts(self):
         logging.debug("List workouts")
-        self.workoutdir = "./workouts"
         workout_array = []
         
         for filename in os.listdir (self.workoutdir):
