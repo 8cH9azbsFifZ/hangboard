@@ -201,7 +201,7 @@ class Workout():
         t = threading.currentThread()
         self.exercise_t = 0
         self.sensors.run_one_measure()
-        #self.assert_nobody_hanging() #FIXME
+        self._assert_nobody_hanging() #FIXME
         while (float(self.exercise_t) < float(self.pause - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
@@ -229,7 +229,7 @@ class Workout():
 
         # Rest to start loop
         self.epsilon = 0.0001
-        #self.assert_nobody_hanging() # FIXME
+        self._assert_nobody_hanging() #FIXME
         self.run_rest_to_start()
 
         # Set loop
