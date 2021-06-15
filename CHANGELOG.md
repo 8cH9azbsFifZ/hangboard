@@ -1,4 +1,5 @@
 # History
+- v0.42 - Force sensor linked with flutter frontend.
 - v0.41 - Flutter frontend minimal link to backend implemented.
 - v0.40 - Zlagboard EVO images vector format (as in hangbird).
 - v0.39 - Testing with flutter for frontend started.
