@@ -293,7 +293,7 @@ class SensorForce():
         FIXME: ref in docs.
         """
         rfd = 0
-        if (len(self._load_series > 2)):
+        if (len(self._load_series) > 2):
             derivative = diff (self._load_series) / diff(self._time_series)
             rfd = max(derivative)
 
