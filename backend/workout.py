@@ -22,6 +22,8 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 from sensor_zlagboard import SensorZlagboard
+from sensor_force import SensorForce
+
 from board import Board
 
 class Workout():
@@ -52,6 +54,7 @@ class Workout():
 
     def init_sensors(self):
         self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)        
+        self.sensor_force = SensorForce(sampling_rate = 0.005)
 
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME

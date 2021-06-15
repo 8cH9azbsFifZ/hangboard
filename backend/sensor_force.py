@@ -52,6 +52,7 @@ class SensorForce():
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
 
         self.init_hx711()
+        self.calibrate()
 
 
 
@@ -81,8 +82,8 @@ class SensorForce():
         self.hx.reset()
 
     def calibrate(self):
+        logging.debug("Starting Tare done! Wait...")
         self.hx.tare()
-
         logging.debug("Tare done! Add weight now...")
 
         # to use both channels, you'll need to tare them both
