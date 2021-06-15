@@ -2,11 +2,6 @@
 + Check for Rabbit or AMQ?
 --> Support for React ?! Instable
 
-
-# Force
-+ Integrate with new backend
-
-
 # Workouts
 + List rest of Workout
 + Calculate time of workout in total
@@ -15,7 +10,7 @@ WIP:
 + Add capability to select exercise
 OPEN: receive the selected exercise
 
-Open
+# Exercises
 + Calculate total exercise time
 + Implement Assessment
 + Google Sheet Exercise Input
@@ -36,22 +31,6 @@ Open
 
 
 # Boards
-WIP
-+ Distinguish Left and Right image only
-+ Image from Backend - receiving works - TBD correct implementation including fixed fallback on frontend side
-
-
-Others
-+ Dissection of SVG to PNG images with holds (automatic)
-+ Implement Command for getting the image (JSON commands)
-+ TBD: transfer image to frontend and include single holds
-
-+ Add hold selection (other than hard coded)
-
 + Add Zlagboard Mini Layout
-+ Add Beastmaker 2000 Layout
-+ Add Beastmaker 1000 Layout
-
-+ Implement board status (read from file)
-
++ Check other boards (create images etc.)
 + Implement JSON commands

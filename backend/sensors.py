@@ -1,4 +1,7 @@
+"""
+This class encapsulates all sensors.
 
+"""
 import json
 import os
 import time
@@ -18,10 +21,7 @@ logging.basicConfig(level=logging.DEBUG,
 from sensor_zlagboard import SensorZlagboard
 from sensor_force import SensorForce
 
-
-
-
-class Sensors(): # FIXME: move to separate file
+class Sensors():
     def __init__(self, hangdetector = "Force", sampling_interval = 0.01):
         
         # Hang State
@@ -111,3 +111,4 @@ class Sensors(): # FIXME: move to separate file
         // DutyCycle calculate the percentage of time doing force vs resting
         // It decides when it's "on" and when "off" based on the StrengthStartThreshold
         """
+        self.DutyCycle = self.LastHangTime / (self.LastHangTime+self.LastPauseTime)
