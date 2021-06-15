@@ -164,7 +164,7 @@ class SensorForce():
                 #cur_timestamp = time.time()
                 #print(cur_timestamp, val)
                 self.run_one_measure()
-                logging.debug ("Current load " + "{:.2f}".format(self.load_current))
+                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -215,8 +215,7 @@ class SensorForce():
         if (self.load_current > self.load_hang):
             self.HangDetected = True
 
-        logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
-        #logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in " + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
+        #logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
 
         return self.HangDetected
 
