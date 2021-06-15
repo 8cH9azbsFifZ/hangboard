@@ -292,9 +292,11 @@ class SensorForce():
         https://journals.lww.com/nsca-jscr/Fulltext/2013/02000/Differences_in_Climbing_Specific_Strength_Between.5.aspx
         FIXME: ref in docs.
         """
-        derivative = diff (self._load_series) / diff(self._time_series)
+        rfd = 0
+        if (len(self._load_series > 2)):
+            derivative = diff (self._load_series) / diff(self._time_series)
+            rfd = max(derivative)
 
-        rfd = max(derivative)
         self.RFD = rfd
         return rfd
 
