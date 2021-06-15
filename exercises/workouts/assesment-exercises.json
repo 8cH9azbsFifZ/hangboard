@@ -3,19 +3,36 @@
         {
             "Name": "Maximal Hang Bodyweight",
             "Type": "Assessment",
-            "ID": 1
+            "ID": 1,
+            "Sets":[
+                { "Rest-to-Start": 300,       "Exercise": "Hang", 			    "Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalHang"} ,
+                { "Rest-to-Start": 300,       "Exercise": "Hang", 			    "Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalHang"} ,
+                { "Rest-to-Start": 300,       "Exercise": "Hang", 			    "Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalHang"} 
+            ]
         }
         ,
         {
             "Name": "Maximum Number of Pullups",            
             "Type": "Assessment",
-            "ID": 2
+            "ID": 2,
+            "Sets": [
+                { "Rest-to-Start": 300,       "Exercise": "Pullup", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalPullup"} ,
+                { "Rest-to-Start": 300,       "Exercise": "Pullup", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalPullup"} ,
+                { "Rest-to-Start": 300,       "Exercise": "Pullup", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalPullup"} 
+
+            ]
         }
         ,
         {
             "Name": "Maximal Weight Hangs",            
             "Type": "Assessment",
-            "ID": 3
+            "ID": 3,
+            "Sets":[
+                { "Rest-to-Start": 300,       "Exercise": "Weighted Hang", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalWeightedHang"} ,
+                { "Rest-to-Start": 300,       "Exercise": "Weighted Hang", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalWeightedHang"} ,
+                { "Rest-to-Start": 300,       "Exercise": "Weighted Hang", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalWeightedHang"} 
+
+            ]
         }
         ,
         {
