@@ -142,14 +142,14 @@ class Workout():
         logging.debug('Run pause')
 
     def _assert_nobody_hanging(self):
-        print ("Keiner dran?")
+        #logging.debug ("Keiner dran?")
         self.sensors.run_one_measure()
         while self.sensors.HangDetected == True:
             time.sleep(self.sampling_interval)
             self.sensors.run_one_measure()
 
     def _assert_somebody_hanging(self):
-        print ("Jemand dran?")
+        #logging.debug("Jemand dran?")
         self.sensors.run_one_measure()
         while self.sensors.HangDetected == False:
             time.sleep(self.sampling_interval)
