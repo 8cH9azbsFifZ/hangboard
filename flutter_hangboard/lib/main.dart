@@ -170,6 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
               var Counter = 0.0;
               var CurrentCounter = 0.0;
               double Completed = 0.0;
+              double LoadLoss = 0.0; // FIXME
               var HangChangeDetected = "";
               bool HangDetected = false;
               if (snapshot.hasData) {
@@ -252,7 +253,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               Text(
-                                'Hang detected: ' + HangState,
+                                'Hang detected: ' +
+                                    HangState +
+                                    " with LoadLoss " +
+                                    LoadLoss.toString(),
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),
