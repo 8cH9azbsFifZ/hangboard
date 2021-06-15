@@ -105,6 +105,8 @@ class SVGBoard():
                     break
                 self.Hold2SVG(left,right)
                 self._svg_to_png(self._cache_svg_filename(left,right))
+        self._svg_to_png(self.boardimagename)
+        # FIXME: put board png to cache dir
 
     def _svg_to_png(self, filename): # TODO - finish implementation
         outfile = filename.replace(".svg",".png")

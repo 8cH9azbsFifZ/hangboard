@@ -1,5 +1,9 @@
 # flutter_hangboard
 
+## Debugging
++ Preblems loading assets `flutter clean`can help.
+
+
 A new Flutter project.
 
 ## Getting Started

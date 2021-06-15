@@ -171,14 +171,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(
           children: [
-            Image.asset(
-              'images/zlagboard_evo.C1.B3.png',
-              fit: BoxFit.cover,
-              //width: 500,
-            ),
+            //    Image.asset(
+            //       "images/zlagboard_evo.C1.B3.png",
+            //      fit: BoxFit.cover,
+            //width: 500,
+            //    ),
 
-            //    Image.asset('images/zlagboard_evo.C1.B3.png',
-            //      fit: BoxFit.cover, width: 500),
+            Image.asset('images/zlagboard_evo.A1.A7.png',
+                fit: BoxFit.cover, width: 500),
             //SvgPicture.asset('images/zlagboard_evo.C1.B3.svg'),
             //SvgPicture.asset('images/zlagboard_evo.svg'),
             titleSection,
@@ -197,7 +197,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   right = ok1['Right'];
                 }
                 //return Text(snapshot.hasData ? '${snapshot.data}' : '');
-                return Text("Left " + left + " Right " + right);
+                //return Text("Left " + left + " Right " + right);
+                var imagename = 'images/zlagboard_evo.png';
+                if (left != "") {
+                  imagename =
+                      'images/zlagboard_evo.' + left + '.' + right + '.png';
+                }
+                return (Image.asset(imagename, fit: BoxFit.cover, width: 500));
               },
             )
           ],
