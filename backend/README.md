@@ -8,6 +8,8 @@ wscat -c "ws://127.0.0.1:4321/"
 # Preparation
 ```
 python3 -m pip install -r requirements.txt
+sudo apt-get install libxslt-dev
+
 ```
 +  Install https://github.com/joewalnes/websocketd/releases/download/v0.4.1/websocketd-0.4.1-linux_arm.zip 
 + or `brew install websocketd`

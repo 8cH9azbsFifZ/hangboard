@@ -6,7 +6,7 @@ import 'dart:ui';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:convert';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,8 +39,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _controller = TextEditingController();
 
+  var ip_testboard = "ws://10.101.40.81:4321";
+  var ip_zlagboard = "ws://10.101.40.40:4321";
+  var ip_localhost = "ws://127.0.0.1:4321";
+
   final _channel = WebSocketChannel.connect(
-    Uri.parse('ws://127.0.0.1:4321'),
+    Uri.parse('ws://10.101.40.40:4321'),
   );
 
   _playLocal() async {
