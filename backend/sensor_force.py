@@ -96,6 +96,8 @@ class SensorForce():
 
         # Calculated FTI
         self.FTI = 0
+        self.AverageLoad = 0
+        self.MaximalLoad = 0
 
         self.init_hx711()
         self.calibrate()
@@ -167,7 +169,8 @@ class SensorForce():
                 #cur_timestamp = time.time()
                 #print(cur_timestamp, val)
                 self.run_one_measure()
-                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI))
+                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
+                + " maximal load " + "{:.2f}".format(self.MaximalLoad))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -191,10 +194,12 @@ class SensorForce():
             self._fill_series()
             self._Calc_FTI()
             self._calc_avg_load()
+            self._calc_max_load()
         else:
             self._load_series = []
             self._time_series = []
             self.AverageLoad = 0
+            self.MaximalLoad = 0
             self.FTI = 0
 
     def _calc_avg_load(self):
@@ -211,6 +216,11 @@ class SensorForce():
         # Fill in current value
         self._load_series.append(self.load_current)
         self._time_series.append(self.time_current)
+
+    def _calc_max_load(self):
+        if (self.load_current > self.MaximalLoad):
+            self.MaximalLoad = self.load_current
+        return self.MaximalLoad
 
     def NobodyHanging(self):
         pass
