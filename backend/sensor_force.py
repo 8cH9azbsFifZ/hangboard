@@ -94,6 +94,9 @@ class SensorForce():
         # LatestValueInterval is the lenght, in ms, of the latest data stored to make som calculations
         self._LatestValueInterval = 500
 
+        # Calculated FTI
+        self.FTI = 0
+
         self.init_hx711()
         self.calibrate()
 
@@ -164,7 +167,7 @@ class SensorForce():
                 #cur_timestamp = time.time()
                 #print(cur_timestamp, val)
                 self.run_one_measure()
-                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad))
+                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -186,6 +189,7 @@ class SensorForce():
         self._detect_hang()
         self._fill_series()
         self._calc_avg_load()
+        self._Calc_FTI()
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -260,7 +264,8 @@ class SensorForce():
         """
         #https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
         #integrate.simpson(y, x)
-        integrate.simpson(self._load_series, self._time_series)
+        self.FTI = integrate.simpson(self._load_series, self._time_series)
+        return self.FTI
 
     def _MovingAverage(self):
         pass # TODO implement
