@@ -8,6 +8,9 @@
 
 
 # Workouts
++ List rest of Workout
++ Calculate time of workout in total
+
 WIP: 
 + Add capability to select exercise
 OPEN: receive the selected exercise
