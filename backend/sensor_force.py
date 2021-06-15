@@ -187,11 +187,13 @@ class SensorForce():
         self.load_current = -1*self.hx.get_weight(1)
 
         self._detect_hang()
-        self._fill_series()
         if (self.HangDetected):
+            self._fill_series()
             self._Calc_FTI()
             self._calc_avg_load()
         else:
+            self._load_series = []
+            self._time_series = []
             self.AverageLoad = 0
             self.FTI = 0
 
