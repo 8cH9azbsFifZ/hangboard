@@ -70,6 +70,15 @@ class Workout():
         total_time = 0
         estimated_rest_time = 0
 
+        for s in range (0, self.total_sets-1):
+            resttostart = self.workout["Sets"][s]["Rest-to-Start"]
+            pause = self.workout["Sets"][s]["Pause"]
+            reps = self.workout["Sets"][s]["PaRepsuse"]
+            counter = self.workout["Sets"][s]["Counter"]
+            total_time = total_time + resttostart + reps * (counter + pause)
+        return total_time
+
+
     def _list_workouts(self):
         """
         Get list of available workouts and put it in the messaging queue (self.message)
@@ -89,7 +98,7 @@ class Workout():
         print (workout_array)
         self.message = json.dumps({"WorkoutList": workout_array})
 
-    def show_set(self):
+    def show_set(self): 
         set = self.workout["Sets"][self.current_set]
         print (set)
 
@@ -97,7 +106,7 @@ class Workout():
         exercise = self.workout["Sets"][self.current_set]["Exercise"]
         print (exercise)
 
-    def run_exercise_1hand_pull(self):
+    def run_exercise_1hand_pull(self): # TODO implement
         """
         Run an exercise for 1 hand pulls. Given a maximum load a climber can handle and the given intensity
         the threshold load to be applied is:
@@ -336,4 +345,5 @@ if __name__ == "__main__":
     #wa.run_workout()
     #wa._run_workout()
     #wa.run_websocket_handler()       
-    wa._calc_time_in_current_workout()         
+    a = wa._calc_time_in_current_workout()   
+    print (a)      
