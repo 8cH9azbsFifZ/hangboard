@@ -109,6 +109,5 @@ class Sensors():
     def _calc_DutyCycle(self): # TODO implement
         """
         // DutyCycle calculate the percentage of time doing force vs resting
-        // It decides when it's "on" and when "off" based on the StrengthStartThreshold
         """
         self.DutyCycle = self.LastHangTime / (self.LastHangTime+self.LastPauseTime)
