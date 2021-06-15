@@ -188,10 +188,11 @@ class SensorForce():
 
         self._detect_hang()
         self._fill_series()
-        self._calc_avg_load()
         if (self.HangDetected):
             self._Calc_FTI()
+            self._calc_avg_load()
         else:
+            self.AverageLoad = 0
             self.FTI = 0
 
     def _calc_avg_load(self):
@@ -242,21 +243,10 @@ class SensorForce():
         """
         pass
 
-    def _Calc_FTI(self):
+    def _Calc_FTI(self): 
         """
         FTI calculate the integraf force-time from a serie of StrengthData values
-        Return value is expressed in Newton*second
-
-        func FTI(data []Data) float64 {
-        fx := []float64{}
-        x := []float64{}
-
-        for _, v := range data {
-            // Convert mass to newtons
-            fx = append(fx, v.Strength*Gravity)
-            // Convert time to unix epoch float64
-            x = append(x, float64(v.Time.UnixNano())/1e9)
-        }
+        Return value is expressed in Newton*second (-> Impulse)
 
         return integrate.Simpsons(x, fx)      func Simpsons(x, f []float64) float64
 
@@ -267,7 +257,7 @@ class SensorForce():
         """
         #https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
         #integrate.simpson(y, x)
-        self.FTI = integrate.simpson(self._load_series, self._time_series)
+        self.FTI = integrate.simpson(self._load_series, self._time_series) * self._Gravity
         return self.FTI
 
     def _MovingAverage(self):
