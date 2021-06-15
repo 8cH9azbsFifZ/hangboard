@@ -135,7 +135,7 @@ class SensorForce():
                 self.cleanAndExit()
 
     def run_one_measure(self):
-        self.load_current = self.hx.get_weight(1)
+        self.load_current = -1*self.hx.get_weight(1)
 
         self.detect_hang()
 
