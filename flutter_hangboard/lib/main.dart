@@ -171,15 +171,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(
           children: [
-            /*
             Image.asset(
-              'images/board.png',
+              'images/zlagboard_evo.C1.B3.png',
               fit: BoxFit.cover,
               //width: 500,
             ),
-            */
 
-            SvgPicture.asset('images/zlagboard_evo.svg'),
+            //    Image.asset('images/zlagboard_evo.C1.B3.png',
+            //      fit: BoxFit.cover, width: 500),
+            //SvgPicture.asset('images/zlagboard_evo.C1.B3.svg'),
+            //SvgPicture.asset('images/zlagboard_evo.svg'),
             titleSection,
             BoardSelection,
             origSection,

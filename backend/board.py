@@ -26,6 +26,7 @@ class SVGBoard():
         self.boardname = boardname
         self.boardimagename = "../boards/" + boardname + "/board.svg" 
         self.cachedir = "./cache/"
+        # FIXME: create cache dir if not existing
 
         self.left_color = "#00ff00"
         self.right_color = "#ff0000"
@@ -103,8 +104,9 @@ class SVGBoard():
                 if (left == right):
                     break
                 self.Hold2SVG(left,right)
+                self._svg_to_png(self._cache_svg_filename(left,right))
 
-    def _svg_to_png(self,filename): # TODO - finish implementation
+    def _svg_to_png(self, filename): # TODO - finish implementation
         outfile = filename.replace(".svg",".png")
         drawing = svg2rlg(filename)
         renderPM.drawToFile(drawing, outfile, fmt="PNG")
