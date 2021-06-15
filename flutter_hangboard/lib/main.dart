@@ -171,19 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(
           children: [
-            //    Image.asset(
-            //       "images/zlagboard_evo.C1.B3.png",
-            //      fit: BoxFit.cover,
-            //width: 500,
-            //    ),
-
-            Image.asset('images/zlagboard_evo.A1.A7.png',
-                fit: BoxFit.cover, width: 500),
-            //SvgPicture.asset('images/zlagboard_evo.C1.B3.svg'),
-            //SvgPicture.asset('images/zlagboard_evo.svg'),
             titleSection,
-            BoardSelection,
-            origSection,
             StreamBuilder(
               stream: _channel.stream,
               builder: (context, snapshot) {
@@ -205,7 +193,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
                 return (Image.asset(imagename, fit: BoxFit.cover, width: 500));
               },
-            )
+            ),
+            BoardSelection,
+            origSection,
           ],
         ),
         floatingActionButton: FloatingActionButton(
