@@ -310,17 +310,7 @@ class SensorForce():
         self.LoadLoss = 1 - (self.load_current / self.MaximalLoad)
         return self.LoadLoss
 
-"""
 
-
-// DutyCycle calculate the percentage of time doing force vs resting
-// It decides when it's "on" and when "off" based on the StrengthStartThreshold
-func DutyCycle(data []Data) float64 {
-	// TODO: it is worth it?
-	return 0
-}
-
-"""
 
 
 if __name__ == "__main__":

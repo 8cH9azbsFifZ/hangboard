@@ -245,7 +245,9 @@ class Workout():
     def assemble_message_exercise_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
             "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
+            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected,
+            "FTI": self.sensors.FTI, "AverageLoad": self.sensors.AverageLoad, "MaximalLoad": self.sensors.MaximalLoad, "RFD": self.sensors.RFD, "LoadLoss": self.sensors.LoadLoss
+            })
             
         print (msg)
         sys.stdout.flush()
