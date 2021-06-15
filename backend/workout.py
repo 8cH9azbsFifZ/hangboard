@@ -141,7 +141,7 @@ class Workout():
     def run_pause(self):
         logging.debug('Run pause')
 
-    def _assert_nobody_hangig(self):
+    def _assert_nobody_hanging(self):
         self.sensors.run_one_measure()
         while self.sensors.HangDetected == True:
             time.sleep(self.sampling_interval)
