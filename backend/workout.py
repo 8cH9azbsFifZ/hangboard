@@ -28,7 +28,8 @@ from board import Board
 
 
 class Sensors(): # FIXME: move to separate file
-    def __init__(self, use_gyroscope = False, use_force = True, sampling_interval = 0.01):
+    def __init__(self, hangdetector = "Force", sampling_interval = 0.01):
+        
 
         self.HangDetected = False
         self.Changed = "" # Can be "Hang" or "NoHang"
@@ -41,28 +42,35 @@ class Sensors(): # FIXME: move to separate file
         self._TimeStateChangePrevious = self._TimeStateChangeCurrent
 
         self._sampling_interval = sampling_interval
+        self._hangdetector = hangdetector # "Force" or "Zlagboard"
 
         self.init_sensors()
 
 
     def init_sensors(self):
-        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self._sampling_interval)        
-        self.sensor_force = SensorForce(sampling_interval = self._sampling_interval)
+        if (self._hangdetector == "Force"):
+            self.sensor_hangdetector = SensorForce(sampling_interval = self._sampling_interval)
+        if (self._hangdetector == "Zlagboard"):
+            self.sensor_hangdetector = SensorZlagboard(sampling_interval = self._sampling_interval)        
 
     def assert_somebody_hanging(self):
-        while ((self.sensor_zlagboard.NobodyHanging() == True)):
-            time.sleep (self.exercise_dt)
+        pass
+        # TODO  - implement
+        #while ((self.sensor_zlagboard.NobodyHanging() == True)):
+        #    time.sleep (self.exercise_dt)
 
     def assert_nobody_hanging(self):
-        logging.debug ("Assert nobody hanging")
-        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
-            time.sleep (self.exercise_dt)
+        pass
+        # TODO implement
+        #logging.debug ("Assert nobody hanging")
+        #while (not (self.sensor_zlagboard.NobodyHanging() == True)):
+        #    time.sleep (self.exercise_dt)
 
     def run_one_measure(self):
         self._TimeStateChangePrevious = self._TimeStateChangeCurrent
         self._TimeStateChangeCurrent = time.time()
 
-        self.sensor_zlagboard.run_one_measure()
+        self.sensor_hangdetector.run_one_measure()
 
         self._detect_hang_state_change()
         self._measure_hangtime()
@@ -82,7 +90,7 @@ class Sensors(): # FIXME: move to separate file
 
         # Detect state change
         oldstate = self.HangDetected
-        self.HangDetected = self.sensor_zlagboard.HangDetected
+        self.HangDetected = self.sensor_hangdetector.HangDetected
 
         if (oldstate == self.HangDetected):
             self._HangStateChanged = False
