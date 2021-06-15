@@ -178,11 +178,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 var testchen = "Nix";
                 var left = "";
                 var right = "";
+                var rest = 0.0;
                 if (snapshot.hasData) {
                   testchen = snapshot.data.toString();
                   Map<String, dynamic> ok1 = jsonDecode(testchen);
                   left = ok1['Left'];
                   right = ok1['Right'];
+                  rest = double.parse(ok1['Rest']);
                 }
                 //return Text(snapshot.hasData ? '${snapshot.data}' : '');
                 //return Text("Left " + left + " Right " + right);
@@ -191,7 +193,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   imagename =
                       'images/zlagboard_evo.' + left + '.' + right + '.png';
                 }
-                return (Image.asset(imagename, fit: BoxFit.cover, width: 500));
+                return (Column(
+                  children: [
+                    Image.asset(imagename, fit: BoxFit.cover, width: 500),
+                    Text("Rest: " + rest.toString())
+                  ],
+                ));
               },
             ),
             BoardSelection,
