@@ -39,6 +39,7 @@ import time
 import sys
 from scipy import integrate
 from numpy import diff
+import numpy as np
 
 import json
 
@@ -95,10 +96,11 @@ class SensorForce():
         # LatestValueInterval is the lenght, in ms, of the latest data stored to make som calculations
         self._LatestValueInterval = 500
 
-        # Calculated FTI
+        # Calculated FTI & co
         self.FTI = 0
         self.AverageLoad = 0
         self.MaximalLoad = 0
+        self.RFD = 0
 
         self.init_hx711()
         self.calibrate()
@@ -171,7 +173,7 @@ class SensorForce():
                 #print(cur_timestamp, val)
                 self.run_one_measure()
                 logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
-                + " maximal load " + "{:.2f}".format(self.MaximalLoad))
+                + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -289,23 +291,14 @@ class SensorForce():
         https://journals.lww.com/nsca-jscr/Fulltext/2013/02000/Differences_in_Climbing_Specific_Strength_Between.5.aspx
         FIXME: ref in docs.
         """
-        pass
+        derivative = diff (self._load_series) / diff(self._time_series)
+        rfd = np.max(derivative)
+        self.RFD = rfd
+        return rfd
+
     
 """
 
-
-
-/
-func RFD(data []Data) float64 {
-	max := 0.0
-	firstDerivateData := Derivate(data)
-	for _, d := range firstDerivateData {
-		if d > max {
-			max = d
-		}
-	}
-	return max
-}
 
 // DutyCycle calculate the percentage of time doing force vs resting
 // It decides when it's "on" and when "off" based on the StrengthStartThreshold
