@@ -26,6 +26,76 @@ from sensor_force import SensorForce
 
 from board import Board
 
+
+class Sensors(): # FIXME: move to separate file
+    def __init__(self, use_gyroscope = False, use_force = True):
+        self.init_sensors()
+
+        self.HangDetected = False
+        self.Changed = "" # Can be "Hang" or "NoHang"
+        self.HangHasBegun = False
+        self.HangHasStopped = False
+
+        self.LastHangTime = 0
+        self.LastPauseTime = 0
+        self._TimeStateChangeCurrent = time.time()       
+        self._TimeStateChangePrevious = self._TimeStateChangeCurrent
+
+
+    def init_sensors(self):
+        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)        
+        self.sensor_force = SensorForce(sampling_rate = 0.005)
+
+    def assert_somebody_hanging(self):
+        while ((self.sensor_zlagboard.NobodyHanging() == True)):
+            time.sleep (self.exercise_dt)
+
+    def assert_nobody_hanging(self):
+        logging.debug ("Assert nobody hanging")
+        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
+            time.sleep (self.exercise_dt)
+
+    def run_one_measure(self):
+        self._TimeStateChangePrevious = self._TimeStateChangeCurrent
+        self._TimeStateChangeCurrent = time.time()
+
+        self.sensor_zlagboard.run_one_measure()
+
+        self._detect_hang_state_change()
+        self._measure_hangtime()
+
+    def _measure_hangtime(self):
+        if (self._HangStateChanged):
+            if (self.HangDetected == True):
+                self.LastHangTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+            else:
+                self.LastPauseTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+
+    def _detect_hang_state_change(self):
+        # Reset states
+        self.HangHasBegun = False
+        self.HangHasStopped = False
+        self.Changed = ""
+
+        # Detect state change
+        oldstate = self.HangDetected
+        self.HangDetected = self.sensor_zlagboard.HangDetected
+
+        if (oldstate == self.HangDetected):
+            self._HangStateChanged = False
+        else:
+            self._HangStateChanged = True
+
+            if (self.HangDetected == True):
+                #logging.debug ("HangStateChanged and HangDetected")
+                self.HangHasBegun = True
+                self.Changed = "Hang"
+            else:
+                self.HangHasStopped = True
+                self.Changed = "NoHang"
+                #logging.debug ("HangStateChanged and no HangDetected")
+
+
 class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
@@ -49,12 +119,9 @@ class Workout():
         # Variable storing the message for the "middleware" -> Sending
         self.message = ""
 
-        self.init_sensors()
         self.board = Board()
+        self.sensors = Sensors()
 
-    def init_sensors(self):
-        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)        
-        self.sensor_force = SensorForce(sampling_rate = 0.005)
 
     def select_workout(self, filename):
         self.workoutfile = filename # FIXME
@@ -146,49 +213,44 @@ class Workout():
     def run_pause(self):
         logging.debug('Run pause')
 
-    def assert_nobody_hanging(self):
-        logging.debug ("Assert nobody hanging")
-        while (not (self.sensor_zlagboard.NobodyHanging() == True)):
-            time.sleep (self.exercise_dt)
+
 
     def run_rest_to_start(self):
         logging.debug("Rest to start loop")
         t = threading.currentThread()
         self.exercise_t = 0
-        self.sensor_zlagboard.run_one_measure()
+        self.sensors.run_one_measure()
         #self.assert_nobody_hanging() #FIXME
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.rest_to_start - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
-            self.sensor_zlagboard.run_one_measure()
+            self.sensors.run_one_measure()
             #print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
             self.assemble_message_resttostart_timerstatus()
-            if (self.sensor_zlagboard.Changed() == "Hang"):
+            if (self.sensors.Changed == "Hang"):
                 break
             if (getattr(t, "do_stop", False)):                
                 break
 
-    def assert_somebody_hanging(self):
-        while ((self.sensor_zlagboard.NobodyHanging() == True)):
-            time.sleep (self.exercise_dt)
+
 
     def run_hang_exercise(self):
         # Hang exercise
         t = threading.currentThread()
         self.exercise_t = 0
-        self.sensor_zlagboard.run_one_measure()
+        self.sensors.run_one_measure()
         #self.assert_somebody_hanging() #FIXME
         while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.exercise_t1 - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
-            self.sensor_zlagboard.run_one_measure()
+            self.sensors.run_one_measure()
             #print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
             self.assemble_message_exercise_timerstatus()
-            if (self.sensor_zlagboard.Changed() == "NoHang"):
+            if (self.sensors.Changed == "NoHang"):
                 break
             if (getattr(t, "do_stop", False)):                
                 break
@@ -197,17 +259,17 @@ class Workout():
         # Pause exercise
         t = threading.currentThread()
         self.exercise_t = 0
-        self.sensor_zlagboard.run_one_measure()
+        self.sensors.run_one_measure()
         #self.assert_nobody_hanging() #FIXME
         while (float(self.exercise_t) < float(self.pause - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
             self.exercise_rest = self.pause - self.exercise_t
             self.exercise_completed = float(self.exercise_t) / float(self.pause) *100
-            self.sensor_zlagboard.run_one_measure()
+            self.sensors.run_one_measure()
             #print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
             self.assemble_message_pause_timerstatus()
-            if (self.sensor_zlagboard.Changed() == "Hang"):
+            if (self.sensors.Changed == "Hang"):
                 break
             if (getattr(t, "do_stop", False)):                
                 break
@@ -242,7 +304,7 @@ class Workout():
     def assemble_message_exercise_timerstatus(self):
         msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
             "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
+            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
             
         print (msg)
         sys.stdout.flush()
@@ -252,7 +314,7 @@ class Workout():
     def assemble_message_pause_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
             "Counter": "{:.2f}".format(self.pause), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
+            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
         print (msg)
         sys.stdout.flush()
         self.message = msg
@@ -262,7 +324,7 @@ class Workout():
         # FIXME: instead of hard numbers - set variables
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
             "Counter": 0.0, "CurrentCounter": 0.0, "Completed": 0.0, "Rest": 0.0,
-            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
+            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
         print (msg)
         sys.stdout.flush()
         self.message = msg
@@ -271,7 +333,7 @@ class Workout():
     def assemble_message_resttostart_timerstatus(self):
         msg = json.dumps({"Exercise": "Pause", "Type": "Rest to start", "Left": "", "Right": "", 
             "Counter": "{:.2f}".format(self.rest_to_start), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
+            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
         print (msg)
         sys.stdout.flush()
         self.message = msg

@@ -28,7 +28,10 @@ class SensorZlagboard(Gyroscope):
         self.calibration_duration = 10
 
         self.HangDetected = False
-        self.HangStateChanged = False
+        self.HangStateChanged = False # FIXME - can be removed?
+        self.HangHasBegun = False
+        self.HangHasStopped = False
+
         self.AngleX_Hang = AngleX_Hang
         self.AngleX_NoHang = AngleX_NoHang
 
@@ -40,8 +43,9 @@ class SensorZlagboard(Gyroscope):
         self.sampling_interval = sampling_interval
 
     def run_one_measure(self):
-        self.run_one_measure_gyroscope()
-        self.detect_hang()
+        self._run_one_measure_gyroscope()
+        self._detect_hang()
+        self._detect_state_change()
 
     def NobodyHanging(self):
         #logging.debug("Check if nobody hangig")
@@ -53,23 +57,27 @@ class SensorZlagboard(Gyroscope):
             #logging.debug("Nobody hanging")
             return True
 
-    def Changed(self):
-        #self.run_one_measure()
+    def _detect_state_change(self):
+        # Reset states
+        self.HangHasBegun = False
+        self.HangHasStopped = False
 
         if (self.HangStateChanged == True):
             if (self.HangDetected == True):
                 #logging.debug ("HangStateChanged and HangDetected")
+                self.HangHasBegun = True
                 return "Hang"
             else:
+                self.HangHasStopped = True
                 #logging.debug ("HangStateChanged and no HangDetected")
                 return "NoHang"
         else:
             return ""
 
-    def run_one_measure_gyroscope(self):
+    def _run_one_measure_gyroscope(self):
         super(SensorZlagboard, self).run_one_measure()
 
-    def detect_hang(self):
+    def _detect_hang(self):
         """
         Detect a hang based on the calibrated hang / no hang angles.
         A state change variable will also be set.
@@ -78,7 +86,7 @@ class SensorZlagboard(Gyroscope):
 
         angle = self.kalAngleX
 
-        oldstate = self.HangDetected
+        oldstate = self.HangDetected # FIXME - cleanup this unused code (abstracted in sensors class)
         self.HangDetected = False
 
         if (self.AngleX_Hang > self.AngleX_NoHang):
@@ -92,6 +100,7 @@ class SensorZlagboard(Gyroscope):
             if (angle - delta < self.AngleX_Hang):
                 self.HangDetected = True
 
+        # Detect state change
         if (oldstate == self.HangDetected):
             self.HangStateChanged = False
         else:
@@ -109,7 +118,7 @@ class SensorZlagboard(Gyroscope):
 
         return self.HangDetected
 
-    def assemble_message(self):
+    def _assemble_message(self): # FIXME - delete this unused code
         """
         Assemble the status message.
         """
