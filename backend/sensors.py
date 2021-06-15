@@ -38,29 +38,16 @@ class Sensors(): # FIXME: move to separate file
         self._sampling_interval = sampling_interval
         self._hangdetector = hangdetector # "Force" or "Zlagboard"
 
-        self.init_sensors()
+        self._init_sensors()
 
 
-    def init_sensors(self):
+    def _init_sensors(self):
         if (self._hangdetector == "Force"):
             logging.debug("Hangdetector: force")
             self.sensor_hangdetector = SensorForce(sampling_interval = self._sampling_interval)
         if (self._hangdetector == "Zlagboard"):
             logging.debug("Hangdetector: zlagboard")
             self.sensor_hangdetector = SensorZlagboard(sampling_interval = self._sampling_interval)        
-
-    def assert_somebody_hanging(self):
-        pass
-        # TODO  - implement
-        #while ((self.sensor_zlagboard.NobodyHanging() == True)):
-        #    time.sleep (self.exercise_dt)
-
-    def assert_nobody_hanging(self):
-        pass
-        # TODO implement
-        #logging.debug ("Assert nobody hanging")
-        #while (not (self.sensor_zlagboard.NobodyHanging() == True)):
-        #    time.sleep (self.exercise_dt)
 
     def run_one_measure(self):
         self._TimeStateChangePrevious = self._TimeStateChangeCurrent
