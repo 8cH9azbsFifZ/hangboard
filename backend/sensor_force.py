@@ -100,6 +100,7 @@ class SensorForce():
         self.AverageLoad = 0
         self.MaximalLoad = 0
         self.RFD = 0
+        self.LoadLoss = 0
 
         self.init_hx711()
         self.calibrate()
@@ -172,7 +173,7 @@ class SensorForce():
                 #print(cur_timestamp, val)
                 self.run_one_measure()
                 logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
-                + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD))
+                + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD) + " LoadLoss " + "{:.2f}".format(self.LoadLoss))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -198,6 +199,7 @@ class SensorForce():
             self._Calc_RFD()
             self._calc_avg_load()
             self._calc_max_load()
+            self._Calc_LoadLoss()
         else:
             self._load_series = []
             self._time_series = []
@@ -205,6 +207,7 @@ class SensorForce():
             self.MaximalLoad = 0
             self.FTI = 0
             self.RFD = 0
+            self.LoadLoss = 0
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -300,7 +303,13 @@ class SensorForce():
         self.RFD = rfd
         return rfd
 
-    
+    def _Calc_LoadLoss(self):
+        """
+        strengthLoss is the loss of strength in percentage (0-100)   
+        """
+        self.LoadLoss = 1 - (self.load_current / self.MaximalLoad)
+        return self.LoadLoss
+
 """
 
 
@@ -310,40 +319,6 @@ func DutyCycle(data []Data) float64 {
 	// TODO: it is worth it?
 	return 0
 }
-
-
-
-
-		// "data" could be invalid as we have finished and that value is after the real end
-		// Use this value as is the last valid value after real end reconfiguration
-		lastValidData := s.calculatorActiveValues[len(s.calculatorActiveValues)-1]
-
-		exerciseDuration = lastValidData.Time.Sub(s.calculatorExerciseStart)
-		maxStrength = &s.calculatorMaxStrength
-		as := AverageStrength(s.calculatorActiveValues, s.nonstop)
-		avgStrength = &as
-
-		sl := 100 - (100 * lastValidData.Strength / *maxStrength)
-		strengthLoss = &sl
-
-		r := RFD(s.calculatorActiveValues)
-		rfd = &r
-
-		// Calculate FTI only if we have enough values (gonum restriction)
-		// Not normalized
-		if len(s.calculatorActiveValues) >= 3 {
-			f := FTI(s.calculatorActiveValues)
-			fti = &f
-		}
-		// This should return the real duty cycle vs the programmed one
-		d := DutyCycle(s.calculatorActiveValues)
-		dutyCycle = &d
-
-
-     // Calculator get the strength data from the sensor and calculate all the values needed by the coach
-// Reset parameters is used to signal a new serie
-// Pointer values could be null if they are not yet available
-// strengthLoss is the loss of strength in percentage (0-100)   
 
 """
 
