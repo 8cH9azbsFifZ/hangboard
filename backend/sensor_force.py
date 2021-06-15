@@ -2,6 +2,34 @@
 Force Measurement Backend
 """
 
+"""
+/*
+* https://www.desnivel.com/escalada-roca/entrenamiento/analizando-la-importancia-de-la-fuerza-en-la-escalada/
+* * measures:
+*   - MVC: max voluntary contraction
+*   - FTI: force-time integral
+*   - RFD: rate of force development
+* * types of workouts:
+*   - MVC: for a predefined duration (7" for example), measure the strength. Metrics:
+*     - average strength during the period
+*     - max
+*     - min
+*     - deviation
+*     - seconds left
+*     - alarm when finished
+*   - FTI, could be one serie or multiple series (repeaters)
+*     - fti (integral force-time)
+*     - duty cycle (percentage "on" vs "off")
+*     - duration
+*   - training:
+*     - be able to set our MAX MCV and the percentage we want to train
+*   - RFD:
+*     - time to reach the max force (or 95? 99%?)
+ */
+
+"""
+
+
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='SensorForce(%(threadName)-10s) %(message)s',
@@ -50,6 +78,10 @@ class SensorForce():
         self.LastPauseTime = 0
         self.TimeStateChangeCurrent = time.time()       
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
+
+        self._Gravity = 9.80665
+        # LatestValueInterval is the lenght, in ms, of the latest data stored to make som calculations
+        self._LatestValueInterval = 500
 
         self.init_hx711()
         self.calibrate()
@@ -177,8 +209,17 @@ class SensorForce():
 
         return self.HangDetected
 
+    def _AverageStrength(self, nonstop = True):
+        """
+        AverageStrength calculate the average of a slice of Data values
+        nonstop param decides if small values should be ignored
+        """
+        
+        
+
+
 if __name__ == "__main__":
     #a = SensorForce(referenceUnit = 1)
-    a = SensorForce(sampling_rate = 0.005)
+    a = SensorForce(sampling_interval = 0.005)
     a.calibrate()
     a.run_main_measure()
