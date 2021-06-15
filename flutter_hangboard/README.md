@@ -2,7 +2,7 @@
 
 ## Debugging
 + Preblems loading assets `flutter clean`can help.
-
++ Fix iproxy for real device: `sudo xattr -d com.apple.quarantine ./bin/cache/artifacts/usbmuxd/iproxy`
 
 A new Flutter project.
 
