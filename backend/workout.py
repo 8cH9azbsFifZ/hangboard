@@ -64,7 +64,7 @@ class Workout():
         Print the total current workout and it in the messaging queue (self.message)
         """
         logging.debug("Get current workout")
-        self.message = self._data
+        self.message = json.dumps({"CurrentWorkout": self._data})
 
 
     def _list_workouts(self):
