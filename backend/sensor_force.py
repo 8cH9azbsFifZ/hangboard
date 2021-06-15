@@ -159,10 +159,11 @@ class SensorForce():
                 # print binary_string + " " + np_arr8_string
                 
                 # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                val = self.hx.get_weight(1)
+                #val = self.hx.get_weight(1)
                 #val = self.hx.read_long()
-                cur_timestamp = time.time()
-                print(cur_timestamp, val)
+                #cur_timestamp = time.time()
+                #print(cur_timestamp, val)
+                self.run_one_measure()
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -182,6 +183,7 @@ class SensorForce():
         self.load_current = -1*self.hx.get_weight(1)
 
         self.detect_hang()
+        self._fill_series()
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -216,7 +218,6 @@ class SensorForce():
 
         return self.HangDetected
 
-    
     def _calculateStart(self): # TODO measure more values and store them in advance for posthum calculations
         """
         How to detect a new exercise has started
