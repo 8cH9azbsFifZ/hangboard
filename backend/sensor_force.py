@@ -16,7 +16,7 @@ import threading
 
 # TODO: Run in background at all times or send signals?
 
-EMULATE_HX711 = False
+EMULATE_HX711 = True
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
@@ -29,14 +29,14 @@ else:
 
 
 class SensorForce():
-    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_rate = 0.1, referenceUnit = 1257528/79, load_hang = 1257528/79*0.2 ):
+    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, referenceUnit = 1257528/79, load_hang = 1257528/79*0.2 ):
         logging.debug ("Initialize")
 
         self.pin_dout = pin_dout
         self.pin_pd_sck = pin_pd_sck
 
         self.referenceUnit = referenceUnit
-        self.sampling_rate = sampling_rate
+        self.sampling_rate = sampling_interval
 
         self.calibration_duration = 10
 

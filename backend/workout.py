@@ -28,8 +28,7 @@ from board import Board
 
 
 class Sensors(): # FIXME: move to separate file
-    def __init__(self, use_gyroscope = False, use_force = True):
-        self.init_sensors()
+    def __init__(self, use_gyroscope = False, use_force = True, sampling_interval = 0.01):
 
         self.HangDetected = False
         self.Changed = "" # Can be "Hang" or "NoHang"
@@ -41,10 +40,14 @@ class Sensors(): # FIXME: move to separate file
         self._TimeStateChangeCurrent = time.time()       
         self._TimeStateChangePrevious = self._TimeStateChangeCurrent
 
+        self._sampling_interval = sampling_interval
+
+        self.init_sensors()
+
 
     def init_sensors(self):
-        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self.sampling_interval)        
-        self.sensor_force = SensorForce(sampling_rate = 0.005)
+        self.sensor_zlagboard = SensorZlagboard(sampling_interval = self._sampling_interval)        
+        self.sensor_force = SensorForce(sampling_interval = self._sampling_interval)
 
     def assert_somebody_hanging(self):
         while ((self.sensor_zlagboard.NobodyHanging() == True)):
