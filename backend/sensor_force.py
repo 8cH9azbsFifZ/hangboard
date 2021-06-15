@@ -196,6 +196,7 @@ class SensorForce():
         if (self.HangDetected):
             self._fill_series()
             self._Calc_FTI()
+            self._Calc_RFD()
             self._calc_avg_load()
             self._calc_max_load()
         else:
@@ -204,6 +205,7 @@ class SensorForce():
             self.AverageLoad = 0
             self.MaximalLoad = 0
             self.FTI = 0
+            self.RFD = 0
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
