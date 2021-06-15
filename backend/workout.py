@@ -60,6 +60,9 @@ class Workout():
             self.data = json.load(json_file)
 
     def _list_workouts(self):
+        """
+        Get list of available workouts and put it in the messaging queue (seld.message)
+        """
         logging.debug("List workouts")
         workout_array = []
         
@@ -73,8 +76,7 @@ class Workout():
                         print (workout["Name"], fn)
                         workout_array.append({"Name": workout["Name"], "ID": workout["ID"]})
         print (workout_array)
-        
-        self.exercise_status = json.dumps({"WorkoutList": workout_array, "OneMessageOnly": True}) # FIXME
+        self.message = json.dumps({"WorkoutList": workout_array})
 
     def show_workout(self):
         print (self.data)
@@ -174,8 +176,6 @@ class Workout():
                 break
             if (getattr(t, "do_stop", False)):                
                 break
-
-
 
     def run_hang_exercise(self):
         # Hang exercise
