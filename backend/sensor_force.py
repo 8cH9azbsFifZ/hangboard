@@ -164,6 +164,7 @@ class SensorForce():
                 #cur_timestamp = time.time()
                 #print(cur_timestamp, val)
                 self.run_one_measure()
+                logging.debug ("Current load " + "{:.2f}".format(self.load_current))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
