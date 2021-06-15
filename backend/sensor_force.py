@@ -39,7 +39,6 @@ import time
 import sys
 from scipy import integrate
 from numpy import diff
-import numpy as np
 
 import json
 
@@ -294,7 +293,8 @@ class SensorForce():
         FIXME: ref in docs.
         """
         derivative = diff (self._load_series) / diff(self._time_series)
-        rfd = np.max(derivative)
+
+        rfd = max(derivative)
         self.RFD = rfd
         return rfd
 
