@@ -142,6 +142,7 @@ class Workout():
         logging.debug('Run pause')
 
     def _assert_nobody_hanging(self):
+        print ("Keiner dran?")
         self.sensors.run_one_measure()
         while self.sensors.HangDetected == True:
             time.sleep(self.sampling_interval)
@@ -152,7 +153,7 @@ class Workout():
         t = threading.currentThread()
         self.exercise_t = 0
         self.sensors.run_one_measure()
-        #self._assert_nobody_hanging() #FIXME
+        self._assert_nobody_hanging() #FIXME
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
