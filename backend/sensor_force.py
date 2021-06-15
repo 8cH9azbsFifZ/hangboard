@@ -37,6 +37,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 import time
 import sys
+from scipy import integrate
 
 import json
 
@@ -68,15 +69,25 @@ class SensorForce():
 
         self.calibration_duration = 10
 
+        # Threshold for detection of a hang
+        self.load_hang = load_hang
+
+        # Variables for current measurement
+        self.load_current = 0
+        self.time_current = time.time()
+
+        # Array for storing all values
+        self._load_series = []
+        self._time_series = []
+        self._series_max_elements = 500
+
+       # Defined current states
         self.HangDetected = False
         self.HangStateChanged = False
 
-        self.load_hang = load_hang
-        self.load_current = 0
-
         self.LastHangTime = 0
         self.LastPauseTime = 0
-        self.TimeStateChangeCurrent = time.time()       
+        self.TimeStateChangeCurrent = self.time_current       
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
 
         self._Gravity = 9.80665
@@ -167,13 +178,25 @@ class SensorForce():
                 self.cleanAndExit()
 
     def run_one_measure(self):
+        self.time_current = time.time()
         self.load_current = -1*self.hx.get_weight(1)
 
         self.detect_hang()
 
-        #self.hx.power_down() #FIXME
-        #self.hx.power_up()
-        #time.sleep(self.sampling_rate)
+    def _calc_avg_load(self):
+        avg_load = sum(self._load_series) / len (self._load_series)
+        self.AverageLoad = avg_load
+        return avg_load
+
+    def _fill_series(self):
+        # Cut series down to _series_max_elements
+        if (len(self._load_series) > self._series_max_elements):
+            self._load_series.pop()
+            self._time_series.pop()
+
+        # Fill in current value
+        self._load_series.append(self.load_current)
+        self._time_series.append(self.time_current)
 
     def NobodyHanging(self):
         pass
@@ -193,12 +216,6 @@ class SensorForce():
 
         return self.HangDetected
 
-    def _AverageStrength(self, nonstop = True): # FIXME: implement
-        """
-        AverageStrength calculate the average of a slice of Data values
-        nonstop param decides if small values should be ignored
-        """
-        pass
     
     def _calculateStart(self): # TODO measure more values and store them in advance for posthum calculations
         """
@@ -232,9 +249,16 @@ class SensorForce():
             x = append(x, float64(v.Time.UnixNano())/1e9)
         }
 
-        return integrate.Simpsons(x, fx)
+        return integrate.Simpsons(x, fx)      func Simpsons(x, f []float64) float64
+
+        f[i] = f(x[i]), x[0] = a, x[len(x)-1] = b
+
+        \int_a^b f(x)dx
+
         """
-        pass #TODO implement
+        #https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
+        #integrate.simpson(y, x)
+        integrate.simpson(self._load_series, self._time_series)
 
     def _MovingAverage(self):
         pass # TODO implement
@@ -313,7 +337,10 @@ func DutyCycle(data []Data) float64 {
 		dutyCycle = &d
 
 
-        
+     // Calculator get the strength data from the sensor and calculate all the values needed by the coach
+// Reset parameters is used to signal a new serie
+// Pointer values could be null if they are not yet available
+// strengthLoss is the loss of strength in percentage (0-100)   
 
 """
 
