@@ -6,6 +6,7 @@ import 'dart:ui';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:convert';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -117,33 +118,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           SizedBox(height: 24),
-        ],
-      ))
-    ],
-  ));
-
-  Widget BoardSelection = Container(
-      child: Row(
-    children: [
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-              child: DropdownButton<String>(
-            items: <String>[
-              'Zlagboard EVO',
-              'Zlagboard Mini',
-              'Linebreaker Basis',
-              'Beastmaker 1000'
-            ].map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: new Text(value),
-              );
-            }).toList(),
-            onChanged: (_) {},
-          ))
         ],
       ))
     ],
@@ -307,6 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ));
             },
           ),
+          MyStatefulWidget(),
           //BoardSelection,
           //origSection,
         ],
@@ -315,6 +290,46 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: _sendMessage, //_incrementCounter,
             tooltip: 'Send a Command to Backend',
             child: Icon(Icons.send))*/
+    );
+  }
+}
+
+/// This is the stateful widget that the main application instantiates.
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  String dropdownValue = 'Localhost';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['Localhost', 'Zlagboard']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
     );
   }
 }
