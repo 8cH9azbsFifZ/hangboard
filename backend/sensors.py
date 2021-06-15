@@ -24,12 +24,13 @@ from sensor_force import SensorForce
 class Sensors(): # FIXME: move to separate file
     def __init__(self, hangdetector = "Force", sampling_interval = 0.01):
         
-
+        # Hang State
         self.HangDetected = False
         self.Changed = "" # Can be "Hang" or "NoHang"
         self.HangHasBegun = False
         self.HangHasStopped = False
 
+        # Hang Duration
         self.LastHangTime = 0
         self.LastPauseTime = 0
         self._TimeStateChangeCurrent = time.time()       
@@ -37,6 +38,13 @@ class Sensors(): # FIXME: move to separate file
 
         self._sampling_interval = sampling_interval
         self._hangdetector = hangdetector # "Force" or "Zlagboard"
+
+        # Calculated Values
+        self.FTI = 0
+        self.AverageLoad = 0
+        self.MaximalLoad = 0
+        self.RFD = 0
+        self.LoadLoss = 0
 
         self._init_sensors()
 
@@ -54,9 +62,18 @@ class Sensors(): # FIXME: move to separate file
         self._TimeStateChangeCurrent = time.time()
 
         self.sensor_hangdetector.run_one_measure()
-
+        
         self._detect_hang_state_change()
         self._measure_hangtime()
+        self._measure_additional_parameters()
+
+    def _measure_additional_parameters(self):
+        if (self._hangdetector == "Force"):
+            self.FTI = self.sensor_hangdetector.FTI
+            self.AverageLoad = self.sensor_hangdetector.AverageLoad
+            self.MaximalLoad = self.sensor_hangdetector.MaximalLoad
+            self.RFD = self.sensor_hangdetector.RFD
+            self.LoadLoss = self.sensor_hangdetector.LoadLoss
 
     def _measure_hangtime(self):
         if (self._HangStateChanged):
@@ -89,3 +106,8 @@ class Sensors(): # FIXME: move to separate file
                 self.Changed = "NoHang"
                 #logging.debug ("HangStateChanged and no HangDetected")
 
+    def _calc_DutyCycle(self): # TODO implement
+        """
+        // DutyCycle calculate the percentage of time doing force vs resting
+        // It decides when it's "on" and when "off" based on the StrengthStartThreshold
+        """

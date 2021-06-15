@@ -3,3 +3,5 @@ smbus
 tabulate
 RPi.GPIO
 svglib
+scipy
+numpy

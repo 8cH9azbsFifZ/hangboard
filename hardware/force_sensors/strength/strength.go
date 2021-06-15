@@ -1,29 +1,5 @@
 package strength
 
-/*
-* https://www.desnivel.com/escalada-roca/entrenamiento/analizando-la-importancia-de-la-fuerza-en-la-escalada/
-* * measures:
-*   - MVC: max voluntary contraction
-*   - FTI: force-time integral
-*   - RFD: rate of force development
-* * types of workouts:
-*   - MVC: for a predefined duration (7" for example), measure the strength. Metrics:
-*     - average strength during the period
-*     - max
-*     - min
-*     - deviation
-*     - seconds left
-*     - alarm when finished
-*   - FTI, could be one serie or multiple series (repeaters)
-*     - fti (integral force-time)
-*     - duty cycle (percentage "on" vs "off")
-*     - duration
-*   - training:
-*     - be able to set our MAX MCV and the percentage we want to train
-*   - RFD:
-*     - time to reach the max force (or 95? 99%?)
- */
-
 import (
 	"fmt"
 	"math"

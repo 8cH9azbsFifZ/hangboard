@@ -2,6 +2,34 @@
 Force Measurement Backend
 """
 
+"""
+/*
+* https://www.desnivel.com/escalada-roca/entrenamiento/analizando-la-importancia-de-la-fuerza-en-la-escalada/
+* * measures:
+*   - MVC: max voluntary contraction
+*   - FTI: force-time integral
+*   - RFD: rate of force development
+* * types of workouts:
+*   - MVC: for a predefined duration (7" for example), measure the strength. Metrics:
+*     - average strength during the period
+*     - max
+*     - min
+*     - deviation
+*     - seconds left
+*     - alarm when finished
+*   - FTI, could be one serie or multiple series (repeaters)
+*     - fti (integral force-time)
+*     - duty cycle (percentage "on" vs "off")
+*     - duration
+*   - training:
+*     - be able to set our MAX MCV and the percentage we want to train
+*   - RFD:
+*     - time to reach the max force (or 95? 99%?)
+ */
+
+"""
+
+
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='SensorForce(%(threadName)-10s) %(message)s',
@@ -9,6 +37,8 @@ logging.basicConfig(level=logging.DEBUG,
 
 import time
 import sys
+from scipy import integrate
+from numpy import diff
 
 import json
 
@@ -40,16 +70,37 @@ class SensorForce():
 
         self.calibration_duration = 10
 
+        # Threshold for detection of a hang
+        self.load_hang = load_hang
+
+        # Variables for current measurement
+        self.load_current = 0
+        self.time_current = time.time()
+
+        # Array for storing all values
+        self._load_series = []
+        self._time_series = []
+        self._series_max_elements = 500
+
+       # Defined current states
         self.HangDetected = False
         self.HangStateChanged = False
 
-        self.load_hang = load_hang
-        self.load_current = 0
-
         self.LastHangTime = 0
         self.LastPauseTime = 0
-        self.TimeStateChangeCurrent = time.time()       
+        self.TimeStateChangeCurrent = self.time_current       
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
+
+        self._Gravity = 9.80665
+        # LatestValueInterval is the lenght, in ms, of the latest data stored to make som calculations
+        self._LatestValueInterval = 500
+
+        # Calculated FTI & co
+        self.FTI = 0
+        self.AverageLoad = 0
+        self.MaximalLoad = 0
+        self.RFD = 0
+        self.LoadLoss = 0
 
         self.init_hx711()
         self.calibrate()
@@ -116,10 +167,13 @@ class SensorForce():
                 # print binary_string + " " + np_arr8_string
                 
                 # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                val = self.hx.get_weight(1)
+                #val = self.hx.get_weight(1)
                 #val = self.hx.read_long()
-                cur_timestamp = time.time()
-                print(cur_timestamp, val)
+                #cur_timestamp = time.time()
+                #print(cur_timestamp, val)
+                self.run_one_measure()
+                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
+                + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD) + " LoadLoss " + "{:.2f}".format(self.LoadLoss))
 
                 # To get weight from both channels (if you have load cells hooked up 
                 # to both channel A and B), do something like this
@@ -135,13 +189,45 @@ class SensorForce():
                 self.cleanAndExit()
 
     def run_one_measure(self):
+        self.time_current = time.time()
         self.load_current = -1*self.hx.get_weight(1)
 
-        self.detect_hang()
+        self._detect_hang()
+        if (self.HangDetected):
+            self._fill_series()
+            self._Calc_FTI()
+            self._Calc_RFD()
+            self._calc_avg_load()
+            self._calc_max_load()
+            self._Calc_LoadLoss()
+        else:
+            self._load_series = []
+            self._time_series = []
+            self.AverageLoad = 0
+            self.MaximalLoad = 0
+            self.FTI = 0
+            self.RFD = 0
+            self.LoadLoss = 0
 
-        #self.hx.power_down() #FIXME
-        #self.hx.power_up()
-        #time.sleep(self.sampling_rate)
+    def _calc_avg_load(self):
+        avg_load = sum(self._load_series) / len (self._load_series)
+        self.AverageLoad = avg_load
+        return avg_load
+
+    def _fill_series(self):
+        # Cut series down to _series_max_elements
+        if (len(self._load_series) > self._series_max_elements):
+            self._load_series.pop()
+            self._time_series.pop()
+
+        # Fill in current value
+        self._load_series.append(self.load_current)
+        self._time_series.append(self.time_current)
+
+    def _calc_max_load(self):
+        if (self.load_current > self.MaximalLoad):
+            self.MaximalLoad = self.load_current
+        return self.MaximalLoad
 
     def NobodyHanging(self):
         pass
@@ -151,18 +237,84 @@ class SensorForce():
         pass
         # TODO: implement
 
-    def detect_hang(self):
+    def _detect_hang(self):
         self.HangDetected = False
         if (self.load_current > self.load_hang):
             self.HangDetected = True
 
-        logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
-        #logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in " + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
+        #logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
 
         return self.HangDetected
 
+    def _calculateStart(self): # TODO measure more values and store them in advance for posthum calculations
+        """
+        How to detect a new exercise has started
+        To get a good value for RFD and FTI we need to know the exact start time.
+        The climber could load the cell while preparing or even have some load in the cell before starting
+        We could store the previous 500ms of values and when we detect a high load, indicating the exercise has begin, go back in time to
+        get the exact start time
+        """
+        pass
+        
+    def _calculateEnd(self): # TODO implement
+        """
+        calculateEnd decides when the exercise has finished, based on a big drop of force
+        """
+        pass
+
+    def _Calc_FTI(self): 
+        """
+        FTI calculate the integraf force-time from a serie of StrengthData values
+        Return value is expressed in Newton*second (-> Impulse)
+
+        return integrate.Simpsons(x, fx)      func Simpsons(x, f []float64) float64
+
+        f[i] = f(x[i]), x[0] = a, x[len(x)-1] = b
+
+        \int_a^b f(x)dx
+
+        """
+        #https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
+        #integrate.simpson(y, x)
+        self.FTI = integrate.simpson(self._load_series, self._time_series) * self._Gravity
+        return self.FTI
+
+    def _MovingAverage(self):
+        pass # TODO implement
+
+    def _FirstThresholdCross(self):
+        """
+        FirstThresholdCross return the position of the first value crossing, or matching, the threshold,
+        in absolute values
+        """
+        pass # TODO implement
+
+    def _Calc_RFD(self):
+        """
+        RFD the highest positive value from the first derivative of the force signal (kg/s)
+        https://journals.lww.com/nsca-jscr/Fulltext/2013/02000/Differences_in_Climbing_Specific_Strength_Between.5.aspx
+        FIXME: ref in docs.
+        """
+        rfd = 0
+        if (len(self._load_series) > 2):
+            derivative = diff (self._load_series) / diff(self._time_series)
+            rfd = max(derivative)
+
+        self.RFD = rfd
+        return rfd
+
+    def _Calc_LoadLoss(self):
+        """
+        strengthLoss is the loss of strength in percentage (0-100)   
+        """
+        self.LoadLoss = 1 - (self.load_current / self.MaximalLoad)
+        return self.LoadLoss
+
+
+
+
 if __name__ == "__main__":
     #a = SensorForce(referenceUnit = 1)
-    a = SensorForce(sampling_rate = 0.005)
+    a = SensorForce(sampling_interval = 0.005)
     a.calibrate()
     a.run_main_measure()
