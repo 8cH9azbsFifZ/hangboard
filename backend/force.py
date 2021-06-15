@@ -128,7 +128,7 @@ class SensorForce():
 
                 #self.hx.power_down()
                 #self.hx.power_up()
-                time.sleep(0.01)
+                time.sleep(self.sampling_rate)
 
             except (KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
@@ -178,6 +178,6 @@ class SensorForce():
 
 if __name__ == "__main__":
     #a = SensorForce(referenceUnit = 1)
-    a = SensorForce()
+    a = SensorForce(sampling_rate = 0.005)
     a.calibrate()
     a.run_main_measure()
