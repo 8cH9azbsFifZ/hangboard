@@ -69,14 +69,20 @@ class Workout():
     def _calc_time_in_current_workout(self):
         total_time = 0
         estimated_rest_time = 0
+        planned_time_sofar = 0
 
         for s in range (0, self.total_sets-1):
             resttostart = self.workout["Sets"][s]["Rest-to-Start"]
             pause = self.workout["Sets"][s]["Pause"]
             reps = self.workout["Sets"][s]["Reps"]
             counter = self.workout["Sets"][s]["Counter"]
-            total_time = total_time + resttostart + reps * (counter + pause)
-        return total_time
+            settime = resttostart + reps * (counter + pause)
+            if (self.current_set <= s):
+                planned_time_sofar = planned_time_sofar + settime
+            total_time = total_time + settime
+
+        estimated_rest_time = total_time - planned_time_sofar
+        return [total_time, planned_time_sofar, estimated_rest_time]
 
 
     def _list_workouts(self):
