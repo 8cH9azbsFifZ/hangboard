@@ -1,4 +1,5 @@
 # Hangboard Web App
+Status: No development here, as flutter seems to be more stable.
 
 This directory contains the hangboard web application.
 

@@ -30,18 +30,18 @@ This is a brief design layout of the project.
 # Developing
 + Running the Demonstrator Backend (including web interface)? -> Please look for the README.md instructions in the demonstrator releases.
 + Debugging the websockets `wscat -c "ws://localhost:4323/"`
-
++ Install flutter and configure correct paths
++ Prepare the virtual python environment
+  ```
+    python3 -m venv venv
+    source venv/bin/activate
+    python3 -m pip install -r requirements.txt
+  ```
 
 ## Manual startup
-Prepare the virtual python environment
-```
-python3 -m venv venv
-source venv/bin/activate
-python3 -m pip install -r requirements.txt
-```
-+ Start backend service ```cd backend; ../websocketd/websocketd --port=4321 python3 ./run_ws.py ```
-+ Start the Web App: `cd hangboard-web && python3 main.py --host 0.0.0.0 --port 8080`
-+ Start the iOS App: `cd hangboardapp && ./build && yarn run ios`
+
++ Start backend service ```cd backend; python3 ./run_ws.py ```
++ Start the iOS / Android / Web App: `cd flutter_hangboard && flutter run`
 
 ## Creating software documentation
 + Run doxygen `doxygen` and check output in `html`

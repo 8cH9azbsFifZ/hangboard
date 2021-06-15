@@ -1,5 +1,5 @@
 # Hangboard App
-Status: WIP on iOS ...
+Status: No development here, as flutter seems to be more stable.
 
 # Running
 + Build pods etc `./build.sh`
