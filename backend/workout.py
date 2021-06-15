@@ -256,8 +256,9 @@ class Workout():
         return (msg)        
 
     def assemble_message_nothing(self):
+        # FIXME: instead of hard numbers - set variables
         msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-            "Counter": 0, "CurrentCounter": 0, "Completed": 0, "Rest": 0,
+            "Counter": 0.0, "CurrentCounter": 0.0, "Completed": 0.0, "Rest": 0.0,
             "HangChangeDetected": self.sensor_zlagboard.Changed(), "HangDetected": self.sensor_zlagboard.HangDetected})
         print (msg)
         sys.stdout.flush()

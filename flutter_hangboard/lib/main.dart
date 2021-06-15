@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _sendMessage() {
+    // FIXME: Implement with parameters
     if (_controller.text.isNotEmpty) {
       _channel.sink.add(_controller.text);
     }
@@ -94,10 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         /*3*/
         Icon(
-          Icons.star,
+          Icons.alarm,
           color: Colors.red[500],
         ),
-        Text('41'),
+        Text('41 of 80'),
       ],
     ),
   );
@@ -173,85 +174,148 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Column(
-          children: [
-            titleSection,
-            StreamBuilder(
-              stream: _channel.stream,
-              builder: (context, snapshot) {
-                var testchen = "Nix";
-                var LeftHold = "";
-                var RightHold = "";
-                var Rest = 0.0;
-                var Exercise = "";
-                var ExerciseType = "";
-                var Counter = 0.0;
-                var CurrentCounter = 0.0;
-                var Completed = 0.0;
-                var HangChangeDetected = "";
-                var HangDetected = "";
-                if (snapshot.hasData) {
-                  testchen = snapshot.data.toString();
-                  Map<String, dynamic> ok1 = jsonDecode(testchen);
-                  LeftHold = ok1['Left'];
-                  RightHold = ok1['Right'];
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Column(
+        children: [
+          //titleSection,
+          StreamBuilder(
+            stream: _channel.stream,
+            builder: (context, snapshot) {
+              var testchen = "Nix";
+              var LeftHold = "";
+              var RightHold = "";
+              double Rest = 0.0;
+              var Exercise = "";
+              var ExerciseType = "";
+              var Counter = 0.0;
+              var CurrentCounter = 0.0;
+              double Completed = 0.0;
+              var HangChangeDetected = "";
+              bool HangDetected = false;
+              if (snapshot.hasData) {
+                testchen = snapshot.data.toString();
+                Map<String, dynamic> ok1 = jsonDecode(testchen);
+                LeftHold = ok1['Left'];
+                RightHold = ok1['Right'];
+
+                if (ok1.containsKey("Rest")) {
+                  // FIXME safe detection
                   if (ok1['Rest'] != 0) {
-                    // FIXME Type detection
                     Rest = double.parse(ok1['Rest']);
                   } else {
-                    Rest = 0.0;
+                    Rest = 0;
                   }
-                  Exercise = ok1['Exercise'];
-                  //ExerciseType = ok1['ExerciseType'];
-                  //Counter = double.parse(ok1['Counter']);
-                  //CurrentCounter = double.parse(ok1['CurrentCounter']);
-                  //Completed = double.parse(ok1['Completed']);
-                  //HangChangeDetected = ok1['HangChangeDetected'];
-                  //HangDetected = ok1['HangDetected'];
-                }
-                //return Text(snapshot.hasData ? '${snapshot.data}' : '');
-                //return Text("Left " + left + " Right " + right);
-                var imagename = 'images/zlagboard_evo.png'; // FIXME
-                if (LeftHold != "") {
-                  imagename = 'images/zlagboard_evo.' +
-                      LeftHold +
-                      '.' +
-                      RightHold +
-                      '.png';
                 }
 
-                return (Column(
-                  children: [
-                    Text("Exercise: " + Exercise),
-                    Image.asset(imagename, fit: BoxFit.cover, width: 500),
-                    Text("Rest: " + Rest.toString()),
-                    Row(children: [
-                      Text("Start"),
-                      Text("Stop"),
-                      FloatingActionButton(
-                          onPressed: _sendMessageStart,
-                          child: Icon(Icons.skateboarding)),
-                      FloatingActionButton(
-                          onPressed: _sendMessageStop,
-                          child: Icon(Icons.exit_to_app)),
-                      FloatingActionButton(
-                          onPressed: _sendMessage,
-                          child: Icon(Icons.restart_alt))
-                    ])
-                  ],
-                ));
-              },
-            ),
-            BoardSelection,
-            origSection,
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
+                if (ok1.containsKey("Completed")) {
+                  // FIXME safe detection
+                  if (ok1['Completed'] != 0) {
+                    Completed = double.parse(ok1['Completed']);
+                  } else {
+                    Completed = 0;
+                  }
+                }
+
+                Exercise = ok1['Exercise'];
+                //ExerciseType = ok1['ExerciseType'];
+                //Counter = double.parse(ok1['Counter']);
+                //CurrentCounter = double.parse(ok1['CurrentCounter']);
+                //Completed = double.parse(ok1['Completed']);
+                //HangChangeDetected = ok1['HangChangeDetected'];
+                HangDetected = ok1['HangDetected'];
+              }
+              //return Text(snapshot.hasData ? '${snapshot.data}' : '');
+              //return Text("Left " + left + " Right " + right);
+              var imagename = 'images/zlagboard_evo.png'; // FIXME
+              if (LeftHold != "") {
+                imagename = 'images/zlagboard_evo.' +
+                    LeftHold +
+                    '.' +
+                    RightHold +
+                    '.png';
+              }
+
+              if (Rest == 10) {
+                // TODO: Implement
+                _playLocal();
+              }
+
+              var HangState = "no";
+              if (HangDetected == true) {
+                HangState = "yes";
+              }
+
+              return (Column(
+                children: [
+                  Image.asset(imagename, fit: BoxFit.cover, width: 500),
+                  Row(
+                    children: [
+                      Text(Completed.toString()),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(32),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          /*1*/
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              /*2*/
+                              Container(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  "Exercise: " + Exercise,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'Hang detected: ' + HangState,
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        /*3*/
+                        Icon(
+                          Icons.alarm,
+                          color: Colors.red[500],
+                        ),
+                        Text("Rest: " + Rest.toString()),
+                      ],
+                    ),
+                  ),
+                  Row(children: [
+                    Text("Controls: "),
+                    FloatingActionButton(
+                        onPressed: _sendMessageStart,
+                        child: Icon(Icons.skateboarding)),
+                    FloatingActionButton(
+                        onPressed: _sendMessageStop,
+                        child: Icon(Icons.exit_to_app)),
+                    FloatingActionButton(
+                        onPressed: _sendMessage, // FIXME: implement
+                        child: Icon(Icons.restart_alt))
+                  ]),
+                ],
+              ));
+            },
+          ),
+          //BoardSelection,
+          //origSection,
+        ],
+      ),
+      /*floatingActionButton: FloatingActionButton(
             onPressed: _sendMessage, //_incrementCounter,
             tooltip: 'Send a Command to Backend',
-            child: Icon(Icons.send)));
+            child: Icon(Icons.send))*/
+    );
   }
 }
