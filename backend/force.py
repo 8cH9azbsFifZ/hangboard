@@ -178,4 +178,5 @@ class SensorForce():
 if __name__ == "__main__":
     #a = SensorForce(referenceUnit = 1)
     a = SensorForce()
+    a.calibrate()
     a.run_main_measure()
