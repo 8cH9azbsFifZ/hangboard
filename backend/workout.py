@@ -141,14 +141,18 @@ class Workout():
     def run_pause(self):
         logging.debug('Run pause')
 
-
+    def _assert_nobody_hangig(self):
+        self.sensors.run_one_measure()
+        while self.sensors.HangDetected == True:
+            time.sleep(self.sampling_interval)
+            self.sensors.run_one_measure()
 
     def run_rest_to_start(self):
         logging.debug("Rest to start loop")
         t = threading.currentThread()
         self.exercise_t = 0
         self.sensors.run_one_measure()
-        #self.assert_nobody_hanging() #FIXME
+        self.assert_nobody_hanging() #FIXME
         while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
             time.sleep (self.exercise_dt)
             self.exercise_t = self.exercise_t + self.exercise_dt
