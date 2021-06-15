@@ -3,8 +3,6 @@
 *STATUS: In Development - Towards a working demonstrator*
 
 A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.
-![Hangboard Mount](./inactive_frontends/hangboardapp/logo/AppIcons/Assets.xcassets/AppIcon.appiconset/87.png)
-
 
 
 # Software Design
