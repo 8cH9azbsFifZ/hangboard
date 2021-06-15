@@ -4,6 +4,37 @@
 
 A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.
 
+# What you need
++ Any hangboard (large list of supported hangboards below).
++ A Raspberry Pi, force sensors and some basic skills to setup the software backend (no automation so far).
++ Basic skills to create a board mount with the force sensors.
++ Any mobile device (iOS / Android / WebApp) and some basic skills to deploy the debugging app (no Store so far)
+
+## List of implemented hangboards
++ Beastmaker 1000
++ Beastmaker 2000
++ Cliffboard Mini
++ Crusher 3
++ Linebreaker Base
++ Metolius Prime
++ Metolius Project
++ Metolius Simulator 3D
++ Metolius Wood Grips 2 Compact
++ Monster
++ Mountain Rocks
++ Redge Port
++ Roots Baseline
++ Simond Ballsy Board
++ Topout Project
++ Zlagboard Evo
++ Zlagboard Mini
+
+(More hangboards can be added easily - open a ticket).
+
+## Features
++ Smart exercise timer 
++ Uses preexisting exercise files - easily extendable
++ Measures hangtime, applied force, rate-of-force development, maximal load etc
 
 # Software Design
 This is a brief design layout of the project.
