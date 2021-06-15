@@ -29,7 +29,7 @@ else:
 
 
 class SensorForce():
-    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, referenceUnit = 1257528/79, load_hang = 10.0): #//1257528/79*0.2 ):
+    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, referenceUnit = 1257528/79, load_hang = 5.0): #//1257528/79*0.2 ):
         logging.debug ("Initialize")
 
         self.pin_dout = pin_dout
@@ -156,7 +156,7 @@ class SensorForce():
         if (self.load_current > self.load_hang):
             self.HangDetected = True
 
-
+        logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
         #logging.debug ("Hang detected: " + str(self.HangDetected) + " with angle " + str(angle) + "in " + str(self.AngleX_Hang) + " and " + str(self.AngleX_NoHang))
 
         return self.HangDetected
