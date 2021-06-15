@@ -66,6 +66,9 @@ class Workout():
         logging.debug("Get current workout")
         self.message = json.dumps({"CurrentWorkout": self._data})
 
+    def _calc_time_in_current_workout(self):
+        total_time = 0
+        estimated_rest_time = 0
 
     def _list_workouts(self):
         """
@@ -331,5 +334,6 @@ if __name__ == "__main__":
     print ("Starting")
     wa = Workout()
     #wa.run_workout()
-    wa._run_workout()
-    #wa.run_websocket_handler()                
+    #wa._run_workout()
+    #wa.run_websocket_handler()       
+    wa._calc_time_in_current_workout()         
