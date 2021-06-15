@@ -250,10 +250,9 @@ class _MyHomePageState extends State<MyHomePage> {
               return (Column(
                 children: [
                   Image.asset(imagename, fit: BoxFit.cover, width: 500),
-                  Row(
-                    children: [
-                      Text(Completed.toString()),
-                    ],
+                  LinearProgressIndicator(
+                    value: Completed / 100,
+                    semanticsLabel: 'Linear progress indicator',
                   ),
                   Container(
                     padding: const EdgeInsets.all(32),
