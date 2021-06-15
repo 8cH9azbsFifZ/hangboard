@@ -49,8 +49,10 @@ class Sensors(): # FIXME: move to separate file
 
     def init_sensors(self):
         if (self._hangdetector == "Force"):
+            logging.debug("Hangdetector: force")
             self.sensor_hangdetector = SensorForce(sampling_interval = self._sampling_interval)
         if (self._hangdetector == "Zlagboard"):
+            logging.debug("Hangdetector: zlagboard")
             self.sensor_hangdetector = SensorZlagboard(sampling_interval = self._sampling_interval)        
 
     def assert_somebody_hanging(self):

@@ -16,7 +16,7 @@ import threading
 
 # TODO: Run in background at all times or send signals?
 
-EMULATE_HX711 = True
+EMULATE_HX711 = False
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
