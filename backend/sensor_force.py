@@ -193,13 +193,129 @@ class SensorForce():
 
         return self.HangDetected
 
-    def _AverageStrength(self, nonstop = True):
+    def _AverageStrength(self, nonstop = True): # FIXME: implement
         """
         AverageStrength calculate the average of a slice of Data values
         nonstop param decides if small values should be ignored
         """
+        pass
+    
+    def _calculateStart(self): # TODO measure more values and store them in advance for posthum calculations
+        """
+        How to detect a new exercise has started
+        To get a good value for RFD and FTI we need to know the exact start time.
+        The climber could load the cell while preparing or even have some load in the cell before starting
+        We could store the previous 500ms of values and when we detect a high load, indicating the exercise has begin, go back in time to
+        get the exact start time
+        """
+        pass
         
+    def _calculateEnd(self): # TODO implement
+        """
+        calculateEnd decides when the exercise has finished, based on a big drop of force
+        """
+        pass
+
+    def _Calc_FTI(self):
+        """
+        FTI calculate the integraf force-time from a serie of StrengthData values
+        Return value is expressed in Newton*second
+
+        func FTI(data []Data) float64 {
+        fx := []float64{}
+        x := []float64{}
+
+        for _, v := range data {
+            // Convert mass to newtons
+            fx = append(fx, v.Strength*Gravity)
+            // Convert time to unix epoch float64
+            x = append(x, float64(v.Time.UnixNano())/1e9)
+        }
+
+        return integrate.Simpsons(x, fx)
+        """
+        pass #TODO implement
+
+    def _MovingAverage(self):
+        pass # TODO implement
+
+    def _FirstThresholdCross(self):
+        """
+        FirstThresholdCross return the position of the first value crossing, or matching, the threshold,
+        in absolute values
+        """
+        pass # TODO implement
+
+    
+"""
+// Difference calculate the difference between values of a slice of float64 values
+func Difference(data []float64) []float64 {
+
+
+// Derivate calculates the discrete derivative for an slice of StrengthData values
+func Derivate(data []Data) []float64 {
+	res := []float64{}
+	for i := 1; i < len(data); i++ {
+		df := data[i].Strength - data[i-1].Strength
+		dt := data[i].Time.Sub(data[i-1].Time)
+		res = append(res, df/float64(dt.Seconds()))
+	}
+	return res
+}
+
+
+// RFD the highest positive value from the first derivative of the force signal (kg/s)
+// https://journals.lww.com/nsca-jscr/Fulltext/2013/02000/Differences_in_Climbing_Specific_Strength_Between.5.aspx
+func RFD(data []Data) float64 {
+	max := 0.0
+	firstDerivateData := Derivate(data)
+	for _, d := range firstDerivateData {
+		if d > max {
+			max = d
+		}
+	}
+	return max
+}
+
+// DutyCycle calculate the percentage of time doing force vs resting
+// It decides when it's "on" and when "off" based on the StrengthStartThreshold
+func DutyCycle(data []Data) float64 {
+	// TODO: it is worth it?
+	return 0
+}
+
+
+
+
+		// "data" could be invalid as we have finished and that value is after the real end
+		// Use this value as is the last valid value after real end reconfiguration
+		lastValidData := s.calculatorActiveValues[len(s.calculatorActiveValues)-1]
+
+		exerciseDuration = lastValidData.Time.Sub(s.calculatorExerciseStart)
+		maxStrength = &s.calculatorMaxStrength
+		as := AverageStrength(s.calculatorActiveValues, s.nonstop)
+		avgStrength = &as
+
+		sl := 100 - (100 * lastValidData.Strength / *maxStrength)
+		strengthLoss = &sl
+
+		r := RFD(s.calculatorActiveValues)
+		rfd = &r
+
+		// Calculate FTI only if we have enough values (gonum restriction)
+		// Not normalized
+		if len(s.calculatorActiveValues) >= 3 {
+			f := FTI(s.calculatorActiveValues)
+			fti = &f
+		}
+		// This should return the real duty cycle vs the programmed one
+		d := DutyCycle(s.calculatorActiveValues)
+		dutyCycle = &d
+
+
         
+
+"""
 
 
 if __name__ == "__main__":
