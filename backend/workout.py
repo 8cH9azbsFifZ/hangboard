@@ -73,7 +73,7 @@ class Workout():
         for s in range (0, self.total_sets-1):
             resttostart = self.workout["Sets"][s]["Rest-to-Start"]
             pause = self.workout["Sets"][s]["Pause"]
-            reps = self.workout["Sets"][s]["PaRepsuse"]
+            reps = self.workout["Sets"][s]["Reps"]
             counter = self.workout["Sets"][s]["Counter"]
             total_time = total_time + resttostart + reps * (counter + pause)
         return total_time
