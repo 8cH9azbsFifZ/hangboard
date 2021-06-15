@@ -125,9 +125,9 @@ class SensorForce():
                 #val_B = hx.get_weight_B(5)
                 #print "A: %s  B: %s" % ( val_A, val_B )
 
-                self.hx.power_down()
-                self.hx.power_up()
-                time.sleep(0.1)
+                #self.hx.power_down()
+                #self.hx.power_up()
+                time.sleep(0.01)
 
             except (KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
