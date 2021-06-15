@@ -139,9 +139,9 @@ class SensorForce():
 
         self.detect_hang()
 
-        self.hx.power_down() #FIXME
-        self.hx.power_up()
-        time.sleep(self.sampling_rate)
+        #self.hx.power_down() #FIXME
+        #self.hx.power_up()
+        #time.sleep(self.sampling_rate)
 
     def NobodyHanging(self):
         pass
