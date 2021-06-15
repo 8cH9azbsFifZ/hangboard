@@ -50,7 +50,9 @@ class WebsocketHandler():
         if (message == "GetBoardImage"):
             self._get_board_image_base64()
         if (message == "ListWorkouts"): 
-           self._list_workouts()
+            self._list_workouts()
+        if (message == "GetCurrentWorkout"):
+            self._get_current_workout()
 
 
     async def producer_handler(self, websocket, path):

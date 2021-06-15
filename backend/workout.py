@@ -33,7 +33,7 @@ class Workout():
         self.select_workout(workoutdir + "/" + workoutfile)
         self.exercise_status = "Status"
         self.workout_number = 0
-        self.workout = (self.data["Workouts"][self.workout_number])
+        self.workout = (self._data["Workouts"][self.workout_number])
         self.workout_name = self.workout["Name"]
         self.total_sets = len (self.workout["Sets"])
         self.current_set = 0
@@ -57,11 +57,19 @@ class Workout():
         self.filename = self.workoutfile
 
         with open(self.filename) as json_file:
-            self.data = json.load(json_file)
+            self._data = json.load(json_file)
+
+    def _get_current_workout(self):
+        """
+        Print the total current workout and it in the messaging queue (self.message)
+        """
+        logging.debug("Get current workout")
+        self.message = self._data
+
 
     def _list_workouts(self):
         """
-        Get list of available workouts and put it in the messaging queue (seld.message)
+        Get list of available workouts and put it in the messaging queue (self.message)
         """
         logging.debug("List workouts")
         workout_array = []
@@ -77,9 +85,6 @@ class Workout():
                         workout_array.append({"Name": workout["Name"], "ID": workout["ID"]})
         print (workout_array)
         self.message = json.dumps({"WorkoutList": workout_array})
-
-    def show_workout(self):
-        print (self.data)
 
     def show_set(self):
         set = self.workout["Sets"][self.current_set]
@@ -325,7 +330,6 @@ class Workout():
 if __name__ == "__main__":
     print ("Starting")
     wa = Workout()
-    #wa.show_workout()
     #wa.run_workout()
     wa._run_workout()
     #wa.run_websocket_handler()                
