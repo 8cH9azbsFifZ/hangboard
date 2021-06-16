@@ -262,7 +262,24 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 ## Workout files
 *TODO*
 
-# Evaluations of the measured data
+# Measurements, their definitions and what to learn from them
+The following values are measured. For more informations on their meaning refer to the papers given in the references.
+*TODO*
+
+RFD:: Rate of force deployment *TODO*
+
+FTI:: Force-Time-Integral *TODO*
+
+Average Load:: *TODO*
+
+Maximal Load:: *TODO*
+
+Load Loss:: *TODO*
+
+Load:: *TODO*
+
+
+## Evaluations of the measured data
 
 Here are some first test measurement data sets. The test has been conducted with a hang, one handed pulls, a fast and a slow pullup.
 The data and evaluation scripts can be found in the directory `evaluations`.
@@ -271,26 +288,21 @@ The data and evaluation scripts can be found in the directory `evaluations`.
 .Measurement of Load (Test 1)
 image::../evaluations/Load.png[Measurement of Load (Test 1)]
 
-
 [#img-measurement-test1-loadavg]
 .Measurement of average Load (Test 1)
 image::../evaluations/LoadAvg.png[Measurement of average Load (Test 1)]
-
 
 [#img-measurement-test1-loadmax]
 .Measurement of maximal Load (Test 1)
 image::../evaluations/LoadMax.png[Measurement of maximal Load (Test 1)]
 
-
 [#img-measurement-test1-loadloss]
 .Measurement of Load Loss (Test 1)
 image::../evaluations/LoadLoss.png[Measurement of Load loss (Test 1)]
 
-
 [#img-measurement-test1-fti]
 .Measurement of FTI (Test 1)
 image::../evaluations/FTI.png[Measurement of FTI (Test 1)]
-
 
 [#img-measurement-test1-rfd]
 .Measurement of RFD (Test 1)
