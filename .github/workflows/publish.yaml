@@ -1,18 +1,18 @@
-name: Publish to GitHub Pages
+# name: Publish to GitHub Pages
 
-on:
-  push:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
-      - run: cd flutter_hangboard ; flutter pub get
-      - run: cd flutter_hangboard ; flutter build web
-      - uses: erickzanardo/flutter-gh-pages@v3
-        with:
-          workingDir: flutter_hangboard
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: subosito/flutter-action@v1
+#       - run: cd flutter_hangboard ; flutter pub get
+#       - run: cd flutter_hangboard ; flutter build web
+#       - uses: erickzanardo/flutter-gh-pages@v3
+#         with:
+#           workingDir: flutter_hangboard
