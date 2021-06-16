@@ -21,7 +21,3 @@ Please have a look at the [manual](https://8ch9azbsfifz.github.io/hangboard/doc/
 For manual startup:
 + Start backend service ```cd backend; python3 ./run_ws.py ```
 + Start the iOS / Android / Web App: `cd flutter_hangboard && flutter run`
-
-
-
-
