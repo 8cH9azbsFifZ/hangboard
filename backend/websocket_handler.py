@@ -9,7 +9,7 @@ import websockets
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
-                    format='Wensockets(%(threadName)-10s) %(message)s',
+                    format='Websockets(%(threadName)-10s) %(message)s',
                     )
 
 class WebsocketHandler():

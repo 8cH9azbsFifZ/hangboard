@@ -105,7 +105,9 @@ class SensorForce():
         self.init_hx711()
         self.calibrate()
 
-
+    def _simulate_force_sensor(self):
+        pass
+        # TODO implement
 
     def cleanAndExit(self):
         logging.debug("Cleaning...")

@@ -5,6 +5,7 @@
 + Add capability to select exercise - OPEN: receive the selected exercise
 
 # Exercises
++ Implement a simulator for force ...
 + Implement Assessment
 + Google Sheet Exercise Input
 + Validator for JSON files!!
@@ -16,6 +17,7 @@
 + Exercise 2 JSON
 + Add exercise finger numbers or which fingers
 + Make conjunction with hang detection configurable
++ Generate an exercise preview (with images)
 
 # Boards
 + Add Zlagboard Mini Layout
