@@ -336,8 +336,10 @@ class Workout():
     def _get_current_measurements_series(self):
         """ Obtain the current measurement time series from sensors and forward it to the messaging queue. """
         # TODO implement
-        self.sensors.sensor_hangdetector._load_series
-        self.sensors.sensor_hangdetector._time_series
+        als = self.sensors.sensor_hangdetector._load_series
+        ats = self.sensors.sensor_hangdetector._time_series
+        list = json.dumps({"CurrentMeasurementsSeries": {"time": ats, "load": als}})
+        self.message = msg
         
 
 """ Main loop only for testing purposes. """
