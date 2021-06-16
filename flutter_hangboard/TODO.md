@@ -1,7 +1,9 @@
++ Display Force development https://google.github.io/charts/flutter/example/time_series_charts/simple.html
+
+
 + Display remaining exercises
 + Choose Backend Machine
 + Choose Exercise from list
-+ Display Force development https://google.github.io/charts/flutter/example/time_series_charts/simple.html
 + Set icons
 + Display forces https://google.github.io/charts/flutter/example/time_series_charts/end_points_axis.html
 
