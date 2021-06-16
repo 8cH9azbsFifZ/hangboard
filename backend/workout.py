@@ -53,6 +53,9 @@ class Workout():
 
 
     def select_workout(self, filename):
+        """
+        Select a workout based on a filename
+        """
         self.workoutfile = filename # FIXME
         self.filename = self.workoutfile
 
@@ -67,6 +70,9 @@ class Workout():
         self.message = json.dumps({"CurrentWorkout": self._data})
 
     def _calc_time_in_current_workout(self):
+        """
+        Caluculate total time, estimated rest time and planned time in this workout so far
+        """
         total_time = 0
         estimated_rest_time = 0
         planned_time_sofar = 0
@@ -105,10 +111,12 @@ class Workout():
         self.message = json.dumps({"WorkoutList": workout_array})
 
     def show_set(self): 
+        """ Ascii output of current set """
         set = self.workout["Sets"][self.current_set]
         print (set)
 
     def show_exercise(self):
+        """ Ascii output of current exercise """
         exercise = self.workout["Sets"][self.current_set]["Exercise"]
         print (exercise)
 
@@ -134,14 +142,18 @@ class Workout():
             self.run_set()
 
     def run_exercise_maximal_hang(self):
+        """ Run a maximal hang exercises """
         logging.debug("Run a maximal hang time exercise")
         # TBD Implement
 
     def run_exercise_pull_ups(self):
+        """ Run pull up exercise """
         logging.debug("Run a pull ups exercise")
         # TBD Implement
+        # TODO counting - how to achieve (force or distance detection?)
 
     def __get_current_set(self):
+        """ Get parameters of the current set """
         logging.debug('Get current set')
 
         self.exercise = self.workout["Sets"][self.current_set]["Exercise"]
@@ -159,14 +171,13 @@ class Workout():
         self.counter = self.workout["Sets"][self.current_set]["Counter"]
 
     def _get_board_image_base64(self):
+        """ Get the base64 image of the current board and put it in the message queue as base64 """
         image_base64 = self.board.svg._get_image_base64()
         print (image_base64)
         self.message = image_base64
 
-    def run_pause(self):
-        logging.debug('Run pause')
-
     def _assert_nobody_hanging(self):
+        """ Wait until nobody is hanging on the board """
         #logging.debug ("Keiner dran?")
         self.sensors.run_one_measure()
         while self.sensors.HangDetected == True:
@@ -174,14 +185,15 @@ class Workout():
             self.sensors.run_one_measure()
 
     def _assert_somebody_hanging(self):
+        """ Wait until somebody is hanging on the board. """
         #logging.debug("Jemand dran?")
         self.sensors.run_one_measure()
         while self.sensors.HangDetected == False:
             time.sleep(self.sampling_interval)
             self.sensors.run_one_measure()
 
-
     def run_rest_to_start(self):
+        """ Run a pause in advance of a new set. """
         logging.debug("Rest to start loop")
         t = threading.currentThread()
         self.exercise_t = 0
@@ -201,6 +213,7 @@ class Workout():
                 break
 
     def run_hang_exercise(self):
+        """ Run a timer based hang exercise. """
         # Hang exercise
         t = threading.currentThread()
         self.exercise_t = 0
@@ -220,6 +233,7 @@ class Workout():
                 break
 
     def run_pause_exercise(self):
+        """ Run a pause after an exercise in a set. """
         # Pause exercise
         t = threading.currentThread()
         self.exercise_t = 0
@@ -239,6 +253,7 @@ class Workout():
                 break
 
     def run_set(self):
+        """ Run a set in a workout. """
         logging.debug('Run exercise')
 
         self.__get_current_set()
@@ -305,30 +320,8 @@ class Workout():
         self.message = msg
         return (msg)        
 
-    def assemble_message1(self): # TODO rework for this version
-        """
-        Assemble a message of the current exercise and workout status
-        """
-        if (hasattr(self, "run_set_thread")):
-            self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, 
-            "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, 
-            "BoardName": self.boardname, "BordImageName": self.boardimagename, 
-            "TimerStatus": self.run_set_thread.do_stop,
-            "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
-            "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
-            })
-        else:
-            self.exercise_status = json.dumps({"Exercise": self.exercise_name, "Duration": self.exercise_duration, "Counter": self.exercise_counter, "Completed": self.exercise_completed, 
-            "HoldsActive": self.holds_active, "HoldsInactive": self.holds_inactive, 
-            "BoardName": self.boardname, "BordImageName": self.boardimagename, 
-            "WorkoutName": self.workout_name, "CurrentExercise": self.exercise_name, "CurrentExerciseCounter": self.exercise_duration, "CurrentSet": self.current_set, "TotalSets": self.total_sets,
-            "CurrentSetRep": self.current_set_reps_current, "CurrentSetRepTotal": self.current_set_reps_total
-            })
-
     def _run_workout (self):
-        """
-        Start a workout "set" in a thread
-        """
+        """ Start a workout "run" in a thread. """
         print ("Run thread set")
         self.run_workout_thread = threading.Thread(target=self.run_workout)
         self.run_workout_thread.do_stop = False
@@ -336,15 +329,14 @@ class Workout():
 
 
     def _stop_workout (self):
-        """
-        Stop a workout "set" thread" by setting a flag, which must be caputured in "run_set".
-        """
+        """ Stop a workout "run" thread" by setting a flag, which must be caputured in "run_set". """
         print ("Stop thread set")
         self.run_workout_thread.do_stop = True
         self.assemble_message_nothing()
         #self.run_workout_thread.join()
 
 
+""" Main loop only for testing purposes. """
 if __name__ == "__main__":
     print ("Starting")
     wa = Workout()
