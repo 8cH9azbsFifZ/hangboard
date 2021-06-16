@@ -37,11 +37,17 @@ there have been a couple of attempts to create hombrew smart hangboards (i.e. <<
 
 This was motivation for me to learn new technologies and build an own smart hangboard - which is easy to reproduce for others.
 
+[#img-smart-hangboard]
+.Smart Hangboard
+image::./board_mount/smart_hangboard.png[{half-size}Smart Hangboard]
+
 # What you need
 - Any hangboard (large list of supported hangboards below).
 - A Raspberry Pi, force sensors and some basic skills to setup the software backend (no automation so far).
 - Basic skills to create a board mount with the force sensors.
 - Any mobile device (iOS / Android / WebApp) and some basic skills to deploy the debugging app (no Store so far)
+
+TIP: Further information can be found in the repository: https://github.com/8cH9azbsFifZ/hangboard.
 
 # Features
 - Smart exercise timer - easily customizeable
