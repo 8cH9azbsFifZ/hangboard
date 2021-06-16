@@ -14,3 +14,5 @@ jobs:
       - run: cd flutter_hangboard ; flutter pub get
       - run: cd flutter_hangboard ; flutter build web
       - uses: erickzanardo/flutter-gh-pages@v3
+        with:
+          workingDir: flutter_hangboard
