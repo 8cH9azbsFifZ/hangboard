@@ -333,6 +333,12 @@ class Workout():
         self.assemble_message_nothing()
         #self.run_workout_thread.join()
 
+    def _get_current_measurements_series(self):
+        """ Obtain the current measurement time series from sensors and forward it to the messaging queue. """
+        # TODO implement
+        self.sensors.sensor_hangdetector._load_series
+        self.sensors.sensor_hangdetector._time_series
+        
 
 """ Main loop only for testing purposes. """
 if __name__ == "__main__":

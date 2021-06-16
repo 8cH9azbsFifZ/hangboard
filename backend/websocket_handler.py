@@ -53,6 +53,8 @@ class WebsocketHandler():
             self._list_workouts()
         if (message == "GetCurrentWorkout"):
             self._get_current_workout()
+        if (message == "GetCurrentMeasurementsSeries"):
+            self._get_current_measurements_series()
 
 
     async def producer_handler(self, websocket, path):
