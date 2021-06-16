@@ -172,7 +172,7 @@ class SensorForce():
                 #cur_timestamp = time.time()
                 #print(cur_timestamp, val)
                 self.run_one_measure()
-                logging.debug ("Current load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
+                logging.debug ("Current time " + "{:.2f}".format(self.time_current)  + " load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
                 + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD) + " LoadLoss " + "{:.2f}".format(self.LoadLoss))
 
                 # To get weight from both channels (if you have load cells hooked up 
