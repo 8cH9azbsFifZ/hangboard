@@ -53,9 +53,7 @@ class Workout():
 
 
     def select_workout(self, filename):
-        """
-        Select a workout based on a filename
-        """
+        """ Select a workout based on a filename. """
         self.workoutfile = filename # FIXME
         self.filename = self.workoutfile
 
