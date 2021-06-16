@@ -1,5 +1,6 @@
 # Backend
 + MongoDB https://realpython.com/introduction-to-mongodb-and-python/
++ Maybe: protobuf to save bandwidth and be safe on types
 
 # Workouts
 + Add capability to select exercise - OPEN: receive the selected exercise
