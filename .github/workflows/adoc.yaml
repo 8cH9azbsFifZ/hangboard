@@ -19,15 +19,17 @@ jobs:
     - name: Doxygen
       uses: mattnotmitt/doxygen-action@v1
       id: doxybuild
-      #with: 
-      # additional-packages: font-fira-code
-      # working-directory: 'submodule/'
-      # doxyfile-path: 'docs/Doxygen'
+      with: 
+          working-directory: '.'
+          doxyfile-path: ./Doxyfile
     - name: Print execution time
       run: echo "Time ${{ steps.adocbuild.outputs.time }}"
     - name: Deploy docs to ghpages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        enable_jekyll: false
+        allow_empty_commit: false
+        force_orphan: true
         publish_branch: gh-pages
         publish_dir: ./
