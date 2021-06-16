@@ -262,6 +262,41 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 ## Workout files
 *TODO*
 
+# Evaluations of the measured data
+
+Here are some first test measurement data sets. The test has been conducted with a hang, one handed pulls, a fast and a slow pullup.
+
+
+[#img-measurement-test1-load]
+.Measurement of Load (Test 1)
+image::../evaluations/Load.png[Measurement of Load (Test 1)]
+
+
+[#img-measurement-test1-loadavg]
+.Measurement of average Load (Test 1)
+image::../evaluations/LoadAvg.png[Measurement of average Load (Test 1)]
+
+
+[#img-measurement-test1-loadmax]
+.Measurement of maximal Load (Test 1)
+image::../evaluations/LoadMax.png[Measurement of maximal Load (Test 1)]
+
+
+[#img-measurement-test1-loadloss]
+.Measurement of Load Loss (Test 1)
+image::../evaluations/LoadLoss.png[Measurement of Load loss (Test 1)]
+
+
+[#img-measurement-test1-fti]
+.Measurement of FTI (Test 1)
+image::../evaluations/FTI.png[Measurement of FTI (Test 1)]
+
+
+[#img-measurement-test1-rfd]
+.Measurement of RFD (Test 1)
+image::../evaluations/RFD.png[Measurement of RFD (Test 1)]
+
+
 # Hangboards
 For every hangboard supported there is a JSON file containing the hold names and dimensions and an SVG image with all the holds.
 
