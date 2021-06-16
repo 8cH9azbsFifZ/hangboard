@@ -11,6 +11,7 @@ Please have a look at the
 + Running the Demonstrator Backend (including web interface)? -> Please look for the README.md instructions in the demonstrator releases.
 + Debugging the websockets `wscat -c "ws://localhost:4323/"`
 + Install flutter and configure correct paths
++ Install dependencies on raspi: `sudo apt-get install libxslt-dev`
 + Prepare the virtual python environment
   ```
     python3 -m venv venv
