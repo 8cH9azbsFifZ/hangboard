@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import json
+
 
 fname="sample_force_hang_left_right_slowpull_fastpull.txt"
 loadthresh = 2.0
@@ -33,6 +35,13 @@ with open(fname) as f:
 	#loadmax = [float(line.split()[14]) for line in lines]
 	#rfd = [float(line.split()[16]) for line in lines]
 	#loadloss = [float(line.split()[18]) for line in lines]
+
+print ("Create simulation data")
+list = json.dumps({"SimulationData": {
+	"time": t, "load": load, "loadavg": loadavg, "fti": fti, "loadmax": loadmax, "rfd": rfd, "loadloss": loadloss
+	}})
+with open('simulation_data.json', 'w', encoding='utf-8') as f:
+    json.dump(list, f, ensure_ascii=False, indent=4)
 
 
 def plot_load():
