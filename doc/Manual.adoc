@@ -364,3 +364,4 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 * [[[HCSR04KalmanFilter]]] Implementations of kalman filters for the HC-SR04 module: https://github.com/rizkymille/ultrasonic-hc-sr04-kalman-filter and https://github.com/NagarajSMurthy/Kalman-estimation-of-ultrasonic-sensor
 * [[[Beastmaker1000HoldSizes]]] Accurate measurements of the Beastmaker 1000 hold dimensions: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
 * [[[Boards]]] Project with lots of hangboard configurations: https://github.com/gitaaron/boards
+* [[[ClimbHarderSurvey]]] https://www.reddit.com/r/climbharder/comments/6693ua/climbharder_survey_results/ and the data stored here `doc/references/ClimbHarderSurvey`
