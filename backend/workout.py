@@ -339,7 +339,7 @@ class Workout():
         als = self.sensors.sensor_hangdetector._load_series
         ats = self.sensors.sensor_hangdetector._time_series
         list = json.dumps({"CurrentMeasurementsSeries": {"time": ats, "load": als}})
-        self.message = msg
+        self.message = list
         
 
 """ Main loop only for testing purposes. """
