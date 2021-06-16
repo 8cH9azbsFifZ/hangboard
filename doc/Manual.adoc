@@ -265,7 +265,7 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 # Evaluations of the measured data
 
 Here are some first test measurement data sets. The test has been conducted with a hang, one handed pulls, a fast and a slow pullup.
-
+The data and evaluation scripts can be found in the directory `evaluations`.
 
 [#img-measurement-test1-load]
 .Measurement of Load (Test 1)
