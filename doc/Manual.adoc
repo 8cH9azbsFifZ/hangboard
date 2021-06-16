@@ -24,6 +24,8 @@ ifdef::backend-docbook5[]
 :thumbnail: width='20mm'
 endif::[]
 
+:stem: 
+
 
 
 # Introduction
@@ -290,7 +292,7 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 The following values are measured. For more informations on their meaning refer to the papers given in the references.
 *TODO*
 
-RFD:: Rate of force deployment *TODO*
+RFD:: Rate of force development (N/s) *TODO*
 
 FTI:: Force-Time-Integral *TODO*
 
