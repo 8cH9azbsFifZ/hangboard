@@ -1,16 +1,6 @@
 # Hangboard Hold configuration
 This directory contains the hold configurations for different boards
 
-# Boards
-## Zlagboard EVO
-
-## Zlagboard Mini
-
-## Beastmaker 1000
-+ Hold sizes: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
-
-## Beastmaker 2000
-
 # Implement new board configurations
 
 ## Preparation
@@ -26,9 +16,3 @@ This directory contains the hold configurations for different boards
 + Change colors of overlays to: d8d8d8 -> 979797
 + Export all layers as svg and convert them to png (i.e. https://svgtopng.com/de/)
 + Converting to PNG? `brew install librsvg`
-
-
-
-
-# References 
-+ Excellent project with a similar idea: https://github.com/gitaaron/boards

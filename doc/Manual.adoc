@@ -259,6 +259,18 @@ Workout:: A series of exercise sets.
 Excercise:: A single exercise, i.e. hang, maximal hang, pull up, assisted pull up.
 Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a *rest to start* pause.
 
+## Workout files
+*TODO*
+
+# Hangboards
+For every hangboard supported there is a JSON file containing the hold names and dimensions and an SVG image with all the holds.
+
+Luckily there is a similar project and lots of configurations are already implemented <<Boards>>. These boards have been merged to this
+repository.
+Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
+
+
+
 
 [bibliography]
 == References
@@ -277,3 +289,5 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 * [[[HCSR04Package]]] HC-SR04 package: https://www.amazon.de/AZDelivery-HC-SR04-Ultraschall-Entfernungsmesser-Raspberry/dp/B07TKVPPHF/
 * [[[HCSR04GettingStarted]]] Getting started with distance measurements using the HC-SR04: https://tutorials-raspberrypi.de/entfernung-messen-mit-ultraschallsensor-hc-sr04/
 * [[[HCSR04KalmanFilter]]] Implementations of kalman filters for the HC-SR04 module: https://github.com/rizkymille/ultrasonic-hc-sr04-kalman-filter and https://github.com/NagarajSMurthy/Kalman-estimation-of-ultrasonic-sensor
+* [[[Beastmaker1000HoldSizes]]] Accurate measurements of the Beastmaker 1000 hold dimensions: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
+* [[[Boards]]] Project with lots of hangboard configurations: https://github.com/gitaaron/boards
