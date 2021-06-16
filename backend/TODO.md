@@ -1,6 +1,7 @@
 # Backend
 + Check for Rabbit or AMQ?
---> Support for React ?! Instable
++ MongoDB https://www.datensen.com/mongodb-schema-design/mongodb-schema-design.html
+ or https://realpython.com/introduction-to-mongodb-and-python/
 
 # Workouts
 + Add capability to select exercise - OPEN: receive the selected exercise
@@ -22,3 +23,6 @@
 + Add Zlagboard Mini Layout
 + Check other boards (create images etc.)
 + Implement JSON commands
+
+# Documentation 
++ https://asciidoctor.org/
