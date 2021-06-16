@@ -27,9 +27,15 @@ endif::[]
 :stem: 
 
 
+*A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.*
 
-# Introduction
-Other interesting project are <<PiClimbing>> and <<ArduinoHangboard>>.
+# Why a universal smart hangboard?
+Nowadays smart hangboards are becoming more and more popular. But there is little market for commercial
+products (they are expensive). All existing hangboard training apps have limitations (i.e. payed subscriptions,
+limited to specific hangboards, buggy, sketchy to create new or custom training plans). In the recent years
+there have been a couple of attempts to create hombrew smart hangboards (i.e. <<PiClimbing>> and <<ArduinoHangboard>>).
+
+This was motivation for me to learn new technologies and build an own smart hangboard - which is easy to reproduce for others.
 
 # What you need
 - Any hangboard (large list of supported hangboards below).
@@ -38,9 +44,9 @@ Other interesting project are <<PiClimbing>> and <<ArduinoHangboard>>.
 - Any mobile device (iOS / Android / WebApp) and some basic skills to deploy the debugging app (no Store so far)
 
 # Features
-- Smart exercise timer 
+- Smart exercise timer - easily customizeable
 - Uses preexisting exercise files - easily extendable
-- Measures hangtime, applied force, rate-of-force development, maximal load etc
+- Measures hangtime, applied force, rate-of-force development, maximal load 
 
 ## List of implemented hangboards
 - Beastmaker 1000
@@ -63,6 +69,8 @@ Other interesting project are <<PiClimbing>> and <<ArduinoHangboard>>.
 
 TIP: Your hangboard is not supported yet? It can be added easily. Just open a ticket: 
 https://github.com/8cH9azbsFifZ/hangboard/issues/new
+
+NOTE: Most of the boards configuration has been merged from the excellent project <<Boards>>.
 
 
 # Software Design
