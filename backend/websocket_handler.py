@@ -44,6 +44,11 @@ class WebsocketHandler():
         """
         logging.debug("Received request: %s" % message)
         if (message == "Start"):
+            """
+Example output during run:
+< {"Exercise": "Hang", "Type": "Hang", "Left": "A1", "Right": "A7", "Counter": "10.00", "CurrentCounter": "1.00", "Completed": "10", "Rest": "9.00", "HangChangeDetected": "", "HangDetected": true, "FTI": 88.446509551602, "AverageLoad": 7.6098875305079865, "MaximalLoad": 8.27237052022345, "RFD": 12.0508714305325, "LoadLoss": 0.08722646276079593}
+
+            """
             self._run_workout() # FIXME: Document this is a sibling class which depends on the class methods in workout :) 
         if (message == "Stop"):
             self._stop_workout()     
