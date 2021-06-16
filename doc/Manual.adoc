@@ -2,6 +2,30 @@
 Author Name <gerolf.ziegenain@gmail.com>
 :hide-uri-scheme:
 
+ifdef::backend-html5[]
+:twoinches: width='144'
+:full-width: width='100%'
+:half-width: width='50%'
+:half-size:
+:thumbnail: width='60'
+endif::[]
+ifdef::backend-pdf[]
+:twoinches: pdfwidth='2in'
+:full-width: pdfwidth='100vw'
+:half-width: pdfwidth='50vw'
+:half-size: pdfwidth='50%'
+:thumbnail: pdfwidth='20mm'
+endif::[]
+ifdef::backend-docbook5[]
+:twoinches: width='50mm'
+:full-width: scaledwidth='100%'
+:half-width: scaledwidth='50%'
+:half-size: width='50%'
+:thumbnail: width='20mm'
+endif::[]
+
+
+
 # Introduction
 Other interesting project are <<PiClimbing>> and <<ArduinoHangboard>>.
 
@@ -74,7 +98,7 @@ The python module <<HX711PythonModule>> is slightly modified and contained in th
 
 [#img-hx711]
 .The HX711 with 4 load cells
-image::./force/hx711_with_load_cells.jpg[The HX711 with 4 load cells]
+image::./force/hx711_with_load_cells.jpg[{half-size}The HX711 with 4 load cells]
 - HX711 analog-to-digital converter <<HX711Datasheet>>
 - Load Cells
 
@@ -82,7 +106,7 @@ NOTE: Some HX711 modules have a wrong grounding according to the application she
 https://github.com/bogde/HX711/issues/172. This can be fixed with a small solder bridge.
 [#img-hx711]
 .The HX711 Fix
-image::./force/hx711_fix.png[The HX711 Fix]
+image::./force/hx711_fix.png[{half-size}The HX711 Fix]
 
 Wire the HX711 module to the Raspberry Pi as follows:
 
@@ -110,7 +134,7 @@ Wire the 4 load cells as follows (according to the application sheet):
 
 [#img-load-cell-wiring]
 .Wiring four load cells
-image::./force/4_load_sensors.jpg[Wiring four load cells]
+image::./force/4_load_sensors.jpg[{half-size}Wiring four load cells]
 
 
 ## Mounting the load sensors
@@ -123,15 +147,15 @@ image::./force/4_load_sensors.jpg[Wiring four load cells]
 
 [#img-zlagboard-disassembled]
 .Zlagboard disassembled
-image::./force/zlagboard_disassemble.png[Zlagboard disassembled]
+image::./force/zlagboard_disassemble.png[{half-size}Zlagboard disassembled]
 
 [#img-zlagboard-load-cells]
 .Zlagboard with load cells
-image::./force/zlagboard_install_load_sensors.png[Zlagboard with load cells]
+image::./force/zlagboard_install_load_sensors.png[{half-size}Zlagboard with load cells]
 
 [#img-zlagboard-ushaped-mount]
 .U-Shaped load cell mount
-image::./force/load_sensor_zlagboard_mount.png[U-Shaped load cell mount]
+image::./force/load_sensor_zlagboard_mount.png[{half-size}U-Shaped load cell mount]
 
 NOTE: Gyroscope mount disabled after placing the load cells...
 
@@ -144,7 +168,7 @@ An example construction of a hangboard mount is given here: <<#img-mount-isometr
 
 [#img-mount-isometrix-board]
 .Mount for Isometrix Board <<ArduinoHangboard>>
-image::./board_mount/IsometrixBoard.png[Mount for Isometrix Board]
+image::./board_mount/IsometrixBoard.png[{half-size}Mount for Isometrix Board]
 
 
 
@@ -162,7 +186,7 @@ NOTE: Modules with BLE are existing for further / future developments <<MPU6050B
 
 [#img-sensor-mpu-6050]
 .Sensor MPU-6050
-image::./gyroscope/SEN-MPU6050-01.png[Sensor MPU-6050]
+image::./gyroscope/SEN-MPU6050-01.png[{half-size}Sensor MPU-6050]
 
 Wire the Gyroscope sensor to the raspi as follows:
 
@@ -209,7 +233,7 @@ For accurate measurements a kalman filter is implemented in the backend based on
 
 [#img-sensor-hc-sr04]
 .Sensor HC-SR04
-image::./distance_sensors/doc/71YRg95095L._SL1500_.jpg[Sensor HC-SR04]
+image::./distance_sensors/doc/71YRg95095L._SL1500_.jpg[{half-size}Sensor HC-SR04]
 
 
 Wire the distance sensor to the raspi as follows:
@@ -286,27 +310,27 @@ The data and evaluation scripts can be found in the directory `evaluations`.
 
 [#img-measurement-test1-load]
 .Measurement of Load (Test 1)
-image::../evaluations/Load.png[Measurement of Load (Test 1)]
+image::../evaluations/Load.png[{half-size}Measurement of Load (Test 1)]
 
 [#img-measurement-test1-loadavg]
 .Measurement of average Load (Test 1)
-image::../evaluations/LoadAvg.png[Measurement of average Load (Test 1)]
+image::../evaluations/LoadAvg.png[{half-size}Measurement of average Load (Test 1)]
 
 [#img-measurement-test1-loadmax]
 .Measurement of maximal Load (Test 1)
-image::../evaluations/LoadMax.png[Measurement of maximal Load (Test 1)]
+image::../evaluations/LoadMax.png[{half-size}Measurement of maximal Load (Test 1)]
 
 [#img-measurement-test1-loadloss]
 .Measurement of Load Loss (Test 1)
-image::../evaluations/LoadLoss.png[Measurement of Load loss (Test 1)]
+image::../evaluations/LoadLoss.png[{half-size}Measurement of Load loss (Test 1)]
 
 [#img-measurement-test1-fti]
 .Measurement of FTI (Test 1)
-image::../evaluations/FTI.png[Measurement of FTI (Test 1)]
+image::../evaluations/FTI.png[{half-size}Measurement of FTI (Test 1)]
 
 [#img-measurement-test1-rfd]
 .Measurement of RFD (Test 1)
-image::../evaluations/RFD.png[Measurement of RFD (Test 1)]
+image::../evaluations/RFD.png[{half-size}Measurement of RFD (Test 1)]
 
 
 # Hangboards
