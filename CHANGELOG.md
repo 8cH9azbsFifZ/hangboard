@@ -1,4 +1,5 @@
 # History
+- v0.44 - AsciiDoc manual and commit build hook.
 - v0.43 - Cleanup directories and documentation.
 - v0.42 - Force sensor linked with flutter frontend.
 - v0.41 - Flutter frontend minimal link to backend implemented.
