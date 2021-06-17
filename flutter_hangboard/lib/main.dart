@@ -608,8 +608,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
     const Color(0x0000ffff),
   ];
 
-  bool showAvg = false; // FIXME
+  bool showSim = false; // FIXME
 
+// FIXME: either status display or force plotting works - how to use multiple connections at once?
   final _channel = WebSocketChannel.connect(
     // FIXME: global varible?
     Uri.parse('ws://10.101.40.40:4321'),
@@ -695,43 +696,41 @@ Example JSON to list
                         padding: const EdgeInsets.only(
                             right: 0.0, left: 0.0, top: 0, bottom: 0),
                         child: LineChart(
-                          /* Old stuff
-                          showAvg ? simData() : mainData(),
-                          */
-
-                          LineChartData(
-                            gridData: FlGridData(
-                              // Grid
-                              show: true,
-                              drawVerticalLine: true,
-                              getDrawingHorizontalLine: (value) {
-                                // Grid Horizontal
-                                return FlLine(
-                                  color: const Color(0xff37434d),
-                                  strokeWidth: 1,
-                                );
-                              },
-                              getDrawingVerticalLine: (value) {
-                                // Grid Vertical
-                                return FlLine(
-                                  color: const Color(0xff37434d),
-                                  strokeWidth: 1,
-                                );
-                              },
-                            ),
-                            titlesData: FlTitlesData(
-                              // X Axis
-                              show: true,
-                              bottomTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 22,
-                                getTextStyles: (value) => const TextStyle(
-                                    color: Color(0xff68737d),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
-                                getTitles: (value) {
-                                  // X Axis description
-                                  /*
+                          showSim
+                              ? simData()
+                              : LineChartData(
+                                  gridData: FlGridData(
+                                    // Grid
+                                    show: true,
+                                    drawVerticalLine: true,
+                                    getDrawingHorizontalLine: (value) {
+                                      // Grid Horizontal
+                                      return FlLine(
+                                        color: const Color(0xff37434d),
+                                        strokeWidth: 1,
+                                      );
+                                    },
+                                    getDrawingVerticalLine: (value) {
+                                      // Grid Vertical
+                                      return FlLine(
+                                        color: const Color(0xff37434d),
+                                        strokeWidth: 1,
+                                      );
+                                    },
+                                  ),
+                                  titlesData: FlTitlesData(
+                                    // X Axis
+                                    show: true,
+                                    bottomTitles: SideTitles(
+                                      showTitles: true,
+                                      reservedSize: 22,
+                                      getTextStyles: (value) => const TextStyle(
+                                          color: Color(0xff68737d),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                      getTitles: (value) {
+                                        // X Axis description
+                                        /*
             switch (value.toInt()) {
               case 2:
                 return 'MAR';
@@ -740,94 +739,77 @@ Example JSON to list
               case 8:
                 return 'SEP';
             }*/
-                                  return value.toString(); //'';
-                                },
-                                margin: 8,
-                              ),
-                              leftTitles: SideTitles(
-                                // Y Axis
-                                showTitles: true,
-                                getTextStyles: (value) => const TextStyle(
-                                  color: Color(0xff67727d),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                                getTitles: (value) {
-                                  switch (value.toInt()) {
-                                    case 10:
-                                      return '10';
-                                    case 20:
-                                      return '20';
-                                    case 30:
-                                      return '30';
-                                    case 40:
-                                      return '40';
-                                    case 50:
-                                      return '50';
-                                    case 60:
-                                      return '60';
-                                    case 70:
-                                      return '70';
-                                    case 80:
-                                      return '80';
-                                    case 90:
-                                      return '90';
-                                  }
-                                  return '';
-                                  //return value.toString();
-                                },
-                                reservedSize: 28,
-                                margin: 12,
-                              ),
-                            ),
-                            borderData: FlBorderData(
-                                show: true,
-                                border: Border.all(
-                                    color: const Color(0xff37434d), width: 1)),
-                            //minX: 0, // Define extrema if needed
-                            //maxX: 10,
-                            minY: 0,
-                            maxY: 90,
+                                        return value.toString(); //'';
+                                      },
+                                      margin: 8,
+                                    ),
+                                    leftTitles: SideTitles(
+                                      // Y Axis
+                                      showTitles: true,
+                                      getTextStyles: (value) => const TextStyle(
+                                        color: Color(0xff67727d),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                      getTitles: (value) {
+                                        switch (value.toInt()) {
+                                          case 10:
+                                            return '10';
+                                          case 20:
+                                            return '20';
+                                          case 30:
+                                            return '30';
+                                          case 40:
+                                            return '40';
+                                          case 50:
+                                            return '50';
+                                          case 60:
+                                            return '60';
+                                          case 70:
+                                            return '70';
+                                          case 80:
+                                            return '80';
+                                          case 90:
+                                            return '90';
+                                        }
+                                        return '';
+                                        //return value.toString();
+                                      },
+                                      reservedSize: 28,
+                                      margin: 12,
+                                    ),
+                                  ),
+                                  borderData: FlBorderData(
+                                      show: true,
+                                      border: Border.all(
+                                          color: const Color(0xff37434d),
+                                          width: 1)),
+                                  //minX: 0, // Define extrema if needed
+                                  //maxX: 10,
+                                  minY: 0,
+                                  maxY: 90,
 
-                            lineBarsData: [
-                              LineChartBarData(
-                                spots: mydata,
-                                //isCurved: true,
-                                colors: gradientColors,
-                                barWidth: 5,
-                                //  isStrokeCapRound: true,
-                                dotData: FlDotData(
-                                  show: false,
+                                  lineBarsData: [
+                                    LineChartBarData(
+                                      spots: mydata,
+                                      //isCurved: true,
+                                      colors: gradientColors,
+                                      barWidth: 5,
+                                      //  isStrokeCapRound: true,
+                                      dotData: FlDotData(
+                                        show: false,
+                                      ),
+                                      belowBarData: BarAreaData(
+                                        show: true,
+                                        colors: gradientColors
+                                            .map((color) =>
+                                                color.withOpacity(0.3))
+                                            .toList(),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                belowBarData: BarAreaData(
-                                  show: true,
-                                  colors: gradientColors
-                                      .map((color) => color.withOpacity(0.3))
-                                      .toList(),
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 60,
-                    height: 34,
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          showAvg = !showAvg;
-                        });
-                      },
-                      child: Text(
-                        'avg',
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: showAvg
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.white),
                       ),
                     ),
                   ),
@@ -836,7 +818,7 @@ Example JSON to list
             }));
   }
 
-  LineChartData mainData() {
+  LineChartData mainSim() {
     return LineChartData(
       gridData: FlGridData(
         // Grid
