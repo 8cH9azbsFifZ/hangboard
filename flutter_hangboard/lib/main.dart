@@ -155,6 +155,53 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
     await audioPlayer.play("images/done.mp3", isLocal: true);
   }
 
+/* // FIXME
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  _playSFX10() async {
+    await audioPlayer.play("images/10.mp3", isLocal: true);
+  }
+
+  _playSFX9() async {
+    await audioPlayer.play("images/9.mp3", isLocal: true);
+  }
+
+  _playSFX8() async {
+    await audioPlayer.play("images/8.mp3", isLocal: true);
+  }
+
+  _playSFX7() async {
+    await audioPlayer.play("images/7.mp3", isLocal: true);
+  }
+
+  _playSFX6() async {
+    await audioPlayer.play("images/6.mp3", isLocal: true);
+  }
+
+  _playSFX5() async {
+    await audioPlayer.play("images/5.mp3", isLocal: true);
+  }
+
+  _playSFX4() async {
+    await audioPlayer.play("images/4.mp3", isLocal: true);
+  }
+
+  _playSFX3() async {
+    await audioPlayer.play("images/3.mp3", isLocal: true);
+  }
+
+  _playSFX2() async {
+    await audioPlayer.play("images/2.mp3", isLocal: true);
+  }
+
+  _playSFX1() async {
+    await audioPlayer.play("images/1.mp3", isLocal: true);
+  }
+
+  _playSFXDone() async {
+    await audioPlayer.play("images/done.mp3", isLocal: true);
+  }
+*/
   void _sendMessage() {
     // FIXME: Implement with parameters
 
@@ -170,6 +217,10 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
     _channel.sink.add("Stop"); // FIXME
   }
 
+  List<Color> gradientColors = [
+    const Color(0xff0000ee),
+    const Color(0x0000ffff),
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -191,6 +242,10 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
           double LoadLoss = 0.0; // FIXME
           // ignore: unused_local_variable
           var HangChangeDetected = "";
+          var mytimes;
+          var myload;
+          String CurrentMeasurementsSeries = "";
+          List<FlSpot> mydata = [];
           bool HangDetected = false;
           if (snapshot.hasData) {
             testchen = snapshot.data.toString();
@@ -223,6 +278,20 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
             //Completed = double.parse(ok1['Completed']);
             //HangChangeDetected = ok1['HangChangeDetected'];
             HangDetected = ok1['HangDetected'];
+
+            if (ok1.containsKey("CurrentMeasurementsSeries")) {
+              //Map<String, dynamic> ok2 =
+              //  jsonDecode(ok1["CurrentMeasurementsSeries"]);
+              mytimes = ok1["CurrentMeasurementsSeries"]["time"];
+              myload = ok1["CurrentMeasurementsSeries"]["load"];
+              double t0 = double.parse(mytimes[0].toString());
+              for (int i = 0; i < mytimes.length; i++) {
+                mydata.add(FlSpot(
+                  double.parse(mytimes[i].toString()) - t0,
+                  double.parse(myload[i].toString()),
+                )); //double.parse(mytimes[i]), double.parse(myload[i])));
+              }
+            }
           }
           //return Text(snapshot.hasData ? '${snapshot.data}' : '');
           //return Text("Left " + left + " Right " + right);
@@ -232,12 +301,43 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                 'images/zlagboard_evo.' + LeftHold + '.' + RightHold + '.png';
           }
 
+          /* // FIXME
+
           if (Rest == 10) {
-            // ignore: todo
-            // TODO: Implement
-            _playLocal();
+            _playSFX10();
+          }
+          if (Rest == 9) {
+            _playSFX9();
+          }
+          if (Rest == 8) {
+            _playSFX8();
+          }
+          if (Rest == 7) {
+            _playSFX7();
+          }
+          if (Rest == 6) {
+            _playSFX6();
+          }
+          if (Rest == 5) {
+            _playSFX5();
+          }
+          if (Rest == 4) {
+            _playSFX4();
+          }
+          if (Rest == 3) {
+            _playSFX3();
+          }
+          if (Rest == 2) {
+            _playSFX2();
+          }
+          if (Rest == 1) {
+            _playSFX1();
+          }
+          if (Rest == 0) {
+            //  _playSFXDone();
           }
 
+          */
           var HangState = "no";
           if (HangDetected == true) {
             HangState = "yes";
@@ -302,6 +402,147 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                     onPressed: _sendMessage, // FIXME: implement
                     child: Icon(Icons.restart_alt))
               ]),
+              Row(children: [
+                mydata.length == 0
+                    ? Text("Tes1t")
+                    : Column(
+                        children: [
+                          1 == 0
+                              ? Text("ja")
+                              : Stack(
+                                  children: <Widget>[
+                                    AspectRatio(
+                                      aspectRatio: 5,
+                                      child: Container(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 0.0,
+                                              left: 0.0,
+                                              top: 0,
+                                              bottom: 0),
+                                          child: LineChart(
+                                            LineChartData(
+                                              gridData: FlGridData(
+                                                // Grid
+                                                show: true,
+                                                drawVerticalLine: true,
+                                                getDrawingHorizontalLine:
+                                                    (value) {
+                                                  // Grid Horizontal
+                                                  return FlLine(
+                                                    color:
+                                                        const Color(0xff37434d),
+                                                    strokeWidth: 1,
+                                                  );
+                                                },
+                                                getDrawingVerticalLine:
+                                                    (value) {
+                                                  // Grid Vertical
+                                                  return FlLine(
+                                                    color:
+                                                        const Color(0xff37434d),
+                                                    strokeWidth: 1,
+                                                  );
+                                                },
+                                              ),
+                                              titlesData: FlTitlesData(
+                                                // X Axis
+                                                show: true,
+                                                bottomTitles: SideTitles(
+                                                  showTitles: true,
+                                                  reservedSize: 22,
+                                                  getTextStyles: (value) =>
+                                                      const TextStyle(
+                                                          color:
+                                                              Color(0xff68737d),
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 16),
+                                                  getTitles: (value) {
+                                                    // X Axis description
+
+                                                    return value
+                                                        .toString(); //'';
+                                                  },
+                                                  margin: 8,
+                                                ),
+                                                leftTitles: SideTitles(
+                                                  // Y Axis
+                                                  showTitles: true,
+                                                  getTextStyles: (value) =>
+                                                      const TextStyle(
+                                                    color: Color(0xff67727d),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15,
+                                                  ),
+                                                  getTitles: (value) {
+                                                    switch (value.toInt()) {
+                                                      case 10:
+                                                        return '10';
+                                                      case 20:
+                                                        return '20';
+                                                      case 30:
+                                                        return '30';
+                                                      case 40:
+                                                        return '40';
+                                                      case 50:
+                                                        return '50';
+                                                      case 60:
+                                                        return '60';
+                                                      case 70:
+                                                        return '70';
+                                                      case 80:
+                                                        return '80';
+                                                      case 90:
+                                                        return '90';
+                                                    }
+                                                    return '';
+                                                    //return value.toString();
+                                                  },
+                                                  reservedSize: 28,
+                                                  margin: 12,
+                                                ),
+                                              ),
+                                              borderData: FlBorderData(
+                                                  show: true,
+                                                  border: Border.all(
+                                                      color: const Color(
+                                                          0xff37434d),
+                                                      width: 1)),
+                                              //minX: 0, // Define extrema if needed
+                                              //maxX: 10,
+                                              minY: 0,
+                                              maxY: 90,
+
+                                              lineBarsData: [
+                                                LineChartBarData(
+                                                  spots: mydata,
+                                                  //isCurved: true,
+                                                  colors: gradientColors,
+                                                  barWidth: 5,
+                                                  //  isStrokeCapRound: true,
+                                                  dotData: FlDotData(
+                                                    show: false,
+                                                  ),
+                                                  belowBarData: BarAreaData(
+                                                    show: true,
+                                                    colors: gradientColors
+                                                        .map((color) => color
+                                                            .withOpacity(0.3))
+                                                        .toList(),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                        ],
+                      )
+              ])
             ],
           ));
         },
