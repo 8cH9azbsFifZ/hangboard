@@ -46,7 +46,7 @@ import threading
 
 # TODO: Run in background at all times or send signals?
 
-EMULATE_HX711 = False
+EMULATE_HX711 = True
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
@@ -104,6 +104,14 @@ class SensorForce():
 
         self.init_hx711()
         self.calibrate()
+
+        if EMULATE_HX711:
+            simfile = "simulation_data.json"
+            self._simcounter = 0
+            with open(simfile) as json_file:
+                data = json.load(json_file)
+            self._simdata = data["SimulationData"]
+            #print (self._simdata["time"])
 
     def _simulate_force_sensor(self):
         pass
@@ -192,7 +200,16 @@ class SensorForce():
 
     def run_one_measure(self):
         self.time_current = time.time()
+
         self.load_current = -1*self.hx.get_weight(1)
+
+        if EMULATE_HX711:
+            self._simcounter = self._simcounter+1
+            if (self._simcounter+1 > len(self._simdata["time"])):
+                self._simcounter=0
+            self.load_current = self._simdata["load"][self._simcounter]
+            time.sleep(0.2)
+            logging.debug("Simulation: " + str(self._simcounter) + " load: " + str(self.load_current))
 
         self._detect_hang()
         if (self.HangDetected):
