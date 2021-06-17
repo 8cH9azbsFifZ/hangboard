@@ -394,9 +394,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   //  jsonDecode(ok1["CurrentMeasurementsSeries"]);
                   mytimes = ok1["CurrentMeasurementsSeries"]["time"];
                   myload = ok1["CurrentMeasurementsSeries"]["load"];
+                  double t0 = double.parse(mytimes[0].toString());
                   for (int i = 0; i < mytimes.length; i++) {
                     mydata.add(FlSpot(
-                      double.parse(mytimes[i].toString()),
+                      double.parse(mytimes[i].toString()) - t0,
                       double.parse(myload[i].toString()),
                     )); //double.parse(mytimes[i]), double.parse(myload[i])));
                   }
