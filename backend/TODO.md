@@ -6,6 +6,8 @@
 + Add capability to select exercise - OPEN: receive the selected exercise
 
 # Exercises
++ Workout type (strength, endurance, ...)
++ Grip type: Grip Half Full Open 
 + Implement a simulator for force ...
 + Implement Assessment
 + Google Sheet Exercise Input
