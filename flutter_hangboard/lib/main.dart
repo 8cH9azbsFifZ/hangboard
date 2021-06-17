@@ -139,13 +139,13 @@ class ExerciseStatus extends StatefulWidget {
   _ExerciseStatusState createState() => _ExerciseStatusState();
 }
 
-class _ExerciseStatusState extends State<ExerciseStatus> {
-  var ip_testboard = "ws://10.101.40.81:4321";
-  var ip_zlagboard = "ws://10.101.40.40:4321";
-  var ip_localhost = "ws://127.0.0.1:4321";
+final String ip_zlagboard = "ws://10.101.40.40:4321";
+final String ip_testboard = "ws://10.101.40.81:4321";
+final String ip_localhost = "ws://127.0.0.1:4321";
 
+class _ExerciseStatusState extends State<ExerciseStatus> {
   final _channel = WebSocketChannel.connect(
-    Uri.parse('ws://10.101.40.40:4321'),
+    Uri.parse(ip_zlagboard),
   );
 
   _playLocal() async {
@@ -280,21 +280,19 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
             HangDetected = ok1['HangDetected'];
 
             if (ok1.containsKey("CurrentMeasurementsSeries")) {
-              //Map<String, dynamic> ok2 =
-              //  jsonDecode(ok1["CurrentMeasurementsSeries"]);
               mytimes = ok1["CurrentMeasurementsSeries"]["time"];
               myload = ok1["CurrentMeasurementsSeries"]["load"];
               double t0 = double.parse(mytimes[0].toString());
-              for (int i = 0; i < mytimes.length; i++) {
-                mydata.add(FlSpot(
-                  double.parse(mytimes[i].toString()) - t0,
-                  double.parse(myload[i].toString()),
-                )); //double.parse(mytimes[i]), double.parse(myload[i])));
+              if (mytimes.length > 2) {
+                for (int i = 0; i < mytimes.length; i++) {
+                  mydata.add(FlSpot(
+                    double.parse(mytimes[i].toString()) - t0,
+                    double.parse(myload[i].toString()),
+                  ));
+                }
               }
             }
           }
-          //return Text(snapshot.hasData ? '${snapshot.data}' : '');
-          //return Text("Left " + left + " Right " + right);
           var imagename = 'images/zlagboard_evo.png'; // FIXME
           if (LeftHold != "") {
             imagename =
@@ -497,7 +495,6 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                                                         return '90';
                                                     }
                                                     return '';
-                                                    //return value.toString();
                                                   },
                                                   reservedSize: 28,
                                                   margin: 12,
@@ -632,57 +629,20 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 testchen = snapshot.data.toString();
                 Map<String, dynamic> ok1 = jsonDecode(testchen);
                 if (ok1.containsKey("CurrentMeasurementsSeries")) {
-                  //Map<String, dynamic> ok2 =
-                  //  jsonDecode(ok1["CurrentMeasurementsSeries"]);
                   mytimes = ok1["CurrentMeasurementsSeries"]["time"];
                   myload = ok1["CurrentMeasurementsSeries"]["load"];
                   double t0 = double.parse(mytimes[0].toString());
-                  for (int i = 0; i < mytimes.length; i++) {
-                    mydata.add(FlSpot(
-                      double.parse(mytimes[i].toString()) - t0,
-                      double.parse(myload[i].toString()),
-                    )); //double.parse(mytimes[i]), double.parse(myload[i])));
+                  if (mytimes.length > 2) {
+                    for (int i = 0; i < mytimes.length; i++) {
+                      mydata.add(FlSpot(
+                        double.parse(mytimes[i].toString()) - t0,
+                        double.parse(myload[i].toString()),
+                      ));
+                    }
                   }
                 }
-
-                /*
-                CurrentMeasurementsSeries =
-                    ok1['CurrentMeasurementsSeries'] != null
-                        ? (ok1['CurrentMeasurementsSeries']).toString()
-                        : "None";
-                //   var SeriesTime = CurrentMeasurementsSeries['time'];
-                //   var SeriesLoad = CurrentMeasurementsSeries['load'];
-                var timesJson = jsonDecode(CurrentMeasurementsSeries)["time"];
-                //   List<String> times =
-                //    timesJson != null ? List.from(timesJson) : null;
-                */
               }
 
-/*
-Example JSON to list
- String arrayText = '{"tags": ["dart", "flutter", "json"]}';
-
-  var tagsJson = jsonDecode(arrayText)['tags'];
-  List<String> tags = tagsJson != null ? List.from(tagsJson) : null;
-
-
-*/
-
-              /* Example data
-              Workout(MainThread) server > Frame(fin=True, opcode=<Opcode.TEXT: 1>, 
-              data=b'{"Exercise": "Hang", "Type": "Hang", "Left": "A1", "Right": "A7", "Counter": "10.00", "CurrentCounter": "1.20", 
-              "Completed": "12", "Rest": "8.80", "HangChangeDetected": "", "HangDetected": true, 
-              "FTI": 102.277591006134, "AverageLoad": 7.7173083760531505, "MaximalLoad": 8.356523627660334, "RFD": 3.9736694610795626,
-               "LoadLoss": 0.01636598734691086, 
-               "CurrentMeasurementsSeries": {"time": [1623957336.5194511, 1623957336.6248372, 1623957336.739917, 1623957336.8615391, 1623957336.9793222, 1623957337.08865, 1623957337.201374, 1623957337.310876, 1623957337.4224918, 1623957337.53201, 1623957337.6437378, 1623957337.753417, 1623957337.865253], "load": [6.372050120907403, 6.790819325251163, 6.943099035921621, 7.0280967457141665, 7.4415889303812275, 7.831522991491597, 8.19067443782122, 8.356523627660334, 8.35520437274116, 8.345906766644118, 8.215740281285541, 8.234021385165535, 8.219760867705883]}}', rsv1=False, rsv2=False, rsv3=False)
-
-*/
-/* Debugging receive
-              String abd = "1324";
-              abd = mytimes.toString();
-              return (Text(abd));
-
-              */
               if (mydata.length == 0) {
                 return Text("No Hang");
               }
@@ -730,16 +690,8 @@ Example JSON to list
                                           fontSize: 16),
                                       getTitles: (value) {
                                         // X Axis description
-                                        /*
-            switch (value.toInt()) {
-              case 2:
-                return 'MAR';
-              case 5:
-                return 'JUN';
-              case 8:
-                return 'SEP';
-            }*/
-                                        return value.toString(); //'';
+
+                                        return value.toString();
                                       },
                                       margin: 8,
                                     ),
@@ -773,7 +725,6 @@ Example JSON to list
                                             return '90';
                                         }
                                         return '';
-                                        //return value.toString();
                                       },
                                       reservedSize: 28,
                                       margin: 12,
@@ -850,17 +801,7 @@ Example JSON to list
               fontWeight: FontWeight.bold,
               fontSize: 16),
           getTitles: (value) {
-            // X Axis description
-            /*
-            switch (value.toInt()) {
-              case 2:
-                return 'MAR';
-              case 5:
-                return 'JUN';
-              case 8:
-                return 'SEP';
-            }*/
-            return value.toString(); //'';
+            return value.toString();
           },
           margin: 8,
         ),
@@ -894,7 +835,6 @@ Example JSON to list
                 return '90';
             }
             return '';
-            //return value.toString();
           },
           reservedSize: 28,
           margin: 12,
@@ -1014,15 +954,7 @@ Example JSON to list
               fontSize: 16),
           getTitles: (value) {
             // X Axis description
-            /*
-            switch (value.toInt()) {
-              case 2:
-                return 'MAR';
-              case 5:
-                return 'JUN';
-              case 8:
-                return 'SEP';
-            }*/
+
             return value.toString(); //'';
           },
           margin: 8,
@@ -1057,7 +989,6 @@ Example JSON to list
                 return '90';
             }
             return '';
-            //return value.toString();
           },
           reservedSize: 28,
           margin: 12,
