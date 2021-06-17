@@ -48,6 +48,9 @@ class Workout():
         # Variable storing the message for the "middleware" -> Sending
         self.message = ""
 
+        # State of the current workout
+        self._workout_running = False
+
         self.board = Board()
         self.sensors = Sensors()
 
@@ -320,18 +323,28 @@ class Workout():
 
     def _run_workout (self):
         """ Start a workout "run" in a thread. """
-        print ("Run thread set")
-        self.run_workout_thread = threading.Thread(target=self.run_workout)
-        self.run_workout_thread.do_stop = False
-        self.run_workout_thread.start()           
+        if (not self._workout_running):
+            logging.debug("No Workout running - start one")
+            self._workout_running = True
+            self.run_workout_thread = threading.Thread(target=self.run_workout)
+            self.run_workout_thread.do_stop = False
+            self.run_workout_thread.start()     
+        else:
+            logging.debug("Workout running - do not start a new one")
+
 
 
     def _stop_workout (self):
         """ Stop a workout "run" thread" by setting a flag, which must be caputured in "run_set". """
-        print ("Stop thread set")
-        self.run_workout_thread.do_stop = True
-        self.assemble_message_nothing()
-        #self.run_workout_thread.join()
+        if (self._workout_running):
+            logging.debug("Workout running - stop it")
+            self._workout_running = False
+            self.run_workout_thread.do_stop = True
+            self.assemble_message_nothing()
+            #self.run_workout_thread.join()
+        else:
+            logging.debug("No Workout running - nothing to stop")
+
 
     def _get_current_measurements_series(self):
         """ Obtain the current measurement time series from sensors and forward it to the messaging queue. """

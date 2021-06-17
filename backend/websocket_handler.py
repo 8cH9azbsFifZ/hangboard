@@ -2,6 +2,8 @@
 This class provices all methods for websocket communication.
 It is used in conjunction with the workout class in run_ws.py 
 to start the backend serivce.
+
+This class receives all commands from the frontend and controls the backend processes.
 """
 
 import asyncio
@@ -22,7 +24,7 @@ class WebsocketHandler():
         """
         Start the websocket server and wait for input
         """
-        logging.debug ("Start handler")
+        logging.debug ("Start websocket handler")
         self.WSHOST = wshost
         self.WSPORT = wsport
         self.start_server = websockets.serve(self.handler, self.WSHOST, self.WSPORT)
@@ -34,8 +36,7 @@ class WebsocketHandler():
         Handler for receicing commands 
         """
         async for message in websocket:
-            logging.debug ("Received it:")
-            logging.debug (message)
+            logging.debug ("Received the command: " + str(message))
             await self.consumer(message)
 
     async def consumer (self, message):
