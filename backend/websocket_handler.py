@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 class WebsocketHandler():
-    def __init__(self, sampling_interval = 0.1):
+    def __init__(self, sampling_interval = 0.03): # FIXME this double assignment could cause problems
         logging.debug ("Init websocket handler")
         self.message = "" # Message for sending around :) 
         self.sampling_interval = sampling_interval
@@ -59,14 +59,14 @@ Example output during run:
             self._list_workouts()
         if (message == "GetCurrentWorkout"):
             self._get_current_workout()
-        if (message == "GetCurrentMeasurementsSeries"):
+#        if (message == "GetCurrentMeasurementsSeries"):
             """
 Example output: 
 GetCurrentMeasurementsSeries
 < {"CurrentMeasurementsSeries": {"time": [1623841943.9033473, 1623841944.0089374, 1623841944.1252787, 1623841944.242679, 1623841944.3611054, 1623841944.4760737, 1623841944.593933, 1623841944.7120495, 1623841944.8308997, 1623841944.945941], "load": [5.207050304689482, 6.479503085064949, 7.367424467332381, 8.233546732602022, 8.235494204149376, 8.123420357682338, 8.185299695557916, 8.25547149292545, 8.27237052022345, 7.798381074262804]}}
 
             """
-            self._get_current_measurements_series()
+#            self._get_current_measurements_series()
 
 
     async def producer_handler(self, websocket, path):
