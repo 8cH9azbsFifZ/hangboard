@@ -43,6 +43,8 @@ list = json.dumps({"SimulationData": {
 with open('simulation_data.json', 'w', encoding='utf-8') as f:
     json.dump(list, f, ensure_ascii=False, indent=4)
 
+for i in range (0,len(t)-1):
+	print ('FlSpot(%.2f, %.2f),' %(t[i],load[i]))
 
 def plot_load():
 	fig = plt.figure()
