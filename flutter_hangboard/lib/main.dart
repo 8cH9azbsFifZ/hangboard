@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'dart:convert';
 //import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:wakelock/wakelock.dart';
 
 void main() {
   runApp(MyApp());
@@ -62,9 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /* appBar: AppBar(
         title: Text(widget.title),
-      ),
+      ),*/
       body: Column(
         children: [
           ExerciseStatus(),
@@ -95,14 +96,15 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
   );
 
   _playLocal() async {
-    AudioPlayer audioPlayer = AudioPlayer();
+    //AudioPlayer audioPlayer = AudioPlayer();
     // ignore: todo
     //AudioCache audioCache = AudioCache(); // TODO: implement for iOS
     await audioPlayer.play("images/done.mp3", isLocal: true);
   }
 
-/* // FIXME
   AudioPlayer audioPlayer = AudioPlayer();
+
+// FIXME
 
   _playSFX10() async {
     await audioPlayer.play("images/10.mp3", isLocal: true);
@@ -147,7 +149,7 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
   _playSFXDone() async {
     await audioPlayer.play("images/done.mp3", isLocal: true);
   }
-*/
+
   void _sendMessage() {
     // FIXME: Implement with parameters
 
@@ -164,9 +166,15 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
   }
 
   List<Color> gradientColors = [
-    const Color(0xff0000ee),
-    const Color(0x0000ffff),
+    // https://api.flutter.dev/flutter/dart-ui/Color-class.html
+    const Color.fromRGBO(0, 0, 200, 0.4),
+    const Color.fromRGBO(200, 0, 0, 1.0),
+    //const Color(0xff0000ee),
+    //const Color(0x0000ffff),
   ];
+
+  var connection = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -195,6 +203,9 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
           if (snapshot.hasData) {
             testchen = snapshot.data.toString();
 
+            connection = true; // If data received - connected
+            Wakelock.enable(); // Stay awake, once data has been received
+
             Map<String, dynamic> ok1 = jsonDecode(testchen);
             if (ok1.containsKey("Left")) {
               LeftHold = ok1['Left'];
@@ -208,6 +219,20 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                 Rest = double.parse(ok1['Rest']);
               } else {
                 Rest = 0;
+              }
+            }
+            if (ok1.containsKey("Counter")) {
+              if (ok1['Counter'] != 0) {
+                Counter = double.parse(ok1['Counter']);
+              } else {
+                Counter = 0;
+              }
+            }
+            if (ok1.containsKey("CurrentCounter")) {
+              if (ok1['CurrentCounter'] != 0) {
+                CurrentCounter = double.parse(ok1['CurrentCounter']);
+              } else {
+                CurrentCounter = 0;
               }
             }
 
@@ -249,17 +274,19 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                 'images/zlagboard_evo.' + LeftHold + '.' + RightHold + '.png';
           }
 
-          /* // FIXME
+          // FIXME
 
           if (Rest == 10) {
             _playSFX10();
           }
+
           if (Rest == 9) {
             _playSFX9();
           }
           if (Rest == 8) {
             _playSFX8();
           }
+
           if (Rest == 7) {
             _playSFX7();
           }
@@ -275,17 +302,18 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
           if (Rest == 3) {
             _playSFX3();
           }
+
           if (Rest == 2) {
             _playSFX2();
           }
           if (Rest == 1) {
             _playSFX1();
           }
+
           if (Rest == 0) {
-            //  _playSFXDone();
+            //    _playSFXDone();//FIXME - on start
           }
 
-          */
           var HangState = "no";
           if (HangDetected == true) {
             HangState = "yes";
@@ -334,7 +362,11 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                       Icons.alarm,
                       color: Colors.red[500],
                     ),
-                    Text("Rest: " + Rest.toString()),
+                    Text(CurrentCounter.toString() +
+                        "/" +
+                        Counter.toString() +
+                        "   Rest: " +
+                        Rest.toString()),
                   ],
                 ),
               ),
@@ -342,17 +374,26 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                 Text("Controls: "),
                 FloatingActionButton(
                     onPressed: _sendMessageStart,
-                    child: Icon(Icons.skateboarding)),
+                    child: Icon(Icons
+                        .play_arrow)), // https://fonts.google.com/icons?selected=Material+Icons+Outlined:play_arrow
+
                 FloatingActionButton(
-                    onPressed: _sendMessageStop,
-                    child: Icon(Icons.exit_to_app)),
+                    onPressed: _sendMessageStop, // FIXME: implement a pause
+                    child: Icon(Icons.do_not_touch)),
+                FloatingActionButton(
+                    onPressed: _sendMessageStop, child: Icon(Icons.stop)),
                 FloatingActionButton(
                     onPressed: _sendMessage, // FIXME: implement
-                    child: Icon(Icons.restart_alt))
+                    child: Icon(Icons.restart_alt)),
+                FloatingActionButton(
+                    onPressed: _sendMessage, // FIXME: state, not button
+                    child: connection == true
+                        ? Icon(Icons.wifi)
+                        : Icon(Icons.wifi_off)),
               ]),
               Row(children: [
                 mydata.length < 3
-                    ? Text("Tes1t")
+                    ? Text("No Hang - No Load")
                     : Expanded(
                         flex: 3,
                         child: 1 == 0
