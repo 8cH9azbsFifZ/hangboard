@@ -54,6 +54,10 @@ TIP: Further information can be found in the repository: https://github.com/8cH9
 - Uses preexisting exercise files - easily extendable
 - Measures hangtime, applied force, rate-of-force development, maximal load 
 
+[#img-smart-hangboard]
+.Smart Hangboard App
+image::./app/app_screenshot.png[{half-size}Smart Hangboard App]
+
 ## List of implemented hangboards
 - Beastmaker 1000
 - Beastmaker 2000

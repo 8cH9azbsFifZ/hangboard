@@ -20,3 +20,10 @@ Please have a look at the [manual](https://8ch9azbsfifz.github.io/hangboard/doc/
 For manual startup:
 + Start backend service ```cd backend; python3 ./run_ws.py ```
 + Start the iOS / Android / Web App: `cd flutter_hangboard && flutter run`
+
+
+# Creating the documentation
++ Install `brew install asciidoctor`
++ Create the PDF `asciidoctor-pdf Manual.adoc`
++ The documentation in html format is automatically generated using a commit hook on github.
++ Documentation of the backend software can be created using `doxygen` (cf. Doxyfile).
