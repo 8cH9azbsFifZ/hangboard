@@ -14,7 +14,7 @@ Please have a look at the [manual](https://8ch9azbsfifz.github.io/hangboard/doc/
   ```
     python3 -m venv venv
     source venv/bin/activate
-    python3 -m pip install -r requirements.txt
+    python3 -m pip install -r backend/requirements.txt
   ```
 
 For manual startup:

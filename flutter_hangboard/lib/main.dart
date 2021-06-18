@@ -38,63 +38,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget titleSection = Container(
-    padding: const EdgeInsets.all(32),
-    child: Row(
-      children: [
-        Expanded(
-          /*1*/
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /*2*/
-              Container(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  'Hang for 10 seconds',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Text(
-                'This is my workout',
-                style: TextStyle(
-                  color: Colors.grey[500],
-                ),
-              ),
-            ],
-          ),
-        ),
-        /*3*/
-        Icon(
-          Icons.alarm,
-          color: Colors.red[500],
-        ),
-        Text('41 of 80'),
-      ],
-    ),
-  );
-
-  Widget origSection = Container(
-      child: Row(
-    children: [
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Form(
-            child: TextFormField(
-              //controller: _controller,
-              decoration: InputDecoration(labelText: 'Send a message'),
-            ),
-          ),
-          SizedBox(height: 24),
-        ],
-      ))
-    ],
-  ));
-
   Widget BoardSelection1 = Container(
       child: Row(
     children: [
@@ -119,13 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          //titleSection,
           ExerciseStatus(),
-          MyStatefulWidget(),
-          LineChartSample2(),
+          // MyStatefulWidget(),
+          // LineChartSample2(),
 
           //BoardSelection,
-          //origSection,
         ],
       ),
     );
@@ -401,7 +342,7 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                     child: Icon(Icons.restart_alt))
               ]),
               Row(children: [
-                mydata.length == 0
+                0 == 0 //mydata.length == 0
                     ? Text("Tes1t")
                     : Column(
                         children: [
