@@ -190,12 +190,16 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
           bool HangDetected = false;
           if (snapshot.hasData) {
             testchen = snapshot.data.toString();
+
             Map<String, dynamic> ok1 = jsonDecode(testchen);
-            LeftHold = ok1['Left'];
-            RightHold = ok1['Right'];
+            if (ok1.containsKey("Left")) {
+              LeftHold = ok1['Left'];
+            }
+            if (ok1.containsKey("Right")) {
+              RightHold = ok1['Right'];
+            }
 
             if (ok1.containsKey("Rest")) {
-              // FIXME safe detection
               if (ok1['Rest'] != 0) {
                 Rest = double.parse(ok1['Rest']);
               } else {
@@ -204,7 +208,6 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
             }
 
             if (ok1.containsKey("Completed")) {
-              // FIXME safe detection
               if (ok1['Completed'] != 0) {
                 Completed = double.parse(ok1['Completed']);
               } else {
@@ -213,23 +216,21 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
             }
 
             Exercise = ok1['Exercise'];
-            //ExerciseType = ok1['ExerciseType'];
-            //Counter = double.parse(ok1['Counter']);
-            //CurrentCounter = double.parse(ok1['CurrentCounter']);
-            //Completed = double.parse(ok1['Completed']);
-            //HangChangeDetected = ok1['HangChangeDetected'];
+
             HangDetected = ok1['HangDetected'];
 
             if (ok1.containsKey("CurrentMeasurementsSeries")) {
-              mytimes = ok1["CurrentMeasurementsSeries"]["time"];
-              myload = ok1["CurrentMeasurementsSeries"]["load"];
-              double t0 = double.parse(mytimes[0].toString());
-              if (mytimes.length > 2) {
-                for (int i = 0; i < mytimes.length; i++) {
-                  mydata.add(FlSpot(
-                    double.parse(mytimes[i].toString()) - t0,
-                    double.parse(myload[i].toString()),
-                  ));
+              if (ok1["CurrentMeasurementsSeries"].containsKey("time")) {
+                mytimes = ok1["CurrentMeasurementsSeries"]["time"];
+                myload = ok1["CurrentMeasurementsSeries"]["load"];
+                if (mytimes.length > 2) {
+                  double t0 = double.parse(mytimes[0].toString());
+                  for (int i = 0; i < mytimes.length; i++) {
+                    mydata.add(FlSpot(
+                      double.parse(mytimes[i].toString()) - t0,
+                      double.parse(myload[i].toString()),
+                    ));
+                  }
                 }
               }
             }
@@ -342,7 +343,7 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
                     child: Icon(Icons.restart_alt))
               ]),
               Row(children: [
-                0 == 0 //mydata.length == 0
+                mydata.length < 3
                     ? Text("Tes1t")
                     : Column(
                         children: [
