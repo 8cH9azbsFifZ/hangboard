@@ -185,7 +185,6 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
           var HangChangeDetected = "";
           var mytimes;
           var myload;
-          String CurrentMeasurementsSeries = "";
           List<FlSpot> mydata = [];
           bool HangDetected = false;
           if (snapshot.hasData) {
@@ -215,9 +214,13 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
               }
             }
 
-            Exercise = ok1['Exercise'];
+            if (ok1.containsKey(("Exercise"))) {
+              Exercise = ok1['Exercise'];
+            }
 
-            HangDetected = ok1['HangDetected'];
+            if (ok1.containsKey(("HangDetected"))) {
+              HangDetected = ok1['HangDetected'];
+            }
 
             if (ok1.containsKey("CurrentMeasurementsSeries")) {
               if (ok1["CurrentMeasurementsSeries"].containsKey("time")) {
@@ -565,7 +568,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
               var mytimes;
               var myload;
               // Code here
-              String CurrentMeasurementsSeries = "";
               List<FlSpot> mydata = [];
               if (snapshot.hasData) {
                 testchen = snapshot.data.toString();
