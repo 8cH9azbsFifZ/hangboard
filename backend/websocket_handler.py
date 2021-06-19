@@ -20,6 +20,10 @@ class WebsocketHandler():
         self.message = "" # Message for sending around :) 
         self.sampling_interval = sampling_interval
 
+    def send_message (self, topic = "hangboard", message="Empty"):
+        """ Stub for compatibility with mqtt handler"""
+        pass
+
     def run_handler(self, wshost="0.0.0.0", wsport=4321):
         """
         Start the websocket server and wait for input

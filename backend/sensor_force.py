@@ -39,6 +39,8 @@ import time
 import sys
 from scipy import integrate
 from numpy import diff
+import paho.mqtt.client as mqtt
+
 
 import json
 
@@ -59,7 +61,10 @@ else:
 
 
 class SensorForce():
-    def __init__(self, EMULATE_HX711 = True, pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, referenceUnit = 1257528/79, load_hang = 5.0): #//1257528/79*0.2 ):
+    def __init__(self, EMULATE_HX711 = True, 
+        pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
+        referenceUnit = 1257528/79, load_hang = 5.0,
+        hostname="localhost", port=1883): #//1257528/79*0.2 ):
         logging.debug ("Initialize")
 
         self.pin_dout = pin_dout
@@ -102,7 +107,14 @@ class SensorForce():
         self.RFD = 0
         self.LoadLoss = 0
 
+        # Connect to MQTT
+        self._client = mqtt.Client()
+        self._client.connect(hostname, port,60)
+        self._sendmessage("/status", "Starting")
+
         self.init_hx711()
+        self._sendmessage("/status", "Calibration")
+
         self.calibrate()
 
         if EMULATE_HX711:
@@ -113,11 +125,20 @@ class SensorForce():
             self._simdata = data["SimulationData"]
             #print (self._simdata["time"])
 
+    def _sendmessage(self, topic="/none", message="None"):
+        ttopic = "hangboard/sensor/load"+topic
+        mmessage = str(message)
+        logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
+        self._client.publish(ttopic, mmessage)
+
     def _simulate_force_sensor(self):
         pass
         # TODO implement
 
     def cleanAndExit(self):
+        self._sendmessage("/status", "Cleanup for exit")
+        self._client.disconnect()
+
         logging.debug("Cleaning...")
 
         if not EMULATE_HX711:
@@ -144,8 +165,11 @@ class SensorForce():
 
     def calibrate(self):
         logging.debug("Starting Tare done! Wait...")
+        self._sendmessage("/status", "Starting Tare done! Wait...")
+
         self.hx.tare()
         logging.debug("Tare done! Add weight now...")
+        self._sendmessage("/status", "Tare done! Add weight now...")
 
         # to use both channels, you'll need to tare them both
         #hx.tare_A()
@@ -227,6 +251,15 @@ class SensorForce():
             self.FTI = 0
             self.RFD = 0
             self.LoadLoss = 0
+
+        self._sendmessage("/time", "{:.2f}".format(self.time_current))
+        self._sendmessage("/loadcurrent", "{:.2f}".format(self.load_current))
+        self._sendmessage("/loadaverage", "{:.2f}".format(self.AverageLoad))
+        self._sendmessage("/fti", "{:.2f}".format(self.FTI))
+        self._sendmessage("/rfd", "{:.2f}".format(self.RFD))
+        self._sendmessage("/loadmaximal", "{:.2f}".format(self.MaximalLoad))
+        self._sendmessage("/loadloss", "{:.2f}".format(self.LoadLoss))
+
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -328,7 +361,6 @@ class SensorForce():
         """
         self.LoadLoss = 1 - (self.load_current / self.MaximalLoad)
         return self.LoadLoss
-
 
 
 

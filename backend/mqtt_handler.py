@@ -20,8 +20,23 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 class MQTT_Handler():
-    def __init__(self):
-        self.dt = 0.1
+    def __init__(self, hostname="localhost", port=1883):
+        self.run_handler(hostname=hostname, port=port)
+
+    def send_message (self, topic = "hangboard", message="Empty"):
+        self._client.publish(topic, message)
+
+    def run_handler(self, hostname, port):
+        self._hostname=hostname
+        self._port = port
+
+        self._basename = "hangboard"
+        self._dt = 0.1
+
+        self._client = mqtt.Client()
+
+        self._client.connect(self._hostname, self._port,60)
+        self.send_message(topic=self._basename+"/status", message="Starting")
 
     def _publisher(self):
         # This is the Publisher
@@ -33,7 +48,7 @@ class MQTT_Handler():
             msg = json.dumps({"time_sender": tsender})
             #client.publish("topic/test", time.time()); #"Hello world!");
             self._client.publish("topic/test", msg) #time.time()); #"Hello world!");
-            time.sleep(self.dt)
+            time.sleep(self._dt)
         
         #self._client.disconnect()
 
