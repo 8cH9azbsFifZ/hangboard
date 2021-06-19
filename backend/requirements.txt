@@ -6,3 +6,4 @@ svglib
 scipy
 numpy
 pymongo
+paho-mqtt

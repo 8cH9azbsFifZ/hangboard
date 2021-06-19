@@ -146,9 +146,9 @@ class _ExerciseStatusState extends State<ExerciseStatus> {
     await audioPlayer.play("images/1.mp3", isLocal: true);
   }
 
-  _playSFXDone() async {
+  /*_playSFXDone() async {
     await audioPlayer.play("images/done.mp3", isLocal: true);
-  }
+  }*/
 
   void _sendMessage() {
     // FIXME: Implement with parameters

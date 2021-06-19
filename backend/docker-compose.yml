@@ -1,0 +1,9 @@
+version: '2.2'
+
+services:
+    mqtt:
+        restart: unless-stopped
+        image: eclipse-mosquitto:1.6 # 2.0 breaking change address error
+        ports:
+          - "1883:1883"
+    
