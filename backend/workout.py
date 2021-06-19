@@ -327,6 +327,7 @@ class Workout():
 
     def _run_workout (self):
         """ Start a workout "run" in a thread. """
+        self.message = json.dumps({"CommandResponse": "Start: Ok"})
         if (not self._workout_running):
             logging.debug("No Workout running - start one")
             self._workout_running = True
@@ -340,6 +341,7 @@ class Workout():
 
     def _stop_workout (self):
         """ Stop a workout "run" thread" by setting a flag, which must be caputured in "run_set". """
+        self.message = json.dumps({"CommandResponse": "Stop: Ok"})
         if (self._workout_running):
             logging.debug("Workout running - stop it")
             self._workout_running = False

@@ -208,7 +208,7 @@ class SensorForce():
             if (self._simcounter+1 > len(self._simdata["time"])):
                 self._simcounter=0
             self.load_current = self._simdata["load"][self._simcounter]
-            time.sleep(0.2)
+            time.sleep(0.05) # FIXME
             logging.debug("Simulation: " + str(self._simcounter) + " load: " + str(self.load_current))
 
         self._detect_hang()

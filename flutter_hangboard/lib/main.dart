@@ -92,7 +92,7 @@ final String ip_localhost = "ws://127.0.0.1:4321";
 
 class _ExerciseStatusState extends State<ExerciseStatus> {
   final _channel = WebSocketChannel.connect(
-    Uri.parse(ip_localhost),
+    Uri.parse(ip_zlagboard),
   );
 
   _playLocal() async {
