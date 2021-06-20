@@ -11,3 +11,6 @@ hangboard/sensor/load/loadmaximal
 hangboard/sensor/load/loadloss
 hangboard/sensor/load/fti
 hangboard/sensor/load/rfd
+
+mosquitto_pub -h localhost -t hangboard/workout/control -m Start
+mosquitto_sub -h localhost -t hangboard/workout/timerstatus 
