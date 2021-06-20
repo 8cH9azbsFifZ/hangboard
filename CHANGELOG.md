@@ -1,4 +1,5 @@
 # History
+- v0.46 - Breaking change: backend switched to MQTT - wip.
 - v0.45 - Demonstrator with working live load monitor working.
 - v0.44 - AsciiDoc manual and commit build hook.
 - v0.43 - Cleanup directories and documentation.

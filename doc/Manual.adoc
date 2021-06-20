@@ -111,6 +111,11 @@ Currently inactive frontend implementations are
 - Raspberry Pi Zero W
 - Sensors: as listed below
 
+All sensors can be wired at once following this schema:
+[#img-hangboard-wiring]
+.Hangboard wiring - all sensors
+image::./hardware/hangboard_wiring.png[{half-size}Hangboard wiring - all sensors]
+
 ## Force Sensors with HX711
 Load cells are available widely with the HX711 signal amplifier module as a package <<HX711LoadCellPackage>>. 
 We will use one of these packages as the force measurement sensors.
