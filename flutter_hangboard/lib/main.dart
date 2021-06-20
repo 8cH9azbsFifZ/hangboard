@@ -5,7 +5,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:ui';
 import 'package:flutter/rendering.dart';
 import 'dart:convert';
-//import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:wakelock/wakelock.dart';
 
