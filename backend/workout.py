@@ -32,9 +32,23 @@ class Counter():
         self._current_set = 0
         self._current_rep = 0
         self._current_set_counter = 0
+        self._current_exercise_type = ""
 
+        # Get all general information
         self._total_sets = len (self.workout["Sets"])
+
+        # Get information on the first set
         self._get_current_set()
+
+        # Internal timer start and stop times
+        self._tstart = 0
+        self._tstop = 0
+
+        # External timer state variables
+        self.TimeElapsed = 0
+        self.TimeDuration = 0
+        self.TimeCompleted = 0
+        self.TimeRemaining = 0
 
     def _get_current_set(self):
         self._resttostart = self.workout["Sets"][self._current_set]["Rest-to-Start"]
@@ -48,11 +62,63 @@ class Counter():
         return self
 
     def __next__(self):
-        if self._current_set <= self._total_sets:
-            if self._current_set_counter < 
-        return self._index
-        raise StopIteration()
+        # Get the indices right
 
+        # Iterate through workout
+        if self._current_set < self._total_sets:
+            # Iterate through rest-to-start 
+            if self._current_set_counter == 0:
+                self._current_exercise_type = "Rest to start"
+                self._current_set_counter = self._current_set_counter + 1 # count initial "rest to start" as iteration "0"
+            # Iterate though exercises and pauses
+            elif self._current_set_counter <= self._reps:
+                if self._current_exercise_type == "Pause": # Pause always after exercise of any type or "rest to start"
+                    self._current_set_counter = self._current_set_counter + 1
+                    self._current_exercise_type = self._exercise
+                else:
+                    self._current_exercise_type = "Pause" # After any exericse: a pause
+            # Interate through sets
+            else: 
+                self._current_set = self._current_set + 1
+                self._current_set_counter = 0
+            self._index = self._index + 1
+        else:
+            raise StopIteration()
+        
+        self._start_current_timer()
+
+        return self._index
+
+    def _start_current_timer(self):
+        self._tstart = time.time()
+        self._tstop = 0
+        if (self._current_exercise_type == "Rest to start"):
+            self._tstop = self._tstart + self._resttostart
+            self._tduration = self._resttostart
+        elif (self._current_exercise_type == "Pause"):
+            self._tstop = self._tstart + self._pause
+            self._tduration = self._pause
+        elif (self._current_exercise_type == "Hang"):
+            self._tstop = self._tstart + self._counter
+            self._tduration = self._counter
+        else:
+            self._tstart = 0
+            self._tduration = 0
+
+    def get_current_timer_state(self):
+        if self._tstart > 0:
+            time_current = time.time()
+            self.TimeElapsed = time_current - self._tstart
+            self.TimeDuration = self._tduration
+            self.TimeCompleted = self.TimeElapsed / self.TimeDuration
+            self.TimeRemaining = self.TimeDuration - self.TimeElapsed
+        else:
+            self.TimeElapsed = 0
+            self.TimeDuration = 0
+            self.TimeCompleted = 0
+            self.TimeRemaining = 0
+
+        return self.TimeElapsed > self.TimeDuration
 
 
 class Workout():
@@ -99,6 +165,7 @@ class Workout():
         self.board = Board()
         self.sensors = Sensors()
 
+        self._counter = Counter(self.workout)
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
@@ -182,15 +249,6 @@ class Workout():
         print (workout_array)
         self.message = json.dumps({"WorkoutList": workout_array})
 
-    def show_set(self): 
-        """ Ascii output of current set """
-        set = self.workout["Sets"][self.current_set]
-        print (set)
-
-    def show_exercise(self):
-        """ Ascii output of current exercise """
-        exercise = self.workout["Sets"][self.current_set]["Exercise"]
-        print (exercise)
 
     def run_exercise_1hand_pull(self): # TODO implement
         """
@@ -473,132 +531,29 @@ class Workout():
         # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
         # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
         samplingrate = 0.01
-        self._extract_timerlist()
-        self._timerlist_position = 0
-        self._adjust_timerlist()
-
 
         while True:
-            current_time = time.time()
 
             self._client.loop(samplingrate) #blocks for 100ms (or whatever variable given, default 1s)
-            if not self._workout_running:
+            if not self._workout_running: # flag for a running workout :>
                 continue 
                 
             self.sensors.run_one_measure()
-
-            tstart = self._timerlist[self._timerlist_position]["time_start"]
-            tstop = self._timerlist[self._timerlist_position]["time_stop"]
-            ttext = self._timerlist[self._timerlist_position]["Text"]
-            trep = self._timerlist[self._timerlist_position]["rep"]
-            tset = self._timerlist[self._timerlist_position]["set"]
-            rest_time = tstop - current_time
-            elapsed_time = current_time - tstart
-            duration_time = self._timerlist[self._timerlist_position]["duration"]
-            completed_time = (elapsed_time) / (tstop-tstart)
-
-            #logging.debug("Core loop " + "{:.2f}".format(current_time) + "set " + str(tset) + " rep " + str(trep))
-
-            timerstatus = '{"Duration": '+"{:.2f}".format(duration_time)+', "Elapsed":'+"{:.2f}".format(elapsed_time)+', "Completed": '+"{:.2f}".format(completed_time)+'}'
+            timer_done = self._counter.get_current_timer_state()
+            if timer_done:
+                next(self._counter)
+            timerstatus = '{"Duration": '+"{:.2f}".format(self._counter.TimeDuration)
+            +', "Elapsed":'+"{:.2f}".format(self._counter.TimeElapsed)
+            +', "Completed": '+"{:.2f}".format(self._counter.TimeCompleted)+'}'
             self._sendmessage("/timerstatus", timerstatus)
 
-            if current_time > tstart:
-                if current_time < tstop:
-                    pass
-                    #print ("Started " + ttext)
-
-                    # Break if no hang detected
-                    # TODO self.sensors.HangDetected
-                else: 
-                    print ("Stopped")
-                    # FIXME 
-                    self._adjust_timerlist() # update all timers
-
-                    # get information on next timer set
-                    if self._timerlist_position == len(self._timerlist):
-                        tupcoming = "Done"
-                        hupcoming = ""
-                    else:
-                        tupcoming = self._timerlist[self._timerlist_position+1]["Text"] 
-                        holdtypeleft = self.workout["Sets"][tset+1]["Left"]
-                        holdtyperight= self.workout["Sets"][tset+1]["Right"]
-                        holdleft = self.board.get_hold_for_type(holdtypeleft)[0]
-                        holdright = self.board.get_hold_for_type(holdtypeleft)[-1]
-
-
-                    if (tupcoming == "Rest to start"):
-                        self._timerlist_position = self._timerlist_position + 1
-                        holds = '{"Left": "", "Right": "" }'
-
-                    if (tupcoming == "Pause"):
-                        self._timerlist_position = self._timerlist_position + 1
-                        holds = '{"Left": "", "Right": "" }'
-
-                    if (tupcoming == "Hang"):
-                        holds = '{"Left":'+holdleft+', "Right":'+holdright+' }'
-
-                        if (self.sensors.HangDetected):
-                            self._adjust_timerlist()
-                            self._timerlist_position = self._timerlist_position + 1
-                        else:
-                            self._sendmessage("/status", "Wait for a hang")
-                    
-                    self._sendmessage("/holds", holds)
-
-
-            # get current timer definitions
-            #self._get_current_workout()
-            #self.__get_current_set()
-
-
-            #self.current_set_state : Set / Pause
-            #self.current_rep_state : Exercise / Pause
-
-            #if self._timer_max < current_time: # Timer passed
-            #    self._select_next_exercise() # TODO if False - done
-                
-
-
-
-            """
-
-        self.exercise = self.workout["Sets"][self.current_set]["Exercise"]
-        self.rest_to_start = self.workout["Sets"][self.current_set]["Rest-to-Start"]
-        self.pause = self.workout["Sets"][self.current_set]["Pause"]
-        self.reps = self.workout["Sets"][self.current_set]["Reps"]
-        self.type = self.workout["Sets"][self.current_set]["Type"]
-
-
-        self.counter = self.workout["Sets"][self.current_set]["Counter"]
-
- self.__get_current_set()
-        
-        # Counter variables 
-        self.exercise_t0 = 0
-        self.exercise_t1 = self.counter
-        self.exercise_t = 0
-        self.exercise_rest = self.counter
-        self.exercise_completed = 0
-
-        # Rest to start loop
-        self.epsilon = 0.0001
-        self.run_rest_to_start()
-
       
-       
-            self.sensors.run_one_measure()
-            #print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
-            self.assemble_message_exercise_timerstatus()
-            if (self.sensors.Changed == "NoHang"):
-                break
-            if (getattr(t, "do_stop", False)):                
-                break
-"""
 
 
 """ Main loop only for testing purposes. """
 if __name__ == "__main__":
     print ("Starting")
+
     wa = Workout()
     #wa.run_workout()
     #wa._run_workout()
@@ -606,7 +561,13 @@ if __name__ == "__main__":
     # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
     #wa._client.loop_forever()   
     #wa._client.loop_start()   
-    wa._core_loop()
+    #wa._core_loop()
+
     a = wa._calc_time_in_current_workout()   
     #wa._run_workout()
     print (a)      
+    while True: 
+        c = next(wa._counter)
+        print (c)
+        print (wa._counter._current_exercise_type)
+        print (wa._counter.get_current_timer_state())
