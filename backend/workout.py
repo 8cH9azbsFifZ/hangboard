@@ -10,7 +10,9 @@ import os
 import time
 import sys
 import threading
+from types import TracebackType
 
+import paho.mqtt.client as mqtt
 
 """
 Implement logging with debug level from start on now :)
@@ -23,12 +25,42 @@ logging.basicConfig(level=logging.DEBUG,
 from board import Board
 from sensors import Sensors
 
+class Counter():
+    def __init__(self, workout):
+        self.workout = workout
+        self._index = 0
+        self._current_set = 0
+        self._current_rep = 0
+        self._current_set_counter = 0
+
+        self._total_sets = len (self.workout["Sets"])
+        self._get_current_set()
+
+    def _get_current_set(self):
+        self._resttostart = self.workout["Sets"][self._current_set]["Rest-to-Start"]
+        self._pause = self.workout["Sets"][self._current_set]["Pause"]
+        self._reps = self.workout["Sets"][self._current_set]["Reps"]
+        self._counter = self.workout["Sets"][self._current_set]["Counter"]
+        self._exercise = self.workout["Sets"][self._current_set]["Exercise"]
+        self._current_set_total = 1 + self._reps * 2 # rest to start and #reps exercises and pauses
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._current_set <= self._total_sets:
+            if self._current_set_counter < 
+        return self._index
+        raise StopIteration()
+
+
 
 class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json"):
+    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json",
+        hostname="localhost", port=1883):
         self.workoutdir = workoutdir
         self.select_workout(workoutdir + "/" + workoutfile)
         self.exercise_status = "Status"
@@ -38,7 +70,10 @@ class Workout():
         self.total_sets = len (self.workout["Sets"])
         self.current_set = 0
         self.current_set_name = "Rest to start"
+        self.current_set_state = "Set" # or Pause
+        self.current_rep_state = "Exercise" # or Pause
         self.sampling_interval = dt
+        self._timer_max = 0 # maximal timer for core loop
 
         # Variable to check if ready or somebody hanging
         self.exercise_hanging = False
@@ -51,9 +86,45 @@ class Workout():
         # State of the current workout
         self._workout_running = False
 
+        # Connect to MQTT
+        self._client = mqtt.Client()
+
+        #self._client1 = mqtt.Client()
+        #self._client1.connect(hostname, port,60)
+        self._client.on_connect = self._on_connect
+        self._client.on_message = self._on_message
+        self._client.connect(hostname, port,60)
+        self._sendmessage("/status", "Starting")
+
         self.board = Board()
         self.sensors = Sensors()
 
+
+    def _sendmessage(self, topic="/none", message="None"):
+        ttopic = "hangboard/workout"+topic
+        mmessage = str(message)
+        #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
+        self._client.publish(ttopic, mmessage)
+
+    def _on_connect(self, client, userdata, flags, rc):
+        print("Connected with result code "+str(rc))
+        self._client.subscribe("hangboard/workout/control")
+
+    def _on_message(self, client, userdata, msg):
+        """ Start with 
+        mosquitto_pub -h localhost -t hangboard/workout/control -m Start
+         Start
+        """
+        logging.debug(">MQTT: " + msg.payload.decode())
+        if msg.payload.decode() == "Stop":
+            #time.sleep(10)
+            self._workout_running = False
+            #exit()
+        if msg.payload.decode() == "Start":
+            self._adjust_timerlist()
+            self._workout_running = True
+
+     
 
     def select_workout(self, filename):
         """ Select a workout based on a filename. """
@@ -325,32 +396,6 @@ class Workout():
         self.message = msg
         return (msg)        
 
-    def _run_workout (self):
-        """ Start a workout "run" in a thread. """
-        self.message = json.dumps({"CommandResponse": "Start: Ok"})
-        if (not self._workout_running):
-            logging.debug("No Workout running - start one")
-            self._workout_running = True
-            self.run_workout_thread = threading.Thread(target=self.run_workout)
-            self.run_workout_thread.do_stop = False
-            self.run_workout_thread.start()     
-        else:
-            logging.debug("Workout running - do not start a new one")
-
-
-
-    def _stop_workout (self):
-        """ Stop a workout "run" thread" by setting a flag, which must be caputured in "run_set". """
-        self.message = json.dumps({"CommandResponse": "Stop: Ok"})
-        if (self._workout_running):
-            logging.debug("Workout running - stop it")
-            self._workout_running = False
-            self.run_workout_thread.do_stop = True
-            self.assemble_message_nothing()
-            #self.run_workout_thread.join()
-        else:
-            logging.debug("No Workout running - nothing to stop")
-
 
     def _get_current_measurements_series(self):
         """ Obtain the current measurement time series from sensors.""" 
@@ -359,7 +404,197 @@ class Workout():
         ats = self.sensors.sensor_hangdetector._time_series
         list = json.dumps({"CurrentMeasurementsSeries": {"time": ats, "load": als}})
         return list
+
+    def _get_current_workout(self):
+        pass # TODO implement - get current workout
+
+    def _select_next_exercise(self):
+        """ Increase set and rep counter if possible and return whether it has been possible"""
+        if self.current_rep < self.workout["Sets"][self.current_set]["Reps"] - 1:
+            self.current_rep = self.current_rep + 1
+        else:
+            self.current_rep = 0
+            if self.current_set < len (self.workout["Sets"]) - 1:
+                self.current_set = self.current_set + 1
+            else:
+                return False
+        return True
+
+    def _extract_timerlist(self):
+        total_time = 0
+        estimated_rest_time = 0
+        planned_time_sofar = 0
+
+        self._timerlist = []
+
+        for s in range (0, self.total_sets-1):
+            resttostart = self.workout["Sets"][s]["Rest-to-Start"]
+            pause = self.workout["Sets"][s]["Pause"]
+            reps = self.workout["Sets"][s]["Reps"]
+            counter = self.workout["Sets"][s]["Counter"]
+            timer_rest_to_start = {}
+            timer_rest_to_start["time_relative_start"] = total_time
+            timer_rest_to_start["time_relative_stop"] = total_time + resttostart
+            timer_rest_to_start["duration"] = resttostart
+            timer_rest_to_start["set"] = s
+            timer_rest_to_start["rep"] = ""
+            timer_rest_to_start["Text"] = "Rest to start"
+            self._timerlist.append(timer_rest_to_start)
+            total_time = total_time + resttostart
+            for r in range(0, reps-1):
+                timer_exercise = {}
+                timer_exercise["time_relative_start"] = total_time
+                timer_exercise["time_relative_stop"] = total_time + counter
+                timer_exercise["duration"] = counter
+                timer_exercise["set"] = s
+                timer_exercise["rep"] = r
+                timer_exercise["Text"] = self.workout["Sets"][s]["Exercise"]
+                self._timerlist.append(timer_exercise)
+                total_time = total_time + counter 
+                timer_pause = {}
+                timer_pause["time_relative_start"] = total_time
+                timer_pause["time_relative_stop"] = total_time + pause
+                timer_pause["duration"] = pause
+                timer_pause["set"] = s
+                timer_pause["rep"] = r
+                timer_pause["Text"] = "Pause"
+                self._timerlist.append(timer_pause)
+                total_time = total_time + pause 
+
+        print (self._timerlist)
+
+    def _adjust_timerlist(self):
+        for j in range (self._timerlist_position, len(self._timerlist)-1):
+            current_time = time.time()
+            self._timerlist[j]["time_start"] = self._timerlist[j]["time_relative_start"] + current_time
+            self._timerlist[j]["time_stop"] = self._timerlist[j]["time_relative_stop"] + current_time
+
+    def _core_loop(self):
+        # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
+        # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
+        samplingrate = 0.01
+        self._extract_timerlist()
+        self._timerlist_position = 0
+        self._adjust_timerlist()
+
+
+        while True:
+            current_time = time.time()
+
+            self._client.loop(samplingrate) #blocks for 100ms (or whatever variable given, default 1s)
+            if not self._workout_running:
+                continue 
+                
+            self.sensors.run_one_measure()
+
+            tstart = self._timerlist[self._timerlist_position]["time_start"]
+            tstop = self._timerlist[self._timerlist_position]["time_stop"]
+            ttext = self._timerlist[self._timerlist_position]["Text"]
+            trep = self._timerlist[self._timerlist_position]["rep"]
+            tset = self._timerlist[self._timerlist_position]["set"]
+            rest_time = tstop - current_time
+            elapsed_time = current_time - tstart
+            duration_time = self._timerlist[self._timerlist_position]["duration"]
+            completed_time = (elapsed_time) / (tstop-tstart)
+
+            #logging.debug("Core loop " + "{:.2f}".format(current_time) + "set " + str(tset) + " rep " + str(trep))
+
+            timerstatus = '{"Duration": '+"{:.2f}".format(duration_time)+', "Elapsed":'+"{:.2f}".format(elapsed_time)+', "Completed": '+"{:.2f}".format(completed_time)+'}'
+            self._sendmessage("/timerstatus", timerstatus)
+
+            if current_time > tstart:
+                if current_time < tstop:
+                    pass
+                    #print ("Started " + ttext)
+
+                    # Break if no hang detected
+                    # TODO self.sensors.HangDetected
+                else: 
+                    print ("Stopped")
+                    # FIXME 
+                    self._adjust_timerlist() # update all timers
+
+                    # get information on next timer set
+                    if self._timerlist_position == len(self._timerlist):
+                        tupcoming = "Done"
+                        hupcoming = ""
+                    else:
+                        tupcoming = self._timerlist[self._timerlist_position+1]["Text"] 
+                        holdtypeleft = self.workout["Sets"][tset+1]["Left"]
+                        holdtyperight= self.workout["Sets"][tset+1]["Right"]
+                        holdleft = self.board.get_hold_for_type(holdtypeleft)[0]
+                        holdright = self.board.get_hold_for_type(holdtypeleft)[-1]
+
+
+                    if (tupcoming == "Rest to start"):
+                        self._timerlist_position = self._timerlist_position + 1
+                        holds = '{"Left": "", "Right": "" }'
+
+                    if (tupcoming == "Pause"):
+                        self._timerlist_position = self._timerlist_position + 1
+                        holds = '{"Left": "", "Right": "" }'
+
+                    if (tupcoming == "Hang"):
+                        holds = '{"Left":'+holdleft+', "Right":'+holdright+' }'
+
+                        if (self.sensors.HangDetected):
+                            self._adjust_timerlist()
+                            self._timerlist_position = self._timerlist_position + 1
+                        else:
+                            self._sendmessage("/status", "Wait for a hang")
+                    
+                    self._sendmessage("/holds", holds)
+
+
+            # get current timer definitions
+            #self._get_current_workout()
+            #self.__get_current_set()
+
+
+            #self.current_set_state : Set / Pause
+            #self.current_rep_state : Exercise / Pause
+
+            #if self._timer_max < current_time: # Timer passed
+            #    self._select_next_exercise() # TODO if False - done
+                
+
+
+
+            """
+
+        self.exercise = self.workout["Sets"][self.current_set]["Exercise"]
+        self.rest_to_start = self.workout["Sets"][self.current_set]["Rest-to-Start"]
+        self.pause = self.workout["Sets"][self.current_set]["Pause"]
+        self.reps = self.workout["Sets"][self.current_set]["Reps"]
+        self.type = self.workout["Sets"][self.current_set]["Type"]
+
+
+        self.counter = self.workout["Sets"][self.current_set]["Counter"]
+
+ self.__get_current_set()
         
+        # Counter variables 
+        self.exercise_t0 = 0
+        self.exercise_t1 = self.counter
+        self.exercise_t = 0
+        self.exercise_rest = self.counter
+        self.exercise_completed = 0
+
+        # Rest to start loop
+        self.epsilon = 0.0001
+        self.run_rest_to_start()
+
+      
+       
+            self.sensors.run_one_measure()
+            #print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
+            self.assemble_message_exercise_timerstatus()
+            if (self.sensors.Changed == "NoHang"):
+                break
+            if (getattr(t, "do_stop", False)):                
+                break
+"""
+
 
 """ Main loop only for testing purposes. """
 if __name__ == "__main__":
@@ -367,6 +602,11 @@ if __name__ == "__main__":
     wa = Workout()
     #wa.run_workout()
     #wa._run_workout()
-    #wa.run_websocket_handler()       
+    #wa.run_websocket_handler()   
+    # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
+    #wa._client.loop_forever()   
+    #wa._client.loop_start()   
+    wa._core_loop()
     a = wa._calc_time_in_current_workout()   
+    #wa._run_workout()
     print (a)      

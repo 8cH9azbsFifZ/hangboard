@@ -24,13 +24,13 @@ class WebsocketHandler():
         """ Stub for compatibility with mqtt handler"""
         pass
 
-    def run_handler(self, wshost="0.0.0.0", wsport=4321):
+    def run_handler(self, hostname="0.0.0.0", port=4321):
         """
         Start the websocket server and wait for input
         """
         logging.debug ("Start websocket handler")
-        self.WSHOST = wshost
-        self.WSPORT = wsport
+        self.WSHOST = hostname
+        self.WSPORT = port
         self.start_server = websockets.serve(self.handler, self.WSHOST, self.WSPORT)
         asyncio.get_event_loop().run_until_complete(self.start_server)
         asyncio.get_event_loop().run_forever()

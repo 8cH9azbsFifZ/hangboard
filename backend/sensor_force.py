@@ -128,7 +128,7 @@ class SensorForce():
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/sensor/load"+topic
         mmessage = str(message)
-        logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
+        #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
         self._client.publish(ttopic, mmessage)
 
     def _simulate_force_sensor(self):
@@ -232,8 +232,8 @@ class SensorForce():
             if (self._simcounter+1 > len(self._simdata["time"])):
                 self._simcounter=0
             self.load_current = self._simdata["load"][self._simcounter]
-            time.sleep(0.05) # FIXME
-            logging.debug("Simulation: " + str(self._simcounter) + " load: " + str(self.load_current))
+            #time.sleep(0.05) # FIXME
+            #logging.debug("Simulation: " + str(self._simcounter) + " load: " + str(self.load_current))
 
         self._detect_hang()
         if (self.HangDetected):
