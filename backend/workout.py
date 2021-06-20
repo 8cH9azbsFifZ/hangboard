@@ -33,7 +33,15 @@ class Counter():
         self._current_rep = 0
         self._current_set_counter = 0
         self._current_exercise_type = ""
+        
+        # MQTT connection handling
+        self._client = mqtt.Client()
+        self._client.connect(hostname, port,60)
 
+        # Board configuration for hold setup
+        self._board = Board()
+        self.HoldSetup = ""
+        
         # Get all general information
         self._total_sets = len (self.workout["Sets"])
 
@@ -50,9 +58,6 @@ class Counter():
         self.TimeCompleted = 0
         self.TimeRemaining = 0
 
-        self._client = mqtt.Client()
-        self._client.connect(hostname, port,60)
-
     def _get_current_set(self):
         self._resttostart = self.workout["Sets"][self._current_set]["Rest-to-Start"]
         self._pause = self.workout["Sets"][self._current_set]["Pause"]
@@ -60,6 +65,12 @@ class Counter():
         self._counter = self.workout["Sets"][self._current_set]["Counter"]
         self._exercise = self.workout["Sets"][self._current_set]["Exercise"]
         self._current_set_total = 1 + self._reps * 2 # rest to start and #reps exercises and pauses
+
+        holdtypeleft = self.workout["Sets"][self._current_set]["Left"]
+        holdtyperight = self.workout["Sets"][self._current_set]["Right"]
+        
+        self._left = self._board.get_hold_for_type(holdtypeleft)[0]
+        self._right = self._board.get_hold_for_type(holdtyperight)[-1]
 
     def __iter__(self):
         return self
@@ -83,11 +94,13 @@ class Counter():
             # Interate through sets
             else: 
                 self._current_set = self._current_set + 1
+                self._get_current_set()
                 self._current_set_counter = 0
             self._index = self._index + 1
         else:
             raise StopIteration()
-        
+
+        self._get_current_hold_setup()
         self._start_current_timer()
 
         return self._index
@@ -107,6 +120,18 @@ class Counter():
         else:
             self._tstart = 0
             self._tduration = 0
+
+    def _get_current_hold_setup(self):
+        if (self._current_exercise_type == "Rest to start"):
+            self.HoldSetup = '{"Left": "", "Right": ""}'
+        elif (self._current_exercise_type == "Pause"):
+            self.HoldSetup = '{"Left": "", "Right": ""}'
+        elif (self._current_exercise_type == "Hang"):
+           self.HoldSetup = '{"Left": ' + self._left + ', "Right": ' + self._right + '}'
+        else:
+            self.HoldSetup = '{"Left": ' + self._left + ', "Right": ' + self._right + '}'
+
+        self._sendmessage("/holds", self.HoldSetup)
 
     def get_current_timer_state(self):
         if self._tstart > 0:
@@ -294,23 +319,6 @@ class Workout():
         # TBD Implement
         # TODO counting - how to achieve (force or distance detection?)
 
-    def __get_current_set(self):
-        """ Get parameters of the current set """
-        logging.debug('Get current set')
-
-        self.exercise = self.workout["Sets"][self.current_set]["Exercise"]
-        self.rest_to_start = self.workout["Sets"][self.current_set]["Rest-to-Start"]
-        self.pause = self.workout["Sets"][self.current_set]["Pause"]
-        self.reps = self.workout["Sets"][self.current_set]["Reps"]
-        self.type = self.workout["Sets"][self.current_set]["Type"]
-
-        holdtypeleft = self.workout["Sets"][self.current_set]["Left"]
-        holdtyperight = self.workout["Sets"][self.current_set]["Right"]
-        
-        self.left = self.board.get_hold_for_type(holdtypeleft)[0]
-        self.right = self.board.get_hold_for_type(holdtyperight)[-1]
-
-        self.counter = self.workout["Sets"][self.current_set]["Counter"]
 
     def _get_board_image_base64(self):
         """ Get the base64 image of the current board and put it in the message queue as base64 """
@@ -398,7 +406,6 @@ class Workout():
         """ Run a set in a workout. """
         logging.debug('Run exercise')
 
-        self.__get_current_set()
         
         # Counter variables 
         self.exercise_t0 = 0

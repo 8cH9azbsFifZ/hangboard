@@ -1,0 +1,12 @@
+hangboard/workout/timerstatus
+hangboard/workout/holds
+hangboard/workout/status
+
+hangboard/sensor/load/status
+hangboard/sensor/load/time
+hangboard/sensor/load/loadcurrent
+hangboard/sensor/load/loadaverage
+hangboard/sensor/load/loadmaximal
+hangboard/sensor/load/loadloss
+hangboard/sensor/load/fti
+hangboard/sensor/load/rfd
