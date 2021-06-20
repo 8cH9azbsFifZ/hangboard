@@ -132,6 +132,7 @@ class Counter():
             self.HoldSetup = '{"Left": ' + self._left + ', "Right": ' + self._right + '}'
 
         self._sendmessage("/holds", self.HoldSetup)
+        self._sendmessage("/exercisetype", self._current_exercise_type) # FIXME: put somewhere else?
 
     def get_current_timer_state(self):
         if self._tstart > 0:
