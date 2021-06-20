@@ -26,7 +26,7 @@ from board import Board
 from sensors import Sensors
 
 class Counter():
-    def __init__(self, workout):
+    def __init__(self, workout, hostname="localhost", port=1883):
         self.workout = workout
         self._index = 0
         self._current_set = 0
@@ -49,6 +49,9 @@ class Counter():
         self.TimeDuration = 0
         self.TimeCompleted = 0
         self.TimeRemaining = 0
+
+        self._client = mqtt.Client()
+        self._client.connect(hostname, port,60)
 
     def _get_current_set(self):
         self._resttostart = self.workout["Sets"][self._current_set]["Rest-to-Start"]
@@ -118,7 +121,16 @@ class Counter():
             self.TimeCompleted = 0
             self.TimeRemaining = 0
 
+        self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+'}'
+        self._sendmessage("/timerstatus", self._timerstatus)
+
         return self.TimeElapsed > self.TimeDuration
+
+    def _sendmessage(self, topic="/none", message="None"):
+        ttopic = "hangboard/workout"+topic
+        mmessage = str(message)
+        #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
+        self._client.publish(ttopic, mmessage)
 
 
 class Workout():
@@ -463,9 +475,6 @@ class Workout():
         list = json.dumps({"CurrentMeasurementsSeries": {"time": ats, "load": als}})
         return list
 
-    def _get_current_workout(self):
-        pass # TODO implement - get current workout
-
     def _select_next_exercise(self):
         """ Increase set and rep counter if possible and return whether it has been possible"""
         if self.current_rep < self.workout["Sets"][self.current_set]["Reps"] - 1:
@@ -494,8 +503,10 @@ class Workout():
             timer_done = self._counter.get_current_timer_state()
             if timer_done:
                 next(self._counter)
-            timerstatus = '{"Duration": '+"{:.2f}".format(self._counter.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self._counter.TimeElapsed) +', "Completed": '+"{:.2f}".format(self._counter.TimeCompleted)+'}'
-            self._sendmessage("/timerstatus", timerstatus)
+            # TODO - if no hang quit it
+            # TODO - start hang counter only on hang
+
+          
 
       
 
