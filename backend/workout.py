@@ -188,8 +188,8 @@ class Workout():
             self._workout_running = False
             #exit()
         if msg.payload.decode() == "Start":
-            self._adjust_timerlist()
             self._workout_running = True
+            next(self._counter)
 
      
 
@@ -478,54 +478,6 @@ class Workout():
                 return False
         return True
 
-    def _extract_timerlist(self):
-        total_time = 0
-        estimated_rest_time = 0
-        planned_time_sofar = 0
-
-        self._timerlist = []
-
-        for s in range (0, self.total_sets-1):
-            resttostart = self.workout["Sets"][s]["Rest-to-Start"]
-            pause = self.workout["Sets"][s]["Pause"]
-            reps = self.workout["Sets"][s]["Reps"]
-            counter = self.workout["Sets"][s]["Counter"]
-            timer_rest_to_start = {}
-            timer_rest_to_start["time_relative_start"] = total_time
-            timer_rest_to_start["time_relative_stop"] = total_time + resttostart
-            timer_rest_to_start["duration"] = resttostart
-            timer_rest_to_start["set"] = s
-            timer_rest_to_start["rep"] = ""
-            timer_rest_to_start["Text"] = "Rest to start"
-            self._timerlist.append(timer_rest_to_start)
-            total_time = total_time + resttostart
-            for r in range(0, reps-1):
-                timer_exercise = {}
-                timer_exercise["time_relative_start"] = total_time
-                timer_exercise["time_relative_stop"] = total_time + counter
-                timer_exercise["duration"] = counter
-                timer_exercise["set"] = s
-                timer_exercise["rep"] = r
-                timer_exercise["Text"] = self.workout["Sets"][s]["Exercise"]
-                self._timerlist.append(timer_exercise)
-                total_time = total_time + counter 
-                timer_pause = {}
-                timer_pause["time_relative_start"] = total_time
-                timer_pause["time_relative_stop"] = total_time + pause
-                timer_pause["duration"] = pause
-                timer_pause["set"] = s
-                timer_pause["rep"] = r
-                timer_pause["Text"] = "Pause"
-                self._timerlist.append(timer_pause)
-                total_time = total_time + pause 
-
-        print (self._timerlist)
-
-    def _adjust_timerlist(self):
-        for j in range (self._timerlist_position, len(self._timerlist)-1):
-            current_time = time.time()
-            self._timerlist[j]["time_start"] = self._timerlist[j]["time_relative_start"] + current_time
-            self._timerlist[j]["time_stop"] = self._timerlist[j]["time_relative_stop"] + current_time
 
     def _core_loop(self):
         # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
@@ -542,9 +494,7 @@ class Workout():
             timer_done = self._counter.get_current_timer_state()
             if timer_done:
                 next(self._counter)
-            timerstatus = '{"Duration": '+"{:.2f}".format(self._counter.TimeDuration)
-            +', "Elapsed":'+"{:.2f}".format(self._counter.TimeElapsed)
-            +', "Completed": '+"{:.2f}".format(self._counter.TimeCompleted)+'}'
+            timerstatus = '{"Duration": '+"{:.2f}".format(self._counter.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self._counter.TimeElapsed) +', "Completed": '+"{:.2f}".format(self._counter.TimeCompleted)+'}'
             self._sendmessage("/timerstatus", timerstatus)
 
       
@@ -561,13 +511,7 @@ if __name__ == "__main__":
     # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
     #wa._client.loop_forever()   
     #wa._client.loop_start()   
-    #wa._core_loop()
+    wa._core_loop()
 
     a = wa._calc_time_in_current_workout()   
     #wa._run_workout()
-    print (a)      
-    while True: 
-        c = next(wa._counter)
-        print (c)
-        print (wa._counter._current_exercise_type)
-        print (wa._counter.get_current_timer_state())
