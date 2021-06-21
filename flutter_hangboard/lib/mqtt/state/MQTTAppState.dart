@@ -16,8 +16,8 @@ class MQTTAppState with ChangeNotifier {
   double _timer_completed = 0.0;
 
   void setReceivedText(String text) {
+    _historyText = _receivedText;
     _receivedText = text;
-    _historyText = _historyText + '\n' + _receivedText;
     notifyListeners();
   }
 
