@@ -1,6 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hangboard/widgets/mqttView.dart';
+import 'package:flutter_hangboard/mqtt/state/MQTTAppState.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'dart:ui';
 import 'package:flutter/rendering.dart';
@@ -18,12 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hangboard',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: MyHomePage(title: 'Hangboard'),
-    );
+        title: 'Hangboard',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: ChangeNotifierProvider<MQTTAppState>(
+          create: (_) => MQTTAppState(),
+          child: MQTTView(),
+        )
+        //(title: 'Hangboard')),
+        );
   }
 }
 
