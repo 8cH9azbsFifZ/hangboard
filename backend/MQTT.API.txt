@@ -1,5 +1,9 @@
 hangboard/workout/timerstatus
+
+
 hangboard/workout/holds
+            self.HoldSetup = '{"Left": ' + self._left + ', "Right": ' + self._right + '}'
+
 hangboard/workout/status
 hangboard/workout/exercisetype
 

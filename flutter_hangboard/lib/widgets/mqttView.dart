@@ -17,7 +17,6 @@ class _MQTTViewState extends State<MQTTView> {
   final TextEditingController _topicTextController = TextEditingController();
   late MQTTAppState currentAppState;
   late MQTTManager manager;
-  late MQTTManager manager_control;
 
   @override
   void initState() {
@@ -57,6 +56,7 @@ class _MQTTViewState extends State<MQTTView> {
     return scaffold;
   }
 
+  // ignore: unused_element
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
       title: const Text('MQTT'),
@@ -72,6 +72,8 @@ class _MQTTViewState extends State<MQTTView> {
         _buildEditableColumn(),
         _buildTimerStatus(currentAppState.getTimerDuration,
             currentAppState.getTimerElapsed, currentAppState.getTimerCompleted),
+        _buildHoldStatus(
+            currentAppState.getHoldLeft, currentAppState.getHoldRight),
         _buildScrollableTextWith(currentAppState.getHistoryText)
       ],
     );
@@ -143,6 +145,12 @@ class _MQTTViewState extends State<MQTTView> {
               const EdgeInsets.only(left: 0, bottom: 0, top: 0, right: 0),
           labelText: hintText,
         ));
+  }
+
+  Widget _buildHoldStatus(String Left, String Right) {
+    return Column(
+      children: [Text("Left: " + Left + " - Right: " + Right)],
+    );
   }
 
   Widget _buildTimerStatus(
@@ -226,8 +234,9 @@ class _MQTTViewState extends State<MQTTView> {
 
   void _configureAndConnect() {
     // ignore: flutter_style_todos
+    // ignore: todo
     // TODO: Use UUID
-    String osPrefix = 'Flutter_iOS';
+    String osPrefix = 'Flutter_iOS'; // FIXME
     if (Platform.isAndroid) {
       osPrefix = 'Flutter_Android';
     }
@@ -238,15 +247,6 @@ class _MQTTViewState extends State<MQTTView> {
         state: currentAppState);
     manager.initializeMQTTClient();
     manager.connect();
-
-    manager_control = MQTTManager(
-        //FIXME
-        host: "localhost", //_hostTextController.text,
-        topic: "hangboard/workout/control", //_topicTextController.text,
-        identifier: osPrefix + "1",
-        state: currentAppState);
-    manager_control.initializeMQTTClient();
-    manager_control.connect();
   }
 
   void _disconnect() {
@@ -255,7 +255,7 @@ class _MQTTViewState extends State<MQTTView> {
 
   void _publishMessage(String text) {
     final String message = text;
-    manager.publish_topic("hangboard/workout/control", message);
+    manager.publish_topic("hangboard/workout/control", message); // FIXME
     _messageTextController.clear();
   }
 }

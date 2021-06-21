@@ -1,4 +1,5 @@
 import 'dart:convert';
+// ignore: unused_import
 import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
@@ -15,9 +16,25 @@ class MQTTAppState with ChangeNotifier {
   double _timer_elapsed = 0.0;
   double _timer_completed = 0.0;
 
+  String _hold_right = "X";
+  String _hold_left = "X";
+
   void setReceivedText(String text) {
     _historyText = _receivedText;
     _receivedText = text;
+    notifyListeners();
+  }
+
+  void setCurrentHolds(String text) {
+    Map<String, dynamic> holdsjson = jsonDecode(text);
+    if (holdsjson.containsKey("Left")) {
+      _hold_left = (holdsjson["Left"]).toString();
+    }
+
+    if (holdsjson.containsKey("Right")) {
+      _hold_right = holdsjson["Right"];
+    }
+    _hold_right = "ysajlkf";
     notifyListeners();
   }
 
@@ -45,6 +62,8 @@ class MQTTAppState with ChangeNotifier {
   double get getTimerDuration => _timer_duration;
   double get getTimerElapsed => _timer_elapsed;
   double get getTimerCompleted => _timer_completed;
+  String get getHoldLeft => _hold_left;
+  String get getHoldRight => _hold_right;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

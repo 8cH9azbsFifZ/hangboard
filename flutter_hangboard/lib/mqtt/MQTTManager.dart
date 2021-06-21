@@ -95,9 +95,12 @@ class MQTTManager {
   void onConnected() {
     _currentState.setAppConnectionState(MQTTAppConnectionState.connected);
     print('EXAMPLE::Mosquitto client connected....');
-    _client!.subscribe(_topic, MqttQos.atLeastOnce);
+    _client!.subscribe(_topic, MqttQos.atLeastOnce); // FIXME
     _client!
         .subscribe("hangboard/sensor/load/loadcurrent", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/sensor/load/time", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/workout/holds", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/workout/exercisetype", MqttQos.atLeastOnce);
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
       // ignore: avoid_as
       final MqttPublishMessage recMess = c![0].payload as MqttPublishMessage;
@@ -108,6 +111,9 @@ class MQTTManager {
       if (recMess.variableHeader!.topicName ==
           "hangboard/workout/timerstatus") {
         _currentState.setCurrentTimer(pt);
+      }
+      if (recMess.variableHeader!.topicName == "hangboard/workout/holds") {
+        _currentState.setCurrentHolds(pt);
       }
       _currentState.setReceivedText(pt);
       print(
