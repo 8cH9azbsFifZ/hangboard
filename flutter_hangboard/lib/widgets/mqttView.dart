@@ -17,6 +17,7 @@ class _MQTTViewState extends State<MQTTView> {
   final TextEditingController _topicTextController = TextEditingController();
   late MQTTAppState currentAppState;
   late MQTTManager manager;
+  late MQTTManager manager_control;
 
   @override
   void initState() {
@@ -69,6 +70,8 @@ class _MQTTViewState extends State<MQTTView> {
         _buildConnectionStateText(
             _prepareStateMessageFrom(currentAppState.getAppConnectionState)),
         _buildEditableColumn(),
+        _buildTimerStatus(currentAppState.getTimerDuration,
+            currentAppState.getTimerElapsed, currentAppState.getTimerCompleted),
         _buildScrollableTextWith(currentAppState.getHistoryText)
       ],
     );
@@ -82,11 +85,11 @@ class _MQTTViewState extends State<MQTTView> {
           _buildTextFieldWith(_hostTextController, 'Enter broker address',
               currentAppState.getAppConnectionState),
           const SizedBox(height: 10),
-          _buildTextFieldWith(
+          /*_buildTextFieldWith(
               _topicTextController,
               'Enter a topic to subscribe or listen',
               currentAppState.getAppConnectionState),
-          const SizedBox(height: 10),
+          const SizedBox(height: 10),*/
           _buildPublishMessageRow(),
           const SizedBox(height: 10),
           _buildConnecteButtonFrom(currentAppState.getAppConnectionState)
@@ -100,7 +103,7 @@ class _MQTTViewState extends State<MQTTView> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Expanded(
-          child: _buildTextFieldWith(_messageTextController, 'Enter a message',
+          child: _buildTextFieldWith(_messageTextController, 'Enter a command',
               currentAppState.getAppConnectionState),
         ),
         _buildSendButtonFrom(currentAppState.getAppConnectionState)
@@ -140,6 +143,19 @@ class _MQTTViewState extends State<MQTTView> {
               const EdgeInsets.only(left: 0, bottom: 0, top: 0, right: 0),
           labelText: hintText,
         ));
+  }
+
+  Widget _buildTimerStatus(
+      double TimerDuration, double TimerElapsed, double TimerCompleted) {
+    return Column(
+      children: [
+        Text(TimerElapsed.toString() +
+            " / " +
+            TimerDuration.toString() +
+            " - Completed: " +
+            TimerCompleted.toString())
+      ],
+    );
   }
 
   Widget _buildScrollableTextWith(String text) {
@@ -216,12 +232,21 @@ class _MQTTViewState extends State<MQTTView> {
       osPrefix = 'Flutter_Android';
     }
     manager = MQTTManager(
-        host: _hostTextController.text,
-        topic: _topicTextController.text,
+        host: "localhost", //_hostTextController.text,
+        topic: "hangboard/workout/timerstatus", //_topicTextController.text,
         identifier: osPrefix,
         state: currentAppState);
     manager.initializeMQTTClient();
     manager.connect();
+
+    manager_control = MQTTManager(
+        //FIXME
+        host: "localhost", //_hostTextController.text,
+        topic: "hangboard/workout/control", //_topicTextController.text,
+        identifier: osPrefix + "1",
+        state: currentAppState);
+    manager_control.initializeMQTTClient();
+    manager_control.connect();
   }
 
   void _disconnect() {
@@ -229,12 +254,8 @@ class _MQTTViewState extends State<MQTTView> {
   }
 
   void _publishMessage(String text) {
-    String osPrefix = 'Flutter_iOS';
-    if (Platform.isAndroid) {
-      osPrefix = 'Flutter_Android';
-    }
-    final String message = osPrefix + ' says: ' + text;
-    manager.publish(message);
+    final String message = text;
+    manager.publish_topic("hangboard/workout/control", message);
     _messageTextController.clear();
   }
 }

@@ -70,6 +70,12 @@ class MQTTManager {
     _client!.publishMessage(_topic, MqttQos.exactlyOnce, builder.payload!);
   }
 
+  void publish_topic(String topic, String message) {
+    final MqttClientPayloadBuilder builder = MqttClientPayloadBuilder();
+    builder.addString(message);
+    _client!.publishMessage(topic, MqttQos.exactlyOnce, builder.payload!);
+  }
+
   /// The subscribed callback
   void onSubscribed(String topic) {
     print('EXAMPLE::Subscription confirmed for topic $topic');
@@ -90,6 +96,8 @@ class MQTTManager {
     _currentState.setAppConnectionState(MQTTAppConnectionState.connected);
     print('EXAMPLE::Mosquitto client connected....');
     _client!.subscribe(_topic, MqttQos.atLeastOnce);
+    _client!
+        .subscribe("hangboard/sensor/load/loadcurrent", MqttQos.atLeastOnce);
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
       // ignore: avoid_as
       final MqttPublishMessage recMess = c![0].payload as MqttPublishMessage;
@@ -97,6 +105,10 @@ class MQTTManager {
       // final MqttPublishMessage recMess = c![0].payload;
       final String pt =
           MqttPublishPayload.bytesToStringAsString(recMess.payload.message!);
+      if (recMess.variableHeader!.topicName ==
+          "hangboard/workout/timerstatus") {
+        _currentState.setCurrentTimer(pt);
+      }
       _currentState.setReceivedText(pt);
       print(
           'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');
