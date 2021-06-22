@@ -172,6 +172,10 @@ class _MQTTViewState extends State<MQTTView> {
       double TimerDuration, double TimerElapsed, double TimerCompleted) {
     return Column(
       children: [
+        LinearProgressIndicator(
+          value: TimerCompleted,
+          semanticsLabel: 'Linear progress indicator',
+        ),
         Text(TimerElapsed.toString() +
             " / " +
             TimerDuration.toString() +

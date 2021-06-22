@@ -18,7 +18,8 @@ class MQTTAppState with ChangeNotifier {
 
   String _hold_right = '';
   String _hold_left = '';
-  String _imagename = 'images/zlagboard_evo.png'; // FIXME
+  String _imagename_noholds = 'images/zlagboard_evo.png'; // FIXME
+  String _imagename = '';
 
   String _exercise_type = '';
 
@@ -40,6 +41,8 @@ class MQTTAppState with ChangeNotifier {
     if (_hold_left != "") {
       _imagename =
           'images/zlagboard_evo.' + _hold_left + '.' + _hold_right + '.png';
+    } else {
+      _imagename = _imagename_noholds;
     }
     notifyListeners();
   }
