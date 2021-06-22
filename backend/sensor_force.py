@@ -140,8 +140,8 @@ class SensorForce():
         self._client.disconnect()
 
         logging.debug("Cleaning...")
-
-        GPIO.cleanup()
+        if not EMULATE_HX711:
+            GPIO.cleanup()
             
         logging.debug("Bye!")
         sys.exit()
