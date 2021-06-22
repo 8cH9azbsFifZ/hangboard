@@ -252,6 +252,7 @@ class SensorForce():
             self.RFD = 0
             self.LoadLoss = 0
 
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + '}')
         self._sendmessage("/time", "{:.2f}".format(self.time_current))
         self._sendmessage("/loadcurrent", "{:.2f}".format(self.load_current))
         self._sendmessage("/loadaverage", "{:.2f}".format(self.AverageLoad))

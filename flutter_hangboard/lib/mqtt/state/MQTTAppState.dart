@@ -1,6 +1,7 @@
 import 'dart:convert';
 // ignore: unused_import
 import 'dart:ffi';
+import 'package:fl_chart/fl_chart.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -19,9 +20,38 @@ class MQTTAppState with ChangeNotifier {
   String _hold_right = '';
   String _hold_left = '';
   String _imagename_noholds = 'images/zlagboard_evo.png'; // FIXME
-  String _imagename = '';
+  String _imagename = 'images/zlagboard_evo.png';
 
   String _exercise_type = '';
+
+  List<FlSpot> _plot_load_current = [];
+
+  void setLoadStatus(String text) {
+    Map<String, dynamic> loadjson = jsonDecode(text);
+    double time = 0.0;
+    double load = 0.0;
+
+    if (loadjson.containsKey("time")) {
+      time = loadjson["time"];
+    }
+
+    if (loadjson.containsKey("loadcurrent")) {
+      load = loadjson["loadcurrent"];
+    }
+
+    _plot_load_current.add(FlSpot(time, load));
+    //double t0 =
+    /*
+    if (mytimes.length > 2) {
+      double t0 = double.parse(mytimes[0].toString());
+      for (int i = 0; i < mytimes.length; i++) {
+        mydata.add(FlSpot(
+          double.parse(mytimes[i].toString()) - t0,
+          double.parse(myload[i].toString()),
+        ));
+      }
+    }*/
+  }
 
   void setReceivedText(String text) {
     _historyText = _receivedText;
@@ -84,6 +114,7 @@ class MQTTAppState with ChangeNotifier {
   String get getHoldRight => _hold_right;
   String get getImageName => _imagename;
   String get getExerciseType => _exercise_type;
+  List<FlSpot> get getLoadCurrentData => _plot_load_current;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

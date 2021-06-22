@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_hangboard/mqtt/state/MQTTAppState.dart';
 import 'package:flutter_hangboard/mqtt/MQTTManager.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class MQTTView extends StatefulWidget {
   @override
@@ -77,7 +78,8 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getHoldLeft, currentAppState.getHoldRight),
         _buildExerciseType(currentAppState.getExerciseType),
         _buildControls(currentAppState.getAppConnectionState),
-        _buildScrollableTextWith(currentAppState.getHistoryText)
+        _buildScrollableTextWith(currentAppState.getHistoryText),
+        _buildLoadPlot(currentAppState.getLoadCurrentData)
       ],
     );
   }
@@ -88,6 +90,143 @@ class _MQTTViewState extends State<MQTTView> {
     ]);
   }
 //
+
+  Widget _buildLoadPlot(List<FlSpot> LoadCurrentData) {
+    //return Text("Load Plot");
+    List<Color> gradientColors = [
+      // https://api.flutter.dev/flutter/dart-ui/Color-class.html
+      const Color.fromRGBO(0, 0, 200, 0.4),
+      const Color.fromRGBO(200, 0, 0, 1.0),
+      //const Color(0xff0000ee),
+      //const Color(0x0000ffff),
+    ];
+    return Row(children: [
+      LoadCurrentData.length < 3
+          ? Text("No Hang - No Load")
+          : Expanded(
+              flex: 3,
+              child: 1 == 0
+                  ? Text("ja")
+                  : Stack(
+                      children: <Widget>[
+                        AspectRatio(
+                          aspectRatio: 5,
+                          child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 0.0, left: 0.0, top: 0, bottom: 0),
+                              child: LineChart(
+                                LineChartData(
+                                  gridData: FlGridData(
+                                    // Grid
+                                    show: true,
+                                    drawVerticalLine: true,
+                                    getDrawingHorizontalLine: (value) {
+                                      // Grid Horizontal
+                                      return FlLine(
+                                        color: const Color(0xff37434d),
+                                        strokeWidth: 1,
+                                      );
+                                    },
+                                    getDrawingVerticalLine: (value) {
+                                      // Grid Vertical
+                                      return FlLine(
+                                        color: const Color(0xff37434d),
+                                        strokeWidth: 1,
+                                      );
+                                    },
+                                  ),
+                                  titlesData: FlTitlesData(
+                                    // X Axis
+                                    show: true,
+                                    bottomTitles: SideTitles(
+                                      showTitles: true,
+                                      reservedSize: 22,
+                                      getTextStyles: (value) => const TextStyle(
+                                          color: Color(0xff68737d),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                      getTitles: (value) {
+                                        // X Axis description
+
+                                        return value.toString(); //'';
+                                      },
+                                      margin: 8,
+                                    ),
+                                    leftTitles: SideTitles(
+                                      // Y Axis
+                                      showTitles: true,
+                                      getTextStyles: (value) => const TextStyle(
+                                        color: Color(0xff67727d),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                      getTitles: (value) {
+                                        switch (value.toInt()) {
+                                          case 10:
+                                            return '10';
+                                          case 20:
+                                            return '20';
+                                          case 30:
+                                            return '30';
+                                          case 40:
+                                            return '40';
+                                          case 50:
+                                            return '50';
+                                          case 60:
+                                            return '60';
+                                          case 70:
+                                            return '70';
+                                          case 80:
+                                            return '80';
+                                          case 90:
+                                            return '90';
+                                        }
+                                        return '';
+                                      },
+                                      reservedSize: 28,
+                                      margin: 12,
+                                    ),
+                                  ),
+                                  borderData: FlBorderData(
+                                      show: true,
+                                      border: Border.all(
+                                          color: const Color(0xff37434d),
+                                          width: 1)),
+                                  //minX: 0, // Define extrema if needed
+                                  //maxX: 10,
+                                  minY: 0,
+                                  maxY: 90,
+
+                                  lineBarsData: [
+                                    LineChartBarData(
+                                      spots: LoadCurrentData,
+                                      //isCurved: true,
+                                      colors: gradientColors,
+                                      barWidth: 5,
+                                      //  isStrokeCapRound: true,
+                                      dotData: FlDotData(
+                                        show: false,
+                                      ),
+                                      belowBarData: BarAreaData(
+                                        show: true,
+                                        colors: gradientColors
+                                            .map((color) =>
+                                                color.withOpacity(0.3))
+                                            .toList(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+            )
+    ]);
+  }
 
   Widget _buildEditableColumn() {
     return Padding(

@@ -8,6 +8,8 @@ hangboard/workout/status
 
 hangboard/workout/exercisetype
 
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + '}')
+
 hangboard/sensor/load/status
 hangboard/sensor/load/time
 hangboard/sensor/load/loadcurrent
