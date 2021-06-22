@@ -523,7 +523,7 @@ class Workout():
 if __name__ == "__main__":
     print ("Starting")
 
-    wa = Workout()
+    wa = Workout(hostname="t20")
     #wa.run_workout()
     #wa._run_workout()
     #wa.run_websocket_handler()   

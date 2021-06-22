@@ -424,7 +424,7 @@ class _MQTTViewState extends State<MQTTView> {
       osPrefix = 'Flutter_Android';
     }
     manager = MQTTManager(
-        host: "localhost", //_hostTextController.text,
+        host: "t20", //_hostTextController.text,
         topic: "hangboard/workout/timerstatus", //_topicTextController.text,
         identifier: osPrefix,
         state: currentAppState);

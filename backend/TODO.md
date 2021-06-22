@@ -25,3 +25,4 @@
 # Backend
 + MongoDB https://realpython.com/introduction-to-mongodb-and-python/
 + Maybe: protobuf to save bandwidth and be safe on types
++ Alternatively: apt-get install mosquitto
