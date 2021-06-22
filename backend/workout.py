@@ -201,9 +201,9 @@ class Workout():
         self._sendmessage("/status", "Starting")
 
         self.board = Board()
-        self.sensors = Sensors()
+        self.sensors = Sensors(hostname=hostname)
 
-        self._counter = Counter(self.workout)
+        self._counter = Counter(self.workout, hostname=hostname)
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
