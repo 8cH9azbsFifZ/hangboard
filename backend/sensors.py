@@ -22,7 +22,7 @@ from sensor_zlagboard import SensorZlagboard
 from sensor_force import SensorForce
 
 class Sensors():
-    def __init__(self, hangdetector = "Force", sampling_interval = 0.01):
+    def __init__(self, hangdetector = "Force", sampling_interval = 0.01, hostname="localhost"):
         
         # Hang State
         self.HangDetected = False
@@ -46,13 +46,15 @@ class Sensors():
         self.RFD = 0
         self.LoadLoss = 0
 
+        self._hostname = hostname
+
         self._init_sensors()
 
 
     def _init_sensors(self):
         if (self._hangdetector == "Force"):
             logging.debug("Hangdetector: force")
-            self.sensor_hangdetector = SensorForce(sampling_interval = self._sampling_interval)
+            self.sensor_hangdetector = SensorForce(sampling_interval = self._sampling_interval, hostname=self._hostname)
         if (self._hangdetector == "Zlagboard"):
             logging.debug("Hangdetector: zlagboard")
             self.sensor_hangdetector = SensorZlagboard(sampling_interval = self._sampling_interval)        
