@@ -76,6 +76,7 @@ class _MQTTViewState extends State<MQTTView> {
         _buildHoldStatus(
             currentAppState.getHoldLeft, currentAppState.getHoldRight),
         _buildExerciseType(currentAppState.getExerciseType),
+        _buildControls(currentAppState.getAppConnectionState),
         _buildScrollableTextWith(currentAppState.getHistoryText)
       ],
     );
@@ -185,6 +186,30 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
+  Widget _buildControls(MQTTAppConnectionState state) {
+    return Row(children: [
+      Text("Controls: "),
+      FloatingActionButton(
+          onPressed: _sendMessageStart,
+          child: Icon(Icons
+              .play_arrow)), // https://fonts.google.com/icons?selected=Material+Icons+Outlined:play_arrow
+
+      FloatingActionButton(
+          onPressed: _sendMessagePause, // FIXME: implement a pause
+          child: Icon(Icons.do_not_touch)),
+      FloatingActionButton(
+          onPressed: _sendMessageStop, child: Icon(Icons.stop)),
+      FloatingActionButton(
+          onPressed: _sendMessageStart, // FIXME: implement
+          child: Icon(Icons.restart_alt)),
+      FloatingActionButton(
+          onPressed: _configureAndConnect, // FIXME: state, not button
+          child: state == MQTTAppConnectionState.connected
+              ? Icon(Icons.wifi)
+              : Icon(Icons.wifi_off)),
+    ]);
+  }
+
   Widget _buildScrollableTextWith(String text) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -270,6 +295,18 @@ class _MQTTViewState extends State<MQTTView> {
 
   void _disconnect() {
     manager.disconnect();
+  }
+
+  void _sendMessageStart() {
+    _publishMessage("Start");
+  }
+
+  void _sendMessageStop() {
+    _publishMessage("Stop");
+  }
+
+  void _sendMessagePause() {
+    _publishMessage("Pause");
   }
 
   void _publishMessage(String text) {
