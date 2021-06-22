@@ -69,15 +69,24 @@ class _MQTTViewState extends State<MQTTView> {
       children: <Widget>[
         _buildConnectionStateText(
             _prepareStateMessageFrom(currentAppState.getAppConnectionState)),
+        _buildHangboardImage(currentAppState.getImageName),
         _buildEditableColumn(),
         _buildTimerStatus(currentAppState.getTimerDuration,
             currentAppState.getTimerElapsed, currentAppState.getTimerCompleted),
         _buildHoldStatus(
             currentAppState.getHoldLeft, currentAppState.getHoldRight),
+        _buildExerciseType(currentAppState.getExerciseType),
         _buildScrollableTextWith(currentAppState.getHistoryText)
       ],
     );
   }
+
+  Widget _buildHangboardImage(String Imagename) {
+    return Column(children: [
+      Image.asset(Imagename, fit: BoxFit.cover, width: 500),
+    ]);
+  }
+//
 
   Widget _buildEditableColumn() {
     return Padding(
@@ -150,6 +159,12 @@ class _MQTTViewState extends State<MQTTView> {
   Widget _buildHoldStatus(String Left, String Right) {
     return Column(
       children: [Text("Left: " + Left + " - Right: " + Right)],
+    );
+  }
+
+  Widget _buildExerciseType(String Exercise) {
+    return Column(
+      children: [Text("Exercise: " + Exercise)],
     );
   }
 

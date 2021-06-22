@@ -115,6 +115,10 @@ class MQTTManager {
       if (recMess.variableHeader!.topicName == "hangboard/workout/holds") {
         _currentState.setCurrentHolds(pt);
       }
+      if (recMess.variableHeader!.topicName ==
+          "hangboard/workout/exercisetype") {
+        _currentState.setExerciseType(pt);
+      }
       _currentState.setReceivedText(pt);
       print(
           'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');

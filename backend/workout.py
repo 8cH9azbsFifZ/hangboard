@@ -127,12 +127,12 @@ class Counter():
         elif (self._current_exercise_type == "Pause"):
             self.HoldSetup = '{"Left": "", "Right": ""}'
         elif (self._current_exercise_type == "Hang"):
-           self.HoldSetup = '{"Left": ' + self._left + ', "Right": ' + self._right + '}'
+           self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
         else:
-            self.HoldSetup = '{"Left": ' + self._left + ', "Right": ' + self._right + '}'
+            self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
 
         self._sendmessage("/holds", self.HoldSetup)
-        self._sendmessage("/exercisetype", self._current_exercise_type) # FIXME: put somewhere else?
+        self._sendmessage("/exercisetype", '"'+self._current_exercise_type+'"') # FIXME: put somewhere else?
 
     def get_current_timer_state(self):
         if self._tstart > 0:

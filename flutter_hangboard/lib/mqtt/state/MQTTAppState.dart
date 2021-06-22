@@ -16,8 +16,11 @@ class MQTTAppState with ChangeNotifier {
   double _timer_elapsed = 0.0;
   double _timer_completed = 0.0;
 
-  String _hold_right = "X";
-  String _hold_left = "X";
+  String _hold_right = '';
+  String _hold_left = '';
+  String _imagename = 'images/zlagboard_evo.png'; // FIXME
+
+  String _exercise_type = '';
 
   void setReceivedText(String text) {
     _historyText = _receivedText;
@@ -28,13 +31,16 @@ class MQTTAppState with ChangeNotifier {
   void setCurrentHolds(String text) {
     Map<String, dynamic> holdsjson = jsonDecode(text);
     if (holdsjson.containsKey("Left")) {
-      _hold_left = (holdsjson["Left"]).toString();
+      _hold_left = holdsjson["Left"];
     }
 
     if (holdsjson.containsKey("Right")) {
       _hold_right = holdsjson["Right"];
     }
-    _hold_right = "ysajlkf";
+    if (_hold_left != "") {
+      _imagename =
+          'images/zlagboard_evo.' + _hold_left + '.' + _hold_right + '.png';
+    }
     notifyListeners();
   }
 
@@ -52,6 +58,15 @@ class MQTTAppState with ChangeNotifier {
     notifyListeners();
   }
 
+  void setExerciseType(String text) {
+    // Map<String, dynamic> exercisejson = jsonDecode(text);
+    //if (timerjson.containsKey("Duration")) {
+    //  _timer_duration = timerjson["Duration"];
+    //}
+    _exercise_type = text;
+    notifyListeners();
+  }
+
   void setAppConnectionState(MQTTAppConnectionState state) {
     _appConnectionState = state;
     notifyListeners();
@@ -64,6 +79,8 @@ class MQTTAppState with ChangeNotifier {
   double get getTimerCompleted => _timer_completed;
   String get getHoldLeft => _hold_left;
   String get getHoldRight => _hold_right;
+  String get getImageName => _imagename;
+  String get getExerciseType => _exercise_type;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }
