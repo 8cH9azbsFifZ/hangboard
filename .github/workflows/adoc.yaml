@@ -30,7 +30,7 @@ jobs:
         template: '@asyncapi/html-template@0.15.4'  #In case of template from npm, because of @ it must be in quotes
         filepath: backend/asyncapi.yaml
         #parameters: baseHref=/test-experiment/ sidebarOrganization=byTags #space separated list of key/values
-        output: generated-html
+        output: api
 
     - name: Print execution time
       run: echo "Time ${{ steps.adocbuild.outputs.time }}"
