@@ -22,13 +22,6 @@ class _MQTTViewState extends State<MQTTView> {
   @override
   void initState() {
     super.initState();
-
-    /*
-    _hostTextController.addListener(_printLatestValue);
-    _messageTextController.addListener(_printLatestValue);
-    _topicTextController.addListener(_printLatestValue);
-
-     */
   }
 
   @override
@@ -38,15 +31,6 @@ class _MQTTViewState extends State<MQTTView> {
     _topicTextController.dispose();
     super.dispose();
   }
-
-  /*
-  _printLatestValue() {
-    print("Second text field: ${_hostTextController.text}");
-    print("Second text field: ${_messageTextController.text}");
-    print("Second text field: ${_topicTextController.text}");
-  }
-
-   */
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +54,8 @@ class _MQTTViewState extends State<MQTTView> {
       children: <Widget>[
         _buildConnectionStateText(
             _prepareStateMessageFrom(currentAppState.getAppConnectionState)),
-        _buildHangboardImage(currentAppState.getImageName),
         _buildEditableColumn(),
+        _buildHangboardImage(currentAppState.getImageName),
         _buildTimerStatus(currentAppState.getTimerDuration,
             currentAppState.getTimerElapsed, currentAppState.getTimerCompleted),
         _buildHoldStatus(
@@ -97,8 +81,6 @@ class _MQTTViewState extends State<MQTTView> {
       // https://api.flutter.dev/flutter/dart-ui/Color-class.html
       const Color.fromRGBO(0, 0, 200, 0.4),
       const Color.fromRGBO(200, 0, 0, 1.0),
-      //const Color(0xff0000ee),
-      //const Color(0x0000ffff),
     ];
     return Row(children: [
       LoadCurrentData.length < 3
@@ -236,11 +218,6 @@ class _MQTTViewState extends State<MQTTView> {
           _buildTextFieldWith(_hostTextController, 'Enter broker address',
               currentAppState.getAppConnectionState),
           const SizedBox(height: 10),
-          /*_buildTextFieldWith(
-              _topicTextController,
-              'Enter a topic to subscribe or listen',
-              currentAppState.getAppConnectionState),
-          const SizedBox(height: 10),*/
           _buildPublishMessageRow(),
           const SizedBox(height: 10),
           _buildConnecteButtonFrom(currentAppState.getAppConnectionState)
@@ -339,7 +316,7 @@ class _MQTTViewState extends State<MQTTView> {
       FloatingActionButton(
           onPressed: _sendMessageStop, child: Icon(Icons.stop)),
       FloatingActionButton(
-          onPressed: _sendMessageStart, // FIXME: implement
+          onPressed: _sendMessageRestart, // FIXME: implement
           child: Icon(Icons.restart_alt)),
       FloatingActionButton(
           onPressed: _configureAndConnect, // FIXME: state, not button
@@ -419,14 +396,12 @@ class _MQTTViewState extends State<MQTTView> {
     // ignore: flutter_style_todos
     // ignore: todo
     // TODO: Use UUID
-    String osPrefix = 'Flutter_iOS'; // FIXME
-    if (Platform.isAndroid) {
-      osPrefix = 'Flutter_Android';
-    }
+    String myIdentifier = 'Hangboard App'; // FIXME
+
     manager = MQTTManager(
         host: "t20", //_hostTextController.text,
         topic: "hangboard/workout/timerstatus", //_topicTextController.text,
-        identifier: osPrefix,
+        identifier: myIdentifier,
         state: currentAppState);
     manager.initializeMQTTClient();
     manager.connect();
@@ -442,6 +417,10 @@ class _MQTTViewState extends State<MQTTView> {
 
   void _sendMessageStop() {
     _publishMessage("Stop");
+  }
+
+  void _sendMessageRestart() {
+    _publishMessage("Restart");
   }
 
   void _sendMessagePause() {

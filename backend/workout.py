@@ -165,6 +165,7 @@ class Workout():
     """
     def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json",
         hostname="localhost", port=1883):
+        self._hostname = hostname
         self.workoutdir = workoutdir
         self.select_workout(workoutdir + "/" + workoutfile)
         self.exercise_status = "Status"
@@ -228,6 +229,9 @@ class Workout():
         if msg.payload.decode() == "Start":
             self._workout_running = True
             next(self._counter)
+        if msg.payload.decode() == "Restart":
+            self._workout_running = True
+            self._counter = Counter(self.workout, hostname=self._hostname)
 
      
 
