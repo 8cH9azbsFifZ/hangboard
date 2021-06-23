@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_hangboard/mqtt/state/MQTTAppState.dart';
 import 'package:flutter_hangboard/mqtt/MQTTManager.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 class MQTTView extends StatefulWidget {
   @override
@@ -18,6 +20,9 @@ class _MQTTViewState extends State<MQTTView> {
   final TextEditingController _topicTextController = TextEditingController();
   late MQTTAppState currentAppState;
   late MQTTManager manager;
+
+  AudioPlayer audioPlayer = AudioPlayer();
+  final assetsAudioPlayer = AssetsAudioPlayer();
 
   @override
   void initState() {
@@ -56,8 +61,11 @@ class _MQTTViewState extends State<MQTTView> {
             _prepareStateMessageFrom(currentAppState.getAppConnectionState)),
         _buildEditableColumn(),
         _buildHangboardImage(currentAppState.getImageName),
-        _buildTimerStatus(currentAppState.getTimerDuration,
-            currentAppState.getTimerElapsed, currentAppState.getTimerCompleted),
+        _buildTimerStatus(
+            currentAppState.getTimerDuration,
+            currentAppState.getTimerElapsed,
+            currentAppState.getTimerCompleted,
+            currentAppState.getTimerCountdown),
         _buildHoldStatus(
             currentAppState.getHoldLeft, currentAppState.getHoldRight),
         _buildExerciseType(currentAppState.getExerciseType),
@@ -285,8 +293,38 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
-  Widget _buildTimerStatus(
-      double TimerDuration, double TimerElapsed, double TimerCompleted) {
+  Widget _buildTimerStatus(double TimerDuration, double TimerElapsed,
+      double TimerCompleted, double TimerCountdown) {
+    if (TimerCountdown == 10.0) {
+      _playSFX10();
+    }
+    if (TimerCountdown == 9.0) {
+      _playSFX("images/9.mp3");
+    }
+    if (TimerCountdown == 8.0) {
+      _playSFX("images/8.mp3");
+    }
+    if (TimerCountdown == 7.0) {
+      _playSFX("images/7.mp3");
+    }
+    if (TimerCountdown == 6.0) {
+      _playSFX("images/6.mp3");
+    }
+    if (TimerCountdown == 5.0) {
+      _playSFX("images/5.mp3");
+    }
+    if (TimerCountdown == 4.0) {
+      _playSFX("images/4.mp3");
+    }
+    if (TimerCountdown == 3.0) {
+      _playSFX("images/3.mp3");
+    }
+    if (TimerCountdown == 2.0) {
+      _playSFX("images/2.mp3");
+    }
+    if (TimerCountdown == 1.0) {
+      _playSFX("images/1.mp3");
+    }
     return Column(
       children: [
         LinearProgressIndicator(
@@ -432,4 +470,59 @@ class _MQTTViewState extends State<MQTTView> {
     manager.publish_topic("hangboard/workout/control", message); // FIXME
     _messageTextController.clear();
   }
+
+  _playSFX(String Filename) async {
+    await assetsAudioPlayer.open(
+      Audio(Filename),
+    );
+  }
+
+  _playSFX10() async {
+    await assetsAudioPlayer.open(
+      Audio("images/10.mp3"),
+    );
+  }
+
+  _playSFX9() async {
+    await assetsAudioPlayer.open(
+      Audio("images/9.mp3"),
+    );
+  }
+
+  _playSFX8() async {
+    await audioPlayer.play("images/8.mp3", isLocal: true);
+  }
+
+  _playSFX7() async {
+    await audioPlayer.play("images/7.mp3", isLocal: true);
+  }
+
+  _playSFX6() async {
+    await audioPlayer.play("images/6.mp3", isLocal: true);
+  }
+
+  _playSFX5() async {
+    await audioPlayer.play("images/5.mp3", isLocal: true);
+  }
+
+  _playSFX4() async {
+    await audioPlayer.play("images/4.mp3", isLocal: true);
+  }
+
+  _playSFX3() async {
+    await audioPlayer.play("images/3.mp3", isLocal: true);
+  }
+
+  _playSFX2() async {
+    await audioPlayer.play("images/2.mp3", isLocal: true);
+  }
+
+  _playSFX1() async {
+    await audioPlayer.play("images/1.mp3", isLocal: true);
+  }
+
+  /*_playSFXDone() async {
+    await audioPlayer.play("images/done.mp3", isLocal: true);
+  }*/
+
 }

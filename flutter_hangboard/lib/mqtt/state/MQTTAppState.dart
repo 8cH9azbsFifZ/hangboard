@@ -16,6 +16,7 @@ class MQTTAppState with ChangeNotifier {
   double _timer_duration = 0.0;
   double _timer_elapsed = 0.0;
   double _timer_completed = 0.0;
+  double _timer_countdown = -1.0;
 
   String _hold_right = '';
   String _hold_left = '';
@@ -88,6 +89,9 @@ class MQTTAppState with ChangeNotifier {
     if (timerjson.containsKey("Completed")) {
       _timer_completed = timerjson["Completed"];
     }
+    if (timerjson.containsKey("Countdown")) {
+      _timer_countdown = timerjson["Countdown"];
+    }
     notifyListeners();
   }
 
@@ -110,6 +114,7 @@ class MQTTAppState with ChangeNotifier {
   double get getTimerDuration => _timer_duration;
   double get getTimerElapsed => _timer_elapsed;
   double get getTimerCompleted => _timer_completed;
+  double get getTimerCountdown => _timer_countdown;
   String get getHoldLeft => _hold_left;
   String get getHoldRight => _hold_right;
   String get getImageName => _imagename;

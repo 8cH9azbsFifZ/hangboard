@@ -57,6 +57,8 @@ class Counter():
         self.TimeDuration = 0
         self.TimeCompleted = 0
         self.TimeRemaining = 0
+        self._lastcountdown = 0
+        self.TimeCountdown = 0
 
     def _get_current_set(self):
         self._resttostart = self.workout["Sets"][self._current_set]["Rest-to-Start"]
@@ -141,13 +143,19 @@ class Counter():
             self.TimeDuration = self._tduration
             self.TimeCompleted = self.TimeElapsed / self.TimeDuration
             self.TimeRemaining = self.TimeDuration - self.TimeElapsed
+            (current_remaining_full_second, current_remaining_full_second_decimals) = divmod(self.TimeRemaining + 1,1)
+            if self._lastcountdown != current_remaining_full_second:
+                self._lastcountdown = current_remaining_full_second
+                self.TimeCountdown = current_remaining_full_second
+            else:
+                self.TimeCountdown = -1
         else:
             self.TimeElapsed = 0
             self.TimeDuration = 0
             self.TimeCompleted = 0
             self.TimeRemaining = 0
 
-        self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+'}'
+        self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + '}'
         self._sendmessage("/timerstatus", self._timerstatus)
 
         return self.TimeElapsed > self.TimeDuration
