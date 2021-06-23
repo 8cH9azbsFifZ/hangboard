@@ -1,0 +1,66 @@
+asyncapi: 2.0.0
+info:
+  title: Hangboard application
+  version: '0.0.1'
+  description: |
+    Force sensing hangboard application.
+    Backend communication protocol.
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+servers:
+  mosquitto:
+    url: mqtt://t20
+    protocol: mqtt
+channels:
+  hangboard/workout/control:
+    publish:
+      summary: Control the hangboard timer.
+      operationId: onControlTimer
+      message:
+        name: ControlTimer
+        payload:
+          type: object
+          properties:
+            command:
+              type: string
+              description: Command.      
+              pattern: '^Start .+$' 
+  light/gz1:
+    publish:
+      summary: Inform about environmental lighting conditions for a particular streetlight.
+      operationId: onLightMeasured1
+      message:
+        name: LightMeasured
+        payload:
+          type: object
+          properties:
+            id:
+              type: integer
+              minimum: 0
+              description: Id of the streetlight.
+            lumens:
+              type: integer
+              minimum: 0
+              description: Light intensity measured in lumens.
+            sentAt:
+              type: string
+              format: date-time
+              description: Date and time when the message was sent.          
+  hangboard/workout/holds:
+    subscribe:
+      summary: Information on the currently used holds.
+      operationId: SetConfiguredHolds
+      message:
+        name: Holds Used
+        payload:
+          type: object
+          properties:
+            left:
+              type: string
+              description: Left hold.
+              examples: ["A1","A2"]
+            right:
+              type: string
+              description: Right hold.
+              examples: ["A7","A6"]
