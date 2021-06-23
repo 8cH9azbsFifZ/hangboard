@@ -88,3 +88,20 @@ channels:
               type: string
               description: Type of exercise.
               examples: ["Hang", "Maximum Hang", "Pull Up"]
+  hangboard/sensor/load/loadstatus:
+    subscribe:
+      summary: Information on the current load status including the calculated values.
+      operationId: GetCurrentLoadStatus
+      message:
+        name: Load Status
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
+            loadcurrent:
+              type: number
+              description: Current load in kg.
+              example: 23.2
