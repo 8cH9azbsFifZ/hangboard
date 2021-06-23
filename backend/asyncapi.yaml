@@ -47,16 +47,16 @@ channels:
     subscribe:
       summary: Get information on the current set.
       operationId: GetSetInfo
-  #     message:
-  #       name: Current Set
-  #       payload:
-  #         type: object
-  #         properties:
-  #           resttostart:
-  #             type: integer
-  #             minimum: 0 
-  #             description: Rest to start time in seconds.
-  #             examples: 5
+      message:
+        name: Current Set
+        payload:
+          type: object
+          properties:
+            resttostart:
+              type: integer
+              minimum: 0 
+              description: Rest to start time in seconds.
+              example: 5
   #           exercise:
   #             type: string
   #             description: Exercise short description.
