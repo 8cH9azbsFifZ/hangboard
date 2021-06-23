@@ -43,10 +43,10 @@ channels:
               type: string
               description: Right hold.
               examples: ["A7","A6"]
-  # hangboard/workout/setinfo:
-  #   subscribe:
-  #     summary: Get information on the current set.
-  #     operationId: GetSetInfo
+  hangboard/workout/setinfo:
+    subscribe:
+      summary: Get information on the current set.
+      operationId: GetSetInfo
   #     message:
   #       name: Current Set
   #       payload:
