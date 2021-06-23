@@ -43,48 +43,48 @@ channels:
               type: string
               description: Right hold.
               examples: ["A7","A6"]
-  hangboard/workout/setinfo:
-    subscribe:
-      summary: Get information on the current set.
-      operationId: GetSetInfo
-      message:
-        name: Current Set
-        payload:
-          type: object
-          properties:
-            resttostart:
-              type: integer
-              minimum: 0 
-              description: Rest to start time in seconds.
-              examples: 5
-            exercise:
-              type: string
-              description: Exercise short description.
-              examples: ["Hang","Pull Up"]
-            counter:
-              type: integer
-              minimum: 0
-              description: How long to run in seconds or how much repetitions (for pull ups).
-              examples: 10
-            pause:
-              type: integer
-              minimum: 0 
-              description: Pause between the exercises in seconds.
-              examples: 5
-            reps:
-              type: integer
-              minimum: 0
-              description: Number of exercise repetitions in this set.
-              examples: 3
-            left:
-              type: string
-              description: Left hold to use.
-              examples: ["A1","JUG"]
-            right:
-              type: string
-              description: Right hold to use.
-              examples: ["A7","EDGE"]
-            type: 
-              type: string
-              description: Type of exercise.
-              examples: ["Hang", "Maximum Hang", "Pull Up"]
+  # hangboard/workout/setinfo:
+  #   subscribe:
+  #     summary: Get information on the current set.
+  #     operationId: GetSetInfo
+  #     message:
+  #       name: Current Set
+  #       payload:
+  #         type: object
+  #         properties:
+  #           resttostart:
+  #             type: integer
+  #             minimum: 0 
+  #             description: Rest to start time in seconds.
+  #             examples: 5
+  #           exercise:
+  #             type: string
+  #             description: Exercise short description.
+  #             examples: ["Hang","Pull Up"]
+  #           counter:
+  #             type: integer
+  #             minimum: 0
+  #             description: How long to run in seconds or how much repetitions (for pull ups).
+  #             examples: 10
+  #           pause:
+  #             type: integer
+  #             minimum: 0 
+  #             description: Pause between the exercises in seconds.
+  #             examples: 5
+  #           reps:
+  #             type: integer
+  #             minimum: 0
+  #             description: Number of exercise repetitions in this set.
+  #             examples: 3
+  #           left:
+  #             type: string
+  #             description: Left hold to use.
+  #             examples: ["A1","JUG"]
+  #           right:
+  #             type: string
+  #             description: Right hold to use.
+  #             examples: ["A7","EDGE"]
+  #           type: 
+  #             type: string
+  #             description: Type of exercise.
+  #             examples: ["Hang", "Maximum Hang", "Pull Up"]
