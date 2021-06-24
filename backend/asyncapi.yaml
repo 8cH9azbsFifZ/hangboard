@@ -164,7 +164,6 @@ channels:
               type: number
               description: Rate of force development
               example: 12.2
-
   hangboard/sensor/sensorstatus:
     subscribe:
       summary: Information on the current loasensord status including the calculated values.
@@ -175,10 +174,10 @@ channels:
           type: object
           properties:
              HangChangeDetected:
-              type: boolean # String
+              type: String # 
               description: Is there a change in hang status detected?
-              example: true            
+              example: ["Hang", "NoHang"]            
             HangDetected:
-              type: boolean # String
+              type: String # True / False
               description: Somebody hanging? Yes or no?
-              example: false
+              examples: ["True", "False"]
