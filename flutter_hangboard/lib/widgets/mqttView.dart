@@ -59,7 +59,6 @@ class _MQTTViewState extends State<MQTTView> {
       children: <Widget>[
         _buildConnectionStateText(
             _prepareStateMessageFrom(currentAppState.getAppConnectionState)),
-        _buildEditableColumn(),
         _buildHangboardImage(currentAppState.getImageName),
         _buildTimerStatus(
             currentAppState.getTimerDuration,
@@ -157,27 +156,6 @@ class _MQTTViewState extends State<MQTTView> {
                                         fontSize: 15,
                                       ),
                                       getTitles: (value) {
-                                        /*
-                                        switch (value.toInt()) {
-                                          case 10:
-                                            return '10';
-                                          case 20:
-                                            return '20';
-                                          case 30:
-                                            return '30';
-                                          case 40:
-                                            return '40';
-                                          case 50:
-                                            return '50';
-                                          case 60:
-                                            return '60';
-                                          case 70:
-                                            return '70';
-                                          case 80:
-                                            return '80';
-                                          case 90:
-                                            return '90';
-                                        }*/
                                         return value.toInt().toString();
                                         return '';
                                       },
@@ -190,18 +168,12 @@ class _MQTTViewState extends State<MQTTView> {
                                       border: Border.all(
                                           color: const Color(0xff37434d),
                                           width: 1)),
-                                  //minX: 0, // Define extrema if needed
-                                  //maxX: 10,
                                   minY: 0,
-                                  //maxY: 90,
-
                                   lineBarsData: [
                                     LineChartBarData(
                                       spots: LoadCurrentData,
-                                      //isCurved: true,
                                       colors: gradientColors,
                                       barWidth: 5,
-                                      //  isStrokeCapRound: true,
                                       dotData: FlDotData(
                                         show: false,
                                       ),
