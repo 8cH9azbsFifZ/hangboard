@@ -164,12 +164,21 @@ channels:
               type: number
               description: Rate of force development
               example: 12.2
-            HangChangeDetected:
-              type: boolean
+
+  hangboard/sensor/sensorstatus:
+    subscribe:
+      summary: Information on the current loasensord status including the calculated values.
+      operationId: GetCurrentSensorStatus
+      message:
+        name: Load Status
+        payload:
+          type: object
+          properties:
+             HangChangeDetected:
+              type: boolean # String
               description: Is there a change in hang status detected?
               example: true            
             HangDetected:
-              type: boolean
+              type: boolean # String
               description: Somebody hanging? Yes or no?
               example: false
-              
