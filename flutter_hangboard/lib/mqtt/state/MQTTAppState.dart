@@ -20,8 +20,12 @@ class MQTTAppState with ChangeNotifier {
 
   String _hold_right = '';
   String _hold_left = '';
-  String _imagename_noholds = 'images/zlagboard_evo.png'; // FIXME
+  String _imagename_noholds =
+      'images/zlagboard_evo.png'; // FIXME: correct image
   String _imagename = 'images/zlagboard_evo.png';
+
+  bool _hangdetected = false;
+  bool _hangchangedetected = false;
 
   String _exercise_type = '';
 
@@ -38,6 +42,19 @@ class MQTTAppState with ChangeNotifier {
 
     if (loadjson.containsKey("loadcurrent")) {
       load = loadjson["loadcurrent"];
+    }
+
+    if (loadjson.containsKey("HangDetected")) {
+      _hangdetected = loadjson["HangDetected"];
+    }
+    if (loadjson.containsKey("HangChangeDetected")) {
+      _hangchangedetected = loadjson["HangChangeDetected"];
+    }
+
+    if (_hangchangedetected == true) {
+      if (_hangdetected == true) {
+        _plot_load_current = [];
+      }
     }
 
     _plot_load_current.add(FlSpot(time, load));

@@ -155,16 +155,18 @@ class Counter():
             self.TimeCompleted = 0
             self.TimeRemaining = 0
 
-        self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + '}'
+        self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + ', "HangChangeDetected": ' + self.sensors.Changed + ', "HangDetected": ' + self.sensors.HangDetected + '}'
         self._sendmessage("/timerstatus", self._timerstatus)
 
         return self.TimeElapsed > self.TimeDuration
+
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
         mmessage = str(message)
         #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
         self._client.publish(ttopic, mmessage)
+
 
 
 class Workout():
@@ -354,137 +356,6 @@ class Workout():
         while self.sensors.HangDetected == False:
             time.sleep(self.sampling_interval)
             self.sensors.run_one_measure()
-
-    def run_rest_to_start(self):
-        """ Run a pause in advance of a new set. """
-        logging.debug("Rest to start loop")
-        t = threading.currentThread()
-        self.exercise_t = 0
-        self.sensors.run_one_measure()
-        self._assert_nobody_hanging() #FIXME
-        while (float(self.exercise_t) < float(self.rest_to_start - self.epsilon)):
-            time.sleep (self.exercise_dt)
-            self.exercise_t = self.exercise_t + self.exercise_dt
-            self.exercise_rest = self.rest_to_start - self.exercise_t
-            self.exercise_completed = float(self.exercise_t) / float(self.rest_to_start) *100
-            self.sensors.run_one_measure()
-            #print ("%d of %d (%f percent) rest to start." % (self.exercise_t, self.rest_to_start, self.exercise_completed)) 
-            self.assemble_message_resttostart_timerstatus()
-            if (self.sensors.Changed == "Hang"):
-                break
-            if (getattr(t, "do_stop", False)):                
-                break
-
-    def run_hang_exercise(self):
-        """ Run a timer based hang exercise. """
-        # Hang exercise
-        t = threading.currentThread()
-        self.exercise_t = 0
-        self.sensors.run_one_measure()
-        self._assert_somebody_hanging() #FIXME
-        while (float(self.exercise_t) < float(self.exercise_t1 - self.epsilon)):
-            time.sleep (self.exercise_dt)
-            self.exercise_t = self.exercise_t + self.exercise_dt
-            self.exercise_rest = self.exercise_t1 - self.exercise_t
-            self.exercise_completed = float(self.exercise_t) / float(self.exercise_t1) *100
-            self.sensors.run_one_measure()
-            #print ("%f of %f (%f percent) completed" % (self.exercise_t, self.exercise_t1, self.exercise_completed))
-            self.assemble_message_exercise_timerstatus()
-            if (self.sensors.Changed == "NoHang"):
-                break
-            if (getattr(t, "do_stop", False)):                
-                break
-
-    def run_pause_exercise(self):
-        """ Run a pause after an exercise in a set. """
-        # Pause exercise
-        t = threading.currentThread()
-        self.exercise_t = 0
-        self.sensors.run_one_measure()
-        self._assert_nobody_hanging() #FIXME
-        while (float(self.exercise_t) < float(self.pause - self.epsilon)):
-            time.sleep (self.exercise_dt)
-            self.exercise_t = self.exercise_t + self.exercise_dt
-            self.exercise_rest = self.pause - self.exercise_t
-            self.exercise_completed = float(self.exercise_t) / float(self.pause) *100
-            self.sensors.run_one_measure()
-            #print ("%d of %d (%f percent) pause." % (self.exercise_t, self.pause, self.exercise_completed)) 
-            self.assemble_message_pause_timerstatus()
-            if (self.sensors.Changed == "Hang"):
-                break
-            if (getattr(t, "do_stop", False)):                
-                break
-
-    def run_set(self):
-        """ Run a set in a workout. """
-        logging.debug('Run exercise')
-
-        
-        # Counter variables 
-        self.exercise_t0 = 0
-        self.exercise_t1 = self.counter
-        self.exercise_t = 0
-        self.exercise_rest = self.counter
-        self.exercise_completed = 0
-
-        # Rest to start loop
-        self.epsilon = 0.0001
-        self._assert_nobody_hanging() #FIXME
-        self.run_rest_to_start()
-
-        # Set loop
-        self.rep_current = 0
-        logging.debug("Set loop")
-        for self.rep_current in range (0, self.reps):
-            print ("%d of %d reps: %s for %d on left %s and right %s with pause of %d" % (self.rep_current, self.reps, self.type, self.counter, self.left, self.right, self.pause)) 
-            self.run_hang_exercise()
-  
-            # Pause after exercise
-            self.run_pause_exercise()
-
-    def assemble_message_exercise_timerstatus(self):
-        # FIXME: hide this function call
-        als = self.sensors.sensor_hangdetector._load_series
-        ats = self.sensors.sensor_hangdetector._time_series
-        msg = json.dumps({"Exercise": self.exercise, "Type": self.type, "Left": self.left, "Right": self.right, 
-            "Counter": "{:.2f}".format(self.counter), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected,
-            "FTI": self.sensors.FTI, "AverageLoad": self.sensors.AverageLoad, "MaximalLoad": self.sensors.MaximalLoad, "RFD": self.sensors.RFD, "LoadLoss": self.sensors.LoadLoss,
-            "CurrentMeasurementsSeries": {"time": ats, "load": als}
-            })
-            
-        print (msg)
-        sys.stdout.flush()
-        self.message = msg
-        return (msg)
-
-    def assemble_message_pause_timerstatus(self):
-        msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-            "Counter": "{:.2f}".format(self.pause), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
-        print (msg)
-        sys.stdout.flush()
-        self.message = msg
-        return (msg)        
-
-    def assemble_message_nothing(self):
-        # FIXME: instead of hard numbers - set variables
-        msg = json.dumps({"Exercise": "Pause", "Type": "Pause", "Left": "", "Right": "", 
-            "Counter": 0.0, "CurrentCounter": 0.0, "Completed": 0.0, "Rest": 0.0,
-            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
-        print (msg)
-        sys.stdout.flush()
-        self.message = msg
-        return (msg) 
-
-    def assemble_message_resttostart_timerstatus(self):
-        msg = json.dumps({"Exercise": "Pause", "Type": "Rest to start", "Left": "", "Right": "", 
-            "Counter": "{:.2f}".format(self.rest_to_start), "CurrentCounter": "{:.2f}".format(self.exercise_t), "Completed": "{:.0f}".format(self.exercise_completed), "Rest": "{:.2f}".format(self.exercise_rest),
-            "HangChangeDetected": self.sensors.Changed, "HangDetected": self.sensors.HangDetected})
-        print (msg)
-        sys.stdout.flush()
-        self.message = msg
-        return (msg)        
 
 
     def _get_current_measurements_series(self):

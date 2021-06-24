@@ -1,4 +1,4 @@
-# History
+- v0.48 - Removed inactive web backend, add asyncapi documentation stub, remove unused code.
 - v0.47 - MQTT backend working with flutter frontend - initial link done.
 - v0.46 - Breaking change: backend switched to MQTT - wip.
 - v0.45 - Demonstrator with working live load monitor working.

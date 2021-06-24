@@ -22,17 +22,19 @@
 + Check other boards (create images etc.)
 + Implement JSON commands
 
+
+
 # Backend
 + MongoDB https://realpython.com/introduction-to-mongodb-and-python/
 + Maybe: protobuf to save bandwidth and be safe on types
 + Alternatively: apt-get install mosquitto
 + Interface: documentation and validation https://python-jsonschema.readthedocs.io/en/latest/validate/#the-basics
- https://www.asyncapi.com/github-actions
 + Automatic detection of mqtt master server?
-cat sensor_force.py| awk '/ttopic =/{gsub(".*= \"","");gsub("\".*","");base=$0}/_sendmessage/{gsub(".*age\\\(\"","");gsub("\",","");gsub(")","");print base$0}'
 
-npm install -g @asyncapi/generator
-
-
-npm install -g @asyncapi/generator
-ag asyncapi.yaml @asyncapi/html-template -o ./docs
+name: ABC
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - my-directory/**

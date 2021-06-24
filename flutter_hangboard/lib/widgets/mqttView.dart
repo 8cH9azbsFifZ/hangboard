@@ -1,4 +1,3 @@
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_hangboard/mqtt/state/MQTTAppState.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_hangboard/mqtt/MQTTManager.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:wakelock/wakelock.dart';
 
 class MQTTView extends StatefulWidget {
   @override
@@ -76,15 +76,21 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
+  Widget _buildExerciseDescription(
+      String Imagename, String ExerciseDescription) {
+    return Column(children: [
+      Image.asset(Imagename, fit: BoxFit.cover, width: 500),
+      Text(ExerciseDescription)
+    ]);
+  }
+
   Widget _buildHangboardImage(String Imagename) {
     return Column(children: [
       Image.asset(Imagename, fit: BoxFit.cover, width: 500),
     ]);
   }
-//
 
   Widget _buildLoadPlot(List<FlSpot> LoadCurrentData) {
-    //return Text("Load Plot");
     List<Color> gradientColors = [
       // https://api.flutter.dev/flutter/dart-ui/Color-class.html
       const Color.fromRGBO(0, 0, 200, 0.4),
@@ -295,6 +301,8 @@ class _MQTTViewState extends State<MQTTView> {
 
   Widget _buildTimerStatus(double TimerDuration, double TimerElapsed,
       double TimerCompleted, double TimerCountdown) {
+    Wakelock.enable(); // Stay awake, once data has been received
+
     if (TimerCountdown == 10.0) {
       _playSFX10();
     }

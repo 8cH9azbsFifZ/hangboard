@@ -98,13 +98,40 @@ This is a brief design layout of the project.
 ## Software Used
 - Flutter for the frontends
 - Python backends
-- Websockets for Communication 
+- MQTT for Communication 
 - JSON for Board configuration and finger grip positions
 - SVG Layers for hold configuration
 
 Currently inactive frontend implementations are
-- Python Flask for Web App
 - React Native for App 
+
+
+## Developing the software
+For preparation install the following software:
++ Install dependencies on raspi: `sudo apt-get install libxslt-dev`
++ Install flutter and configure correct paths
++ Prepare the virtual python environment
+  ```
+    python3 -m venv venv
+    source venv/bin/activate
+    python3 -m pip install -r backend/requirements.txt
+  ```
+
+### Software documentation
++ For manual documentation (manual creation): install `brew install asciidoctor` and create the PDF `cd doc; asciidoctor-pdf Manual.adoc`
++ Documentation of the backend software can be created using `doxygen` (cf. Doxyfile).
++ The documentation is automatically generated using a commit hook on github and published on gh-pages.
+
+For manual startup:
++ Start backend service ```cd backend; python3 ./run_ws.py ```
++ Start the iOS / Android / Web App: `cd flutter_hangboard && flutter run`
+
+#### API (MQTT)
+The documentation of the backend API can be found here: https://8ch9azbsfifz.github.io/hangboard/api/index.html .
+
++ AsyncAPI for documentation of the API
++ For manual generation install ```npm install -g @asyncapi/generator ``` and run ```cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ./docs```
+
 
 
 # Hardware Design
@@ -390,3 +417,4 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 * [[[ClimbHarderSurvey]]] https://www.reddit.com/r/climbharder/comments/6693ua/climbharder_survey_results/ and the data stored here `doc/references/ClimbHarderSurvey`
 * [[[CriticalForceCalculator]]] https://strengthclimbing.com/critical-force-calculator/
 * [[[ClimbingFingerStrengthAnalyzer]]] https://strengthclimbing.com/finger-strength-analyzer/
+* [[[ForceSensingHangboardToEnhangeFingerTraining]]] Force-Sensing Hangboad to Enhance Finger Training in Rock Climbers, M. Anderson (https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Force-Sensing_Hangboard_to_Enhance_Finger_Training_in_Rock_Climbers.pdf)

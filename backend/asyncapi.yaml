@@ -4,10 +4,10 @@ info:
   version: '0.0.1'
   description: |
     Force sensing hangboard application.
-    Backend communication protocol.
+    Backend communication protocol. 
   license:
-    name: Apache 2.0
-    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+    name: GPLv3
+    url: 'https://www.gnu.org/licenses/gpl-3.0.en.html'
 servers:
   mosquitto:
     url: mqtt://t20
@@ -23,9 +23,10 @@ channels:
           type: object
           properties:
             command:
-              type: string
+              type: string    # alternatvie  boolean
               description: Command.      
-              pattern: '^Start .+$'     
+              pattern: '^Start .+$'     # Start, Stop, Restart
+              # mosquitto_pub -h localhost -t hangboard/workout/control -m Start
   hangboard/workout/holds:
     subscribe:
       summary: Information on the currently used holds.
@@ -88,6 +89,52 @@ channels:
               type: string
               description: Type of exercise.
               examples: ["Hang", "Maximum Hang", "Pull Up"]
+  hangboard/workout/timerstatus:
+    subscribe:
+      summary: Information on the current timer status.
+      operationId: GetCurrentTimerStatus
+      message:
+        name: Timer Status
+        payload:
+          type: object
+          properties:
+            Duration:
+              type: number
+              description: Timer duration in seconds.
+              example: 20
+            Elapsed:
+              type: number
+              description: Timer elapsed time in seconds.
+              example: 3
+            Completed:
+              type: number
+              description: Relative completion of the current timer - elapsed / duration.
+              example: 0.8
+            Countdown:
+              type: number
+              description: Countdown number - count every second downwards. Will be -1, when no full second crossed.
+              examples: [-1, 10, 9, 8] #mosquitto_sub -h localhost -t  hangboard/workout/timerstatus
+            HangChangeDetected:
+              type: boolean
+              description: Is there a change in hang status detected?
+              example: true            
+            HangDetected:
+              type: boolean
+              description: Somebody hanging? Yes or no?
+              example: false
+  hangboard/workout/status:
+    subscribe:
+      summary: Current status of the workout backend.
+      operationId: GetCurrentWorkoutStatus
+      message:
+        name: Workout Status
+        payload:
+          type: object
+          properties:
+            Duration:
+              type: string
+              description: Timer duration in seconds.
+              examples: ["Starting", "Cleanup"]
   hangboard/sensor/load/loadstatus:
     subscribe:
       summary: Information on the current load status including the calculated values.
@@ -105,3 +152,32 @@ channels:
               type: number
               description: Current load in kg.
               example: 23.2
+            loadaverage:
+              type: number
+              description: Average load in kg.
+              example: 55.3
+            loadmaximal:
+              type: number
+              description: Maximal load in kg.
+              example: 99.2
+            loadloss:
+              type: number
+              description: Relative loss of load - current / maximal.
+              example: 0.2              
+            fti:
+              type: number
+              description: Force Time integral
+              example: 231.1                     
+            rfd:
+              type: number
+              description: Rate of force development
+              example: 12.2
+            HangChangeDetected:
+              type: boolean
+              description: Is there a change in hang status detected?
+              example: true            
+            HangDetected:
+              type: boolean
+              description: Somebody hanging? Yes or no?
+              example: false
+              

@@ -251,15 +251,7 @@ class SensorForce():
             self.RFD = 0
             self.LoadLoss = 0
 
-        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + '}')
-        self._sendmessage("/time", "{:.2f}".format(self.time_current))
-        self._sendmessage("/loadcurrent", "{:.2f}".format(self.load_current))
-        self._sendmessage("/loadaverage", "{:.2f}".format(self.AverageLoad))
-        self._sendmessage("/fti", "{:.2f}".format(self.FTI))
-        self._sendmessage("/rfd", "{:.2f}".format(self.RFD))
-        self._sendmessage("/loadmaximal", "{:.2f}".format(self.MaximalLoad))
-        self._sendmessage("/loadloss", "{:.2f}".format(self.LoadLoss))
-
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": , ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + ', "HangChangeDetected": ' + self.sensors.Changed + ', "HangDetected": ' + self.sensors.HangDetected + '}')
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
