@@ -26,7 +26,6 @@
 
 # Backend
 + MongoDB https://realpython.com/introduction-to-mongodb-and-python/
-+ Maybe: protobuf to save bandwidth and be safe on types
 + Alternatively: apt-get install mosquitto
 + Interface: documentation and validation https://python-jsonschema.readthedocs.io/en/latest/validate/#the-basics
 + Automatic detection of mqtt master server?
@@ -36,5 +35,4 @@ on:
   push:
     branches:
       - master
-    paths:
-      - my-directory/**
+    /**
