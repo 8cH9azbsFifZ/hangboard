@@ -44,9 +44,11 @@ class MQTTAppState with ChangeNotifier {
           sensorjson["HangChangeDetected"]; //.toLowerCase() == 'true';
     }
 
-    if (_hangchangedetected.contains("NoHang")) {
-      _plot_load_current = [];
+    if (_hangdetected.contains("False")) {
       _plot_t0 = _plot_time_current;
+    }
+    if (_hangchangedetected.contains("Hang")) {
+      _plot_load_current = [];
     }
   }
 

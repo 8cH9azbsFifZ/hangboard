@@ -106,7 +106,7 @@ class _MQTTViewState extends State<MQTTView> {
                   : Stack(
                       children: <Widget>[
                         AspectRatio(
-                          aspectRatio: 5,
+                          aspectRatio: 3,
                           child: Container(
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -157,6 +157,7 @@ class _MQTTViewState extends State<MQTTView> {
                                         fontSize: 15,
                                       ),
                                       getTitles: (value) {
+                                        /*
                                         switch (value.toInt()) {
                                           case 10:
                                             return '10';
@@ -176,7 +177,8 @@ class _MQTTViewState extends State<MQTTView> {
                                             return '80';
                                           case 90:
                                             return '90';
-                                        }
+                                        }*/
+                                        return value.toInt().toString();
                                         return '';
                                       },
                                       reservedSize: 28,
@@ -191,7 +193,7 @@ class _MQTTViewState extends State<MQTTView> {
                                   //minX: 0, // Define extrema if needed
                                   //maxX: 10,
                                   minY: 0,
-                                  maxY: 90,
+                                  //maxY: 90,
 
                                   lineBarsData: [
                                     LineChartBarData(
