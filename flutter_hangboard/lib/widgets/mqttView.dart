@@ -75,6 +75,7 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
+  // ignore: unused_element
   Widget _buildExerciseDescription(
       String Imagename, String ExerciseDescription) {
     return Column(children: [
@@ -157,7 +158,6 @@ class _MQTTViewState extends State<MQTTView> {
                                       ),
                                       getTitles: (value) {
                                         return value.toInt().toString();
-                                        return '';
                                       },
                                       reservedSize: 28,
                                       margin: 12,
@@ -197,6 +197,7 @@ class _MQTTViewState extends State<MQTTView> {
     ]);
   }
 
+  // ignore: unused_element
   Widget _buildEditableColumn() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
@@ -277,7 +278,7 @@ class _MQTTViewState extends State<MQTTView> {
     Wakelock.enable(); // Stay awake, once data has been received
 
     if (TimerCountdown == 10.0) {
-      _playSFX10();
+      _playSFX("images/10.mp3");
     }
     if (TimerCountdown == 9.0) {
       _playSFX("images/9.mp3");
@@ -306,10 +307,16 @@ class _MQTTViewState extends State<MQTTView> {
     if (TimerCountdown == 1.0) {
       _playSFX("images/1.mp3");
     }
+    if (TimerCountdown == 0.0) {
+      _playSFX("images/done.mp3");
+    }
     return Column(
       children: [
         LinearProgressIndicator(
           value: TimerCompleted,
+          backgroundColor: Colors.blueAccent,
+          valueColor: new AlwaysStoppedAnimation<Color>(Colors.redAccent),
+          minHeight: 20,
           semanticsLabel: 'Linear progress indicator',
         ),
         Text(TimerElapsed.toString() +
