@@ -1,7 +1,5 @@
-+ Fix stuttering sound
 + Fix: HangDetected
 + Fix: Current Set information
-+ Fix: Currentmeasurement series
 + Beautiful layout
 
 # UI
