@@ -23,10 +23,12 @@ class _MQTTViewState extends State<MQTTView> {
 
   AudioPlayer audioPlayer = AudioPlayer();
   final assetsAudioPlayer = AssetsAudioPlayer();
+  final PlaySFX10 = AssetsAudioPlayer();
 
   @override
   void initState() {
     super.initState();
+    PlaySFX10.open(Audio("images/10.mp3"), autoStart: false);
   }
 
   @override
@@ -460,10 +462,9 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
-  _playSFX10() async {
-    await assetsAudioPlayer.open(
-      Audio("images/10.mp3"),
-    );
+  _playSFX10() {
+    // await assetsAudioPlayer.open(Audio("images/10.mp3"), autoStart: false);
+    PlaySFX10.play();
   }
 
   _playSFX9() async {
