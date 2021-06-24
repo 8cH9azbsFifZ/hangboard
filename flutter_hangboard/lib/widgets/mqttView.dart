@@ -57,19 +57,15 @@ class _MQTTViewState extends State<MQTTView> {
   Widget _buildColumn() {
     return Column(
       children: <Widget>[
-        _buildConnectionStateText(
-            _prepareStateMessageFrom(currentAppState.getAppConnectionState)),
+        _buildScrollableTextWith(currentAppState.getHistoryText),
         _buildHangboardImage(currentAppState.getImageName),
         _buildTimerStatus(
             currentAppState.getTimerDuration,
             currentAppState.getTimerElapsed,
             currentAppState.getTimerCompleted,
             currentAppState.getTimerCountdown),
-        _buildHoldStatus(
-            currentAppState.getHoldLeft, currentAppState.getHoldRight),
         _buildExerciseType(currentAppState.getExerciseType),
         _buildControls(currentAppState.getAppConnectionState),
-        _buildScrollableTextWith(currentAppState.getHistoryText),
         _buildLoadPlot(currentAppState.getLoadCurrentData)
       ],
     );
@@ -319,11 +315,10 @@ class _MQTTViewState extends State<MQTTView> {
           minHeight: 20,
           semanticsLabel: 'Linear progress indicator',
         ),
-        Text(TimerElapsed.toString() +
+        Text(TimerElapsed.toInt().toString() +
             " / " +
-            TimerDuration.toString() +
-            " - Completed: " +
-            TimerCompleted.toString())
+            TimerDuration.toInt().toString() +
+            " Seconds")
       ],
     );
   }
@@ -338,7 +333,7 @@ class _MQTTViewState extends State<MQTTView> {
 
       FloatingActionButton(
           onPressed: _sendMessagePause, // FIXME: implement a pause
-          child: Icon(Icons.do_not_touch)),
+          child: Icon(Icons.pause)),
       FloatingActionButton(
           onPressed: _sendMessageStop, child: Icon(Icons.stop)),
       FloatingActionButton(
@@ -357,7 +352,7 @@ class _MQTTViewState extends State<MQTTView> {
       padding: const EdgeInsets.all(20.0),
       child: Container(
         width: 400,
-        height: 200,
+        height: 50,
         child: SingleChildScrollView(
           child: Text(text),
         ),
