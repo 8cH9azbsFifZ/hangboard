@@ -114,14 +114,6 @@ channels:
               type: number
               description: Countdown number - count every second downwards. Will be -1, when no full second crossed.
               examples: [-1, 10, 9, 8] #mosquitto_sub -h localhost -t  hangboard/workout/timerstatus
-            HangChangeDetected:
-              type: boolean
-              description: Is there a change in hang status detected?
-              example: true            
-            HangDetected:
-              type: boolean
-              description: Somebody hanging? Yes or no?
-              example: false
   hangboard/workout/status:
     subscribe:
       summary: Current status of the workout backend.
