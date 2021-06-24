@@ -97,6 +97,7 @@ class MQTTManager {
     print('EXAMPLE::Mosquitto client connected....');
     _client!.subscribe(_topic, MqttQos.atLeastOnce); // FIXME
     _client!.subscribe("hangboard/sensor/load/loadstatus", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/sensor/sensorstatus", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/holds", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/exercisetype", MqttQos.atLeastOnce);
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
@@ -114,6 +115,10 @@ class MQTTManager {
           "hangboard/sensor/load/loadstatus") {
         _currentState.setLoadStatus(pt);
       }
+      if (recMess.variableHeader!.topicName ==
+          "hangboard/sensor/sensorstatus") {
+        _currentState.setSensorStatus(pt);
+      }
       if (recMess.variableHeader!.topicName == "hangboard/workout/holds") {
         _currentState.setCurrentHolds(pt);
       }
@@ -122,11 +127,9 @@ class MQTTManager {
         _currentState.setExerciseType(pt);
       }
       _currentState.setReceivedText(pt);
-      print(
-          'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');
-      print('');
+      // print(          'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');
+      // print('');
     });
-    print(
-        'EXAMPLE::OnConnected client callback - Client connection was sucessful');
+    //print(        'EXAMPLE::OnConnected client callback - Client connection was sucessful');
   }
 }

@@ -63,7 +63,7 @@ else:
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
         pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
-        referenceUnit = 1257528/79, load_hang = 5.0,
+        referenceUnit = 1257528/79, load_hang = 20.0, # FIXME 
         hostname="localhost", port=1883): #//1257528/79*0.2 ):
         logging.debug ("Initialize")
 
@@ -106,6 +106,7 @@ class SensorForce():
         self.MaximalLoad = 0
         self.RFD = 0
         self.LoadLoss = 0
+        self.HangStateChangedString = ""
 
         # Connect to MQTT
         self._client = mqtt.Client()
@@ -251,7 +252,7 @@ class SensorForce():
             self.RFD = 0
             self.LoadLoss = 0
 
-        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": , ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + ', "HangChangeDetected": ' + str(self.Changed) + ', "HangDetected": ' + str(self.HangDetected) + '}')
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -277,36 +278,13 @@ class SensorForce():
         pass
         # TODO: implement
 
-    def _detect_hang_state_change(self):
-       # Reset states
-        self.HangHasBegun = False
-        self.HangHasStopped = False
-        self.Changed = ""
-
-        # Detect state change
-        oldstate = self.HangDetected
-
-        if (oldstate == self.HangDetected):
-            self._HangStateChanged = False
-        else:
-            self._HangStateChanged = True
-
-            if (self.HangDetected == True):
-                #logging.debug ("HangStateChanged and HangDetected")
-                self.HangHasBegun = True
-                self.Changed = "Hang"
-            else:
-                self.HangHasStopped = True
-                self.Changed = "NoHang"
-                #logging.debug ("HangStateChanged and no HangDetected")
-
     def _detect_hang(self):
         self.HangDetected = False
         if (self.load_current > self.load_hang):
             self.HangDetected = True
 
         #logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
-        self._detect_hang_state_change()
+
         return self.HangDetected
 
     def _calculateStart(self): # TODO measure more values and store them in advance for posthum calculations

@@ -155,8 +155,9 @@ class Counter():
             self.TimeCompleted = 0
             self.TimeRemaining = 0
 
-        self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + '}'
-        self._sendmessage("/timerstatus", self._timerstatus)
+        if self.TimeCountdown >= 0:
+            self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + '}'
+            self._sendmessage("/timerstatus", self._timerstatus)
 
         return self.TimeElapsed > self.TimeDuration
 

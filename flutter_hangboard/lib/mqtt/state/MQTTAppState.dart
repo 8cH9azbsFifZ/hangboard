@@ -24,12 +24,31 @@ class MQTTAppState with ChangeNotifier {
       'images/zlagboard_evo.png'; // FIXME: correct image
   String _imagename = 'images/zlagboard_evo.png';
 
-  bool _hangdetected = false;
-  bool _hangchangedetected = false;
+  String _hangdetected = '';
+  String _hangchangedetected = '';
 
   String _exercise_type = '';
 
   List<FlSpot> _plot_load_current = [];
+  double _plot_t0 = 0.0;
+  double _plot_time_current = 0.0;
+
+  void setSensorStatus(String text) {
+    Map<String, dynamic> sensorjson = jsonDecode(text);
+
+    if (sensorjson.containsKey("HangDetected")) {
+      _hangdetected = sensorjson["HangDetected"]; //.toLowerCase() == 'true';
+    }
+    if (sensorjson.containsKey("HangChangeDetected")) {
+      _hangchangedetected =
+          sensorjson["HangChangeDetected"]; //.toLowerCase() == 'true';
+    }
+
+    if (_hangchangedetected.contains("NoHang")) {
+      _plot_load_current = [];
+      _plot_t0 = _plot_time_current;
+    }
+  }
 
   void setLoadStatus(String text) {
     Map<String, dynamic> loadjson = jsonDecode(text);
@@ -44,20 +63,17 @@ class MQTTAppState with ChangeNotifier {
       load = loadjson["loadcurrent"];
     }
 
-    if (loadjson.containsKey("HangDetected")) {
-      _hangdetected = loadjson["HangDetected"];
-    }
-    if (loadjson.containsKey("HangChangeDetected")) {
-      _hangchangedetected = loadjson["HangChangeDetected"];
-    }
+    _plot_time_current = time;
+    time = time - _plot_t0;
 
+/*
     if (_hangchangedetected == true) {
       if (_hangdetected == true) {
         _plot_load_current = [];
       }
-    }
+    }*/
 
-    _plot_load_current.add(FlSpot(time, load));
+    //_plot_load_current.add(FlSpot(time, load));
     //double t0 =
     /*
     if (mytimes.length > 2) {

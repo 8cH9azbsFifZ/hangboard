@@ -17,12 +17,13 @@ logging.basicConfig(level=logging.DEBUG,
                     format='Sensors(%(threadName)-10s) %(message)s',
                     )
 
+import paho.mqtt.client as mqtt
 
 from sensor_zlagboard import SensorZlagboard
 from sensor_force import SensorForce
 
 class Sensors():
-    def __init__(self, hangdetector = "Force", sampling_interval = 0.01, hostname="localhost"):
+    def __init__(self, hangdetector = "Force", sampling_interval = 0.01, hostname="localhost", port=1883):
         
         # Hang State
         self.HangDetected = False
@@ -46,10 +47,18 @@ class Sensors():
         self.RFD = 0
         self.LoadLoss = 0
 
+        # Connect to MQTT
+        self.__client = mqtt.Client()
+        self.__client.connect(hostname, port,60)
         self._hostname = hostname
 
         self._init_sensors()
 
+    def __sendmessage(self, topic="/none", message="None"):
+        ttopic = "hangboard/sensor"+topic
+        mmessage = str(message)
+        #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
+        self.__client.publish(ttopic, mmessage)
 
     def _init_sensors(self):
         if (self._hangdetector == "Force"):
@@ -68,6 +77,8 @@ class Sensors():
         self._detect_hang_state_change()
         self._measure_hangtime()
         self._measure_additional_parameters()
+
+        self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeStateChangeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
 
     def _measure_additional_parameters(self):
         if (self._hangdetector == "Force"):
