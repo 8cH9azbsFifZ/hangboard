@@ -118,6 +118,7 @@ class MQTTManager {
       if (recMess.variableHeader!.topicName ==
           "hangboard/sensor/sensorstatus") {
         _currentState.setSensorStatus(pt);
+        _currentState.setReceivedText(pt);
       }
       if (recMess.variableHeader!.topicName == "hangboard/workout/holds") {
         _currentState.setCurrentHolds(pt);
@@ -126,7 +127,6 @@ class MQTTManager {
           "hangboard/workout/exercisetype") {
         _currentState.setExerciseType(pt);
       }
-      _currentState.setReceivedText(pt);
       // print(          'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');
       // print('');
     });

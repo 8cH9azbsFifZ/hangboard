@@ -144,8 +144,7 @@ class _MQTTViewState extends State<MQTTView> {
                                           fontSize: 16),
                                       getTitles: (value) {
                                         // X Axis description
-
-                                        return value.toString(); //'';
+                                        return value.toInt().toString();
                                       },
                                       margin: 8,
                                     ),

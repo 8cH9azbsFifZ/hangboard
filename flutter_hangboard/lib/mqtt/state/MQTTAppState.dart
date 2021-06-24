@@ -65,26 +65,9 @@ class MQTTAppState with ChangeNotifier {
 
     _plot_time_current = time;
     time = time - _plot_t0;
-
-/*
-    if (_hangchangedetected == true) {
-      if (_hangdetected == true) {
-        _plot_load_current = [];
-      }
-    }*/
-
-    //_plot_load_current.add(FlSpot(time, load));
-    //double t0 =
-    /*
-    if (mytimes.length > 2) {
-      double t0 = double.parse(mytimes[0].toString());
-      for (int i = 0; i < mytimes.length; i++) {
-        mydata.add(FlSpot(
-          double.parse(mytimes[i].toString()) - t0,
-          double.parse(myload[i].toString()),
-        ));
-      }
-    }*/
+    if (_hangdetected.contains("True")) {
+      _plot_load_current.add(FlSpot(time, load));
+    }
   }
 
   void setReceivedText(String text) {
