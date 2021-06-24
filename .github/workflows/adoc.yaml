@@ -4,6 +4,9 @@ on:
   push:
     branches:
     - main
+    paths:
+    - backend
+    - doc
 jobs:
   adoc_build:
     runs-on: ubuntu-18.04
