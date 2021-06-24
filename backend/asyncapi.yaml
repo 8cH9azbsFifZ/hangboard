@@ -166,18 +166,18 @@ channels:
               example: 12.2
   hangboard/sensor/sensorstatus:
     subscribe:
-      summary: Information on the current loasensord status including the calculated values.
+      summary: Current sensor status, i.e. hang status.
       operationId: GetCurrentSensorStatus
       message:
-        name: Load Status
+        name: Sensor Status
         payload:
           type: object
           properties:
-             HangChangeDetected:
-              type: String # 
-              description: Is there a change in hang status detected?
-              example: ["Hang", "NoHang"]            
+            HangChangeDetected:
+              type: string
+              description: Hang change detected.
+              examples: ["Hang", "NoHang"]
             HangDetected:
-              type: String # True / False
-              description: Somebody hanging? Yes or no?
+              type: string
+              description: Hang change detected.
               examples: ["True", "False"]
