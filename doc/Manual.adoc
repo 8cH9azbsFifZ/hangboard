@@ -132,6 +132,7 @@ The documentation of the backend API can be found here: https://8ch9azbsfifz.git
 
 + AsyncAPI for documentation of the API
 + For manual generation install ```npm install -g @asyncapi/generator ``` and run ```cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ./docs```
++ If you want to run MQTT locally on the raspi run `sudo apt-get -y install mosquitto`
 
 
 

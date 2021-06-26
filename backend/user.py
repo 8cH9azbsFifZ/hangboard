@@ -15,3 +15,8 @@ class User():
 
         self.MaxHangTime = 60 """ Maximal Hangtime in seconds"""
         self.MaxPullUps = 12 """Maximal number of pullups"""
+
+
+
+
+# TODO : MongoDB https://realpython.com/introduction-to-mongodb-and-python/

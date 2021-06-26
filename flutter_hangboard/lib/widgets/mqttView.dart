@@ -14,6 +14,11 @@ class MQTTView extends StatefulWidget {
   }
 }
 
+// FIXME: Fix: Current Set information
+// FIXME: Fix: HangDetected
+
+// TODO: sound on hang and no hang
+
 class _MQTTViewState extends State<MQTTView> {
   final TextEditingController _hostTextController = TextEditingController();
   final TextEditingController _messageTextController = TextEditingController();
