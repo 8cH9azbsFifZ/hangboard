@@ -116,6 +116,7 @@ For preparation install the following software:
     source venv/bin/activate
     python3 -m pip install -r backend/requirements.txt
   ```
++ Install a fresh raspian on a SD card, put the corresponding wpa_supplicant.conf into the boot folder - ready for SSH :)
 
 ### Software documentation
 + For manual documentation (manual creation): install `brew install asciidoctor` and create the PDF `cd doc; asciidoctor-pdf Manual.adoc`
