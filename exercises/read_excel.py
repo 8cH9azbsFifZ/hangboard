@@ -14,22 +14,33 @@ for column in sheet.iter_cols(1, sheet.max_column):
 
 
 
-#print ("{")
-#print ("Workouts:[")
+wa = {}
+wa["Workouts"] = []
 
-data = {}
+wo = {}
+wo["Sets"] = []
 
 prevsession=0
 for i, row in enumerate(sheet.iter_rows(values_only=True)):
-    session=str(row[0])
-    resttostart=str(row[1])
-    exercise=row[2]
-    counter=str(row[3])
-    pause=str(row[4])
-    reps=str(row[5])
-    left=row[6]
-    right=row[7]
-    data["Workouts"][session] = 1
+    if i == 0:
+        continue
+    td = {}
+    session =str(row[0])
+    td["Rest-to-Start"] =str(row[1])
+    td["Exercise"] =row[2]
+    td["Counter"] =str(row[3])
+    td["Pause"]=str(row[4])
+    td["Reps"] =str(row[5])
+    td["Left"] =row[6]
+    td["Right"]=row[7]
+
+    if prevsession != session:
+        wa["Workouts"].append(wo)
+        wo = {}
+        wo["Sets"] = []
+
+    wo["Sets"].append(td)
+
     
     #if prevsession != session:
     #    if session > 1:
@@ -41,9 +52,10 @@ for i, row in enumerate(sheet.iter_rows(values_only=True)):
     #    print ('"Sets":[')
     
     #if 
-    #set = '{ "Rest-to-Start": '+resttostart+', "Exercise": "'+exercise+'","Counter": '+counter+', "Pause": '+pause+', "Reps": '+reps+', "Left": "'+left+'", "Right": "'+right+'"}' 
-    print (set)
+    #set = '{ "": '+resttostart+', "": "'+exercise+'","": '+counter+', "": '+pause+', "": '+reps+', "": "'+left+'", "": "'+right+'"}' 
+    print (td)
 #print ("]")
 #print ("}")
 
-print (data)
+print (wo)
+print (wa)
