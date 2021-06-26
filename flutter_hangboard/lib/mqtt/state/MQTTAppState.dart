@@ -10,25 +10,31 @@ enum MQTTAppConnectionState { connected, disconnected, connecting }
 class MQTTAppState with ChangeNotifier {
   MQTTAppConnectionState _appConnectionState =
       MQTTAppConnectionState.disconnected;
+
+  // Outdated debugging stuff
   String _receivedText = '';
   String _historyText = '';
 
+// Timer variables
   double _timer_duration = 0.0;
   double _timer_elapsed = 0.0;
   double _timer_completed = 0.0;
   double _timer_countdown = -1.0;
 
+// Variables for board and hold configuration
   String _hold_right = '';
   String _hold_left = '';
   String _imagename_noholds =
       'images/zlagboard_evo.png'; // FIXME: correct image
   String _imagename = 'images/zlagboard_evo.png';
 
+// Hang status and co
   String _hangdetected = '';
   String _hangchangedetected = '';
 
   String _exercise_type = '';
 
+// Variables for plot generation
   List<FlSpot> _plot_load_current = [];
   double _plot_t0 = 0.0;
   double _plot_time_current = 0.0;
