@@ -25,7 +25,7 @@ channels:
             command:
               type: string    # alternatvie  boolean
               description: Command.      
-              pattern: '^Start .+$'     # Start, Stop, Restart
+              pattern: '^Start .+$'     # Start, Stop, Restart, ListWorkouts
               # mosquitto_pub -h localhost -t hangboard/workout/control -m Start
   hangboard/workout/holds:
     subscribe:
@@ -43,7 +43,24 @@ channels:
             right:
               type: string
               description: Right hold.
-              examples: ["A7","A6"]
+              examples: ["A7","A6"]  
+  hangboard/workout/workoutlist:
+    subscribe:
+      summary: List of all available workouts.
+      operationId: GetWorkoutListe
+      message:
+        name: List of workouts.
+        payload:
+          type: object
+          properties: 
+            Name:
+              type: string
+              description: Name of the workout
+              examples: ["Strength 1","Endurance workout by Mr. X"]
+            ID:
+              type: string
+              description: Unique ID of the workout.
+              examples: ["HRST-S1","ZB-A12"]
   hangboard/workout/setinfo:
     subscribe:
       summary: Get information on the current set.

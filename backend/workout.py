@@ -243,6 +243,8 @@ class Workout():
         if msg.payload.decode() == "Restart":
             self._workout_running = True
             self._counter = Counter(self.workout, hostname=self._hostname)
+        if msg.payload.decode() == "ListWorkouts":
+            self._list_workouts()
 
      
 
@@ -287,7 +289,7 @@ class Workout():
         """
         Get list of available workouts and put it in the messaging queue (self.message)
         """
-        logging.debug("List workouts")
+        #logging.debug("List workouts")
         workout_array = []
         
         for filename in os.listdir (self.workoutdir):
@@ -297,10 +299,11 @@ class Workout():
                     data = json.load(json_file)
 
                     for workout in (data["Workouts"]):
-                        print (workout["Name"], fn)
+                        logging.debug (workout["Name"], fn)
                         workout_array.append({"Name": workout["Name"], "ID": workout["ID"]})
-        print (workout_array)
-        self.message = json.dumps({"WorkoutList": workout_array})
+        #logging.debug (workout_array)
+        msg = json.dumps({"WorkoutList": workout_array})
+        self._sendmessage("/workoutlist", msg)
 
 
     def run_exercise_1hand_pull(self): # TODO implement

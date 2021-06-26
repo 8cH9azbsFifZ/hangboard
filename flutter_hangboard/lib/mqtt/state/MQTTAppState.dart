@@ -32,12 +32,47 @@ class MQTTAppState with ChangeNotifier {
   String _hangdetected = '';
   String _hangchangedetected = '';
 
+// Workout variables
+  String _workout_selected_id = 'HRST-S1'; // FIXME
+  String _workout_selected_name = 'HRST-S1'; // FIXME
+  List<String> _workout_ids = [];
+  List<String> _workout_names = [];
+  int _workout_selected_index = 0;
+  // ignore: todo
+  // TODO List of workouts
+
+// Exercise variables
   String _exercise_type = '';
 
 // Variables for plot generation
   List<FlSpot> _plot_load_current = [];
   double _plot_t0 = 0.0;
   double _plot_time_current = 0.0;
+
+  void SetWorkoutList(String text) {
+    print("Set Workout list");
+    Map<String, dynamic> workoutjson = jsonDecode(text);
+    _workout_ids = [];
+    _workout_names = [];
+    for (int i = 0; i < workoutjson["WorkoutList"].length; i++) {
+      _workout_ids.add((workoutjson["WorkoutList"][i]["ID"]).toString());
+      _workout_names.add((workoutjson["WorkoutList"][i]["Name"]).toString());
+      //print(workoutjson["WorkoutList"][i]["ID"]);
+      // _workout_ids[i] = workoutjson["WorkoutList"][i]["ID"];
+      // _workout_names[i] = workoutjson["WorkoutList"][i]["Name"];
+      //print(i);
+    }
+
+    notifyListeners();
+
+    /*
+        if (workoutjson.containsKey("Name")) {
+      _hangdetected = workoutjson["Name"]; //.toLowerCase() == 'true';
+    }
+// 
+// ID
+*/
+  }
 
   void setSensorStatus(String text) {
     Map<String, dynamic> sensorjson = jsonDecode(text);
@@ -56,6 +91,7 @@ class MQTTAppState with ChangeNotifier {
     if (_hangchangedetected.contains("Hang")) {
       _plot_load_current = [];
     }
+    notifyListeners();
   }
 
   void setLoadStatus(String text) {
@@ -144,6 +180,10 @@ class MQTTAppState with ChangeNotifier {
   String get getImageName => _imagename;
   String get getExerciseType => _exercise_type;
   List<FlSpot> get getLoadCurrentData => _plot_load_current;
+
+  String get getWorkoutID => _workout_selected_id;
+  String get getWorkoutName => _workout_selected_name;
+  List<String> get GetWorkoutList => _workout_ids;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

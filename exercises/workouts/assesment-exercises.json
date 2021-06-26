@@ -3,7 +3,7 @@
         {
             "Name": "Maximal Hang Bodyweight",
             "Type": "Assessment",
-            "ID": 1,
+            "ID": "ASMT-1",
             "Sets":[
                 { "Rest-to-Start": 300,       "Exercise": "Hang", 			    "Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalHang"} ,
                 { "Rest-to-Start": 300,       "Exercise": "Hang", 			    "Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalHang"} ,
@@ -14,7 +14,7 @@
         {
             "Name": "Maximum Number of Pullups",            
             "Type": "Assessment",
-            "ID": 2,
+            "ID": "ASMT-2",
             "Sets": [
                 { "Rest-to-Start": 300,       "Exercise": "Pullup", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalPullup"} ,
                 { "Rest-to-Start": 300,       "Exercise": "Pullup", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalPullup"} ,
@@ -26,7 +26,7 @@
         {
             "Name": "Maximal Weight Hangs",            
             "Type": "Assessment",
-            "ID": 3,
+            "ID": "ASMT-3",
             "Sets":[
                 { "Rest-to-Start": 300,       "Exercise": "Weighted Hang", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalWeightedHang"} ,
                 { "Rest-to-Start": 300,       "Exercise": "Weighted Hang", 			"Counter": 1, 	"Pause": 0,    "Reps": 1, "Left": "JUG", "Right": "JUG", "Type": "MaximalWeightedHang"} ,
@@ -38,19 +38,19 @@
         {
             "Name": "One handed pull",            
             "Type": "Assessment",
-            "ID": 4
+            "ID": "ASMT-4"
         }
         ,
         {
             "Name": "Maximal Strength",            
             "Type": "Assessment",
-            "ID": 5
+            "ID": "ASMT-5"
         }        
         ,
         {
             "Name": "Maximal Hang Time",            
             "Type": "Assessment",
-            "ID": 6
+            "ID": "ASMT-6"
         }
     ]
 }

@@ -2,7 +2,7 @@
     "Workouts":[
         {
             "Name": "Workout Series - First Session",
-            "ID": "Q1",
+            "ID": "ZB-A-1",
             "Sets":[
                 { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 10, 	"Pause": 20,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "Hang"} ,
                 { "Rest-to-Start": 60,      "Exercise": "Assisted Pull Ups",	"Counter": 3,  	"Pause": 30,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "Pull Up"} ,
@@ -18,7 +18,7 @@
         ,
         {
             "Name": "Workout Series - 2nd Session",
-            "ID": "Q2",
+            "ID": "ZB-A-2",
             "Sets":[
                 { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 10, 	"Pause": 20,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "Hang"} ,
                 { "Rest-to-Start": 60,      "Exercise": "Assisted Pull Ups",	"Counter": 3,  	"Pause": 30,    "Reps": 5, "Left": "JUG", "Right": "JUG", "Type": "Pull Up"} ,

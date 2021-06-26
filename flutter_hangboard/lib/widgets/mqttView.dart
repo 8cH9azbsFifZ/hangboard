@@ -17,6 +17,7 @@ class MQTTView extends StatefulWidget {
 // FIXME: Fix: Current Set information
 // FIXME: Fix: HangDetected
 
+// ignore: todo
 // TODO: sound on hang and no hang
 
 class _MQTTViewState extends State<MQTTView> {
@@ -65,6 +66,8 @@ class _MQTTViewState extends State<MQTTView> {
     return Column(
       children: <Widget>[
         _buildScrollableTextWith(currentAppState.getHistoryText),
+        _buildWorkoutSelector(
+            currentAppState.getWorkoutName, currentAppState.GetWorkoutList),
         _buildHangboardImage(currentAppState.getImageName),
         _buildTimerStatus(
             currentAppState.getTimerDuration,
@@ -200,6 +203,43 @@ class _MQTTViewState extends State<MQTTView> {
     ]);
   }
 
+  Widget _buildWorkoutSelector(
+      String SelectedWorkout, List<String> WorkoutList) {
+    String dropdownValue = SelectedWorkout;
+    //_sendListWorkouts(); // FIXME
+    return (Column(
+      children: [
+        Text("Select Workout"),
+        Text(WorkoutList.toString()),
+        /* // FIXME: does not display the string map?!
+        DropdownButton<String>(
+          items: <String>['HRST-S1', 'Two', 'Free', 'Four'] // FIXME
+              //items: WorkoutList // FIXME
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          value: dropdownValue,
+          icon: const Icon(Icons.arrow_downward),
+          iconSize: 24,
+          elevation: 16,
+          style: const TextStyle(color: Colors.deepPurple),
+          underline: Container(
+            height: 2,
+            color: Colors.deepPurpleAccent,
+          ),
+          onChanged: (String? newValue) {
+            setState(() {
+              dropdownValue = newValue!;
+            });
+          },
+        )*/
+      ],
+    ));
+  }
+
   // ignore: unused_element
   Widget _buildEditableColumn() {
     return Padding(
@@ -230,6 +270,7 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
+  // ignore: unused_element
   Widget _buildConnectionStateText(String status) {
     return Row(
       children: <Widget>[
@@ -264,6 +305,7 @@ class _MQTTViewState extends State<MQTTView> {
         ));
   }
 
+  // ignore: unused_element
   Widget _buildHoldStatus(String Left, String Right) {
     return Column(
       children: [Text("Left: " + Left + " - Right: " + Right)],
@@ -409,6 +451,7 @@ class _MQTTViewState extends State<MQTTView> {
   }
 
   // Utility functions
+  // ignore: unused_element
   String _prepareStateMessageFrom(MQTTAppConnectionState state) {
     switch (state) {
       case MQTTAppConnectionState.connected:
@@ -439,6 +482,10 @@ class _MQTTViewState extends State<MQTTView> {
     manager.disconnect();
   }
 
+  void _sendListWorkouts() {
+    _publishMessage("ListWorkouts");
+  }
+
   void _sendMessageStart() {
     _publishMessage("Start");
   }
@@ -467,45 +514,55 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
+  // ignore: unused_element
   _playSFX10() {
     // await assetsAudioPlayer.open(Audio("images/10.mp3"), autoStart: false);
     PlaySFX10.play();
   }
 
+  // ignore: unused_element
   _playSFX9() async {
     await assetsAudioPlayer.open(
       Audio("images/9.mp3"),
     );
   }
 
+  // ignore: unused_element
   _playSFX8() async {
     await audioPlayer.play("images/8.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX7() async {
     await audioPlayer.play("images/7.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX6() async {
     await audioPlayer.play("images/6.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX5() async {
     await audioPlayer.play("images/5.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX4() async {
     await audioPlayer.play("images/4.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX3() async {
     await audioPlayer.play("images/3.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX2() async {
     await audioPlayer.play("images/2.mp3", isLocal: true);
   }
 
+  // ignore: unused_element
   _playSFX1() async {
     await audioPlayer.play("images/1.mp3", isLocal: true);
   }
