@@ -33,10 +33,11 @@ class MQTTAppState with ChangeNotifier {
   String _hangchangedetected = '';
 
 // Workout variables
-  String _workout_selected_id = 'HRST-S1'; // FIXME
-  String _workout_selected_name = 'HRST-S1'; // FIXME
+  String _workout_selected_id = '';
+  String _workout_selected_name = '';
   List<String> _workout_ids = [];
   List<String> _workout_names = [];
+  // ignore: unused_field
   int _workout_selected_index = 0;
   // ignore: todo
   // TODO List of workouts
@@ -53,6 +54,20 @@ class MQTTAppState with ChangeNotifier {
   double _lasthangtime = 0.0;
   double _lastpausetime = 0.0;
   double _lastmaximalload = 0.0;
+
+  void setWorkoutStatus(String text) {
+    Map<String, dynamic> workoutjson = jsonDecode(text);
+
+    if (workoutjson.containsKey("ID")) {
+      _workout_selected_id = workoutjson["ID"];
+    }
+
+    if (workoutjson.containsKey("Name")) {
+      _workout_selected_name = workoutjson["Name"];
+    }
+
+    notifyListeners();
+  }
 
   void setLastExercise(String text) {
     Map<String, dynamic> exercisejson = jsonDecode(text);

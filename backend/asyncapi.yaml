@@ -25,7 +25,7 @@ channels:
             command:
               type: string    # alternatvie  boolean
               description: Command.      
-              pattern: '^Start .+$'     # Start, Stop, Restart, ListWorkouts
+              pattern: '^Start .+$'     # Start, Stop, Restart, ListWorkouts, 
               # mosquitto_pub -h localhost -t hangboard/workout/control -m Start
   hangboard/workout/holds:
     subscribe:
@@ -61,6 +61,14 @@ channels:
               type: string
               description: Unique ID of the workout.
               examples: ["HRST-S1","ZB-A12"]
+            Filename:
+              type: string
+              description: Filename containing the workout.
+              examples: ["myfile.json","abc/myfile2.json"]
+            IndexInFile:
+              type: integer
+              description: Index of the exercise in the given filename.
+              examples: ["myfile.json","abc/myfile2.json"]            
   hangboard/workout/setinfo:
     subscribe:
       summary: Get information on the current set.
@@ -144,6 +152,23 @@ channels:
               type: string
               description: Timer duration in seconds.
               examples: ["Starting", "Cleanup"]
+  hangboard/workout/workoutstatus:
+    subscribe:
+      summary: Current status of the current workout.
+      operationId: GetCurrentWorkout
+      message:
+        name: Workout Description
+        payload:
+          type: object
+          properties:
+            Name:
+              type: string
+              description: Name of the current workout.
+              examples: ["Stength Workout by Mr. Y", "Endurance Workout by Mr. Z"]      
+            ID:
+              type: string
+              description: Unique ID of the current workout.
+              examples: ["HRST-S-1", "ZB-A-1"]                        
   hangboard/sensor/load/loadstatus:
     subscribe:
       summary: Information on the current load status including the calculated values.

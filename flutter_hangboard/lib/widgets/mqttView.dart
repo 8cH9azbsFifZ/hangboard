@@ -221,8 +221,10 @@ class _MQTTViewState extends State<MQTTView> {
     return (Column(
       children: [
         Text("Select Workout"),
-        Text(WorkoutList.toString()),
+        Text(SelectedWorkout)
+        //Text(WorkoutList.toString()),
         // FIXME: does not display the string map?!
+        /*
         DropdownButton<String>(
           // items: <String>['HRST-S1', 'Two', 'Free', 'Four'] // FIXME
           items: WorkoutList // FIXME
@@ -246,7 +248,7 @@ class _MQTTViewState extends State<MQTTView> {
               dropdownValue = newValue!;
             });
           },
-        )
+        )*/
       ],
     ));
   }

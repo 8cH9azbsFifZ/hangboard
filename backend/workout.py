@@ -31,16 +31,17 @@ class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json",
+    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json", # FIXME
+        workout_id="ZB-A-1",
         hostname="localhost", port=1883):
         self._hostname = hostname
-        self.workoutdir = workoutdir
-        self.select_workout(workoutdir + "/" + workoutfile)
+        self._workoutdir = workoutdir
+
+        self._workoutfile = workoutfile
+        self.select_workout(self._workoutdir + "/" + self._workoutfile) # FIXME
         self.exercise_status = "Status"
-        self.workout_number = 0
-        self.workout = (self._data["Workouts"][self.workout_number])
-        self.workout_name = self.workout["Name"]
-        self.total_sets = len (self.workout["Sets"])
+
+        # Set counter variables
         self.current_set = 0
         self.current_set_name = "Rest to start"
         self.current_set_state = "Set" # or Pause
@@ -72,7 +73,13 @@ class Workout():
         self.board = Board()
         self.sensors = Sensors(hostname=hostname)
 
-        self._counter = Counter(self.workout, hostname=hostname)
+        # Variables for workout selection
+        self._workout_number = 0 
+        self._workout = {} 
+        self._workout_name = ""
+        self._workoutlist = []
+        self.total_sets = 0
+        self._set_workout(workout_id)
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
@@ -99,7 +106,7 @@ class Workout():
             next(self._counter)
         if msg.payload.decode() == "Restart":
             self._workout_running = True
-            self._counter = Counter(self.workout, hostname=self._hostname)
+            self._counter = Counter(self._workout, hostname=self._hostname)
         if msg.payload.decode() == "ListWorkouts":
             self._list_workouts()
 
@@ -107,8 +114,8 @@ class Workout():
 
     def select_workout(self, filename):
         """ Select a workout based on a filename. """
-        self.workoutfile = filename # FIXME
-        self.filename = self.workoutfile
+        self._workoutfile = filename # FIXME
+        self.filename = self._workoutfile
 
         with open(self.filename) as json_file:
             self._data = json.load(json_file)
@@ -129,10 +136,10 @@ class Workout():
         planned_time_sofar = 0
 
         for s in range (0, self.total_sets-1):
-            resttostart = self.workout["Sets"][s]["Rest-to-Start"]
-            pause = self.workout["Sets"][s]["Pause"]
-            reps = self.workout["Sets"][s]["Reps"]
-            counter = self.workout["Sets"][s]["Counter"]
+            resttostart = self._workout["Sets"][s]["Rest-to-Start"]
+            pause = self._workout["Sets"][s]["Pause"]
+            reps = self._workout["Sets"][s]["Reps"]
+            counter = self._workout["Sets"][s]["Counter"]
             settime = resttostart + reps * (counter + pause)
             if (self.current_set <= s):
                 planned_time_sofar = planned_time_sofar + settime
@@ -149,16 +156,19 @@ class Workout():
         #logging.debug("List workouts")
         workout_array = []
         
-        for filename in os.listdir (self.workoutdir):
+        for filename in os.listdir (self._workoutdir):
             if filename.endswith ("json"):
-                fn = os.path.join(self.workoutdir, filename)
+                fn = os.path.join(self._workoutdir, filename)
                 with open(fn) as json_file:
                     data = json.load(json_file)
 
+                    i = 0
                     for workout in (data["Workouts"]):
                         logging.debug (workout["Name"], fn)
-                        workout_array.append({"Name": workout["Name"], "ID": workout["ID"]})
+                        workout_array.append({"Name": workout["Name"], "ID": workout["ID"], "Filename": fn , "IndexInFile": i})
+                        i = i + 1
         #logging.debug (workout_array)
+        self._workoutlist = workout_array
         msg = json.dumps({"WorkoutList": workout_array})
         self._sendmessage("/workoutlist", msg)
 
@@ -229,11 +239,11 @@ class Workout():
 
     def _select_next_exercise(self):
         """ Increase set and rep counter if possible and return whether it has been possible"""
-        if self.current_rep < self.workout["Sets"][self.current_set]["Reps"] - 1:
+        if self.current_rep < self._workout["Sets"][self.current_set]["Reps"] - 1:
             self.current_rep = self.current_rep + 1
         else:
             self.current_rep = 0
-            if self.current_set < len (self.workout["Sets"]) - 1:
+            if self.current_set < len (self._workout["Sets"]) - 1:
                 self.current_set = self.current_set + 1
             else:
                 return False
@@ -258,8 +268,38 @@ class Workout():
             # TODO - if no hang quit it
             # TODO - start hang counter only on hang
 
-          
+    def _set_workout (self, id="ZB-A-1"):      
+        logging.debug ("Select workout: " + id)
+        index = -1
+        if self._workoutlist == []:
+            self._list_workouts()     
 
+        for i in range(0,len(self._workoutlist)-1):
+            if self._workoutlist[i]["ID"] == id:
+                index = i
+                break
+        
+        if i == -1: # Exercise not found
+            logging.debug ("Workout not found")
+            return -1
+
+        self._workoutfile = self._workoutlist[index]["Filename"]
+        self._workout_number = self._workoutlist[index]["IndexInFile"]
+        self._workout_name = self._workoutlist[index]["Name"]
+        self._workout_id = id
+
+        logging.debug ("Selecting workout: " + str(self._workoutlist[index]))
+
+        self._workout = (self._data["Workouts"][self._workout_number])
+        
+        # Set counter variables
+        self.total_sets = len (self._workout["Sets"])
+
+        # Initialize new counter
+        self._counter = Counter(self._workout, hostname=self._hostname)
+
+        # Communicate on currently selected workout
+        self._sendmessage("/workoutstatus", json.dumps(self._workoutlist[index]))
       
 
 
@@ -268,13 +308,7 @@ if __name__ == "__main__":
     print ("Starting")
 
     wa = Workout(hostname="hangboard")
-    #wa.run_workout()
-    #wa._run_workout()
-    #wa.run_websocket_handler()   
-    # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
-    #wa._client.loop_forever()   
-    #wa._client.loop_start()   
-    wa._core_loop()
 
+    #wa._core_loop()
+    wa._set_workout(id="HRST-S-1")
     a = wa._calc_time_in_current_workout()   
-    #wa._run_workout()
