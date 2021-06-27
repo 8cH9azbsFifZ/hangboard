@@ -32,13 +32,9 @@ class Workout():
     All stuff for handling workouts containing sets of exercises.
     """
     def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json", # FIXME
-        workout_id="ZB-A-1",
-        hostname="localhost", port=1883):
+        workout_id="ZB-A-1", hostname="localhost", port=1883):
         self._hostname = hostname
-        self._workoutdir = workoutdir
 
-        self._workoutfile = workoutfile
-        self.select_workout(self._workoutdir + "/" + self._workoutfile) # FIXME
         self.exercise_status = "Status"
 
         # Set counter variables
@@ -63,8 +59,6 @@ class Workout():
         # Connect to MQTT
         self._client = mqtt.Client()
 
-        #self._client1 = mqtt.Client()
-        #self._client1.connect(hostname, port,60)
         self._client.on_connect = self._on_connect
         self._client.on_message = self._on_message
         self._client.connect(hostname, port,60)
@@ -74,12 +68,14 @@ class Workout():
         self.sensors = Sensors(hostname=hostname)
 
         # Variables for workout selection
+        self._workoutdir = workoutdir
+        self._workoutfile = ""
         self._workout_number = 0 
         self._workout = {} 
         self._workout_name = ""
         self._workoutlist = []
         self.total_sets = 0
-        self._set_workout(workout_id)
+        self._set_workout(workout_id) # TODO - implement MQTT command
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
@@ -117,8 +113,7 @@ class Workout():
         self._workoutfile = filename # FIXME
         self.filename = self._workoutfile
 
-        with open(self.filename) as json_file:
-            self._data = json.load(json_file)
+
 
     def _get_current_workout(self):
         """
@@ -290,10 +285,12 @@ class Workout():
 
         logging.debug ("Selecting workout: " + str(self._workoutlist[index]))
 
+        # Read workout file
+        with open(self._workoutfile) as json_file:
+            self._data = json.load(json_file)
         self._workout = (self._data["Workouts"][self._workout_number])
-        
-        # Set counter variables
         self.total_sets = len (self._workout["Sets"])
+
 
         # Initialize new counter
         self._counter = Counter(self._workout, hostname=self._hostname)
@@ -310,5 +307,5 @@ if __name__ == "__main__":
     wa = Workout(hostname="hangboard")
 
     #wa._core_loop()
-    wa._set_workout(id="HRST-S-1")
+    wa._set_workout(id="HRST-S-1-4ZBEVO")
     a = wa._calc_time_in_current_workout()   
