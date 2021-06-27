@@ -206,7 +206,10 @@ if __name__ == "__main__":
     print (h[0])
     print (h[-1])
     svg = SVGBoard()
-    svg.Hold2SVG()    
-    svg.Hold2SVG(left="B2",right="C6")
-    svg.generate_all_images(holds=a.all_holds)
-    #print (svg.current_image_base64)
+    #svg.Hold2SVG()    
+    #svg.generate_all_images(holds=a.all_holds) # FIXME: all holds images must be genearted and put into assets directory of flutter app..
+    # FIXME: not all images are generated
+
+    svg.Hold2SVG(left="C1",right="C7")
+
+    svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
