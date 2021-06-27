@@ -6,3 +6,4 @@ html
 *.pyc
 cache
 api
+backend/doxygen
