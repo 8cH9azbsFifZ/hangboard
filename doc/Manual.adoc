@@ -109,41 +109,41 @@ Currently inactive frontend implementations are
 
 ## Developing the software
 For preparation install the following software:
-+ Install dependencies on raspi: `sudo apt-get install libxslt-dev`
-+ Install flutter and configure correct paths
-+ Prepare the virtual python environment
+- Install dependencies on raspi: `sudo apt-get install libxslt-dev`
+- Install flutter and configure correct paths
+- Prepare the virtual python environment
   ```
     python3 -m venv venv
     source venv/bin/activate
     python3 -m pip install -r backend/requirements.txt
   ```
-+ Install a fresh raspian on a SD card, put the corresponding wpa_supplicant.conf into the boot folder - ready for SSH :)
+- Install a fresh raspian on a SD card, put the corresponding wpa_supplicant.conf into the boot folder - ready for SSH :)
 
 ### Software documentation
-+ For manual documentation (manual creation): install `brew install asciidoctor` and create the PDF `cd doc; asciidoctor-pdf Manual.adoc`
-+ Documentation of the backend software can be created using `doxygen` (cf. Doxyfile).
-+ The documentation is automatically generated using a commit hook on github and published on gh-pages.
+- For manual documentation (manual creation): install `brew install asciidoctor` and create the PDF `cd doc; asciidoctor-pdf Manual.adoc`
+- Documentation of the backend software can be created using `doxygen` (cf. Doxyfile).
+- The documentation is automatically generated using a commit hook on github and published on gh-pages.
 
 For manual startup:
-+ Start backend service ```cd backend; python3 ./run_ws.py ```
-+ Start the iOS / Android / Web App: `cd flutter_hangboard && flutter run`
+- Start backend service ```cd backend; python3 ./run_ws.py ```
+- Start the iOS / Android / Web App: `cd flutter_hangboard && flutter run`
 
 #### API (MQTT)
 The documentation of the backend API can be found here: https://8ch9azbsfifz.github.io/hangboard/api/index.html .
 
-+ AsyncAPI for documentation of the API
-+ For manual generation install ```npm install -g @asyncapi/generator ``` and run ```cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ./docs```
-+ If you want to run MQTT locally on the raspi run `sudo apt-get -y install mosquitto`
+- AsyncAPI for documentation of the API
+- For manual generation install ```npm install -g @asyncapi/generator ``` and run ```cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ./docs```
+- If you want to run MQTT locally on the raspi run `sudo apt-get -y install mosquitto`
 
 
 #### Add App Icon
 The application icon is located under `assets/icon`. The backgound source code image has been created using https://ray.so. 
-+ The PNG can be converted to icon sets using this tool: https://appicon.co/ .
+- The PNG can be converted to icon sets using this tool: https://appicon.co/ .
 
 For iOS follow these steps to configure the application icon:
-+ Start Xcode `open ios/hangboardapp.xcworkspace`
-+ On the root directory click on the folder named Images.xcassets.
-+ Import a new IconSet 
+- Start Xcode `open ios/hangboardapp.xcworkspace`
+- On the root directory click on the folder named Images.xcassets.
+- Import a new IconSet 
 
 
 
