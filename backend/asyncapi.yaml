@@ -210,12 +210,12 @@ channels:
             LastHangTime:
               type: number
               description: Last hang time in seconds.
-              examples: 123
+              example: 123
             LastPauseTime:
               type: number
               description: Last pause time in seconds.
-              examples: 111              
+              example: 111              
             MaximalLoad:
               type: number
               description: Maximal load in last exercise in kg.
-              examples: 32                           
+              example: 32                           
