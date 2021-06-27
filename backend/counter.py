@@ -65,7 +65,7 @@ class Counter():
         holdtypeleft = self.workout["Sets"][self._current_set]["Left"]
         holdtyperight = self.workout["Sets"][self._current_set]["Right"]
         
-        self._left = self._board.get_hold_for_type(holdtypeleft)[0]
+        self._left = self._board.get_hold_for_type(holdtypeleft)[0] # FIXME: what if no suitable holds found?
         self._right = self._board.get_hold_for_type(holdtyperight)[-1]
 
     def __iter__(self):
@@ -82,7 +82,7 @@ class Counter():
                 self._current_set_counter = self._current_set_counter + 1 # count initial "rest to start" as iteration "0"
             # Iterate though exercises and pauses
             elif self._current_set_counter <= self._reps:
-                if self._current_exercise_type == "Pause": # Pause always after exercise of any type or "rest to start"
+                if self._current_exercise_type == "Pause" or self._current_exercise_type == "Rest to start": # Pause always after exercise of any type or "rest to start"
                     self._current_set_counter = self._current_set_counter + 1
                     self._current_exercise_type = self._exercise
                 else:
