@@ -19,12 +19,6 @@ Follow patches here: https://www.npmjs.com/package/react-native-rabbitmq
 Projet -> Release Scheme to Release (instead debug)
 
 
-## Add App Icon
-+ Generate it using: https://appicon.co/
-+ Start Xcode `open ios/hangboardapp.xcworkspace`
-+ On the root directory click on the folder named Images.xcassets.
-+ Import a new IconSet 
-
 ## Add sounds
 + Start Xcode `open ios/hangboardapp.xcworkspace`
 iOS: Open Xcode and add your sound files to the project (Right-click the project and select Add Files to [PROJECTNAME])
