@@ -11,3 +11,5 @@ git pull
 # Install the python libraries
 cd backend
 python3 -m pip install -r backend/requirements.txt
+
+# Set hostname to hangboard

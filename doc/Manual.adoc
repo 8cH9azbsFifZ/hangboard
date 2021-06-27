@@ -93,7 +93,8 @@ This is a brief design layout of the project.
 
 ## Backend
 - Running on a Raspberry Pi.
-- Communicating to the frontend using websockets.
+- Communicating to the frontend using MQTT.
+- The default hostname for the MQTT broker is "hangboard". Modification is possible in backend and frontend with a variable so far.
 
 ## Software Used
 - Flutter for the frontends
