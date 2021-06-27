@@ -198,3 +198,24 @@ channels:
               type: string
               description: Hang change detected.
               examples: ["True", "False"]
+  hangboard/sensor/lastexercise:
+    subscribe:
+      summary: Summary of the last exercise.
+      operationId: GetLastExerciseStatistics
+      message:
+        name: Last Exercise
+        payload:
+          type: object
+          properties:
+            LastHangTime:
+              type: number
+              description: Last hang time in seconds.
+              examples: 123
+            LastPauseTime:
+              type: number
+              description: Last pause time in seconds.
+              examples: 111              
+            MaximalLoad:
+              type: number
+              description: Maximal load in last exercise in kg.
+              examples: 32                           

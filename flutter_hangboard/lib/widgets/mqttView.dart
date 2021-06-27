@@ -76,9 +76,20 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getTimerCountdown),
         _buildExerciseType(currentAppState.getExerciseType),
         _buildControls(currentAppState.getAppConnectionState),
-        _buildLoadPlot(currentAppState.getLoadCurrentData)
+        _buildLoadPlot(currentAppState.getLoadCurrentData),
+        _buildLastExerciseStatistics(
+            currentAppState.getLastHangTime, currentAppState.getLastMaximalLoad)
       ],
     );
+  }
+
+  Widget _buildLastExerciseStatistics(
+      double LastHangTime, double LastMaximalLoad) {
+    return (Text("Last Exercise: " +
+        LastHangTime.toString() +
+        "s with " +
+        LastMaximalLoad.toString() +
+        "kg"));
   }
 
   // ignore: unused_element

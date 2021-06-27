@@ -49,6 +49,27 @@ class MQTTAppState with ChangeNotifier {
   double _plot_t0 = 0.0;
   double _plot_time_current = 0.0;
 
+  // Variables for summary of last exercise
+  double _lasthangtime = 0.0;
+  double _lastpausetime = 0.0;
+  double _lastmaximalload = 0.0;
+
+  void setLastExercise(String text) {
+    Map<String, dynamic> exercisejson = jsonDecode(text);
+    if (exercisejson.containsKey("LastHangTime")) {
+      _lasthangtime = exercisejson["LastHangTime"]; //.toLowerCase() == 'true';
+    }
+    if (exercisejson.containsKey("LastPauseTime")) {
+      _lastpausetime =
+          exercisejson["LastPauseTime"]; //.toLowerCase() == 'true';
+    }
+    if (exercisejson.containsKey("MaximalLoad")) {
+      _lastmaximalload =
+          exercisejson["MaximalLoad"]; //.toLowerCase() == 'true';
+    }
+    notifyListeners();
+  }
+
   void SetWorkoutList(String text) {
     print("Set Workout list");
     Map<String, dynamic> workoutjson = jsonDecode(text);
@@ -184,6 +205,10 @@ class MQTTAppState with ChangeNotifier {
   String get getWorkoutID => _workout_selected_id;
   String get getWorkoutName => _workout_selected_name;
   List<String> get GetWorkoutList => _workout_ids;
+
+  double get getLastHangTime => _lasthangtime;
+  double get getLastPauseTime => _lastpausetime;
+  double get getLastMaximalLoad => _lastmaximalload;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

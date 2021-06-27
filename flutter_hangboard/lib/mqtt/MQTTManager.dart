@@ -98,6 +98,7 @@ class MQTTManager {
     _client!.subscribe(_topic, MqttQos.atLeastOnce); // FIXME
     _client!.subscribe("hangboard/sensor/load/loadstatus", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/sensor/sensorstatus", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/sensor/lastexercise", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/holds", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/exercisetype", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/workoutlist", MqttQos.atLeastOnce);
@@ -120,6 +121,12 @@ class MQTTManager {
           "hangboard/sensor/sensorstatus") {
         _currentState.setSensorStatus(pt);
       }
+      if (recMess.variableHeader!.topicName ==
+          "hangboard/sensor/lastexercise") {
+        _currentState.setReceivedText(pt);
+
+        _currentState.setLastExercise(pt);
+      }
       if (recMess.variableHeader!.topicName == "hangboard/workout/holds") {
         _currentState.setCurrentHolds(pt);
       }
@@ -129,7 +136,6 @@ class MQTTManager {
       }
       if (recMess.variableHeader!.topicName ==
           "hangboard/workout/workoutlist") {
-        _currentState.setReceivedText(pt);
         _currentState.SetWorkoutList(pt);
       }
 
