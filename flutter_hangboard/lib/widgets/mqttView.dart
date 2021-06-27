@@ -211,10 +211,10 @@ class _MQTTViewState extends State<MQTTView> {
       children: [
         Text("Select Workout"),
         Text(WorkoutList.toString()),
-        /* // FIXME: does not display the string map?!
+        // FIXME: does not display the string map?!
         DropdownButton<String>(
-          items: <String>['HRST-S1', 'Two', 'Free', 'Four'] // FIXME
-              //items: WorkoutList // FIXME
+          // items: <String>['HRST-S1', 'Two', 'Free', 'Four'] // FIXME
+          items: WorkoutList // FIXME
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
@@ -235,7 +235,7 @@ class _MQTTViewState extends State<MQTTView> {
               dropdownValue = newValue!;
             });
           },
-        )*/
+        )
       ],
     ));
   }
@@ -476,6 +476,9 @@ class _MQTTViewState extends State<MQTTView> {
         state: currentAppState);
     manager.initializeMQTTClient();
     manager.connect();
+
+// Get inital list of workouts
+    _sendListWorkouts();
   }
 
   void _disconnect() {

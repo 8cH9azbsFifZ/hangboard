@@ -18,21 +18,19 @@ logging.basicConfig(level=logging.DEBUG,
 
 def on_message(client, userdata, message):
     global df
+    global coll_raw
     msg = json.loads(message.payload.decode("utf-8"))
-    #print (msg["time"])
-    df = df.append({
-     "time": msg["time"],
+    currentData = {"time": msg["time"],
      "loadcurrent": msg["loadcurrent"],
      "loadaverage": msg["loadaverage"],
      "fti": msg["fti"],
      "rfd": msg["rfd"],
      "loadmaximal": msg["loadmaximal"],
-     "loadloss": msg["loadloss"]
-    }, ignore_index=True)
-    #print (df)
-    #print (df["time"].max() )
-    #print( df["loadcurrent"].max())
-    #write_file()
+     "loadloss": msg["loadloss"]}
+    df = df.append(currentData, ignore_index=True)
+    coll_raw.insert_one(currentData)
+    print (df["time"].max() )
+    print( df["loadcurrent"].max())
 
 def write_file():
     compression_opts = dict(method='zip',                         archive_name='out.csv')  
@@ -46,26 +44,38 @@ values_to_add ={"time":0, "loadcurrent":0, "loadaverage":0, "fti":0, "rfd":0, "l
 row_to_add = pd.Series(values_to_add, name='x')
 df = df.append(row_to_add)
 
+# Init mongo db client
+_hostname="localhost"
+_port=27017
+_user="root"
+_password="example"
+_dbname="hangboard"
+db = MongoClient('mongodb://'+_hostname+':'+str(_port)+'/', username=_user,   password=_password  )[_dbname]
 
-datenbank = MongoClient('mongodb://localhost:27017/',
- username='root',
-  password='example'
-  )['hangboard']
-
-
-nutzerInfo = {
-    "name": "Felix Schürmeyer",
-  "alter": 22,
-  "rolle": "Gründer von HelloCoding.",
-  "artikel-anzahl": 40
+# Insert a test user
+userInfo = {
+  "name": "Karl Klettermax",
+  "age": 123,
+  "comment": "This is a test user.",
+  "uuid": "XYL123"
 }
-collection = datenbank['test-collection']
 
-collection.insert_one(nutzerInfo)
+collection = db['user-collection']
+collection.insert_one(userInfo)
 
-daten = collection.find_one({"name": "Felix Schürmeyer"})
+# Get information on test user
+daten = collection.find_one({"name": "Karl Klettermax"})
+uuid = daten["uuid"]
+print(uuid) 
 
-print(daten) 
+# Raw collection fo user
+coll_raw = db["uuid"]
+#dd = coll_raw.find({"loadcurrent": {"$gt": 1}}).sort([("loadcurrent", 1), ("time", -1)])
+loadmax = coll_raw.find_one(sort=[("loadcurrent", -1)])["loadcurrent"]
+
+data = coll_raw.find_one({"time": 1624806779.76})
+print (data)
+print (loadmax)
 
 
 client= paho.Client("client-001") 
