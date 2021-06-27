@@ -3,6 +3,7 @@ import paho.mqtt.client as paho
 import json
 import pandas as pd
 import numpy as np
+from pymongo import MongoClient
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
@@ -31,7 +32,7 @@ def on_message(client, userdata, message):
     #print (df)
     #print (df["time"].max() )
     #print( df["loadcurrent"].max())
-    write_file()
+    #write_file()
 
 def write_file():
     compression_opts = dict(method='zip',                         archive_name='out.csv')  
@@ -40,8 +41,31 @@ def write_file():
 df = pd.DataFrame(columns=["time", "loadcurrent", "loadaverage", "fti", "rfd", "loadmaximal", "loadloss" ])
 values_to_add ={"time":0, "loadcurrent":0, "loadaverage":0, "fti":0, "rfd":0, "loadmaximal":0, "loadloss":0 }
 
+
+
 row_to_add = pd.Series(values_to_add, name='x')
 df = df.append(row_to_add)
+
+
+datenbank = MongoClient('mongodb://localhost:27017/',
+ username='root',
+  password='example'
+  )['hangboard']
+
+
+nutzerInfo = {
+    "name": "Felix Schürmeyer",
+  "alter": 22,
+  "rolle": "Gründer von HelloCoding.",
+  "artikel-anzahl": 40
+}
+collection = datenbank['test-collection']
+
+collection.insert_one(nutzerInfo)
+
+daten = collection.find_one({"name": "Felix Schürmeyer"})
+
+print(daten) 
 
 
 client= paho.Client("client-001") 
