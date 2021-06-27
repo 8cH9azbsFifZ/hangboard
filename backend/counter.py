@@ -15,7 +15,9 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='Counter(%(threadName)-10s) %(message)s',
                     )
-
+                    
+from board import Board
+from sensors import Sensors
 
 class Counter():
     def __init__(self, workout, hostname="localhost", port=1883):
