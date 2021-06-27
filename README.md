@@ -1,4 +1,5 @@
 # Hangboard 
+[![build adocs](https://github.com/8cH9azbsFifZ/hangboard/actions/workflows/adoc.yaml/badge.svg)](https://github.com/8cH9azbsFifZ/hangboard/actions/)
 
 *STATUS: In Development - Towards a working demonstrator*
 
