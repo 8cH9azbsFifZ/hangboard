@@ -94,9 +94,9 @@ class Sensors():
             self._TimeStateChangePrevious = self._TimeStateChangeCurrent
             self._TimeStateChangeCurrent = time.time()
             if (self.HangDetected == True):
-                self.LastHangTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
-            else:
                 self.LastPauseTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+            else:
+                self.LastHangTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
 
     def _detect_hang_state_change(self):
         # Reset states
