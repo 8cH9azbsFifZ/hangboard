@@ -69,8 +69,7 @@ class Sensors():
             self.sensor_hangdetector = SensorZlagboard(sampling_interval = self._sampling_interval)        
 
     def run_one_measure(self):
-        self._TimeStateChangePrevious = self._TimeStateChangeCurrent
-        self._TimeStateChangeCurrent = time.time()
+        self._TimeCurrent = time.time()
 
         self.sensor_hangdetector.run_one_measure()
         
@@ -78,7 +77,7 @@ class Sensors():
         self._measure_hangtime()
         self._measure_additional_parameters()
 
-        self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeStateChangeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
+        self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
         if self._HangStateChanged:
             self.__sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.MaximalLoad) +'}')
 
@@ -92,6 +91,8 @@ class Sensors():
 
     def _measure_hangtime(self):
         if (self._HangStateChanged):
+            self._TimeStateChangePrevious = self._TimeStateChangeCurrent
+            self._TimeStateChangeCurrent = time.time()
             if (self.HangDetected == True):
                 self.LastHangTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
             else:
