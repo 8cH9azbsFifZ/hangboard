@@ -72,15 +72,13 @@ class MQTTAppState with ChangeNotifier {
   void setLastExercise(String text) {
     Map<String, dynamic> exercisejson = jsonDecode(text);
     if (exercisejson.containsKey("LastHangTime")) {
-      _lasthangtime = exercisejson["LastHangTime"]; //.toLowerCase() == 'true';
+      _lasthangtime = exercisejson["LastHangTime"];
     }
     if (exercisejson.containsKey("LastPauseTime")) {
-      _lastpausetime =
-          exercisejson["LastPauseTime"]; //.toLowerCase() == 'true';
+      _lastpausetime = exercisejson["LastPauseTime"];
     }
     if (exercisejson.containsKey("MaximalLoad")) {
-      _lastmaximalload =
-          exercisejson["MaximalLoad"]; //.toLowerCase() == 'true';
+      _lastmaximalload = exercisejson["MaximalLoad"];
     }
     notifyListeners();
   }
