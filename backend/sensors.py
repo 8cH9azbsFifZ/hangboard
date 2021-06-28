@@ -77,8 +77,8 @@ class Sensors():
         self._measure_hangtime()
         self._measure_additional_parameters()
 
-        self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
         if self._HangStateChanged:
+            self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
             self.__sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.MaximalLoad) +'}')
 
     def _measure_additional_parameters(self):
