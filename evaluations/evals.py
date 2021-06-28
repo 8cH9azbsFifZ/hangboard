@@ -36,3 +36,16 @@ if __name__ == "__main__":
     print (d._get_maxload(hold="20mm",hand="left"))
     print (d._get_maxload())
 
+    # Testing intensity
+    maxload = d._get_maxload(hold="20mm")
+    intensity_strength = 0.9
+    intensity_endurance = 0.6
+    intensity_endurance_low = 0.3
+    load_strength = intensity_strength * maxload
+    load_endurance = intensity_endurance * maxload
+    load_endurance_low = intensity_endurance_low * maxload
+
+    print (load_strength) 
+    print (load_endurance)
+    print (load_endurance_low)
+

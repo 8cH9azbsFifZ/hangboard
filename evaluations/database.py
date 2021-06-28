@@ -99,7 +99,7 @@ class Database():
     return bw
 
   def _get_maxload(self, hold ="JUG", hand = "both"):
-    lm = self._coll_summary.find_one({"$and": [{"hold": hold}, {"hand": hand}]}, sort=[("time", -1)])
+    lm = self._coll_summary.find_one({"$and": [{"hold": hold}, {"hand": hand}]}, sort=[("time", -1)])["load"]
     return lm
 
 
