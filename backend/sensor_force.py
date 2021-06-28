@@ -63,8 +63,8 @@ else:
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
         pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
-        referenceUnit = 1257528/79, load_hang = 20.0, # FIXME 
-        hostname="localhost", port=1883): #//1257528/79*0.2 ):
+        referenceUnit = 1257528/79, load_hang = 2.0, # FIXME 
+        hostname="localhost", port=1883): 
         logging.debug ("Initialize")
 
         self.pin_dout = pin_dout
