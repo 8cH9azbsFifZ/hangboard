@@ -1,0 +1,33 @@
+{
+    "Reference": "MaxHangs Hangboard Routine For Finger Strength",
+    "Author": "Eva López",
+    "URL": "https://strengthclimbing.com/eva-lopez-maxhangs/",
+    "Workouts": [   
+        {
+            "ID": "SC-EL-S-1",
+            "Name": "MaxHangs MED",
+            "Type": "Maximal Strength",
+            "Description": "Minimum edge with no added weight. 1. Choose an edge on which you can hang for only 6 – 20 seconds. 2. Hang for 5 – 15 seconds (leave a 1 – 5-second margin), rest for 3 – 5 minutes. 3. Complete 2 – 5 sets.",
+            "Sets":
+            [
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 2, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 1, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 1, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 1, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} 
+            ]
+        },
+        {
+            "ID": "SC-EL-S-2",
+            "Name": "MaxHangs MAW",
+            "Type": "Maximal Strength",
+            "Description": "Minimum edge with added weight. 1. Choose a grip position to train. 2. Add enough weight to be able to hang for only 6 – 20 seconds. 3. Hang for 5 – 15 seconds (leave a 1 – 5-second margin), rest for 3 – 5 minutes. 4. Complete 2 – 5 sets.",
+            "Sets":
+            [
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 2, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 1, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 1, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 1, "Left": "15mm", "Right": "15mm", "Description": "Do a 12-second hang using a feature that you can barely hold for 15 seconds with maximum effort."} 
+            ]
+        }
+    ]
+}
