@@ -77,6 +77,7 @@ class _MQTTViewState extends State<MQTTView> {
         _buildExerciseType(currentAppState.getExerciseType),
         _buildControls(currentAppState.getAppConnectionState),
         _buildLoadPlot(currentAppState.getLoadCurrentData),
+        //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
         _buildLastExerciseStatistics(
             currentAppState.getLastHangTime, currentAppState.getLastMaximalLoad)
       ],
@@ -107,6 +108,10 @@ class _MQTTViewState extends State<MQTTView> {
     ]);
   }
 
+  Widget _buildLoadPlotDisplay(double LoadCurrent) {
+    return (Text("Current load: " + LoadCurrent.toString()));
+  }
+
   Widget _buildLoadPlot(List<FlSpot> LoadCurrentData) {
     List<Color> gradientColors = [
       // https://api.flutter.dev/flutter/dart-ui/Color-class.html
@@ -118,98 +123,90 @@ class _MQTTViewState extends State<MQTTView> {
           ? Text("No Hang - No Load")
           : Expanded(
               flex: 3,
-              child: 1 == 0
-                  ? Text("ja")
-                  : Stack(
-                      children: <Widget>[
-                        AspectRatio(
-                          aspectRatio: 3,
-                          child: Container(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 0.0, left: 0.0, top: 0, bottom: 0),
-                              child: LineChart(
-                                LineChartData(
-                                  gridData: FlGridData(
-                                    // Grid
-                                    show: true,
-                                    drawVerticalLine: true,
-                                    getDrawingHorizontalLine: (value) {
-                                      // Grid Horizontal
-                                      return FlLine(
-                                        color: const Color(0xff37434d),
-                                        strokeWidth: 1,
-                                      );
-                                    },
-                                    getDrawingVerticalLine: (value) {
-                                      // Grid Vertical
-                                      return FlLine(
-                                        color: const Color(0xff37434d),
-                                        strokeWidth: 1,
-                                      );
-                                    },
-                                  ),
-                                  titlesData: FlTitlesData(
-                                    // X Axis
-                                    show: true,
-                                    bottomTitles: SideTitles(
-                                      showTitles: true,
-                                      reservedSize: 22,
-                                      getTextStyles: (value) => const TextStyle(
-                                          color: Color(0xff68737d),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                      getTitles: (value) {
-                                        // X Axis description
-                                        return value.toInt().toString();
-                                      },
-                                      margin: 8,
-                                    ),
-                                    leftTitles: SideTitles(
-                                      // Y Axis
-                                      showTitles: true,
-                                      getTextStyles: (value) => const TextStyle(
-                                        color: Color(0xff67727d),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
-                                      ),
-                                      getTitles: (value) {
-                                        return value.toInt().toString();
-                                      },
-                                      reservedSize: 28,
-                                      margin: 12,
-                                    ),
-                                  ),
-                                  borderData: FlBorderData(
-                                      show: true,
-                                      border: Border.all(
-                                          color: const Color(0xff37434d),
-                                          width: 1)),
-                                  minY: 0,
-                                  lineBarsData: [
-                                    LineChartBarData(
-                                      spots: LoadCurrentData,
-                                      colors: gradientColors,
-                                      barWidth: 5,
-                                      dotData: FlDotData(
-                                        show: false,
-                                      ),
-                                      belowBarData: BarAreaData(
-                                        show: true,
-                                        colors: gradientColors
-                                            .map((color) =>
-                                                color.withOpacity(0.3))
-                                            .toList(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+              child: AspectRatio(
+                aspectRatio: 3,
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        right: 0.0, left: 0.0, top: 0, bottom: 0),
+                    child: LineChart(
+                      LineChartData(
+                        gridData: FlGridData(
+                          // Grid
+                          show: true,
+                          drawVerticalLine: true,
+                          getDrawingHorizontalLine: (value) {
+                            // Grid Horizontal
+                            return FlLine(
+                              color: const Color(0xff37434d),
+                              strokeWidth: 1,
+                            );
+                          },
+                          getDrawingVerticalLine: (value) {
+                            // Grid Vertical
+                            return FlLine(
+                              color: const Color(0xff37434d),
+                              strokeWidth: 1,
+                            );
+                          },
+                        ),
+                        titlesData: FlTitlesData(
+                          // X Axis
+                          show: true,
+                          bottomTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 22,
+                            getTextStyles: (value) => const TextStyle(
+                                color: Color(0xff68737d),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                            getTitles: (value) {
+                              // X Axis description
+                              return value.toInt().toString();
+                            },
+                            margin: 8,
+                          ),
+                          leftTitles: SideTitles(
+                            // Y Axis
+                            showTitles: true,
+                            getTextStyles: (value) => const TextStyle(
+                              color: Color(0xff67727d),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
                             ),
+                            getTitles: (value) {
+                              return value.toInt().toString();
+                            },
+                            reservedSize: 28,
+                            margin: 12,
                           ),
                         ),
-                      ],
+                        borderData: FlBorderData(
+                            show: true,
+                            border: Border.all(
+                                color: const Color(0xff37434d), width: 1)),
+                        minY: 0,
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: LoadCurrentData,
+                            colors: gradientColors,
+                            barWidth: 5,
+                            dotData: FlDotData(
+                              show: false,
+                            ),
+                            belowBarData: BarAreaData(
+                              show: true,
+                              colors: gradientColors
+                                  .map((color) => color.withOpacity(0.3))
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                  ),
+                ),
+              ),
             )
     ]);
   }

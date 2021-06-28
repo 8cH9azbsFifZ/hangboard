@@ -96,9 +96,9 @@ class MQTTManager {
     _currentState.setAppConnectionState(MQTTAppConnectionState.connected);
     print('EXAMPLE::Mosquitto client connected....');
     _client!.subscribe(_topic, MqttQos.atLeastOnce); // FIXME
-    _client!.subscribe("hangboard/sensor/load/loadstatus", MqttQos.atLeastOnce);
-    _client!.subscribe("hangboard/sensor/sensorstatus", MqttQos.atLeastOnce);
-    _client!.subscribe("hangboard/sensor/lastexercise", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/sensor/load/loadstatus", MqttQos.atMostOnce);
+    _client!.subscribe("hangboard/sensor/sensorstatus", MqttQos.exactlyOnce);
+    _client!.subscribe("hangboard/sensor/lastexercise", MqttQos.exactlyOnce);
     _client!.subscribe("hangboard/workout/holds", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/exercisetype", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/workoutlist", MqttQos.atLeastOnce);

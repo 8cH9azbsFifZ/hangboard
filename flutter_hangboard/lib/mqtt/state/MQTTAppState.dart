@@ -47,6 +47,7 @@ class MQTTAppState with ChangeNotifier {
 
 // Variables for plot generation
   List<FlSpot> _plot_load_current = [];
+  double _load_current = 0.0;
   double _plot_t0 = 0.0;
   double _plot_time_current = 0.0;
 
@@ -117,24 +118,28 @@ class MQTTAppState with ChangeNotifier {
     notifyListeners();
   }
 
-  void setLoadStatus(String text) {
+  void setLoadStatus(String text) async {
     Map<String, dynamic> loadjson = jsonDecode(text);
     double time = 0.0;
     double load = 0.0;
 
     if (loadjson.containsKey("time")) {
-      time = loadjson["time"];
+      time = await loadjson["time"];
     }
 
     if (loadjson.containsKey("loadcurrent")) {
-      load = loadjson["loadcurrent"];
+      load = await loadjson["loadcurrent"];
     }
 
     _plot_time_current = time;
     time = time - _plot_t0;
+
     if (_hangdetected.contains("True")) {
       _plot_load_current.add(FlSpot(time, load));
+      _load_current = load;
     }
+
+    notifyListeners();
   }
 
   void setReceivedText(String text) {
@@ -207,6 +212,7 @@ class MQTTAppState with ChangeNotifier {
   String get getWorkoutID => _workout_selected_id;
   String get getWorkoutName => _workout_selected_name;
   List<String> get GetWorkoutList => _workout_ids;
+  double get getLoadCurrent => _load_current;
 
   double get getLastHangTime => _lasthangtime;
   double get getLastPauseTime => _lastpausetime;
