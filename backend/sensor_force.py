@@ -278,6 +278,11 @@ class SensorForce():
         pass
         # TODO: implement
 
+    def _calc_current_intensity(self, maxload):
+        """ Calculate the current intensity for a given maximal load """
+        pass
+        # TODO: implement
+
     def _detect_hang(self):
         self.HangDetected = False
         if (self.load_current > self.load_hang):
