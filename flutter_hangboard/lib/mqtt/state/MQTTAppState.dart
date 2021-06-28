@@ -88,24 +88,13 @@ class MQTTAppState with ChangeNotifier {
     Map<String, dynamic> workoutjson = jsonDecode(text);
     _workout_ids = [];
     _workout_names = [];
+
     for (int i = 0; i < workoutjson["WorkoutList"].length; i++) {
       _workout_ids.add((workoutjson["WorkoutList"][i]["ID"]).toString());
       _workout_names.add((workoutjson["WorkoutList"][i]["Name"]).toString());
-      //print(workoutjson["WorkoutList"][i]["ID"]);
-      // _workout_ids[i] = workoutjson["WorkoutList"][i]["ID"];
-      // _workout_names[i] = workoutjson["WorkoutList"][i]["Name"];
-      //print(i);
     }
 
     notifyListeners();
-
-    /*
-        if (workoutjson.containsKey("Name")) {
-      _hangdetected = workoutjson["Name"]; //.toLowerCase() == 'true';
-    }
-// 
-// ID
-*/
   }
 
   void setSensorStatus(String text) {
