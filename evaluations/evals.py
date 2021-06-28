@@ -31,5 +31,8 @@ if __name__ == "__main__":
     l20m_maxload = data[lc][l20m]["loadcurrent"].max()
     plot_load(data[lc][l20m]["time"],data[lc][l20m]["loadcurrent"])
     print(l20m_maxload)
-
+    print (d._get_user_bodyweight())
+    print (d._get_maxload(hold="20mm"))
+    print (d._get_maxload(hold="20mm",hand="left"))
+    print (d._get_maxload())
 

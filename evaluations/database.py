@@ -67,23 +67,41 @@ class Database():
   def _get_user(self):
     # Get information on test user
     collection = self._db['user-collection']
-    daten = collection.find_one({"name": "Karl Klettermax"}) # FIXME
-    uuid = daten["uuid"]
+    data = collection.find_one({"name": "Karl Klettermax"}) # FIXME
+    uuid = data["uuid"]
     print(uuid) 
 
   def _set_user(self, uuid):
     self._uuid = uuid
     # Raw collection fo user
-    self._coll_raw = self._db[uuid]
+    self._coll_raw = self._db[uuid+"-raw"]
+    self._coll_summary = self._db[uuid+"-summary"]
 
-  def _get_maxload(self):
+  def _set_user_maxload(self, timestamp, hold, load, hangtime, hand):
+    userMaxLoadEntry = {
+      "time": timestamp,
+      "hold": hold,
+      "load": load,
+      "hangtime": hangtime,
+      "hand": hand
+    }
+    self._coll_summary.insert_one(userMaxLoadEntry)
 
-    #dd = coll_raw.find({"loadcurrent": {"$gt": 1}}).sort([("loadcurrent", 1), ("time", -1)])
-    loadmax = self._coll_raw.find_one(sort=[("loadcurrent", -1)])["loadcurrent"]
+  def _set_user_bodyweight(self, timestamp, bodyweight):
+    userBodyWeight = {
+      "time": timestamp,
+      "bodyweight": bodyweight
+    }
+    self._coll_summary.insert_one(userBodyWeight)
 
-    #data = self._coll_raw.find_one({"time": 1624806779.76})
-    #print (data)
-    print (loadmax)
+  def _get_user_bodyweight(self):
+    bw = self._coll_summary.find_one({"bodyweight": {"$gt": 1}}, sort=[("time", -1)]) 
+    return bw
+
+  def _get_maxload(self, hold ="JUG", hand = "both"):
+    lm = self._coll_summary.find_one({"$and": [{"hold": hold}, {"hand": hand}]}, sort=[("time", -1)])
+    return lm
+
 
   def _record_data(self, hostname="localhost",port=1883):
     logging.debug("Start recording data from mqtt to database")
