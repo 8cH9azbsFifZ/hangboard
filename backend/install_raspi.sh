@@ -13,3 +13,9 @@ cd backend
 python3 -m pip install -r backend/requirements.txt
 
 # Set hostname to hangboard
+
+
+
+
+# Install docker
+curl -fsSL https://get.docker.com | sh
