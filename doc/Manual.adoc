@@ -375,27 +375,27 @@ The data and evaluation scripts can be found in the directory `evaluations`.
 
 [#img-measurement-test1-load]
 .Measurement of Load (Test 1)
-image::../evaluations/Load.png[{half-size}Measurement of Load (Test 1)]
+image::app/Load.png[{half-size}Measurement of Load (Test 1)]
 
 [#img-measurement-test1-loadavg]
 .Measurement of average Load (Test 1)
-image::../evaluations/LoadAvg.png[{half-size}Measurement of average Load (Test 1)]
+image::app/LoadAvg.png[{half-size}Measurement of average Load (Test 1)]
 
 [#img-measurement-test1-loadmax]
 .Measurement of maximal Load (Test 1)
-image::../evaluations/LoadMax.png[{half-size}Measurement of maximal Load (Test 1)]
+image::app/LoadMax.png[{half-size}Measurement of maximal Load (Test 1)]
 
 [#img-measurement-test1-loadloss]
 .Measurement of Load Loss (Test 1)
-image::../evaluations/LoadLoss.png[{half-size}Measurement of Load loss (Test 1)]
+image::app/LoadLoss.png[{half-size}Measurement of Load loss (Test 1)]
 
 [#img-measurement-test1-fti]
 .Measurement of FTI (Test 1)
-image::../evaluations/FTI.png[{half-size}Measurement of FTI (Test 1)]
+image::app/FTI.png[{half-size}Measurement of FTI (Test 1)]
 
 [#img-measurement-test1-rfd]
 .Measurement of RFD (Test 1)
-image::../evaluations/RFD.png[{half-size}Measurement of RFD (Test 1)]
+image::app/RFD.png[{half-size}Measurement of RFD (Test 1)]
 
 
 # Hangboards
