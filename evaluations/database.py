@@ -12,12 +12,12 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 class Database():
-  def __init__(self, hostname="localhost"):
+  def __init__(self, hostname="localhost", user="root", password="example"):
     # Init mongo db client
     self._hostname=hostname
     self._port=27017
-    self._user="root"
-    self._password="example"
+    self._user=user
+    self._password=password
     self._dbname="hangboard"
 
     self._db = MongoClient('mongodb://'+self._hostname+':'+str(self._port)+'/', username=self._user,   password=self._password  )[self._dbname]
@@ -85,7 +85,7 @@ class Database():
     #print (data)
     print (loadmax)
 
-  def _record_data(self, hostname="t20",port=1883):
+  def _record_data(self, hostname="localhost",port=1883):
     logging.debug("Start recording data from mqtt to database")
     self._client= paho.Client("client-001") 
     self._client.on_message=self._on_message

@@ -16,7 +16,7 @@ def plot_load(t,load):
 	plt.savefig("Load.png")
 
 if __name__ == "__main__":
-    d = Database()
+    d = Database(hostname="hangboard", user="root", password="rootpassword")
     d._set_user(uuid="us3r")
     d._get_maxload()
     print (d._coll_raw)
