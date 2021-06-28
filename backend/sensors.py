@@ -89,7 +89,7 @@ class Sensors():
             self.RFD = self.sensor_hangdetector.RFD
             self.LoadLoss = self.sensor_hangdetector.LoadLoss
 
-    def _measure_hangtime(self):
+    def _measure_hangtime(self): # FIXME - not displayed correctly after exercise
         if (self._HangStateChanged):
             self._TimeStateChangePrevious = self._TimeStateChangeCurrent
             self._TimeStateChangeCurrent = time.time()
