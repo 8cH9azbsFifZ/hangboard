@@ -1,4 +1,4 @@
-- v0.51 - Fix stuttering sound (#52) and provide dockerfile for backend.
+- v0.51 - Fix stuttering sound (#56) and provide dockerfile for backend.
 - v0.50 - Display statistics of last exercise.
 - v0.49 - Pre release with flutter frontend (iOS) and MQTT backend.
 - v0.48 - Removed inactive web backend, add asyncapi documentation stub, remove unused code.
