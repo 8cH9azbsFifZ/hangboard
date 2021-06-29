@@ -6,6 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:wakelock/wakelock.dart';
+import 'dart:isolate';
 
 class MQTTView extends StatefulWidget {
   @override
@@ -108,6 +109,7 @@ class _MQTTViewState extends State<MQTTView> {
     ]);
   }
 
+  // ignore: unused_element
   Widget _buildLoadPlotDisplay(double LoadCurrent) {
     return (Text("Current load: " + LoadCurrent.toString()));
   }
@@ -213,6 +215,7 @@ class _MQTTViewState extends State<MQTTView> {
 
   Widget _buildWorkoutSelector(
       String SelectedWorkout, List<String> WorkoutList) {
+    // ignore: unused_local_variable
     String dropdownValue = SelectedWorkout;
     //_sendListWorkouts(); // FIXME
     return (Column(
@@ -365,6 +368,7 @@ class _MQTTViewState extends State<MQTTView> {
     if (TimerCountdown == 0.0) {
       _playSFX("images/done.mp3");
     }
+
     return Column(
       children: [
         LinearProgressIndicator(
@@ -522,6 +526,8 @@ class _MQTTViewState extends State<MQTTView> {
   }
 
   _playSFX(String Filename) async {
+    //await Isolate.spawn(assetsAudioPlayer.open, Audio(Filename));
+
     await assetsAudioPlayer.open(
       Audio(Filename),
     );

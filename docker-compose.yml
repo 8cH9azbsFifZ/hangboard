@@ -1,6 +1,19 @@
 version: '2.2'
 
 services:
+    workout:
+      build:
+        context: ./
+        dockerfile: ./backend/Dockerfile
+      dns_search: mainz.ziegenhain.family
+
+    database:
+        build:
+          context: ./
+          dockerfile: ./backend/Dockerfile
+        dns_search: mainz.ziegenhain.family
+        command: python ./record.py
+
     mqtt:
         restart: unless-stopped
         image: eclipse-mosquitto:1.6 # 2.0 breaking change address error

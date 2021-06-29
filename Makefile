@@ -11,7 +11,8 @@ backend-doc: # output in ~/backend/doxygen/html
 frontend:
 	cd flutter_hangboard ; 	~/src/flutter/bin/flutter build ios ; 	~/src/flutter/bin/flutter install ; cd ..
 
-
+backend:
+	docker-compose build
 
 clean:
 	rm -rf api/

@@ -1,3 +1,6 @@
+"""
+This service runs the database recorder (listen to MQTT and record to MongoDB)
+"""
 from database import Database
 
 

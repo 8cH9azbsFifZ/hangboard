@@ -1,4 +1,4 @@
-from database import Database
+from ../backend/database import Database
 
 
 if __name__ == "__main__":

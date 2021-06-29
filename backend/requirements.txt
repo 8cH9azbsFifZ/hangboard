@@ -7,3 +7,5 @@ scipy
 numpy
 pymongo
 paho-mqtt
+matplotlib
+pandas

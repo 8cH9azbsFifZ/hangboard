@@ -1,3 +1,7 @@
+"""
+This class handles all database connections of the backend.
+"""
+
 import time
 import paho.mqtt.client as paho
 import json

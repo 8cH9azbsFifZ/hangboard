@@ -1,8 +1,7 @@
 import 'dart:convert';
 // ignore: unused_import
-import 'dart:ffi';
+//import 'dart:ffi'; // FIXME
 import 'package:fl_chart/fl_chart.dart';
-
 import 'package:flutter/cupertino.dart';
 
 enum MQTTAppConnectionState { connected, disconnected, connecting }
@@ -202,7 +201,14 @@ class MQTTAppState with ChangeNotifier {
   double get getTimerDuration => _timer_duration;
   double get getTimerElapsed => _timer_elapsed;
   double get getTimerCompleted => _timer_completed;
-  double get getTimerCountdown => _timer_countdown;
+  double get getTimerCountdown {
+    double a = _timer_countdown;
+    _timer_countdown =
+        -1; // FIX: app will rebuild on every update and start to start sound every microsecond :/ #56
+    return a;
+  }
+
+  //=> _timer_countdown;
   String get getHoldLeft => _hold_left;
   String get getHoldRight => _hold_right;
   String get getImageName => _imagename;

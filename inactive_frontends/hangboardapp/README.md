@@ -16,7 +16,7 @@ Follow patches here: https://www.npmjs.com/package/react-native-rabbitmq
 
 ### Configure without metro
 + http://dev.diogomachado.com/how-run-your-app-react-on-iphone-without-metro-server-running/
-Projet -> Release Scheme to Release (instead debug)
+Project -> Release Scheme to Release (instead debug)
 
 
 ## Add sounds
