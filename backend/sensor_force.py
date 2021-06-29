@@ -108,6 +108,13 @@ class SensorForce():
         self.LoadLoss = 0
         self.HangStateChangedString = ""
 
+        # Calculated Values for last hang
+        self.LastHang_FTI = 0
+        self.LastHang_AverageLoad = 0
+        self.LastHang_MaximalLoad = 0
+        self.LastHang_RFD = 0
+        self.LastHang_LoadLoss = 0
+
         # Connect to MQTT
         self._client = mqtt.Client()
         self._client.connect(hostname, port,60)
@@ -246,12 +253,20 @@ class SensorForce():
         else:
             self._load_series = []
             self._time_series = []
+
+            self.LastHang_FTI = self.FTI
+            self.LastHang_AverageLoad = self.AverageLoad
+            self.LastHang_MaximalLoad = self.MaximalLoad
+            self.LastHang_RFD = self.RFD
+            self.LastHang_LoadLoss = self.LoadLoss
+
             self.AverageLoad = 0
             self.MaximalLoad = 0
             self.FTI = 0
             self.RFD = 0
             self.LoadLoss = 0
 
+        logging.debug("Sensor current max load " + str(self.MaximalLoad) + " and last maximum " + str(self.LastHang_MaximalLoad))
         #self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
         #(full_second, full_second_decimals) = divmod(self.time_current,1)
         #print (self.time_current)
