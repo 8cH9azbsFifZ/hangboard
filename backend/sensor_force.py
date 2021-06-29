@@ -229,7 +229,7 @@ class SensorForce():
 
         if EMULATE_HX711:
             self._simcounter = self._simcounter+1
-            if (self._simcounter+1 >= len(self._simdata["time"])):
+            if (self._simcounter+1 >= 100): #len(self._simdata["time"])): # FIXME does not work yet
                 self._simcounter=0
             self.load_current = self._simdata["load"][self._simcounter]
             #time.sleep(0.05) # FIXME

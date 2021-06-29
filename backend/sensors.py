@@ -77,8 +77,8 @@ class Sensors():
         self._measure_hangtime()
         self._measure_additional_parameters()
 
+        self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
         if self._HangStateChanged:
-            self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
             self.__sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.MaximalLoad) +'}')
 
     def _measure_additional_parameters(self):
@@ -90,13 +90,17 @@ class Sensors():
             self.LoadLoss = self.sensor_hangdetector.LoadLoss
 
     def _measure_hangtime(self): # FIXME - not displayed correctly after exercise
+        delta = 0
         if (self._HangStateChanged):
             self._TimeStateChangePrevious = self._TimeStateChangeCurrent
             self._TimeStateChangeCurrent = time.time()
+            
+            delta = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+
             if (self.HangDetected == True):
-                self.LastPauseTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+                self.LastPauseTime = delta
             else:
-                self.LastHangTime = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+                self.LastHangTime = delta
 
     def _detect_hang_state_change(self):
         # Reset states
