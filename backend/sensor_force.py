@@ -46,8 +46,6 @@ import json
 
 import threading
 
-# TODO: Run in background at all times or send signals?
-
 EMULATE_HX711 = True
 
 if not EMULATE_HX711:
@@ -139,9 +137,6 @@ class SensorForce():
         #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
         self._client.publish(ttopic, mmessage)
 
-    def _simulate_force_sensor(self):
-        pass
-        # TODO implement
 
     def cleanAndExit(self):
         self._sendmessage("/status", "Cleanup for exit")
@@ -182,7 +177,7 @@ class SensorForce():
         #hx.tare_A()
         #hx.tare_B()
 
-    # TODO implement calibrate command over MQTT
+    # TODO implement calibrate command over MQTT  #78
 
     def set_reference_unit(self):
         """
@@ -297,14 +292,10 @@ class SensorForce():
             self.MaximalLoad = self.load_current
         return self.MaximalLoad
 
-    def NobodyHanging(self):
-        pass
-        # TODO: implement
-
     def _calc_current_intensity(self, maxload):
         """ Calculate the current intensity for a given maximal load """
         pass
-        # TODO: implement
+        # TODO: implement #60
 
     def _detect_hang(self):
         self.HangDetected = False
@@ -347,16 +338,6 @@ class SensorForce():
         #integrate.simpson(y, x)
         self.FTI = integrate.simpson(self._load_series, self._time_series) * self._Gravity
         return self.FTI
-
-    def _MovingAverage(self):
-        pass # TODO implement
-
-    def _FirstThresholdCross(self):
-        """
-        FirstThresholdCross return the position of the first value crossing, or matching, the threshold,
-        in absolute values
-        """
-        pass # TODO implement
 
     def _Calc_RFD(self):
         """

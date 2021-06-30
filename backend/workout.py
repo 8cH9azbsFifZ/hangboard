@@ -75,7 +75,7 @@ class Workout():
         self._workout_name = ""
         self._workoutlist = []
         self.total_sets = 0
-        self._set_workout(workout_id) # TODO - implement MQTT command
+        self._set_workout(workout_id) # TODO - implement MQTT command #59
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
@@ -168,7 +168,7 @@ class Workout():
         self._sendmessage("/workoutlist", msg)
 
 
-    def run_exercise_1hand_pull(self): # TODO implement
+    def run_exercise_1hand_pull(self): # TODO implement #80
         """
         Run an exercise for 1 hand pulls. Given a maximum load a climber can handle and the given intensity
         the threshold load to be applied is:
@@ -198,7 +198,7 @@ class Workout():
         """ Run pull up exercise """
         logging.debug("Run a pull ups exercise")
         # TBD Implement
-        # TODO counting - how to achieve (force or distance detection?)
+        # TODO counting - how to achieve (force or distance detection?) - #79
 
 
     def _get_board_image_base64(self):
@@ -226,7 +226,6 @@ class Workout():
 
     def _get_current_measurements_series(self):
         """ Obtain the current measurement time series from sensors.""" 
-        # TODO implement 
         als = self.sensors.sensor_hangdetector._load_series
         ats = self.sensors.sensor_hangdetector._time_series
         list = json.dumps({"CurrentMeasurementsSeries": {"time": ats, "load": als}})
@@ -271,7 +270,6 @@ class Workout():
             if not (self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start"):
                 if not self.sensors.HangDetected:
                     next(self._counter)
-            # TODO - if no hang quit it
 
     def _set_workout (self, id="ZB-A-1"):      
         logging.debug ("Select workout: " + id)

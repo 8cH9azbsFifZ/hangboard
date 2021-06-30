@@ -128,7 +128,7 @@ class Sensors():
                 self.Changed = "NoHang"
                 #logging.debug ("HangStateChanged and no HangDetected")
 
-    def _calc_DutyCycle(self): # TODO implement
+    def _calc_DutyCycle(self): # TODO #77 implement
         """
         // DutyCycle calculate the percentage of time doing force vs resting
         """

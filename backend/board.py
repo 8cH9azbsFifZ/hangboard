@@ -108,7 +108,7 @@ class SVGBoard():
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir
 
-    def _svg_to_png(self, filename): # TODO - finish implementation
+    def _svg_to_png(self, filename): 
         outfile = filename.replace(".svg",".png")
         drawing = svg2rlg(filename)
         renderPM.drawToFile(drawing, outfile, fmt="PNG")
@@ -126,16 +126,15 @@ class Board():
 
     def list_boards(self):
         logging.debug ("List all available boards.")
-        # TODO implement
+        # TODO implement #65
 
     def get_board(self):
         """
         Get the board configuration (STUB)
         """
-        # TODO implement
+        # TODO implement #65
 
     def init_board (self):
-        # TODO rework for this version
         self.board_status = ""
         self.boardfilename = "../boards/" + self.boardname + "/holds.json" 
 
@@ -150,7 +149,6 @@ class Board():
 
     def set_active_holds(self, array_holds):
         logging.debug("Set active holds")
-        # TODO rework for this version
         self.holds_active = array_holds
         self.holds_inactive = [x for x in self.all_holds if x not in array_holds]
         logging.debug (self.holds_active)
