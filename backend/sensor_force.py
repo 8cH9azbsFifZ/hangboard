@@ -241,7 +241,7 @@ class SensorForce():
         if len(self._moving_average_series) >= self._moving_average_n: 
             self._moving_average_series.pop() # restrict size of array for moving average   
             self._moving_average_load = uniform_filter1d(self._moving_average_series, size=self._moving_average_n)
-            return self._moving_average_load 
+            return self._moving_average_load
 
         return 0
 
@@ -284,7 +284,7 @@ class SensorForce():
             self.RFD = 0
             self.LoadLoss = 0
 
-        self.load_current = self._moving_average_load # FIXME
+        self.load_current = self._moving_average_load[self._moving_average_n] # FIXME
 
         logging.debug("Sensor current max load " + str(self.MaximalLoad) + " and last maximum " + str(self.LastHang_MaximalLoad))
         #self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
