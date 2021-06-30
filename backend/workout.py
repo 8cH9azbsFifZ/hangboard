@@ -262,6 +262,9 @@ class Workout():
                 if self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start":
                     if self.sensors.HangDetected:
                         next(self._counter)
+                    else:
+                        # show at least upcoming config
+                        self._counter._show_upcoming_exercise()
                 # Start next timer only when np hang detected if currently no pause -> means next is a pause
                 else:
                     if not self.sensors.HangDetected:

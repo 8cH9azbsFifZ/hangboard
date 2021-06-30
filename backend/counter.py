@@ -54,16 +54,20 @@ class Counter():
         self._lastcountdown = 0
         self.TimeCountdown = 0
 
-    def _get_current_set(self):
-        self._resttostart = self.workout["Sets"][self._current_set]["Rest-to-Start"]
-        self._pause = self.workout["Sets"][self._current_set]["Pause"]
-        self._reps = self.workout["Sets"][self._current_set]["Reps"]
-        self._counter = self.workout["Sets"][self._current_set]["Counter"]
-        self._exercise = self.workout["Sets"][self._current_set]["Exercise"]
+    def _get_current_set(self, index=0):
+        i = self._current_set + index
+        if i >= self._total_sets:
+            return 
+
+        self._resttostart = self.workout["Sets"][i]["Rest-to-Start"]
+        self._pause = self.workout["Sets"][i]["Pause"]
+        self._reps = self.workout["Sets"][i]["Reps"]
+        self._counter = self.workout["Sets"][i]["Counter"]
+        self._exercise = self.workout["Sets"][i]["Exercise"]
         self._current_set_total = 1 + self._reps * 2 # rest to start and #reps exercises and pauses
 
-        holdtypeleft = self.workout["Sets"][self._current_set]["Left"]
-        holdtyperight = self.workout["Sets"][self._current_set]["Right"]
+        holdtypeleft = self.workout["Sets"][i]["Left"]
+        holdtyperight = self.workout["Sets"][i]["Right"]
         
         self._left = self._board.get_hold_for_type(holdtypeleft)[0] # FIXME: what if no suitable holds found?
         self._right = self._board.get_hold_for_type(holdtyperight)[-1]
@@ -97,9 +101,15 @@ class Counter():
             raise StopIteration()
 
         self._get_current_hold_setup()
+        self._publish_exercise()
         self._start_current_timer()
 
         return self._index
+
+    def _show_upcoming_exercise(self):
+        self._get_current_set(index=1)
+        self._get_current_hold_setup()
+        self._publish_exercise()
 
     def _start_current_timer(self):
         self._tstart = time.time()
@@ -127,8 +137,11 @@ class Counter():
         else:
             self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
 
+        
+
+    def _publish_exercise(self):
         self._sendmessage("/holds", self.HoldSetup)
-        self._sendmessage("/exercisetype", '"'+self._current_exercise_type+'"') # FIXME: put somewhere else?
+        self._sendmessage("/exercisetype", '"'+self._current_exercise_type+'"')
 
     def get_current_timer_state(self):
         if self._tstart > 0:
