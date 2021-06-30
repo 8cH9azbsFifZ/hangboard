@@ -55,6 +55,17 @@ class MQTTAppState with ChangeNotifier {
   double _lastpausetime = 0.0;
   double _lastmaximalload = 0.0;
 
+  // User statistics
+  double _currentintensity = 0.0;
+
+  void SetUserStatistics(String text) {
+    Map<String, dynamic> userjson = jsonDecode(text);
+    if (userjson.containsKey("CurrentIntensity")) {
+      _currentintensity = userjson["CurrentIntensity"];
+    }
+    notifyListeners();
+  }
+
   void setWorkoutStatus(String text) {
     Map<String, dynamic> workoutjson = jsonDecode(text);
 
@@ -223,6 +234,8 @@ class MQTTAppState with ChangeNotifier {
   double get getLastHangTime => _lasthangtime;
   double get getLastPauseTime => _lastpausetime;
   double get getLastMaximalLoad => _lastmaximalload;
+
+  double get getCurrentItensity => _currentintensity;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

@@ -6,7 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:wakelock/wakelock.dart';
-import 'dart:isolate';
+import 'dart:isolate'; // FIXME remove
 
 class MQTTView extends StatefulWidget {
   @override
@@ -76,6 +76,7 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getTimerCompleted,
             currentAppState.getTimerCountdown),
         _buildExerciseType(currentAppState.getExerciseType),
+        _buildIntensityPlot(currentAppState.getCurrentItensity),
         _buildControls(currentAppState.getAppConnectionState),
         _buildLoadPlot(currentAppState.getLoadCurrentData),
         //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
@@ -83,6 +84,10 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getLastHangTime, currentAppState.getLastMaximalLoad)
       ],
     );
+  }
+
+  Widget _buildIntensityPlot(double CurrentItensity) {
+    return (Text("Current Intensity" + CurrentItensity.toString()));
   }
 
   Widget _buildLastExerciseStatistics(

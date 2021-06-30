@@ -66,11 +66,11 @@ class Counter():
         self._exercise = self.workout["Sets"][i]["Exercise"]
         self._current_set_total = 1 + self._reps * 2 # rest to start and #reps exercises and pauses
 
-        holdtypeleft = self.workout["Sets"][i]["Left"]
-        holdtyperight = self.workout["Sets"][i]["Right"]
+        self._holdtypeleft = self.workout["Sets"][i]["Left"]
+        self._holdtyperight = self.workout["Sets"][i]["Right"]
         
-        self._left = self._board.get_hold_for_type(holdtypeleft)[0] # FIXME: what if no suitable holds found?
-        self._right = self._board.get_hold_for_type(holdtyperight)[-1]
+        self._left = self._board.get_hold_for_type(self._holdtypeleft)[0] # FIXME: what if no suitable holds found?
+        self._right = self._board.get_hold_for_type(self._holdtyperight)[-1]
 
     def __iter__(self):
         return self

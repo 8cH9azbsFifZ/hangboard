@@ -244,3 +244,16 @@ channels:
               type: number
               description: Maximal load in last exercise in kg.
               example: 32                           
+  hangboard/workout/userstatistics:
+    subscribe:
+      summary: User statistics (i.e. intensity).
+      operationId: GetUserStatistics
+      message:
+        name: User statistics.
+        payload:
+          type: object
+          properties:
+            CurrentIntensity:
+              type: number
+              description: Current intensity - current load / maximal load - for a given hand and hold combination.
+              examples: [0.23, 0.77, 1.2]

@@ -78,6 +78,9 @@ class Workout():
         self.total_sets = 0
         self._set_workout(workout_id) # TODO - implement MQTT command #59
 
+        # Configure User
+        self._set_user() # FIXME: username as var
+
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
         mmessage = str(message)
@@ -208,6 +211,18 @@ class Workout():
         print (image_base64)
         self.message = image_base64
 
+    def _set_user(self, user="us3r"):
+        self._user = User(user=user) # FIXME db connection etc as var.
+
+    def _update_user_statistics(self):
+        if self._counter._holdtypeleft != "":
+            if self._counter._holdtyperight != "":
+                # FIXME: db call every time?!  #60
+                self._user.SetReference(hold=self._counter._holdtyperight, hand="both") # FIXME what if differnt holds?
+                # TODO : implement  #60
+        self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
+        #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
+        self._sendmessage("/userstatistics", '{"CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
 
     def _core_loop(self):
         # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
@@ -222,6 +237,7 @@ class Workout():
                 continue 
                 
             self.sensors.run_one_measure()
+            self._update_user_statistics()
             timer_done = self._counter.get_current_timer_state()
             if timer_done:
                 # Start next timer only when hang detected for "not pause" exercises -> means next is a hang

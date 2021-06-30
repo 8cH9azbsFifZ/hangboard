@@ -170,6 +170,12 @@ class Board():
         logging.debug (holds)
         return holds
 
+    def GetTypeForHold(self, hold):
+        for hold in self.boarddata["Holds"]:
+            if hold["ImgLayerName"] == hold:
+                return hold["Name"]
+        return ""
+
 
 
 class AsciiBoard():

@@ -204,6 +204,7 @@ class MQTTManager {
     _client!.subscribe("hangboard/workout/exercisetype", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/workoutlist", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/workoutstatus", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/workout/userstatistics", MqttQos.atLeastOnce);
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
       // ignore: avoid_as
       final MqttPublishMessage recMess = c![0].payload as MqttPublishMessage;
@@ -244,7 +245,10 @@ class MQTTManager {
           "hangboard/workout/workoutlist") {
         _currentState.SetWorkoutList(pt);
       }
-
+      if (recMess.variableHeader!.topicName ==
+          "hangboard/workout/userstatistics") {
+        _currentState.SetUserStatistics(pt);
+      }
       // print(          'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');
       // print('');
     });
