@@ -104,9 +104,20 @@ class Database():
     return bw
 
   def _get_maxload(self, hold ="JUG", hand = "both"):
-    lm = self._coll_summary.find_one({"$and": [{"hold": hold}, {"hand": hand}]}, sort=[("time", -1)])["load"]
+    tmp = self._coll_summary.find_one({"$and": [{"hold": hold}, {"hand": hand}]}, sort=[("time", -1)])
+    if tmp != None:
+      lm = tmp["load"]
+    else:
+      lm = 1
     return lm
 
+  def _get_maxhangtime(self, hold ="JUG", hand = "both"):
+    tmp = self._coll_summary.find_one({"$and": [{"hold": hold}, {"hand": hand}]}, sort=[("time", -1)])
+    if tmp != None:
+      mh = tmp["hangtime"]
+    else:
+      mh = 1
+    return mh
 
   def _record_data(self, hostname="localhost",port=1883):
     logging.debug("Start recording data from mqtt to database")

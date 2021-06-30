@@ -25,6 +25,7 @@ logging.basicConfig(level=logging.DEBUG,
 from board import Board
 from sensors import Sensors
 from counter import Counter
+from user import User
 
 
 class Workout():
