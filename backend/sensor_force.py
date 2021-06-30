@@ -41,6 +41,9 @@ from scipy import integrate
 from numpy import diff
 import paho.mqtt.client as mqtt
 import importlib.util
+import numpy as np
+from scipy.ndimage.filters import uniform_filter1d
+
 
 
 import json
@@ -131,6 +134,10 @@ class SensorForce():
                 data = json.load(json_file)
             self._simdata = data["SimulationData"]
             #print (self._simdata["time"])
+
+        self._moving_average_n = 5
+        self._moving_average_series = []
+        self._moving_average_load = 0
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/sensor/load"+topic
@@ -227,10 +234,23 @@ class SensorForce():
             except (KeyboardInterrupt, SystemExit):
                 self.cleanAndExit()
 
+    def _calc_moving_average(self):
+        # calculate moving average
+        self._moving_average_series.append(self.load_current)
+
+        if len(self._moving_average_series >= self._moving_average_n): 
+            self._moving_average_series.pop() # restrict size of array for moving average   
+            self._moving_average_load = uniform_filter1d(self._moving_average_series, size=self._moving_average_n)
+            return self._moving_average_load 
+
+        return 0
+
     def run_one_measure(self):
         self.time_current = time.time()
 
         self.load_current = -1*self.hx.get_weight(1)
+
+        self._calc_moving_average()
 
         if EMULATE_HX711:
             self._simcounter = self._simcounter+1
@@ -263,6 +283,8 @@ class SensorForce():
             self.FTI = 0
             self.RFD = 0
             self.LoadLoss = 0
+
+        self.load_current = self._moving_average_load # FIXME
 
         logging.debug("Sensor current max load " + str(self.MaximalLoad) + " and last maximum " + str(self.LastHang_MaximalLoad))
         #self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
