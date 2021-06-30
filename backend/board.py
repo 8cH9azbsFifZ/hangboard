@@ -87,7 +87,7 @@ class SVGBoard():
                 style = style.replace( 'display:inline', 'display:inline' )
             g.set('style', style)
 
-        self.tree.write( outfile ) # FIXME        
+        self.tree.write( outfile ) # FIXME   #83     
 
     def _get_image_base64(self, left="", right=""):
         """
@@ -106,7 +106,7 @@ class SVGBoard():
                 self.Hold2SVG(left,right)
                 self._svg_to_png(self._cache_svg_filename(left,right))
         self._svg_to_png(self.boardimagename)
-        # FIXME: put board png to cache dir
+        # FIXME: put board png to cache dir #83
 
     def _svg_to_png(self, filename): 
         outfile = filename.replace(".svg",".png")
@@ -178,7 +178,7 @@ class Board():
 
 
 
-class AsciiBoard():
+class AsciiBoard(): # TODO continue implementation #82
     """
     All stuff for handling an ASCII output of the current hangboard configuration.
     """
@@ -211,8 +211,8 @@ if __name__ == "__main__":
     print (h[-1])
     svg = SVGBoard()
     #svg.Hold2SVG()    
-    #svg.generate_all_images(holds=a.all_holds) # FIXME: all holds images must be genearted and put into assets directory of flutter app..
-    # FIXME: not all images are generated
+    #svg.generate_all_images(holds=a.all_holds) # FIXME: all holds images must be genearted and put into assets directory of flutter app.. #83
+    # FIXME: not all images are generated #83
 
     svg.Hold2SVG(left="C1",right="C7")
 

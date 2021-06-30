@@ -83,6 +83,8 @@ class Database():
     self._coll_summary = self._db[uuid+"-summary"]
 
   def _set_user_maxload(self, timestamp, hold, load, hangtime, hand):
+    # TODO Write maximal load and hangtime of a session into db #84
+
     userMaxLoadEntry = {
       "time": timestamp,
       "hold": hold,
@@ -121,7 +123,7 @@ class Database():
 
   def _record_data(self, hostname="localhost",port=1883):
     logging.debug("Start recording data from mqtt to database")
-    self._client= paho.Client("client-001") 
+    self._client= paho.Client("client-001")  # FIXME
     self._client.on_message=self._on_message
     self._client.connect(hostname,port,60)#connect
 
