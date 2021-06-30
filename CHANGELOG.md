@@ -1,3 +1,4 @@
+- v0.52 - Bugfixes, database stub, counter hang detection.
 - v0.51 - Fix stuttering sound (#56) and provide dockerfile for backend.
 - v0.50 - Display statistics of last exercise.
 - v0.49 - Pre release with flutter frontend (iOS) and MQTT backend.
