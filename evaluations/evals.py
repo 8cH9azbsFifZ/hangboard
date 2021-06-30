@@ -28,8 +28,8 @@ if __name__ == "__main__":
     data = pd.DataFrame(list(d._coll_raw.find()))
     #print (data)
     timemax=data["time"].max()
-    last20minutes=timemax-60*2
-    lc=data["loadmaximal"]>0
+    last20minutes=timemax-60*4
+    lc=data["loadcurrent"]>25
     l20m=data["time"]>last20minutes
     #print (data["loadcurrent"])
     #print (data[lc][l20m]["loadcurrent"])
@@ -57,4 +57,11 @@ if __name__ == "__main__":
     print (load_endurance_low)
     
     plot_load(data[lc][l20m]["time"],data[lc][l20m]["loadcurrent"])
-    np.savetxt("out.txt", data[lc][l20m]["loadcurrent"])
+    derivative = np.diff (data[lc][l20m]["loadcurrent"]) / np.diff(data[lc][l20m]["time"])
+    derivative2 = np.diff (derivative) 
+    tt = data[lc][l20m]["time"]
+    #ttt=np.delete(tt,1)
+    #np.append(derivative, 0)
+    print (derivative)
+    #plot_load(tt,derivative)
+    np.savetxt("out.txt", derivative2)#data[lc][l20m]["loadcurrent"])
