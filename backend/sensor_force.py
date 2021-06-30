@@ -65,7 +65,7 @@ else:
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
         pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
-        referenceUnit = 1257528/79, load_hang = 2.0, # FIXME 
+        referenceUnit = 1257528/79, load_hang = 5.0, # FIXME 
         hostname="localhost", port=1883): 
         logging.debug ("Initialize")
 
@@ -135,7 +135,7 @@ class SensorForce():
             self._simdata = data["SimulationData"]
             #print (self._simdata["time"])
 
-        self._moving_average_n = 5
+        self._moving_average_n = 10
         self._moving_average_series = []
         self._moving_average_load = 0
 
