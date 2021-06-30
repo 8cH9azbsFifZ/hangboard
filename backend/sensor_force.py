@@ -300,8 +300,8 @@ class SensorForce():
     def _fill_series(self):
         # Cut series down to _series_max_elements
         if (len(self._load_series) > self._series_max_elements):
-            self._load_series.pop()
-            self._time_series.pop()
+            self._load_series.pop(0)
+            self._time_series.pop(0)
 
         # Fill in current value
         self._load_series.append(self.load_current)

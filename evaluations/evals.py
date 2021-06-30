@@ -28,7 +28,7 @@ if __name__ == "__main__":
     data = pd.DataFrame(list(d._coll_raw.find()))
     #print (data)
     timemax=data["time"].max()
-    last20minutes=timemax-60*1
+    last20minutes=timemax-60*2
     lc=data["loadmaximal"]>0
     l20m=data["time"]>last20minutes
     #print (data["loadcurrent"])
@@ -42,6 +42,7 @@ if __name__ == "__main__":
     #print (d._get_maxload(hold="20mm",hand="left"))
     #print (d._get_maxload())
 
+
     # Testing intensity
     maxload = d._get_maxload(hold="20mm")
     intensity_strength = 0.9
@@ -54,4 +55,6 @@ if __name__ == "__main__":
     print (load_strength) 
     print (load_endurance)
     print (load_endurance_low)
-
+    
+    plot_load(data[lc][l20m]["time"],data[lc][l20m]["loadcurrent"])
+    np.savetxt("out.txt", data[lc][l20m]["loadcurrent"])
