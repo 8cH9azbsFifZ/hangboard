@@ -107,8 +107,8 @@ class Counter():
         return self._index
 
     def _show_upcoming_exercise(self):
-        self._get_current_set(index=1)
-        self._get_current_hold_setup()
+        self._get_current_set(index=0) # FIXME: index can leave
+        self._get_current_hold_setup(upcoming=True)
         self._publish_exercise()
 
     def _start_current_timer(self):
@@ -127,17 +127,19 @@ class Counter():
             self._tstart = 0
             self._tduration = 0
 
-    def _get_current_hold_setup(self):
+    def _get_current_hold_setup(self, upcoming = False):
         if (self._current_exercise_type == "Rest to start"):
             self.HoldSetup = '{"Left": "", "Right": ""}'
         elif (self._current_exercise_type == "Pause"):
             self.HoldSetup = '{"Left": "", "Right": ""}'
         elif (self._current_exercise_type == "Hang"):
-           self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
+            self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
         else:
             self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
 
-        
+        if upcoming:
+            self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
+
 
     def _publish_exercise(self):
         self._sendmessage("/holds", self.HoldSetup)
