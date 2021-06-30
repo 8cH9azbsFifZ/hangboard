@@ -40,17 +40,13 @@ import sys
 from scipy import integrate
 from numpy import diff
 import paho.mqtt.client as mqtt
-import importlib.util
 import numpy as np
 from scipy.ndimage.filters import uniform_filter1d
-
-
-
 import json
 
 import threading
 
-EMULATE_HX711 = False
+EMULATE_HX711 = True
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
