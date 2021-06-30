@@ -37,6 +37,7 @@ dependencies:
   fl_chart: ^0.36.1 
   mqtt_client: ^9.3.1
   wakelock: ^0.5.2
+  percent_indicator: ^3.0.1
 
 dev_dependencies:
   flutter_test:
