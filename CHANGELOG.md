@@ -1,3 +1,4 @@
+- v0.53 - Remove bad load samples (#75), show next exercise (#81).
 - v0.52 - Bugfixes, database stub, counter hang detection (#73).
 - v0.51 - Fix stuttering sound (#56) and provide dockerfile for backend.
 - v0.50 - Display statistics of last exercise.
