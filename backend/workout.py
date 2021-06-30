@@ -208,42 +208,6 @@ class Workout():
         print (image_base64)
         self.message = image_base64
 
-    def _assert_nobody_hanging(self):
-        """ Wait until nobody is hanging on the board """
-        #logging.debug ("Keiner dran?")
-        self.sensors.run_one_measure()
-        while self.sensors.HangDetected == True:
-            time.sleep(self.sampling_interval)
-            self.sensors.run_one_measure()
-
-    def _assert_somebody_hanging(self):
-        """ Wait until somebody is hanging on the board. """
-        #logging.debug("Jemand dran?")
-        self.sensors.run_one_measure()
-        while self.sensors.HangDetected == False:
-            time.sleep(self.sampling_interval)
-            self.sensors.run_one_measure()
-
-
-    def _get_current_measurements_series(self):
-        """ Obtain the current measurement time series from sensors.""" 
-        als = self.sensors.sensor_hangdetector._load_series
-        ats = self.sensors.sensor_hangdetector._time_series
-        list = json.dumps({"CurrentMeasurementsSeries": {"time": ats, "load": als}})
-        return list
-
-    def _select_next_exercise(self):
-        """ Increase set and rep counter if possible and return whether it has been possible"""
-        if self.current_rep < self._workout["Sets"][self.current_set]["Reps"] - 1:
-            self.current_rep = self.current_rep + 1
-        else:
-            self.current_rep = 0
-            if self.current_set < len (self._workout["Sets"]) - 1:
-                self.current_set = self.current_set + 1
-            else:
-                return False
-        return True
-
 
     def _core_loop(self):
         # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
