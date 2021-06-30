@@ -249,6 +249,7 @@ class SensorForce():
         self.time_current = time.time()
 
         self.load_current = -1*self.hx.get_weight(1)
+        self.load_current = self._calc_moving_average() # FIXME
 
         if EMULATE_HX711:
             self._simcounter = self._simcounter+1
@@ -282,7 +283,6 @@ class SensorForce():
             self.RFD = 0
             self.LoadLoss = 0
 
-        self.load_current = self._calc_moving_average() # FIXME
 
         logging.debug("Sensor current max load " + str(self.MaximalLoad) + " and last maximum " + str(self.LastHang_MaximalLoad))
         #self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
