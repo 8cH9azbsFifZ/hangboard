@@ -259,9 +259,19 @@ class Workout():
             self.sensors.run_one_measure()
             timer_done = self._counter.get_current_timer_state()
             if timer_done:
-                next(self._counter)
+                # Start next timer only when hang detected for "not pause" exercises -> means next is a hang
+                if self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start":
+                    if self.sensors.HangDetected:
+                        next(self._counter)
+                # Start next timer only when np hang detected if currently no pause -> means next is a pause
+                else:
+                    if not self.sensors.HangDetected:
+                        next(self._counter)
+            # Next timer if a "not pause" exercise is combined with "no hang" -> means exercise aborted
+            #if not (self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start"):
+            #    if not self.sensors.HangDetected:
+            #        next(self._counter)
             # TODO - if no hang quit it
-            # TODO - start hang counter only on hang
 
     def _set_workout (self, id="ZB-A-1"):      
         logging.debug ("Select workout: " + id)

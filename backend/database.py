@@ -30,16 +30,17 @@ class Database():
       #global df
       #global coll_raw
       msg = json.loads(message.payload.decode("utf-8"))
-      currentData = {"time": msg["time"],
-      "loadcurrent": msg["loadcurrent"],
-      "loadaverage": msg["loadaverage"],
-      "fti": msg["fti"],
-      "rfd": msg["rfd"],
-      "loadmaximal": msg["loadmaximal"],
-      "loadloss": msg["loadloss"]}
+      #currentData = {"time": msg["time"],
+      #"loadcurrent": msg["loadcurrent"],
+      #"loadaverage": msg["loadaverage"],
+      #"fti": msg["fti"],
+      #"rfd": msg["rfd"],
+      #"loadmaximal": msg["loadmaximal"],
+      #"loadloss": msg["loadloss"]}
       #df = df.append(currentData, ignore_index=True)
-      self._coll_raw.insert_one(currentData)
-      logging.debug("Write timestamp " + str(msg["time"]))
+      #self._coll_raw.insert_one(currentData)
+      self._coll_raw.insert_one(msg)
+      logging.debug("Write timestamp " + str(msg))
       #print (df["time"].max() )
       #print( df["loadcurrent"].max())
 
@@ -113,6 +114,13 @@ class Database():
     self._client.on_message=self._on_message
     self._client.connect(hostname,port,60)#connect
 
-    self._client.subscribe("hangboard/sensor/load/loadstatus")#subscribe
+    # FIXME: subscribe to all?
+    self._client.subscribe("hangboard/sensor/load/loadstatus")
+    self._client.subscribe("hangboard/workout/holds")
+    self._client.subscribe("hangboard/workout/setinfo")
+    self._client.subscribe("hangboard/workout/timerstatus")
+    self._client.subscribe("hangboard/workout/workoutstatus")
+    self._client.subscribe("hangboard/sensor/sensorstatus")
+    self._client.subscribe("hangboard/sensor/lastexercise")
 
     self._client.loop_forever()

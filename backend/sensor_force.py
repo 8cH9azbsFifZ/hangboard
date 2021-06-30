@@ -182,6 +182,8 @@ class SensorForce():
         #hx.tare_A()
         #hx.tare_B()
 
+    # TODO implement calibrate command over MQTT
+
     def set_reference_unit(self):
         """
         HOW TO CALCULATE THE REFFERENCE UNIT
