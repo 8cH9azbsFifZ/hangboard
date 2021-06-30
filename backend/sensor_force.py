@@ -236,14 +236,14 @@ class SensorForce():
 
     def _calc_moving_average(self):
         # calculate moving average
-        logging.debug("Calc moving average")
-        self._moving_average_series.append(self.load_current)
+        #logging.debug("Calc moving average")
+        self._moving_average_series.append(self._load_current_raw)
 
         if len(self._moving_average_series) > self._moving_average_n: 
-            logging.debug("Calc moving average - enough points n")
+            #logging.debug("Calc moving average - enough points n")
             self._moving_average_series.pop(0) # restrict size of array for moving average   
             self._moving_average_load = uniform_filter1d(self._moving_average_series, size=self._moving_average_n)
-            logging.debug("Calc moving average" + str(self._moving_average_load[self._moving_average_n-1]))
+            #logging.debug("Calc moving average" + str(self._moving_average_load[self._moving_average_n-1]))
             return self._moving_average_load[self._moving_average_n-1]
 
         return 0
@@ -251,7 +251,7 @@ class SensorForce():
     def run_one_measure(self):
         self.time_current = time.time()
 
-        self.load_current = -1*self.hx.get_weight(1)
+        self._load_current_raw = -1*self.hx.get_weight(1) # Never use this, but use a Low pass filter to get rid of the noise
         self.load_current = self._calc_moving_average() # FIXME
 
         if EMULATE_HX711:

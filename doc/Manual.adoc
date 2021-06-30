@@ -201,6 +201,8 @@ Wire the 4 load cells as follows (according to the application sheet):
 .Wiring four load cells
 image::./force/4_load_sensors.jpg[{half-size}Wiring four load cells]
 
+## Getting rid of the noise
+As measured in "Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process": using a Low Pass Filter (moving average) is equivalent to a Kalman filter for HX711.
 
 ## Mounting the load sensors
 
