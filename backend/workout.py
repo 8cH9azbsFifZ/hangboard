@@ -268,9 +268,9 @@ class Workout():
                     if not self.sensors.HangDetected:
                         next(self._counter)
             # Next timer if a "not pause" exercise is combined with "no hang" -> means exercise aborted
-            #if not (self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start"):
-            #    if not self.sensors.HangDetected:
-            #        next(self._counter)
+            if not (self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start"):
+                if not self.sensors.HangDetected:
+                    next(self._counter)
             # TODO - if no hang quit it
 
     def _set_workout (self, id="ZB-A-1"):      
