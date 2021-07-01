@@ -217,7 +217,7 @@ class Workout():
             self.sensors.run_one_measure()
             self._update_user_statistics()
             timer_done = self._counter.get_current_timer_state()
-            self._counter._calc_time_in_current_workout()
+            #self._counter._calc_time_in_current_workout()
             if timer_done:
                 # Start next timer only when hang detected for "not pause" exercises -> means next is a hang
                 if self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start":
