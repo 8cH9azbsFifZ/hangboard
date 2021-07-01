@@ -1,0 +1,245 @@
+{
+  "Workouts": [
+    {
+      "Name": "Easy",
+      "Session": 1,
+      "ID": "WMVC-EASY-1",
+      "Sets": [
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 10,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.5
+        }
+      ]
+    },
+    {
+      "Name": "Moderate",
+      "Session": 1,
+      "ID": "WMVC-MODERATE-1",
+      "Sets": [
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 7,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.7
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 7,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.7
+        },
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 7,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.7
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 7,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.7
+        },
+        {
+          "Rest-to-Start": 120,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 7,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.7
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 5,
+          "Pause": 2,
+          "Reps": 7,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.7
+        }
+      ]
+    },
+    {
+      "Name": "Intense",
+      "Session": 1,
+      "ID": "WMVC-INTENSE-1",
+      "Sets": [
+        {
+          "Rest-to-Start": 300,
+          "Exercise": "1 Hand Pull",
+          "Counter": 3,
+          "Pause": 10,
+          "Reps": 5,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.9
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 3,
+          "Pause": 10,
+          "Reps": 5,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.9
+        },
+        {
+          "Rest-to-Start": 300,
+          "Exercise": "1 Hand Pull",
+          "Counter": 3,
+          "Pause": 10,
+          "Reps": 5,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.9
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 3,
+          "Pause": 10,
+          "Reps": 5,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.9
+        },
+        {
+          "Rest-to-Start": 300,
+          "Exercise": "1 Hand Pull",
+          "Counter": 3,
+          "Pause": 10,
+          "Reps": 5,
+          "Left": "20mm",
+          "Right": "",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.9
+        },
+        {
+          "Rest-to-Start": 10,
+          "Exercise": "1 Hand Pull",
+          "Counter": 3,
+          "Pause": 10,
+          "Reps": 5,
+          "Left": "",
+          "Right": "20mm",
+          "Type": "1 Hand Pull",
+          "Intensity": 0.9
+        }
+      ]
+    }
+  ]
+}

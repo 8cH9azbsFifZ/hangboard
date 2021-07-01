@@ -46,7 +46,8 @@ def _create_easy_workout(mvc):
     count = 5
     wa = '{ "Name": "Easy", "Session": 1, "ID": "WMVC-EASY-1", "Sets": ['
     for i in range(0,sets):
-        wa = wa + '\n{ "Rest-to-Start": 120, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
+        wa = wa + '\n{ "Rest-to-Start": 120, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
+        wa = wa + '\n{ "Rest-to-Start": 10, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
         if i <sets-1:
             wa = wa + ","
     wa = wa + ']}'
@@ -60,7 +61,8 @@ def _create_moderate_workout(mvc):
     count = 5
     wa = '{ "Name": "Moderate", "Session": 1, "ID": "WMVC-MODERATE-1", "Sets": ['
     for i in range(0,sets):
-        wa = wa + '\n{ "Rest-to-Start": 120, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
+        wa = wa + '\n{ "Rest-to-Start": 120, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
+        wa = wa + '\n{ "Rest-to-Start": 10, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
         if i <sets-1:
             wa = wa + ","
     wa = wa + ']}'
@@ -74,7 +76,8 @@ def _create_intense_workout(mvc):
     count = 3
     wa = '{ "Name": "Intense", "Session": 1, "ID": "WMVC-INTENSE-1", "Sets": ['
     for i in range(0,sets):
-        wa = wa + '\n{ "Rest-to-Start": 300, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 10, "Reps": '+str(reps)+', "Left": "20mm", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
+        wa = wa + '\n{ "Rest-to-Start": 300, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 10, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
+        wa = wa + '\n{ "Rest-to-Start": 10, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 10, "Reps": '+str(reps)+', "Left": "", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
         if i <sets-1:
             wa = wa + ","
     wa = wa + ']}'
