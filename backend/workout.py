@@ -126,28 +126,6 @@ class Workout():
         logging.debug("Get current workout")
         self.message = json.dumps({"CurrentWorkout": self._data})
 
-    def _calc_time_in_current_workout(self):
-        """
-        Caluculate total time, estimated rest time and planned time in this workout so far
-        """
-        total_time = 0
-        estimated_rest_time = 0
-        planned_time_sofar = 0
-
-        for s in range (0, self.total_sets-1):
-            resttostart = self._workout["Sets"][s]["Rest-to-Start"]
-            pause = self._workout["Sets"][s]["Pause"]
-            reps = self._workout["Sets"][s]["Reps"]
-            counter = self._workout["Sets"][s]["Counter"]
-            settime = resttostart + reps * (counter + pause)
-            if (self.current_set <= s):
-                planned_time_sofar = planned_time_sofar + settime
-            total_time = total_time + settime
-
-        estimated_rest_time = total_time - planned_time_sofar
-        return [total_time, planned_time_sofar, estimated_rest_time]
-
-
     def _list_workouts(self):
         """
         Get list of available workouts and put it in the messaging queue (self.message)
@@ -300,5 +278,5 @@ if __name__ == "__main__":
     wa = Workout(hostname="hangboard")
 
     #wa._core_loop()
-    wa._set_workout(id="HRST-S-1-4ZBEVO")
-    a = wa._calc_time_in_current_workout()   
+    #wa._set_workout(id="HRST-S-1-4ZBEVO")
+    wa._counter._calc_time_in_current_workout()

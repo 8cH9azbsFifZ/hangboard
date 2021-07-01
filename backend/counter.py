@@ -38,6 +38,7 @@ class Counter():
         
         # Get all general information
         self._total_sets = len (self.workout["Sets"])
+        self._exercise_list = ""
 
         # Get information on the first set
         self._get_current_set()
@@ -53,6 +54,8 @@ class Counter():
         self.TimeRemaining = 0
         self._lastcountdown = 0
         self.TimeCountdown = 0
+
+
 
     def _get_current_set(self, index=0):
         i = self._current_set + index
@@ -176,3 +179,59 @@ class Counter():
         mmessage = str(message)
         #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
         self._client.publish(ttopic, mmessage)
+
+
+    def _calc_time_in_current_workout(self):
+        """
+        Caluculate total time, estimated rest time and planned time in this workout so far
+        Create a string with remianing exercises in the form: 5x 10s Hang on 15mm, 180s rest
+        """
+        # FIXME: run after every counter++
+
+        total_time = 0
+        estimated_rest_time = 0
+        planned_time_sofar = 0
+
+        self._exercise_list = ""
+
+        for s in range (0, self._total_sets-1): 
+            resttostart = self.workout["Sets"][s]["Rest-to-Start"]
+            pause = self.workout["Sets"][s]["Pause"]
+            reps = self.workout["Sets"][s]["Reps"]
+            counter = self.workout["Sets"][s]["Counter"]
+            exercise = self.workout["Sets"][s]["Exercise"]
+            holdtypeleft = self.workout["Sets"][s]["Left"]
+            holdtyperight = self.workout["Sets"][s]["Right"]
+
+            exercisetype = self.workout["Sets"][s]["Type"]
+        
+            # FIXME: left / right
+            # FIXME: pull up without seconds
+
+            # Select hand for 1 handed exercise
+            hand = " on " + holdtyperight
+            if holdtypeleft == "":
+                hand = " right hand on " + holdtyperight
+            if holdtyperight == "":
+                hand = " left hand on " + holdtypeleft
+
+            # Set hang duration or count (pull ups)
+            rr = ""
+            if exercisetype == "Hang": # FIXME: Max hang
+                rr = str(counter) + "s "
+            else:
+                rr = str(counter) + " " # FIXME: max pullups
+            self._exercise_list = self._exercise_list + '\n' + str(reps) + "x " + rr + exercise + hand + " with " + str(pause) + "s pauses." 
+
+            settime = resttostart + reps * (counter + pause)
+            if (self._index <= s):
+                planned_time_sofar = planned_time_sofar + settime
+            total_time = total_time + settime
+
+        logging.debug(self._exercise_list)
+
+        # FIXME: send the current status for progress reports to frontend
+
+        estimated_rest_time = total_time - planned_time_sofar
+        return [total_time, planned_time_sofar, estimated_rest_time]
+
