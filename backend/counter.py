@@ -5,6 +5,7 @@ Class containing the central counter for the hangboard application.
 import time
 
 from types import TracebackType
+import json
 
 import paho.mqtt.client as mqtt
 
@@ -181,7 +182,7 @@ class Counter():
         self._client.publish(ttopic, mmessage)
 
 
-    def _calc_time_in_current_workout(self):
+    def _calc_time_in_current_workout(self): # FIXME other name
         """
         Caluculate total time, estimated rest time and planned time in this workout so far
         Create a string with remianing exercises in the form: 5x 10s Hang on 15mm, 180s rest
@@ -228,10 +229,13 @@ class Counter():
                 planned_time_sofar = planned_time_sofar + settime
             total_time = total_time + settime
 
-        logging.debug(self._exercise_list)
+        #logging.debug(self._exercise_list)
 
         # FIXME: send the current status for progress reports to frontend
 
         estimated_rest_time = total_time - planned_time_sofar
-        return [total_time, planned_time_sofar, estimated_rest_time]
+
+        self._sendmessage("/upcoming", json.dumps('{"UpcomingSets": "' + self._exercise_list + '", "RemainingTime:" ' + str(estimated_rest_time) + '}'))
+
+        return [total_time, planned_time_sofar, estimated_rest_time] # FIXME do not return
 
