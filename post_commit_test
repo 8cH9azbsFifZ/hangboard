@@ -2,7 +2,9 @@
 branch=main
 git checkout gh-pages --quiet
 
-git checkout $branch -- .gitignore
+git rm -r * --quiet 
+
+#git checkout $branch -- .gitignore
 git checkout $branch -- Makefile
 git checkout $branch -- doc/*
 git checkout $branch -- backend
@@ -19,6 +21,8 @@ git add -A
 git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 
 git checkout $branch --quiet
+
+#rm -rf backend-doc
 
 exit
 #if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
