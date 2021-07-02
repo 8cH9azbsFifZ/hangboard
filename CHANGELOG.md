@@ -1,4 +1,4 @@
-- v0.55 - 
+- v0.55 - Display upcoming sets (#58), 
 - v0.54 - Fixed last hang load calculation (#74), implemented intensity display (#60).
 - v0.53 - Remove bad load samples (#75), show next exercise (#81).
 - v0.52 - Bugfixes, database stub, counter hang detection (#73).
