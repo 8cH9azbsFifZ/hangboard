@@ -1,9 +1,12 @@
 #!/bin/bash
 branch=main
 git checkout gh-pages --quiet
-git checkout $branch -- .gitignore
 
-git checkout $branch --quiet
+git checkout $branch -- .gitignore
+git checkout $branch -- doc/*
+
+
+git checkout $branch --quiet 
 
 exit
 #if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
