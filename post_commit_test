@@ -10,6 +10,7 @@ git checkout $branch -- backend
 
 echo "Build API documentation"
 echo "npm install -g @asyncapi/generator"
+rm -rf api
 mkdir api
 cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ../api/ ; cd ..
 
