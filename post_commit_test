@@ -1,8 +1,9 @@
 #!/bin/bash
 branch=main
+git checkout gh-pages --quiet
+exit
 #if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
  # Checkout gh-pages and clean it
- git checkout gh-pages --quiet
  git rm -r * — quiet
 
  #git checkout $branch -- src/*
