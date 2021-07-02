@@ -185,6 +185,10 @@ class MQTTAppState with ChangeNotifier {
     if (_hold_left != "") {
       _imagename =
           'images/zlagboard_evo.' + _hold_left + '.' + _hold_right + '.png';
+    } else if (_hold_right != "") {
+
+   _imagename =
+          'images/zlagboard_evo.' + _hold_left + '.' + _hold_right + '.png';
     } else {
       _imagename = _imagename_noholds;
     }
