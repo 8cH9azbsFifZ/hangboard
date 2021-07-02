@@ -1,6 +1,7 @@
 #!/bin/bash
 branch=main
 git checkout gh-pages --quiet
+git checkout $branch -- .gitignore
 exit
 #if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
  # Checkout gh-pages and clean it
