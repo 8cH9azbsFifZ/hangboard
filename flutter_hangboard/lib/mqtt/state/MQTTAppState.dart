@@ -58,6 +58,21 @@ class MQTTAppState with ChangeNotifier {
   // User statistics
   double _currentintensity = 0.0;
 
+// Data on upcoming sets
+  String _upcomingsets = "";
+  double _remainingtimeinworkout = 0.0;
+
+  void setUpcoming(String text) {
+    Map<String, dynamic> jsondata = jsonDecode(text);
+    if (jsondata.containsKey("UpcomingSets")) {
+      _upcomingsets = jsondata["UpcomingSets"];
+    }
+    if (jsondata.containsKey("RemainingTime")) {
+      _remainingtimeinworkout = (jsondata["RemainingTime"]).toDouble();
+    }
+    notifyListeners();
+  }
+
   void SetUserStatistics(String text) {
     Map<String, dynamic> userjson = jsonDecode(text);
     if (userjson.containsKey("CurrentIntensity")) {
@@ -236,6 +251,9 @@ class MQTTAppState with ChangeNotifier {
   double get getLastMaximalLoad => _lastmaximalload;
 
   double get getCurrentItensity => _currentintensity;
+
+  String get getUpcomingSets => _upcomingsets;
+  double get getRemainingTimeInWorkout => _remainingtimeinworkout;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

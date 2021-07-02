@@ -205,6 +205,7 @@ class MQTTManager {
     _client!.subscribe("hangboard/workout/workoutlist", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/workoutstatus", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/userstatistics", MqttQos.atLeastOnce);
+    _client!.subscribe("hangboard/workout/upcoming", MqttQos.atLeastOnce);
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
       // ignore: avoid_as
       final MqttPublishMessage recMess = c![0].payload as MqttPublishMessage;
@@ -227,6 +228,9 @@ class MQTTManager {
       if (recMess.variableHeader!.topicName ==
           "hangboard/workout/workoutstatus") {
         _currentState.setWorkoutStatus(pt);
+      }
+      if (recMess.variableHeader!.topicName == "hangboard/workout/upcoming") {
+        _currentState.setUpcoming(pt);
       }
       if (recMess.variableHeader!.topicName ==
           "hangboard/sensor/lastexercise") {

@@ -257,3 +257,20 @@ channels:
               type: number
               description: Current intensity - current load / maximal load - for a given hand and hold combination.
               examples: [0.23, 0.77, 1.2]
+  hangboard/workout/upcoming:
+    subscribe:
+      summary: Upcoming workout data.
+      operationId: GetUpcomingWorkoutData
+      message:
+        name: Upcoming workout data.
+        payload:
+          type: object
+          properties:
+            UpcomingSets:
+              type: string
+              description: Upcoming set description.
+              examples: ["10x Hang for 5s with 20mm holds."]      
+            RemainingTime:
+              type: string
+              description: Estimated rest time in the current workout.
+              examples: [12, 2]                   

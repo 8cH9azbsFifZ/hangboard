@@ -222,20 +222,20 @@ class Counter():
                 rr = str(counter) + "s "
             else:
                 rr = str(counter) + " " # FIXME: max pullups
-            self._exercise_list = self._exercise_list + '\n' + str(reps) + "x " + rr + exercise + hand + " with " + str(pause) + "s pauses." 
+            # display only upcoming sets:
+            if self._current_set <= s:
+                self._exercise_list = self._exercise_list + '\\n' + str(reps) + "x " + rr + exercise + hand + " with " + str(pause) + "s pauses." 
 
             settime = resttostart + reps * (counter + pause)
-            if (self._index <= s):
+            if (self._current_set >= s): 
                 planned_time_sofar = planned_time_sofar + settime
             total_time = total_time + settime
 
         #logging.debug(self._exercise_list)
 
-        # FIXME: send the current status for progress reports to frontend
-
         estimated_rest_time = total_time - planned_time_sofar
 
-        self._sendmessage("/upcoming", json.dumps('{"UpcomingSets": "' + self._exercise_list + '", "RemainingTime:" ' + str(estimated_rest_time) + '}'))
+        self._sendmessage("/upcoming", '{"UpcomingSets": "' + self._exercise_list + '", "RemainingTime": ' + str(estimated_rest_time) + '}')
 
         return [total_time, planned_time_sofar, estimated_rest_time] # FIXME do not return
 

@@ -80,11 +80,16 @@ class _MQTTViewState extends State<MQTTView> {
         _buildControls(currentAppState.getAppConnectionState),
         _buildLoadPlot(currentAppState.getLoadCurrentData),
         //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
-        _buildLastExerciseStatistics(
-            currentAppState.getLastHangTime, currentAppState.getLastMaximalLoad)
+        _buildLastExerciseStatistics(currentAppState.getLastHangTime,
+            currentAppState.getLastMaximalLoad),
+        _buildUpcomingSets(currentAppState.getUpcomingSets)
         //_buildWorkoutStatus()
       ],
     );
+  }
+
+  Widget _buildUpcomingSets(String UpcomingSets) {
+    return (Text(UpcomingSets));
   }
 
   Widget _buildWorkoutStatus() {
