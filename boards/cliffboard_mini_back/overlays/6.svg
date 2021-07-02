@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="433px" height="172px" viewBox="0 0 433 172" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>cliffboard_mini_back 2</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board">
+            <g id="right" transform="translate(324.250000, 87.500000) scale(-1, 1) translate(-324.250000, -87.500000) translate(216.000000, 3.000000)" fill="#979797">
+                <circle id="6" stroke="#979797" cx="149" cy="17" r="16.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

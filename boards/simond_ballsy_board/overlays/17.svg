@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="958px" height="409px" viewBox="0 0 958 409" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>board</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(1.992188, 1.000000)">
+            <g id="holds" transform="translate(0.007812, 0.000000)">
+                <g id="right" transform="translate(536.640625, -0.000000)" fill="#979797">
+                    <ellipse id="17" stroke="#979797" cx="226.359375" cy="345.5" rx="34.5" ry="25"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

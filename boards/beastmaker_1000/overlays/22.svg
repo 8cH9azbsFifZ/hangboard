@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="948px" height="243px" viewBox="0 0 948 243" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>board</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(1.686389, 1.000000)" fill="#979797" stroke="#979797" >
+            <g id="top" transform="translate(42.528455, 0.000000)">
+                <path d="M714,31.2132872 C729.239052,18.4094951 739.753094,10.7264202 745.542127,8.1640625 C749.088964,6.59415138 752.732205,4.14891317 762.904431,1.88183594 C766.32949,1.11849535 772.987439,0 777.522595,0 C782.057752,0 841.445581,0 848.56947,0 C855.693359,0 857.778683,3.12398929 858.331189,4.98242188 C858.699526,6.22137693 859.521458,22.2334923 859.153121,31.2132872 L714,31.2132872 Z" id="22" transform="translate(786.622978, 15.606644) scale(-1, 1) translate(-786.622978, -15.606644) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

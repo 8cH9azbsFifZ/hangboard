@@ -1,0 +1,13 @@
+.DS_Store
+venv
+__pycache__ios
+__pycache__
+html
+*.pyc
+cache
+api
+backend/doxygen
+evaluations/Load.png
+evaluations/out.txt
+progess.ppm
+output.mp4

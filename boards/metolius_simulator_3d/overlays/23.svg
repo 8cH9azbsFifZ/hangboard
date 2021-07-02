@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="791px" height="274px" viewBox="0 0 791 274" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>metolius_simulator_3d</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(0.778166, 0.826178)" stroke="#979797">
+            <g id="right" transform="translate(615.965788, 143.937658) scale(-1, 1) translate(-615.965788, -143.937658) translate(443.141834, 39.916192)" fill="#979797" >
+                <rect id="23" transform="translate(301.331530, 129.930990) rotate(-6.000000) translate(-301.331530, -129.930990) " x="266.33153" y="119.43099" width="70" height="21" rx="10"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

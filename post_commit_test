@@ -1,0 +1,51 @@
+#!/bin/bash
+branch=main
+git checkout gh-pages --quiet
+
+git rm -r * --quiet
+
+git checkout $branch -- .gitignore
+git checkout $branch -- doc
+git checkout $branch -- backend
+
+echo "Build API documentation"
+echo "npm install -g @asyncapi/generator"
+rm -rf api
+mkdir api
+cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ../api/ ; cd ..
+
+echo "Build backend documentation"
+rm -rf backend-doc
+rm -rf backend/doxygen
+cd backend ; doxygen ;cd ..
+mv backend/doxygen/html backend-doc
+
+echo "Build manual"
+asciidoctor -d book -D ./doc --backend=html5 -o ./index.html doc/Manual.adoc
+
+git add -A
+git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
+
+git checkout $branch --quiet
+
+exit
+#if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
+ # Checkout gh-pages and clean it
+ git rm -r * — quiet
+
+ #git checkout $branch -- src/*
+ #git checkout $branch -- demo/*
+ #git mv demo/* .
+ #rmdir demo
+ #for file in `ls *.html`;
+ #do
+ #sed 's|../src|src|' $file > temp; mv temp $file;
+ #done
+
+ # Commit all stuff again and push it to gh-pages
+ git add -A
+ git commit -m "updated $(date +"%d.%m.%Y %H:%M:%S")"
+ git push — quiet
+ echo -e "\033[0;32mdemo updated $(date +"%d.%m.%Y %H:%M:%S")\033[0m"
+ git checkout $branch --quiet
+#fi

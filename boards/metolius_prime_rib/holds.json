@@ -1,0 +1,52 @@
+{
+    "version": 101,
+    "displayName": "Metolius Prime Rib",
+    "type": {
+      "uniqueName": "metolius_prime_rib"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 38,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 38,
+        "order": 2,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 23,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 23,
+        "order": 4,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 15,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 15,
+        "order": 6,
+        "location": "RIGHT",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://www.metoliusclimbing.com/prime-rib.html"
+  },

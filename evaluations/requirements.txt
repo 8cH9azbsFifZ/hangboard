@@ -1,0 +1,5 @@
+pandas
+paho-mqtt
+pymongo
+matplotlib
+

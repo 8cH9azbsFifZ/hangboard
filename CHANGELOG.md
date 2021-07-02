@@ -1,0 +1,56 @@
+- v0.56 - 
+- v0.55 - Display upcoming sets (#58), MVC workout (#89), estimate maximal boulder grade from MVC (#90).
+- v0.54 - Fixed last hang load calculation (#74), implemented intensity display (#60).
+- v0.53 - Remove bad load samples (#75), show next exercise (#81).
+- v0.52 - Bugfixes, database stub, counter hang detection (#73).
+- v0.51 - Fix stuttering sound (#56) and provide dockerfile for backend.
+- v0.50 - Display statistics of last exercise.
+- v0.49 - Pre release with flutter frontend (iOS) and MQTT backend.
+- v0.48 - Removed inactive web backend, add asyncapi documentation stub, remove unused code.
+- v0.47 - MQTT backend working with flutter frontend - initial link done.
+- v0.46 - Breaking change: backend switched to MQTT - wip.
+- v0.45 - Demonstrator with working live load monitor working.
+- v0.44 - AsciiDoc manual and commit build hook.
+- v0.43 - Cleanup directories and documentation.
+- v0.42 - Force sensor linked with flutter frontend.
+- v0.41 - Flutter frontend minimal link to backend implemented.
+- v0.40 - Zlagboard EVO images vector format (as in hangbird).
+- v0.39 - Testing with flutter for frontend started.
+- v0.38 - Force sensor on modified zlagboard - first measurement.
+- v0.37 - Backend with integrated websockets working again.
+- v0.36 - Backend with fifo websocketd working.
+- v0.35 - Backend with plain serial loop working.
+- v0.34 - Backend with threads - python signals with asyncio and threads not stable.
+- v0.33 - Link backend to websocket server implemented.
+- v0.32 - Reimplementation of backend using threads.
+- v0.31 - React JS webfrontend stub.
+- v0.30 - Hang time display and fix lost websocket message by reducing send inerval in gyroscope to only on state changes
+- v0.29 - Integration of gyroscope and exercise timer with the backend-mesh (prototype)
+- v0.28 - Integration of hang detection with exercise timer
+- v0.27 - Get ready sound and stopping timer on no hang detected
+- v0.26 - Demonstrator iOS app with integrated gyroscope sensor and sound
+- v0.25 - Prototype of gyroscrope integrated with web application working
+- v0.24 - iOS app: reconnection of websockets and websocket image transfer prototype 
+- v0.23 - 2nd demonstrator with iOS app
+- v0.22 - Logo, Sound fixes, raspi installation notes for gyroscope
+- v0.21 - Merged distance sensor example and a kalman filter
+- v0.20 - Display workout list in web frontend mockup
+- v0.19 - Distance sensor doc
+- v0.18 - Merged HX711 examples from library
+- v0.17 - Calibration prototype for gyroscope
+- v0.16 - Integrated kalman filter for calibration 
+- v0.15 - Merge kalman filter for raspi mpu6050
+- v0.14 - Add iOS and Android App Sources
+- v0.13 - Hold display in app works as demonstrator
+- v0.12 - Demonstrator with iOS app
+- v0.11 - Switch to websockets, board completion, exercise backend
+- v0.10 - Startup scripts
+- v0.9 - Layout website fixes
+- v0.8 - Audio fixes, docker preparation, restructured directories
+- v0.7 - Add sound effects
+- v0.6 - Add some README.md and docs.
+- v0.5 - Jug selection and timer integrated demonstrator
+- v0.4 - SVG layers demonstrator integrated and cleanup
+- v0.3 - SVG layers proof of concept working
+- v0.2 - ZMQ demonstrator working
+- v0.1 - Timer and progress bar demonstrator working

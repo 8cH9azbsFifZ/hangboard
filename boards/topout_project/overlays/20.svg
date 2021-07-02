@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="3710px" height="882px" viewBox="0 0 3710 882" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>board</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="board" transform="translate(2.447569, 2.000000)">
+            <g id="right" transform="translate(2796.552431, 374.500000) scale(-1, 1) translate(-2796.552431, -374.500000) translate(2031.552431, 2.000000)" fill="#979797">
+                <rect id="20" stroke="#979797" x="55.5" y="622.5" width="494" height="122" rx="57.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

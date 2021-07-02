@@ -1,0 +1,40 @@
+version: '2.2'
+
+services:
+    workout:
+      build:
+        context: ./
+        dockerfile: ./backend/Dockerfile
+      dns_search: mainz.ziegenhain.family
+
+    database:
+        build:
+          context: ./
+          dockerfile: ./backend/Dockerfile
+        dns_search: mainz.ziegenhain.family
+        command: python ./record.py
+
+    mqtt:
+        restart: unless-stopped
+        image: eclipse-mosquitto:1.6 # 2.0 breaking change address error
+        ports:
+          - "1883:1883"
+          - "9001:9001"
+          
+    mongo:
+      image: mongo
+      restart: always
+      ports:
+        - 27017:27017
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+
+    mongo-express:
+      image: mongo-express
+      restart: always
+      ports:
+        - 8081:8081
+      environment:
+        ME_CONFIG_MONGODB_ADMINUSERNAME: root
+        ME_CONFIG_MONGODB_ADMINPASSWORD: example          

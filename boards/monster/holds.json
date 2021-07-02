@@ -1,0 +1,185 @@
+{
+    "version": 101,
+    "displayName": "Mönster",
+    "type": {
+      "uniqueName": "monster"
+    },
+    "holds": [
+      {
+        "position": 1,
+        "depth": 30,
+        "order": 1,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 2,
+        "depth": 25,
+        "order": 2,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 5,
+        "depth": 35,
+        "order": 3,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 6,
+        "depth": 20,
+        "order": 4,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 7,
+        "depth": 15,
+        "order": 5,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 12,
+        "depth": 12,
+        "order": 6,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 13,
+        "depth": 10,
+        "order": 7,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 14,
+        "depth": 8,
+        "order": 8,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 19,
+        "depth": 7,
+        "order": 9,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 20,
+        "depth": 6,
+        "order": 10,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 21,
+        "depth": 5,
+        "order": 11,
+        "location": "LEFT",
+        "type": "EDGE"
+      },
+      {
+        "position": 3,
+        "depth": 30,
+        "order": 12,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 4,
+        "depth": 25,
+        "order": 13,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 9,
+        "depth": 35,
+        "order": 14,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 10,
+        "depth": 20,
+        "order": 15,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 11,
+        "depth": 15,
+        "order": 16,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 16,
+        "depth": 12,
+        "order": 17,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 17,
+        "depth": 10,
+        "order": 18,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 18,
+        "depth": 8,
+        "order": 19,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 23,
+        "depth": 7,
+        "order": 20,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 24,
+        "depth": 6,
+        "order": 21,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 25,
+        "depth": 5,
+        "order": 22,
+        "location": "RIGHT",
+        "type": "EDGE"
+      },
+      {
+        "position": 8,
+        "depth": 23,
+        "order": 23,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 15,
+        "depth": 16,
+        "order": 24,
+        "location": "CENTER",
+        "type": "EDGE"
+      },
+      {
+        "position": 22,
+        "depth": 9,
+        "order": 25,
+        "location": "CENTER",
+        "type": "EDGE"
+      }
+    ],
+    "homePage": "https://holdemporium.com/collections/training/products/monster-board"
+  },
