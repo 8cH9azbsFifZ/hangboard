@@ -1,0 +1,11 @@
+framework module assets_audio_player {
+  umbrella header "assets_audio_player-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module assets_audio_player.Swift {
+    header "assets_audio_player-Swift.h"
+    requires objc
+}

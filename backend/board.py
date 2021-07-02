@@ -7,6 +7,7 @@ import time
 import base64
 
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
@@ -26,7 +27,7 @@ class SVGBoard():
         self.boardname = boardname
         self.boardimagename = "../boards/" + boardname + "/board.svg" 
         self.cachedir = "./cache/"
-        # FIXME: create cache dir if not existing
+        Path(self.cachedir).mkdir(parents=True, exist_ok=True)
 
         self.left_color = "#00ff00"
         self.right_color = "#ff0000"
@@ -99,12 +100,14 @@ class SVGBoard():
         return self.current_image_base64
 
     def generate_all_images(self, holds=[]):
+        holds.append("")
         for left in holds:
             for right in holds:
-                if (left == right):
-                    break
-                self.Hold2SVG(left,right)
-                self._svg_to_png(self._cache_svg_filename(left,right))
+                #if (left == right):
+                #    break
+                self.Hold2SVG(left=left,right=right)
+                self._svg_to_png(self._cache_svg_filename(left=left,right=right))
+
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
 
@@ -163,6 +166,8 @@ class Board():
 
     def get_hold_for_type(self, type):
         logging.debug("Get holds for type " + str(type))
+        if type == "":
+            return [""]
         holds = []
         for hold in self.boarddata["Holds"]:
             if (hold["Name"] == type):
@@ -211,9 +216,8 @@ if __name__ == "__main__":
     print (h[-1])
     svg = SVGBoard()
     #svg.Hold2SVG()    
-    #svg.generate_all_images(holds=a.all_holds) # FIXME: all holds images must be genearted and put into assets directory of flutter app.. #83
-    # FIXME: not all images are generated #83
+    svg.generate_all_images(holds=a.all_holds)
 
-    svg.Hold2SVG(left="C1",right="C7")
+    #svg.Hold2SVG(left="C1",right="C7")
 
     svg._svg_to_png(svg._cache_svg_filename("C1","C7"))

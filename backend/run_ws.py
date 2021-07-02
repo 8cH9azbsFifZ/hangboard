@@ -12,6 +12,8 @@ if __name__ == "__main__":
     print ("Starting")
     wa = Workout(hostname="hangboard")
     #wa._set_workout(id="HRST-S-1-4ZBEVO")
-    wa._set_workout(id="ZB-A-1")
+    #wa._set_workout(id="ZB-A-1")
+    wa._set_workout(id="WMVC-EASY-1")
+    
     wa._core_loop()
 

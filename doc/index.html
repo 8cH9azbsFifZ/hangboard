@@ -1257,6 +1257,46 @@ repository.
 Measuring a hangboard is lots of work, i.e. <a href="#Beastmaker1000HoldSizes">[Beastmaker1000HoldSizes]</a>.</p>
 </div>
 <div class="sect2">
+<h3 id="_implement_new_board_configurations">Implement new board configurations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Install inkscape <code>brew install inkscape</code></p>
+</li>
+<li>
+<p>Create a new board json file</p>
+</li>
+<li>
+<p>Use inkscape with layers for overlay image creation</p>
+</li>
+<li>
+<p>Edit layer "id" names manually afterwards in any editor</p>
+</li>
+<li>
+<p>change all style:: display:inline &#8658; inline</p>
+</li>
+<li>
+<p>Use colors: 979797 and d8d8d8</p>
+</li>
+<li>
+<p>Export layers as svg: <a href="https://github.com/james-bird/layer-to-svg" class="bare">github.com/james-bird/layer-to-svg</a> (cf. boards directory)</p>
+</li>
+<li>
+<p>Change colors of overlays to: d8d8d8 &#8594; 979797</p>
+</li>
+<li>
+<p>Export all layers as svg and convert them to png (i.e. <a href="https://svgtopng.com/de/" class="bare">svgtopng.com/de/</a>)</p>
+</li>
+<li>
+<p>Conversion to PNG for all permutations can be done using the <code>backend/generate_all_board_images.py</code> script.</p>
+</li>
+<li>
+<p>Put all PNG images to <code>flutter_hangboard/images</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_references">References</h3>
 <div class="ulist bibliography">
 <ul class="bibliography">
@@ -1346,7 +1386,7 @@ Measuring a hangboard is lots of work, i.e. <a href="#Beastmaker1000HoldSizes">[
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-02 23:32:05 +0200
+Last updated 2021-07-03 00:54:35 +0200
 </div>
 </div>
 <script type="text/x-mathjax-config">
