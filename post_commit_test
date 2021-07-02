@@ -2,27 +2,25 @@
 branch=main
 git checkout gh-pages --quiet
 
-git rm -r * --quiet 
-
-#git checkout $branch -- .gitignore
-git checkout $branch -- Makefile
+git checkout $branch -- .gitignore
 git checkout $branch -- doc/*
 git checkout $branch -- backend
 
 echo "Build API documentation"
 echo "npm install -g @asyncapi/generator"
-cd backend ; rm -rf ../api/ ; ag asyncapi.yaml @asyncapi/html-template -o ../api/ ; cd ..
+cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ../api/ ; cd ..
 
 echo "Build backend documentation"
 cd backend ; doxygen ;cd ..
 mv backend/doxygen/html backend-doc
 
+echo "Build manual"
+cd doc
+
 git add -A
 git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 
 git checkout $branch --quiet
-
-#rm -rf backend-doc
 
 exit
 #if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
