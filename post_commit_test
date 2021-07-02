@@ -25,6 +25,7 @@ asciidoctor -d book -D ./doc --backend=html5 -o ./index.html doc/Manual.adoc
 
 git add -A
 git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
+git push --quiet
 
 git checkout $branch --quiet
 
