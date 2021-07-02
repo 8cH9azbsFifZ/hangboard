@@ -3,6 +3,7 @@ branch=main
 git checkout gh-pages --quiet
 
 git checkout $branch -- .gitignore
+git checkout $branch -- Makefile
 git checkout $branch -- doc/*
 ls
 
