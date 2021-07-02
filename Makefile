@@ -3,7 +3,7 @@ api-doc: #output in ~/api
 	branch=main
 	git checkout gh-pages --quiet
 
-	git rm -r * --quiet
+	#git rm -r * --quiet
 
 	git checkout $branch -- .gitignore
 	git checkout $branch -- doc
