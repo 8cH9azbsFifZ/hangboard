@@ -67,6 +67,7 @@ class _MQTTViewState extends State<MQTTView> {
     return Column(
       children: <Widget>[
         _buildScrollableTextWith(currentAppState.getHistoryText),
+        _buildUpcomingSets(currentAppState.getUpcomingSets),
         _buildWorkoutSelector(
             currentAppState.getWorkoutName, currentAppState.GetWorkoutList),
         _buildHangboardImage(currentAppState.getImageName),
@@ -82,7 +83,6 @@ class _MQTTViewState extends State<MQTTView> {
         //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
         _buildLastExerciseStatistics(currentAppState.getLastHangTime,
             currentAppState.getLastMaximalLoad),
-        _buildUpcomingSets(currentAppState.getUpcomingSets)
         //_buildWorkoutStatus()
       ],
     );
