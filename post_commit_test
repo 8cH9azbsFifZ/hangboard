@@ -5,6 +5,7 @@ git checkout gh-pages --quiet
 git checkout $branch -- .gitignore
 git checkout $branch -- Makefile
 git checkout $branch -- doc/*
+git checkout $branch -- backend/*
 ls
 
 git checkout $branch --quiet 
