@@ -26,14 +26,14 @@ jobs:
     #       working-directory: '.'
     #       doxyfile-path: ./Doxyfile
 
-    # - name: Generating HTML from my AsyncAPI document
-    #   uses: asyncapi/github-action-for-generator@v1
-    #   with:
-    #     #template: '@asyncapi/html-template@0.9.0'  #In case of template from npm, because of @ it must be in quotes
-    #     template: '@asyncapi/html-template@0.15.4'  #In case of template from npm, because of @ it must be in quotes
-    #     filepath: backend/asyncapi.yaml
-    #     #parameters: baseHref=/test-experiment/ sidebarOrganization=byTags #space separated list of key/values
-    #     output: api
+    - name: Generating HTML from my AsyncAPI document
+      uses: asyncapi/github-action-for-generator@v1
+      with:
+        #template: '@asyncapi/html-template@0.9.0'  #In case of template from npm, because of @ it must be in quotes
+        template: '@asyncapi/html-template@0.15.4'  #In case of template from npm, because of @ it must be in quotes
+        filepath: backend/asyncapi.yaml
+        #parameters: baseHref=/test-experiment/ sidebarOrganization=byTags #space separated list of key/values
+        output: api
 
     - name: Print execution time
       run: echo "Time ${{ steps.adocbuild.outputs.time }}"
