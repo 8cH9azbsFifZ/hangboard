@@ -182,12 +182,8 @@ class MQTTAppState with ChangeNotifier {
     if (holdsjson.containsKey("Right")) {
       _hold_right = holdsjson["Right"];
     }
-    if (_hold_left != "") {
+    if ((_hold_left != "") || (_hold_right != "")) {
       _imagename =
-          'images/zlagboard_evo.' + _hold_left + '.' + _hold_right + '.png';
-    } else if (_hold_right != "") {
-
-   _imagename =
           'images/zlagboard_evo.' + _hold_left + '.' + _hold_right + '.png';
     } else {
       _imagename = _imagename_noholds;
