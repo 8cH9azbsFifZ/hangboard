@@ -163,6 +163,8 @@ class Board():
 
     def get_hold_for_type(self, type):
         logging.debug("Get holds for type " + str(type))
+        if type == "":
+            return [""]
         holds = []
         for hold in self.boarddata["Holds"]:
             if (hold["Name"] == type):
