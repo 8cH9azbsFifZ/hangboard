@@ -34,6 +34,24 @@ backend-doc: # output in ~/backend/doxygen/html
 	git push --quiet
 
 	git checkout main --quiet
+
+
+manual-doc:
+	git checkout gh-pages --quiet
+	git checkout main -- .gitignore
+	git checkout main -- doc
+	git checkout main -- backend
+
+	echo "Build manual"
+	asciidoctor -d book -D ./doc --backend=html5 -o ./index.html doc/Manual.adoc
+
+	git add -A
+	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
+	git push --quiet
+
+	git checkout main --quiet
+
+
 frontend:
 	cd flutter_hangboard ; 	~/src/flutter/bin/flutter build ios ; 	~/src/flutter/bin/flutter install ; cd ..
 
