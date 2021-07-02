@@ -5,7 +5,6 @@ __pycache__
 html
 *.pyc
 cache
-api
 backend/doxygen
 evaluations/Load.png
 evaluations/out.txt
