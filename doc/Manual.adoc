@@ -202,7 +202,7 @@ Wire the 4 load cells as follows (according to the application sheet):
 image::./force/4_load_sensors.jpg[{half-size}Wiring four load cells]
 
 ## Getting rid of the noise
-As measured in "Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process": using a Low Pass Filter (moving average) is equivalent to a Kalman filter for HX711.
+As measured in <<<LPFvsKalman>>>: using a Low Pass Filter (moving average) is equivalent to a Kalman filter for HX711.
 
 ## Mounting the load sensors
 
@@ -297,6 +297,9 @@ WARNING: This sensor is not yet fully implemented in the backend.
 For measuring distances (i.e. for pullups) we will use a HC-SR04 ultrasonic distance sensor <<HCSR04Package>>.
 There is excellent documentation on how to getting started <<HCSR04GettingStarted>>.
 For accurate measurements a kalman filter is implemented in the backend based on <<HCSR04KalmanFilter>>.
+More information also can be found in <<KalmanHCSR04>>.
+
+Other alternatives are <<<VelocityBraincoder>>>.
 
 [#img-sensor-hc-sr04]
 .Sensor HC-SR04
@@ -433,3 +436,8 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 * [[[CriticalForceCalculator]]] https://strengthclimbing.com/critical-force-calculator/
 * [[[ClimbingFingerStrengthAnalyzer]]] https://strengthclimbing.com/finger-strength-analyzer/
 * [[[ForceSensingHangboardToEnhangeFingerTraining]]] Force-Sensing Hangboad to Enhance Finger Training in Rock Climbers, M. Anderson (https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Force-Sensing_Hangboard_to_Enhance_Finger_Training_in_Rock_Climbers.pdf)
+* [[[VelocityBraincoder]]] Braincoder velocity sensor https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Braincoder.pdf
+* [[[MVC1]]] Optimizing Muscular Strength-to-Weight Ratios in Rock Climbing, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/BF_strength_climbing_correlations-MAR282018web.pdf
+* [[[LPFvsKalman]]] Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/SM1941.pdf
+* [[[MVC2]]] Tendinous Tissue Adaptation to Explosive- vs. Sustained-Contraction Strength Training, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/fphys-09-01170.pdf
+* [[[KalmanHCSR04]]]  Kalman Filter Algorithm Design for HC-SR04 Ultrasonic Sensor Data Acquisition System, Adnan Rafi Al Tahtawi https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Kalman_Filter_Algorithm_Design_for_HC-SR04_Ultraso.pdf
