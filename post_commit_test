@@ -15,7 +15,7 @@ cd backend ; doxygen ;cd ..
 mv backend/doxygen/html backend-doc
 
 echo "Build manual"
-cd doc
+asciidoctor -D ./doc --backend=html5 -o ./index.html doc/Manual.adoc
 
 git add -A
 git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
