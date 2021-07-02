@@ -356,7 +356,7 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 ## Workout files
 *TODO*
 
-## Creating a custom workout based on MVC1
+## Creating a custom workout based on MVC
 Once you have measured your MVC, you can create a custom workout using the script:
 `exercises/mvc_workout_creator.py`.
 

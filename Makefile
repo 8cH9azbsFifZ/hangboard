@@ -1,5 +1,3 @@
-
-
 api-doc: #output in ~/api
 	
 	echo "npm install -g @asyncapi/generator"
