@@ -1,4 +1,4 @@
-name: build adocs
+name: build api docs
 
 on:
   push:
@@ -45,5 +45,5 @@ jobs:
         allow_empty_commit: false
         force_orphan: true
         publish_branch: gh-pages
-        publish_dir: ./api
+        publish_dir: ./
         keep_files: true
