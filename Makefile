@@ -1,13 +1,11 @@
 api-doc: #output in ~/api
-	
-	branch=main
 	git checkout gh-pages --quiet
 
 	#git rm -r * --quiet
 
-	git checkout $branch -- .gitignore
-	git checkout $branch -- doc
-	git checkout $branch -- backend
+	git checkout main -- .gitignore
+	git checkout main -- doc
+	git checkout main -- backend
 
 	echo "Build API documentation"
 	echo "npm install -g @asyncapi/generator"
@@ -20,7 +18,7 @@ api-doc: #output in ~/api
 	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 	git push --quiet
 
-	git checkout $branch --quiet
+	git checkout main --quiet
 
 
 backend-doc: # output in ~/backend/doxygen/html
@@ -41,3 +39,4 @@ loc:
 clean:
 	rm -rf api/
 	rm -rf backend/doxygen
+
