@@ -1,4 +1,4 @@
-- v0.56 - 
+- v0.56 - Implemented 1 hand hold display (#96, #97), 
 - v0.55 - Display upcoming sets (#58), MVC workout (#89), estimate maximal boulder grade from MVC (#90).
 - v0.54 - Fixed last hang load calculation (#74), implemented intensity display (#60).
 - v0.53 - Remove bad load samples (#75), show next exercise (#81).
