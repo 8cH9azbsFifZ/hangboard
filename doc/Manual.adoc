@@ -382,6 +382,9 @@ Load:: *TODO*
 
 ## Evaluations of the measured data
 
+From the MVC we can estimate the maximal boulder grade according to [[[MVC1]]] using 
+the script in `evaluations/estimate_bouldergrade_from_mvc.py`.
+
 Here are some first test measurement data sets. The test has been conducted with a hang, one handed pulls, a fast and a slow pullup.
 The data and evaluation scripts can be found in the directory `evaluations`.
 
