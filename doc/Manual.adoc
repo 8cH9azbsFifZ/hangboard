@@ -1,6 +1,7 @@
 = Hangboard Manual
 Author Name <gerolf.ziegenain@gmail.com>
 :hide-uri-scheme:
+:leveloffset: 1
 
 ifdef::backend-html5[]
 :twoinches: width='144'
@@ -42,6 +43,7 @@ This was motivation for me to learn new technologies and build an own smart hang
 image::./board_mount/smart_hangboard.png[{half-size}Smart Hangboard]
 
 # What you need
+
 - Any hangboard (large list of supported hangboards below).
 - A Raspberry Pi, force sensors and some basic skills to setup the software backend (no automation so far).
 - Basic skills to create a board mount with the force sensors.
