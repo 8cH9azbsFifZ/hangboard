@@ -103,10 +103,11 @@ class SVGBoard():
         holds.append("")
         for left in holds:
             for right in holds:
-                if (left == right):
-                    break
+                #if (left == right):
+                #    break
                 self.Hold2SVG(left=left,right=right)
                 self._svg_to_png(self._cache_svg_filename(left=left,right=right))
+
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
 
