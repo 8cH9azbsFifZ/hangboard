@@ -356,9 +356,16 @@ Set:: A set of exercises with *Repetitions*, *Pause* between the exercises and a
 ## Workout files
 *TODO*
 
+## Creating a custom workout based on MVC1
+Once you have measured your MVC, you can create a custom workout using the script:
+`exercises/mvc_workout_creator.py`.
+
+
 # Measurements, their definitions and what to learn from them
 The following values are measured. For more informations on their meaning refer to the papers given in the references.
 *TODO*
+
+MVC:: *TODO*
 
 RFD:: Rate of force development (N/s) *TODO*
 
