@@ -28,25 +28,3 @@ git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 git push --quiet
 
 git checkout $branch --quiet
-
-exit
-#if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
- # Checkout gh-pages and clean it
- git rm -r * — quiet
-
- #git checkout $branch -- src/*
- #git checkout $branch -- demo/*
- #git mv demo/* .
- #rmdir demo
- #for file in `ls *.html`;
- #do
- #sed 's|../src|src|' $file > temp; mv temp $file;
- #done
-
- # Commit all stuff again and push it to gh-pages
- git add -A
- git commit -m "updated $(date +"%d.%m.%Y %H:%M:%S")"
- git push — quiet
- echo -e "\033[0;32mdemo updated $(date +"%d.%m.%Y %H:%M:%S")\033[0m"
- git checkout $branch --quiet
-#fi
