@@ -106,7 +106,7 @@ class SVGBoard():
                 if (left == right):
                     break
                 self.Hold2SVG(left=left,right=right)
-                self._svg_to_png(self._cache_svg_filename(left,right))
+                self._svg_to_png(self._cache_svg_filename(left=left,right=right))
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
 
