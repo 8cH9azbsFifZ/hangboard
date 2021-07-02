@@ -15,7 +15,10 @@ echo "Build backend documentation"
 cd backend ; doxygen ;cd ..
 mv backend/doxygen/html backend-doc
 
-git checkout $branch --quiet 
+git add -A
+git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
+
+git checkout $branch --quiet
 
 exit
 #if [[ $(git rev-parse --abbrev-ref HEAD) == "$branch" ]]; then
