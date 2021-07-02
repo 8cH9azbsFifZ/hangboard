@@ -86,7 +86,7 @@ NOTE: Most of the boards configuration has been merged from the excellent projec
 
 
 # Software Design
-This is a brief design layout of the project.
+This is a brief design layout of the project. 
 
 ## Frontend
 - Web client (Running on the backend Raspberry Pi)
@@ -97,6 +97,8 @@ This is a brief design layout of the project.
 - Running on a Raspberry Pi.
 - Communicating to the frontend using MQTT.
 - The default hostname for the MQTT broker is "hangboard". Modification is possible in backend and frontend with a variable so far.
+
+The class documentation of the backend services can be found here: https://8ch9azbsfifz.github.io/hangboard/backend-doc/index.html.
 
 ## Software Used
 - Flutter for the frontends
