@@ -1,8 +1,5 @@
 api-doc: #output in ~/api
 	git checkout gh-pages --quiet
-
-	#git rm -r * --quiet
-
 	git checkout main -- .gitignore
 	git checkout main -- doc
 	git checkout main -- backend
@@ -13,7 +10,6 @@ api-doc: #output in ~/api
 	mkdir api
 	cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ../api/ ; cd ..
 
-
 	git add -A
 	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 	git push --quiet
@@ -22,8 +18,22 @@ api-doc: #output in ~/api
 
 
 backend-doc: # output in ~/backend/doxygen/html
-	cd backend ; doxygen ;cd ..
+	git checkout gh-pages --quiet
+	git checkout main -- .gitignore
+	git checkout main -- doc
+	git checkout main -- backend
 
+	echo "Build backend documentation"
+	rm -rf backend-doc
+	rm -rf backend/doxygen
+	cd backend ; doxygen ;cd ..
+	mv backend/doxygen/html backend-doc
+
+	git add -A
+	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
+	git push --quiet
+
+	git checkout main --quiet
 frontend:
 	cd flutter_hangboard ; 	~/src/flutter/bin/flutter build ios ; 	~/src/flutter/bin/flutter install ; cd ..
 
