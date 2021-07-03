@@ -39,7 +39,7 @@ class Database():
       #"loadloss": msg["loadloss"]}
       #df = df.append(currentData, ignore_index=True)
       #self._coll_raw.insert_one(currentData)
-      logging.debug("Write timestamp " + str(msg))
+      logging.debug("Write message " + str(msg))
       self._coll_raw.insert_one(msg)
       #print (df["time"].max() )
       #print( df["loadcurrent"].max())
