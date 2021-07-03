@@ -466,3 +466,4 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 * [[[LPFvsKalman]]] Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/SM1941.pdf
 * [[[MVC2]]] Tendinous Tissue Adaptation to Explosive- vs. Sustained-Contraction Strength Training, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/fphys-09-01170.pdf
 * [[[KalmanHCSR04]]]  Kalman Filter Algorithm Design for HC-SR04 Ultrasonic Sensor Data Acquisition System, Adnan Rafi Al Tahtawi https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Kalman_Filter_Algorithm_Design_for_HC-SR04_Ultraso.pdf
+* [[[LatticeMVC]]] The determination of finger flexor critical force in rock climbers https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Giles2019Thedeterminationoffingerflexorcriticalforceinrockclimbers.pdf
