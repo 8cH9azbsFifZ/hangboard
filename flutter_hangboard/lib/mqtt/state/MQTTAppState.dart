@@ -62,6 +62,20 @@ class MQTTAppState with ChangeNotifier {
   String _upcomingsets = "";
   double _remainingtimeinworkout = 0.0;
 
+// Current Set data
+  double _current_set_intensity = 0.0;
+
+  void setSetInfo(String text) {
+    Map<String, dynamic> jsondata = jsonDecode(text);
+
+    if (jsondata.containsKey("intensity")) {
+      _current_set_intensity =
+          jsondata["intensity"]; // FIXME: add to counter message
+    }
+
+    notifyListeners();
+  }
+
   void setUpcoming(String text) {
     Map<String, dynamic> jsondata = jsonDecode(text);
     if (jsondata.containsKey("UpcomingSets")) {
@@ -254,6 +268,8 @@ class MQTTAppState with ChangeNotifier {
 
   String get getUpcomingSets => _upcomingsets;
   double get getRemainingTimeInWorkout => _remainingtimeinworkout;
+
+  double get getCurrentSetIntensity => _current_set_intensity;
 
   MQTTAppConnectionState get getAppConnectionState => _appConnectionState;
 }

@@ -76,6 +76,15 @@ class Counter():
         self._left = self._board.get_hold_for_type(self._holdtypeleft)[0] # FIXME: what if no suitable holds found?
         self._right = self._board.get_hold_for_type(self._holdtyperight)[-1]
 
+        self._intensity = 1 
+        if "Intensity" in self.workout["Sets"][i]: # FIXME: must alway be given?
+            self._intensity = "%.1f" % self.workout["Sets"][i]["Intensity"]
+
+        self._type = self.workout["Sets"][i]["Type"] # FIXME: always defined?
+
+        self._sendmessage("/setinfo", '{"resttostart": '+str(self._resttostart)+', "exercise": '+self._exercise+'", "counter": '+str(self._counter)+', "pause": '+str(self._pause)+', "reps": '+str(self._reps)+', "left": '+self._left+', "right": '+self._right+', "type": '+self._current_exercise_type+', "intensity": '+str(self._intensity)+'}')
+
+
     def __iter__(self):
         return self
 

@@ -77,7 +77,8 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getTimerCompleted,
             currentAppState.getTimerCountdown),
         _buildExerciseType(currentAppState.getExerciseType),
-        _buildIntensityPlot(currentAppState.getCurrentItensity),
+        _buildIntensityPlot(currentAppState.getCurrentItensity,
+            currentAppState.getCurrentSetIntensity),
         _buildControls(currentAppState.getAppConnectionState),
         _buildLoadPlot(currentAppState.getLoadCurrentData),
         //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
@@ -121,25 +122,31 @@ class _MQTTViewState extends State<MQTTView> {
     ));
   }
 
-  Widget _buildIntensityPlot(double CurrentItensity) {
+  Widget _buildIntensityPlot(
+      double CurrentItensity, double CurrentSetIntensity) {
     return (
         //Text("Current Intensity" + CurrentItensity.toString()),
-        CircularPercentIndicator(
-      radius: 120.0,
-      lineWidth: 13.0,
-      //animation: true,
-      percent: CurrentItensity,
-      center: new Text(
-        CurrentItensity.toStringAsFixed(2),
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-      ),
-      footer: new Text(
-        "Intensity",
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-      ),
-      circularStrokeCap: CircularStrokeCap.round,
-      progressColor: Colors.redAccent,
-    ));
+
+        CurrentSetIntensity > CurrentItensity
+            ? Text("Warning: Too much!!!")
+            : CircularPercentIndicator(
+                radius: 120.0,
+                lineWidth: 13.0,
+                //animation: true,
+                percent: CurrentItensity,
+                center: new Text(
+                  CurrentItensity.toStringAsFixed(2),
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20.0),
+                ),
+                footer: new Text(
+                  "Intensity",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 17.0),
+                ),
+                circularStrokeCap: CircularStrokeCap.round,
+                progressColor: Colors.redAccent,
+              ));
   }
 
   Widget _buildLastExerciseStatistics(
