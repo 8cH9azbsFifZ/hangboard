@@ -1,3 +1,4 @@
+- v0.57 - Bugfixes (#99)
 - v0.56 - Implemented 1 hand hold display (#96, #97), display next exercise intensity (#98).
 - v0.55 - Display upcoming sets (#58), MVC workout (#89), estimate maximal boulder grade from MVC (#90).
 - v0.54 - Fixed last hang load calculation (#74), implemented intensity display (#60).
