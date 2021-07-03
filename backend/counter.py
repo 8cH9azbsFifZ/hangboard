@@ -135,6 +135,9 @@ class Counter():
         elif (self._current_exercise_type == "Hang"):
             self._tstop = self._tstart + self._counter
             self._tduration = self._counter
+        elif (self._current_exercise_type == "1 Hand Pull"):
+            self._tstop = self._tstart + self._counter
+            self._tduration = self._counter
         else:
             self._tstart = 0
             self._tduration = 0
