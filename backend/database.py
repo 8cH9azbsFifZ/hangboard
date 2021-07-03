@@ -27,22 +27,11 @@ class Database():
     self._db = MongoClient('mongodb://'+self._hostname+':'+str(self._port)+'/', username=self._user,   password=self._password  )[self._dbname]
 
   def _on_message(self, client, userdata, message):
-      #global df
-      #global coll_raw
-      msg = json.loads(message.payload.decode("utf-8"))
-      #currentData = {"time": msg["time"],
-      #"loadcurrent": msg["loadcurrent"],
-      #"loadaverage": msg["loadaverage"],
-      #"fti": msg["fti"],
-      #"rfd": msg["rfd"],
-      #"loadmaximal": msg["loadmaximal"],
-      #"loadloss": msg["loadloss"]}
-      #df = df.append(currentData, ignore_index=True)
-      #self._coll_raw.insert_one(currentData)
       logging.debug("Write message " + str(msg))
+
+      msg = json.loads(message.payload.decode("utf-8"))
+     
       self._coll_raw.insert_one(msg)
-      #print (df["time"].max() )
-      #print( df["loadcurrent"].max())
 
   def _pd_evals(self):
 
