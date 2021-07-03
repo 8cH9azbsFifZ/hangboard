@@ -205,26 +205,41 @@ class Counter():
             holdtyperight = self.workout["Sets"][s]["Right"]
 
             exercisetype = self.workout["Sets"][s]["Type"]
-        
+
+            intensity = None 
+            if "Intensity" in self.workout["Sets"][s]:
+                intensity = " I=" + "%.1f" % self.workout["Sets"][s]["Intensity"]
+
             # FIXME: left / right
             # FIXME: pull up without seconds
 
             # Select hand for 1 handed exercise
-            hand = " on " + holdtyperight
+            hand = " @" + holdtyperight
             if holdtypeleft == "":
-                hand = " right hand on " + holdtyperight
+                hand = " rh @" + holdtyperight
             if holdtyperight == "":
-                hand = " left hand on " + holdtypeleft
+                hand = " lh @" + holdtypeleft
 
             # Set hang duration or count (pull ups)
             rr = ""
-            if exercisetype == "Hang": # FIXME: Max hang
+            if exercisetype == "Hang": # FIXME: Max hang 
+                rr = str(counter) + "s "
+            elif exercisetype == "1 Hand Pull":
                 rr = str(counter) + "s "
             else:
                 rr = str(counter) + " " # FIXME: max pullups
+
+            # Intensity if applicable
+            ii = ""
+            if intensity != None:
+                ii = intensity
+
+            # Pause notation
+            pp = " & " + str(pause) + "s pause." 
+
             # display only upcoming sets:
             if self._current_set <= s:
-                self._exercise_list = self._exercise_list + '\\n' + str(reps) + "x " + rr + exercise + hand + " with " + str(pause) + "s pauses." 
+                self._exercise_list = self._exercise_list + '\\n' + str(reps) + "x " + rr + exercise + hand + ii + pp
 
             settime = resttostart + reps * (counter + pause)
             if (self._current_set >= s): 

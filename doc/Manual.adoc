@@ -105,10 +105,7 @@ The class documentation of the backend services can be found here: https://8ch9a
 - Python backends
 - MQTT for Communication 
 - JSON for Board configuration and finger grip positions
-- SVG Layers for hold configuration
-
-Currently inactive frontend implementations are
-- React Native for App 
+- SVG Layers for hold configuration (will be converted to PNG in a cache, as flutter has no native SVG support)
 
 
 ## Developing the software
@@ -369,7 +366,7 @@ Once you have measured your MVC, you can create a custom workout using the scrip
 The following values are measured. For more informations on their meaning refer to the papers given in the references.
 *TODO*
 
-MVC:: *TODO*
+MVC:: Maximum Voluntary Contraction *TODO*
 
 RFD:: Rate of force development (N/s) *TODO*
 
@@ -424,6 +421,20 @@ Luckily there is a similar project and lots of configurations are already implem
 repository.
 Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 
+
+## Implement new board configurations
+
+- Install inkscape `brew install inkscape`
+- Create a new board json file 
+- Use inkscape with layers for overlay image creation 
+- Edit layer "id" names manually afterwards in any editor
+- change all style:: display:inline => inline
+- Use colors: 979797 and d8d8d8
+- Export layers as svg: https://github.com/james-bird/layer-to-svg (cf. boards directory)
+- Change colors of overlays to: d8d8d8 -> 979797
+- Export all layers as svg and convert them to png (i.e. https://svgtopng.com/de/)
+- Conversion to PNG for all permutations can be done using the `backend/generate_all_board_images.py` script.
+- Put all PNG images to `flutter_hangboard/images`
 
 
 
