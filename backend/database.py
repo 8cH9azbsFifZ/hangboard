@@ -27,7 +27,7 @@ class Database():
     self._db = MongoClient('mongodb://'+self._hostname+':'+str(self._port)+'/', username=self._user,   password=self._password  )[self._dbname]
 
   def _on_message(self, client, userdata, message):
-      logging.debug("Write message " + str(msg))
+      logging.debug("Write message " + str(message.payload.decode("utf-8")))
 
       msg = json.loads(message.payload.decode("utf-8"))
      

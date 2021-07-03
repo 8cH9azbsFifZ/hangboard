@@ -82,7 +82,7 @@ class Counter():
 
         self._type = self.workout["Sets"][i]["Type"] # FIXME: always defined?
 
-        self._sendmessage("/setinfo", '{"resttostart": '+str(self._resttostart)+', "exercise": '+self._exercise+'", "counter": '+str(self._counter)+', "pause": '+str(self._pause)+', "reps": '+str(self._reps)+', "left": '+self._left+', "right": '+self._right+', "type": '+self._current_exercise_type+', "intensity": '+str(self._intensity)+'}')
+        self._sendmessage("/setinfo", '{"resttostart": '+str(self._resttostart)+', "exercise": '+self._exercise+'", "counter": '+str(self._counter)+', "pause": '+str(self._pause)+', "reps": '+str(self._reps)+', "left": "'+self._left+'", "right": "'+self._right+'", "type": '+self._current_exercise_type+', "intensity": '+str(self._intensity)+'}')
 
 
     def __iter__(self):
