@@ -114,6 +114,10 @@ channels:
               type: string
               description: Type of exercise.
               examples: ["Hang", "Maximum Hang", "Pull Up"]
+            intensity:
+              type: number
+              description: Hang intensity if applicable for this exercise.
+              exaples: [0.9, 0.8, 0.5]
   hangboard/workout/timerstatus:
     subscribe:
       summary: Information on the current timer status.
@@ -139,6 +143,22 @@ channels:
               type: number
               description: Countdown number - count every second downwards. Will be -1, when no full second crossed.
               examples: [-1, 10, 9, 8] #mosquitto_sub -h localhost -t  hangboard/workout/timerstatus
+            CurrentSet:
+              type: integer
+              description: Current set index in this workout.
+              example: 1
+            TotalSets:
+              type: integer
+              description: Total sets in workout.
+              example: 5
+            CurrentRep:
+              type: integer
+              description: Current repetition index in this set.
+              example: 2
+            TotalReps:
+              type: integer
+              description: Total repetitions in this set.
+              example: 5
   hangboard/workout/status:
     subscribe:
       summary: Current status of the workout backend.
