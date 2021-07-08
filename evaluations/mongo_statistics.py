@@ -1,3 +1,7 @@
+"""
+This file contains the code for the initial mongodb persistence statistics...
+"""
+
 import importlib.util
 spec = importlib.util.spec_from_file_location("Database", "../backend/database.py")
 foo = importlib.util.module_from_spec(spec)
