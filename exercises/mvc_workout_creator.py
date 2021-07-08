@@ -32,7 +32,10 @@ class WorkoutMVC():
         count = 5
         wa = '{ "Name": "Easy", "Session": 1, "ID": "WMVC-EASY-1", "Sets": ['
         for i in range(0,sets):
-            wa = wa + '\n{ "Rest-to-Start": 120, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
+            rts = 120
+            if i == 0: 
+                rts = 10
+            wa = wa + '\n{ "Rest-to-Start": '+str(rts)+', "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
             wa = wa + '\n{ "Rest-to-Start": 10, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
             if i <sets-1:
                 wa = wa + ","
@@ -47,7 +50,10 @@ class WorkoutMVC():
         count = 5
         wa = '{ "Name": "Moderate", "Session": 1, "ID": "WMVC-MODERATE-1", "Sets": ['
         for i in range(0,sets):
-            wa = wa + '\n{ "Rest-to-Start": 120, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
+            rts = 120
+            if i == 0: 
+                rts = 10
+            wa = wa + '\n{ "Rest-to-Start": '+str(rts)+', "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
             wa = wa + '\n{ "Rest-to-Start": 10, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 2, "Reps": '+str(reps)+', "Left": "", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
             if i <sets-1:
                 wa = wa + ","
@@ -62,7 +68,10 @@ class WorkoutMVC():
         count = 3
         wa = '{ "Name": "Intense", "Session": 1, "ID": "WMVC-INTENSE-1", "Sets": ['
         for i in range(0,sets):
-            wa = wa + '\n{ "Rest-to-Start": 300, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 10, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
+            rts = 300
+            if i == 0: 
+                rts = 10
+            wa = wa + '\n{ "Rest-to-Start": '+str(rts)+', "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 10, "Reps": '+str(reps)+', "Left": "20mm", "Right": "", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'},'
             wa = wa + '\n{ "Rest-to-Start": 10, "Exercise": "1 Hand Pull", "Counter": '+str(count)+', "Pause": 10, "Reps": '+str(reps)+', "Left": "", "Right": "20mm", "Type": "1 Hand Pull", "Intensity": '+str(intensity)+'}'
             if i <sets-1:
                 wa = wa + ","

@@ -33,6 +33,7 @@ class User():
         self._get_user_performance(hold=hold, hand=hand)
 
     def GetCurrentIntensity(self, currentload):
+        # FIXME: must be <100%!
         return currentload / self.MaxLoad
 
 
