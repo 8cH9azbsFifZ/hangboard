@@ -7,7 +7,7 @@ spec.loader.exec_module(foo)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from datetime import datetime
 
 def plot_load(t,load):
 	fig = plt.figure()
@@ -20,13 +20,7 @@ def plot_load(t,load):
 	#plt.show()
 	plt.savefig("Load.png")
 
-if __name__ == "__main__":
-    d = foo.Database(hostname="hangboard", user="root", password="rootpassword")
-    d._set_user(uuid="us3r")
-    d._get_maxload()
-    #print (d._coll_raw)
-    data = pd.DataFrame(list(d._coll_raw.find()))
-    #print (data)
+def _scribbel():
     timemax=data["time"].max()
     last20minutes=timemax-60*4
     lc=data["loadcurrent"]>25
@@ -65,3 +59,33 @@ if __name__ == "__main__":
     print (derivative)
     #plot_load(tt,derivative)
     np.savetxt("out.txt", derivative2)#data[lc][l20m]["loadcurrent"])
+
+
+if __name__ == "__main__":
+    d = foo.Database(hostname="hangboard", user="root", password="rootpassword")
+    d._set_user(uuid="us3r")
+    d._get_maxload()
+    data = pd.DataFrame(list(d._coll_raw.find()))
+    dtime = np.diff(data["time"])
+    timebetweensessions = 360.01
+    seltime = abs(dtime)>timebetweensessions
+    seltime1 = np.append(False,seltime)
+    seltime2 = np.roll(seltime1,1)
+    #minimaltimebetweensessions = 3600 * 48
+    #print(minimaltimebetweensessions)
+    #print (dtime[seltime])
+    #print (data[seltime1]["time"])
+    d0=0
+    d1=1
+    for d in data[seltime1]["time"]:
+        dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
+        print (dd)
+    for d in data[seltime2]["time"]:
+        dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
+        print (dd)
+    for d in data["time"]:
+        d0=d1
+        d1=d
+        if d>0:
+            dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
+            #print (str(d1-d0) + " "+ str(d)+ " "+str(dd))
