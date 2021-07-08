@@ -27,6 +27,7 @@ class Counter():
         self._current_set = 0
         self._current_rep = 0
         self._current_set_counter = 0
+        self._current_rep_counter = 0 #FIXME - cleanup
         self._current_exercise_type = ""
         
         # MQTT connection handling
@@ -103,9 +104,12 @@ class Counter():
                     self._current_exercise_type = self._exercise
                 else:
                     self._current_exercise_type = "Pause" # After any exericse: a pause
+                    self._current_rep_counter = self._current_rep_counter + 1 # rep completed - so count one up
+            
             # Interate through sets
             else: 
                 self._current_set = self._current_set + 1
+                self._current_rep_counter = 0 # reset the rep counter
                 self._get_current_set()
                 self._current_set_counter = 0
             self._index = self._index + 1
@@ -180,9 +184,9 @@ class Counter():
             self.TimeRemaining = 0
 
         if self.TimeCountdown >= 0:
-            self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + '}'
+            self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) +', "CurrentSet": '+str(self._current_set)+', "TotalSets": '+str(self._total_sets)+', "CurrentRep": '+str(self._current_rep_counter)+', "TotalReps": '+str(self._reps)+'}'
             self._sendmessage("/timerstatus", self._timerstatus)
-
+             
         return self.TimeElapsed > self.TimeDuration
 
 

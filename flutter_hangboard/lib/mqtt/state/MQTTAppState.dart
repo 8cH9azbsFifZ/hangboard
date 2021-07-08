@@ -19,6 +19,10 @@ class MQTTAppState with ChangeNotifier {
   double _timer_elapsed = 0.0;
   double _timer_completed = 0.0;
   double _timer_countdown = -1.0;
+  int _timer_currentset = 0;
+  int _timer_totalsets = 0;
+  int _timer_currentrep = 0;
+  int _timer_totalreps = 0;
 
 // Variables for board and hold configuration
   String _hold_right = '';
@@ -219,6 +223,18 @@ class MQTTAppState with ChangeNotifier {
     if (timerjson.containsKey("Countdown")) {
       _timer_countdown = timerjson["Countdown"];
     }
+    if (timerjson.containsKey("CurrentSet")) {
+      _timer_currentset = timerjson["CurrentSet"];
+    }
+    if (timerjson.containsKey("TotalSets")) {
+      _timer_totalsets = timerjson["TotalSets"];
+    }
+    if (timerjson.containsKey("CurrentRep")) {
+      _timer_currentrep = timerjson["CurrentRep"];
+    }
+    if (timerjson.containsKey("TotalReps")) {
+      _timer_totalreps = timerjson["TotalReps"];
+    }
     notifyListeners();
   }
 
@@ -247,6 +263,11 @@ class MQTTAppState with ChangeNotifier {
         -1; // FIX: app will rebuild on every update and start to start sound every microsecond :/ #56
     return a;
   }
+
+  int get getTimerCurrentSet => _timer_currentset;
+  int get getTimerTotalSets => _timer_totalsets;
+  int get getTimerCurrentRep => _timer_currentrep;
+  int get getTimerTotalReps => _timer_totalreps;
 
   //=> _timer_countdown;
   String get getHoldLeft => _hold_left;

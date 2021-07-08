@@ -75,7 +75,12 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getTimerDuration,
             currentAppState.getTimerElapsed,
             currentAppState.getTimerCompleted,
-            currentAppState.getTimerCountdown),
+            currentAppState.getTimerCountdown,
+            currentAppState.getTimerCurrentSet,
+            currentAppState.getTimerTotalSets,
+            currentAppState.getTimerCurrentRep,
+            currentAppState.getTimerTotalReps),
+
         _buildExerciseType(currentAppState.getExerciseType),
         _buildIntensityPlot(currentAppState.getCurrentItensity,
             currentAppState.getCurrentSetIntensity),
@@ -84,7 +89,6 @@ class _MQTTViewState extends State<MQTTView> {
         //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
         _buildLastExerciseStatistics(currentAppState.getLastHangTime,
             currentAppState.getLastMaximalLoad),
-        //_buildWorkoutStatus()
       ],
     );
   }
@@ -93,8 +97,8 @@ class _MQTTViewState extends State<MQTTView> {
     return (Text(UpcomingSets));
   }
 
-  Widget _buildWorkoutStatus() {
-    // TODO : implement progress bars
+  Widget _buildSetRepProgress(
+      int CurrentSet, int TotalSets, int CurrentRep, int TotalReps) {
     return (Padding(
       padding: EdgeInsets.all(15.0),
       child: Column(
@@ -102,13 +106,14 @@ class _MQTTViewState extends State<MQTTView> {
           new LinearPercentIndicator(
             width: 100.0,
             lineHeight: 8.0,
-            percent: 0.2,
+            percent: CurrentSet / TotalSets,
             progressColor: Colors.red,
+            center: Text("Test"),
           ),
           new LinearPercentIndicator(
             width: 100.0,
             lineHeight: 8.0,
-            percent: 0.5,
+            percent: CurrentRep / TotalReps,
             progressColor: Colors.orange,
           ),
           new LinearPercentIndicator(
@@ -127,7 +132,7 @@ class _MQTTViewState extends State<MQTTView> {
     return (
         //Text("Current Intensity" + CurrentItensity.toString()),
 
-        CurrentSetIntensity > CurrentItensity
+        ((CurrentSetIntensity > CurrentItensity) || (CurrentItensity > 1.0))
             ? Text("Warning: Too much!!!")
             : CircularPercentIndicator(
                 radius: 120.0,
@@ -395,8 +400,15 @@ class _MQTTViewState extends State<MQTTView> {
     );
   }
 
-  Widget _buildTimerStatus(double TimerDuration, double TimerElapsed,
-      double TimerCompleted, double TimerCountdown) {
+  Widget _buildTimerStatus(
+      double TimerDuration,
+      double TimerElapsed,
+      double TimerCompleted,
+      double TimerCountdown,
+      int CurrentSet,
+      int TotalSets,
+      int CurrentRep,
+      int TotalReps) {
     Wakelock.enable(); // Stay awake, once data has been received
 
     if (TimerCountdown == 10.0) {
@@ -433,19 +445,47 @@ class _MQTTViewState extends State<MQTTView> {
       _playSFX("images/done.mp3");
     }
 
+    double PercentSets = TotalSets == 0 ? 0 : CurrentSet / TotalSets;
+    double PercentReps = TotalReps == 0 ? 0 : CurrentRep / TotalReps;
+
     return Column(
       children: [
-        LinearProgressIndicator(
-          value: TimerCompleted,
-          backgroundColor: Colors.blueAccent,
-          valueColor: new AlwaysStoppedAnimation<Color>(Colors.redAccent),
-          minHeight: 20,
-          semanticsLabel: 'Linear progress indicator',
+        new LinearPercentIndicator(
+          animation: false,
+          animationDuration: 100,
+          lineHeight: 20.0,
+          percent: TimerCompleted,
+          center: Text(TimerElapsed.toInt().toString() +
+              " / " +
+              TimerDuration.toInt().toString() +
+              " Seconds"),
+          linearStrokeCap: LinearStrokeCap.butt,
+          progressColor: Colors.red,
         ),
-        Text(TimerElapsed.toInt().toString() +
-            " / " +
-            TimerDuration.toInt().toString() +
-            " Seconds")
+        new LinearPercentIndicator(
+          animation: false,
+          animationDuration: 100,
+          lineHeight: 20.0,
+          percent: PercentReps,
+          center: Text(CurrentRep.toStringAsFixed(0) +
+              " / " +
+              TotalReps.toStringAsFixed(0) +
+              " Reps"),
+          linearStrokeCap: LinearStrokeCap.butt,
+          progressColor: Colors.red,
+        ),
+        new LinearPercentIndicator(
+          animation: false,
+          animationDuration: 100,
+          lineHeight: 20.0,
+          percent: PercentSets,
+          center: Text(CurrentSet.toStringAsFixed(0) +
+              " / " +
+              TotalSets.toStringAsFixed(0) +
+              " Sets"),
+          linearStrokeCap: LinearStrokeCap.butt,
+          progressColor: Colors.red,
+        )
       ],
     );
   }
