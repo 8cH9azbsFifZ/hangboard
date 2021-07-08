@@ -25,6 +25,7 @@ def plot_load(t,load):
 	plt.savefig("Load.png")
 
 def _scribbel():
+    # snipps for use later on
     timemax=data["time"].max()
     last20minutes=timemax-60*4
     lc=data["loadcurrent"]>25
@@ -70,26 +71,29 @@ if __name__ == "__main__":
     d._set_user(uuid="us3r")
     d._get_maxload()
     data = pd.DataFrame(list(d._coll_raw.find()))
-    dtime = np.diff(data["time"])
-    timebetweensessions = 360.01
-    seltime = abs(dtime)>timebetweensessions
+    sel_not_nan = data["time"]>1.0
+    dtime = np.diff(data[sel_not_nan]["time"])
+    timebetweensessions = 3600.01
+    seltime = dtime>timebetweensessions
     seltime1 = np.append(False,seltime)
-    seltime2 = np.roll(seltime1,1)
+    #seltime2 = np.roll(seltime1,1)
     #minimaltimebetweensessions = 3600 * 48
     #print(minimaltimebetweensessions)
     #print (dtime[seltime])
     #print (data[seltime1]["time"])
-    d0=0
-    d1=1
-    for d in data[seltime1]["time"]:
+    d0=0.0
+    d1=1.0
+    for d in data[sel_not_nan][seltime1]["time"]:
         dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
         print (dd)
-    for d in data[seltime2]["time"]:
-        dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
-        print (dd)
-    for d in data["time"]:
+    #for d in data[sel_not_nan][seltime2]["time"]:
+    #    dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
+    #    print (dd)
+
+    for d in data[sel_not_nan]["time"]:
         d0=d1
         d1=d
-        if d>0:
+        dd=0.0
+        if d>0.0:
             dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
-            #print (str(d1-d0) + " "+ str(d)+ " "+str(dd))
+        #print (str(d1-d0) + " "+ str(d)+ " "+str(dd))
