@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['d_50',['d',['../namespacerecord.html#af524f6d619cc01b81ec9275f4bd89e03',1,'record.d()'],['../namespacesensor__distance.html#a425db86c00bc2b1da111c7619fde845b',1,'sensor_distance.d()']]],
+  ['d_50',['d',['../namespaceinsert__manual.html#abfaab78d9d725d7bec4c42b60e1eaa98',1,'insert_manual.d()'],['../namespacerecord.html#af524f6d619cc01b81ec9275f4bd89e03',1,'record.d()'],['../namespacesensor__distance.html#a425db86c00bc2b1da111c7619fde845b',1,'sensor_distance.d()']]],
   ['database_51',['database',['../namespacedatabase.html',1,'']]],
   ['database_52',['Database',['../classdatabase_1_1_database.html',1,'database']]],
   ['database_2epy_53',['database.py',['../database_8py.html',1,'']]],

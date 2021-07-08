@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_3',['a',['../namespaceboard.html#a35477f76790601721a6a6f9e7bf86d89',1,'board.a()'],['../namespaceemulated__gyroscope.html#a0780c20f1de1c8d4d46a6b126356d1a1',1,'emulated_gyroscope.a()'],['../namespacegyroscope.html#a40777e85b2ba50f1350f0653aec1ff5f',1,'gyroscope.a()'],['../namespacesensor__force.html#a47239dbcad2dde227e7c39f05a324edb',1,'sensor_force.a()'],['../namespacesensor__zlagboard.html#a3ad76f467b3666155f9b6cf02761479a',1,'sensor_zlagboard.a()']]],
+  ['a_3',['a',['../namespaceboard.html#a35477f76790601721a6a6f9e7bf86d89',1,'board.a()'],['../namespaceemulated__gyroscope.html#a0780c20f1de1c8d4d46a6b126356d1a1',1,'emulated_gyroscope.a()'],['../namespacegenerate__all__board__images.html#a8b5e9d20c0ac1c6495a874b8da144341',1,'generate_all_board_images.a()'],['../namespacegyroscope.html#a40777e85b2ba50f1350f0653aec1ff5f',1,'gyroscope.a()'],['../namespacesensor__force.html#a47239dbcad2dde227e7c39f05a324edb',1,'sensor_force.a()'],['../namespacesensor__zlagboard.html#a3ad76f467b3666155f9b6cf02761479a',1,'sensor_zlagboard.a()']]],
   ['accel_5fxout_5fh_4',['ACCEL_XOUT_H',['../classgyroscope_1_1_gyroscope.html#a08bdc692578fb47da55a899850793d25',1,'gyroscope::Gyroscope']]],
   ['accel_5fyout_5fh_5',['ACCEL_YOUT_H',['../classgyroscope_1_1_gyroscope.html#ada6c1d159ada3e37a355139f6fc84a9a',1,'gyroscope::Gyroscope']]],
   ['accel_5fzout_5fh_6',['ACCEL_ZOUT_H',['../classgyroscope_1_1_gyroscope.html#a030120e1173448300b3bf603d15a6c35',1,'gyroscope::Gyroscope']]],

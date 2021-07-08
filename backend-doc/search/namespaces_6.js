@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kalman_298',['Kalman',['../namespace_kalman.html',1,'']]]
+  ['insert_5fmanual_302',['insert_manual',['../namespaceinsert__manual.html',1,'']]]
 ];
