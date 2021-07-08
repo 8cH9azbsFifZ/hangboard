@@ -97,36 +97,6 @@ class _MQTTViewState extends State<MQTTView> {
     return (Text(UpcomingSets));
   }
 
-  Widget _buildSetRepProgress(
-      int CurrentSet, int TotalSets, int CurrentRep, int TotalReps) {
-    return (Padding(
-      padding: EdgeInsets.all(15.0),
-      child: Column(
-        children: <Widget>[
-          new LinearPercentIndicator(
-            width: 100.0,
-            lineHeight: 8.0,
-            percent: CurrentSet / TotalSets,
-            progressColor: Colors.red,
-            center: Text("Test"),
-          ),
-          new LinearPercentIndicator(
-            width: 100.0,
-            lineHeight: 8.0,
-            percent: CurrentRep / TotalReps,
-            progressColor: Colors.orange,
-          ),
-          new LinearPercentIndicator(
-            width: 100.0,
-            lineHeight: 8.0,
-            percent: 0.9,
-            progressColor: Colors.blue,
-          )
-        ],
-      ),
-    ));
-  }
-
   Widget _buildIntensityPlot(
       double CurrentItensity, double CurrentSetIntensity) {
     return (
@@ -134,9 +104,9 @@ class _MQTTViewState extends State<MQTTView> {
 
         ((CurrentSetIntensity > CurrentItensity) || (CurrentItensity > 1.0))
             ? Text("Warning: Too much!!!")
-            : CircularPercentIndicator(
-                radius: 120.0,
-                lineWidth: 13.0,
+            : LinearPercentIndicator(
+                //radius: 120.0,
+                //lineWidth: 13.0,
                 //animation: true,
                 percent: CurrentItensity,
                 center: new Text(
@@ -144,12 +114,13 @@ class _MQTTViewState extends State<MQTTView> {
                   style: new TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 20.0),
                 ),
-                footer: new Text(
+                //footer:
+                leading: new Text(
                   "Intensity",
                   style: new TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 17.0),
                 ),
-                circularStrokeCap: CircularStrokeCap.round,
+                //circularStrokeCap: CircularStrokeCap.round,
                 progressColor: Colors.redAccent,
               ));
   }
@@ -447,7 +418,24 @@ class _MQTTViewState extends State<MQTTView> {
 
     double PercentSets = TotalSets == 0 ? 0 : CurrentSet / TotalSets;
     double PercentReps = TotalReps == 0 ? 0 : CurrentRep / TotalReps;
-
+    if (PercentSets > 1) {
+      PercentSets = 1.0;
+    }
+    if (PercentReps > 1) {
+      PercentReps = 1.0;
+    }
+    if (TimerCompleted > 1) {
+      TimerCompleted = 1.0;
+    }
+    if (PercentSets < 0) {
+      PercentSets = 0.0;
+    }
+    if (PercentReps < 0) {
+      PercentReps = 0.0;
+    }
+    if (TimerCompleted < 0) {
+      TimerCompleted = 0.0;
+    }
     return Column(
       children: [
         new LinearPercentIndicator(
