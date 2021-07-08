@@ -1,6 +1,6 @@
 # Hangboard 
 
-*STATUS: In Development - Towards a working demonstrator [with one workout](https://github.com/8cH9azbsFifZ/hangboard/milestone/1)*
+*STATUS: In Development - Towards a demonstrator [with one recorded workout](https://github.com/8cH9azbsFifZ/hangboard/milestone/2)*
 
 A universal force and velocity sensing hangboard mount with exercise timers for all hangboards. 
 
