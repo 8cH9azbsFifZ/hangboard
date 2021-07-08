@@ -1,8 +1,8 @@
 api-doc: #output in ~/api
 	git checkout gh-pages --quiet
-	git checkout main -- .gitignore
-	git checkout main -- doc
-	git checkout main -- backend
+	git checkout dev -- .gitignore
+	git checkout dev -- doc
+	git checkout dev -- backend
 
 	echo "Build API documentation"
 	echo "npm install -g @asyncapi/generator"
@@ -14,14 +14,14 @@ api-doc: #output in ~/api
 	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 	git push --quiet
 
-	git checkout main --quiet
+	git checkout dev --quiet
 
 
 backend-doc: # output in ~/backend/doxygen/html
 	git checkout gh-pages --quiet
-	git checkout main -- .gitignore
-	git checkout main -- doc
-	git checkout main -- backend
+	git checkout dev -- .gitignore
+	git checkout dev -- doc
+	git checkout dev -- backend
 
 	echo "Build backend documentation"
 	rm -rf backend-doc
@@ -33,14 +33,14 @@ backend-doc: # output in ~/backend/doxygen/html
 	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 	git push --quiet
 
-	git checkout main --quiet
+	git checkout dev --quiet
 
 
 manual-doc:
 	git checkout gh-pages --quiet
-	git checkout main -- .gitignore
-	git checkout main -- doc
-	git checkout main -- backend
+	git checkout dev -- .gitignore
+	git checkout dev -- doc
+	git checkout dev -- backend
 
 	echo "Build manual"
 	asciidoctor -d book -D ./doc --backend=html5 -o ./index.html doc/Manual.adoc
@@ -49,7 +49,7 @@ manual-doc:
 	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
 	git push --quiet
 
-	git checkout main --quiet
+	git checkout dev --quiet
 
 
 frontend:
