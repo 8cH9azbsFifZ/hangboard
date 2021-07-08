@@ -65,35 +65,32 @@ def _scribbel():
     #plot_load(tt,derivative)
     np.savetxt("out.txt", derivative2)#data[lc][l20m]["loadcurrent"])
 
+class Statistics():
+    def __init__(self, dbhostname="hangboard", dbuser="root", dbpassword="rootpassword", user="us3r"):
+        self._db = foo.Database(hostname=dbhostname,user=dbuser,password=dbpassword)
+        self._db._set_user(uuid=user)
+
+    def _detect_sessions(self):
+        """
+        Detect sessions in database
+        """
+        data = pd.DataFrame(list(self._db._coll_raw.find()))
+        sel_not_nan = data["time"]>1.0
+        dtime = np.diff(data[sel_not_nan]["time"])
+        timebetweensessions = 3600.01
+        seltime = dtime>timebetweensessions
+        seltime1 = np.append(False,seltime)
+
+        # TODO: do something useful with the information
+        for d in data[sel_not_nan][seltime1]["time"]:
+            dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
+            print (dd)
+
 
 if __name__ == "__main__":
     d = foo.Database(hostname="hangboard", user="root", password="rootpassword")
     d._set_user(uuid="us3r")
     d._get_maxload()
-    data = pd.DataFrame(list(d._coll_raw.find()))
-    sel_not_nan = data["time"]>1.0
-    dtime = np.diff(data[sel_not_nan]["time"])
-    timebetweensessions = 3600.01
-    seltime = dtime>timebetweensessions
-    seltime1 = np.append(False,seltime)
-    #seltime2 = np.roll(seltime1,1)
-    #minimaltimebetweensessions = 3600 * 48
-    #print(minimaltimebetweensessions)
-    #print (dtime[seltime])
-    #print (data[seltime1]["time"])
-    d0=0.0
-    d1=1.0
-    for d in data[sel_not_nan][seltime1]["time"]:
-        dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
-        print (dd)
-    #for d in data[sel_not_nan][seltime2]["time"]:
-    #    dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
-    #    print (dd)
 
-    for d in data[sel_not_nan]["time"]:
-        d0=d1
-        d1=d
-        dd=0.0
-        if d>0.0:
-            dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
-        #print (str(d1-d0) + " "+ str(d)+ " "+str(dd))
+    s=Statistics()
+    s._detect_sessions()
