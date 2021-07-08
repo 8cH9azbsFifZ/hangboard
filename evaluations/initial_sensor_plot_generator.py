@@ -1,3 +1,7 @@
+"""
+This file contains the code for the initial sensor data plot generators.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import json
