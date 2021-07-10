@@ -64,8 +64,9 @@ class Workout():
         self._client.connect(hostname, port,60)
         self._sendmessage("/status", "Starting")
 
-        self.board = Board() """ Handle the current board setup (Instance of class Board) """
-        self.sensors = Sensors(hostname=hostname)
+        ## Handle the current board setup (Instance of class Board) 
+        self.board = Board()                                    """ Handle the current board setup (Instance of class Board) """
+        self.sensors = Sensors(hostname=hostname)               """ Handle the current sensor setup (Instance of class Sensors) """
 
         # Variables for workout selection
         self._workoutdir = workoutdir
