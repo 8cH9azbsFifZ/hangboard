@@ -12,7 +12,7 @@ var searchData=
   ['hold_120',['Hold',['../classuser_1_1_user.html#aadc1269a916ff00d131d9b0bc44a3ff1',1,'user::User']]],
   ['hold_121',['hold',['../namespaceuser.html#ac8c1cbc2f47b676ec14b23fd8866594b',1,'user']]],
   ['hold2svg_122',['Hold2SVG',['../classboard_1_1_s_v_g_board.html#ae9f088193c964a385125a87101b9b798',1,'board::SVGBoard']]],
-  ['holds_123',['holds',['../namespaceboard.html#a34377dcf263ca678da70ff4d82beea7f',1,'board.holds()'],['../namespacegenerate__all__board__images.html#a3537970126e77333fb7daf19917d17cc',1,'generate_all_board_images.holds()']]],
+  ['holds_123',['holds',['../namespacegenerate__all__board__images.html#a3537970126e77333fb7daf19917d17cc',1,'generate_all_board_images']]],
   ['holds_5factive_124',['holds_active',['../classboard_1_1_board.html#a47c6bc24fb43d6b0c7cfd756acf0e105',1,'board::Board']]],
   ['holds_5finactive_125',['holds_inactive',['../classboard_1_1_board.html#a77a7613c6bd9feef1c82f0d5ac97c21c',1,'board::Board']]],
   ['holdsetup_126',['HoldSetup',['../classcounter_1_1_counter.html#a3c9bc2630f861069e05377fc09265ee5',1,'counter::Counter']]],

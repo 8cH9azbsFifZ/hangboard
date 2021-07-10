@@ -24,13 +24,12 @@ var searchData=
   ['rmeasure_205',['RMeasure',['../class_kalman_1_1_kalman_angle.html#ad032a2f6be57ceac911a4ce9b6384534',1,'Kalman::KalmanAngle']]],
   ['roll_206',['roll',['../classemulated__gyroscope_1_1_gyroscope.html#a65ec92d2ae56ced795dd17d9bed1c698',1,'emulated_gyroscope::Gyroscope']]],
   ['root_207',['root',['../classboard_1_1_s_v_g_board.html#a6d4de519be3eacf83de76a6cebda8502',1,'board::SVGBoard']]],
-  ['run_5fexercise_5f1hand_5fpull_208',['run_exercise_1hand_pull',['../classworkout_1_1_workout.html#a8d6617b4ffef1d71bf3d46fff1b7ab24',1,'workout::Workout']]],
-  ['run_5fexercise_5fmaximal_5fhang_209',['run_exercise_maximal_hang',['../classworkout_1_1_workout.html#a1f0b7537850d30788b59251c5c56f70f',1,'workout::Workout']]],
-  ['run_5fexercise_5fpull_5fups_210',['run_exercise_pull_ups',['../classworkout_1_1_workout.html#a47389e3dd7de53ebb131f9df607f2521',1,'workout::Workout']]],
-  ['run_5fmain_5fmeasure_211',['run_main_measure',['../classsensor__force_1_1_sensor_force.html#a295415a555230caac3d94de6adae215d',1,'sensor_force::SensorForce']]],
-  ['run_5fmeasure_212',['run_measure',['../classemulated__gyroscope_1_1_gyroscope.html#a0c9c48c21955b88ceb6e311b2f07a584',1,'emulated_gyroscope.Gyroscope.run_measure()'],['../classgyroscope_1_1_gyroscope.html#a300aa784df87746299b2fb3b795f9ea5',1,'gyroscope.Gyroscope.run_measure()']]],
-  ['run_5fone_5fmeasure_213',['run_one_measure',['../classemulated__gyroscope_1_1_gyroscope.html#ad46f134fd57ce7d86ca101dc7944dea7',1,'emulated_gyroscope.Gyroscope.run_one_measure()'],['../classgyroscope_1_1_gyroscope.html#a48b554381d412b02f47f6de8c2cb88c6',1,'gyroscope.Gyroscope.run_one_measure()'],['../classsensor__force_1_1_sensor_force.html#a9bbf62a6b0f1b4ac94a4d65d9c43d3cd',1,'sensor_force.SensorForce.run_one_measure()'],['../classsensor__zlagboard_1_1_sensor_zlagboard.html#a1f33880537c89f06a9ba463351727051',1,'sensor_zlagboard.SensorZlagboard.run_one_measure()'],['../classsensors_1_1_sensors.html#a4b96df653e6b10c8bf8af7391fcaa32e',1,'sensors.Sensors.run_one_measure()']]],
-  ['run_5fworkout_214',['run_workout',['../classworkout_1_1_workout.html#afd25921a1a36f064bdc350c016407bb4',1,'workout::Workout']]],
-  ['run_5fws_215',['run_ws',['../namespacerun__ws.html',1,'']]],
-  ['run_5fws_2epy_216',['run_ws.py',['../run__ws_8py.html',1,'']]]
+  ['run_5fexercise_5fmaximal_5fhang_208',['run_exercise_maximal_hang',['../classworkout_1_1_workout.html#a1f0b7537850d30788b59251c5c56f70f',1,'workout::Workout']]],
+  ['run_5fexercise_5fpull_5fups_209',['run_exercise_pull_ups',['../classworkout_1_1_workout.html#a47389e3dd7de53ebb131f9df607f2521',1,'workout::Workout']]],
+  ['run_5fmain_5fmeasure_210',['run_main_measure',['../classsensor__force_1_1_sensor_force.html#a295415a555230caac3d94de6adae215d',1,'sensor_force::SensorForce']]],
+  ['run_5fmeasure_211',['run_measure',['../classemulated__gyroscope_1_1_gyroscope.html#a0c9c48c21955b88ceb6e311b2f07a584',1,'emulated_gyroscope.Gyroscope.run_measure()'],['../classgyroscope_1_1_gyroscope.html#a300aa784df87746299b2fb3b795f9ea5',1,'gyroscope.Gyroscope.run_measure()']]],
+  ['run_5fone_5fmeasure_212',['run_one_measure',['../classemulated__gyroscope_1_1_gyroscope.html#ad46f134fd57ce7d86ca101dc7944dea7',1,'emulated_gyroscope.Gyroscope.run_one_measure()'],['../classgyroscope_1_1_gyroscope.html#a48b554381d412b02f47f6de8c2cb88c6',1,'gyroscope.Gyroscope.run_one_measure()'],['../classsensor__force_1_1_sensor_force.html#a9bbf62a6b0f1b4ac94a4d65d9c43d3cd',1,'sensor_force.SensorForce.run_one_measure()'],['../classsensor__zlagboard_1_1_sensor_zlagboard.html#a1f33880537c89f06a9ba463351727051',1,'sensor_zlagboard.SensorZlagboard.run_one_measure()'],['../classsensors_1_1_sensors.html#a4b96df653e6b10c8bf8af7391fcaa32e',1,'sensors.Sensors.run_one_measure()']]],
+  ['run_5fworkout_213',['run_workout',['../classworkout_1_1_workout.html#afd25921a1a36f064bdc350c016407bb4',1,'workout::Workout']]],
+  ['run_5fws_214',['run_ws',['../namespacerun__ws.html',1,'']]],
+  ['run_5fws_2epy_215',['run_ws.py',['../run__ws_8py.html',1,'']]]
 ];
