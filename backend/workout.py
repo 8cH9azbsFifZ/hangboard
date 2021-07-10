@@ -34,24 +34,30 @@ class Workout():
     """
     def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json", # FIXME
         workout_id="ZB-A-1", hostname="localhost", port=1883):
+
         self._hostname = hostname
-        self.exercise_status = "Status"
+        self.exercise_status = "Status" # FIXME: this could leave
 
-        # Set counter variables
+        ## Set counter variable: Which set is currently active (serves as index)
         self.current_set = 0
+        ## Name of the current set
         self.current_set_name = "Rest to start"
-        self.current_set_state = "Set" # or Pause
-        self.current_rep_state = "Exercise" # or Pause
+        ## Status of the current set: "Set" or "Pause"
+        self.current_set_state = "Set" #FIXME: can leave
+        ## Status of the current repetition: "Exercise" or "Pause"
+        self.current_rep_state = "Exercise" 
+        ## Sampling interval for the main counter loop 
         self.sampling_interval = dt
-        self._timer_max = 0 # maximal timer for core loop
+        ## Maximal timer for the core loop
+        self._timer_max = 0 # FIXME: can leave
 
-        # Variable to check if ready or somebody hanging
+        ## Variable to check if ready or somebody hanging
         self.exercise_hanging = False
 
-        self.exercise_dt = dt
+        self.exercise_dt = dt # FIXME with sampling interval
 
-        # Variable storing the message for the "middleware" -> Sending
-        self.message = ""
+        ## Variable storing the message for the "middleware" -> Sending
+        self.message = "" # FIXME: can leave
 
         # State of the current workout
         self._workout_running = False
@@ -65,8 +71,9 @@ class Workout():
         self._sendmessage("/status", "Starting")
 
         ## Handle the current board setup (Instance of class Board) 
-        self.board = Board()                                    """ Handle the current board setup (Instance of class Board) """
-        self.sensors = Sensors(hostname=hostname)               """ Handle the current sensor setup (Instance of class Sensors) """
+        self.board = Board()                                   
+        ## Handle the current sensor setup (Instance of class Sensors) 
+        self.sensors = Sensors(hostname=hostname)            
 
         # Variables for workout selection
         self._workoutdir = workoutdir
@@ -75,6 +82,7 @@ class Workout():
         self._workout = {} 
         self._workout_name = ""
         self._workoutlist = []
+        ## Number of total sets in the current workout
         self.total_sets = 0
         self._set_workout(workout_id) # TODO - implement MQTT command #59
 
