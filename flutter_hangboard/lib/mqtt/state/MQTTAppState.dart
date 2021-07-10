@@ -73,8 +73,7 @@ class MQTTAppState with ChangeNotifier {
     Map<String, dynamic> jsondata = jsonDecode(text);
 
     if (jsondata.containsKey("intensity")) {
-      _current_set_intensity =
-          jsondata["intensity"]; // FIXME: add to counter message
+      _current_set_intensity = jsondata["intensity"];
     }
 
     notifyListeners();

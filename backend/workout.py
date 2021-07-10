@@ -153,20 +153,6 @@ class Workout():
         msg = json.dumps({"WorkoutList": workout_array})
         self._sendmessage("/workoutlist", msg)
 
-
-    def run_exercise_1hand_pull(self): # TODO implement #80
-        """
-        Run an exercise for 1 hand pulls. Given a maximum load a climber can handle and the given intensity
-        the threshold load to be applied is:
-        Threshold >= Load_max * Intensity
-        """
-        intensity = 0.5
-        load_max = 44
-        threshold = intensity * load_max
-
-        pass
-
-
     def run_workout (self):
         """
         Run a single workout

@@ -113,6 +113,9 @@ class Statistics():
         max_load = sel_data["loadmaximal"].max()
         self._session_statistics[session]["MaxLoad"] = max_load
 
+    # TODO: display workout name
+    # TODO: display workout duration
+
 
 if __name__ == "__main__":
     #d = foo.Database(hostname="hangboard", user="root", password="rootpassword")

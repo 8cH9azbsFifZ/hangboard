@@ -128,7 +128,7 @@ channels:
               examples: ["Hang", "Maximum Hang", "Pull Up"]
             intensity:
               type: number
-              description: Hang intensity if applicable for this exercise.
+              description: Maximal hang intensity if applicable for this exercise.
               exaples: [0.9, 0.8, 0.5]
   hangboard/workout/timerstatus:
     subscribe:
