@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workout_306',['workout',['../namespaceworkout.html',1,'']]]
+  ['user_310',['user',['../namespaceuser.html',1,'']]]
 ];
