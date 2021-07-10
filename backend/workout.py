@@ -120,8 +120,6 @@ class Workout():
         self._workoutfile = filename # FIXME
         self.filename = self._workoutfile
 
-
-
     def _get_current_workout(self):
         """
         Print the total current workout and it in the messaging queue (self.message)
@@ -185,11 +183,13 @@ class Workout():
     def _update_user_statistics(self):
         # FIXME: both / one hand
         if self._counter._holdtypeleft != "":
-            self._user.SetReference(hold=self._counter._holdtypeleft, hand="both") # FIXME what if differnt holds?
+            self._user.SetReference(hold=self._counter._holdtypeleft, hand="left") # FIXME what if differnt holds?
         if self._counter._holdtyperight != "":
             # FIXME: db call every time?!  #60
-            self._user.SetReference(hold=self._counter._holdtyperight, hand="both") # FIXME what if differnt holds?
+            self._user.SetReference(hold=self._counter._holdtyperight, hand="right") # FIXME what if differnt holds?
             # TODO : implement  #60
+        if self._counter._holdtypeleft != "" and self._counter._holdtyperight != "":
+            self._user.SetReference(hold=self._counter._holdtyperight, hand="both")
         self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
         #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
         tt = time.time()

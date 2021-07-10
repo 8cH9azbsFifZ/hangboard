@@ -187,6 +187,7 @@ class Counter():
             self.TimeRemaining = 0
 
         if self.TimeCountdown >= 0:
+            time_current = time.time()
             self._timerstatus = '{"time": '+str(time_current)+', "Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) +', "CurrentSet": '+str(self._current_set)+', "TotalSets": '+str(self._total_sets)+', "CurrentRep": '+str(self._current_rep_counter)+', "TotalReps": '+str(self._reps)+'}'
             self._sendmessage("/timerstatus", self._timerstatus)
              
