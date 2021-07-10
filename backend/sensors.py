@@ -81,7 +81,7 @@ class Sensors():
         self.__sendmessage("/sensorstatus", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
         if self.Changed == "NoHang":
             #logging.debug("Last Hang load " + str(self.MaximalLoad))
-            self.__sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.sensor_hangdetector.LastHang_MaximalLoad) +'}')
+            self.__sendmessage("/lastexercise", '{"time": ' + "{:.2f}".format(self._TimeCurrent) + ', "LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.sensor_hangdetector.LastHang_MaximalLoad) +'}')
 
     def _measure_additional_parameters(self):
         if (self._hangdetector == "Force"):

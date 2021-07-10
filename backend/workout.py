@@ -143,9 +143,10 @@ class Workout():
                     data = json.load(json_file)
 
                     i = 0
+                    tt = time.time()
                     for workout in (data["Workouts"]):
                         logging.debug (workout["Name"], fn)
-                        workout_array.append({"Name": workout["Name"], "ID": workout["ID"], "Filename": fn , "IndexInFile": i})
+                        workout_array.append({"Name": workout["Name"], "ID": workout["ID"], "Filename": fn , "IndexInFile": i, "Time": tt})
                         i = i + 1
         #logging.debug (workout_array)
         self._workoutlist = workout_array
@@ -205,7 +206,8 @@ class Workout():
             # TODO : implement  #60
         self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
         #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
-        self._sendmessage("/userstatistics", '{"CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
+        tt = time.time()
+        self._sendmessage("/userstatistics", '{"time": ' + str(tt) + ', "CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
 
     def _core_loop(self):
         # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message

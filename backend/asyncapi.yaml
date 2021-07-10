@@ -36,6 +36,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             left:
               type: string
               description: Left hold.
@@ -53,6 +57,10 @@ channels:
         payload:
           type: object
           properties: 
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Name:
               type: string
               description: Name of the workout
@@ -78,6 +86,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             resttostart:
               type: integer
               minimum: 0 
@@ -127,6 +139,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Duration:
               type: number
               description: Timer duration in seconds.
@@ -168,6 +184,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Duration:
               type: string
               description: Timer duration in seconds.
@@ -181,6 +201,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Name:
               type: string
               description: Name of the current workout.
@@ -235,6 +259,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             HangChangeDetected:
               type: string
               description: Hang change detected.
@@ -252,6 +280,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             LastHangTime:
               type: number
               description: Last hang time in seconds.
@@ -273,6 +305,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             CurrentIntensity:
               type: number
               description: Current intensity - current load / maximal load - for a given hand and hold combination.
@@ -286,6 +322,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             UpcomingSets:
               type: string
               description: Upcoming set description.
