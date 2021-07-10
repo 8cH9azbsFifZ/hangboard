@@ -27,6 +27,7 @@ class Counter():
         self._current_set = 0
         self._current_rep = 0
         self._current_set_counter = 0
+        self._current_rep_counter = 0 #FIXME - cleanup
         self._current_exercise_type = ""
         
         # MQTT connection handling
@@ -82,8 +83,9 @@ class Counter():
 
         self._type = self.workout["Sets"][i]["Type"] # FIXME: always defined?
 
-        self._sendmessage("/setinfo", '{"resttostart": '+str(self._resttostart)+', "exercise": '+self._exercise+'", "counter": '+str(self._counter)+', "pause": '+str(self._pause)+', "reps": '+str(self._reps)+', "left": '+self._left+', "right": '+self._right+', "type": '+self._current_exercise_type+', "intensity": '+str(self._intensity)+'}')
+        tt = time.time()
 
+        self._sendmessage("/setinfo", '{"time": '+str(tt)+' , "resttostart": '+str(self._resttostart)+', "exercise": "'+self._exercise+'", "counter": '+str(self._counter)+', "pause": '+str(self._pause)+', "reps": '+str(self._reps)+', "left": "'+self._left+'", "right": "'+self._right+'", "type": "'+self._current_exercise_type+'", "intensity": '+str(self._intensity)+'}')
 
     def __iter__(self):
         return self
@@ -104,9 +106,12 @@ class Counter():
                     self._current_exercise_type = self._exercise
                 else:
                     self._current_exercise_type = "Pause" # After any exericse: a pause
+                    self._current_rep_counter = self._current_rep_counter + 1 # rep completed - so count one up
+            
             # Interate through sets
             else: 
                 self._current_set = self._current_set + 1
+                self._current_rep_counter = 0 # reset the rep counter
                 self._get_current_set()
                 self._current_set_counter = 0
             self._index = self._index + 1
@@ -136,22 +141,26 @@ class Counter():
         elif (self._current_exercise_type == "Hang"):
             self._tstop = self._tstart + self._counter
             self._tduration = self._counter
+        elif (self._current_exercise_type == "1 Hand Pull"):
+            self._tstop = self._tstart + self._counter
+            self._tduration = self._counter
         else:
             self._tstart = 0
             self._tduration = 0
 
     def _get_current_hold_setup(self, upcoming = False):
+        tt = time.time()
         if (self._current_exercise_type == "Rest to start"):
-            self.HoldSetup = '{"Left": "", "Right": ""}'
+            self.HoldSetup = '{"time": '+str(tt)+', "Left": "", "Right": ""}'
         elif (self._current_exercise_type == "Pause"):
-            self.HoldSetup = '{"Left": "", "Right": ""}'
+            self.HoldSetup = '{"time": '+str(tt)+', "Left": "", "Right": ""}'
         elif (self._current_exercise_type == "Hang"):
-            self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
+            self.HoldSetup = '{"time": '+str(tt)+', "Left": "' + self._left + '", "Right": "' + self._right + '"}'
         else:
-            self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
+            self.HoldSetup = '{"time": '+str(tt)+', "Left": "' + self._left + '", "Right": "' + self._right + '"}'
 
         if upcoming:
-            self.HoldSetup = '{"Left": "' + self._left + '", "Right": "' + self._right + '"}'
+            self.HoldSetup = '{"time": '+str(tt)+', "Left": "' + self._left + '", "Right": "' + self._right + '"}'
 
 
     def _publish_exercise(self):
@@ -178,9 +187,10 @@ class Counter():
             self.TimeRemaining = 0
 
         if self.TimeCountdown >= 0:
-            self._timerstatus = '{"Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) + '}'
+            time_current = time.time()
+            self._timerstatus = '{"time": '+str(time_current)+', "Duration": '+"{:.2f}".format(self.TimeDuration) +', "Elapsed":'+"{:.2f}".format(self.TimeElapsed) +', "Completed": '+"{:.2f}".format(self.TimeCompleted)+', "Countdown": ' + str(self.TimeCountdown) +', "CurrentSet": '+str(self._current_set)+', "TotalSets": '+str(self._total_sets)+', "CurrentRep": '+str(self._current_rep_counter)+', "TotalReps": '+str(self._reps)+'}'
             self._sendmessage("/timerstatus", self._timerstatus)
-
+             
         return self.TimeElapsed > self.TimeDuration
 
 
@@ -258,8 +268,8 @@ class Counter():
         #logging.debug(self._exercise_list)
 
         estimated_rest_time = total_time - planned_time_sofar
-
-        self._sendmessage("/upcoming", '{"UpcomingSets": "' + self._exercise_list + '", "RemainingTime": ' + str(estimated_rest_time) + '}')
+        tt = time.time()
+        self._sendmessage("/upcoming", '{"time": '+str(tt)+', "UpcomingSets": "' + self._exercise_list + '", "RemainingTime": ' + str(estimated_rest_time) + '}')
 
         return [total_time, planned_time_sofar, estimated_rest_time] # FIXME do not return
 

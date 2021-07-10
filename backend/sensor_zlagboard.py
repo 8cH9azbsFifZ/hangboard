@@ -1,6 +1,7 @@
 """
 Class for handling all stuff to create a zlagboard sensor.
 """
+# FIXME: implement all stuff missing in comparison to the new features implemented for the force sensor :) 
 
 import logging
 logging.basicConfig(level=logging.DEBUG,

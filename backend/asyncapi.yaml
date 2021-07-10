@@ -36,6 +36,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             left:
               type: string
               description: Left hold.
@@ -53,6 +57,10 @@ channels:
         payload:
           type: object
           properties: 
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Name:
               type: string
               description: Name of the workout
@@ -78,6 +86,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             resttostart:
               type: integer
               minimum: 0 
@@ -116,7 +128,7 @@ channels:
               examples: ["Hang", "Maximum Hang", "Pull Up"]
             intensity:
               type: number
-              description: Hang intensity if applicable for this exercise.
+              description: Maximal hang intensity if applicable for this exercise.
               exaples: [0.9, 0.8, 0.5]
   hangboard/workout/timerstatus:
     subscribe:
@@ -127,6 +139,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Duration:
               type: number
               description: Timer duration in seconds.
@@ -143,6 +159,22 @@ channels:
               type: number
               description: Countdown number - count every second downwards. Will be -1, when no full second crossed.
               examples: [-1, 10, 9, 8] #mosquitto_sub -h localhost -t  hangboard/workout/timerstatus
+            CurrentSet:
+              type: integer
+              description: Current set index in this workout.
+              example: 1
+            TotalSets:
+              type: integer
+              description: Total sets in workout.
+              example: 5
+            CurrentRep:
+              type: integer
+              description: Current repetition index in this set.
+              example: 2
+            TotalReps:
+              type: integer
+              description: Total repetitions in this set.
+              example: 5
   hangboard/workout/status:
     subscribe:
       summary: Current status of the workout backend.
@@ -152,6 +184,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Duration:
               type: string
               description: Timer duration in seconds.
@@ -165,6 +201,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             Name:
               type: string
               description: Name of the current workout.
@@ -219,6 +259,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             HangChangeDetected:
               type: string
               description: Hang change detected.
@@ -236,6 +280,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             LastHangTime:
               type: number
               description: Last hang time in seconds.
@@ -257,6 +305,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             CurrentIntensity:
               type: number
               description: Current intensity - current load / maximal load - for a given hand and hold combination.
@@ -270,6 +322,10 @@ channels:
         payload:
           type: object
           properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
             UpcomingSets:
               type: string
               description: Upcoming set description.

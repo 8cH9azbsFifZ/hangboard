@@ -12,6 +12,9 @@ from pathlib import Path
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 
+from pymongo import MongoClient
+
+
 from tabulate import tabulate 
 """ 
 Use tabulate for an ASCII Hanboard display for debugging purposes
@@ -23,7 +26,8 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 class SVGBoard():
-    def __init__(self, verbose=None, boardname = "zlagboard_evo"):
+    def __init__(self, verbose=None, boardname = "zlagboard_evo",
+        dbhostname="hangboard", dbuser="root", dbpassword="rootpassword"):
         self.boardname = boardname
         self.boardimagename = "../boards/" + boardname + "/board.svg" 
         self.cachedir = "./cache/"
@@ -32,7 +36,12 @@ class SVGBoard():
         self.left_color = "#00ff00"
         self.right_color = "#ff0000"
 
-        self._get_image_base64()
+        self._dbhostname=dbhostname
+        self._dbport=27017
+        self._dbuser=dbuser
+        self._dbpassword=dbpassword
+        self._dbname="hangboard"
+        self._connect_to_db()
 
     def _select_image (self, left="", right=""):
         """
@@ -92,14 +101,26 @@ class SVGBoard():
 
     def _get_image_base64(self, left="", right=""):
         """
-        Get board image as base64 for sending over websocket
+        Get board image as base64 for storage in the database
         """
         self.current_image_filename = self._select_image(left,right)
         with open(self.current_image_filename, "rb") as image_file:
             self.current_image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
         return self.current_image_base64
 
+    def _connect_to_db(self):
+        """ Connect to the mongodb """
+        self._db = MongoClient('mongodb://'+self._dbhostname+':'+str(self._dbport)+'/', username=self._dbuser,   password=self._dbpassword  )[self._dbname]
+
+    def _write_image_to_db(self,left="",right=""):
+        """ Write an encoded PNG to the database """
+        _coll_images = self._db[self.boardname+"-images"]
+        imgstring = self._get_image_base64(left=left, right=right)
+        obj = {"Left" : left, "Right" : right, "PNG": imgstring}
+        _coll_images.replace_one({"$and": [{"Left": left}, {"Right": right}]}, obj, upsert=True )
+
     def generate_all_images(self, holds=[]):
+        """ Generate all images (hold combinations) for a given hangboard """
         holds.append("")
         for left in holds:
             for right in holds:
@@ -107,6 +128,7 @@ class SVGBoard():
                 #    break
                 self.Hold2SVG(left=left,right=right)
                 self._svg_to_png(self._cache_svg_filename(left=left,right=right))
+                self._write_image_to_db(left=left,right=right)
 
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
@@ -216,8 +238,9 @@ if __name__ == "__main__":
     print (h[-1])
     svg = SVGBoard()
     #svg.Hold2SVG()    
-    svg.generate_all_images(holds=a.all_holds)
+    #svg.generate_all_images(holds=a.all_holds)
 
     #svg.Hold2SVG(left="C1",right="C7")
 
     svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
+    svg._write_image_to_db("C1","C7")

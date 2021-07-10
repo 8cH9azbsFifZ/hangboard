@@ -35,7 +35,6 @@ class Workout():
     def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json", # FIXME
         workout_id="ZB-A-1", hostname="localhost", port=1883):
         self._hostname = hostname
-
         self.exercise_status = "Status"
 
         # Set counter variables
@@ -79,7 +78,11 @@ class Workout():
         self._set_workout(workout_id) # TODO - implement MQTT command #59
 
         # Configure User
-        self._set_user() # FIXME: username as var
+        self._dbhost="hangboard"
+        self._dbuser="root"
+        self._dbpassword="rootpassword"
+        self._set_user("us3r")
+
 
     def _sendmessage(self, topic="/none", message="None"):
         ttopic = "hangboard/workout"+topic
@@ -117,8 +120,6 @@ class Workout():
         self._workoutfile = filename # FIXME
         self.filename = self._workoutfile
 
-
-
     def _get_current_workout(self):
         """
         Print the total current workout and it in the messaging queue (self.message)
@@ -140,28 +141,15 @@ class Workout():
                     data = json.load(json_file)
 
                     i = 0
+                    tt = time.time()
                     for workout in (data["Workouts"]):
                         logging.debug (workout["Name"], fn)
-                        workout_array.append({"Name": workout["Name"], "ID": workout["ID"], "Filename": fn , "IndexInFile": i})
+                        workout_array.append({"Name": workout["Name"], "ID": workout["ID"], "Filename": fn , "IndexInFile": i, "Time": tt})
                         i = i + 1
         #logging.debug (workout_array)
         self._workoutlist = workout_array
         msg = json.dumps({"WorkoutList": workout_array})
         self._sendmessage("/workoutlist", msg)
-
-
-    def run_exercise_1hand_pull(self): # TODO implement #80
-        """
-        Run an exercise for 1 hand pulls. Given a maximum load a climber can handle and the given intensity
-        the threshold load to be applied is:
-        Threshold >= Load_max * Intensity
-        """
-        intensity = 0.5
-        load_max = 44
-        threshold = intensity * load_max
-
-        pass
-
 
     def run_workout (self):
         """
@@ -190,18 +178,22 @@ class Workout():
         self.message = image_base64
 
     def _set_user(self, user="us3r"):
-        pass # FIXME: make configurabe
-        #self._user = User(user=user) # FIXME db connection etc as var. 
+        self._user = User(user=user,dbhostname=self._dbhost,dbuser=self._dbuser,dbpassword=self._dbpassword)  
 
     def _update_user_statistics(self):
+        # FIXME: both / one hand
         if self._counter._holdtypeleft != "":
-            if self._counter._holdtyperight != "":
-                # FIXME: db call every time?!  #60
-                self._user.SetReference(hold=self._counter._holdtyperight, hand="both") # FIXME what if differnt holds?
-                # TODO : implement  #60
+            self._user.SetReference(hold=self._counter._holdtypeleft, hand="left") # FIXME what if differnt holds?
+        if self._counter._holdtyperight != "":
+            # FIXME: db call every time?!  #60
+            self._user.SetReference(hold=self._counter._holdtyperight, hand="right") # FIXME what if differnt holds?
+            # TODO : implement  #60
+        if self._counter._holdtypeleft != "" and self._counter._holdtyperight != "":
+            self._user.SetReference(hold=self._counter._holdtyperight, hand="both")
         self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
         #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
-        self._sendmessage("/userstatistics", '{"CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
+        tt = time.time()
+        self._sendmessage("/userstatistics", '{"time": ' + str(tt) + ', "CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
 
     def _core_loop(self):
         # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
@@ -216,7 +208,7 @@ class Workout():
                 continue 
                 
             self.sensors.run_one_measure()
-            #self._update_user_statistics() # FIXME: make database configurable
+            self._update_user_statistics() 
             timer_done = self._counter.get_current_timer_state()
             self._counter._calc_time_in_current_workout()
             if timer_done:

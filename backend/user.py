@@ -30,10 +30,17 @@ class User():
         self.MaxPullUps = 12 #FIXME
         
     def SetReference(self, hold="JUG", hand="both"):
+        """ Find out the maximal parameters for a given hold configuration """
         self._get_user_performance(hold=hold, hand=hand)
 
     def GetCurrentIntensity(self, currentload):
-        return currentload / self.MaxLoad
+        """ Calculate intensity - warning hold configuration must be set in advance and SetReference will yield the correct maxload for the hold configuration """
+        intensity = currentload / self.MaxLoad
+        if intensity < 0.0: 
+            intensity = 0.0
+        if intensity > 1.0:
+            intensity = 1.0
+        return intensity
 
 
 

@@ -122,7 +122,7 @@ For preparation install the following software:
 
 ### Software documentation
 - For manual documentation (manual creation): install `brew install asciidoctor` and create the PDF `cd doc; asciidoctor-pdf Manual.adoc`
-- Documentation of the backend software can be created using `doxygen` (cf. Doxyfile).
+- Documentation of the backend software can be created using `doxygen` (cf. Doxyfile). `brew install doxygen`.
 - The documentation is automatically generated using a commit hook on github and published on gh-pages.
 
 For manual startup:
