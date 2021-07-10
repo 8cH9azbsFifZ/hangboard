@@ -85,8 +85,8 @@ class _MQTTViewState extends State<MQTTView> {
         _buildIntensityPlot(currentAppState.getCurrentItensity,
             currentAppState.getCurrentSetIntensity),
         _buildControls(currentAppState.getAppConnectionState),
-        _buildLoadPlot(currentAppState.getLoadCurrentData),
-        //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
+        //_buildLoadPlot(currentAppState.getLoadCurrentData),
+        _buildLoadPlotDisplay(currentAppState.getLoadCurrent),
         _buildLastExerciseStatistics(currentAppState.getLastHangTime,
             currentAppState.getLastMaximalLoad),
       ],
@@ -100,10 +100,12 @@ class _MQTTViewState extends State<MQTTView> {
   Widget _buildIntensityPlot(
       double CurrentItensity, double CurrentSetIntensity) {
     return (((CurrentSetIntensity < CurrentItensity) || (CurrentItensity > 1.0))
-        ? Text("Current Intensity " +
-            CurrentItensity.toStringAsFixed(1) +
-            " and Exercise Int " +
-            CurrentSetIntensity.toStringAsFixed(1))
+        ? Text(
+            "Current Intensity " +
+                CurrentItensity.toStringAsFixed(1) +
+                " and Exercise Int " +
+                CurrentSetIntensity.toStringAsFixed(1),
+            style: TextStyle(color: Colors.redAccent))
         : LinearPercentIndicator(
             //radius: 120.0,
             //lineWidth: 13.0,
@@ -149,7 +151,35 @@ class _MQTTViewState extends State<MQTTView> {
 
   // ignore: unused_element
   Widget _buildLoadPlotDisplay(double LoadCurrent) {
-    return (Text("Current load: " + LoadCurrent.toString()));
+    double hangtime = 0.0;
+    double loadperc = LoadCurrent / 100;
+    if (loadperc < 0.0) {
+      loadperc = 0.0;
+    }
+    return (LinearPercentIndicator(
+      //radius: 120.0,
+      //lineWidth: 13.0,
+      //animation: true,
+      percent: loadperc,
+      center: new Text(
+        LoadCurrent.toStringAsFixed(2),
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
+      //footer:
+      leading: new Text(
+        LoadCurrent.toStringAsFixed(0) + "kg",
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      ),
+      trailing: new Text(
+        hangtime.toStringAsFixed(0) + "s",
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      ),
+      //circularStrokeCap: CircularStrokeCap.round,
+      progressColor: Colors.redAccent,
+    )
+
+        //Text("Current load: " + LoadCurrent.toString())
+        );
   }
 
   Widget _buildLoadPlot(List<FlSpot> LoadCurrentData) {
