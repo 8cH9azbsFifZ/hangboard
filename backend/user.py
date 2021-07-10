@@ -35,7 +35,12 @@ class User():
 
     def GetCurrentIntensity(self, currentload):
         """ Calculate intensity - warning hold configuration must be set in advance and SetReference will yield the correct maxload for the hold configuration """
-        return currentload / self.MaxLoad
+        intensity = currentload / self.MaxLoad
+        if intensity < 0.0: 
+            intensity = 0.0
+        if intensity > 1.0:
+            intensity = 1.0
+        return intensity
 
 
 

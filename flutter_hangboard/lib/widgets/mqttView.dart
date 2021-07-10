@@ -99,30 +99,28 @@ class _MQTTViewState extends State<MQTTView> {
 
   Widget _buildIntensityPlot(
       double CurrentItensity, double CurrentSetIntensity) {
-    return (
-        //Text("Current Intensity" + CurrentItensity.toString()),
-
-        ((CurrentSetIntensity > CurrentItensity) || (CurrentItensity > 1.0))
-            ? Text("Warning: Too much!!!")
-            : LinearPercentIndicator(
-                //radius: 120.0,
-                //lineWidth: 13.0,
-                //animation: true,
-                percent: CurrentItensity,
-                center: new Text(
-                  CurrentItensity.toStringAsFixed(2),
-                  style: new TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 20.0),
-                ),
-                //footer:
-                leading: new Text(
-                  "Intensity",
-                  style: new TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 17.0),
-                ),
-                //circularStrokeCap: CircularStrokeCap.round,
-                progressColor: Colors.redAccent,
-              ));
+    return (((CurrentSetIntensity < CurrentItensity) || (CurrentItensity > 1.0))
+        ? Text("Current Intensity " +
+            CurrentItensity.toStringAsFixed(1) +
+            " and Exercise Int " +
+            CurrentSetIntensity.toStringAsFixed(1))
+        : LinearPercentIndicator(
+            //radius: 120.0,
+            //lineWidth: 13.0,
+            //animation: true,
+            percent: CurrentItensity,
+            center: new Text(
+              CurrentItensity.toStringAsFixed(2),
+              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            ),
+            //footer:
+            leading: new Text(
+              "Intensity",
+              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+            ),
+            //circularStrokeCap: CircularStrokeCap.round,
+            progressColor: Colors.redAccent,
+          ));
   }
 
   Widget _buildLastExerciseStatistics(
