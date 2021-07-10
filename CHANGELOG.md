@@ -1,5 +1,5 @@
 
-- v0.59 - WIP Features (#87, #108, #109)
+- v0.59 - WIP Features (#87, #108, #109), Bugfixes (#111)
 - v0.58 - Demonstrator with one working exercise. Progress bar (#103), bugfixes (#101).
 - v0.57 - Bugfixes (#99, #104)
 - v0.56 - Implemented 1 hand hold display (#96, #97), display next exercise intensity (#98).
