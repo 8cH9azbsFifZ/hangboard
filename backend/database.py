@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 class Database():
-  def __init__(self, hostname="localhost", user="root", password="example"):
+  def __init__(self, hostname="hangboard", user="root", password="rootpassword"):
     # Init mongo db client
     self._hostname=hostname
     self._port=27017
