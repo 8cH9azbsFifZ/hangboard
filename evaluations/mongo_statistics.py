@@ -70,27 +70,54 @@ class Statistics():
         self._db = foo.Database(hostname=dbhostname,user=dbuser,password=dbpassword)
         self._db._set_user(uuid=user)
 
+        self._data = pd.DataFrame(list(self._db._coll_raw.find()))
+
+        self._num_sessions = 0
+        self._session_statistics = []
+
+        self._detect_sessions()
+
     def _detect_sessions(self):
         """
         Detect sessions in database
         """
-        data = pd.DataFrame(list(self._db._coll_raw.find()))
-        sel_not_nan = data["time"]>1.0
-        dtime = np.diff(data[sel_not_nan]["time"])
+        sel_not_nan = self._data["time"]>1.0
+        dtime = np.diff(self._data[sel_not_nan]["time"])
         timebetweensessions = 3600.01
         seltime = dtime>timebetweensessions
         seltime1 = np.append(False,seltime)
 
         # TODO: do something useful with the information
-        for d in data[sel_not_nan][seltime1]["time"]:
+        self._session_statistics.append({})
+        for d in self._data[sel_not_nan][seltime1]["time"]:
+            self._num_sessions = self._num_sessions + 1
+            self._session_statistics.append({})
+            self._session_statistics[self._num_sessions]["Timestamp"] = d
             dd=datetime.fromtimestamp(d).strftime("%A, %B %d, %Y %I:%M:%S")
-            print (dd)
+            self._session_statistics[self._num_sessions]["Date"] = dd
+            self._calc_sessions_params(session=self._num_sessions)
+
+        # TODO create selector: for each session
+        # TODO calculate hangtime for each session
+
+        #print ("Number of sessions: " + str(self._num_sessions))
+        print (self._session_statistics)
+
+    def _calc_sessions_params(self, session=1):
+        tstart = self._session_statistics[session]["Timestamp"]
+        maxsessiontime = 3*60*60 # 3 hours
+        tstop = tstart + maxsessiontime
+        sel_tstart = (self._data["time"] > tstart) 
+        sel_tstop = (self._data["time"] < tstop)
+        sel_data = self._data[sel_tstart][sel_tstop]
+        max_load = sel_data["loadmaximal"].max()
+        self._session_statistics[session]["MaxLoad"] = max_load
 
 
 if __name__ == "__main__":
-    d = foo.Database(hostname="hangboard", user="root", password="rootpassword")
-    d._set_user(uuid="us3r")
-    d._get_maxload()
+    #d = foo.Database(hostname="hangboard", user="root", password="rootpassword")
+    #d._set_user(uuid="us3r")
+    #d._get_maxload()
 
     s=Statistics()
-    s._detect_sessions()
+
