@@ -94,19 +94,22 @@ class Workout():
 
 
     def _sendmessage(self, topic="/none", message="None"):
+        """ Send a message using MQTT """
         ttopic = "hangboard/workout"+topic
         mmessage = str(message)
         #logging.debug("MQTT>: " + ttopic + " ###> " + mmessage)
         self._client.publish(ttopic, mmessage)
 
     def _on_connect(self, client, userdata, flags, rc):
+        """ Connect to MQTT broker and subscribe to control messages """
         print("Connected with result code "+str(rc))
         self._client.subscribe("hangboard/workout/control")
 
     def _on_message(self, client, userdata, msg):
-        """ Start with 
+        """ 
+        Receive MQTT control messages.
+        Start with debugging on commandline using:
         mosquitto_pub -h localhost -t hangboard/workout/control -m Start
-         Start
         """
         logging.debug(">MQTT: " + msg.payload.decode())
         if msg.payload.decode() == "Stop":
@@ -187,9 +190,11 @@ class Workout():
         self.message = image_base64
 
     def _set_user(self, user="us3r"):
+        """ Set current user for data persistence """
         self._user = User(user=user,dbhostname=self._dbhost,dbuser=self._dbuser,dbpassword=self._dbpassword)  
 
     def _update_user_statistics(self):
+        """ Calculate current intensity based on the data given in the database for the hold configuration and current user. """
         # FIXME: both / one hand
         if self._counter._holdtypeleft != "":
             self._user.SetReference(hold=self._counter._holdtypeleft, hand="left") # FIXME what if differnt holds?
@@ -205,8 +210,13 @@ class Workout():
         self._sendmessage("/userstatistics", '{"time": ' + str(tt) + ', "CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
 
     def _core_loop(self):
-        # https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
-        # cf. http://www.steves-internet-guide.com/loop-python-mqtt-client/
+        """
+        This is the core workout loop. 
+        A description of the chosen design can be found here
+        https://stackoverflow.com/questions/46832084/python-mqtt-reset-timer-after-received-a-message
+        and here
+        http://www.steves-internet-guide.com/loop-python-mqtt-client/
+        """
         samplingrate = 0.01
 
         while True:
@@ -238,6 +248,7 @@ class Workout():
                     next(self._counter)
 
     def _set_workout (self, id="ZB-A-1"):      
+        """ Set current workout for the timer """
         logging.debug ("Select workout: " + id)
         index = -1
         if self._workoutlist == []:
