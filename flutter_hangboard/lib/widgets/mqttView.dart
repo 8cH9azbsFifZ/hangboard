@@ -99,6 +99,10 @@ class _MQTTViewState extends State<MQTTView> {
 
   Widget _buildIntensityPlot(
       double CurrentItensity, double CurrentSetIntensity) {
+    if (CurrentSetIntensity < CurrentItensity) {
+      _playSFX("images/warn.mp3"); // FIXME: make configurable
+    }
+
     return (((CurrentSetIntensity < CurrentItensity) || (CurrentItensity > 1.0))
         ? Text(
             "Current Intensity " +
