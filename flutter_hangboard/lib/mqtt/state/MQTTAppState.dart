@@ -61,6 +61,11 @@ class MQTTAppState with ChangeNotifier {
 
   // User statistics
   double _currentintensity = 0.0;
+  bool _intensity_too_high = false;
+  bool _intensity_too_high2 =
+      false; // internal variable, beacause sound must be played back only once if overload occurs ;)
+  bool _intensity_too_high_warn =
+      false; // this is the indicator if intensity level is crossed for playback of the sound
 
 // Data on upcoming sets
   String _upcomingsets = "";
@@ -95,6 +100,24 @@ class MQTTAppState with ChangeNotifier {
     if (userjson.containsKey("CurrentIntensity")) {
       _currentintensity = userjson["CurrentIntensity"];
     }
+
+    // WORKAROUND for sound playing mutiple times
+    if (_current_set_intensity > 0.0) {
+      _intensity_too_high2 = _intensity_too_high;
+      if (_current_set_intensity < _currentintensity) {
+        _intensity_too_high = true;
+      } else {
+        _intensity_too_high = false;
+      }
+      // Set warning only if crossover occurs
+      _intensity_too_high_warn = false;
+      if (_intensity_too_high2 == false) {
+        if (_intensity_too_high == true) {
+          _intensity_too_high_warn = true;
+        }
+      }
+    }
+
     notifyListeners();
   }
 
@@ -259,7 +282,7 @@ class MQTTAppState with ChangeNotifier {
   double get getTimerCountdown {
     double a = _timer_countdown;
     _timer_countdown =
-        -1; // FIX: app will rebuild on every update and start to start sound every microsecond :/ #56
+        -1; // WORKAROUND: app will rebuild on every update and start to start sound every microsecond :/ #56
     return a;
   }
 
@@ -284,7 +307,8 @@ class MQTTAppState with ChangeNotifier {
   double get getLastPauseTime => _lastpausetime;
   double get getLastMaximalLoad => _lastmaximalload;
 
-  double get getCurrentItensity => _currentintensity;
+  double get getCurrentItensity => _currentintensity; // FIXME: typo
+  bool get getCurrentIntensityTooHigh => _intensity_too_high_warn;
 
   String get getUpcomingSets => _upcomingsets;
   double get getRemainingTimeInWorkout => _remainingtimeinworkout;

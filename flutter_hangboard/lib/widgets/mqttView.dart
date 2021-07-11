@@ -82,8 +82,10 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getTimerTotalReps),
 
         _buildExerciseType(currentAppState.getExerciseType),
-        _buildIntensityPlot(currentAppState.getCurrentItensity,
-            currentAppState.getCurrentSetIntensity),
+        _buildIntensityPlot(
+            currentAppState.getCurrentItensity,
+            currentAppState.getCurrentSetIntensity,
+            currentAppState.getCurrentIntensityTooHigh),
         _buildControls(currentAppState.getAppConnectionState),
         //_buildLoadPlot(currentAppState.getLoadCurrentData),
         _buildLoadPlotDisplay(currentAppState.getLoadCurrent),
@@ -97,36 +99,73 @@ class _MQTTViewState extends State<MQTTView> {
     return (Text(UpcomingSets));
   }
 
-  Widget _buildIntensityPlot(
-      double CurrentItensity, double CurrentSetIntensity) {
-    if (CurrentSetIntensity < CurrentItensity) {
+  Widget _buildIntensityPlot(double CurrentItensity, double CurrentSetIntensity,
+      bool CurrentIntensityTooHigh) {
+    double RelativeCurrentIntensity = 0.0;
+    if (CurrentSetIntensity > 0) {
+      RelativeCurrentIntensity = CurrentItensity / CurrentSetIntensity;
+    }
+
+    if (CurrentIntensityTooHigh) {
       _playSFX("images/warn.mp3"); // FIXME: make configurable
     }
 
-    return (((CurrentSetIntensity < CurrentItensity) || (CurrentItensity > 1.0))
-        ? Text(
-            "Current Intensity " +
-                CurrentItensity.toStringAsFixed(1) +
-                " and Exercise Int " +
-                CurrentSetIntensity.toStringAsFixed(1),
-            style: TextStyle(color: Colors.redAccent))
-        : LinearPercentIndicator(
-            //radius: 120.0,
-            //lineWidth: 13.0,
-            //animation: true,
-            percent: CurrentItensity,
-            center: new Text(
-              CurrentItensity.toStringAsFixed(2),
-              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-            ),
-            //footer:
-            leading: new Text(
-              "Intensity",
-              style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
-            ),
-            //circularStrokeCap: CircularStrokeCap.round,
-            progressColor: Colors.redAccent,
-          ));
+    Color _barcolor = Colors.black;
+    if (CurrentItensity < 0) {
+      CurrentItensity = 0.0;
+    }
+    if (CurrentItensity < 0.5) {
+      _barcolor = Colors.blueAccent;
+    } else if (CurrentItensity < 0.7) {
+      _barcolor = Colors.greenAccent;
+    } else if (CurrentItensity < 0.9) {
+      _barcolor = Colors.yellowAccent;
+    } else {
+      _barcolor = Colors.redAccent;
+    }
+    if (CurrentItensity > 1.0) {
+      CurrentItensity = 1.0;
+    }
+
+    return (Column(
+      children: [
+        LinearPercentIndicator(
+          percent: CurrentItensity,
+          center: new Text(
+            CurrentItensity.toStringAsFixed(2),
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+          ),
+          //footer:
+          leading: new Text(
+            "Intensity",
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+          ),
+          progressColor: _barcolor,
+        ),
+        (CurrentSetIntensity < CurrentItensity)
+            ? Text(
+                "Current Intensity " +
+                    CurrentItensity.toStringAsFixed(1) +
+                    " and Exercise Int " +
+                    CurrentSetIntensity.toStringAsFixed(1),
+                style: TextStyle(color: Colors.redAccent))
+            : LinearPercentIndicator(
+                percent: RelativeCurrentIntensity,
+                center: new Text(
+                  RelativeCurrentIntensity.toStringAsFixed(2),
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20.0),
+                ),
+                //footer:
+                leading: new Text(
+                  "Relative Intensity",
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 17.0),
+                ),
+                progressColor: _barcolor,
+              )
+      ],
+    ));
   }
 
   Widget _buildLastExerciseStatistics(
@@ -156,20 +195,20 @@ class _MQTTViewState extends State<MQTTView> {
   // ignore: unused_element
   Widget _buildLoadPlotDisplay(double LoadCurrent) {
     double hangtime = 0.0;
-    double loadperc = LoadCurrent / 100;
+    double loadperc = LoadCurrent / 100.0;
     if (loadperc < 0.0) {
       loadperc = 0.0;
     }
+    if (loadperc > 1.0) {
+      loadperc = 1.0;
+    }
+
     return (LinearPercentIndicator(
-      //radius: 120.0,
-      //lineWidth: 13.0,
-      //animation: true,
       percent: loadperc,
       center: new Text(
         LoadCurrent.toStringAsFixed(2),
         style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
       ),
-      //footer:
       leading: new Text(
         LoadCurrent.toStringAsFixed(0) + "kg",
         style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
@@ -178,7 +217,6 @@ class _MQTTViewState extends State<MQTTView> {
         hangtime.toStringAsFixed(0) + "s",
         style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
       ),
-      //circularStrokeCap: CircularStrokeCap.round,
       progressColor: Colors.redAccent,
     )
 
@@ -186,6 +224,7 @@ class _MQTTViewState extends State<MQTTView> {
         );
   }
 
+  // ignore: unused_element
   Widget _buildLoadPlot(List<FlSpot> LoadCurrentData) {
     List<Color> gradientColors = [
       // https://api.flutter.dev/flutter/dart-ui/Color-class.html
