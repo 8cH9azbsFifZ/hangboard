@@ -45,6 +45,6 @@ https://toclimb8a.shinyapps.io/maxtograde/ (link)↩
 J. Banaszczyk, StrengthClimbing – Endurance Repeaters, May 2, 2019. (link)↩
 McGawley, K., 2010. The application of the critical power construct to endurance exercise. University of Brighton. Student thesis: Doctoral Thesis. (link)↩
 
-
-
 """
+
+# TODO: implement
