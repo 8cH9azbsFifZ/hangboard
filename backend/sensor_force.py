@@ -344,7 +344,7 @@ class SensorForce():
 
     def _Calc_FTI(self): 
         """
-        FTI calculate the integraf force-time from a serie of StrengthData values
+        FTI calculate the integral force-time from a serie of StrengthData values
         Return value is expressed in Newton*second (-> Impulse)
 
         return integrate.Simpsons(x, fx)      func Simpsons(x, f []float64) float64

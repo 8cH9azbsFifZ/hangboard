@@ -11,6 +11,8 @@ spec.loader.exec_module(foo)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy import integrate
+
 from datetime import datetime
 
 def plot_load(t,load):
@@ -71,6 +73,7 @@ class Statistics():
         self._db._set_user(uuid=user)
 
         self._data = pd.DataFrame(list(self._db._coll_raw.find()))
+        self._data_raw = pd.DataFrame(list(self._db._coll_raw.find({"loadaverage": {"$gt": 0}})))
 
         self._num_sessions = 0
         self._session_statistics = []
@@ -81,15 +84,15 @@ class Statistics():
         """
         Detect sessions in database
         """
-        sel_not_nan = self._data["time"]>1.0
-        dtime = np.diff(self._data[sel_not_nan]["time"])
+        sel_not_nan = self._data_raw["time"]>1.0
+        dtime = np.diff(self._data_raw[sel_not_nan]["time"])
         timebetweensessions = 3600.01
         seltime = dtime>timebetweensessions
         seltime1 = np.append(False,seltime)
 
         # TODO: do something useful with the information
         self._session_statistics.append({})
-        for d in self._data[sel_not_nan][seltime1]["time"]:
+        for d in self._data_raw[sel_not_nan][seltime1]["time"]:
             self._num_sessions = self._num_sessions + 1
             self._session_statistics.append({})
             self._session_statistics[self._num_sessions]["Timestamp"] = d
@@ -104,17 +107,54 @@ class Statistics():
         print (self._session_statistics)
 
     def _calc_sessions_params(self, session=1):
+        # Select data for current session
         tstart = self._session_statistics[session]["Timestamp"]
         maxsessiontime = 3*60*60 # 3 hours
         tstop = tstart + maxsessiontime
-        sel_tstart = (self._data["time"] > tstart) 
-        sel_tstop = (self._data["time"] < tstop)
-        sel_data = self._data[sel_tstart][sel_tstop]
+        sel_tstart = (self._data_raw["time"] > tstart) 
+        sel_tstop = (self._data_raw["time"] < tstop)
+        sel_data = self._data_raw[sel_tstart][sel_tstop]
+
+        # Extract maximal load
         max_load = sel_data["loadmaximal"].max()
         self._session_statistics[session]["MaxLoad"] = max_load
 
+        # Extract duration
+        t0 = sel_data["time"].min() 
+        t1 = sel_data["time"].max() 
+        duration = t1 - t0
+        self._session_statistics[session]["Duration"] = duration
+
+        # Extract average load
+        hang_threshold = 5.0 # FIXME
+        sel_hang = sel_data["loadaverage"] > hang_threshold
+        avg_load = sel_data[sel_hang]["loadaverage"].mean()
+        self._session_statistics[session]["AvgLoad"] = avg_load
+        
+        # Extract FTI
+        fti = self._Calc_FTI(sel_data["loadcurrent"], sel_data["time"])
+        self._session_statistics[session]["FTI"] = fti
+
+
+    def _Calc_FTI(self, load, time): 
+        """ - Taken from force sensor module
+        FTI calculate the integral force-time from a serie of StrengthData values
+        Return value is expressed in Newton*second (-> Impulse)
+
+        return integrate.Simpsons(x, fx)      func Simpsons(x, f []float64) float64
+
+        f[i] = f(x[i]), x[0] = a, x[len(x)-1] = b
+
+        \int_a^b f(x)dx
+
+        """
+        _Gravity = 9.80665
+        #https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
+        #integrate.simpson(y, x)
+        _fti = integrate.simpson(load, time) * _Gravity
+        return _fti
+
     # TODO: display workout name
-    # TODO: display workout duration
 
 
 if __name__ == "__main__":
@@ -123,4 +163,5 @@ if __name__ == "__main__":
     #d._get_maxload()
 
     s=Statistics()
+    #s._latest_calc_fti(session=8)
 
