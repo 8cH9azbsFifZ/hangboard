@@ -29,7 +29,6 @@ class _MQTTViewState extends State<MQTTView> {
   @override
   void initState() {
     super.initState();
-    PlaySFX10.open(Audio("images/10.mp3"), autoStart: false);
   }
 
   @override
@@ -689,62 +688,4 @@ class _MQTTViewState extends State<MQTTView> {
       Audio(Filename),
     );
   }
-
-  // ignore: unused_element
-  _playSFX10() {
-    // await assetsAudioPlayer.open(Audio("images/10.mp3"), autoStart: false);
-    PlaySFX10.play();
-  }
-
-  // ignore: unused_element
-  _playSFX9() async {
-    await assetsAudioPlayer.open(
-      Audio("images/9.mp3"),
-    );
-  }
-
-  // ignore: unused_element
-  _playSFX8() async {
-    await audioPlayer.play("images/8.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX7() async {
-    await audioPlayer.play("images/7.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX6() async {
-    await audioPlayer.play("images/6.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX5() async {
-    await audioPlayer.play("images/5.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX4() async {
-    await audioPlayer.play("images/4.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX3() async {
-    await audioPlayer.play("images/3.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX2() async {
-    await audioPlayer.play("images/2.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX1() async {
-    await audioPlayer.play("images/1.mp3", isLocal: true);
-  }
-
-  /*_playSFXDone() async {
-    await audioPlayer.play("images/done.mp3", isLocal: true);
-  }*/
-
 }
