@@ -79,11 +79,11 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getCurrentItensity,
             currentAppState.getCurrentSetIntensity,
             currentAppState.getCurrentIntensityTooHigh),
-        _buildControls(currentAppState.getAppConnectionState),
         //_buildLoadPlot(currentAppState.getLoadCurrentData),
         _buildLoadPlotDisplay(currentAppState.getLoadCurrent),
         _buildLastExerciseStatistics(currentAppState.getLastHangTime,
             currentAppState.getLastMaximalLoad),
+        _buildControls(currentAppState.getAppConnectionState),
       ],
     );
   }
@@ -480,6 +480,7 @@ class _MQTTViewState extends State<MQTTView> {
       _playSFX("images/done.mp3");
     }
 
+    // Ensure percentages in [0;1]
     double PercentSets = TotalSets == 0 ? 0 : CurrentSet / TotalSets;
     double PercentReps = TotalReps == 0 ? 0 : CurrentRep / TotalReps;
     if (PercentSets > 1) {
@@ -500,6 +501,15 @@ class _MQTTViewState extends State<MQTTView> {
     if (TimerCompleted < 0) {
       TimerCompleted = 0.0;
     }
+
+    // Define colors of the percentage bars
+    Color _barcolor_timer = Colors.black;
+    // TODO: if pause: blue
+    // TODO: if hang: red
+
+    Color _barcolor_reps = Colors.black;
+    Color _barcolor_sets = Colors.black;
+
     return Column(
       children: [
         new LinearPercentIndicator(
