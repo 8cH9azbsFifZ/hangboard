@@ -18,9 +18,7 @@ import paho.mqtt.client as mqtt
 Implement logging with debug level from start on now :)
 """
 import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='Workout(%(threadName)-10s) %(message)s',
-                    )
+logging.basicConfig(level=logging.DEBUG, format='Workout(%(threadName)-10s) %(message)s',)
 
 from board import Board
 from sensors import Sensors
