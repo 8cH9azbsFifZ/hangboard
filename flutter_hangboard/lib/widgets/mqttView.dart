@@ -650,7 +650,7 @@ class _MQTTViewState extends State<MQTTView> {
     String myIdentifier = 'Hangboard App'; // FIXME
 
     manager = MQTTManager(
-        host: "hangboard", //FIXME: make configurable
+        host: "hangboard-raspi", //FIXME: make configurable
         topic: "hangboard/workout/timerstatus", //_topicTextController.text,
         identifier: myIdentifier,
         state: currentAppState);
