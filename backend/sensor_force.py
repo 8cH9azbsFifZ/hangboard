@@ -31,9 +31,7 @@ Force Measurement Backend
 
 
 import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='SensorForce(%(threadName)-10s) %(message)s',
-                    )
+logging.basicConfig(level=logging.DEBUG, format='SensorForce(%(threadName)-10s) %(message)s', )
 
 import time
 import sys
