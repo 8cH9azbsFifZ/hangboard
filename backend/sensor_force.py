@@ -46,7 +46,7 @@ import json
 
 import threading
 
-EMULATE_HX711 = True
+EMULATE_HX711 = False #True # FIXME: parameter
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
