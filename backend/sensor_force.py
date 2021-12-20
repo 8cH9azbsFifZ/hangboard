@@ -123,13 +123,13 @@ class SensorForce():
 
         self.calibrate()
 
-        if EMULATE_HX711:
-            simfile = "simulation_data.json"
-            self._simcounter = 0
-            with open(simfile) as json_file:
-                data = json.load(json_file)
-            self._simdata = data["SimulationData"]
-            #print (self._simdata["time"])
+        # FIXME: do only load file as test case
+        #if EMULATE_HX711:
+        #    simfile = "simulation_data.json"
+        #    self._simcounter = 0
+        #    with open(simfile) as json_file:
+        #        data = json.load(json_file)
+        #    self._simdata = data["SimulationData"]
 
         self._moving_average_n = 10
         self._moving_average_series = []
