@@ -12,6 +12,9 @@ git pull
 cd backend
 python3 -m pip install -r backend/requirements.txt
 
+# Install requirements for service
+sudo pip3 install -r requirements.txt
+
 # Set hostname to hangboard
 
 
