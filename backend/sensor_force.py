@@ -29,6 +29,12 @@ Force Measurement Backend
 
 """
 
+"""
+TODO: Doc debugging:
+ mosquitto_sub -h raspi-hangboard -t hangboard/sensor/load/loadstatus
+ reference to interface manual
+"""
+
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
