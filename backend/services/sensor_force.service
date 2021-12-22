@@ -3,7 +3,11 @@ Description=Sensor Force Service
 After=mosquitto.service multi-user.target
 
 [Service]
+<<<<<<< HEAD
 User=root
+=======
+User=pi
+>>>>>>> 1244b92b0ceb64cb5e39fa1a57c7c92d8a39f923
 Type=idle
 ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/sensor_force.py 
 StandardOutput=file:/var/log/sensor_force_stdout.log
