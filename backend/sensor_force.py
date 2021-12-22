@@ -32,7 +32,8 @@ Force Measurement Backend
 """
 TODO: Doc debugging:
  mosquitto_sub -h raspi-hangboard -t hangboard/sensor/load/loadstatus
- reference to interface manual
+ reference to interface manual:
+ 9azbsfifz.github.io/hangboard/api/index.html#operation-subscribe-hangboard/sensor/load/loadstatus
 """
 
 
