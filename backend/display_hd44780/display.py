@@ -24,7 +24,10 @@ class Database():
         print (msg)
         l = "Load: " + str(msg["loadcurrent"])
         t = "Time: " + str(msg["time"])
-        self._lcd.write_string(t)
+        self._lcd.write_string(l)
+        self._lcd.cursor_pos = (2, 0)
+        #lcd.clear()
+
 
     def _record_data(self, hostname="localhost",port=1883):
         logging.debug("Start recording data from mqtt to database")
