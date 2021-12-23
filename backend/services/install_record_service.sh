@@ -1,5 +1,5 @@
 #!/bin/bash
-service="hangboard_sensor_force.service"
+service="hangboard_record.service"
 
 echo "Install hangboard service for: "$service 
 

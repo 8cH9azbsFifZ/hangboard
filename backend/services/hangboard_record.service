@@ -1,5 +1,5 @@
 [Unit]
-Description=Hangboard Backend Service
+Description=Hangboard BacRecordkend Service
 After=network-online.target
 Wants=network-online.target systemd-networkd-wait-online.service
 
