@@ -21,7 +21,7 @@ class Database():
 
         msg = json.loads(message.payload.decode("utf-8"))
         
-        self._coll_raw.insert_one(msg)
+        print (msg)
 
 
     def _record_data(self, hostname="localhost",port=1883):
