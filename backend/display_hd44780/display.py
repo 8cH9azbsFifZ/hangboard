@@ -26,7 +26,7 @@ class Database():
         t = "Time: " + str(msg["time"])
         self._lcd.write_string(l)
         self._lcd.cursor_pos = (2, 0)
-        self._lcd.clear()
+        #self._lcd.clear()
 
 
     def _record_data(self, hostname="localhost",port=1883):
