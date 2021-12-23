@@ -1,5 +1,5 @@
 [Unit]
-Description=Sensor Force Service
+Description=Hangboard Sensor Force Service
 After=mosquitto.service multi-user.target
 
 [Service]
