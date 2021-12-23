@@ -1,6 +1,6 @@
 from RPLCD.i2c import CharLCD
 import paho.mqtt.client as paho
-
+import json
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
