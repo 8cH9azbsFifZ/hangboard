@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 class Database():
     def __init__(self):
-        self.lcd = CharLCD('PCF8574', 0x27, backlight_enabled=True, charmap='A02')
+        self._lcd = CharLCD('PCF8574', 0x27, backlight_enabled=True, charmap='A02')
 
 
     def _on_message(self, client, userdata, message):
@@ -22,7 +22,9 @@ class Database():
         msg = json.loads(message.payload.decode("utf-8"))
         
         print (msg)
-
+        l = "Load: " + msg["loadcurrent"]
+        t = "Time: " + msg["time"]
+        self._lcd.write_string(t)
 
     def _record_data(self, hostname="localhost",port=1883):
         logging.debug("Start recording data from mqtt to database")
