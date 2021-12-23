@@ -22,8 +22,8 @@ class Database():
         msg = json.loads(message.payload.decode("utf-8"))
         
         print (msg)
-        l = "Load: " + msg["loadcurrent"]
-        t = "Time: " + msg["time"]
+        l = "Load: " + str(msg["loadcurrent"])
+        t = "Time: " + str(msg["time"])
         self._lcd.write_string(t)
 
     def _record_data(self, hostname="localhost",port=1883):
