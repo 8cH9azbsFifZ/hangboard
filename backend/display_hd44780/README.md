@@ -5,16 +5,14 @@ Service for running a
 ```
 apt-get install python-smbus i2c-tools
 ```
+... both exist?
 
 ## I2C enable
-sudo raspi-config
+```
+sudo raspi-config nonint do_i2c 0
+```
+Ref: https://pi3g.com/de/2021/05/20/enabling-and-checking-i2c-on-the-raspberry-pi-using-the-command-line-for-your-own-scripts/
 
-Unter „8. Advanced Options“ > „A7 I2C“ aktivieren wir es. Nun fügen wir der modules-Datei noch die entsprechenden Einträge hinzu:
-
-
-sudo nano /etc/modules
-i2c-bcm2708
-i2c-dev
 
 
 sudo i2cdetect -y 1
@@ -22,7 +20,9 @@ sudo i2cdetect -y 1
 
 Falls du hier eine andere Zahl als 27 angezeigt bekommst, musst du dies gleich in der lcddriver.py Datei ändern (ADDRESS = 0x27).
 
-
+# Library
+ python3 -m pip install RPLCD
+ 
 
 
 
