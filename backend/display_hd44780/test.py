@@ -1,5 +1,5 @@
 from RPLCD.i2c import CharLCD
-lcd = CharLCD('PCF8574', 0x27, backlight_enabled=False)
+lcd = CharLCD('PCF8574', 0x27, backlight_enabled=True)
 #PCF8574, the MCP23008 and the MCP23017
 lcd.write_string('Hello world')
 smiley = (
