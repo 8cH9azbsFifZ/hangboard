@@ -21,8 +21,8 @@ sudo i2cdetect -y 1
 Falls du hier eine andere Zahl als 27 angezeigt bekommst, musst du dies gleich in der lcddriver.py Datei ändern (ADDRESS = 0x27).
 
 # Library
- python3 -m pip install RPLCD
- 
+python3 -m pip install -r ./requirements.txt
+
 
 
 
