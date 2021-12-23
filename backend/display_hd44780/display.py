@@ -22,7 +22,7 @@ class Database():
         msg = json.loads(message.payload.decode("utf-8"))
         
         print (msg)
-        l = "\rLoad: " + str(msg["loadcurrent"])
+        l = "\rLoad: %000.1f" % msg["loadcurrent"]
         t = "Time: " + str(msg["time"])
         self._lcd.write_string(l)
         #self._lcd.cursor_pos = (2, 0)
