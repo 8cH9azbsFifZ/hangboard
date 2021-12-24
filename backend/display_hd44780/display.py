@@ -28,13 +28,15 @@ class Database():
         msg = json.loads(message.payload.decode("utf-8"))
 
         # Check if interval large enough
-        self._time_last = self._time_current 
+        time_last = self._time_current 
         self._time_current = time.time()
-        del_time = self._time_current - self._time_last
+        del_time = self._time_current - time_last
         logging.debug(del_time)
-        if self._time_current - self._time_last < self._update_interval:
+        if del_time < self._update_interval:
             return
         
+        self._time_last = time_last
+
         print (msg)
         l = "\rLoad: %.1f    " % msg["loadcurrent"]
         t = "Time: " + str(msg["time"])
