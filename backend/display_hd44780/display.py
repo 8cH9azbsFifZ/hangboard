@@ -19,7 +19,7 @@ class Database():
         # Init timers
         self._time_current = time.time()
         self._time_last = self._time_current 
-        self._update_interval = 0.5 # Update interval for display in seconds
+        self._update_interval = 1.0 #0.5 # Update interval for display in seconds
 
 
     def _on_message(self, client, userdata, message):

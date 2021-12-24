@@ -24,7 +24,8 @@ Falls du hier eine andere Zahl als 27 angezeigt bekommst, musst du dies gleich i
 python3 -m pip install -r ./requirements.txt
 
 
-
+# Test results:
+Refresh rate makes display unreadable...
 
 # References 
 - https://tutorials-raspberrypi.de/hd44780-lcd-display-per-i2c-mit-dem-raspberry-pi-ansteuern/
