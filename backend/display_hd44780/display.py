@@ -1,6 +1,7 @@
 from RPLCD.i2c import CharLCD
 import paho.mqtt.client as paho
 import json
+import time
 
 import logging
 logging.basicConfig(level=logging.DEBUG,
@@ -15,11 +16,22 @@ class Database():
     def __init__(self):
         self._lcd = CharLCD('PCF8574', 0x27, backlight_enabled=True, charmap='A02')
 
+        # Init timers
+        self._time_current = time.time()
+        self._time_last = self._time_current 
+        self._update_interval = 0.5 # Update interval for display in seconds
+
 
     def _on_message(self, client, userdata, message):
         logging.debug("Write message " + str(message.payload.decode("utf-8")))
 
         msg = json.loads(message.payload.decode("utf-8"))
+
+        # Check if interval large enough
+        self._time_last = self._time_current 
+        self._time_current = time.time()
+        if self._time_current - self._time_last < self._update_interval:
+            return
         
         print (msg)
         l = "\rLoad: %.1f    " % msg["loadcurrent"]
