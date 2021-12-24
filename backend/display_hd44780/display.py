@@ -30,6 +30,8 @@ class Database():
         # Check if interval large enough
         self._time_last = self._time_current 
         self._time_current = time.time()
+        del_time = self._time_current - self._time_last
+        logging.debug(del_time)
         if self._time_current - self._time_last < self._update_interval:
             return
         
