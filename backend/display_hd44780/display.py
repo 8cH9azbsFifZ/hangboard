@@ -40,9 +40,11 @@ class Database():
         print (msg)
         l = "\rLoad: %.1f    " % msg["loadcurrent"]
         t = "Time: " + str(msg["time"])
-        self._lcd.write_string(l)
+        lmax = "\rLoad Max: %.1f    " % msg["loadmaximal"]
+        self._lcd.clear()
+        ss = l+"\n\r"+lmax
+        self._lcd.write_string(ss)
         #self._lcd.cursor_pos = (2, 0)
-        #self._lcd.clear()
 
 
     def _record_data(self, hostname="localhost",port=1883):
