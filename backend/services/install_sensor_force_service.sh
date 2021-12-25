@@ -1,6 +1,10 @@
 #!/bin/bash
-service="sensor_force.service"
-echo "Install service for sensor force" 
+service="hangboard_sensor_force.service"
+
+echo "Install hangboard service for: "$service 
+
+sudo pip3 install scipy # FIXME
+
 sudo cp ./$service /lib/systemd/system/
 sudo chmod 644 /lib/systemd/system/$service
 sudo systemctl daemon-reload

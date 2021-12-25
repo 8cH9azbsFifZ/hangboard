@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 class Database():
-  def __init__(self, hostname="localhost", user="root", password="example"):
+  def __init__(self, hostname="hangboard", user="root", password="rootpassword"):
     # Init mongo db client
     self._hostname=hostname
     self._port=27017
@@ -117,12 +117,16 @@ class Database():
     self._client.connect(hostname,port,60)#connect
 
     # FIXME: subscribe to all?
-    self._client.subscribe("hangboard/sensor/load/loadstatus")
     self._client.subscribe("hangboard/workout/holds")
+    self._client.subscribe("hangboard/workout/workoutlist")
     self._client.subscribe("hangboard/workout/setinfo")
     self._client.subscribe("hangboard/workout/timerstatus")
+    self._client.subscribe("hangboard/workout/status")
     self._client.subscribe("hangboard/workout/workoutstatus")
+    self._client.subscribe("hangboard/sensor/load/loadstatus")
     self._client.subscribe("hangboard/sensor/sensorstatus")
     self._client.subscribe("hangboard/sensor/lastexercise")
+    self._client.subscribe("hangboard/workout/userstatistics")
+    self._client.subscribe("hangboard/workout/upcoming")
 
     self._client.loop_forever()

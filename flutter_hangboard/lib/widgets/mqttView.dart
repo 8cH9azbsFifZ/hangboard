@@ -15,12 +15,6 @@ class MQTTView extends StatefulWidget {
   }
 }
 
-// FIXME: Fix: Current Set information
-// FIXME: Fix: HangDetected
-
-// ignore: todo
-// TODO: sound on hang and no hang
-
 class _MQTTViewState extends State<MQTTView> {
   final TextEditingController _hostTextController = TextEditingController();
   final TextEditingController _messageTextController = TextEditingController();
@@ -35,7 +29,6 @@ class _MQTTViewState extends State<MQTTView> {
   @override
   void initState() {
     super.initState();
-    PlaySFX10.open(Audio("images/10.mp3"), autoStart: false);
   }
 
   @override
@@ -82,13 +75,15 @@ class _MQTTViewState extends State<MQTTView> {
             currentAppState.getTimerTotalReps),
 
         _buildExerciseType(currentAppState.getExerciseType),
-        _buildIntensityPlot(currentAppState.getCurrentItensity,
-            currentAppState.getCurrentSetIntensity),
-        _buildControls(currentAppState.getAppConnectionState),
-        _buildLoadPlot(currentAppState.getLoadCurrentData),
-        //_buildLoadPlotDisplay(currentAppState.getLoadCurrent),
+        _buildIntensityPlot(
+            currentAppState.getCurrentItensity,
+            currentAppState.getCurrentSetIntensity,
+            currentAppState.getCurrentIntensityTooHigh),
+        //_buildLoadPlot(currentAppState.getLoadCurrentData),
+        _buildLoadPlotDisplay(currentAppState.getLoadCurrent),
         _buildLastExerciseStatistics(currentAppState.getLastHangTime,
             currentAppState.getLastMaximalLoad),
+        _buildControls(currentAppState.getAppConnectionState),
       ],
     );
   }
@@ -97,32 +92,73 @@ class _MQTTViewState extends State<MQTTView> {
     return (Text(UpcomingSets));
   }
 
-  Widget _buildIntensityPlot(
-      double CurrentItensity, double CurrentSetIntensity) {
-    return (
-        //Text("Current Intensity" + CurrentItensity.toString()),
+  Widget _buildIntensityPlot(double CurrentItensity, double CurrentSetIntensity,
+      bool CurrentIntensityTooHigh) {
+    double RelativeCurrentIntensity = 0.0;
+    if (CurrentSetIntensity > 0) {
+      RelativeCurrentIntensity = CurrentItensity / CurrentSetIntensity;
+    }
 
-        ((CurrentSetIntensity > CurrentItensity) || (CurrentItensity > 1.0))
-            ? Text("Warning: Too much!!!")
+    if (CurrentIntensityTooHigh) {
+      _playSFX("images/warn.mp3"); // FIXME: make configurable
+    }
+
+    Color _barcolor = Colors.black;
+    if (CurrentItensity < 0) {
+      CurrentItensity = 0.0;
+    }
+    if (CurrentItensity < 0.5) {
+      _barcolor = Colors.blueAccent;
+    } else if (CurrentItensity < 0.7) {
+      _barcolor = Colors.greenAccent;
+    } else if (CurrentItensity < 0.9) {
+      _barcolor = Colors.yellowAccent;
+    } else {
+      _barcolor = Colors.redAccent;
+    }
+    if (CurrentItensity > 1.0) {
+      CurrentItensity = 1.0;
+    }
+
+    return (Column(
+      children: [
+        LinearPercentIndicator(
+          percent: CurrentItensity,
+          center: new Text(
+            CurrentItensity.toStringAsFixed(2),
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+          ),
+          //footer:
+          leading: new Text(
+            "Intensity",
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+          ),
+          progressColor: _barcolor,
+        ),
+        (CurrentSetIntensity < CurrentItensity)
+            ? Text(
+                "Current Intensity " +
+                    CurrentItensity.toStringAsFixed(1) +
+                    " and Exercise Int " +
+                    CurrentSetIntensity.toStringAsFixed(1),
+                style: TextStyle(color: Colors.redAccent))
             : LinearPercentIndicator(
-                //radius: 120.0,
-                //lineWidth: 13.0,
-                //animation: true,
-                percent: CurrentItensity,
+                percent: RelativeCurrentIntensity,
                 center: new Text(
-                  CurrentItensity.toStringAsFixed(2),
+                  RelativeCurrentIntensity.toStringAsFixed(2),
                   style: new TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 20.0),
                 ),
                 //footer:
                 leading: new Text(
-                  "Intensity",
+                  "Relative Intensity",
                   style: new TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 17.0),
                 ),
-                //circularStrokeCap: CircularStrokeCap.round,
-                progressColor: Colors.redAccent,
-              ));
+                progressColor: _barcolor,
+              )
+      ],
+    ));
   }
 
   Widget _buildLastExerciseStatistics(
@@ -151,9 +187,37 @@ class _MQTTViewState extends State<MQTTView> {
 
   // ignore: unused_element
   Widget _buildLoadPlotDisplay(double LoadCurrent) {
-    return (Text("Current load: " + LoadCurrent.toString()));
+    double hangtime = 0.0;
+    double loadperc = LoadCurrent / 100.0;
+    if (loadperc < 0.0) {
+      loadperc = 0.0;
+    }
+    if (loadperc > 1.0) {
+      loadperc = 1.0;
+    }
+
+    return (LinearPercentIndicator(
+      percent: loadperc,
+      center: new Text(
+        LoadCurrent.toStringAsFixed(2),
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
+      leading: new Text(
+        LoadCurrent.toStringAsFixed(0) + "kg",
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      ),
+      trailing: new Text(
+        hangtime.toStringAsFixed(0) + "s",
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+      ),
+      progressColor: Colors.redAccent,
+    )
+
+        //Text("Current load: " + LoadCurrent.toString())
+        );
   }
 
+  // ignore: unused_element
   Widget _buildLoadPlot(List<FlSpot> LoadCurrentData) {
     List<Color> gradientColors = [
       // https://api.flutter.dev/flutter/dart-ui/Color-class.html
@@ -416,6 +480,7 @@ class _MQTTViewState extends State<MQTTView> {
       _playSFX("images/done.mp3");
     }
 
+    // Ensure percentages in [0;1]
     double PercentSets = TotalSets == 0 ? 0 : CurrentSet / TotalSets;
     double PercentReps = TotalReps == 0 ? 0 : CurrentRep / TotalReps;
     if (PercentSets > 1) {
@@ -436,6 +501,15 @@ class _MQTTViewState extends State<MQTTView> {
     if (TimerCompleted < 0) {
       TimerCompleted = 0.0;
     }
+
+    // Define colors of the percentage bars
+    Color _barcolor_timer = Colors.black;
+    // TODO: if pause: blue
+    // TODO: if hang: red
+
+    Color _barcolor_reps = Colors.black;
+    Color _barcolor_sets = Colors.black;
+
     return Column(
       children: [
         new LinearPercentIndicator(
@@ -576,7 +650,7 @@ class _MQTTViewState extends State<MQTTView> {
     String myIdentifier = 'Hangboard App'; // FIXME
 
     manager = MQTTManager(
-        host: "hangboard", //FIXME: make configurable
+        host: "hangboard-raspi", //FIXME: make configurable
         topic: "hangboard/workout/timerstatus", //_topicTextController.text,
         identifier: myIdentifier,
         state: currentAppState);
@@ -624,62 +698,4 @@ class _MQTTViewState extends State<MQTTView> {
       Audio(Filename),
     );
   }
-
-  // ignore: unused_element
-  _playSFX10() {
-    // await assetsAudioPlayer.open(Audio("images/10.mp3"), autoStart: false);
-    PlaySFX10.play();
-  }
-
-  // ignore: unused_element
-  _playSFX9() async {
-    await assetsAudioPlayer.open(
-      Audio("images/9.mp3"),
-    );
-  }
-
-  // ignore: unused_element
-  _playSFX8() async {
-    await audioPlayer.play("images/8.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX7() async {
-    await audioPlayer.play("images/7.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX6() async {
-    await audioPlayer.play("images/6.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX5() async {
-    await audioPlayer.play("images/5.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX4() async {
-    await audioPlayer.play("images/4.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX3() async {
-    await audioPlayer.play("images/3.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX2() async {
-    await audioPlayer.play("images/2.mp3", isLocal: true);
-  }
-
-  // ignore: unused_element
-  _playSFX1() async {
-    await audioPlayer.play("images/1.mp3", isLocal: true);
-  }
-
-  /*_playSFXDone() async {
-    await audioPlayer.play("images/done.mp3", isLocal: true);
-  }*/
-
 }

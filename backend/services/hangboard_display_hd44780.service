@@ -1,0 +1,13 @@
+[Unit]
+Description=Hangboard Display HD44780 Service
+After=mosquitto.service multi-user.target
+
+[Service]
+User=pi
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/display_hd44780/display.py
+StandardOutput=file:/var/log/display_hd44780_stdout.log
+StandardError=file:/var/log/display_hd44780_stderr.log
+
+[Install]
+WantedBy=multi-user.target

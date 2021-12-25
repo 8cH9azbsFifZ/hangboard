@@ -1,0 +1,18 @@
+[Unit]
+Description=Hangboard Record Service
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/bin/sh -c 'cd /home/pi/hangboard/backend && source venv /home/pi/hangboard/backend/bin/activate && ./record.py'
+
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

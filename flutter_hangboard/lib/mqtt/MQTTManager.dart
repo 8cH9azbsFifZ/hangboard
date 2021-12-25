@@ -226,7 +226,7 @@ class MQTTManager {
           "hangboard/sensor/sensorstatus") {
         _currentState.setSensorStatus(pt);
       }
-      if (recMess.variableHeader!.topicName == "hangboard/sensor/setinfo") {
+      if (recMess.variableHeader!.topicName == "hangboard/workout/setinfo") {
         _currentState.setSetInfo(pt);
       }
       if (recMess.variableHeader!.topicName ==

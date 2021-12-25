@@ -1,3 +1,7 @@
+""" 
+Manual insert of initial test data for a test user.
+Must be done for intensity calulations etc.
+"""
 from database import Database
 
 

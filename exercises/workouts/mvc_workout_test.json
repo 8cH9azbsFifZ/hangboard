@@ -101,7 +101,7 @@
       "ID": "WMVC-MODERATE-1",
       "Sets": [
         {
-          "Rest-to-Start": 120,
+          "Rest-to-Start": 10,
           "Exercise": "1 Hand Pull",
           "Counter": 5,
           "Pause": 2,
