@@ -1,4 +1,4 @@
-
+- v0.60 - Demonstrator with HD44780 display for load
 - v0.59 - WIP 
 - v0.58 - Demonstrator with one working exercise. Progress bar (#103), bugfixes (#101).
 - v0.57 - Bugfixes (#99, #104)
