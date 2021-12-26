@@ -204,7 +204,16 @@ class Board():
         return ""
 
 
-
+"""
+Example empty board A1 ... C7:
+.......
+.......
+.......  
+Example used holds B1, B7: 4 fingers
+.......
+4.....4
+.......
+"""
 class AsciiBoard(): # TODO continue implementation #82
     """
     All stuff for handling an ASCII output of the current hangboard configuration.
