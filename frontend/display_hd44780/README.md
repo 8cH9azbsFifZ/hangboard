@@ -29,3 +29,4 @@ Refresh rate makes display unreadable...
 
 # References 
 - https://tutorials-raspberrypi.de/hd44780-lcd-display-per-i2c-mit-dem-raspberry-pi-ansteuern/
+- Alternative driver module: https://luma-lcd.readthedocs.io/en/latest/HD44780.html
