@@ -1,0 +1,19 @@
+{
+    "Reference": "Beastmaker",
+    "Author": "Beastmaker",
+    "URL": "",
+    "Workouts": [   
+        {
+            "ID": "BEASTY-5A",
+            "Name": "",
+            "Type": "",
+            "Description": "",
+            "Sets":
+            [
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": ""} ,
+                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": ""} 
+            ]
+        }
+    ]
+}
+        
