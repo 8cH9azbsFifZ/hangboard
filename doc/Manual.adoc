@@ -31,8 +31,9 @@ endif::[]
 *A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.*
 
 # Why a universal smart hangboard?
-Nowadays smart hangboards are becoming more and more popular. But there is little market for commercial
-products (they are expensive). All existing hangboard training apps have limitations (i.e. payed subscriptions,
+Nowadays smart hangboards are becoming more and more popular. And there is a growing market for commercial
+products (they are expensive): <<BeastMakerMotherboard>>, <<Climbro>>, <<SmartBoard>>, <<Entralpi>>
+All existing hangboard training apps have limitations (i.e. payed subscriptions,
 limited to specific hangboards, buggy, sketchy to create new or custom training plans). In the recent years
 there have been a couple of attempts to create hombrew smart hangboards (i.e. <<PiClimbing>> and <<ArduinoHangboard>>).
 
@@ -467,3 +468,8 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 * [[[MVC2]]] Tendinous Tissue Adaptation to Explosive- vs. Sustained-Contraction Strength Training, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/fphys-09-01170.pdf
 * [[[KalmanHCSR04]]]  Kalman Filter Algorithm Design for HC-SR04 Ultrasonic Sensor Data Acquisition System, Adnan Rafi Al Tahtawi https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Kalman_Filter_Algorithm_Design_for_HC-SR04_Ultraso.pdf
 * [[[LatticeMVC]]] The determination of finger flexor critical force in rock climbers https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Giles2019Thedeterminationoffingerflexorcriticalforceinrockclimbers.pdf
+* [[[BeastMakerMotherboard]]] Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard
+* [[[Climbro]]] Force sensing smart hangboard https://climbro.com/
+* [[[SmartBoard]]] Force sesing smart hangboard https://www.smartboard-climbing.com/
+* [[[Entralpi]]] Force sensing plate for smart hangboard training https://entralpi.com/
+* [[[SmartRock]]] Universal mount for hangboards in door frames https://smartrock.de/?lang=de
