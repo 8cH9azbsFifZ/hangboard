@@ -5,13 +5,23 @@
     "Workouts": [   
         {
             "ID": "BEASTY-5A",
-            "Name": "",
-            "Type": "",
-            "Description": "",
+            "Name": "Beasty 5a",
+            "Type": "Strength, Crimp",
+            "Description": "12 sets, 47:00 Minutes",
             "Sets":
             [
-                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": ""} ,
-                { "Rest-to-Start": 5,       "Exercise": "Hang", 			    "Counter": 12, 	"Pause": 180,    "Reps": 5, "Left": "15mm", "Right": "15mm", "Description": ""} 
+                { "Rest-to-Start": 5,         "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "Jug", "Right": "Jug",   "Description": "", "No": 1, "Fingers": 4, "Grip": "Jug"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "Jug", "Right": "Jug",   "Description": "", "No": 2, "Fingers": 4, "Grip": "Jug"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 3, "Fingers": "Front 3", "Grip": "Open"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 4, "Fingers": "Front 3", "Grip": "Open"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 5, "Fingers": 4, "Grip": "Open"} ,
+                { "Rest-to-Start": 360,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 6, "Fingers": 4, "Grip": "Open"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "Jug", "Right": "Jug",   "Description": "", "No": 7, "Fingers": 4, "Grip": "Jug"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "Jug", "Right": "Jug",   "Description": "", "No": 8, "Fingers": 4, "Grip": "Jug"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 9, "Fingers": "Front 3", "Grip": "Open"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 10, "Fingers": "Front 3", "Grip": "Open"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 11, "Fingers": 4, "Grip": "Open"} ,
+                { "Rest-to-Start": 150,       "Exercise": "Hang", 			    "Counter": 7, 	"Pause": 3,    "Reps": 7, "Left": "45mm", "Right": "45mm", "Description": "", "No": 12, "Fingers": 4, "Grip": "Open"} 
             ]
         }
     ]
