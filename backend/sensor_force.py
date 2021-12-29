@@ -80,6 +80,8 @@ class SensorForce():
         self.pin_pd_sck1 = pin_pd_sck1
 
         self.referenceUnit = referenceUnit
+        self.referenceUnit1 = referenceUnit1
+
         self.sampling_rate = sampling_interval
 
         self.calibration_duration = 10
