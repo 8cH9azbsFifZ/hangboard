@@ -111,7 +111,6 @@ The class documentation of the backend services can be found here: https://8ch9a
 
 ## Developing the software
 For preparation install the following software:
-- Install dependencies on raspi: `sudo apt-get install libxslt-dev`
 - Install flutter and configure correct paths
 - Prepare the virtual python environment
   ```
