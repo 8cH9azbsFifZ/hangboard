@@ -72,6 +72,9 @@ class SensorForce():
 
         self.pin_dout = pin_dout
         self.pin_pd_sck = pin_pd_sck
+         
+        self.pin_dout1 = 5 # FIXME: configurable
+        self.pin_pd_sck1 = 6 # FIXME: Labels left / right
 
         self.referenceUnit = referenceUnit
         self.sampling_rate = sampling_interval
@@ -160,6 +163,7 @@ class SensorForce():
 
     def init_hx711(self):
         self.hx = HX711(self.pin_dout , self.pin_pd_sck) 
+        self.hx1 = HX711(self.pin_dout1 , self.pin_pd_sck1) 
 
         # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
         # Still need to figure out why does it change.
@@ -169,23 +173,24 @@ class SensorForce():
         # The second paramter is the order of the bits inside each byte.
         # According to the HX711 Datasheet, the second parameter is MSB so you shouldn't need to modify it.
         self.hx.set_reading_format("MSB", "MSB")
+        self.hx1.set_reading_format("MSB", "MSB")
 
         self.set_reference_unit()
+        self.hx.set_reference_unit_A (self.referenceUnit)
+        self.hx1.set_reference_unit_A (self.referenceUnit)
 
         self.hx.reset()
+        self.hx1.reset()
 
     def calibrate(self):
         logging.debug("Starting Tare done! Wait...")
         self._sendmessage("/status", "Starting Tare done! Wait...")
 
         self.hx.tare_A()
-        self.hx.tare_B()
-        logging.debug("Tare done! Add weight now...")
+        self.hx1.tare_A()
+        #self.hx.tare_B() # Lessons Learned: Too slow
+        #logging.debug("Tare done! Add weight now...")
         self._sendmessage("/status", "Tare done! Add weight now...")
-
-        # to use both channels, you'll need to tare them both
-        #hx.tare_A()
-        #hx.tare_B()
 
     # TODO implement calibrate command over MQTT  #78
 
@@ -200,9 +205,8 @@ class SensorForce():
         """
         #unit = 92
         #unit = 1257528 /79
-
-        self.hx.set_reference_unit_A (self.referenceUnit)
-        self.hx.set_reference_unit_B (self.referenceUnit)
+        # FIXME delete function
+        #self.hx.set_reference_unit_B (self.referenceUnit)# Lessons Learned: Too slow
 
     def run_main_measure(self):
         while True:
@@ -256,7 +260,7 @@ class SensorForce():
 
         # FIXME: WIRING MATTERS - ADD A COMMENT
         self._load_current_raw_A = -1*self.hx.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
-        self._load_current_raw_B = -1*self.hx.get_weight_B(times=1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw_B = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
         logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
 
