@@ -361,7 +361,7 @@ class SensorForce():
         """
         #https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html
         #integrate.simpson(y, x)
-        self.FTI = integrate.simpson(self._load_series, self._time_series) * self._Gravity
+        # FIXME RASPI ERROR self.FTI = integrate.simpson(self._load_series, self._time_series) * self._Gravity
         return self.FTI
 
     def _Calc_RFD(self):
