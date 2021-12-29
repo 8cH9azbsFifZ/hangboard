@@ -201,7 +201,8 @@ class SensorForce():
         #unit = 92
         #unit = 1257528 /79
 
-        self.hx.set_reference_unit(self.referenceUnit)
+        self.hx.set_reference_unit_A (self.referenceUnit)
+        self.hx.set_reference_unit_B (self.referenceUnit)
 
     def run_main_measure(self):
         while True:
