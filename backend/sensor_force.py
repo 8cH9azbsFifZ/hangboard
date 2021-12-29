@@ -175,7 +175,7 @@ class SensorForce():
 
         self.hx = HX711(self.pin_dout , self.pin_pd_sck) 
         self.hx.set_reading_format("MSB", "MSB")
-        self.set_reference_unit(self.referenceUnit)
+        self.hx.set_reference_unit(self.referenceUnit)
         self.hx.reset()
 
         if self._two_hx711:
