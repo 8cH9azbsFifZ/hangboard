@@ -68,7 +68,7 @@ class SensorForce():
         pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
         referenceUnit = 1257528/79, load_hang = 5.0, # FIXME 
         hostname="localhost", port=1883, 
-        two_hx711=True, pin_dout1 = 5, pin_pd_sck1 = 6, referenceUnit1 = 1257528/79): 
+        two_hx711=False, pin_dout1 = 5, pin_pd_sck1 = 6, referenceUnit1 = 1257528/79): 
         logging.debug ("Initialize")
 
         self.pin_dout = pin_dout
