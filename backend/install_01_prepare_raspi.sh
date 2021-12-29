@@ -15,3 +15,5 @@ sudo apt-get -y install mosquitto-clients
 #sudo systemctl stop mosquitto     # stop service
 #sudo systemctl enable mosquitto   # autostart (default: on)
 
+# Install libs for python
+sudo apt-get install libatlas-base-dev
