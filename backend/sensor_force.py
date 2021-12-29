@@ -178,7 +178,8 @@ class SensorForce():
         logging.debug("Starting Tare done! Wait...")
         self._sendmessage("/status", "Starting Tare done! Wait...")
 
-        self.hx.tare()
+        self.hx.tare_A()
+        self.hx.tare_B()
         logging.debug("Tare done! Add weight now...")
         self._sendmessage("/status", "Tare done! Add weight now...")
 
