@@ -253,7 +253,11 @@ class SensorForce():
     def run_one_measure(self):
         self.time_current = time.time()
 
-        self._load_current_raw = -1*self.hx.get_weight(1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw_A = -1*self.hx.get_weight_A(1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw_B = -1*self.hx.get_weight_B(1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
+        logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
+
         self.load_current = self._calc_moving_average() # FIXME
 
         if EMULATE_HX711:
