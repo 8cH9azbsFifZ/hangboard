@@ -175,13 +175,13 @@ class SensorForce():
 
         self.hx = HX711(self.pin_dout , self.pin_pd_sck) 
         self.hx.set_reading_format("MSB", "MSB")
-        self.set_reference_unit()
+        self.set_reference_unit(self.referenceUnit)
         self.hx.reset()
 
         if self._two_hx711:
             self.hx1 = HX711(self.pin_dout1 , self.pin_pd_sck1) 
             self.hx1.set_reading_format("MSB", "MSB")
-            self.hx1.set_reference_unit (self.referenceUnit)
+            self.hx1.set_reference_unit (self.referenceUnit1)
             self.hx1.reset()
 
     def calibrate(self):
