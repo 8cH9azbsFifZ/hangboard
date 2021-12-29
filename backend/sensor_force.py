@@ -256,7 +256,7 @@ class SensorForce():
 
         # FIXME: WIRING MATTERS - ADD A COMMENT
         self._load_current_raw_A = -1*self.hx.get_weight_A(1,times=1) # Never use this, but use a Low pass filter to get rid of the noise
-        self._load_current_raw_B = -1*self.hx.get_weight_B(1,times=1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw_B = 0 #-1*self.hx.get_weight_B(1,times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
         logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
 
