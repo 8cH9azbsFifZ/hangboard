@@ -472,3 +472,4 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 * [[[SmartBoard]]] Force sesing smart hangboard https://www.smartboard-climbing.com/
 * [[[Entralpi]]] Force sensing plate for smart hangboard training https://entralpi.com/
 * [[[SmartRock]]] Universal mount for hangboards in door frames https://smartrock.de/?lang=de
+* [[[Pull-Up Pocket Sensor]]] Pull-up Sensor and Counter - Arduino Nano 33 BLE - tinyML https://create.arduino.cc/projecthub/tl9672/pull-up-sensor-and-counter-arduino-nano-33-ble-tinyml-6516d2
