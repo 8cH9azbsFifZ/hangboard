@@ -16,5 +16,8 @@ cd backend
 python3 -m pip install -r backend/requirements.txt
 
 
+sudo pip3 install scipy # FIXME
+
+
 echo "Install the backend services (manually)"
 # FIXME: Automate installation
