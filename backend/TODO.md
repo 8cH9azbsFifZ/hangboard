@@ -1,0 +1,3 @@
+- Cleanup after directory restruct: sensor-distance, sensor-gyroscope, workout, database, board
+- Dissect asyncapi.yaml
+- Checkup: Doxyfile
