@@ -53,7 +53,7 @@ manual-doc:
 
 
 frontend:
-	cd flutter_hangboard ; 	~/src/flutter/bin/flutter build ios ; 	~/src/flutter/bin/flutter install ; cd ..
+	cd frontend/flutter_hangboard ; 	~/src/flutter/bin/flutter build ios ; 	~/src/flutter/bin/flutter install ; cd ..
 
 backend:
 	docker-compose build
