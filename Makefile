@@ -1,4 +1,4 @@
-api-doc: #output in ~/api
+api-doc: #output in ~/api #FIXME
 	git checkout gh-pages --quiet
 	git checkout dev -- .gitignore
 	git checkout dev -- doc
