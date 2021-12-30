@@ -1,0 +1,52 @@
+asyncapi: 2.0.0
+info:
+  title: Hangboard application - Sensor Force
+  version: '0.0.1'
+  description: |
+    Force sensing hangboard application.
+    Backend communication protocol for force sensor. 
+  license:
+    name: GPLv3
+    url: 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+servers:
+  mosquitto:
+    url: mqtt://raspi-hangboard
+    protocol: mqtt
+channels:                 
+  hangboard/sensor/load/loadstatus:
+    subscribe:
+      summary: Information on the current load status including the calculated values.
+      operationId: GetCurrentLoadStatus
+      message:
+        name: Load Status
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
+            loadcurrent:
+              type: number
+              description: Current load in kg.
+              example: 23.2
+            loadaverage:
+              type: number
+              description: Average load in kg.
+              example: 55.3
+            loadmaximal:
+              type: number
+              description: Maximal load in kg.
+              example: 99.2
+            loadloss:
+              type: number
+              description: Relative loss of load - current / maximal.
+              example: 0.2              
+            fti:
+              type: number
+              description: Force Time integral
+              example: 231.1                     
+            rfd:
+              type: number
+              description: Rate of force development
+              example: 12.2
