@@ -290,11 +290,11 @@ class SensorForce():
         if drel_B + 1.0 < accuracy: # rel will yield -1.00 if value jumps up and down again - ignore previous measurement
             self._load3_B[1] = self._load3_B[2]
 
-        logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
+        #logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
         
         self.load_current = self._load3_A[1] + self._load3_B[1] # TODO: describe the filter
         # TODO: describe the load circuit hack
-        
+
         #self.load_current = self._calc_moving_average() # FIXME
 
         if EMULATE_HX711:
