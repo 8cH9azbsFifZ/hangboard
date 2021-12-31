@@ -257,7 +257,6 @@ class SensorForce():
             self._load_current_raw_B = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
         #logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
-        logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}")
 
 
         # Fill load3 array
@@ -273,7 +272,7 @@ class SensorForce():
         d12_A = self._load3_A[0] - self._load3_A[1] 
         d23_A = self._load3_A[1] - self._load3_A[2]
         drel_A = d12_A/d23_A
-        logging.debug("yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
+        logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
 
         self.load_current = self._calc_moving_average() # FIXME
 
