@@ -294,13 +294,7 @@ class SensorForce():
         logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
         
         self.load_current = self._load3_A[1] + self._load3_B[1] # TODO: describe the filter
-        accuracy_hang=0.1 # FIXME: global
-        if self.load_current > self.load_hang and self._load3_B[1] is not 0:
-            self.load_current_balance = self._load3_A[1] / self._load3_B[1]
-        #elif self._load3_B[1] > accuracy_hang:
-        #    self.load_current_balance = 1.
-        else:
-            self.load_current_balance = 0.5
+        self.load_current_balance = self._load3_A[1]
             
         self.time_current = self._time3[1] 
         # TODO: describe the load circuit hack
