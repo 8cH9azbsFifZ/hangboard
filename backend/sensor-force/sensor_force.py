@@ -270,6 +270,10 @@ class SensorForce():
         self._time3[0] = self._time3[1] 
         self._time3[1] = self._time3[2] 
         self._time3[2] = self.time_current
+        d12_A = self._load3_A[0] - self._load3_A[1] 
+        d23_A = self._load3_A[1] - self._load3_A[2]
+        drel_A = d12_A/d23_A
+        logging.debug("yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
 
         self.load_current = self._calc_moving_average() # FIXME
 
