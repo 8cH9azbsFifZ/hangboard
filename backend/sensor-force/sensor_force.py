@@ -217,31 +217,10 @@ class SensorForce():
     def run_main_measure(self):
         while True:
             try:
-                # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
-                # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
-                # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment these three lines to see what it prints.
-                
-                # np_arr8_string = hx.get_np_arr8_string()
-                # binary_string = hx.get_binary_string()
-                # print binary_string + " " + np_arr8_string
-                
-                # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                #val = self.hx.get_weight(1)
-                #val = self.hx.read_long()
-                #cur_timestamp = time.time()
-                #print(cur_timestamp, val)
                 self.run_one_measure()
                 logging.debug ("Current time " + "{:.2f}".format(self.time_current)  + " load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
                 + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD) + " LoadLoss " + "{:.2f}".format(self.LoadLoss))
 
-                # To get weight from both channels (if you have load cells hooked up 
-                # to both channel A and B), do something like this
-                #val_A = hx.get_weight_A(5)
-                #val_B = hx.get_weight_B(5)
-                #print "A: %s  B: %s" % ( val_A, val_B )
-
-                #self.hx.power_down()
-                #self.hx.power_up()
                 time.sleep(self.sampling_rate)
 
             except (KeyboardInterrupt, SystemExit):
@@ -270,7 +249,8 @@ class SensorForce():
         if self._two_hx711:
             self._load_current_raw_B = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
-        logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
+        #logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
+        logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}")
 
         self.load_current = self._calc_moving_average() # FIXME
 
