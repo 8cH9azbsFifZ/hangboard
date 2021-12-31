@@ -92,7 +92,7 @@ class SensorForce():
         # Variables for current measurement
         self.load_current = 0
         self.time_current = time.time()
-        self.load_current_balance = 0.5
+        self.load_current_balance = 0
 
         # Array to store 3 values to smoothen out exceptions (singular value, jumps back and forth, i.e. 0, -8.85, 0). 
         # A moving average is not correct to withdraw these values.
