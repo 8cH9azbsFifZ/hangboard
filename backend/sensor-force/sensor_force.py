@@ -66,7 +66,7 @@ else:
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
         pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
-        referenceUnit = 230068/5., load_hang = 5.0, # FIXME 
+        referenceUnit = 230068/5., load_hang = 2.0, # FIXME 
         hostname="localhost", port=1883, 
         two_hx711=True, pin_dout1 = 5, pin_pd_sck1 = 6, referenceUnit1 = 201129/5.): 
         logging.debug ("Initialize")
@@ -295,7 +295,7 @@ class SensorForce():
         
         self.load_current = self._load3_A[1] + self._load3_B[1] # TODO: describe the filter
         accuracy_hang=0.1 # FIXME: global
-        if self._load3_B[1] is not 0:
+        if self.load_current > self.load_hang and self._load3_B[1] is not 0:
             self.load_current_balance = self._load3_A[1] / self._load3_B[1]
         #elif self._load3_B[1] > accuracy_hang:
         #    self.load_current_balance = 1.
