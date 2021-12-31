@@ -30,6 +30,10 @@ channels:
               type: number
               description: Current load in kg.
               example: 23.2
+            loadcurrent_balance:
+              type: number
+              description: Balance channels A and B (left / right).
+              example: 0.5
             loadaverage:
               type: number
               description: Average load in kg.

@@ -92,6 +92,7 @@ class SensorForce():
         # Variables for current measurement
         self.load_current = 0
         self.time_current = time.time()
+        self.load_current_balance = 0.5
 
         # Array to store 3 values to smoothen out exceptions (singular value, jumps back and forth, i.e. 0, -8.85, 0). 
         # A moving average is not correct to withdraw these values.
@@ -247,7 +248,7 @@ class SensorForce():
         return 0
 
     def run_one_measure(self):
-        self.time_current = time.time()
+        time_current = time.time()
 
         # FIXME: WIRING MATTERS - ADD A COMMENT
         self._load_current_raw_A = -1*self.hx.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
@@ -269,7 +270,7 @@ class SensorForce():
         self._load3_B[2] = self._load_current_raw_B
         self._time3[0] = self._time3[1] 
         self._time3[1] = self._time3[2] 
-        self._time3[2] = self.time_current
+        self._time3[2] = time_current 
         d12_A = self._load3_A[0] - self._load3_A[1] 
         d23_A = self._load3_A[1] - self._load3_A[2]
         drel_A = 0
@@ -293,6 +294,8 @@ class SensorForce():
         logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
         
         self.load_current = self._load3_A[1] + self._load3_B[1] # TODO: describe the filter
+        self.load_current_balance = self._load3_A[1] / self._load3_B[1]
+        self.time_current = self._time3[1] 
         # TODO: describe the load circuit hack
 
         #self.load_current = self._calc_moving_average() # FIXME
@@ -337,7 +340,7 @@ class SensorForce():
         ##print (full_second)
         #print (full_second_decimals)
         #if full_second_decimals <= 0.02:
-        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadcurrent_balance": '+ "{:.2f}".format(self.load_current_balance) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
