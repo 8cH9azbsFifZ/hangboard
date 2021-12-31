@@ -273,13 +273,13 @@ class SensorForce():
         d12_A = self._load3_A[0] - self._load3_A[1] 
         d23_A = self._load3_A[1] - self._load3_A[2]
         drel_A = d12_A/d23_A
-        if d12_A < accuracy or d23_A < accuracy:
+        if abs(d12_A) < accuracy or abs(d23_A) < accuracy:
             drel_A = 0
         d12_B = self._load3_B[0] - self._load3_B[1] 
         d23_B = self._load3_B[1] - self._load3_B[2]
         drel_B = d12_B/d23_B
 
-        if d12_B < accuracy or d23_B < accuracy:
+        if abs(d12_B) < accuracy or abs(d23_B) < accuracy:
             drel_B = 0
         
         logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
