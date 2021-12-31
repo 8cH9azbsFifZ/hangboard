@@ -225,7 +225,7 @@ class SensorForce():
         while True:
             try:
                 self.run_one_measure()
-                logging.debug ("Current time " + "{:.2f}".format(self.time_current)  + " load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
+                logging.debug ("Current time " + "{:.2f}".format(self.time_current)  + " load " + "{:.2f}".format(self.load_current) + " load_bal " + "{:.2f}".format(self.load_current_balance) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
                 + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD) + " LoadLoss " + "{:.2f}".format(self.LoadLoss))
 
                 time.sleep(self.sampling_rate)
@@ -299,6 +299,8 @@ class SensorForce():
             self.load_current_balance = self._load3_A[1] / self._load3_B[1]
         #elif self._load3_B[1] > accuracy_hang:
         #    self.load_current_balance = 1.
+        else:
+            self.load_current_balance = 0.5
             
         self.time_current = self._time3[1] 
         # TODO: describe the load circuit hack
