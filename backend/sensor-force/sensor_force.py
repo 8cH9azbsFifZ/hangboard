@@ -93,6 +93,12 @@ class SensorForce():
         self.load_current = 0
         self.time_current = time.time()
 
+        # Array to store 3 values to smoothen out exceptions (singular value, jumps back and forth, i.e. 0, -8.85, 0). 
+        # A moving average is not correct to withdraw these values.
+        self._load3_A = [0,0,0]
+        self._load3_B = [0,0,0]
+        self._time3 = [0,0,0]
+
         # Array for storing all values
         self._load_series = []
         self._time_series = []
@@ -144,7 +150,7 @@ class SensorForce():
         #        data = json.load(json_file)
         #    self._simdata = data["SimulationData"]
 
-        self._moving_average_n = 10
+        self._moving_average_n = 3
         self._moving_average_series = []
         self._moving_average_load = 0
 
@@ -246,11 +252,24 @@ class SensorForce():
         # FIXME: WIRING MATTERS - ADD A COMMENT
         self._load_current_raw_A = -1*self.hx.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw_B = 0.
+        
         if self._two_hx711:
             self._load_current_raw_B = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
         #logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
         logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}")
+
+
+        # Fill load3 array
+        self._load3_A[0] = self._load3_A[1] 
+        self._load3_A[1] = self._load3_A[2] 
+        self._load3_A[3] = self._load_current_raw_A
+        self._load3_B[0] = self._load3_B[1] 
+        self._load3_B[1] = self._load3_B[2] 
+        self._load3_B[3] = self._load_current_raw_B
+        self._time3[0] = self._time3[1] 
+        self._time3[1] = self._time3[2] 
+        self._time3[3] = self.time_current
 
         self.load_current = self._calc_moving_average() # FIXME
 
