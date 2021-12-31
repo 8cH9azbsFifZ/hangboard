@@ -263,13 +263,13 @@ class SensorForce():
         # Fill load3 array
         self._load3_A[0] = self._load3_A[1] 
         self._load3_A[1] = self._load3_A[2] 
-        self._load3_A[3] = self._load_current_raw_A
+        self._load3_A[2] = self._load_current_raw_A
         self._load3_B[0] = self._load3_B[1] 
         self._load3_B[1] = self._load3_B[2] 
-        self._load3_B[3] = self._load_current_raw_B
+        self._load3_B[2] = self._load_current_raw_B
         self._time3[0] = self._time3[1] 
         self._time3[1] = self._time3[2] 
-        self._time3[3] = self.time_current
+        self._time3[2] = self.time_current
 
         self.load_current = self._calc_moving_average() # FIXME
 
