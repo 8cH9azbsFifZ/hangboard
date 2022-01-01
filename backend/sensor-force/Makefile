@@ -3,11 +3,9 @@ api-doc:
 
 install:
 	service="hangboard_sensor_force.service"
-
-	echo "Install hangboard service for: "$(service) 
-
-	sudo cp ./$(service) /lib/systemd/system/
-	sudo chmod 644 /lib/systemd/system/$(service)
+	echo "Install hangboard service for: hangboard_sensor_force.service" 
+	sudo cp ./hangboard_sensor_force.service /lib/systemd/system/
+	sudo chmod 644 /lib/systemd/system/hangboard_sensor_force.service
 	sudo systemctl daemon-reload
-	sudo systemctl enable $(service)
-	sudo systemctl restart $(service)
+	sudo systemctl enable hangboard_sensor_force.service
+	sudo systemctl restart hangboard_sensor_force.service
