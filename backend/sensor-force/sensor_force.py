@@ -96,6 +96,7 @@ class SensorForce():
 
         # Array to store 3 values to smoothen out exceptions (singular value, jumps back and forth, i.e. 0, -8.85, 0). 
         # A moving average is not correct to withdraw these values.
+        # FIXME: move to hx711 lib (and push to upstream?)
         self._load3_A = [0,0,0]
         self._load3_B = [0,0,0]
         self._time3 = [0,0,0]
