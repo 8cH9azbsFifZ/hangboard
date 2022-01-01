@@ -61,24 +61,7 @@ TIP: Further information can be found in the repository: https://github.com/8cH9
 .Smart Hangboard App
 image::./app/app_screenshot.png[{half-size}Smart Hangboard App]
 
-## List of implemented hangboards
-- Beastmaker 1000
-- Beastmaker 2000
-- Cliffboard Mini
-- Crusher 3
-- Linebreaker Base
-- Metolius Prime
-- Metolius Project
-- Metolius Simulator 3D
-- Metolius Wood Grips 2 Compact
-- Monster
-- Mountain Rocks
-- Redge Port
-- Roots Baseline
-- Simond Ballsy Board
-- Topout Project
-- Zlagboard Evo
-- Zlagboard Mini
+
 
 TIP: Your hangboard is not supported yet? It can be added easily. Just open a ticket: 
 https://github.com/8cH9azbsFifZ/hangboard/issues/new
