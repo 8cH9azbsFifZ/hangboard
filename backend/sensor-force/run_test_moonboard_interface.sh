@@ -1,0 +1,1 @@
+ssh -lpi raspi-moonboard "cd moonboard;git pull; sudo python3  ./run_testing_interface_hangboard.py"
