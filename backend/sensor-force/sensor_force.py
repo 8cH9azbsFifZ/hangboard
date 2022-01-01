@@ -71,6 +71,10 @@ class SensorForce():
         two_hx711=True, pin_dout1 = 5, pin_pd_sck1 = 6, referenceUnit1 = 201129/5.): 
         logging.debug ("Initialize")
 
+        if not two_hx711:
+            referenceUnit = 1257528/79
+            referenceUnit1 = referenceUnit
+
         self.pin_dout = pin_dout
         self.pin_pd_sck = pin_pd_sck
 
