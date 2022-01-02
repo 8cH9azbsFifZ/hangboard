@@ -63,6 +63,7 @@ else:
     from emulated_hx711 import HX711
 
 
+# FIXME: use configuration file for reference units
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
         pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
