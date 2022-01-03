@@ -51,6 +51,9 @@ import json
 
 import threading
 
+from configparser import ConfigParser
+
+
 EMULATE_HX711 = False #True # FIXME: parameter
 
 if not EMULATE_HX711:
@@ -66,30 +69,26 @@ else:
 # FIXME: use configuration file for reference units
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
-        pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
-        referenceUnit = 230068/5., load_hang = 2.0, # FIXME 
-        hostname="localhost", port=1883, 
-        two_hx711=True, pin_dout1 = 5, pin_pd_sck1 = 6, referenceUnit1 = 201129/5.): 
+        sampling_interval = 0.1, 
+        load_hang = 2.0, # FIXME put in config file
+        config_file="hangboard.ini"): 
         logging.debug ("Initialize")
 
-        if not two_hx711:
-            referenceUnit = 1257528/79
-            referenceUnit1 = referenceUnit
+        self.config_obj = ConfigParser()
+        self.config_obj.read(config_file)
 
-        self.pin_dout = pin_dout
-        self.pin_pd_sck = pin_pd_sck
+        # Read sensor configuration from file
+        sensor_force_info = self.config_obj["SENSOR-FORCE"]
+        self.pin_dout1   = sensor_force_info["pin_dout1"] 
+        self.pin_pd_sck1 = sensor_force_info["pin_pd_sck1"] 
+        self.pin_dout2   = sensor_force_info["pin_dout2"] 
+        self.pin_pd_sck2 = sensor_force_info["pin_pd_sck2"] 
 
-        # 2nd hx711 for measuring force symmetry
-        self._two_hx711 = two_hx711
-        self.pin_dout1 = pin_dout1
-        self.pin_pd_sck1 = pin_pd_sck1
-
-        self.referenceUnit = referenceUnit
-        self.referenceUnit1 = referenceUnit1
+        self.referenceUnit1 = sensor_force_info["referenceUnit1"] 
+        self.referenceUnit2 = sensor_force_info["referenceUnit2"] 
 
         self.sampling_rate = sampling_interval
-
-        self.calibration_duration = 10
+        self.calibration_duration = 10 # FIXME: configurable
 
         # Threshold for detection of a hang
         self.load_hang = load_hang
@@ -140,8 +139,11 @@ class SensorForce():
         self.LastHang_LoadLoss = 0
 
         # Connect to MQTT
+        self.mqtt_info = self.config_obj["MQTT"]
         self._client = mqtt.Client()
-        self._client.connect(hostname, port,60)
+        mqtt_server = self.mqtt_info["hostname"]
+        mqtt_port = self.mqtt_info["port"]
+        self._client.connect(mqtt_server, mqtt_port,60)
         self._sendmessage("/status", "Starting")
 
         self.init_hx711()
@@ -188,24 +190,22 @@ class SensorForce():
         # The second paramter is the order of the bits inside each byte.
         # According to the HX711 Datasheet, the second parameter is MSB so you shouldn't need to modify it.
 
-        self.hx = HX711(self.pin_dout , self.pin_pd_sck) 
-        self.hx.set_reading_format("MSB", "MSB")
-        self.hx.set_reference_unit(self.referenceUnit)
-        self.hx.reset()
+        self.hx1 = HX711(self.pin_dout1 , self.pin_pd_sck1) 
+        self.hx1.set_reading_format("MSB", "MSB")
+        self.hx1.set_reference_unit(self.referenceUnit1)
+        self.hx1.reset()
 
-        if self._two_hx711:
-            self.hx1 = HX711(self.pin_dout1 , self.pin_pd_sck1) 
-            self.hx1.set_reading_format("MSB", "MSB")
-            self.hx1.set_reference_unit (self.referenceUnit1)
-            self.hx1.reset()
+        self.hx2 = HX711(self.pin_dout2 , self.pin_pd_sck2) 
+        self.hx2.set_reading_format("MSB", "MSB")
+        self.hx2.set_reference_unit (self.referenceUnit2)
+        self.hx2.reset()
 
     def calibrate(self):
         logging.debug("Starting Tare done! Wait...")
         self._sendmessage("/status", "Starting Tare done! Wait...")
 
-        self.hx.tare()
-        if self._two_hx711:
-            self.hx1.tare()
+        self.hx1.tare()
+        self.hx2.tare()
 
         #self.hx.tare_B() # Lessons Learned: Too slow
         #logging.debug("Tare done! Add weight now...")
@@ -257,11 +257,9 @@ class SensorForce():
         time_current = time.time()
 
         # FIXME: WIRING MATTERS - ADD A COMMENT
-        self._load_current_raw_A = -1*self.hx.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
-        self._load_current_raw_B = 0.
+        self._load_current_raw_A = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         
-        if self._two_hx711:
-            self._load_current_raw_B = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw_B = -1*self.hx2.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
         #logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
 
