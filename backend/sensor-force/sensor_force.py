@@ -447,11 +447,11 @@ if __name__ == "__main__":
 
     referenceWeight1 = float(sensor_force_info["referenceWeight1"])
     referenceValue1 = float(sensor_force_info["referenceValue1"])
-    referenceUnit1 = referenceValue1/referenceValue1
+    referenceUnit1 = referenceValue1/referenceWeight1
 
     referenceWeight2 = float(sensor_force_info["referenceWeight2"])
     referenceValue2 = float(sensor_force_info["referenceValue2"])
-    referenceUnit2 = referenceValue2/referenceValue2
+    referenceUnit2 = referenceValue2/referenceWeight2
 
     mqtt_info = config_obj["MQTT"]
 
