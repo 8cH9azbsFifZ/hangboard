@@ -106,3 +106,43 @@ tail -f /var/log/sensor_force_std*
 
 # Debugging
 - Check the events: `mosquitto_sub -h raspi-hangboard -t  hangboard/sensor/load/loadstatus`
+
+
+# How to calibrate a load cell?
+Prepare hangboard.ini:
+
+referenceWeight1 = 5.
+referenceValue1 = 238436.69
+#referenceValue1 = 5
+
+Configure the reference weight you want to use and set the reference value to the weight.
+The is defined as: referenceUnit = referenceValue / referenceWeight
+
+Run the sensor program:
+`python3 ./sensor_force.py`
+
+Put the weight on the load cell and observe "average load" converges to a value around the selected channel output:
+```
+SensorForce(MainThread) Both channels: -0.00 	 and 233394.67 yields: -0.00 	 and 0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.24 load 233394.66 load_bal -0.00 average load 234369.03 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 233103.67 yields: 0.00 	 and -0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.33 load 233394.66 load_bal -0.00 average load 234366.08 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 232992.67 yields: -0.00 	 and 0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.42 load 233103.66 load_bal -0.00 average load 234362.98 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 232745.67 yields: 0.00 	 and 0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.51 load 232992.66 load_bal -0.00 average load 234359.68 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 232697.67 yields: 0.00 	 and -0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.60 load 232745.66 load_bal -0.00 average load 234355.74 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 232645.67 yields: -0.00 	 and -0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.68 load 232697.66 load_bal -0.00 average load 234351.71 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 232969.67 yields: -0.00 	 and -0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.77 load 232645.66 load_bal -0.00 average load 234347.69 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 233205.67 yields: -0.00 	 and 0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.87 load 232969.66 load_bal -0.00 average load 234344.51 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 233681.67 yields: 0.00 	 and -0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328192.96 load 233205.66 load_bal -0.00 average load 234341.31 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+SensorForce(MainThread) Both channels: -0.00 	 and 234277.67 yields: -0.00 	 and 0.00 	 and 0.00
+SensorForce(MainThread) Current time 1641328193.06 load 233681.66 load_bal -0.00 average load 234338.81 calculated FTI 0.00 maximal load 240428.66 RFD 32353.79 LoadLoss 0.03
+```
+
+Do this for both load sensors and insert the value (i.e. 234338.81) in the hangboard.ini file.
