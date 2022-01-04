@@ -450,6 +450,7 @@ if __name__ == "__main__":
     mqtt_server = "localhost" # mqtt_info["hostname"]
     mqtt_port = int(mqtt_info["port"])
 
-    a = SensorForce(sampling_interval = 0.005)
+    a = SensorForce(sampling_interval = 0.005, 
+        mqtt_server = mqtt_server, mqtt_port = mqtt_port)
     a.calibrate() # FIXME: duplicate
     a.run_main_measure()
