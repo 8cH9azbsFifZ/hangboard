@@ -442,8 +442,16 @@ if __name__ == "__main__":
     pin_dout2   = int(sensor_force_info["pin_dout2"])
     pin_pd_sck2 = int(sensor_force_info["pin_pd_sck2"])
 
-    referenceUnit1 = float(sensor_force_info["referenceUnit1"])
-    referenceUnit2 = float(sensor_force_info["referenceUnit2"])
+    #referenceUnit1 = float(sensor_force_info["referenceUnit1"])
+    #referenceUnit2 = float(sensor_force_info["referenceUnit2"])
+
+    referenceWeight1 = float(sensor_force_info["referenceWeight1"])
+    referenceValue1 = float(sensor_force_info["referenceValue1"])
+    referenceUnit1 = referenceValue1/referenceValue1
+
+    referenceWeight2 = float(sensor_force_info["referenceWeight2"])
+    referenceValue2 = float(sensor_force_info["referenceValue2"])
+    referenceUnit2 = referenceValue2/referenceValue2
 
     mqtt_info = config_obj["MQTT"]
 
@@ -454,5 +462,4 @@ if __name__ == "__main__":
         pin_dout1 = pin_dout1, pin_pd_sck1 = pin_pd_sck1, referenceUnit1 = referenceUnit1,
         pin_dout2 = pin_dout2, pin_pd_sck2 = pin_pd_sck2, referenceUnit2 = referenceUnit2,
         mqtt_server = mqtt_server, mqtt_port = mqtt_port)
-    a.calibrate() # FIXME: duplicate
     a.run_main_measure()
