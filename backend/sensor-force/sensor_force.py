@@ -447,7 +447,7 @@ if __name__ == "__main__":
 
     mqtt_info = config_obj["MQTT"]
 
-    mqtt_server = mqtt_info["hostname"]
+    mqtt_server = "localhost" # mqtt_info["hostname"]
     mqtt_port = int(mqtt_info["port"])
 
     a = SensorForce(sampling_interval = 0.005)
