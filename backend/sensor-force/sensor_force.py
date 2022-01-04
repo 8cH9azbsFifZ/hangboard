@@ -437,13 +437,13 @@ if __name__ == "__main__":
     config_obj.read(config_file)
     sensor_force_info = config_obj["SENSOR-FORCE"]
 
-    pin_dout1   = sensor_force_info["pin_dout1"] 
-    pin_pd_sck1 = sensor_force_info["pin_pd_sck1"] 
-    pin_dout2   = sensor_force_info["pin_dout2"] 
-    pin_pd_sck2 = sensor_force_info["pin_pd_sck2"] 
+    pin_dout1   = int(sensor_force_info["pin_dout1"])
+    pin_pd_sck1 = int(sensor_force_info["pin_pd_sck1"])
+    pin_dout2   = int(sensor_force_info["pin_dout2"])
+    pin_pd_sck2 = int(sensor_force_info["pin_pd_sck2"])
 
-    referenceUnit1 = sensor_force_info["referenceUnit1"] 
-    referenceUnit2 = sensor_force_info["referenceUnit2"] 
+    referenceUnit1 = float(sensor_force_info["referenceUnit1"])
+    referenceUnit2 = float(sensor_force_info["referenceUnit2"])
 
     mqtt_info = config_obj["MQTT"]
 
@@ -451,6 +451,8 @@ if __name__ == "__main__":
     mqtt_port = int(mqtt_info["port"])
 
     a = SensorForce(sampling_interval = 0.005, 
+        pin_dout1 = pin_dout1, pin_pd_sck1 = pin_pd_sck1, referenceUnit1 = referenceUnit1,
+        pin_dout2 = pin_dout2, pin_pd_sck2 = pin_pd_sck2, referenceUnit2 = referenceUnit2,
         mqtt_server = mqtt_server, mqtt_port = mqtt_port)
     a.calibrate() # FIXME: duplicate
     a.run_main_measure()
