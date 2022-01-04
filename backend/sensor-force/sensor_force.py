@@ -71,21 +71,19 @@ class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
         sampling_interval = 0.1, 
         load_hang = 2.0, # FIXME put in config file
-        config_file="hangboard.ini"): 
+        pin_dout1 = 17, pin_pd_sck1 = 27, referenceUnit1 = 1,
+        pin_dout2 = 5, pin_pd_sck2 = 6, referenceUnit2 = 1,
+        mqtt_server = "raspi-hangboard", mqtt_port = 1883): 
+
         logging.debug ("Initialize")
 
-        self.config_obj = ConfigParser()
-        self.config_obj.read(config_file)
+        self.pin_dout1   = pin_dout1
+        self.pin_pd_sck1 = pin_pd_sck1
+        self.pin_dout2   = pin_dout2
+        self.pin_pd_sck2 = pin_pd_sck2
 
-        # Read sensor configuration from file
-        sensor_force_info = self.config_obj["SENSOR-FORCE"]
-        self.pin_dout1   = sensor_force_info["pin_dout1"] 
-        self.pin_pd_sck1 = sensor_force_info["pin_pd_sck1"] 
-        self.pin_dout2   = sensor_force_info["pin_dout2"] 
-        self.pin_pd_sck2 = sensor_force_info["pin_pd_sck2"] 
-
-        self.referenceUnit1 = sensor_force_info["referenceUnit1"] 
-        self.referenceUnit2 = sensor_force_info["referenceUnit2"] 
+        self.referenceUnit1 = referenceUnit1
+        self.referenceUnit2 = referenceUnit2
 
         self.sampling_rate = sampling_interval
         self.calibration_duration = 10 # FIXME: configurable
@@ -139,11 +137,9 @@ class SensorForce():
         self.LastHang_LoadLoss = 0
 
         # Connect to MQTT
-        self.mqtt_info = self.config_obj["MQTT"]
         self._client = mqtt.Client()
-        mqtt_server = self.mqtt_info["hostname"]
-        mqtt_port = int(self.mqtt_info["port"])
-        self._client.connect(mqtt_server, mqtt_port,60)
+
+        self._client.connect(mqtt_server, mqtt_port, 60)
         self._sendmessage("/status", "Starting")
 
         self.init_hx711()
@@ -433,6 +429,27 @@ class SensorForce():
 
 if __name__ == "__main__":
     #a = SensorForce(referenceUnit = 1)
+
+
+    # Read sensor configuration from file
+    config_file="hangboard.ini"
+    config_obj = ConfigParser()
+    config_obj.read(config_file)
+    sensor_force_info = config_obj["SENSOR-FORCE"]
+
+    pin_dout1   = sensor_force_info["pin_dout1"] 
+    pin_pd_sck1 = sensor_force_info["pin_pd_sck1"] 
+    pin_dout2   = sensor_force_info["pin_dout2"] 
+    pin_pd_sck2 = sensor_force_info["pin_pd_sck2"] 
+
+    referenceUnit1 = sensor_force_info["referenceUnit1"] 
+    referenceUnit2 = sensor_force_info["referenceUnit2"] 
+
+    mqtt_info = config_obj["MQTT"]
+
+    mqtt_server = mqtt_info["hostname"]
+    mqtt_port = int(mqtt_info["port"])
+
     a = SensorForce(sampling_interval = 0.005)
-    a.calibrate()
+    a.calibrate() # FIXME: duplicate
     a.run_main_measure()
