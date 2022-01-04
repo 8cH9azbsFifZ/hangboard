@@ -442,9 +442,6 @@ if __name__ == "__main__":
     pin_dout2   = int(sensor_force_info["pin_dout2"])
     pin_pd_sck2 = int(sensor_force_info["pin_pd_sck2"])
 
-    #referenceUnit1 = float(sensor_force_info["referenceUnit1"])
-    #referenceUnit2 = float(sensor_force_info["referenceUnit2"])
-
     referenceWeight1 = float(sensor_force_info["referenceWeight1"])
     referenceValue1 = float(sensor_force_info["referenceValue1"])
     referenceUnit1 = referenceValue1/referenceWeight1
