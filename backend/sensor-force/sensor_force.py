@@ -142,7 +142,7 @@ class SensorForce():
         self.mqtt_info = self.config_obj["MQTT"]
         self._client = mqtt.Client()
         mqtt_server = self.mqtt_info["hostname"]
-        mqtt_port = self.mqtt_info["port"]
+        mqtt_port = int(self.mqtt_info["port"])
         self._client.connect(mqtt_server, mqtt_port,60)
         self._sendmessage("/status", "Starting")
 
