@@ -20,7 +20,10 @@ Implement logging with debug level from start on now :)
 import logging
 logging.basicConfig(level=logging.DEBUG, format='Workout(%(threadName)-10s) %(message)s',)
 
-from board import Board
+sys.path.append('../board')
+from board.board import Board
+
+#from ..board import Board
 from sensors import Sensors
 from counter import Counter
 from user import User
@@ -30,7 +33,7 @@ class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json", # FIXME
+    def __init__(self, verbose=None, dt=0.1, workoutdir="../../exercises/workouts", workoutfile="workout-test.json", # FIXME
         workout_id="ZB-A-1", hostname="localhost", port=1883):
 
         self._hostname = hostname
