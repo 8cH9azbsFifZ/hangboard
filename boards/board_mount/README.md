@@ -7,3 +7,5 @@
 
 * cf. layout_cell_bracket image
 * cf. images cell brackets 
+
+Ref: https://www.instructables.com/Get-a-Hanging-Weight-Sensor-for-Your-Arduino-Proje/
