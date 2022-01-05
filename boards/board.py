@@ -62,6 +62,8 @@ class SVGBoard():
         """
         Render image for hold configuration
         """
+        print ("Create SVG image for "+left+" and "+right)
+
         self.tree = ET.parse(self.boardimagename)
         self.root = self.tree.getroot()
 
@@ -127,7 +129,7 @@ class SVGBoard():
                 #    break
                 self.Hold2SVG(left=left,right=right)
                 self._svg_to_png(self._cache_svg_filename(left=left,right=right))
-                self._write_image_to_db(left=left,right=right)
+                #self._write_image_to_db(left=left,right=right) # FIXME make configurable
 
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
@@ -239,15 +241,23 @@ class AsciiBoard(): # TODO continue implementation #82
 
 
 if __name__ == "__main__":
-    a = Board()
+    boardname = "zlagboard_evo"
+    a = Board(boardname=boardname)
+
+    # Test: holds for JUG
     h = a.get_hold_for_type("JUG")
     print (h[0])
     print (h[-1])
-    svg = SVGBoard()
+
+    # Test: All holds
+    print (a.all_holds)
+
+    svg = SVGBoard(boardname=boardname)
     #svg.Hold2SVG()    
-    #svg.generate_all_images(holds=a.all_holds)
-
     #svg.Hold2SVG(left="C1",right="C7")
+    
+    svg.generate_all_images(holds=a.all_holds)
 
-    svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
-    svg._write_image_to_db("C1","C7")
+
+    #svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
+    #svg._write_image_to_db("C1","C7")
