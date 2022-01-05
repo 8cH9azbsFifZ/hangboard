@@ -14,7 +14,6 @@ from reportlab.graphics import renderPM
 
 from pymongo import MongoClient
 
-
 from tabulate import tabulate 
 """ 
 Use tabulate for an ASCII Hanboard display for debugging purposes
@@ -29,7 +28,7 @@ class SVGBoard():
     def __init__(self, verbose=None, boardname = "zlagboard_evo",
         dbhostname="hangboard", dbuser="root", dbpassword="rootpassword"):
         self.boardname = boardname
-        self.boardimagename = "../boards/" + boardname + "/board.svg" 
+        self.boardimagename = "./board_data/" + boardname + "/board.svg" 
         self.cachedir = "./cache/"
         Path(self.cachedir).mkdir(parents=True, exist_ok=True)
 
@@ -161,7 +160,7 @@ class Board():
 
     def init_board (self):
         self.board_status = ""
-        self.boardfilename = "../boards/" + self.boardname + "/holds.json" 
+        self.boardfilename = "./board_data/" + self.boardname + "/holds.json" 
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
@@ -237,7 +236,6 @@ class AsciiBoard(): # TODO continue implementation #82
     def render_board(self):
         self.board = (tabulate([self.board_row1, self.board_row2, self.board_row3], tablefmt="grid"))
         print (self.board)
-
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ Implement logging with debug level from start on now :)
 import logging
 logging.basicConfig(level=logging.DEBUG, format='Workout(%(threadName)-10s) %(message)s',)
 
-sys.path.append('../board')
+sys.path.append('../../boards')
 from board import Board
 from counter import Counter
 
