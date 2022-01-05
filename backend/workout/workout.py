@@ -21,13 +21,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='Workout(%(threadName)-10s) %(message)s',)
 
 sys.path.append('../board')
-from board.board import Board
-
-#from ..board import Board
-from sensors import Sensors
+from board import Board
 from counter import Counter
-from user import User
-
 
 class Workout():
     """
