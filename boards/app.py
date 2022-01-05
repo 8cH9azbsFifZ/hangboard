@@ -6,8 +6,16 @@ a = Board(boardname=boardname)
 
 api = Flask(__name__)
 
-@api.route('/board/data', methods=['GET'])
+@api.route('/', methods=['GET'])
+def root():
+  get_board() 
+
+@api.route('/board', methods=['GET']) # FIXME: API doc
 def get_board():
+  return json.dumps(a.boardname_full)
+
+@api.route('/board/data', methods=['GET'])
+def get_board_data():
   return json.dumps(a.boarddata)
 
 @api.route('/board/get_hold_for_type/<type>', methods=['GET'])
