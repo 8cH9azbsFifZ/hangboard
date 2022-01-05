@@ -29,6 +29,7 @@ class SVGBoard():
         dbhostname="hangboard", dbuser="root", dbpassword="rootpassword"):
         self.boardname = boardname
         self.boardimagename = "./board_data/" + boardname + "/board.svg" 
+        self.boardimagename_png = "./board_data/" + boardname + "/board.png" 
         self.cachedir = "./cache/"
         Path(self.cachedir).mkdir(parents=True, exist_ok=True)
 
@@ -56,6 +57,13 @@ class SVGBoard():
         Find Image name in cache dir
         """
         filename = self.cachedir + self.boardname + "." + left + "." + right + ".svg" 
+        return filename
+
+    def _cache_png_filename (self, left="A1", right="A7"):
+        """
+        Find Image name in cache dir
+        """
+        filename = self.cachedir + self.boardname + "." + left + "." + right + ".png" 
         return filename
 
     def Hold2SVG(self, left="A1", right="A7"):

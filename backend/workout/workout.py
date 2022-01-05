@@ -67,9 +67,7 @@ class Workout():
         self._sendmessage("/status", "Starting")
 
         ## Handle the current board setup (Instance of class Board) 
-        self.board = Board()                                   
-        ## Handle the current sensor setup (Instance of class Sensors) 
-        self.sensors = Sensors(hostname=hostname)            
+        #self.board = Board()                                      
 
         # Variables for workout selection
         self._workoutdir = workoutdir
@@ -179,11 +177,11 @@ class Workout():
         # TODO counting - how to achieve (force or distance detection?) - #79
 
 
-    def _get_board_image_base64(self):
-        """ Get the base64 image of the current board and put it in the message queue as base64 """
-        image_base64 = self.board.svg._get_image_base64()
-        print (image_base64)
-        self.message = image_base64
+    # def _get_board_image_base64(self): # FIXME
+    #     """ Get the base64 image of the current board and put it in the message queue as base64 """
+    #     image_base64 = self.board.svg._get_image_base64()
+    #     print (image_base64)
+    #     self.message = image_base64
 
     def _set_user(self, user="us3r"):
         """ Set current user for data persistence """
