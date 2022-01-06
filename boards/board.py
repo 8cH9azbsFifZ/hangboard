@@ -10,6 +10,8 @@ from pathlib import Path
 
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
+# FIXME: raspi must not use this, but: inkscape -w 1024 -h 1024 input.svg -o output.png
+
 
 from tabulate import tabulate 
 """ 
