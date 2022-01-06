@@ -6,6 +6,8 @@ api-doc:
 
 build-images:
 	python3 ./generate_all_board_images.py
+    # FIXME: all holds images must be genearted and put into assets directory of flutter app.. #83
+	rsync -avP ./cache/. ../frontend/flutter_hangboard/images/.
 
 #install-raspi: -> it is the image creation :(
 # illegal instruction	sudo apt-get -y install python3-flask
