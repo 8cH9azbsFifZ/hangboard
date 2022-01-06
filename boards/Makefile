@@ -1,13 +1,22 @@
 run:
 	flask run
-#api-doc:
-#	docker run --rm -it -v $(PWD)/workout_api.yaml:/app/asyncapi.yml -v $(PWD)/api:/app/output asyncapi/generator  -o /app/output /app/asyncapi.yml @asyncapi/html-template --force-write
 
-# install:
-# 	service="hangboard_workout.service"
-# 	echo "Install hangboard service for: hangboard_workout.service" 
-# 	sudo cp ./hangboard_workout.service /lib/systemd/system/
-# 	sudo chmod 644 /lib/systemd/system/hangboard_workout.service
-# 	sudo systemctl daemon-reload
-# 	sudo systemctl enable hangboard_workout.service
-# 	sudo systemctl restart hangboard_workout.service
+api-doc:
+	echo "#FIXME"
+
+build:
+	python3 ./board.py
+	echo Later: docker build . -t boards
+
+install-raspi:
+	sudo apt-get -y install python3-flask
+
+install:
+	service="hangboard_board.service"
+	echo "Install hangboard service for: hangboard_board.service" 
+	sudo cp ./hangboard_board.service /lib/systemd/system/
+	sudo chmod 644 /lib/systemd/system/hangboard_board.service
+	sudo systemctl daemon-reload
+	sudo systemctl enable hangboard_board.service
+	sudo systemctl restart hangboard_board.service
+

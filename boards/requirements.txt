@@ -1,0 +1,4 @@
+svglib
+pymongo
+tabulate
+flask

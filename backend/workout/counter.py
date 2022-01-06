@@ -18,7 +18,6 @@ logging.basicConfig(level=logging.DEBUG,
                     )
                     
 from board import Board
-from sensors import Sensors
 
 class Counter():
     def __init__(self, workout, hostname="localhost", port=1883):

@@ -14,7 +14,6 @@ from reportlab.graphics import renderPM
 
 from pymongo import MongoClient
 
-
 from tabulate import tabulate 
 """ 
 Use tabulate for an ASCII Hanboard display for debugging purposes
@@ -29,7 +28,8 @@ class SVGBoard():
     def __init__(self, verbose=None, boardname = "zlagboard_evo",
         dbhostname="hangboard", dbuser="root", dbpassword="rootpassword"):
         self.boardname = boardname
-        self.boardimagename = "../boards/" + boardname + "/board.svg" 
+        self.boardimagename = "./board_data/" + boardname + "/board.svg" 
+        self.boardimagename_png = "./board_data/" + boardname + "/board.png" 
         self.cachedir = "./cache/"
         Path(self.cachedir).mkdir(parents=True, exist_ok=True)
 
@@ -59,10 +59,19 @@ class SVGBoard():
         filename = self.cachedir + self.boardname + "." + left + "." + right + ".svg" 
         return filename
 
+    def _cache_png_filename (self, left="A1", right="A7"):
+        """
+        Find Image name in cache dir
+        """
+        filename = self.cachedir + self.boardname + "." + left + "." + right + ".png" 
+        return filename
+
     def Hold2SVG(self, left="A1", right="A7"):
         """
         Render image for hold configuration
         """
+        print ("Create SVG image for "+left+" and "+right)
+
         self.tree = ET.parse(self.boardimagename)
         self.root = self.tree.getroot()
 
@@ -128,7 +137,7 @@ class SVGBoard():
                 #    break
                 self.Hold2SVG(left=left,right=right)
                 self._svg_to_png(self._cache_svg_filename(left=left,right=right))
-                self._write_image_to_db(left=left,right=right)
+                #self._write_image_to_db(left=left,right=right) # FIXME make configurable
 
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
@@ -161,7 +170,7 @@ class Board():
 
     def init_board (self):
         self.board_status = ""
-        self.boardfilename = "../boards/" + self.boardname + "/holds.json" 
+        self.boardfilename = "./board_data/" + self.boardname + "/holds.json" 
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
@@ -239,17 +248,24 @@ class AsciiBoard(): # TODO continue implementation #82
         print (self.board)
 
 
-
 if __name__ == "__main__":
-    a = Board()
+    boardname = "zlagboard_evo"
+    a = Board(boardname=boardname)
+
+    # Test: holds for JUG
     h = a.get_hold_for_type("JUG")
     print (h[0])
     print (h[-1])
-    svg = SVGBoard()
+
+    # Test: All holds
+    print (a.all_holds)
+
+    svg = SVGBoard(boardname=boardname)
     #svg.Hold2SVG()    
-    #svg.generate_all_images(holds=a.all_holds)
-
     #svg.Hold2SVG(left="C1",right="C7")
+    
+    svg.generate_all_images(holds=a.all_holds)
 
-    svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
-    svg._write_image_to_db("C1","C7")
+
+    #svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
+    #svg._write_image_to_db("C1","C7")

@@ -20,17 +20,15 @@ Implement logging with debug level from start on now :)
 import logging
 logging.basicConfig(level=logging.DEBUG, format='Workout(%(threadName)-10s) %(message)s',)
 
+sys.path.append('../../boards')
 from board import Board
-from sensors import Sensors
 from counter import Counter
-from user import User
-
 
 class Workout():
     """
     All stuff for handling workouts containing sets of exercises.
     """
-    def __init__(self, verbose=None, dt=0.1, workoutdir="../exercises/workouts", workoutfile="workout-test.json", # FIXME
+    def __init__(self, verbose=None, dt=0.1, workoutdir="../../exercises/workouts", workoutfile="workout-test.json", # FIXME
         workout_id="ZB-A-1", hostname="localhost", port=1883):
 
         self._hostname = hostname
@@ -69,9 +67,7 @@ class Workout():
         self._sendmessage("/status", "Starting")
 
         ## Handle the current board setup (Instance of class Board) 
-        self.board = Board()                                   
-        ## Handle the current sensor setup (Instance of class Sensors) 
-        self.sensors = Sensors(hostname=hostname)            
+        #self.board = Board()                                      
 
         # Variables for workout selection
         self._workoutdir = workoutdir
@@ -181,11 +177,11 @@ class Workout():
         # TODO counting - how to achieve (force or distance detection?) - #79
 
 
-    def _get_board_image_base64(self):
-        """ Get the base64 image of the current board and put it in the message queue as base64 """
-        image_base64 = self.board.svg._get_image_base64()
-        print (image_base64)
-        self.message = image_base64
+    # def _get_board_image_base64(self): # FIXME
+    #     """ Get the base64 image of the current board and put it in the message queue as base64 """
+    #     image_base64 = self.board.svg._get_image_base64()
+    #     print (image_base64)
+    #     self.message = image_base64
 
     def _set_user(self, user="us3r"):
         """ Set current user for data persistence """
