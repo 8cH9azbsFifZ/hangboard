@@ -51,3 +51,4 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 - Export all layers as svg and convert them to png (i.e. https://svgtopng.com/de/)
 - Conversion to PNG for all permutations can be done using the `backend/generate_all_board_images.py` script.
 - Put all PNG images to `flutter_hangboard/images`
+
