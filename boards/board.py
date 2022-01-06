@@ -259,13 +259,6 @@ if __name__ == "__main__":
 
     # Test: All holds
     print (a.all_holds)
-
+    a.svg.generate_all_images(holds=a.all_holds)
     svg = SVGBoard(boardname=boardname)
-    #svg.Hold2SVG()    
-    #svg.Hold2SVG(left="C1",right="C7")
-    
-    svg.generate_all_images(holds=a.all_holds)
-
-
-    #svg._svg_to_png(svg._cache_svg_filename("C1","C7"))
-    #svg._write_image_to_db("C1","C7")
+   
