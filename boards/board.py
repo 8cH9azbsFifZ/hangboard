@@ -260,5 +260,4 @@ if __name__ == "__main__":
     # Test: All holds
     print (a.all_holds)
     a.svg.generate_all_images(holds=a.all_holds)
-    svg = SVGBoard(boardname=boardname)
    
