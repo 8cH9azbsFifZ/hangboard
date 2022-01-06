@@ -24,8 +24,7 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 class SVGBoard():
-    def __init__(self, verbose=None, boardname = "zlagboard_evo",
-        dbhostname="hangboard", dbuser="root", dbpassword="rootpassword"):
+    def __init__(self, verbose=None, boardname = "zlagboard_evo"):
         self.boardname = boardname
         self.boardimagename = "./board_data/" + boardname + "/board.svg" 
         self.boardimagename_png = "./board_data/" + boardname + "/board.png" 
@@ -35,12 +34,7 @@ class SVGBoard():
         self.left_color = "#00ff00"
         self.right_color = "#ff0000"
 
-        self._dbhostname=dbhostname
-        self._dbport=27017
-        self._dbuser=dbuser
-        self._dbpassword=dbpassword
-        self._dbname="hangboard"
-        self._connect_to_db()
+  
 
     def _select_image (self, left="", right=""):
         """
