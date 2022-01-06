@@ -8,7 +8,7 @@ build:
 	python3 ./board.py
 	echo Later: docker build . -t boards
 
-install-raspi:
+#install-raspi: -> it is the image creation :(
 # illegal instruction	sudo apt-get -y install python3-flask
 # docker build does not work on raspi
 
