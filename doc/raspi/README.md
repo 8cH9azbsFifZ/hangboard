@@ -3,7 +3,7 @@ This directory contains the hardware build instructions.
 
 # Installation
 + Flash a new raspian with ssh and wifi.
-+ Clone this repo.
++ Clone this repo: `git clone https://github.com/8cH9azbsFifZ/hangboard.git`
 
 # Wiring
 ![Wiring](hangboard_wiring.png)
