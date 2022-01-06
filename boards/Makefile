@@ -9,7 +9,8 @@ build:
 	echo Later: docker build . -t boards
 
 install-raspi:
-	sudo apt-get -y install python3-flask
+# illegal instruction	sudo apt-get -y install python3-flask
+# docker build does not work on raspi
 
 requirements:
 	pip3 install -r requirements.txt
