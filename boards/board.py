@@ -3,7 +3,6 @@ Class for handling all aspects of a hangboard configuration.
 """
 
 import json
-import time
 import base64
 
 import xml.etree.ElementTree as ET
