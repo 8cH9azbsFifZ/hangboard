@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prepare for installation
-sudo apt-get update
+sudo apt-get update --allow-releaseinfo-change
 sudo apt-get -y upgrade
 sudo apt-get -y install libxslt-dev git
 
