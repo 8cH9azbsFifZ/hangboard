@@ -11,8 +11,6 @@ from pathlib import Path
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 
-from pymongo import MongoClient
-
 from tabulate import tabulate 
 """ 
 Use tabulate for an ASCII Hanboard display for debugging purposes
@@ -116,10 +114,6 @@ class SVGBoard():
             self.current_image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
         return self.current_image_base64
 
-    def _connect_to_db(self):
-        """ Connect to the mongodb """
-        self._db = MongoClient('mongodb://'+self._dbhostname+':'+str(self._dbport)+'/', username=self._dbuser,   password=self._dbpassword  )[self._dbname]
-
     def _write_image_to_db(self,left="",right=""):
         """ Write an encoded PNG to the database """
         _coll_images = self._db[self.boardname+"-images"]
@@ -136,7 +130,6 @@ class SVGBoard():
                 #    break
                 self.Hold2SVG(left=left,right=right)
                 self._svg_to_png(self._cache_svg_filename(left=left,right=right))
-                #self._write_image_to_db(left=left,right=right) # FIXME make configurable
 
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
