@@ -1,15 +1,9 @@
 # Hardware build
 This directory contains the hardware build instructions.
 
-# Sensors
-+ Gyroscope Sensor: Look at README.md in gyroscope.
-+ Force Sensors: Look at README.md in force_sensors.
-+ Distance Sensors: Look at README.md in distance_sensors.
-+ Velocity Sensors: Look at README.md in velocity_sensors (not yet started).
-
-# Software
-This directory contains the backend for the sensors. 
-There are microservice backends for every sensor in each directory.
+# Installation
++ Flash a new raspian with ssh and wifi.
++ Clone this repo.
 
 # Wiring
 ![Wiring](hangboard_wiring.png)
