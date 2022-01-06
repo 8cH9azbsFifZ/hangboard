@@ -4,9 +4,8 @@ run:
 api-doc:
 	echo "#FIXME"
 
-build:
-	python3 ./board.py
-	echo Later: docker build . -t boards
+build-images:
+	python3 ./generate_all_board_images.py
 
 #install-raspi: -> it is the image creation :(
 # illegal instruction	sudo apt-get -y install python3-flask

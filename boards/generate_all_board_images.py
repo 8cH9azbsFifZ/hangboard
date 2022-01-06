@@ -1,4 +1,5 @@
-from board import Board, SVGBoard
+from board import Board
+from svg_board import SVGBoard
 
 if __name__ == "__main__":
     a = Board()
