@@ -11,6 +11,9 @@ build:
 install-raspi:
 	sudo apt-get -y install python3-flask
 
+requirements:
+	pip3 install -r requirements.txt
+
 install:
 	service="hangboard_board.service"
 	echo "Install hangboard service for: hangboard_board.service" 
