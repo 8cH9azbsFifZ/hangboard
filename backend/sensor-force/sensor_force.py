@@ -51,6 +51,9 @@ import json
 
 import threading
 
+from configparser import ConfigParser
+
+
 EMULATE_HX711 = False #True # FIXME: parameter
 
 if not EMULATE_HX711:
@@ -63,28 +66,27 @@ else:
     from emulated_hx711 import HX711
 
 
+# FIXME: use configuration file for reference units
 class SensorForce():
     def __init__(self, EMULATE_HX711 = True, 
-        pin_dout = 17, pin_pd_sck = 27, sampling_interval = 0.1, 
-        referenceUnit = 1257528/79, load_hang = 5.0, # FIXME 
-        hostname="localhost", port=1883, 
-        two_hx711=False, pin_dout1 = 5, pin_pd_sck1 = 6, referenceUnit1 = 1257528/79): 
+        sampling_interval = 0.1, 
+        load_hang = 2.0, # FIXME put in config file
+        pin_dout1 = 17, pin_pd_sck1 = 27, referenceUnit1 = 1,
+        pin_dout2 = 5, pin_pd_sck2 = 6, referenceUnit2 = 1,
+        mqtt_server = "raspi-hangboard", mqtt_port = 1883): 
+
         logging.debug ("Initialize")
 
-        self.pin_dout = pin_dout
-        self.pin_pd_sck = pin_pd_sck
-
-        # 2nd hx711 for measuring force symmetry
-        self._two_hx711 = two_hx711
-        self.pin_dout1 = pin_dout1
+        self.pin_dout1   = pin_dout1
         self.pin_pd_sck1 = pin_pd_sck1
+        self.pin_dout2   = pin_dout2
+        self.pin_pd_sck2 = pin_pd_sck2
 
-        self.referenceUnit = referenceUnit
         self.referenceUnit1 = referenceUnit1
+        self.referenceUnit2 = referenceUnit2
 
         self.sampling_rate = sampling_interval
-
-        self.calibration_duration = 10
+        self.calibration_duration = 10 # FIXME: configurable
 
         # Threshold for detection of a hang
         self.load_hang = load_hang
@@ -92,6 +94,14 @@ class SensorForce():
         # Variables for current measurement
         self.load_current = 0
         self.time_current = time.time()
+        self.load_current_balance = 0
+
+        # Array to store 3 values to smoothen out exceptions (singular value, jumps back and forth, i.e. 0, -8.85, 0). 
+        # A moving average is not correct to withdraw these values.
+        # FIXME: move to hx711 lib (and push to upstream?)
+        self._load3_A = [0,0,0]
+        self._load3_B = [0,0,0]
+        self._time3 = [0,0,0]
 
         # Array for storing all values
         self._load_series = []
@@ -128,7 +138,8 @@ class SensorForce():
 
         # Connect to MQTT
         self._client = mqtt.Client()
-        self._client.connect(hostname, port,60)
+
+        self._client.connect(mqtt_server, mqtt_port, 60)
         self._sendmessage("/status", "Starting")
 
         self.init_hx711()
@@ -144,7 +155,7 @@ class SensorForce():
         #        data = json.load(json_file)
         #    self._simdata = data["SimulationData"]
 
-        self._moving_average_n = 10
+        self._moving_average_n = 3
         self._moving_average_series = []
         self._moving_average_load = 0
 
@@ -175,24 +186,22 @@ class SensorForce():
         # The second paramter is the order of the bits inside each byte.
         # According to the HX711 Datasheet, the second parameter is MSB so you shouldn't need to modify it.
 
-        self.hx = HX711(self.pin_dout , self.pin_pd_sck) 
-        self.hx.set_reading_format("MSB", "MSB")
-        self.hx.set_reference_unit(self.referenceUnit)
-        self.hx.reset()
+        self.hx1 = HX711(self.pin_dout1 , self.pin_pd_sck1) 
+        self.hx1.set_reading_format("MSB", "MSB")
+        self.hx1.set_reference_unit(self.referenceUnit1)
+        self.hx1.reset()
 
-        if self._two_hx711:
-            self.hx1 = HX711(self.pin_dout1 , self.pin_pd_sck1) 
-            self.hx1.set_reading_format("MSB", "MSB")
-            self.hx1.set_reference_unit (self.referenceUnit1)
-            self.hx1.reset()
+        self.hx2 = HX711(self.pin_dout2 , self.pin_pd_sck2) 
+        self.hx2.set_reading_format("MSB", "MSB")
+        self.hx2.set_reference_unit (self.referenceUnit2)
+        self.hx2.reset()
 
     def calibrate(self):
         logging.debug("Starting Tare done! Wait...")
         self._sendmessage("/status", "Starting Tare done! Wait...")
 
-        self.hx.tare()
-        if self._two_hx711:
-            self.hx1.tare()
+        self.hx1.tare()
+        self.hx2.tare()
 
         #self.hx.tare_B() # Lessons Learned: Too slow
         #logging.debug("Tare done! Add weight now...")
@@ -217,31 +226,10 @@ class SensorForce():
     def run_main_measure(self):
         while True:
             try:
-                # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
-                # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
-                # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment these three lines to see what it prints.
-                
-                # np_arr8_string = hx.get_np_arr8_string()
-                # binary_string = hx.get_binary_string()
-                # print binary_string + " " + np_arr8_string
-                
-                # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-                #val = self.hx.get_weight(1)
-                #val = self.hx.read_long()
-                #cur_timestamp = time.time()
-                #print(cur_timestamp, val)
                 self.run_one_measure()
-                logging.debug ("Current time " + "{:.2f}".format(self.time_current)  + " load " + "{:.2f}".format(self.load_current) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
+                logging.debug ("Current time " + "{:.2f}".format(self.time_current)  + " load " + "{:.2f}".format(self.load_current) + " load_bal " + "{:.2f}".format(self.load_current_balance) + " average load " + "{:.2f}".format(self.AverageLoad) + " calculated FTI " + "{:.2f}".format(self.FTI)
                 + " maximal load " + "{:.2f}".format(self.MaximalLoad) + " RFD " + "{:.2f}".format(self.RFD) + " LoadLoss " + "{:.2f}".format(self.LoadLoss))
 
-                # To get weight from both channels (if you have load cells hooked up 
-                # to both channel A and B), do something like this
-                #val_A = hx.get_weight_A(5)
-                #val_B = hx.get_weight_B(5)
-                #print "A: %s  B: %s" % ( val_A, val_B )
-
-                #self.hx.power_down()
-                #self.hx.power_up()
                 time.sleep(self.sampling_rate)
 
             except (KeyboardInterrupt, SystemExit):
@@ -262,17 +250,56 @@ class SensorForce():
         return 0
 
     def run_one_measure(self):
-        self.time_current = time.time()
+        time_current = time.time()
 
         # FIXME: WIRING MATTERS - ADD A COMMENT
-        self._load_current_raw_A = -1*self.hx.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
-        self._load_current_raw_B = 0.
-        if self._two_hx711:
-            self._load_current_raw_B = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
+        self._load_current_raw_A = -1*self.hx1.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
+        
+        self._load_current_raw_B = -1*self.hx2.get_weight_A(times=1) # Never use this, but use a Low pass filter to get rid of the noise
         self._load_current_raw = self._load_current_raw_A  + self._load_current_raw_B 
-        logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
+        #logging.debug("Both channels: "+str(self._load_current_raw_A)+" and "+str(self._load_current_raw_B))
 
-        self.load_current = self._calc_moving_average() # FIXME
+
+        # Fill load3 array
+        accuracy = 0.01 # +/- 10g, ref: Testing out 50 kg load cells
+        self._load3_A[0] = self._load3_A[1] 
+        self._load3_A[1] = self._load3_A[2] 
+        self._load3_A[2] = self._load_current_raw_A
+        self._load3_B[0] = self._load3_B[1] 
+        self._load3_B[1] = self._load3_B[2] 
+        self._load3_B[2] = self._load_current_raw_B
+        self._time3[0] = self._time3[1] 
+        self._time3[1] = self._time3[2] 
+        self._time3[2] = time_current 
+        d12_A = self._load3_A[0] - self._load3_A[1] 
+        d23_A = self._load3_A[1] - self._load3_A[2]
+        drel_A = 0
+
+        if abs(d12_A) > accuracy and abs(d23_A) > accuracy and d23_A is not 0:
+            drel_A = d12_A/d23_A
+
+        if drel_A + 1.0 < accuracy: # rel will yield -1.00 if value jumps up and down again - ignore previous measurement
+            self._load3_A[1] = self._load3_A[2]
+
+        d12_B = self._load3_B[0] - self._load3_B[1] 
+        d23_B = self._load3_B[1] - self._load3_B[2]
+        drel_B = 0
+
+        if abs(d12_B) > accuracy and abs(d23_B) > accuracy and d23_B is not 0:
+            drel_B = d12_B/d23_B
+
+        if drel_B + 1.0 < accuracy: # rel will yield -1.00 if value jumps up and down again - ignore previous measurement
+            self._load3_B[1] = self._load3_B[2]
+
+        logging.debug("Both channels: "+f"{self._load_current_raw_A:.2f}"+" \t and "+f"{self._load_current_raw_B:.2f}"+" yields: "+f"{d12_A:.2f}"+" \t and "+f"{d23_A:.2f}"+" \t and "+f"{drel_A:.2f}")
+        
+        self.load_current = self._load3_A[1] + self._load3_B[1] # TODO: describe the filter
+        self.load_current_balance = self._load3_A[1]
+            
+        self.time_current = self._time3[1] 
+        # TODO: describe the load circuit hack
+
+        #self.load_current = self._calc_moving_average() # FIXME
 
         if EMULATE_HX711:
             self._simcounter = self._simcounter+1
@@ -308,13 +335,7 @@ class SensorForce():
 
 
         #logging.debug("Sensor current max load " + str(self.MaximalLoad) + " and last maximum " + str(self.LastHang_MaximalLoad))
-        #self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
-        #(full_second, full_second_decimals) = divmod(self.time_current,1)
-        #print (self.time_current)
-        ##print (full_second)
-        #print (full_second_decimals)
-        #if full_second_decimals <= 0.02:
-        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadcurrent_balance": '+ "{:.2f}".format(self.load_current_balance) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -408,6 +429,34 @@ class SensorForce():
 
 if __name__ == "__main__":
     #a = SensorForce(referenceUnit = 1)
-    a = SensorForce(sampling_interval = 0.005)
-    a.calibrate()
+
+
+    # Read sensor configuration from file
+    config_file="/home/pi/hangboard/backend/sensor-force/hangboard.ini"
+    config_obj = ConfigParser()
+    config_obj.read(config_file)
+    sensor_force_info = config_obj["SENSOR-FORCE"]
+
+    pin_dout1   = int(sensor_force_info["pin_dout1"])
+    pin_pd_sck1 = int(sensor_force_info["pin_pd_sck1"])
+    pin_dout2   = int(sensor_force_info["pin_dout2"])
+    pin_pd_sck2 = int(sensor_force_info["pin_pd_sck2"])
+
+    referenceWeight1 = float(sensor_force_info["referenceWeight1"])
+    referenceValue1 = float(sensor_force_info["referenceValue1"])
+    referenceUnit1 = referenceValue1/referenceWeight1
+
+    referenceWeight2 = float(sensor_force_info["referenceWeight2"])
+    referenceValue2 = float(sensor_force_info["referenceValue2"])
+    referenceUnit2 = referenceValue2/referenceWeight2
+
+    mqtt_info = config_obj["MQTT"]
+
+    mqtt_server = mqtt_info["hostname"]
+    mqtt_port = int(mqtt_info["port"])
+
+    a = SensorForce(sampling_interval = 0.005, 
+        pin_dout1 = pin_dout1, pin_pd_sck1 = pin_pd_sck1, referenceUnit1 = referenceUnit1,
+        pin_dout2 = pin_dout2, pin_pd_sck2 = pin_pd_sck2, referenceUnit2 = referenceUnit2,
+        mqtt_server = mqtt_server, mqtt_port = mqtt_port)
     a.run_main_measure()

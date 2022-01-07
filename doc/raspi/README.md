@@ -1,15 +1,10 @@
 # Hardware build
 This directory contains the hardware build instructions.
 
-# Sensors
-+ Gyroscope Sensor: Look at README.md in gyroscope.
-+ Force Sensors: Look at README.md in force_sensors.
-+ Distance Sensors: Look at README.md in distance_sensors.
-+ Velocity Sensors: Look at README.md in velocity_sensors (not yet started).
-
-# Software
-This directory contains the backend for the sensors. 
-There are microservice backends for every sensor in each directory.
+# Installation
++ Flash a new raspian with ssh and wifi, and install git: `apt-get -y install git`
++ Clone this repo: `git clone https://github.com/8cH9azbsFifZ/hangboard.git`
++ Run installation scripts in current directory: `./install_raspi.sh`
 
 # Wiring
 ![Wiring](hangboard_wiring.png)

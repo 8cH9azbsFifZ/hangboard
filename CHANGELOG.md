@@ -1,3 +1,4 @@
+- v0.62 - LED progess bar with moonboard, serve assets and load status via rest api, minimal web frontend
 - v0.61 - Two hx711 force sensors, restruct directory layout (all services broken therefore)
 - v0.60 - Demonstrator with HD44780 display for load
 - v0.59 - WIP Features (#87, #108, #109, #112, #115), Bugfixes (#111, #100)

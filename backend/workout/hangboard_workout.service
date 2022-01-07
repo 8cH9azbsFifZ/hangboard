@@ -1,0 +1,13 @@
+[Unit]
+Description=Hangboard Workout Service
+After=mosquitto.service multi-user.target
+
+[Service]
+User=pi
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/workout/workout.py 
+StandardOutput=file:/var/log/workout.log
+StandardError=file:/var/log/workout.log
+
+[Install]
+WantedBy=multi-user.target
