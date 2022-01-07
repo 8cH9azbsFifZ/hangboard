@@ -5,9 +5,11 @@ After=mosquitto.service multi-user.target
 [Service]
 User=pi
 Type=idle
-ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/assets-delivery/app.py --host=0.0.0.0 --port=5000
+WorkingDirectory=/home/pi/hangboard/backend/asseets-delivery
+ExecStart=flask run --port=5000 --host=0.0.0.0
 StandardOutput=file:/var/log/assets_delivery_stdout.log
 StandardError=file:/var/log/assets_delivery_stderr.log
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
