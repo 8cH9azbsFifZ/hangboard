@@ -1,3 +1,5 @@
+# Distance Sensor Service
+** Status: to be re-integrated **
 
 ## Distance sensor HC-SR04
 WARNING: This sensor is not yet fully implemented in the backend.

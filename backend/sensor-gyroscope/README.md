@@ -1,5 +1,6 @@
+# Gyroscope Sensor Service
 
-
+** Status: to be re-integrated **
 
 
 ## Gyroscope Sensor: MPU-6050
