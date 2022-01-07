@@ -15,6 +15,7 @@ sudo systemctl enable mosquitto   # autostart (default: on)
 
 # Install python dependencies
 python3 -m pip install -r ~/hangboard/backend/requirements.txt
+python3 -m pip install -r ~/hangboard/boards/requirements.txt
 
 echo "Install the backend services (manually)"
 # FIXME: Automate installation
