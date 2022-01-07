@@ -3,7 +3,7 @@
 # Prepare for installation
 sudo apt-get update --allow-releaseinfo-change
 sudo apt-get -y upgrade
-sudo apt-get -y install libxslt-dev git mosquitto mosquitto-clients libatlas-base-dev python3-scipy python3-paho-mqtt 
+sudo apt-get -y install libxslt-dev git mosquitto mosquitto-clients libatlas-base-dev python3-scipy python3-paho-mqtt python3-pip
 
 # Set hostname to hangboard
 #echo raspi-hangboard > /etc/hostname
