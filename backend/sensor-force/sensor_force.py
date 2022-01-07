@@ -432,7 +432,7 @@ if __name__ == "__main__":
 
 
     # Read sensor configuration from file
-    config_file="hangboard.ini"
+    config_file="/home/pi/hangboard/backend/sensor-force/hangboard.ini"
     config_obj = ConfigParser()
     config_obj.read(config_file)
     sensor_force_info = config_obj["SENSOR-FORCE"]
