@@ -1,22 +1,3 @@
-api-doc: #output in ~/api #FIXME
-	git checkout gh-pages --quiet
-	git checkout dev -- .gitignore
-	git checkout dev -- doc
-	git checkout dev -- backend
-
-	echo "Build API documentation"
-	echo "npm install -g @asyncapi/generator"
-	rm -rf api
-	mkdir api
-	cd backend ; ag asyncapi.yaml @asyncapi/html-template -o ../api/ ; cd ..
-
-	git add -A
-	git commit -a -m  "updated $(date +"%d.%m.%Y %H:%M:%S")"
-	git push --quiet
-
-	git checkout dev --quiet
-
-
 backend-doc: # output in ~/backend/doxygen/html
 	git checkout gh-pages --quiet
 	git checkout dev -- .gitignore
@@ -61,8 +42,3 @@ movie-sources:
 
 loc:
 	wc -l $((find . -name "*.py" ; find flutter_hangboard/lib/ -name "*.dart" ) |grep -v venv)
-
-clean:
-	rm -rf api/
-	rm -rf backend/doxygen
-
