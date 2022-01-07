@@ -6,7 +6,7 @@ After=network.target multi-user.target
 User=pi
 WorkingDirectory=/home/pi/hangboard/boards
 Type=idle
-ExecStart=flask run --port=5000 --host=raspi-hangboard
+ExecStart=flask run --port=5000 --host=0.0.0.0
 Restart=always
 StandardOutput=file:/var/log/board_stdout.log
 StandardError=file:/var/log/board_stderr.log
