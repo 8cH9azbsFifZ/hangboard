@@ -36,6 +36,8 @@ class Board():
     def init_board (self):
         self.board_status = ""
         self.boardfilename = "./board_data/" + self.boardname + "/holds.json" 
+        self.cachedir = "./cache/"
+        self.boardimagename_png = "./board_data/" + boardname + "/board.png" 
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
@@ -50,6 +52,13 @@ class Board():
         self.holds_inactive = [x for x in self.all_holds if x not in array_holds]
         logging.debug (self.holds_active)
         logging.debug (self.holds_inactive)
+
+    def _cache_png_filename (self, left="A1", right="A7"):
+        """
+        Find Image name in cache dir
+        """
+        filename = self.cachedir + self.boardname + "." + left + "." + right + ".png" 
+        return filename
 
     def _get_all_holds(self):
         self.all_holds = []

@@ -24,12 +24,12 @@ def get_hold_for_type(type):
 
 @api.route('/board/img/<left>/<right>', methods=['GET']) # FIXME generate all images in advance
 def get_img_left_right(left,right):
-  fname = a.svg._cache_png_filename(left,right)
+  fname = a._cache_png_filename(left,right)
   return send_file(fname, mimetype='image/png')
 
 @api.route('/board/img', methods=['GET']) # FIXME: slashes safe?
 def get_img():
-  fname = a.svg.boardimagename_png
+  fname = a.boardimagename_png
   return send_file(fname, mimetype='image/png')
 
 if __name__ == '__main__':
