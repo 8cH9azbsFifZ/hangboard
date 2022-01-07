@@ -37,7 +37,7 @@ class Board():
         self.board_status = ""
         self.boardfilename = "./board_data/" + self.boardname + "/holds.json" 
         self.cachedir = "./cache/"
-        self.boardimagename_png = "./board_data/" + boardname + "/board.png" 
+        self.boardimagename_png = "./board_data/" + self.boardname + "/board.png" 
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)
