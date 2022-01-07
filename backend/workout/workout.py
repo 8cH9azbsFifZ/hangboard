@@ -9,8 +9,6 @@ import json
 import os
 import time
 import sys
-import threading
-from types import TracebackType
 
 import paho.mqtt.client as mqtt
 
@@ -81,10 +79,10 @@ class Workout():
         self._set_workout(workout_id) # TODO - implement MQTT command #59
 
         # Configure User
-        self._dbhost="hangboard"
-        self._dbuser="root"
-        self._dbpassword="rootpassword"
-        self._set_user("us3r")
+        # self._dbhost="hangboard" # FIXME
+        # self._dbuser="root"
+        # self._dbpassword="rootpassword"
+        # self._set_user("us3r")
 
 
     def _sendmessage(self, topic="/none", message="None"):
@@ -183,25 +181,25 @@ class Workout():
     #     print (image_base64)
     #     self.message = image_base64
 
-    def _set_user(self, user="us3r"):
-        """ Set current user for data persistence """
-        self._user = User(user=user,dbhostname=self._dbhost,dbuser=self._dbuser,dbpassword=self._dbpassword)  
-
-    def _update_user_statistics(self):
-        """ Calculate current intensity based on the data given in the database for the hold configuration and current user. """
-        # FIXME: both / one hand
-        if self._counter._holdtypeleft != "":
-            self._user.SetReference(hold=self._counter._holdtypeleft, hand="left") # FIXME what if differnt holds?
-        if self._counter._holdtyperight != "":
-            # FIXME: db call every time?!  #60
-            self._user.SetReference(hold=self._counter._holdtyperight, hand="right") # FIXME what if differnt holds?
-            # TODO : implement  #60
-        if self._counter._holdtypeleft != "" and self._counter._holdtyperight != "":
-            self._user.SetReference(hold=self._counter._holdtyperight, hand="both")
-        self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
-        #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
-        tt = time.time()
-        self._sendmessage("/userstatistics", '{"time": ' + str(tt) + ', "CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
+    # def _set_user(self, user="us3r"): # FIXME
+    #     """ Set current user for data persistence """
+    #     self._user = User(user=user,dbhostname=self._dbhost,dbuser=self._dbuser,dbpassword=self._dbpassword)  
+ 
+    # def _update_user_statistics(self):
+    #     """ Calculate current intensity based on the data given in the database for the hold configuration and current user. """
+    #     # FIXME: both / one hand
+    #     if self._counter._holdtypeleft != "":
+    #         self._user.SetReference(hold=self._counter._holdtypeleft, hand="left") # FIXME what if differnt holds?
+    #     if self._counter._holdtyperight != "":
+    #         # FIXME: db call every time?!  #60
+    #         self._user.SetReference(hold=self._counter._holdtyperight, hand="right") # FIXME what if differnt holds?
+    #         # TODO : implement  #60
+    #     if self._counter._holdtypeleft != "" and self._counter._holdtyperight != "":
+    #         self._user.SetReference(hold=self._counter._holdtyperight, hand="both")
+    #     self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
+    #     #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
+    #     tt = time.time()
+    #     self._sendmessage("/userstatistics", '{"time": ' + str(tt) + ', "CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
 
     def _core_loop(self):
         """
@@ -221,7 +219,7 @@ class Workout():
                 continue 
                 
             self.sensors.run_one_measure()
-            self._update_user_statistics() 
+            #self._update_user_statistics() 
             timer_done = self._counter.get_current_timer_state()
             self._counter._calc_time_in_current_workout()
             if timer_done:

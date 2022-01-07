@@ -3,10 +3,6 @@ Class containing the central counter for the hangboard application.
 """
 
 import time
-
-from types import TracebackType
-import json
-
 import paho.mqtt.client as mqtt
 
 """
@@ -34,7 +30,7 @@ class Counter():
         self._client.connect(hostname, port,60)
 
         # Board configuration for hold setup
-        self._board = Board()
+        self._board = Board(basedir="../../boards/")
         self.HoldSetup = ""
         
         # Get all general information
