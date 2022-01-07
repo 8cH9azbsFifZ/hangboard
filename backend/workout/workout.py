@@ -211,12 +211,16 @@ class Workout():
         """
         samplingrate = 0.01
 
+        self._counter._show_upcoming_exercise()
+
         while True:
 
             self._client.loop(samplingrate) #blocks for 100ms (or whatever variable given, default 1s)
-            self._counter._show_upcoming_exercise()
+            
             if not self._workout_running: # flag for a running workout :>
                 continue 
+
+            self._counter._show_upcoming_exercise()
                 
             self.sensors.run_one_measure()
             #self._update_user_statistics() 
