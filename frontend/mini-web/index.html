@@ -43,7 +43,7 @@ function onMessageArrived(message) {
   }
   if (obj.hasOwnProperty("Left"))
   {
-    const imgname = base_asset_url + "/img/"+obj.Left+"/"+obj.Right;
+    const imgname = base_asset_url + "img/"+obj.Left+"/"+obj.Right;
     document.getElementById("workout").innerHTML = message.payloadString + " " + imgname;
     document.getElementById("board").innerHTML = '<img src='+imgname+' />'
   }
