@@ -1,3 +1,4 @@
+- v0.61 - LED progess bar with moonboard, serve assets and load status via rest api, minimal web frontend
 - v0.60 - Demonstrator with HD44780 display for load
 - v0.59 - WIP Features (#87, #108, #109, #112, #115), Bugfixes (#111, #100)
 - v0.58 - Demonstrator with one working exercise. Progress bar (#103), bugfixes (#101).
