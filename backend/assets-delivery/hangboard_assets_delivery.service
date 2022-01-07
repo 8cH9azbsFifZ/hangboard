@@ -1,0 +1,13 @@
+[Unit]
+Description=Hangboard Assets Delivery Service
+After=mosquitto.service multi-user.target
+
+[Service]
+User=pi
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/assets-delivery/app.py 
+StandardOutput=file:/var/log/assets_delivery_stdout.log
+StandardError=file:/var/log/assets_delivery_stderr.log
+
+[Install]
+WantedBy=multi-user.target

@@ -19,8 +19,9 @@ class Board():
     """
     All stuff for handling hangboard configurations.
     """
-    def __init__(self, verbose=None, boardname = "zlagboard_evo"):
+    def __init__(self, verbose=None, boardname = "zlagboard_evo", basedir="./"):
         self.boardname = boardname
+        self.basedir = basedir
         self.init_board()
 
     def list_boards(self):
@@ -35,9 +36,9 @@ class Board():
 
     def init_board (self):
         self.board_status = ""
-        self.boardfilename = "./board_data/" + self.boardname + "/holds.json" 
-        self.cachedir = "./cache/"
-        self.boardimagename_png = "./board_data/" + self.boardname + "/board.png" 
+        self.boardfilename = self.basedir + "board_data/" + self.boardname + "/holds.json" 
+        self.cachedir = self.basedir + "cache/"
+        self.boardimagename_png = self.basedir + "board_data/" + self.boardname + "/board.png" 
 
         with open(self.boardfilename) as json_file:
             self.boarddata = json.load(json_file)

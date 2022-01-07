@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  title: Hangboard - Boards API
+  description: REST API for getting board and hold informations
+  version: 0.0.1
+servers:
+  - url: http://raspi-hangboard
+    description: Testing raspi server
+paths:
+  /:
+    get:
+      summary: Return board name.
+      description: Return board name
+      responses:
+        '200':    # status code
+          description: The current board name
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string

@@ -1,9 +1,3 @@
-run:
-	flask run
-
-api-doc:
-	echo "#FIXME"
-
 build-images:
 	python3 ./generate_all_board_images.py
     # FIXME: all holds images must be genearted and put into assets directory of flutter app.. #83
