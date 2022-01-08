@@ -8,6 +8,7 @@ Type=idle
 ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/sensor-force/sensor_force.py 
 StandardOutput=file:/var/log/sensor_force_stdout.log
 StandardError=file:/var/log/sensor_force_stderr.log
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
