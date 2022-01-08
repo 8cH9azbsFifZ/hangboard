@@ -1,0 +1,14 @@
+[Unit]
+Description=Hangboard Display 7 Segment Service
+After=mosquitto.service multi-user.target
+
+[Service]
+User=pi
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/hangboard/frontend/display_7segment/display.py 
+StandardOutput=file:/var/log/display_7segment_stdout.log
+StandardError=file:/var/log/display_7segment_stderr.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
