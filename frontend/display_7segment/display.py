@@ -32,7 +32,7 @@ class Database():
 
 
     def _on_message(self, client, userdata, message):
-        logging.debug("Write message " + str(message.payload.decode("utf-8")))
+        #logging.debug("Write message " + str(message.payload.decode("utf-8")))
 
         msg = json.loads(message.payload.decode("utf-8"))
 
