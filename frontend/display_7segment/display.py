@@ -50,7 +50,6 @@ class Database():
         l = "\rLoad: %.1f    " % msg["loadcurrent"]
         t = "Time: " + str(msg["time"])
         lmax = "\rLoad Max: %.1f    " % msg["loadmaximal"]
-        self._lcd.clear()
         ss = l+"\n\r"+lmax
         #self._lcd.write_string(ss)
         self.seg.text = str (msg["loadcurrent"])
