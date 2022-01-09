@@ -1,0 +1,1 @@
++ Re-Integrate sensors class for hang detection
