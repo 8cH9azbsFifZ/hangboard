@@ -215,7 +215,8 @@ class Workout():
             if not self._workout_running: # flag for a running workout :>
                 continue 
 
-            self._counter._show_upcoming_exercise()
+            upcoming = self._counter._show_upcoming_exercise()
+            print (upcoming)
                 
             self.sensors.run_one_measure()
             #self._update_user_statistics() 
@@ -283,7 +284,6 @@ if __name__ == "__main__":
 
     wa = Workout(hostname="localhost")
 
-    #wa._core_loop()
     #wa._set_workout(id="HRST-S-1-4ZBEVO")
     list_wa = wa._list_workouts()
     #print (list_wa)
