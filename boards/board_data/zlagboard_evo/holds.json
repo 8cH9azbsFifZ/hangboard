@@ -5,6 +5,7 @@
     "type": {
       "uniqueName": "zlagboard_evo"
     },
+    "Screw Thread for Rings": "M6",
     "homepage": "https://shop.vertical-life.info/de/zlagboard-evo",
     "Holds": [
         {"Name": "JUG"          , "Row": 1,     "Col": 1,    "Width": "4 Finger",   "ImgLayerName": "A1",   "position": 1,   "angle": 0,    "depth": null,  "order": 1, "location": "LEFT", "type": "JUG"},
