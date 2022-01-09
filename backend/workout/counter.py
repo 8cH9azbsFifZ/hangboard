@@ -199,7 +199,7 @@ class Counter():
     def _calc_time_in_current_workout(self): # FIXME other name
         """
         Caluculate total time, estimated rest time and planned time in this workout so far
-        Create a string with remianing exercises in the form: 5x 10s Hang on 15mm, 180s rest
+        Create a string with remaining exercises in the form: 5x 10s Hang on 15mm, 180s rest
         """
         # FIXME: run after every counter++
 
@@ -264,7 +264,10 @@ class Counter():
 
         estimated_rest_time = total_time - planned_time_sofar
         tt = time.time()
-        self._sendmessage("/upcoming", '{"time": '+str(tt)+', "UpcomingSets": "' + self._exercise_list + '", "RemainingTime": ' + str(estimated_rest_time) + '}')
+        msg = '{"time": '+str(tt)+', "UpcomingSets": "' + self._exercise_list + '", "RemainingTime": ' + str(estimated_rest_time) + '}'
+        self._sendmessage("/upcoming", msg)
+        #return (msg)
+
 
         return [total_time, planned_time_sofar, estimated_rest_time] # FIXME do not return
 

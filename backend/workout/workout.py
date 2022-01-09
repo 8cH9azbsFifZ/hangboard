@@ -154,6 +154,7 @@ class Workout():
         self._workoutlist = workout_array
         msg = json.dumps({"WorkoutList": workout_array})
         self._sendmessage("/workoutlist", msg)
+        return (workout_array)
 
     def run_workout (self):
         """
@@ -174,12 +175,6 @@ class Workout():
         # TBD Implement
         # TODO counting - how to achieve (force or distance detection?) - #79
 
-
-    # def _get_board_image_base64(self): # FIXME
-    #     """ Get the base64 image of the current board and put it in the message queue as base64 """
-    #     image_base64 = self.board.svg._get_image_base64()
-    #     print (image_base64)
-    #     self.message = image_base64
 
     # def _set_user(self, user="us3r"): # FIXME
     #     """ Set current user for data persistence """
@@ -278,15 +273,20 @@ class Workout():
 
         # Communicate on currently selected workout
         self._sendmessage("/workoutstatus", json.dumps(self._workoutlist[index]))
-      
+
+     
 
 
 """ Main loop only for testing purposes. """
 if __name__ == "__main__":
     print ("Starting")
 
-    wa = Workout(hostname="hangboard")
+    wa = Workout(hostname="localhost")
 
     #wa._core_loop()
     #wa._set_workout(id="HRST-S-1-4ZBEVO")
-    wa._counter._calc_time_in_current_workout()
+    list_wa = wa._list_workouts()
+    #print (list_wa)
+    wa._set_workout(id="BEASTY-5A")
+    total_time = wa._counter._calc_time_in_current_workout()
+    print (total_time)
