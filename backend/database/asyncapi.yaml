@@ -1,0 +1,32 @@
+asyncapi: 2.0.0
+info:
+  title: Hangboard application
+  version: '0.0.1'
+  description: |
+    Force sensing hangboard application.
+    Backend communication protocol. 
+  license:
+    name: GPLv3
+    url: 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+servers:
+  mosquitto:
+    url: mqtt://t20
+    protocol: mqtt
+channels:                          
+  hangboard/workout/userstatistics:
+    subscribe:
+      summary: User statistics (i.e. intensity).
+      operationId: GetUserStatistics
+      message:
+        name: User statistics.
+        payload:
+          type: object
+          properties:
+            time:
+              type: integer
+              description: Timestamp in seconds.
+              example: 123412341234
+            CurrentIntensity:
+              type: number
+              description: Current intensity - current load / maximal load - for a given hand and hold combination.
+              examples: [0.23, 0.77, 1.2]
