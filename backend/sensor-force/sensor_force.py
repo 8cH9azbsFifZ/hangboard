@@ -110,7 +110,7 @@ class SensorForce():
 
        # Defined current states
         self.HangDetected = False
-        self.HangStateChanged = False
+        self._HangStateChanged = False
 
         # Hang time variables
         self.LastHangTime = 0
@@ -128,7 +128,6 @@ class SensorForce():
         self.MaximalLoad = 0
         self.RFD = 0
         self.LoadLoss = 0
-        self.HangStateChangedString = ""
 
         # Calculated Values for last hang
         self.LastHang_FTI = 0
@@ -312,7 +311,6 @@ class SensorForce():
 
         # Hang detection
         self._detect_hang()
-        self._detect_hang_state_change()
 
         # Store variables of last / current hang
         if (self.HangDetected):
@@ -352,29 +350,7 @@ class SensorForce():
 
 
 
-    def _detect_hang_state_change(self):
-        # Reset states
-        self.HangHasBegun = False
-        self.HangHasStopped = False
-        self.Changed = ""
-
-        # Detect state change
-        oldstate = self.HangDetected
-        self.HangDetected = self.sensor_hangdetector.HangDetected
-
-        if (oldstate == self.HangDetected):
-            self._HangStateChanged = False
-        else:
-            self._HangStateChanged = True
-
-            if (self.HangDetected == True):
-                #logging.debug ("HangStateChanged and HangDetected")
-                self.HangHasBegun = True
-                self.Changed = "Hang"
-            else:
-                self.HangHasStopped = True
-                self.Changed = "NoHang"
-                #logging.debug ("HangStateChanged and no HangDetected")
+  
 
     def _calc_DutyCycle(self): # TODO #77 implement
         """
@@ -421,13 +397,23 @@ class SensorForce():
         # TODO: implement #60
 
     def _detect_hang(self):
-        self.HangDetected = False
+        # Detect state change
+        oldstate = self.HangDetected
+
         if (self.load_current > self.load_hang):
             self.HangDetected = True
+
+        if (oldstate == self.HangDetected):
+            self._HangStateChanged = False
+            if self.HangDetected:
+                self.Changed = "Hang"
+            else:
+                self.Changed = "NoHang"
 
         #logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
 
         return self.HangDetected
+
 
     def _calculateStart(self): # TODO measure more values and store them in advance for posthum calculations
         """
