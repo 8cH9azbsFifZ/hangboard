@@ -59,3 +59,8 @@ For getting started with the software for the Gyroscope, follow these steps
 # References
 * [[[Pull-Up Pocket Sensor]]] Pull-up Sensor and Counter - Arduino Nano 33 BLE - tinyML https://create.arduino.cc/projecthub/tl9672/pull-up-sensor-and-counter-arduino-nano-33-ble-tinyml-6516d2
 * [[[LPFvsKalman]]] Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/SM1941.pdf
+
+* [[[MPU6050Datasheet]]] MPU 6050 Datasheet: https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/gyroscope/MPU-6000-Register-Map1.pdf
+* [[[MPU6050KalmanFilter]]] Kalman filter implementation for MPU 6050: https://github.com/rocheparadox/Kalman-Filter-Python-for-mpu6050
+* [[[MPU6050GettingStarted]]] Getting started with MPU6050 measurements: https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/
+* [[[MPU6050BLEVersion]]] MPU6050 BLE module: https://github.com/fundiZX48/pymotiontracker

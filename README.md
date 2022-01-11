@@ -149,21 +149,8 @@ image::app/RFD.png[{half-size}Measurement of RFD (Test 1)]
 # References
 <a id="PiClimbing">[1]</a> Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing
 <a id="ArduinoHangboard">[2]</a> Arduino Hangboard: https://github.com/oalam/isometryx
-
-
-* [[[Beastmaker1000HoldSizes]]] Accurate measurements of the Beastmaker 1000 hold dimensions: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
-* [[[Boards]]] Project with lots of hangboard configurations: https://github.com/gitaaron/boards
-* [[[ClimbHarderSurvey]]] https://www.reddit.com/r/climbharder/comments/6693ua/climbharder_survey_results/ and the data stored here `doc/references/ClimbHarderSurvey`
-* [[[CriticalForceCalculator]]] https://strengthclimbing.com/critical-force-calculator/
-* [[[ClimbingFingerStrengthAnalyzer]]] https://strengthclimbing.com/finger-strength-analyzer/
-* [[[ForceSensingHangboardToEnhangeFingerTraining]]] Force-Sensing Hangboad to Enhance Finger Training in Rock Climbers, M. Anderson (https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Force-Sensing_Hangboard_to_Enhance_Finger_Training_in_Rock_Climbers.pdf)
-* [[[MVC1]]] Optimizing Muscular Strength-to-Weight Ratios in Rock Climbing, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/BF_strength_climbing_correlations-MAR282018web.pdf
-* [[[MVC2]]] Tendinous Tissue Adaptation to Explosive- vs. Sustained-Contraction Strength Training, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/fphys-09-01170.pdf
-* [[[LatticeMVC]]] The determination of finger flexor critical force in rock climbers https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Giles2019Thedeterminationoffingerflexorcriticalforceinrockclimbers.pdf
-* [[[BeastMakerMotherboard]]] Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard
-* [[[Climbro]]] Force sensing smart hangboard https://climbro.com/
-* [[[SmartBoard]]] Force sesing smart hangboard https://www.smartboard-climbing.com/
-* [[[Entralpi]]] Force sensing plate for smart hangboard training https://entralpi.com/
-* [[[SmartRock]]] Universal mount for hangboards in door frames https://smartrock.de/?lang=de
-
-
+<a id="BeastMakerMotherboard">[3]</a>Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard
+<a id="Climbro">[4]</a>Force sensing smart hangboard https://climbro.com/
+<a id="SmartBoard">[5]</a> Force sesing smart hangboard https://www.smartboard-climbing.com/
+<a id="Entralpi">[6]</a>Force sensing plate for smart hangboard training https://entralpi.com/
+<a id="ArduinoHangSmartRockboard">[7]</a>Universal mount for hangboards in door frames https://smartrock.de/?lang=de

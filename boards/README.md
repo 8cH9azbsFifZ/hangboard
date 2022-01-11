@@ -52,3 +52,6 @@ Measuring a hangboard is lots of work, i.e. <<Beastmaker1000HoldSizes>>.
 - Conversion to PNG for all permutations can be done using the `backend/generate_all_board_images.py` script.
 - Put all PNG images to `flutter_hangboard/images`
 
+# References
+<a id="Beastmaker1000HoldSizes">[1]</a> Accurate measurements of the Beastmaker 1000 hold dimensions: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
+<a id="Boards">[2]</a> Project with lots of hangboard configurations: https://github.com/gitaaron/boards
