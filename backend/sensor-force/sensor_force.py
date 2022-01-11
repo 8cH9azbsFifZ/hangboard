@@ -386,6 +386,8 @@ class SensorForce():
 
         if (self.load_current > self.load_hang):
             self.HangDetected = True
+        else:
+            self.HangDetected = False
 
         if (oldstate == self.HangDetected):
             self._HangStateChanged = False
