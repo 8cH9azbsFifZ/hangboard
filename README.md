@@ -26,6 +26,9 @@ there have been a couple of attempts to create hombrew smart hangboards.
 
 This was motivation for me to learn new technologies and build an own smart hangboard - which is easy to reproduce for others.
 
+#boards/board_mount/smart_hangboard_v2.png
+<img src="./boards/board_mount/smart_hangboard_v2.png" alt="Your image title" width="250"/>
+
 [#img-smart-hangboard]
 .Smart Hangboard
 image::./board_mount/smart_hangboard_v2.png[{half-size}Smart Hangboard]
