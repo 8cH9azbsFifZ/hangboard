@@ -198,8 +198,8 @@ class MQTTManager {
     } else {*/
     _client!.subscribe(_topic, MqttQos.atLeastOnce); // FIXME
     _client!.subscribe("hangboard/sensor/load/loadstatus", MqttQos.atMostOnce);
-    _client!.subscribe("hangboard/sensor/sensorstatus", MqttQos.exactlyOnce);
-    _client!.subscribe("hangboard/sensor/lastexercise", MqttQos.exactlyOnce);
+    _client!
+        .subscribe("hangboard/sensor/load/lastexercise", MqttQos.exactlyOnce);
     _client!.subscribe("hangboard/workout/holds", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/exercisetype", MqttQos.atLeastOnce);
     _client!.subscribe("hangboard/workout/workoutlist", MqttQos.atLeastOnce);
@@ -222,10 +222,7 @@ class MQTTManager {
           "hangboard/sensor/load/loadstatus") {
         _currentState.setLoadStatus(pt);
       }
-      if (recMess.variableHeader!.topicName ==
-          "hangboard/sensor/sensorstatus") {
-        _currentState.setSensorStatus(pt);
-      }
+
       if (recMess.variableHeader!.topicName == "hangboard/workout/setinfo") {
         _currentState.setSetInfo(pt);
       }
@@ -237,7 +234,7 @@ class MQTTManager {
         _currentState.setUpcoming(pt);
       }
       if (recMess.variableHeader!.topicName ==
-          "hangboard/sensor/lastexercise") {
+          "hangboard/sensor/load/lastexercise") {
         _currentState.setReceivedText(pt);
 
         _currentState.setLastExercise(pt);

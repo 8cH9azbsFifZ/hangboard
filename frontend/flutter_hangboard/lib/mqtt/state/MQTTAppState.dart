@@ -163,26 +163,6 @@ class MQTTAppState with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSensorStatus(String text) {
-    Map<String, dynamic> sensorjson = jsonDecode(text);
-
-    if (sensorjson.containsKey("HangDetected")) {
-      _hangdetected = sensorjson["HangDetected"]; //.toLowerCase() == 'true';
-    }
-    if (sensorjson.containsKey("HangChangeDetected")) {
-      _hangchangedetected =
-          sensorjson["HangChangeDetected"]; //.toLowerCase() == 'true';
-    }
-
-    if (_hangdetected.contains("False")) {
-      _plot_t0 = _plot_time_current;
-    }
-    if (_hangchangedetected.contains("Hang")) {
-      _plot_load_current = [];
-    }
-    notifyListeners();
-  }
-
   void setLoadStatus(String text) async {
     Map<String, dynamic> loadjson = jsonDecode(text);
     double time = 0.0;
@@ -202,6 +182,21 @@ class MQTTAppState with ChangeNotifier {
     if (_hangdetected.contains("True")) {
       _plot_load_current.add(FlSpot(time, load));
       _load_current = load;
+    }
+
+    if (loadjson.containsKey("HangDetected")) {
+      _hangdetected = loadjson["HangDetected"]; //.toLowerCase() == 'true';
+    }
+    if (loadjson.containsKey("HangChangeDetected")) {
+      _hangchangedetected =
+          loadjson["HangChangeDetected"]; //.toLowerCase() == 'true';
+    }
+
+    if (_hangdetected.contains("False")) {
+      _plot_t0 = _plot_time_current;
+    }
+    if (_hangchangedetected.contains("Hang")) {
+      _plot_load_current = [];
     }
 
     notifyListeners();
