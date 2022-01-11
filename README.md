@@ -147,7 +147,7 @@ image::app/RFD.png[{half-size}Measurement of RFD (Test 1)]
 
 
 # References
-<a id="PiClimbing">[1]</a> Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing
+<a id="PiClimbing">[1]</a> Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing<br/>
 <a id="ArduinoHangboard">[2]</a> Arduino Hangboard: https://github.com/oalam/isometryx
 <a id="BeastMakerMotherboard">[3]</a>Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard
 <a id="Climbro">[4]</a>Force sensing smart hangboard https://climbro.com/
