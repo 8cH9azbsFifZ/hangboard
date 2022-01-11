@@ -346,7 +346,7 @@ class SensorForce():
              
         if self.Changed == "NoHang":
             #logging.debug("Last Hang load " + str(self.MaximalLoad))
-            self._sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.sensor_hangdetector.LastHang_MaximalLoad) +'}')
+            self._sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.LastHang_MaximalLoad) +'}')
 
 
 
