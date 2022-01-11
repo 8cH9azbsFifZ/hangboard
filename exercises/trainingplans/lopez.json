@@ -1,0 +1,27 @@
+{
+    "Reference": "Happy Fingers App",
+    "Author": "Eva Lopez",
+    "Nomenclature": "2x MaxHangs MED x 15 (5) : 3 -- Sets, Hang Duration (Margin to failure) : Pause between sets",
+    "Plans": [   
+        {
+            "ID": "LOPEZ-B-1",
+            "Name": "Beginner Protocol",
+            "Type": "",
+            "Description": "Sample planning for - lower level of finger strength and Beginners with dead hangs",
+            "Objectives": "Learning the right dead hangs technique; Improving maximum strength, mainly via neural changes",
+            "Phase 1 - Starting":
+            [ 
+                { "Week": 1, "Day": 1, "Workout": "2x MaxHangs MED x 12(5):3"}, { "Week": 1, "Day": 2, "Workout": "2x MaxHangs MED x 12(5):3"},
+                { "Week": 2, "Day": 1, "Workout": "3x MaxHangs MED x 12(5):3"}, { "Week": 2, "Day": 2, "Workout": "3x MaxHangs MED x 12(5):3"},
+                { "Week": 3, "Day": 1, "Workout": "4x MaxHangs MED x 12(5):3"}, { "Week": 3, "Day": 2, "Workout": "4x MaxHangs MED x 12(5):3"},
+                { "Week": 4, "Day": 1, "Workout": "4x MaxHangs MED x 12(5):3"}, { "Week": 4, "Day": 2, "Workout": "4x MaxHangs MED x 12(5):3"},
+                { "Week": 5, "Workout": "Rest from deadhangs" },
+                { "Week": 6, "Workout": "Rest from deadhangs" },
+                { "Week": 7, "Day": 1, "Workout": "3x MaxHangs MED x 12(5):3"}, { "Week": 7, "Day": 2, "Workout": "3x MaxHangs MED x 12(5):3"},
+                { "Week": 8, "Day": 1, "Workout": "4x MaxHangs MED x 12(5):3"}, { "Week": 8, "Day": 2, "Workout": "4x MaxHangs MED x 12(5):3"},
+                { "Week": 9, "Day": 1, "Workout": "4x MaxHangs MED x 12(5):3"}, { "Week": 9, "Day": 2, "Workout": "4x MaxHangs MED x 12(5):3"},
+                { "Week": 10, "Day": 1, "Workout": "5x MaxHangs MED x 12(5):3"}, { "Week": 10, "Day": 2, "Workout": "5x MaxHangs MED x 12(5):3"}
+            ]
+        }
+    ]
+}
