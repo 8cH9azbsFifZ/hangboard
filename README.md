@@ -12,9 +12,6 @@
 
 
 
-
-
-
 # Why a universal smart hangboard?
 Nowadays smart hangboards are becoming more and more popular. And there is a growing market for commercial
 products (they are expensive): <<BeastMakerMotherboard>>, <<Climbro>>, <<SmartBoard>>, <<Entralpi>>
@@ -150,42 +147,28 @@ image::app/RFD.png[{half-size}Measurement of RFD (Test 1)]
 
 
 # References
-<a id="Website">[1]</a> Hangboard website: https://8ch9azbsfifz.github.io/hangboard/
-<a id="2">[2]</a> Dijkstra, E. W. (1968). Go to statement considered harmful. Communications of the ACM, 11(3), 147-148.
+<a id="PiClimbing">[1]</a> Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing
+<a id="ArduinoHangboard">[2]</a> Arduino Hangboard: https://github.com/oalam/isometryx
 
 
-* [[[]]] 
-* [[[Discussions]]] Hangboard discussions: https://github.com/8cH9azbsFifZ/hangboard/discussions
-* [[[Issues]]] Hangboard issues: https://github.com/8cH9azbsFifZ/hangboard/issues
-* [[[PiClimbing]]] Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing
-* [[[ArduinoHangboard]]] Arduino Hangboard: https://github.com/oalam/isometryx
-* [[[HX711Datasheet]]] HX 711 Datasheet: https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/force/hx711_english.pdf
-* [[[HX711LoadCellPackage]]] Package of HX711 module and 4 load cells: https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
-* [[[HX711PythonModule]]] The python modules for HX711: https://github.com/tatobari/hx711py or https://github.com/gandalf15/HX711/
 * [[[MPU6050Datasheet]]] MPU 6050 Datasheet: https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/gyroscope/MPU-6000-Register-Map1.pdf
 * [[[MPU6050KalmanFilter]]] Kalman filter implementation for MPU 6050: https://github.com/rocheparadox/Kalman-Filter-Python-for-mpu6050
 * [[[MPU6050GettingStarted]]] Getting started with MPU6050 measurements: https://tutorials-raspberrypi.de/rotation-und-beschleunigung-mit-dem-raspberry-pi-messen/
 * [[[MPU6050BLEVersion]]] MPU6050 BLE module: https://github.com/fundiZX48/pymotiontracker
-* [[[HCSR04Package]]] HC-SR04 package: https://www.amazon.de/AZDelivery-HC-SR04-Ultraschall-Entfernungsmesser-Raspberry/dp/B07TKVPPHF/
-* [[[HCSR04GettingStarted]]] Getting started with distance measurements using the HC-SR04: https://tutorials-raspberrypi.de/entfernung-messen-mit-ultraschallsensor-hc-sr04/
-* [[[HCSR04KalmanFilter]]] Implementations of kalman filters for the HC-SR04 module: https://github.com/rizkymille/ultrasonic-hc-sr04-kalman-filter and https://github.com/NagarajSMurthy/Kalman-estimation-of-ultrasonic-sensor
+
 * [[[Beastmaker1000HoldSizes]]] Accurate measurements of the Beastmaker 1000 hold dimensions: https://rupertgatterbauer.com/beastmaker-1000/#:~:text=Speaking%20of%20design%2C%20the%20Beasmaker,slopers%20and%20pull%2Dup%20jugs.
 * [[[Boards]]] Project with lots of hangboard configurations: https://github.com/gitaaron/boards
 * [[[ClimbHarderSurvey]]] https://www.reddit.com/r/climbharder/comments/6693ua/climbharder_survey_results/ and the data stored here `doc/references/ClimbHarderSurvey`
 * [[[CriticalForceCalculator]]] https://strengthclimbing.com/critical-force-calculator/
 * [[[ClimbingFingerStrengthAnalyzer]]] https://strengthclimbing.com/finger-strength-analyzer/
 * [[[ForceSensingHangboardToEnhangeFingerTraining]]] Force-Sensing Hangboad to Enhance Finger Training in Rock Climbers, M. Anderson (https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Force-Sensing_Hangboard_to_Enhance_Finger_Training_in_Rock_Climbers.pdf)
-* [[[VelocityBraincoder]]] Braincoder velocity sensor https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Braincoder.pdf
 * [[[MVC1]]] Optimizing Muscular Strength-to-Weight Ratios in Rock Climbing, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/BF_strength_climbing_correlations-MAR282018web.pdf
-* [[[LPFvsKalman]]] Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/SM1941.pdf
 * [[[MVC2]]] Tendinous Tissue Adaptation to Explosive- vs. Sustained-Contraction Strength Training, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/fphys-09-01170.pdf
-* [[[KalmanHCSR04]]]  Kalman Filter Algorithm Design for HC-SR04 Ultrasonic Sensor Data Acquisition System, Adnan Rafi Al Tahtawi https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Kalman_Filter_Algorithm_Design_for_HC-SR04_Ultraso.pdf
 * [[[LatticeMVC]]] The determination of finger flexor critical force in rock climbers https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/Giles2019Thedeterminationoffingerflexorcriticalforceinrockclimbers.pdf
 * [[[BeastMakerMotherboard]]] Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard
 * [[[Climbro]]] Force sensing smart hangboard https://climbro.com/
 * [[[SmartBoard]]] Force sesing smart hangboard https://www.smartboard-climbing.com/
 * [[[Entralpi]]] Force sensing plate for smart hangboard training https://entralpi.com/
 * [[[SmartRock]]] Universal mount for hangboards in door frames https://smartrock.de/?lang=de
-* [[[Pull-Up Pocket Sensor]]] Pull-up Sensor and Counter - Arduino Nano 33 BLE - tinyML https://create.arduino.cc/projecthub/tl9672/pull-up-sensor-and-counter-arduino-nano-33-ble-tinyml-6516d2
 
 

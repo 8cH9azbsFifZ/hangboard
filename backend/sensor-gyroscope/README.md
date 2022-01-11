@@ -54,3 +54,8 @@ For getting started with the software for the Gyroscope, follow these steps
 . Reboot `sudo reboot`
 . Check whether 68 exists in `sudo i2cdetect -y 1 | grep 68`
 
+
+
+# References
+* [[[Pull-Up Pocket Sensor]]] Pull-up Sensor and Counter - Arduino Nano 33 BLE - tinyML https://create.arduino.cc/projecthub/tl9672/pull-up-sensor-and-counter-arduino-nano-33-ble-tinyml-6516d2
+* [[[LPFvsKalman]]] Simple Effective and Robust Weight Sensor for Measuring Moisture Content in Food Drying Process, https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/references/SM1941.pdf

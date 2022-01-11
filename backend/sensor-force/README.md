@@ -153,3 +153,9 @@ SensorForce(MainThread) Current time 1641328193.06 load 233681.66 load_bal -0.00
 ```
 
 Do this for both load sensors and insert the value (i.e. 234338.81) in the hangboard.ini file.
+
+
+# References
+* [[[HX711Datasheet]]] HX 711 Datasheet: https://github.com/8cH9azbsFifZ/hangboard/raw/main/doc/force/hx711_english.pdf
+* [[[HX711LoadCellPackage]]] Package of HX711 module and 4 load cells: https://www.amazon.ca/Bridge-Digital-Amplifier-Arduino-DIYmalls/dp/B086ZHXNJH
+* [[[HX711PythonModule]]] The python modules for HX711: https://github.com/tatobari/hx711py or https://github.com/gandalf15/HX711/
