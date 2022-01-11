@@ -20,3 +20,7 @@ For iOS follow these steps to configure the application icon:
 - On the root directory click on the folder named Images.xcassets.
 - Import a new IconSet 
 
+
+### Build and install
++ `flutter build ios`
++ `~/src/flutter/bin/flutter install DG6FL`

@@ -235,8 +235,7 @@ class MQTTManager {
       }
       if (recMess.variableHeader!.topicName ==
           "hangboard/sensor/load/lastexercise") {
-        _currentState.setReceivedText(pt);
-
+        // _currentState.setReceivedText(pt);
         _currentState.setLastExercise(pt);
       }
       if (recMess.variableHeader!.topicName == "hangboard/workout/holds") {
