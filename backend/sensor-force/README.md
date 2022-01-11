@@ -103,9 +103,7 @@ image::./board_mount/IsometrixBoard.png[{half-size}Mount for Isometrix Board]
 + ``` make install ```
 
 ## Debugging
-```
-tail -f /var/log/sensor_force_std*
-```
++ `tail -f /var/log/sensor_force_std*`
 
 # API description:
 - ./api/index.html
@@ -153,6 +151,21 @@ SensorForce(MainThread) Current time 1641328193.06 load 233681.66 load_bal -0.00
 ```
 
 Do this for both load sensors and insert the value (i.e. 234338.81) in the hangboard.ini file.
+
+    def set_reference_unit(self):
+        """
+        HOW TO CALCULATE THE REFFERENCE UNIT
+        To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
+        In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
+        and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
+        If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
+        hx.set_reference_unit(113)
+        """
+        #unit = 92
+        #unit = 1257528 /79
+        # FIXME delete function
+
+        
 
 
 # References

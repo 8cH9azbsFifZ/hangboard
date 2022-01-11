@@ -202,26 +202,10 @@ class SensorForce():
 
         self.hx1.tare()
         self.hx2.tare()
-
-        #self.hx.tare_B() # Lessons Learned: Too slow
-        #logging.debug("Tare done! Add weight now...")
         
         self._sendmessage("/status", "Tare done! Add weight now...")
 
     # TODO implement calibrate command over MQTT  #78
-
-    def set_reference_unit(self):
-        """
-        HOW TO CALCULATE THE REFFERENCE UNIT
-        To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
-        In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
-        and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
-        If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
-        hx.set_reference_unit(113)
-        """
-        #unit = 92
-        #unit = 1257528 /79
-        # FIXME delete function
 
     def run_main_measure(self):
         while True:
