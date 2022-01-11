@@ -19,7 +19,6 @@ logging.basicConfig(level=logging.DEBUG,
 
 import paho.mqtt.client as mqtt
 
-from sensor_zlagboard import SensorZlagboard
 from sensor_force import SensorForce
 
 class Sensors():
