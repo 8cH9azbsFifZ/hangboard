@@ -112,6 +112,7 @@ class SensorForce():
         self.HangDetected = False
         self.HangStateChanged = False
 
+        # Hang time variables
         self.LastHangTime = 0
         self.LastPauseTime = 0
         self.TimeStateChangeCurrent = self.time_current       
@@ -309,7 +310,11 @@ class SensorForce():
             #time.sleep(0.05) # FIXME
             #logging.debug("Simulation: " + str(self._simcounter) + " load: " + str(self.load_current))
 
+        # Hang detection
         self._detect_hang()
+        self._detect_hang_state_change()
+
+        # Store variables of last / current hang
         if (self.HangDetected):
             self._fill_series()
             self._Calc_FTI()
@@ -335,7 +340,60 @@ class SensorForce():
 
 
         #logging.debug("Sensor current max load " + str(self.MaximalLoad) + " and last maximum " + str(self.LastHang_MaximalLoad))
-        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + ', "loadcurrent_balance": '+ "{:.2f}".format(self.load_current_balance) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + '}')
+        self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + \
+            ', "loadcurrent_balance": '+ "{:.2f}".format(self.load_current_balance) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + \
+            ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + \
+            ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + \
+            ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '}')
+             
+        if self.Changed == "NoHang":
+            #logging.debug("Last Hang load " + str(self.MaximalLoad))
+            self._sendmessage("/lastexercise", '{"LastHangTime": ' + "{:.2f}".format(self.LastHangTime) + ', "LastPauseTime": ' + "{:.2f}".format(self.LastPauseTime) + ', "MaximalLoad": ' + "{:.2f}".format(self.sensor_hangdetector.LastHang_MaximalLoad) +'}')
+
+
+
+    def _detect_hang_state_change(self):
+        # Reset states
+        self.HangHasBegun = False
+        self.HangHasStopped = False
+        self.Changed = ""
+
+        # Detect state change
+        oldstate = self.HangDetected
+        self.HangDetected = self.sensor_hangdetector.HangDetected
+
+        if (oldstate == self.HangDetected):
+            self._HangStateChanged = False
+        else:
+            self._HangStateChanged = True
+
+            if (self.HangDetected == True):
+                #logging.debug ("HangStateChanged and HangDetected")
+                self.HangHasBegun = True
+                self.Changed = "Hang"
+            else:
+                self.HangHasStopped = True
+                self.Changed = "NoHang"
+                #logging.debug ("HangStateChanged and no HangDetected")
+
+    def _calc_DutyCycle(self): # TODO #77 implement
+        """
+        // DutyCycle calculate the percentage of time doing force vs resting
+        """
+        self.DutyCycle = self.LastHangTime / (self.LastHangTime+self.LastPauseTime)
+        
+    def _measure_hangtime(self): # FIXME - not displayed correctly after exercise
+        delta = 0
+        if (self._HangStateChanged):
+            self._TimeStateChangePrevious = self._TimeStateChangeCurrent
+            self._TimeStateChangeCurrent = time.time()
+            
+            delta = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
+
+            if (self.HangDetected == True):
+                self.LastPauseTime = delta
+            else:
+                self.LastHangTime = delta
 
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
@@ -459,4 +517,5 @@ if __name__ == "__main__":
         pin_dout1 = pin_dout1, pin_pd_sck1 = pin_pd_sck1, referenceUnit1 = referenceUnit1,
         pin_dout2 = pin_dout2, pin_pd_sck2 = pin_pd_sck2, referenceUnit2 = referenceUnit2,
         mqtt_server = mqtt_server, mqtt_port = mqtt_port)
+
     a.run_main_measure()

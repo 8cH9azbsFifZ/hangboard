@@ -20,7 +20,11 @@ logging.basicConfig(level=logging.DEBUG, format='Workout(%(threadName)-10s) %(me
 
 sys.path.append('../../boards')
 from board import Board
+
+sys.path.append('../sensor-force')
+
 from counter import Counter
+
 
 class Workout():
     """

@@ -54,19 +54,6 @@ channels:
               type: number
               description: Rate of force development
               example: 12.2
-  hangboard/sensor/sensorstatus:
-    subscribe:
-      summary: Current sensor status, i.e. hang status.
-      operationId: GetCurrentSensorStatus
-      message:
-        name: Sensor Status
-        payload:
-          type: object
-          properties:
-            time:
-              type: integer
-              description: Timestamp in seconds.
-              example: 123412341234
             HangChangeDetected:
               type: string
               description: Hang change detected.
