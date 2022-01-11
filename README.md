@@ -11,24 +11,24 @@
 
 # Why a universal smart hangboard?
 Nowadays smart hangboards are becoming more and more popular. And there is a growing market for commercial
-products (they are expensive).: [[BeastMakerMotherboard]](#3), <<Climbro>>, <<SmartBoard>>, <<Entralpi>>
+products (they are expensive).
 All existing hangboard training apps have limitations (i.e. payed subscriptions,
-limited to specific hangboards, buggy, sketchy to create new or custom training plans). In the recent years
-there have been a couple of attempts to create hombrew smart hangboards (i.e. <<PiClimbing>> and <<ArduinoHangboard>>).
+limited to specific hangboards, buggy, sketchy to create new or custom training plans). 
++ Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard
++ Force sensing smart hangboard https://climbro.com/
++ Force sesing smart hangboard https://www.smartboard-climbing.com/ 
++ Force sensing plate for smart hangboard training https://entralpi.com/ 
+
+In the recent years
+there have been a couple of attempts to create hombrew smart hangboards.
++ Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing
++ Arduino Hangboard: https://github.com/oalam/isometryx 
 
 This was motivation for me to learn new technologies and build an own smart hangboard - which is easy to reproduce for others.
 
 [#img-smart-hangboard]
 .Smart Hangboard
 image::./board_mount/smart_hangboard_v2.png[{half-size}Smart Hangboard]
-
-<a id="PiClimbing">[1]</a> Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing <br/>
-<a id="ArduinoHangboard">[2]</a> Arduino Hangboard: https://github.com/oalam/isometryx <br/>
-<a id="BeastMakerMotherboard">[3]</a>Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard <br/>
-<a id="Climbro">[4]</a>Force sensing smart hangboard https://climbro.com/ <br/>
-<a id="SmartBoard">[5]</a> Force sesing smart hangboard https://www.smartboard-climbing.com/ <br/>
-<a id="Entralpi">[6]</a>Force sensing plate for smart hangboard training https://entralpi.com/ <br/>
-<a id="ArduinoHangSmartRockboard">[7]</a>Universal mount for hangboards in door frames https://smartrock.de/?lang=de <br/>
 
 
 
