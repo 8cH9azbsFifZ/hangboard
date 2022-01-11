@@ -44,10 +44,9 @@ TIP: Further information can be found in the repository: https://github.com/8cH9
 - Measures hangtime, applied force, rate-of-force development, maximal load 
 
 # Frontends
-+ Smart Hangboard App
-
-image::./app/app_screenshot.png[{half-size}Smart Hangboard App]
-
++ Smart Hangboard App <img src="./frontend/flutter_hangboard/doc/app_screenshot.png" alt="Prototype" width="250"/>
++ 7 Segment display
++ Moonboard progress bar
 
 # Software Design
 This is a brief design layout of the project. 
@@ -93,12 +92,3 @@ All sensors can be wired at once following this schema:
 [#img-hangboard-wiring]
 .Hangboard wiring - all sensors
 image::./hardware/hangboard_wiring.png[{half-size}Hangboard wiring - all sensors]
-
-# References
-<a id="PiClimbing">[1]</a> Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing <br/>
-<a id="ArduinoHangboard">[2]</a> Arduino Hangboard: https://github.com/oalam/isometryx <br/>
-<a id="BeastMakerMotherboard">[3]</a>Force sensing motherboard for beastmaker https://www.beastmaker.co.uk/products/motherboard <br/>
-<a id="Climbro">[4]</a>Force sensing smart hangboard https://climbro.com/ <br/>
-<a id="SmartBoard">[5]</a> Force sesing smart hangboard https://www.smartboard-climbing.com/ <br/>
-<a id="Entralpi">[6]</a>Force sensing plate for smart hangboard training https://entralpi.com/ <br/>
-<a id="ArduinoHangSmartRockboard">[7]</a>Universal mount for hangboards in door frames https://smartrock.de/?lang=de <br/>
