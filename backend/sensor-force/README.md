@@ -4,6 +4,13 @@ We will use one of these packages as the force measurement sensors.
 The python module <<HX711PythonModule>> is slightly modified and contained in the backend sources.
 
 ## Hardware setup
+
+### Prototype 11.01.2022
++ 2x load cell: https://www.amazon.de/gp/product/B088T78DNG/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1
+
+
+### 4 load cell version
+
 [#img-hx711]
 .The HX711 with 4 load cells
 image::./force/hx711_with_load_cells.jpg[{half-size}The HX711 with 4 load cells]
