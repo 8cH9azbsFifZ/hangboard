@@ -1,10 +1,15 @@
 # Hangboard 
+*A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.*
 
-*STATUS: In Development - Towards a demonstrator [with one recorded workout](https://github.com/8cH9azbsFifZ/hangboard/milestone/2)*
-
-A universal force and velocity sensing hangboard mount with exercise timers for all hangboards. 
-
-Please have a look at the [manual](https://8ch9azbsfifz.github.io/hangboard/doc/index.html).
-
+## Current Status
+*STATUS: In Development - Towards a reproduceable prototype*
 + [Bugs](https://github.com/8cH9azbsFifZ/hangboard/labels/bug)
 + [Features TBD](https://github.com/8cH9azbsFifZ/hangboard/labels/feature)
+
+"...the **go to** statement should be abolished..." [[1]](#1).
+
+## References
+<a id="1">[1]</a> 
+Dijkstra, E. W. (1968). 
+Go to statement considered harmful. 
+Communications of the ACM, 11(3), 147-148.

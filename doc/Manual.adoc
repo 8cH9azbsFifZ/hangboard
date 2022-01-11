@@ -1,34 +1,5 @@
-= Hangboard Manual
-Author Name <gerolf.ziegenain@gmail.com>
-:hide-uri-scheme:
-:leveloffset: 1
-
-ifdef::backend-html5[]
-:twoinches: width='144'
-:full-width: width='100%'
-:half-width: width='50%'
-:half-size:
-:thumbnail: width='60'
-endif::[]
-ifdef::backend-pdf[]
-:twoinches: pdfwidth='2in'
-:full-width: pdfwidth='100vw'
-:half-width: pdfwidth='50vw'
-:half-size: pdfwidth='50%'
-:thumbnail: pdfwidth='20mm'
-endif::[]
-ifdef::backend-docbook5[]
-:twoinches: width='50mm'
-:full-width: scaledwidth='100%'
-:half-width: scaledwidth='50%'
-:half-size: width='50%'
-:thumbnail: width='20mm'
-endif::[]
-
-:stem: 
 
 
-*A universal force and velocity sensing hangboard mount with exercise timers for all hangboards.*
 
 # Why a universal smart hangboard?
 Nowadays smart hangboards are becoming more and more popular. And there is a growing market for commercial
