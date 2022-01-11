@@ -41,7 +41,7 @@ This was motivation for me to learn new technologies and build an own smart hang
 
 [#img-smart-hangboard]
 .Smart Hangboard
-image::./board_mount/smart_hangboard.png[{half-size}Smart Hangboard]
+image::./board_mount/smart_hangboard_v2.png[{half-size}Smart Hangboard]
 
 # What you need
 
