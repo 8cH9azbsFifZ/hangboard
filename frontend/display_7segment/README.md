@@ -9,15 +9,8 @@ Board Pin	Name	Anmerkung	Raspberry Pi Pin
 6	DOUT	Daten Pin (out)	nicht angeschlossen
 
 # Installation
-
-echo "Enable SPI"
-sudo sed -i 's/\#dtparam=spi=on/dtparam=spi=on/g' /boot/config.txt
-sudo usermod -a -G spi,gpio pi
-sudo apt-get -y install python-dev python-pip libfreetype6-dev libjpeg-dev
-pip3 install luma.led_matrix
-wget https://raw.githubusercontent.com/rm-hull/luma.led_matrix/master/examples/sevensegment_demo.py
-
-sudo python3 sevensegment_demo.py
++ `make prepare`
++ `make install`
 
 
 # References
