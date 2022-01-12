@@ -61,7 +61,7 @@ class Workout():
         self._workout_running = False
 
         # Connect to MQTT
-        self._client = mqtt.Client()
+        self._client = mqtt.Client("Workout")
 
         self._client.on_connect = self._on_connect
         self._client.on_message = self._on_message
