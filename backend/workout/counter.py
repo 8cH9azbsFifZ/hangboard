@@ -85,7 +85,7 @@ class Counter():
     def __iter__(self):
         return self
 
-    def __next__(self):
+    def __next__(self): # return -1 if last element
         # Get the indices right
 
         # Iterate through workout
@@ -111,7 +111,8 @@ class Counter():
                 self._current_set_counter = 0
             self._index = self._index + 1
         else:
-            raise StopIteration()
+            return -1
+            #raise StopIteration()
 
         self._get_current_hold_setup()
         self._publish_exercise()
@@ -123,6 +124,7 @@ class Counter():
         self._get_current_set(index=0) # FIXME: index can leave
         self._get_current_hold_setup(upcoming=True)
         self._publish_exercise()
+        
 
     def _start_current_timer(self):
         self._tstart = time.time()
