@@ -326,7 +326,7 @@ class SensorForce():
             ', "loadcurrent_balance": '+ "{:.2f}".format(self.load_current_balance) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + \
             ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + \
             ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + \
-            ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '}')
+            ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
              
         if self.Changed == "NoHang":
             #logging.debug("Last Hang load " + str(self.MaximalLoad))
@@ -391,6 +391,8 @@ class SensorForce():
 
         if (oldstate == self.HangDetected):
             self._HangStateChanged = False
+        else:
+            self._HangStateChanged = True
             if self.HangDetected:
                 self.Changed = "Hang"
             else:
