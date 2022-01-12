@@ -61,7 +61,7 @@ class Database():
 
     def _record_data(self, hostname="localhost",port=1883):
         logging.debug("Start recording data from mqtt for display")
-        self._client= paho.Client("display_7segment")  # FIXME
+        self._client= paho.Client("display_7segment") 
         self._client.on_message=self._on_message
         self._client.connect(hostname,port,60)#connect
 
