@@ -266,7 +266,7 @@ class Workout():
         # Communicate on currently selected workout
         self._sendmessage("/workoutstatus", json.dumps(self._workoutlist[index]))
 
-    def workout2html(self):
+    def workout_dryrun(self): 
         
         while True:    
             upcoming = self._counter._show_upcoming_exercise()
@@ -289,4 +289,4 @@ if __name__ == "__main__":
     total_time = wa._counter._calc_time_in_current_workout()
     print ("total_time, planned_time_sofar, estimated_rest_time",total_time)
 
-    wa.workout2html()
+    wa.workout_dryrun()
