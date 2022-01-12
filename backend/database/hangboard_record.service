@@ -1,18 +1,16 @@
 [Unit]
 Description=Hangboard Record Service
-After=network-online.target
-Wants=network-online.target systemd-networkd-wait-online.service
+After=mosquitto.service multi-user.target
 
-StartLimitIntervalSec=500
-StartLimitBurst=5
 
 [Service]
-Type=simple
-User=pi
-ExecStart=/bin/sh -c 'cd /home/pi/hangboard/backend && source venv /home/pi/hangboard/backend/bin/activate && ./record.py'
-
-Restart=on-failure
-RestartSec=5s
+#User=pi
+User=root
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/database/record.py 
+StandardOutput=file:/var/log/record_stdout.log
+StandardError=file:/var/log/record_stderr.log
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

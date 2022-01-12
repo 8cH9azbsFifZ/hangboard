@@ -6,6 +6,6 @@ from database import Database
 
 
 if __name__ == "__main__":
-  d = Database(hostname="raspi-hangboard", user="root", password="rootpassword")
+  d = Database(hostname="localhost", user="root", password="rootpassword")
   d._set_user(uuid="us3r")
-  d._record_data(hostname="raspi-hangboard")
+  d._record_data(hostname="localhost")

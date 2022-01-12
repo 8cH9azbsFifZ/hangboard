@@ -112,7 +112,7 @@ class Database():
 
   def _record_data(self, hostname="localhost",port=1883):
     logging.debug("Start recording data from mqtt to database")
-    self._client= paho.Client("client-001")  # FIXME
+    self._client= paho.Client("db recorder")  # FIXME
     self._client.on_message=self._on_message
     self._client.connect(hostname,port,60)#connect
 
@@ -124,8 +124,7 @@ class Database():
     self._client.subscribe("hangboard/workout/status")
     self._client.subscribe("hangboard/workout/workoutstatus")
     self._client.subscribe("hangboard/sensor/load/loadstatus")
-    self._client.subscribe("hangboard/sensor/sensorstatus")
-    self._client.subscribe("hangboard/sensor/lastexercise")
+    self._client.subscribe("hangboard/sensor/load/lastexercise")
     self._client.subscribe("hangboard/workout/userstatistics")
     self._client.subscribe("hangboard/workout/upcoming")
 
