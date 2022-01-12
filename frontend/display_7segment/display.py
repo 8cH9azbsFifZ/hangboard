@@ -53,7 +53,7 @@ class Database():
         ss = l+"\n\r"+lmax
         l2 = msg["loadcurrent_balance"] 
         l1 = msg["loadcurrent"] - l2
-        ll = 
+        ll = msg["loadcurrent"]
         #self._lcd.write_string(ss)
         tt = str("%2.0d  %2.0d"%(l1,l2))
         tt1 = str("%2.0d"%(ll))
