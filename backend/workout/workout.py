@@ -82,6 +82,8 @@ class Workout():
         self.total_sets = 0
         self._set_workout(workout_id) # TODO - implement MQTT command #59
 
+        self._HangDetected = False
+
         # Configure User
         # self._dbhost="hangboard" # FIXME
         # self._dbuser="root"
@@ -100,6 +102,8 @@ class Workout():
         """ Connect to MQTT broker and subscribe to control messages """
         print("Connected with result code "+str(rc))
         self._client.subscribe("hangboard/workout/control")
+        self._client.subscribe("hangboard/sensor/load/loadstatus")
+
 
     def _on_message(self, client, userdata, msg):
         """ 
@@ -108,18 +112,28 @@ class Workout():
         mosquitto_pub -h localhost -t hangboard/workout/control -m Start
         """
         logging.debug(">MQTT: " + msg.payload.decode())
-        if msg.payload.decode() == "Stop":
-            #time.sleep(10)
-            self._workout_running = False
-            #exit()
-        if msg.payload.decode() == "Start":
-            self._workout_running = True
-            next(self._counter)
-        if msg.payload.decode() == "Restart":
-            self._workout_running = True
-            self._counter = Counter(self._workout, hostname=self._hostname)
-        if msg.payload.decode() == "ListWorkouts":
-            self._list_workouts()
+        
+        # Controls
+        if msg.topic == "hangboard/workout/control":
+            if msg.payload.decode() == "Stop":
+                #time.sleep(10)
+                self._workout_running = False
+                #exit()
+            if msg.payload.decode() == "Start":
+                self._workout_running = True
+                next(self._counter)
+            if msg.payload.decode() == "Restart":
+                self._workout_running = True
+                self._counter = Counter(self._workout, hostname=self._hostname)
+            if msg.payload.decode() == "ListWorkouts":
+                self._list_workouts()
+
+        # Hang data
+        if msg.topic == "hangboard/sensor/load/loadstatus":
+            jj = json.loads(msg.payload.decode())
+            self._HangDetected = jj["HangDetected"]
+            return
+
 
      
 
@@ -160,7 +174,7 @@ class Workout():
         self._sendmessage("/workoutlist", msg)
         return (workout_array)
 
-    def run_workout (self):
+    def run_workout (self): # FIXME delete
         """
         Run a single workout
         """
@@ -168,37 +182,6 @@ class Workout():
         for self.current_set in range (0, self.total_sets):
             self.run_set()
 
-    def run_exercise_maximal_hang(self):
-        """ Run a maximal hang exercises """
-        logging.debug("Run a maximal hang time exercise")
-        # TBD Implement
-
-    def run_exercise_pull_ups(self):
-        """ Run pull up exercise """
-        logging.debug("Run a pull ups exercise")
-        # TBD Implement
-        # TODO counting - how to achieve (force or distance detection?) - #79
-
-
-    # def _set_user(self, user="us3r"): # FIXME
-    #     """ Set current user for data persistence """
-    #     self._user = User(user=user,dbhostname=self._dbhost,dbuser=self._dbuser,dbpassword=self._dbpassword)  
- 
-    # def _update_user_statistics(self):
-    #     """ Calculate current intensity based on the data given in the database for the hold configuration and current user. """
-    #     # FIXME: both / one hand
-    #     if self._counter._holdtypeleft != "":
-    #         self._user.SetReference(hold=self._counter._holdtypeleft, hand="left") # FIXME what if differnt holds?
-    #     if self._counter._holdtyperight != "":
-    #         # FIXME: db call every time?!  #60
-    #         self._user.SetReference(hold=self._counter._holdtyperight, hand="right") # FIXME what if differnt holds?
-    #         # TODO : implement  #60
-    #     if self._counter._holdtypeleft != "" and self._counter._holdtyperight != "":
-    #         self._user.SetReference(hold=self._counter._holdtyperight, hand="both")
-    #     self.CurrentIntensity = self._user.GetCurrentIntensity(self.sensors.sensor_hangdetector.load_current)
-    #     #logging.debug("Current intensity for " + self._counter._holdtyperight + ": " + str(self.CurrentIntensity))
-    #     tt = time.time()
-    #     self._sendmessage("/userstatistics", '{"time": ' + str(tt) + ', "CurrentIntensity": ' + str(self.CurrentIntensity) + '}')
 
     def _core_loop(self):
         """
@@ -222,25 +205,25 @@ class Workout():
             upcoming = self._counter._show_upcoming_exercise()
             print (upcoming)
                 
-            self.sensors.run_one_measure()
+            #self.sensors.run_one_measure() # FIXME: implicit run - connect to MQTT(!)
             #self._update_user_statistics() 
             timer_done = self._counter.get_current_timer_state()
             self._counter._calc_time_in_current_workout()
             if timer_done:
                 # Start next timer only when hang detected for "not pause" exercises -> means next is a hang
                 if self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start":
-                    if self.sensors.HangDetected:
+                    if self._HangDetected:
                         next(self._counter)
                     else:
                         # show at least upcoming config
                         self._counter._show_upcoming_exercise()
                 # Start next timer only when np hang detected if currently no pause -> means next is a pause
                 else:
-                    if not self.sensors.HangDetected:
+                    if not self._HangDetected:
                         next(self._counter)
             # Next timer if a "not pause" exercise is combined with "no hang" -> means exercise aborted
             if not (self._counter._current_exercise_type == "Pause" or self._counter._current_exercise_type == "Rest to start"):
-                if not self.sensors.HangDetected:
+                if not self._HangDetected:
                     next(self._counter)
 
     def _set_workout (self, id="ZB-A-1"):      
