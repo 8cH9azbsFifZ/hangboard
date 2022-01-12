@@ -219,7 +219,8 @@ class Workout():
                         next(self._counter)
                     else:
                         # show at least upcoming config
-                        self._counter._show_upcoming_exercise()
+                        self._counter._show_upcoming_exercise() 
+                        # FIXME: last exercise i.e. self._current_set < self._total_sets
                 # Start next timer only when np hang detected if currently no pause -> means next is a pause
                 else:
                     if not self._HangDetected:
@@ -265,8 +266,15 @@ class Workout():
         # Communicate on currently selected workout
         self._sendmessage("/workoutstatus", json.dumps(self._workoutlist[index]))
 
-     
-
+    def workout2html(self):
+        
+        while True:    
+            upcoming = self._counter._show_upcoming_exercise()
+            print (upcoming)
+            i1 = next(self._counter)
+            if i1 == -1:
+                return
+           
 
 """ Main loop only for testing purposes. """
 if __name__ == "__main__":
@@ -279,4 +287,6 @@ if __name__ == "__main__":
     #print (list_wa)
     wa._set_workout(id="BEASTY-5A")
     total_time = wa._counter._calc_time_in_current_workout()
-    print (total_time)
+    print ("total_time, planned_time_sofar, estimated_rest_time",total_time)
+
+    wa.workout2html()

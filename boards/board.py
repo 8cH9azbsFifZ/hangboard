@@ -7,6 +7,7 @@ import json
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+import numpy as np
 
 
 import logging
@@ -93,14 +94,17 @@ class Board():
                 #print (h, d1, d2,delta)
                 dd.append(delta)
 
-            dmin = min(dd)
+            dmin = min(dd) # FIXME del
+            x = np.array(dd)
+            dmin1, dmin2 = np.partition(x, 1)[0:2]
+
             #print ("min ",dmin)
             #index_min = min(range(len(dd)), key=dd.__getitem__)
             i = 0
             for ddd in dd:
                 h = self.boarddata["Holds"][i]["ImgLayerName"]
                 #print (i, ddd, h)
-                if ddd == dmin:
+                if ddd == dmin1 or ddd == dmin2:
                     holds.append(h)
                 i = i + 1
 
