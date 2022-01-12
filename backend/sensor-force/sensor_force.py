@@ -111,6 +111,7 @@ class SensorForce():
        # Defined current states
         self.HangDetected = False
         self._HangStateChanged = False
+        self.Changed = "" 
 
         # Hang time variables
         self.LastHangTime = 0
