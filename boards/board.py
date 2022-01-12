@@ -72,10 +72,39 @@ class Board():
         logging.debug("Get holds for type " + str(type))
         if type == "":
             return [""]
+
         holds = []
+        # Find perfect match
         for hold in self.boarddata["Holds"]:
             if (hold["Name"] == type):
                 holds.append(hold["ImgLayerName"])
+        
+        # Find nearest match
+        if len(holds) == 0:
+            dd = [] # delta depths array (mm)
+            d1 = int(type.replace("mm",""))
+            for hold in self.boarddata["Holds"]:
+                h = hold["Name"]
+                d2 = -100# for jug etc?
+                if h[-2:] == "mm": # if hold ends with mm
+                    l = h[-5:]  # last 5 chars of hold contain the length
+                    d2 = int(l.replace("mm",""))
+                delta = abs (d2-d1)
+                #print (h, d1, d2,delta)
+                dd.append(delta)
+
+            dmin = min(dd)
+            #print ("min ",dmin)
+            #index_min = min(range(len(dd)), key=dd.__getitem__)
+            i = 0
+            for ddd in dd:
+                h = self.boarddata["Holds"][i]["ImgLayerName"]
+                #print (i, ddd, h)
+                if ddd == dmin:
+                    holds.append(h)
+                i = i + 1
+
+
         logging.debug (holds)
         return holds
 
@@ -91,11 +120,14 @@ if __name__ == "__main__":
     a = Board(boardname=boardname)
 
     # Test: holds for JUG
-    h = a.get_hold_for_type("JUG")
-    print (h[0])
-    print (h[-1])
+    #h = a.get_hold_for_type("JUG")
+    h = a.get_hold_for_type("45mm")
+    h = a.get_hold_for_type("23mm")
+
+    #print (h[0])
+    #print (h[-1])
 
     # Test: All holds
-    print (a.all_holds)
+    #print (a.all_holds)
 
    
