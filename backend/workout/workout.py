@@ -131,7 +131,10 @@ class Workout():
         # Hang data
         if msg.topic == "hangboard/sensor/load/loadstatus":
             jj = json.loads(msg.payload.decode())
-            self._HangDetected = jj["HangDetected"]
+            if jj["HangDetected"] == "True":
+                self._HangDetected = True
+            else:
+                self._HangDetected = False
             return
 
 
