@@ -2,7 +2,8 @@ api-doc:
 	docker run --rm -it -v $(PWD)/database_api.yaml:/app/asyncapi.yml -v $(PWD)/api:/app/output asyncapi/generator  -o /app/output /app/asyncapi.yml @asyncapi/html-template --force-write
 
 prepare:
-	sudo apt-get -y install python-pandas
+	sudo apt-get -y install python-pandas python3-pandas-lib python3-pymongo
+
 
 
 install:
