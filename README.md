@@ -23,6 +23,7 @@ In the recent years
 there have been a couple of attempts to create hombrew smart hangboards.
 + Raspi W Zero Hangboard: https://github.com/adrianlzt/piclimbing
 + Arduino Hangboard: https://github.com/oalam/isometryx 
++ HangOnIt https://github.com/MWaug/hangboard-app
 
 This was motivation for me to learn new technologies and build an own smart hangboard - which is easy to reproduce for others.
 
