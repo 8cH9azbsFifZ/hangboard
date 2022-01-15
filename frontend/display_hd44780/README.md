@@ -1,5 +1,6 @@
-Service for running a 
+# Service for running a HD44780 display with this hangboard application
 
+Status: prototype, abandoned due to latency of the displays.  
 
 # Installation
 ```
