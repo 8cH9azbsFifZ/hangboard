@@ -7,6 +7,7 @@ This directory contains the exercise files and the corresponding classes for ser
 
 
 # Discussion of various exercises
+This section serves as a reference for the implementation of the various exercises implemented in the JSON files.
 
 ## Eva López MaxHangs strength training protocol 
 + Always warm up properly before doing the MaxHangs hangboard routine.
@@ -55,9 +56,40 @@ This directory contains the exercise files and the corresponding classes for ser
   + Rest 3 – 5 minutes and switch to the next grip position.
   + Complete a total of 2 – 5 sets.
 
+## Eva López SubHangs strength endurance protocol
++ The SubHangs strength endurance MAW protocol is only recommended for advanced climbers with a lot of training experience. Beginners and intermediate should stick to SubHangs MED.
++ Make sure to warm up your shoulders before you start the protocol. The longer hangs, above 30 seconds, can be very straining on the shoulders and potentially lead to rotator cuff injuries.
++ You can tailor the program to suit your current performance requirements: 
+  + If you need to improve your recovery time between sustained sections of a route, you should start with long rests of 2 – 3 minutes between sets. Shorten the rests gradually while progressing through the program, down to a minimum of 30 seconds. Keep the hang duration or load constant.
+  + Alternatively, if you need to be able to hold a specific grip position for a longer time, you can increase the hang period and keep the pause unchanged.
++ If the pause between sets is less than 2 minutes, select the load in such a way, so that you reach failure or near-failure in the last hang of the session.
++ If the pause between sets is 2 – 3 minutes, select the load in such a way so that you reach failure or near-failure at the end of each set.
++ You may need to adjust the load (SubHangs MAW) or edge depth (SubHangs MED) for each set or even repetition, to reach failure exactly when it is required.
++ Training frequency
+  + For improving your strength endurance perform the drills twice a week, with  48 – 72 hours recovery between the sessions.
+  + If you want to maintain your current strength endurance level, exercising once a week should be sufficient.
+  + For advanced climbers who train 5-6 times per week, three SubHangs sessions a week are possible if they don’t climb during the weekends.
+
+### Typical SubHangs strength endurance training cycles
++ The basic principle for the SubHangs protocols is to create a training overload by progressing the volume. 
++ Once the progress slows down, you should start changing other workout parameters. You may try the following two approaches:
+  + Keep the hang intensity and recovery times fixed while extending the hang duration up to 45 seconds.
+  + Keep the hang intensity and hang times fixed while shortening the recovery time between sets down to 30 seconds.
+
+### Eva López SubHangs MED protocol details
++ Choose an edge on which you can hang between 20 and 45 seconds.
++ Perform one hang of 20 – 45 seconds, rest for 30 seconds up to 2 minutes.
++ Perform 4 – 8 sets.
+
+### Eva López SubHangs MAW protocol details
++ Choose an edge between 14 – 20 mm and a corresponding load, so that you can hang between 20 and 45 seconds.
++ Perform one hang of 20 – 45 seconds, rest for 30 seconds up to 2 minutes.
++ Perform 4 – 8 sets.
+
+
 
 # References
-* Excellent summary of the routines by Eva Lopez https://strengthclimbing.com/eva-lopez-maxhangs/
+* Excellent summary of the routines by Eva Lopez https://strengthclimbing.com/eva-lopez-maxhangs/ and https://strengthclimbing.com/eva-lopez-subhangs-climbing-endurance-protocol/
 * Excellent summary of the routines by Eric Hörst: https://strengthclimbing.com/eric-horst-7-53-hangboard-routine/
 * CriticalForceCalculator https://strengthclimbing.com/critical-force-calculator/
 * ClimbingFingerStrengthAnalyzer https://strengthclimbing.com/finger-strength-analyzer/

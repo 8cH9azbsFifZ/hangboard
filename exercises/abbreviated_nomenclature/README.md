@@ -24,6 +24,10 @@
 3x MEDHang @18mm 7(3):180s
 3x MAXHang @30mm W+10kg 7(3):180s
 
+Not implemented yet: ranges...
+4-8x SubHangsMED @30mm 20-45:30-120s
+
+
 
 # Lopez for reference
 + 3 x MEDHangs x 15"(5):3'
