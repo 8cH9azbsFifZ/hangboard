@@ -16,13 +16,13 @@
 
 2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s
 
-2x 7x Hang @Jug 7:3:150
-2x 7x Hang @45mm &Front3 §Open 7:3:150
-2x 7x Hang @45mm &4 §Open 7:3:150
+2x 7x Hang @Jug 7:3:150s
+2x 7x Hang @45mm &Front3 §Open 7:3:150s
+2x 7x Hang @45mm &4 §Open 7:3:150s
 
 
-3x MEDHang @18mm 7(3):180
-3x MAXHang @30mm W+10kg 7(3):180
+3x MEDHang @18mm 7(3):180s
+3x MAXHang @30mm W+10kg 7(3):180s
 
 
 # Lopez for reference
@@ -51,3 +51,9 @@
 "Intensity": 0.35
 }
 
+
+# Warmup Routine for Reference
+5x Hang @Jug 10:20:60s
+5x 4xPullup @Jug 0:20:60s
+5x Hang @30mm 10:20:120s
+5x 5xPullup @30mm 0:30s
