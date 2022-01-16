@@ -21,7 +21,6 @@ This directory contains the exercise files and the corresponding classes for ser
 + Choose an edge on which you can hang for only 6 – 20 seconds.
 + Hang for 5 – 15 seconds (leave a 1 – 5-second margin), rest for 3 – 5 minutes.
 + Complete 2 – 5 sets.
-
 + For the MaxHangs MED protocol, an edge between 5 – 10 mm is usually chosen. 
 + During each set try to assess the time margin you have left on the hangs. 
   + If you feel like your margin exceeds 3 – 5 seconds, decrease the edge depth by 1 – 2 mm, according to the perceived effort.
@@ -33,7 +32,6 @@ This directory contains the exercise files and the corresponding classes for ser
 + Add enough weight to be able to hang for only 6 – 20 seconds.
 + Hang for 5 – 15 seconds (leave a 1 – 5-second margin), rest for 3 – 5 minutes.
 + Complete 2 – 5 sets.
-
 + For the MaxHangs MAW protocol, an edge between 8 – 22 mm is usually chosen, but you can do it for any hold. (Typical added load: 5 – 55 kg.)
 + During each set try to assess the time margin you have left on the hang.
   + If you feel like your margin exceeds 3 seconds, add 2 – 5 kg for the next set, depending on bodyweight.
