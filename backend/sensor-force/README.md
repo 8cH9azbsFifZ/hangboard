@@ -3,6 +3,9 @@ Load cells are available widely with the HX711 signal amplifier module as a pack
 We will use one of these packages as the force measurement sensors.
 The python module <<HX711PythonModule>> is slightly modified and contained in the backend sources.
 
+*STATUS: Manual calibration work for your setup must be done [TODO](./TODO.md)*
+
+
 ## Hardware setup
 
 ### Prototype 11.01.2022
