@@ -24,8 +24,19 @@
 3x MEDHang @18mm 7(3):180s
 3x MAXHang @30mm W+10kg 7(3):180s
 
-Not implemented yet: ranges...
-4-8x SubHangsMED @30mm 20-45:30-120s
+## Not implemented yet: ranges...
+
+3x MEDHang @5-10mm 7(3):180s
+3x MAXHang @8-22mm W+5-55kg 7(3):180s
+
+4-8x SubHangsMED @8-22mm 20-45:30-120s
+4-8x SubHangsMAX @14-20mm 20-45:30-120s
+
+3-5x 4-5x IntHangsMED @8-22mm 7-10:3-30:60-120s
+3-5x 4-5x IntHangsMAX @10-18mm 7-10:3-30:60-120s
+
+
+
 
 
 
