@@ -8,6 +8,9 @@ Examples:
 2x 7x Hang @45mm &4 §Open 7:3:150
 3x MEDHang @18mm 7(3):180
 3x MAXHang @30mm W+10kg 7(3):180
+
+---
+Test
 """
 import re
 
