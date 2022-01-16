@@ -1,4 +1,7 @@
 # Frontend for iOS (Flutter)
+** Status: works as demonstrator, no stable yet **
+
++ [TODO](./TODO.md)
 
 # Software Design
 + lib/widgets/mqttView.dart - Main view
