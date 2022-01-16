@@ -11,3 +11,4 @@ Restructure workout service:
 - Fix adoc manual
 - Fix sensor readme
 
+- Documentation of the backend software can be created using `doxygen` (cf. Doxyfile). `brew install doxygen`.
