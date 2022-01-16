@@ -26,7 +26,9 @@ Lessons learned (Why not recommended):
 <img src="./MWaug-BoardMount.png" width="500"/>
 + HangOnIt https://github.com/MWaug/hangboard-app
 
-## Paper
+## Anderson Method
++ Reference: Force-Sensing Hangboard to Enhance Finger Training in Rock Climbers, Michael Anderson
+
 
 ## Isometrix
 <img src="./IsometrixBoard.png" width="500"/>
