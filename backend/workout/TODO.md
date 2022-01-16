@@ -1,0 +1,1 @@
++ Initial weight detection for intensity calculations (must be started using event)

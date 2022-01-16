@@ -1,0 +1,57 @@
+<html>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+    <script>
+        // Create a client instance
+client = new Paho.MQTT.Client("10.101.40.40", 9001, "clientId");
+base_asset_url = "http://raspi-hangboard:5000/board/";
+
+// set callback handlers
+client.onConnectionLost = onConnectionLost;
+client.onMessageArrived = onMessageArrived;
+
+// connect the client
+client.connect({onSuccess:onConnect});
+
+
+// called when the client connects
+function onConnect() {
+  // Once a connection has been made, make a subscription and send a message.
+  console.log("onConnect");
+  client.subscribe("hangboard/sensor/load/loadstatus");
+  client.subscribe("hangboard/workout/holds");
+  message = new Paho.MQTT.Message("Hello"); // FIXME
+  message.destinationName = "World";
+  client.send(message);
+}
+
+// called when the client loses its connection
+function onConnectionLost(responseObject) {
+  if (responseObject.errorCode !== 0) {
+    console.log("onConnectionLost:"+responseObject.errorMessage);
+  }
+}
+
+// called when a message arrives
+function onMessageArrived(message) {
+  console.log("onMessageArrived:"+message.payloadString);
+  const obj = JSON.parse(message.payloadString);
+  if (obj.hasOwnProperty("rfd"))
+  {
+    document.getElementById("load").innerHTML = message.payloadString;
+  }
+  if (obj.hasOwnProperty("Left"))
+  {
+    const imgname = base_asset_url + "img/"+obj.Left+"/"+obj.Right;
+    document.getElementById("workout").innerHTML = message.payloadString + " " + imgname;
+    document.getElementById("board").innerHTML = '<img src='+imgname+' />'
+  }
+}
+    </script>
+    <body>
+        <div id="board"><img src="http://raspi-hangboard:5000/board/img"/></div>
+        <div id="load">Test</div>
+        <div id="workout">Test</div>
+    </body>
+</html>

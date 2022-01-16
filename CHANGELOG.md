@@ -1,5 +1,9 @@
-
-- v0.59 - WIP 
+- v0.64 - Bugfixes, documentation
+- v0.63 - Hardware prototype 2 working
+- v0.62 - LED progess bar with moonboard, serve assets and load status via rest api, minimal web frontend
+- v0.61 - Two hx711 force sensors, restruct directory layout (all services broken therefore)
+- v0.60 - Demonstrator with HD44780 display for load
+- v0.59 - WIP Features (#87, #108, #109, #112, #115), Bugfixes (#111, #100)
 - v0.58 - Demonstrator with one working exercise. Progress bar (#103), bugfixes (#101).
 - v0.57 - Bugfixes (#99, #104)
 - v0.56 - Implemented 1 hand hold display (#96, #97), display next exercise intensity (#98).

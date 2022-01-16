@@ -1,10 +1,7 @@
 smbus
-tabulate
 RPi.GPIO
-svglib
-scipy
+#scipy # FIXME - conflicts on raspi
 numpy
-pymongo
-paho-mqtt
+#paho-mqtt # FIXME - conflicts on raspi
 matplotlib
 pandas

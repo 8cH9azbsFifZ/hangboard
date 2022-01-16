@@ -1,0 +1,16 @@
+[Unit]
+Description=Hangboard Record Service
+After=mosquitto.service multi-user.target
+
+
+[Service]
+#User=pi
+User=root
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/hangboard/backend/database/record.py 
+StandardOutput=file:/var/log/record_stdout.log
+StandardError=file:/var/log/record_stderr.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

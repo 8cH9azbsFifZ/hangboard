@@ -1,0 +1,1493 @@
+{
+	"version": 1,
+	"LinebreakerBASE": [
+		{
+			"title": "Warm-up",
+			"description": "A short and easy warm-up program. You have to adapt the hold times, or even the holds, to fit the warm-up to your current level. You may also apply additional holds to get properly warm, if needed.",
+			"exercises": [
+				{
+					"title": "Jugs",
+					"description": "4-Finger and Thumb / Open Hand",
+					"leftHand": 1,
+					"rightHand": 1,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "15"
+				},
+				{
+					"title": "22.5° Sloper",
+					"description": "With both Hands",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "45mm 3-Fingerpocket",
+					"description": "With 3 Finger / Open Hand",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": "15",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "37mm Pocket",
+					"description": "With 3 Finger / Open Hand",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "15",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "50mm 2-Fingerpocket",
+					"description": "Front Two (Index- and Middlefinger)",
+					"leftHand": 12,
+					"rightHand": 12,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "50mm 2-Fingerpocket",
+					"description": "Back Two (Middle- and Ringfinger)",
+					"leftHand": 12,
+					"rightHand": 12,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example. You have to adapt the hold times, or even the holds, to fit the workout to your current level. If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm. For two finger exercises, you can also consider to take the small 4-Fingerbar with only two finger for example.",
+			"exercises": [
+				{
+					"title": "32.5° Sloper",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 15
+				},
+				{
+					"title": "30mm 2-Fingerpocket (back-two)",
+					"description": "Ring- and middlefinger",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "30mm 2-Fingerpocket (front-two)",
+					"description": "Index- and middlefinger",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "20mm 4-Fingerbar / Open-Hand",
+					"description": "With three finger open-hand position",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Jug left with one arm",
+					"description": "With one arm only: Take care about engaged shoulders and slightly bend arms.",
+					"leftHand": 1,
+					"rightHand": 0,
+					"onTime": 5,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Jug right with one arm",
+					"description": "With one arm only: Take care about engaged shoulders and slightly bend arms.",
+					"leftHand": 0,
+					"rightHand": 1,
+					"onTime": 5,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "4-Fingerpocket",
+					"description": "",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 15
+				},
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Pocket",
+					"description": "",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	],
+	"LinebreakerPRO": [
+		{
+			"title": "Warm-up",
+			"description": "A short and easy warm-up program. You have to adapt the hold times, or even the holds, to fit the warm-up to your current level. You may also apply additional holds to get properly warm, if needed.",
+			"exercises": [
+				{
+					"title": "35mm 4-Fingerpocket",
+					"description": "With 3 or 4 fingers / Open Hand",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": 15
+				},
+				{
+					"title": "35° Sloper",
+					"description": "With both Hands",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "12",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "30mm 2-Fingerpocket",
+					"description": "With Front-Two (Index- and Middlefinger)",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "12",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "30mm 2-Fingerpocket",
+					"description": "With Back-Two (Middle- and Ringfinger)",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "12",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "15mm Bar with 3 Finger",
+					"description": "With middle 3 / Open Hand",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 2-Fingerpocket ",
+					"description": "Short (warm-up) hold with Front-Two",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": "4",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 2-Fingerpocket ",
+					"description": "Short (warm-up) hold with Back-Two",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": "4",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example. You have to adapt the hold times, or even the holds, to fit the workout to your current level. If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm. For two finger exercises, you can also consider to take the small 4-Fingerbar with only two finger for example.",
+			"exercises": [
+				{
+					"title": "40° Sloper",
+					"description": "Try to take off! Use the edges left or right or the thumb to make it a bit easier, when necessary!",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": "4",
+					"pause": 15
+				},
+				{
+					"title": "15mm 4-Fingerbar / with 3 Finger",
+					"description": "Only with 3 Finger / Open-Hand",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "14",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "15mm Fingerbar / 2-Fingers back-two",
+					"description": "Only with the ring- and middlefinger (back-two)",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "15mm Fingerbar / 2-Fingers front-two",
+					"description": "Only with the index- and middlefinger (front-two)",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "5",
+					"offTime": "60",
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono / Ringfinger",
+					"description": "With the ringfinger.",
+					"leftHand": 10,
+					"rightHand": 10,
+					"onTime": "3",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono /Middlefinger",
+					"description": "With the middlefinger.",
+					"leftHand": 10,
+					"rightHand": 10,
+					"onTime": 10,
+					"offTime": "60",
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Incut-Fingerbar / Half-Open",
+					"description": "Hold with 4-Fingers / Half-Open",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "15",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Slopy Mono",
+					"description": "With middlefinger",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": "7",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "3-Finger / One-Arm left",
+					"description": "Left-Hand",
+					"leftHand": 7,
+					"rightHand": 0,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "3-Finger / One-Arm right",
+					"description": "Right-Hand",
+					"leftHand": 0,
+					"rightHand": 7,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 15
+				},
+				{
+					"title": "4-Finger / Half-Open-Hand",
+					"description": "",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "4-Fingerpocket",
+					"description": "",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Sloper",
+					"description": "Should be very hard to the end...",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	],
+	"LinebreakerAIR": [
+		{
+			"title": "Warm-up",
+			"description": "A short warm-up with the Linebreaker AIR",
+			"exercises": [
+				{
+					"title": "35mm 4-Fingerpocket",
+					"description": "With 3-Finger / Open-Hand",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": 15
+				},
+				{
+					"title": "25° Sloper",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "35mm 4-Fingerpocket",
+					"description": "With 4-Finger / Soft-Half-Open-Hand",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "35mm 4-Fingerpocket with 2-Fingers / back-two",
+					"description": "With back-two (Ring- and Middlefinger)",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "7",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "35mm 4-Fingerpocket with 2-Fingers / front-two",
+					"description": "With front-two (Index- and Middlefinger)",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 2-Fingerpocket / back-two",
+					"description": "With back-two (Ring- and Middlefinger) - Short warm-up hold test on",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "5",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 2-Fingerpocket / front-two",
+					"description": "With front-two (Index- and Middlefinger) - Short warm-up hold test on",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "5",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "15mm 4-Fingerbar with 3 Finger",
+					"description": "Only with 3 Finger / Open-Hand",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example for the Linebreaker AIR board. You have to adapt the hold times, or even the holds, to fit the workout to your current level. If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm.",
+			"exercises": [
+				{
+					"title": "37.5° Sloper",
+					"description": "Try to take off! It's hard!",
+					"leftHand": 1,
+					"rightHand": 1,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 15
+				},
+				{
+					"title": "15mm 4-Fingerbar / with 3 Finger",
+					"description": "Only with 3 Finger / Open-Hand",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "14",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "2-Fingerpocket / back-two",
+					"description": "Ring- and middlefinger (back-two)",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "8",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "2-Fingerpocket / front-two",
+					"description": "Index- and middlefinger (front-two)",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "8",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono / Ringfinger",
+					"description": "With the ringfinger.",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": "3",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono / Middlefinger",
+					"description": "With the middlefinger.",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "4-Fingerpocket / Half-Open",
+					"description": "Hold with 4-Fingers / Half-Open",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "3-Finger / One-Arm left",
+					"description": "Left-Hand",
+					"leftHand": 9,
+					"rightHand": 0,
+					"onTime": "4",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "3-Finger / One-Arm right",
+					"description": "Right-Hand",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": "4",
+					"offTime": "57",
+					"repetitions": 4,
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example for the Linebreaker AIR board due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "3-Fingerbar",
+					"description": "",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 15
+				},
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "4-Fingerpocket",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	],
+	"LinebreakerRAIL": [
+		{
+			"title": "Warm-up",
+			"description": "A short and easy warm-up program. You have to adapt the hold times, or even the holds, to fit the warm-up to your current level. You may also apply additional holds to get properly warm, if needed.",
+			"exercises": [
+				{
+					"title": "Jugs",
+					"description": "4-Finger and Thumb / Open Hand",
+					"leftHand": 1,
+					"rightHand": 1,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "15"
+				},
+				{
+					"title": "Flat Jugs",
+					"description": "4-Finger / Open Hand",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "22.5° Sloper",
+					"description": "Try only to hold the 22.5° part of the hold!",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "40mm 2-Fingerpocket",
+					"description": "Front Two (Index- and Middlefinger)",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "40mm 2-Fingerpocket",
+					"description": "Back Two (Middle- and Ringfinger)",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "15mm 4-Fingerbar",
+					"description": "With 3 or 4 Fingers - but OPEN HAND",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "5",
+					"offTime": "40",
+					"repetitions": "2",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example. You have to adapt the hold times, or even the holds, to fit the workout to your current level. If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm. For two finger exercises, you can also consider to take the small 4-Fingerbar with only two finger for example.",
+			"exercises": [
+				{
+					"title": "15mm 4-Fingerbar / with 3 Finger",
+					"description": "Only with 3 Finger / Open-Hand",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "14",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 15
+				},
+				{
+					"title": "20mm 2-Fingerpocket (back-two)",
+					"description": "Only with the ring- and middlefinger (back-two)",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": "12",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "20mm 2-Fingerpocket (front-two)",
+					"description": "Only with the index- and middlefinger (front-two)",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": "12",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono / Ringfinger",
+					"description": "With the ringfinger.",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": "4",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono /Middlefinger",
+					"description": "With the middlefinger.",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": 10,
+					"offTime": "60",
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "25° Sloper / One-Arm left",
+					"description": "Try to use the flat part of the hold as little as possible!",
+					"leftHand": 3,
+					"rightHand": 0,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				},
+				{
+					"title": "25° Sloper / One-Arm right",
+					"description": "Try to use the flat part of the hold as little as possible!",
+					"leftHand": 0,
+					"rightHand": 3,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				},
+				{
+					"title": "30mm Bar / One-Arm left",
+					"description": "Left-Hand",
+					"leftHand": 8,
+					"rightHand": 0,
+					"onTime": "8",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				},
+				{
+					"title": "30mm Bar / One-Arm right",
+					"description": "Right-Hand",
+					"leftHand": 0,
+					"rightHand": 8,
+					"onTime": "8",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "15mm 4-Fingerbar",
+					"description": "",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "8",
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 15
+				},
+				{
+					"title": "Sloper",
+					"description": "Try only to hold the 22.5° part of the hold!",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "10",
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "4-Fingerpocket",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "12",
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Sloper",
+					"description": "Try only to hold the 22.5° part of the hold! Should be very hard to the end...",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	],
+	"LinebreakerCRIMP": [
+		{
+			"title": "Warm-up",
+			"description": "A short and easy warm-up program. You have to adapt the hold times, or even the holds, to fit the warm-up to your current level. You may also apply additional holds to get properly warm, if needed.",
+			"exercises": [
+				{
+					"title": "Jugs",
+					"description": "",
+					"leftHand": 1,
+					"rightHand": 1,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "15"
+				},
+				{
+					"title": "33mm 4-Finger",
+					"description": "",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": "15",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "33mm 2-Finger / Front-Two",
+					"description": "Front Two: Index- and Middlefinger",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "33mm 2-Finger / Back-Two",
+					"description": "Front Two: Middle- and Ringfinger",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "22mm 3-Finger",
+					"description": "",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "13",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "15mm 4-Finger",
+					"description": "",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example. You have to adapt the hold times, or even the holds, to fit the workout to your current level. Take in account, that you can use just three or only thwo fingers on the bars! If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm.",
+			"exercises": [
+				{
+					"title": "3-Finger ",
+					"description": "Ring-, Middle- and Indexfinger",
+					"leftHand": 8,
+					"rightHand": 8,
+					"onTime": "12",
+					"offTime": "57",
+					"repetitions": 4,
+					"pause": 15
+				},
+				{
+					"title": "2-Finger / Front-Two",
+					"description": "Index- and Middlefinger",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "2-Finger / Back-Two",
+					"description": "Ring- and Middlefinger",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "4-Finger",
+					"description": "",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": "12",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "4-Finger one arm left",
+					"description": "with only one arm",
+					"leftHand": 3,
+					"rightHand": 0,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				},
+				{
+					"title": "4-Finger one arm right",
+					"description": "with only one arm",
+					"leftHand": 0,
+					"rightHand": 3,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				},
+				{
+					"title": "3-Finger one arm left",
+					"description": "with only one arm",
+					"leftHand": 2,
+					"rightHand": 0,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				},
+				{
+					"title": "3-Finger one arm right",
+					"description": "with only one arm",
+					"leftHand": 0,
+					"rightHand": 2,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": "3",
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "4-Finger",
+					"description": "",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 15
+				},
+				{
+					"title": "3-Finger",
+					"description": "",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "4-Finger",
+					"description": "",
+					"leftHand": 4,
+					"rightHand": 4,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "3-Finger",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	],
+	"beastmaker1000": [
+		{
+			"title": "Warm-up",
+			"description": "A short warm-up with the beastmaker 1000",
+			"exercises": [
+				{
+					"title": "Jugs",
+					"description": "",
+					"leftHand": 1,
+					"rightHand": 1,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": 15
+				},
+				{
+					"title": "45mm 4-Fingerpocket",
+					"description": "",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20° Sloper",
+					"description": "With both Hands",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "15",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "30mm 3-Fingerpocket",
+					"description": "",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": "15",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "50mm 2-Fingerpocket (back-two)",
+					"description": "With back-two (Ring- and Middlefinger)",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "50mm 2-Fingerpocket (front-two)",
+					"description": "With front-two (Index- and Middlefinger)",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 4-Fingerbar (with 3-Finger)",
+					"description": "Only with 3-Finger / Open-Hand",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example for the beastmaker 1000 board. You have to adapt the hold times, or even the holds, to fit the workout to your current level. If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm. For two finger exercises, you can also consider to take the small 4-Fingerbar with only two finger for example.",
+			"exercises": [
+				{
+					"title": "20mm 4-Fingerbar / Open-Hand",
+					"description": "With three finger open-hand position",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 15
+				},
+				{
+					"title": "25mm 2-Fingerpocket (back-two)",
+					"description": "Ring- and middlefinger",
+					"leftHand": 12,
+					"rightHand": 12,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "25mm 2-Fingerpocket (front-two)",
+					"description": "Index- and middlefinger",
+					"leftHand": 12,
+					"rightHand": 12,
+					"onTime": "6",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "35° Sloper / Try to hold it!",
+					"description": "Try to take off! Use the edges left or right to make it a bit easier, when necessary!",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Jug left with one arm",
+					"description": "With one arm only: Take care about engaged shoulders and slightly bend arms.",
+					"leftHand": 1,
+					"rightHand": 0,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Jug right with one arm",
+					"description": "With one arm only: Take care about engaged shoulders and slightly bend arms.",
+					"leftHand": 0,
+					"rightHand": 1,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example for the beastmaker 1000 board due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": "15"
+				},
+				{
+					"title": "Pocket",
+					"description": "Pocket",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": "60"
+				},
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Pocket",
+					"description": "",
+					"leftHand": 9,
+					"rightHand": 9,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	],
+	"beastmaker2000": [
+		{
+			"title": "Warm-up",
+			"description": "A short warm-up for the beastmaker 2000.",
+			"exercises": [
+				{
+					"title": "20° Sloper",
+					"description": "With both hands.",
+					"leftHand": 3,
+					"rightHand": 3,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": 15
+				},
+				{
+					"title": "33mm 4-Fingerpocket",
+					"description": "With four or three finger, but Open-Hand.",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": "20",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "39"
+				},
+				{
+					"title": "30mm 2-Fingerpocket (back-two)",
+					"description": "Ring- and middlefinger",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": "12",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "30mm 2-Fingerpocket (front-two)",
+					"description": "Index- and middlefinger",
+					"leftHand": 11,
+					"rightHand": 11,
+					"onTime": "12",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "15mm 4-Fingerbar / Open-Hand",
+					"description": "With 3 Finger, to do it open-hand",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": "6",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "35° Sloper / Test-On",
+					"description": "To Test-On",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "8",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 2-Fingerpocket (back-two)",
+					"description": "Ring- and middlefinger / only very short warm-up",
+					"leftHand": 12,
+					"rightHand": 12,
+					"onTime": "4",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				},
+				{
+					"title": "20mm 2-Fingerpocket (front-two)",
+					"description": "Index- and middlefinger / only very short warm-up",
+					"leftHand": 12,
+					"rightHand": 12,
+					"onTime": "4",
+					"offTime": "40",
+					"repetitions": "1",
+					"pause": "40"
+				}
+			]
+		},
+		{
+			"title": "Maximum Strength",
+			"description": "A maximum strength workout example for the beastmaker 2000 board. You have to adapt the hold times, or even the holds, to fit the workout to your current level. If you can hold any hold longer than 15 seconds, you should consider to take a harder hold. If there is no harder hold on the Board, consider to use additional weight, or train with only one arm. For two finger exercises, you can also consider to take the small 4-Fingerbar with only two finger for example.",
+			"exercises": [
+				{
+					"title": "35° Sloper",
+					"description": "35° Sloper",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": "15",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 15
+				},
+				{
+					"title": "15mm 4-Fingerbar / with 3 Finger",
+					"description": "Only with 3 Finger / Open-Hand",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": "15",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "15mm Fingerbar / 2-Fingers back-two",
+					"description": "Only with the ring- and middlefinger (back-two)",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": "5",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "15mm Fingerbar / 2-Fingers front-two",
+					"description": "Only with the index- and middlefinger (front-two)",
+					"leftHand": 7,
+					"rightHand": 7,
+					"onTime": "5",
+					"offTime": "60",
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono / Ringfinger",
+					"description": "With the ringfinger.",
+					"leftHand": 14,
+					"rightHand": 14,
+					"onTime": "3",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Mono /Middlefinger",
+					"description": "With the middlefinger.",
+					"leftHand": 14,
+					"rightHand": 14,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Incut-Fingerbar / Half-Open / Left",
+					"description": "Hold with 4-Fingers / Half-Open / Left Hand",
+					"leftHand": 6,
+					"rightHand": 0,
+					"onTime": "3",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Incut-Fingerbar / Half-Open / Right",
+					"description": "Hold with 4-Fingers / Half-Open / Right Hand",
+					"leftHand": 6,
+					"rightHand": 6,
+					"onTime": "3",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "Slopy Mono",
+					"description": "With middlefinger",
+					"leftHand": 13,
+					"rightHand": 13,
+					"onTime": "7",
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "3-Finger / One-Arm left",
+					"description": "Left-Hand",
+					"leftHand": 8,
+					"rightHand": 0,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				},
+				{
+					"title": "3-Finger / One-Arm right",
+					"description": "Right-Hand",
+					"leftHand": 0,
+					"rightHand": 8,
+					"onTime": 10,
+					"offTime": 60,
+					"repetitions": 4,
+					"pause": 60
+				}
+			]
+		},
+		{
+			"title": "Strength Endurance (Short-Duration-Repeaters)",
+			"description": "A strength endurance workout example for the beastmaker 2000 board due to the Short-Duration-Repeaters-Protocol. You have to adapt the hold times, or even the holds, to fit the workout to your current level.",
+			"exercises": [
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 15
+				},
+				{
+					"title": "4-Fingerpocket",
+					"description": "",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "Sloper",
+					"description": "",
+					"leftHand": 2,
+					"rightHand": 2,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				},
+				{
+					"title": "4-Fingerpocket",
+					"description": "",
+					"leftHand": 5,
+					"rightHand": 5,
+					"onTime": 10,
+					"offTime": "10",
+					"repetitions": "7",
+					"pause": 60
+				}
+			]
+		}
+	]
+}
