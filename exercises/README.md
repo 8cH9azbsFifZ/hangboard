@@ -16,6 +16,9 @@ This directory contains the exercise files and the corresponding classes for ser
 + The margin is also called the effort level (EL)  and may be varied between 1 – 5 seconds. Leaving a margin leads to similar results as reaching failure, but reduces the risk of injury. (Typical margin: 3 seconds.)
 + The rest time between sets can be varied between 3 – 5 minutes. (Typical rest time between sets: 3 minutes.)
 
+### Margin
+<img src="./doc/margin_lopez.png" width="500"/>
+
 
 ### Eva López MaxHangs hangboard routine details (MED)
 + Choose an edge on which you can hang for only 6 – 20 seconds.
