@@ -28,4 +28,5 @@ Lessons learned (Why not recommended):
 
 ## Isometrix
 <img src="./IsometrixBoard.png" width="500"/>
+
 + No further details known, but there is obviously a metal frame behind the board.

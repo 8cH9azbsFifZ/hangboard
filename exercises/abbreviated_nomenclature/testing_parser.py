@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import pyparsing as pp
 
-
 t1 = '2x 3x Hang @25mm +0kg #4;Open 7(3)s:57s' 
 t2=t1 #"1   x y asdf asdf"
 tmp = pp.Word(pp.nums)+"x"+pp.Word(pp.nums)+"x"+pp.Word(pp.alphas)+pp.Optional("@"+pp.Word(pp.alphanums))+pp.Optional("+"+pp.Word(pp.nums)+"kg") \
