@@ -9,3 +9,15 @@
 * cf. images cell brackets 
 
 Ref: https://www.instructables.com/Get-a-Hanging-Weight-Sensor-for-Your-Arduino-Proje/
+
+# Variants for mounting the board with different load cells
+## Zlagboard - Prototype 2
+
+<img src="./smart_hangboard_v2.png" width="500"/>
+
+## Zlagboard - Prototype 1
+<img src="./4_load_cells/smart_hangboard_v1.png" width="500"/>
+
+Lessons learned (Why not recommended):
++ The load scale sensors must be used with a custom made mounting bracket
++ The slightest torsions or tilting leads to weight errors of up to 20%. 
