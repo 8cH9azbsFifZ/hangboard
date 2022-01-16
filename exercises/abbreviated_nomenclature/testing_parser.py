@@ -83,9 +83,43 @@ class ExerciseParser():
         if len(tt) == 3:        
             self.Exercise["PauseSetTime"] = int(tt[2])
 
+    def _create_workout_json(self):
+        self._wjson = {}
+        self._wjson["Reference"] = "Generated from abbreviated text"
+        self._wjson["Author"] = "Python"
+        self._wjson["URL"] = ""
+        self._wjson["Workouts"] = []
+
+        self._workout = {}
+        self._workout["ID"] = "TMP-ID-1"
+        self._workout["Name"] = "Test1"
+        self._workout["Sets"] = []
+
+        self._set = {}
+        self._set["Rest-to-Start"] = 0 # FIXME Set pause afterwards must be implemented in workout
+        self._set["Exercise"] = self.Exercise["Type"]
+        self._set["Counter"] = self.Exercise["Hangtime"]
+        self._set["Pause"] = self.Exercise["PauseRepTime"]
+        self._set["Reps"] = self.Exercise["Reps"]
+        self._set["Left"] = self.Exercise["Left"]
+        self._set["Right"] = self.Exercise["Right"]
+        self._set["Fingers"] = self.Exercise["Finger"]
+        self._set["Grip"] = self.Exercise["Grip"]
+        self._set["AddedWeight"] = self.Exercise["AddedWeight"]
+        for i in range(0,self.Exercise["Sets"]):
+            self._workout["Sets"].append(self._set)
+
+        self._wjson["Workouts"].append(self._workout)
+
 if __name__ == "__main__":
     tmp = "2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s"
     e = ExerciseParser(exercise_string=tmp)
+    e._create_workout_json()
+    print (e._wjson)
 
     tmp = "3x 4xPullUp @18mm;19mm &4 §Crimp W+5kg 7(2):3:60s"
     e = ExerciseParser(exercise_string=tmp)
+
+
+    e._create_workout_json()
+    print (e._wjson)
