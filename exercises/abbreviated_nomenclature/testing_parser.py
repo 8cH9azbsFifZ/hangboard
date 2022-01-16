@@ -9,9 +9,8 @@ Examples:
 3x MEDHang @18mm 7(3):180
 3x MAXHang @30mm W+10kg 7(3):180
 
----
-Test
 """
+
 import re
 
 class ExerciseParser():
@@ -40,25 +39,55 @@ class ExerciseParser():
 
     def _parse(self):
         pattern = re.compile("^([0-9]+x) ([0-9]+x) ")
+        i0 = 0 # index zero (could be 1 if first word is a set)
+        stmp = self._exercise_string.split()
 
-        # Parse counters for set and rep
         if pattern.match (self._exercise_string):
             print ("Contains a set counter")
-            t = self._exercise_string.split("x")
-            s = t[0]
-            self.Exercise["Sets"] = s
-            r = t[1]
-            self.Exercise["Repts"] = r
-
+            i0 = 1
+            self.Exercise["Sets"] = int(stmp[0].replace("x",""))
+            
+        self.Exercise["Reps"] = int(stmp[i0].replace("x",""))
+        self.Exercise["Type"] = stmp[i0+1]
+        if ";" in stmp[i0+2]:
+            print ("Contains left/right holds")
+            self.Exercise["Left"] = stmp[i0+2].split(";")[0].replace("@","")
+            self.Exercise["Right"] = stmp[i0+2].split(";")[1]
         else:
-            r = self._exercise_string.split("x")[0]
-            self.Exercise["Reps"] = r
+            self.Exercise["Left"] = stmp[i0+2].replace("@","")
+            self.Exercise["Right"] = self.Exercise["Left"]
+
+        if "&" in stmp[i0+3]:
+            print ("Contains finger")
+            self.Exercise["Finger"] = stmp[i0+3].replace("&","")
+
+        if "§" in stmp[i0+4]:
+            print ("Contains grip")
+            self.Exercise["Grip"] = stmp[i0+4].replace("§","")
+
+        if "W" in stmp[i0+5]:
+            print ("Contains added weight")
+            self.Exercise["AddedWeight"] = float(stmp[i0+5].replace("W","").replace("kg",""))
+
+#        [#sets] <#reps> <Exercise> <Hold[left;right]> [Finger] [Grip] [AddedWeight] <HangTime[(Margin)]> <PauseRepTime> [PauseSetTime]
+
+        tt = stmp[i0+6].replace("s","").split(":")
     
+        if "(" in tt[0]:
+            print ("Contains margin")
+            self.Exercise["Hangtime"] = int(tt[0].split("(")[0].replace("(","").replace(")",""))
+            self.Exercise["HangtimeMargin"] = int(tt[0].split("(")[1].replace(")",""))
+        else:
+            self.Exercise["Hangtime"] = int(tt[0].replace("(","").replace(")",""))
+
+        self.Exercise["PauseRepTime"] = int(tt[1])
+
+        if len(tt) == 3:        
+            self.Exercise["PauseSetTime"] = int(tt[2])
 
 if __name__ == "__main__":
     tmp = "2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s"
     e = ExerciseParser(exercise_string=tmp)
 
-
-    tmp = "3x Hang @18mm &4 §Crimp W+5kg 7:3:60s"
+    tmp = "3x 4xPullUp @18mm;19mm &4 §Crimp W+5kg 7(2):3:60s"
     e = ExerciseParser(exercise_string=tmp)
