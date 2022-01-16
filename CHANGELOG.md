@@ -1,3 +1,4 @@
+- v0.64 - Bugfixes, documentation
 - v0.63 - Hardware prototype 2 working
 - v0.62 - LED progess bar with moonboard, serve assets and load status via rest api, minimal web frontend
 - v0.61 - Two hx711 force sensors, restruct directory layout (all services broken therefore)
