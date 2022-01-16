@@ -1,16 +1,6 @@
 #!/usr/bin/env python
 import pyparsing as pp
 
-greet = pp.Word(pp.alphas) + "," + pp.Word(pp.alphas) + "!"
-for greeting_str in [
-            "Hello, World!",
-            "Bonjour, Monde!",
-            "Hola, Mundo!",
-            "Hallo, Welt!",
-        ]:
-    greeting = greet.parse_string(greeting_str)
-    #print(greeting)
-
 
 t1 = '2x 3x Hang @25mm +0kg #4;Open 7(3)s:57s' 
 t2=t1 #"1   x y asdf asdf"
