@@ -41,7 +41,6 @@ This was motivation for me to learn new technologies and build an own smart hang
 + [Hangboard Configuration](boards/README.md)
 + [Hangboard mounting options](boards/board_mount/README.md)
 
-
 # Software Design
 This is a brief design layout of the project. 
 
@@ -59,12 +58,16 @@ This is a brief design layout of the project.
 + 7 Segment display 
 + Moonboard progress bar
 
+Further information can be found in [Frontend README](./frontend/README.md).
+
+
 ## Backend
 - Running on a Raspberry Pi.
 - Communicating to the frontend using MQTT.
 - The default hostname for the MQTT broker is "hangboard". Modification is possible in backend and frontend with a variable so far.
 
-The class documentation of the backend services can be found here: https://8ch9azbsfifz.github.io/hangboard/backend-doc/index.html.
+Further information can be found in [Backend README](./backend/README.md).
+
 
 ### Software documentation
 - The documentation is automatically generated using a commit hook on github and published on gh-pages.
