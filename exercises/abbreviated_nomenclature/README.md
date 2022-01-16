@@ -36,20 +36,6 @@
 3-5x 4-5x IntHangsMAX @10-18mm 7-10:3-30:60-120s
 
 
-
-
-
-
-# Lopez for reference
-+ 3 x MEDHangs x 15"(5):3'
-    + 3 times
-    + Exercise MED Hangs
-    + 15 seconds hang time
-    + 5 seconds margin
-    + 3 minutes rest time
-+ Means: reps = 1, sets = 3
-+ Edge size dynamically found
-
 # JSON format for reference
 { "Rest-to-Start": 5,       
 "Exercise": "Hang", 			    
