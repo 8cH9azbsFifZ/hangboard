@@ -69,8 +69,6 @@ class ExerciseParser():
             print ("Contains added weight")
             self.Exercise["AddedWeight"] = float(stmp[i0+5].replace("W","").replace("kg",""))
 
-#        [#sets] <#reps> <Exercise> <Hold[left;right]> [Finger] [Grip] [AddedWeight] <HangTime[(Margin)]> <PauseRepTime> [PauseSetTime]
-
         tt = stmp[i0+6].replace("s","").split(":")
     
         if "(" in tt[0]:
