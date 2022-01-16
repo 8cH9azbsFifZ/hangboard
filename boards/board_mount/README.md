@@ -1,19 +1,11 @@
 # Dimensions for mounting bracket load cells
 
-- Width: 7,0 cm
-- Height: 3,5 cm
-- Forklets: 0,5 cm distance - 2,0 cm length
-- 9-10cm sheets of paper
-
-* cf. layout_cell_bracket image
-* cf. images cell brackets 
-
-Ref: https://www.instructables.com/Get-a-Hanging-Weight-Sensor-for-Your-Arduino-Proje/
-
 # Variants for mounting the board with different load cells
-## Zlagboard - Prototype 2
 
+## Zlagboard - Prototype 2
 <img src="./smart_hangboard_v2.png" width="500"/>
+
++ Zlagboard uses the same M6 screw as the load sensors. Therefore it can easily be mounted on the two load cells.
 
 ## Zlagboard - Prototype 1
 <img src="./4_load_cells/smart_hangboard_v1.png" width="500"/>
@@ -24,6 +16,7 @@ Lessons learned (Why not recommended):
 
 ## HangOnIt
 <img src="./MWaug-BoardMount.png" width="500"/>
+
 + HangOnIt https://github.com/MWaug/hangboard-app
 
 ## Anderson Method
