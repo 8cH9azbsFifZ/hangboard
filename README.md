@@ -7,6 +7,8 @@
 + [Features TBD](https://github.com/8cH9azbsFifZ/hangboard/labels/feature)
 
 
++ [Board mounting options](boards/board_mount/README.md)
+
 ## TESTING
 
 # Why a universal smart hangboard?
