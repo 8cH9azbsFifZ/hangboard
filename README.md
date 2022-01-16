@@ -23,7 +23,7 @@ This was motivation for me to learn new technologies and build an own smart hang
 ## Features
 - Measures hangtime, applied force, rate-of-force development, maximal load 
 - Smart exercise timer - easily customizeable
-- Uses preexisting exercise files - easily extendable
+- Uses preexisting [exercise files](./exercises/README.md) - easily extendable 
 - Modular design for easy customization (further sensors, calculations, exercises, frontends)
 
 # Getting started
