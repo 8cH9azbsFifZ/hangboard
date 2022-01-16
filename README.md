@@ -41,9 +41,10 @@ This was motivation for me to learn new technologies and build an own smart hang
 + [Hangboard Configuration](boards/README.md)
 + [Hangboard mounting options](boards/board_mount/README.md)
 
-# Software Design
-This is a brief design layout of the project. 
+## Getting started with the software
+Manual work is required to use this modular software. 
 
+The following technologies are used:
 - Python backends
 - MQTT for Communication 
 - JSON for Board configuration and finger grip positions
@@ -51,6 +52,12 @@ This is a brief design layout of the project.
 - REST api for image and sound sources
 - Flutter for the App
 
+### Backend
+- Running on a Raspberry Pi: [Preparing the raspi](./doc/raspi/README.md).
+- Communicating to the frontend using MQTT.
+- The default hostname for the MQTT broker is "hangboard". Modification is possible in backend and frontend with a variable so far.
+
+Further information can be found in [Backend README](./backend/README.md).
 
 ## Frontends
 + Web client (Running on the backend Raspberry Pi)
@@ -59,30 +66,3 @@ This is a brief design layout of the project.
 + Moonboard progress bar
 
 Further information can be found in [Frontend README](./frontend/README.md).
-
-
-## Backend
-- Running on a Raspberry Pi.
-- Communicating to the frontend using MQTT.
-- The default hostname for the MQTT broker is "hangboard". Modification is possible in backend and frontend with a variable so far.
-
-Further information can be found in [Backend README](./backend/README.md).
-
-
-### Software documentation
-- The documentation is automatically generated using a commit hook on github and published on gh-pages.
-
-#### API (MQTT)
-The documentation of the backend API can be found here: https://8ch9azbsfifz.github.io/hangboard/api/index.html .
-
-- AsyncAPI for documentation of the API
-
-
-# Hardware Design
-- Raspberry Pi Zero W
-- Sensors: as listed below
-
-All sensors can be wired at once following this schema:
-[#img-hangboard-wiring]
-.Hangboard wiring - all sensors
-image::./hardware/hangboard_wiring.png[{half-size}Hangboard wiring - all sensors]
