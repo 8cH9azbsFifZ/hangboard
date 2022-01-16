@@ -21,3 +21,7 @@ Ref: https://www.instructables.com/Get-a-Hanging-Weight-Sensor-for-Your-Arduino-
 Lessons learned (Why not recommended):
 + The load scale sensors must be used with a custom made mounting bracket
 + The slightest torsions or tilting leads to weight errors of up to 20%. 
+
+## HangOnIt
+<img src="./MWaug-HangboardSystem.png" width="500"/>
++ HangOnIt https://github.com/MWaug/hangboard-app
