@@ -29,14 +29,17 @@ This was motivation for me to learn new technologies and build an own smart hang
 # Getting started
 *STATUS: In Development - Towards a reproduceable prototype.*
 
-
 ## What you need
 - Any hangboard (large list of supported hangboards below).
 - A Raspberry Pi, force sensors and some basic skills to setup the software backend (no automation so far).
 - Basic skills to create a board mount with the force sensors.
-- Any mobile device (iOS / Android / WebApp) and some basic skills to deploy the debugging app (no Store so far).
+- Any mobile device (iOS / Android) and some basic skills to deploy the app (no Store so far).
+- A LED display, if you want to go without the app.
+- Time and patience :)
 
-+ [Board mounting options](boards/board_mount/README.md)
+## Preparing the Hangboard
++ [Hangboard Configuration](boards/README.md)
++ [Hangboard mounting options](boards/board_mount/README.md)
 
 
 # Software Design

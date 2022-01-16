@@ -1,9 +1,6 @@
 # Hangboard configuration
+*STATUS: Boards other than Zlagboard Mini must be finalized (PNG-generation, cleanup holds-JSON to current format). [TODO](./TODO.md)*
 
-## Contents
-- board_data contains the hangboard SVG images and hold setups
-- lib contains svg libraries
-- board_mount contains information on how to build a board mount
 
 ## List of implemented hangboards
 - Beastmaker 1000
@@ -28,6 +25,13 @@ TIP: Your hangboard is not supported yet? It can be added easily. Just open a ti
 https://github.com/8cH9azbsFifZ/hangboard/issues/new
 
 NOTE: Most of the boards configuration has been merged from the excellent project <<Boards>>.
+
+
+# Contents of this directory
+- board_data contains the hangboard SVG images and hold setups
+- lib contains svg libraries
+- board_mount contains information on how to build a board mount
+
 
 
 # Hangboards
