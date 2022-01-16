@@ -23,5 +23,11 @@ Lessons learned (Why not recommended):
 + The slightest torsions or tilting leads to weight errors of up to 20%. 
 
 ## HangOnIt
-<img src="./MWaug-HangboardSystem.png" width="500"/>
+<img src="./MWaug-BoardMount.png" width="500"/>
 + HangOnIt https://github.com/MWaug/hangboard-app
+
+## Paper
+
+## Isometrix
+<img src="./IsometrixBoard.png" width="500"/>
++ No further details known, but there is obviously a metal frame behind the board.
