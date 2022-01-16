@@ -27,6 +27,9 @@ Lessons learned (Why not recommended):
 + HangOnIt https://github.com/MWaug/hangboard-app
 
 ## Anderson Method
+<img src="./Anderson/AndersonSetup.png" width="500"/>
+<img src="./Anderson/AndersonSensorsMount.png" width="500"/>
+
 + Reference: Force-Sensing Hangboard to Enhance Finger Training in Rock Climbers, Michael Anderson
 
 
