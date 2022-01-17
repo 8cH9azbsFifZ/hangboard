@@ -14,6 +14,8 @@ Examples:
 import re
 import logging
 import time
+import json
+import paho.mqtt.client as mqtt
 logging.basicConfig(level=logging.DEBUG, format='Counter(%(threadName)-10s) %(message)s', )
 
 class Exercise():
@@ -174,7 +176,7 @@ class WorkoutLooper():
     def __init__(self, workout=Workout()):
         self._wc = WorkoutCounter(workout=workout)
 
-    def _loop_all(self, stepping=0.1):
+    def _loop_all(self, stepping=0.1): # FIXME
         self._wc.reset()
         while True:
             c = next(self._wc)
@@ -182,12 +184,72 @@ class WorkoutLooper():
             if c == -1:
                 break
             time.sleep(stepping * c["CounterSleep"])
-            print (msg)
+            self._show_msg (msg)
+    
+    def _show_msg(self,msg):
+        print(msg)
+
+class WorkoutMQTT(WorkoutLooper):
+    def __init__(self, workout=Workout(), hostname="localhost", port=1883):
+        self._hostname = hostname
+        self._port = port
+        self._connect()
+
+        super().__init__(workout=workout) # Inherit from master
+
+    def _show_msg(self,msg): # Override
+        self._sendmessage(topic="/counter", message=msg)
+
+    def _connect(self):
+        # Connect to MQTT
+        self._client = mqtt.Client("Workout")
+        self._client.on_connect = self._on_connect
+        self._client.on_message = self._on_message
+        self._client.connect(self._hostname, self._port, 60)
+        self._sendmessage("/status", "Starting")
+
+    def _sendmessage(self, topic="/none", message="None"):
+        self._client.publish("hangboard/workout"+topic, str(message))
+
+    def _on_connect(self, client, userdata, flags, rc):
+        logging.debug ("Connected with result code "+str(rc))
+        self._client.subscribe("hangboard/workout/control")
+        self._client.subscribe("hangboard/sensor/load/loadstatus")
+
+    def _on_message(self, client, userdata, msg):
+        logging.debug(">MQTT: " + msg.payload.decode())
+        
+        # Controls
+        #if msg.topic == "hangboard/workout/control":
+            #if msg.payload.decode() == "Stop":
+            #    #time.sleep(10)
+            #    self._workout_running = False
+            #    #exit()
+            #if msg.payload.decode() == "Start":
+            #    self._workout_running = True
+            #    next(self._counter)
+            #if msg.payload.decode() == "Restart":
+            #    self._workout_running = True
+            #    self._counter = Counter(self._workout, hostname=self._hostname)
+            #if msg.payload.decode() == "ListWorkouts":
+            #    self._list_workouts()
+
+        # Hang data
+        if msg.topic == "hangboard/sensor/load/loadstatus":
+            jj = json.loads(msg.payload.decode())
+            if jj["HangDetected"] == "True":
+                self._HangDetected = True
+            else:
+                self._HangDetected = False
+            return
+
 
 if __name__ == "__main__":
     tmp = "2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s"
     tmp = "2x 3x 4xPullUp @18mm;19mm &4 §Crimp W+5kg 7(2):3:60s"
     e = ExerciseParser(exercise_string=tmp)
     f = e._create_workout_json()
-    l = WorkoutLooper(workout=f)
-    l._loop_all()
+    #l = WorkoutLooper(workout=f)
+    #l._loop_all()
+    m = WorkoutMQTT(workout=f,hostname="raspi-hangboard")
+    m._loop_all()
