@@ -1,0 +1,1 @@
++ display counter (during hang)

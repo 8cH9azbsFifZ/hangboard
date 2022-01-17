@@ -116,8 +116,10 @@ class SensorForce():
         # Hang time variables
         self.LastHangTime = 0
         self.LastPauseTime = 0
-        self.TimeStateChangeCurrent = self.time_current       
+        self.TimeStateChangeCurrent = self.time_current        # FIXME: cleanup
         self.TimeStateChangePrevious = self.TimeStateChangeCurrent
+        self.TimeHang_Begin = 0 
+        self.TimeHang_Current = 0
 
         self._Gravity = 9.80665
         # LatestValueInterval is the lenght, in ms, of the latest data stored to make som calculations
@@ -299,6 +301,7 @@ class SensorForce():
 
         # Store variables of last / current hang
         if (self.HangDetected):
+            self._calc_hangtime()
             self._fill_series()
             self._Calc_FTI()
             self._Calc_RFD()
@@ -342,20 +345,7 @@ class SensorForce():
         // DutyCycle calculate the percentage of time doing force vs resting
         """
         self.DutyCycle = self.LastHangTime / (self.LastHangTime+self.LastPauseTime)
-        
-    def _measure_hangtime(self): # FIXME - not displayed correctly after exercise
-        delta = 0
-        if (self._HangStateChanged):
-            self._TimeStateChangePrevious = self._TimeStateChangeCurrent
-            self._TimeStateChangeCurrent = time.time()
-            
-            delta = self._TimeStateChangeCurrent - self._TimeStateChangePrevious
-
-            if (self.HangDetected == True):
-                self.LastPauseTime = delta
-            else:
-                self.LastHangTime = delta
-
+      
     def _calc_avg_load(self):
         avg_load = sum(self._load_series) / len (self._load_series)
         self.AverageLoad = avg_load
@@ -385,19 +375,29 @@ class SensorForce():
         # Detect state change
         oldstate = self.HangDetected
 
-        if (self.load_current > self.load_hang):
+        # Detect a hang
+        if (self.load_current > self.load_hang): # FIXME: what if single wrong measruement?
             self.HangDetected = True
         else:
             self.HangDetected = False
 
-        if (oldstate == self.HangDetected):
+        # Check if state changed
+        if (oldstate == self.HangDetected): 
             self._HangStateChanged = False
+            if self.HangDetected:
+                self.TimeHang_Current = time.time() - self.TimeHang_Begin
+            else:
+                self.TimeHang_Current = 0
         else:
             self._HangStateChanged = True
             if self.HangDetected:
                 self.Changed = "Hang"
+                self.TimeHang_Begin = time.time()
             else:
                 self.Changed = "NoHang"
+                self.LastHangTime = time.time() - self.TimeHang_Begin
+                self.TimeHang_Begin = 0
+                self.TimeHang_Current = 0
 
         #logging.debug("Hang detection - current load " + str(self.load_current) + " and hang threshold " + str(self.load_hang))
 
