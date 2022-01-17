@@ -9,3 +9,6 @@ install:
 	sudo systemctl daemon-reload
 	sudo systemctl enable hangboard_sensor_force.service
 	sudo systemctl restart hangboard_sensor_force.service
+
+stop:
+	sudo systemctl stop hangboard_sensor_force.service
