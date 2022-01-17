@@ -1,3 +1,4 @@
+- v0.65 - Exercises, abbreviated syntax, 7segment time display
 - v0.64 - Bugfixes, documentation
 - v0.63 - Hardware prototype 2 working
 - v0.62 - LED progess bar with moonboard, serve assets and load status via rest api, minimal web frontend
