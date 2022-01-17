@@ -54,10 +54,16 @@ class Database():
         l2 = msg["loadcurrent_balance"] 
         l1 = msg["loadcurrent"] - l2
         ll = msg["loadcurrent"]
+
+        htime = msg["TimeHang_Current"]
+
         #self._lcd.write_string(ss)
         tt = str("%2.0d  %2.0d"%(l1,l2))
         tt1 = str("%2.0d"%(ll))
-        self.seg.text = tt1 #str (msg["loadcurrent"])
+        tt2 = str("%2.0d  %2.0d"%(ll,htime))
+
+        #self.seg.text = tt1 #str (msg["loadcurrent"])
+        self.seg.text = tt2 #str (msg["loadcurrent"])
         #self._lcd.cursor_pos = (2, 0)
 
 
