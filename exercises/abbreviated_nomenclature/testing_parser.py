@@ -193,7 +193,7 @@ class WorkoutLooper():
             else:
                 c["Exercise"] = "WaitForHang"
             self._show_msg (c)
-            time.sleep(stepping * s)
+            time.sleep(stepping * s) # WIP FIXME - no events during sleep(!)
     
     def _show_msg(self,msg):
         print(msg)
