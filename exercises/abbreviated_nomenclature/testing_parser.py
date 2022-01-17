@@ -13,10 +13,8 @@ Examples:
 
 import re
 
-class ExerciseParser():
-    def __init__(self, exercise_string=""):
-        self._exercise_string = exercise_string
-
+class Exercise():
+    def __init__(self):
         self.Exercise = {}
         self.Exercise["Sets"] = 1
         self.Exercise["Reps"] = 1
@@ -31,10 +29,32 @@ class ExerciseParser():
         self.Exercise["PauseRepTime"] = 53
         self.Exercise["PauseSetTime"] = 0
 
+
+class Workout(): # FIXME: pass default values
+    def __init__(self):
+        self.Workout = {}
+        self.Workout["Reference"] = "Generated from abbreviated text"
+        self.Workout["Author"] = "Python"
+        self.Workout["URL"] = ""
+        self.Workout["Workouts"] = []
+
+        self._workout = {}
+        self._workout["ID"] = "TMP-ID-1"
+        self._workout["Name"] = "Test1"
+        self._workout["Sets"] = []
+
+        self.Workout["Workouts"].append(self._workout)
+
+
+class ExerciseParser():
+    def __init__(self, exercise_string=""):
+        self._exercise_string = exercise_string
+
+        self._exercise = Exercise()
+        self.Exercise = self._exercise.Exercise
+
         print (self._exercise_string)
-
         self._parse()
-
         print (self.Exercise)
 
     def _parse(self):
@@ -83,18 +103,8 @@ class ExerciseParser():
         if len(tt) == 3:        
             self.Exercise["PauseSetTime"] = int(tt[2])
 
+
     def _create_workout_json(self):
-        self._wjson = {}
-        self._wjson["Reference"] = "Generated from abbreviated text"
-        self._wjson["Author"] = "Python"
-        self._wjson["URL"] = ""
-        self._wjson["Workouts"] = []
-
-        self._workout = {}
-        self._workout["ID"] = "TMP-ID-1"
-        self._workout["Name"] = "Test1"
-        self._workout["Sets"] = []
-
         self._set = {}
         self._set["Rest-to-Start"] = 0 # FIXME Set pause afterwards must be implemented in workout
         self._set["Exercise"] = self.Exercise["Type"]
@@ -106,20 +116,83 @@ class ExerciseParser():
         self._set["Fingers"] = self.Exercise["Finger"]
         self._set["Grip"] = self.Exercise["Grip"]
         self._set["AddedWeight"] = self.Exercise["AddedWeight"]
-        for i in range(0,self.Exercise["Sets"]):
-            self._workout["Sets"].append(self._set)
 
-        self._wjson["Workouts"].append(self._workout)
+        self._workout = Workout()
+        for i in range(0,self.Exercise["Sets"]):
+            self._workout.Workout["Workouts"][0]["Sets"].append(self._set)
+
+        return self._workout
+
+# FIXME: 1 workout per file
+
+class WorkoutCounter():
+    def __init__(self, workout=Workout()):
+        self._workout = workout
+
+        self.Counter = {}
+        self.Counter["Set"] = 1
+        self.Counter["Rep"] = 0
+
+        self.Counter["SetsTotal"] = len(self._workout.Workout["Workouts"][0]["Sets"])
+
+    def __next__(self): 
+        if self.Counter["SetsTotal"] == 0:
+            print ("No sets") # FIXME: logging
+            return -1
+        
+        if self.Counter["Set"] <= self.Counter["SetsTotal"]:
+            self.Counter["RepsTotal"] = self._workout.Workout["Workouts"][0]["Sets"][ self.Counter["Set"]-1 ]["Reps"]
+            if self.Counter["Rep"] < self.Counter["RepsTotal"]:
+                self.Counter["Rep"] = self.Counter["Rep"] + 1
+            else:
+                self.Counter["Rep"] = 1        
+                self.Counter["Set"] = self.Counter["Set"] + 1
+            return self.Counter
+        else:
+            if self.Counter["Rep"] < self.Counter["RepsTotal"]:
+                self.Counter["Rep"] = self.Counter["Rep"] + 1
+            else:
+                return -1
+        
+        return self.Counter
+
+
+class WorkoutLooper():
+    def __init__(self, workout=Workout()):
+        self._wc = WorkoutCounter(workout=workout)
+
+    
 
 if __name__ == "__main__":
     tmp = "2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s"
     e = ExerciseParser(exercise_string=tmp)
     e._create_workout_json()
-    print (e._wjson)
+    #print (e._wjson)
 
-    tmp = "3x 4xPullUp @18mm;19mm &4 §Crimp W+5kg 7(2):3:60s"
+    tmp = "2x 3x 4xPullUp @18mm;19mm &4 §Crimp W+5kg 7(2):3:60s"
     e = ExerciseParser(exercise_string=tmp)
 
+    f = e._create_workout_json()
+    #print (e._wjson)
 
-    e._create_workout_json()
-    print (e._wjson)
+    c = WorkoutCounter(workout=f)
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)    
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)  
+    b = next(c)
+    print (b)
+    b = next(c)
+    print (b)
