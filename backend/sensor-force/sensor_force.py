@@ -301,7 +301,6 @@ class SensorForce():
 
         # Store variables of last / current hang
         if (self.HangDetected):
-            self._calc_hangtime()
             self._fill_series()
             self._Calc_FTI()
             self._Calc_RFD()
