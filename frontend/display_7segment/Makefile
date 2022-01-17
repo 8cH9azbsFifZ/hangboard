@@ -13,3 +13,9 @@ prepare:
 	sudo usermod -a -G spi,gpio pi
 	sudo apt-get -y install python-dev python-pip libfreetype6-dev libjpeg-dev libopenjp2-7
 	pip3 install luma.led_matrix
+
+stop:
+	sudo systemctl stop hangboard_display_7segment.service
+
+run:
+	sudo python3 ./display.py
