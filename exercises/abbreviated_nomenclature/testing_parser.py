@@ -141,6 +141,8 @@ class WorkoutCounter():
         self.Counter["CounterRep"] = 0
         self.Counter["CounterSleep"] = 0
         self.Counter["SetsTotal"] = len(self._sets)
+        self.Counter["SetExercise"] = self._sets[ 0 ]["Exercise"] 
+        self.Counter = {**self.Counter, **self._sets[ 0 ]}
 
     def __next__(self): 
         if self.Counter["SetsTotal"] == 0:
@@ -175,30 +177,51 @@ class WorkoutCounter():
 class WorkoutLooper():
     def __init__(self, workout=Workout()):
         self._wc = WorkoutCounter(workout=workout)
+        self._is_pause = False
 
-    def _loop_all(self, stepping=0.1): # FIXME
+    def _loop_all(self, stepping=.1): # FIXME
         self._wc.reset()
         while True:
-            c = next(self._wc)
-            msg = c
-            if c == -1:
-                break
-            time.sleep(stepping * c["CounterSleep"])
-            self._show_msg (msg)
+            c = self._wc.Counter
+            s = 1
+            self._get_input()
+            if not self._is_pause:
+                c = next(self._wc)
+                if c == -1:
+                    break
+                s = c["CounterSleep"]
+            else:
+                c["Exercise"] = "WaitForHang"
+            self._show_msg (c)
+            time.sleep(stepping * s)
     
     def _show_msg(self,msg):
         print(msg)
+
+    def _get_input(self):
+        return
 
 class WorkoutMQTT(WorkoutLooper):
     def __init__(self, workout=Workout(), hostname="localhost", port=1883):
         self._hostname = hostname
         self._port = port
+        self._samplingrate = 0.01 #blocks for 100ms (or whatever variable given, default 1s)
         self._connect()
 
         super().__init__(workout=workout) # Inherit from master
 
+        self._reset()
+
+    def _reset(self):
+        self._is_pause = True
+        self._wc.reset()
+
     def _show_msg(self,msg): # Override
+        logging.debug(msg)
         self._sendmessage(topic="/counter", message=msg)
+
+    def _get_input(self): #Override
+        self._client.loop(self._samplingrate) 
 
     def _connect(self):
         # Connect to MQTT
@@ -236,11 +259,12 @@ class WorkoutMQTT(WorkoutLooper):
 
         # Hang data
         if msg.topic == "hangboard/sensor/load/loadstatus":
+
             jj = json.loads(msg.payload.decode())
             if jj["HangDetected"] == "True":
-                self._HangDetected = True
+                self._is_pause = False
             else:
-                self._HangDetected = False
+                self._is_pause = True
             return
 
 
