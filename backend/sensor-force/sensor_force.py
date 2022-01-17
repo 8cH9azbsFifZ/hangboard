@@ -329,7 +329,8 @@ class SensorForce():
         self._sendmessage("/loadstatus", '{"time": ' + "{:.2f}".format(self.time_current) + ', "loadcurrent": '+ "{:.2f}".format(self.load_current) + \
             ', "loadcurrent_balance": '+ "{:.2f}".format(self.load_current_balance) + ', "loadaverage": ' + "{:.2f}".format(self.AverageLoad) + \
             ', "fti": ' + "{:.2f}".format(self.FTI) + ', "rfd": ' + "{:.2f}".format(self.RFD) + ', "loadmaximal": ' + "{:.2f}".format(self.MaximalLoad) + \
-            ', "loadloss": ' + "{:.2f}".format(self.LoadLoss) + \
+            ', "loadloss": ' + format(self.LoadLoss) + \
+            ', "TimeHang_Current": ' + "{:.2f}".format(self.TimeHang_Current) + \
             ', "HangChangeDetected": "' + self.Changed + '", "HangDetected": "' + str(self.HangDetected) + '"}')
              
         if self.Changed == "NoHang":
