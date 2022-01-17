@@ -135,8 +135,9 @@ class WorkoutCounter():
 
     def reset(self):
         self.Counter = {}
-        self.Counter["Set"] = 1
-        self.Counter["Rep"] = 0
+        self.Counter["CounterSet"] = 1
+        self.Counter["CounterRep"] = 0
+        self.Counter["CounterSleep"] = 0
         self.Counter["SetsTotal"] = len(self._sets)
 
     def __next__(self): 
@@ -146,26 +147,28 @@ class WorkoutCounter():
         
         if not self._is_pause:  # If exercise (not pause) state
             self._is_pause = True # toggle state
-            if self.Counter["Set"] <= self.Counter["SetsTotal"]: 
-                self.Counter["RepsTotal"] = self._sets[ self.Counter["Set"]-1 ]["Reps"]
-                self.Counter["SetExercise"] = self._sets[ self.Counter["Set"]-1 ]["Exercise"] 
-                if self.Counter["Rep"] < self.Counter["RepsTotal"]:
-                    self.Counter["Rep"] = self.Counter["Rep"] + 1
+            if self.Counter["CounterSet"] <= self.Counter["SetsTotal"]: 
+                self.Counter["RepsTotal"] = self._sets[ self.Counter["CounterSet"]-1 ]["Reps"]
+                self.Counter["SetExercise"] = self._sets[ self.Counter["CounterSet"]-1 ]["Exercise"] 
+                self.Counter = {**self.Counter, **self._sets[ self.Counter["CounterSet"]-1 ]}
+                if self.Counter["CounterRep"] < self.Counter["RepsTotal"]:
+                    self.Counter["CounterRep"] = self.Counter["CounterRep"] + 1
                 else:
-                    self.Counter["Rep"] = 1        
-                    self.Counter["Set"] = self.Counter["Set"] + 1
+                    self.Counter["CounterRep"] = 1        
+                    self.Counter["CounterSet"] = self.Counter["CounterSet"] + 1
             else:
-                if self.Counter["Rep"] < self.Counter["RepsTotal"]:
-                    self.Counter["Rep"] = self.Counter["Rep"] + 1
+                if self.Counter["CounterRep"] < self.Counter["RepsTotal"]:
+                    self.Counter["CounterRep"] = self.Counter["CounterRep"] + 1
                 else:
                     return -1
             self.Counter["Exercise"] = self.Counter["SetExercise"]
+            self.Counter["CounterSleep"] = self.Counter["Counter"]
             return self.Counter
         else: # If pause (not exercise) state
             self._is_pause = False # toggle state
             self.Counter["Exercise"] = "Pause"
+            self.Counter["CounterSleep"] = self.Counter["Pause"]
             return self.Counter
-
 
 class WorkoutLooper():
     def __init__(self, workout=Workout()):
@@ -174,11 +177,11 @@ class WorkoutLooper():
     def _loop_all(self, stepping=0.1):
         self._wc.reset()
         while True:
-            time.sleep(stepping)
             c = next(self._wc)
             msg = c
             if c == -1:
                 break
+            time.sleep(stepping * c["CounterSleep"])
             print (msg)
 
 if __name__ == "__main__":
