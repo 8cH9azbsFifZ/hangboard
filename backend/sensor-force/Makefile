@@ -12,3 +12,6 @@ install:
 
 stop:
 	sudo systemctl stop hangboard_sensor_force.service
+
+run:
+	sudo python3 ./sensor_force.py
