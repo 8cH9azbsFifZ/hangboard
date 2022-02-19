@@ -58,3 +58,13 @@
 5x 4xPullup @Jug 0:20:60s
 5x Hang @30mm 10:20:120s
 5x 5xPullup @30mm 0:30s
+
+
+# Beasty 5A for reference
+2x 7x Hang @Jug 7:3:150s
+2x 7x Hang @45mm &Front3 §Open 7:3:150s
+2x 7x Hang @45mm &4 §Open 7:3:150s
+
+2x 7x Hang @Jug 7:3:150s
+2x 7x Hang @45mm &Front3 §Open 7:3:150s
+2x 7x Hang @45mm &4 §Open 7:3:150s
