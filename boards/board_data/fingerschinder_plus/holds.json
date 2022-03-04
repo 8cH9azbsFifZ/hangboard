@@ -1,0 +1,26 @@
+{
+
+    "Name": "Fingerschinder Plus",
+    "version": 1,
+    "displayName": "Fingerschinder Plus",
+    "type": {
+      "uniqueName": "fingerschinder_plus"
+    },
+    "Holds_List": "JUG, 24mm, 21 mm, 18mm, 15mm, 12mm, 9mm",
+    "Edges": "7mm rounded, 4mm edge",
+    "Height": "7,5 cm",
+    "Depth": "3,4 cm",
+    "Length": "54 cm",
+    "Weight": "765 g",
+    "homepage": "https://www.fingerschinder.com/store/",
+    "Holds": [
+      {"Name": "JUG", "Row": 1, "Col": 1, "Width": "4 Finger", "ImgLayerName": "A1", "angle": 0, "depth": null, "location": "LEFT", "type": "JUG"},
+      {"Name": "24mm", "Row": 2, "Col": 1, "Width": "4 Finger", "ImgLayerName": "B1", "angle": 0, "depth": 24, "location": "LEFT", "type": "EDGE"},
+      {"Name": "21mm", "Row": 2, "Col": 1, "Width": "4 Finger", "ImgLayerName": "B1", "angle": 0, "depth": 21, "location": "LEFT", "type": "EDGE"},
+      {"Name": "18mm", "Row": 2, "Col": 1, "Width": "4 Finger", "ImgLayerName": "B1", "angle": 0, "depth": 18, "location": "LEFT", "type": "EDGE"},
+      {"Name": "15mm", "Row": 2, "Col": 1, "Width": "4 Finger", "ImgLayerName": "B1", "angle": 0, "depth": 15, "location": "LEFT", "type": "EDGE"},
+      {"Name": "12mm", "Row": 2, "Col": 1, "Width": "4 Finger", "ImgLayerName": "B1", "angle": 0, "depth": 12, "location": "LEFT", "type": "EDGE"},
+      {"Name": "9mm", "Row": 2, "Col": 1, "Width": "4 Finger", "ImgLayerName": "B1", "angle": 0, "depth": 9, "location": "LEFT", "type": "EDGE"}
+
+    ]
+}
