@@ -92,6 +92,7 @@ This section serves as a reference for the implementation of the various exercis
 + Rest for 1 – 2  minutes between sets.
 + Perform 3 – 5 sets.
 
+
 ### IntHangs MAW strength endurance fingerboard routine details
 + Choose an edge on which you want to train. (Typical edge depth: 10 – 18 mm.)
 + For the chosen edge, determine the load allowing you to hang for roughly 30 seconds.
