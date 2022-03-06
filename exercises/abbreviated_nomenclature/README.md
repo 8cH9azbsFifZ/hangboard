@@ -32,16 +32,16 @@
 
 
 # Eva López SubHangs MED strength endurance for Reference
-4-8x Hang @8-22mm 20-45:30-120s
+4-8x Hang @8-22mm 20-45(30-120)s
 
-4-8x SubHangsMED @8-22mm 20-45:30-120s
-4-8x SubHangsMAX @14-20mm 20-45:30-120s
+4-8x SubHangsMED @8-22mm 20-45(30-120)s
+4-8x SubHangsMAX @14-20mm 20-45(30-120)s
 
 # Eva López IntHangs MED strength endurance for Reference
-3-5x 4-5x Hang @8-22mm 7-10:3-30:60-120s
+3-5x 4-5x Hang @8-22mm 7-10(3-30)60-120s
 
-3-5x 4-5x IntHangsMED @8-22mm 7-10:3-30:60-120s
-3-5x 4-5x IntHangsMAX @10-18mm 7-10:3-30:60-120s
+3-5x 4-5x IntHangsMED @8-22mm 7-10(3-30)60-120s
+3-5x 4-5x IntHangsMAX @10-18mm 7-10(3-30)60-120s
 
 
 
