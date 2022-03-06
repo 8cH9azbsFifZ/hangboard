@@ -68,3 +68,12 @@
 2x 7x Hang @Jug 7:3:150s
 2x 7x Hang @45mm &Front3 §Open 7:3:150s
 2x 7x Hang @45mm &4 §Open 7:3:150s
+
+
+
+# Eva López IntHangs MED strength endurance for Reference
+3-5x 4-5x Hang @8-22mm 7-10:3-30:60-120s
+
+
+# Eva López SubHangs MED strength endurance for Reference
+4-8x Hang @8-22mm 20-45:30-120s
