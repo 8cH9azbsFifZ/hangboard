@@ -49,7 +49,6 @@ translates as
 + 2x 7x Hang @Jug 7:3:150s
 + 2x 7x Hang @45mm &Front3 §Open 7:3:150s
 + 2x 7x Hang @45mm &4 §Open 7:3:150s
-
 + 2x 7x Hang @Jug 7:3:150s
 + 2x 7x Hang @45mm &Front3 §Open 7:3:150s
 + 2x 7x Hang @45mm &4 §Open 7:3:150s
@@ -73,7 +72,6 @@ translates as
 * angle brackets <required argument>
 * curly braces {default values}
 * parenthesis (miscellaneous info)
-
 * Reference: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html
 
 ## JSON format for reference
