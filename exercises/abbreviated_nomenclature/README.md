@@ -1,4 +1,6 @@
 # Abbreviated nomenclature for smart timer creation
+Hangboard protocols should be easy to read with a simple universal (hangboard independent) notation.
+The following notation is based on the work of Eva Lopez.
 
 ## Abbreviated syntax
 The following entry:
