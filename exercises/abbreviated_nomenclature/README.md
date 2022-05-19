@@ -13,10 +13,10 @@
 The following entry:
 ```
 2x 3x Hang @25mm +0kg #4;Open 7(3)s:57s
-2x      3x      Hang       @18mm              4        Crimp  0             7                    3               60
 ```
 translates as
 ```
+2x      3x      Hang       @18mm              4        Crimp  0             7                    3               60
 [#sets] <#reps> <Exercise> <Hold[left;right]> [Finger] [Grip] [AddedWeight] <HangTime[(Margin)]> <PauseRepTime> [PauseSetTime]
 ```
 
