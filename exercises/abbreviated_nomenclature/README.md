@@ -9,9 +9,17 @@ The following entry:
 ```
 translates as
 ```
-2x      3x      Hang       @18mm              4        Crimp  0             7                    3               60
+2x      3x      Hang       @18mm              4F       Crimp  0             7                    3               60
 [#sets] <#reps> <Exercise> <Hold[left;right]> [Finger] [Grip] [AddedWeight] <HangTime[(Margin)]> <PauseRepTime> [PauseSetTime]
 ```
+- #sets: [0-9]x
+- #reps: [0-9]x
+- Exercise: [Any Name]
+- Hold: @[0-9]mm   or   if left/right different: @[0-9]mm;[0-9]mm   or   @[0-9]° for Slopers   or   @Jug
+- Finger: [1-4]F
+- Grip: Text
+- AddedWeight: +[0-9]kg   or   -[0-9]kg
+- Hangtime: [0-9]   time in seconds
 
 ## Examples:
 + 2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s
