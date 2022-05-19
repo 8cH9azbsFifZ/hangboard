@@ -1,3 +1,4 @@
+- v0.66 -
 - v0.65 - Exercises, abbreviated syntax, 7segment time display
 - v0.64 - Bugfixes, documentation
 - v0.63 - Hardware prototype 2 working
