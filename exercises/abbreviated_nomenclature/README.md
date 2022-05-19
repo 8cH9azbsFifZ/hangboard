@@ -75,6 +75,16 @@ translates as
 + 2x 1x MaximumHang @30mm &Front3 AsLongAsPossible:0:180s
 
 
+# Density Hangs (Nelson)
+Ref: https://strengthclimbing.com/dr-tyler-nelsons-density-hangs-finger-training-for-rock-climbing/
+
++ 4-9x 2-3x 20-40:10-20:180-300s
++ Hang:Rest = 1:2 Ratio
++ MVC-7 load	55 - 85%
+   Density hangs are ideally performed without added load, at around 75% of maximum strength (MVC-7)
++ A typical training cycle is 4 – 5 weeks.
+
+
 # Debugging
 
 ## Standard
