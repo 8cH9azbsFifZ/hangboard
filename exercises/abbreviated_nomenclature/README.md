@@ -11,7 +11,7 @@
 
 # Abbreviated syntax
 2x 3x Hang @25mm +0kg #4;Open 7(3)s:57s
-2x      3x      Hang       @18mm              4        Crimp  0             7                    3               60
+2x      3x      Hang       @18mm              4F       Crimp  +0kg          7                    3               60s
 [#sets] <#reps> <Exercise> <Hold[left;right]> [Finger] [Grip] [AddedWeight] <HangTime[(Margin)]> <PauseRepTime> [PauseSetTime]
 
 2x 3x Hang @18mm &4 §Crimp W+5kg 7:3:60s
