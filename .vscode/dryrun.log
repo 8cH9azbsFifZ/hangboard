@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/gerolf.ziegenhain.dfs.de/src/hangboard'
+make: Leaving directory `/Users/gerolf.ziegenhain.dfs.de/src/hangboard'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
