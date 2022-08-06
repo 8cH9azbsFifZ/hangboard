@@ -162,6 +162,22 @@ class SVGBoard():
         self._svg_to_png(self.boardimagename)
         # FIXME: put board png to cache dir #83
 
+    def generate_all_images_garmin(self, holds=[]):
+        """ Generate all images (hold combinations) for a given hangboard """
+        holds.append("")
+        for left in holds:
+            for right in holds:
+                #if (left == right):
+                #    break
+                self.Hold2SVG(left=left,right=right, garmincolors=True)
+                self._svg_to_png(self._cache_svg_filename(left=left,right=right))
+
+        self._svg_to_png(self.boardimagename)
+        
+
+        # FIXME: put board png to cache dir #83
+
+
     def _svg_to_png(self, filename): 
         outfile = filename.replace(".svg",".png")
         drawing = svg2rlg(filename)
