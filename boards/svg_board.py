@@ -54,9 +54,15 @@ class SVGBoard():
         filename = self.cachedir + self.boardname + "." + left + "." + right + ".png" 
         return filename
 
-    def Hold2SVG(self, left="A1", right="A7"):
+    def Hold2SVG(self, left="A1", right="A7", garmincolors=False):
         """
         Render image for hold configuration
+
+        garmincolors parameter?
+        Configure the colors of the board SVGs for a garmin watch
+        Board_Name - invisible
+        Board_Background - black
+        Board_Border - blue
         """
         print ("Create SVG image for "+left+" and "+right)
 
@@ -92,6 +98,11 @@ class SVGBoard():
                 style = style.replace( 'display:none', 'display:inline' )
             else:
                 style = style.replace( 'display:inline', 'display:inline' )
+            
+            if (garmincolors == True):
+                if (name == "Board_Name"):
+                    style = style.replace( 'display:inline', 'display:none' )
+
             g.set('style', style)
 
         self.tree.write( outfile ) # FIXME   #83     
