@@ -4,6 +4,7 @@ Class for handling all aspects of a hangboard configuration.
 
 import json
 import base64
+import os
 
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -100,12 +101,37 @@ class SVGBoard():
                 style = style.replace( 'display:inline', 'display:inline' )
             
             if (garmincolors == True):
-                if (name == "Board_Name"):
-                    style = style.replace( 'display:inline', 'display:none' )
+                if (name == "Board_Shape"):
+                    style = style.replace( 'fill:#d8d8d8', 'fill:#000000' )
+                    for h in g.findall('{http://www.w3.org/2000/svg}path'): # Board bg black
+                        style1 = h.get ("style")
+                        style1 = style1.replace( 'fill:#d8d8d8', 'fill:#000000' )
+                        h.set("style", style1)
+                    for h in g.findall('{http://www.w3.org/2000/svg}text'): # No Board Name
+                        style1 = h.get ("style")
+                        style1 = style1.replace( 'display:inline', 'display:none' )
+                        h.set("style", style1)
 
             g.set('style', style)
+        
+  
+ 
+        self.tree.write( outfile ) # FIXME   #83   
 
-        self.tree.write( outfile ) # FIXME   #83     
+        if (garmincolors == True):
+            # FIXME does not work yet
+            #for g in self.root.findall('{http://www.w3.org/2000/svg}{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview'):
+            #    print ("FOUND IT")
+            #    pagecolor = g.get("pagecolor")
+            #    pagecolor.replace("#ffffff","#000000")
+            #    g.set("pagecolor", pagecolor)
+            
+            outfile1 = outfile+".tmp1"
+            with open(outfile, "rt") as fin:
+                with open(outfile1, "wt") as fout:
+                    for line in fin:
+                        fout.write(line.replace('#ffffff', '#000000'))
+            os.replace(outfile1,outfile)
 
     def _get_image_base64(self, left="", right=""):
         """
