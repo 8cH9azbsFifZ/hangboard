@@ -1,5 +1,5 @@
 # Hangboard configuration
-*STATUS: Boards other than Zlagboard Mini must be finalized (PNG-generation, cleanup holds-JSON to current format). [TODO](./TODO.md)*
+*STATUS: Boards other than Zlagboard Evo must be finalized (PNG-generation, cleanup holds-JSON to current format). [TODO](./TODO.md)*
 
 
 ## List of implemented hangboards
