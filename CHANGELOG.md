@@ -1,3 +1,4 @@
+0.67
 - v0.66 - Garmin color scheme support for boards
 - v0.65 - Exercises, abbreviated syntax, 7segment time display
 - v0.64 - Bugfixes, documentation
