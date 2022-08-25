@@ -10,5 +10,6 @@
         },
         "version": { "type": "string" }
     },
-    "required": ["workouts"]
+    "required": ["workouts"],
+    "additionalProperties": false
 }

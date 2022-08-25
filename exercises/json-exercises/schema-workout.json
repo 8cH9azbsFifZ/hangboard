@@ -2,8 +2,11 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "properties": {
+        "workout_id": { "type": "string" },
         "workout_name": { "type": "string" },
+        "workout_type": { "type": "string" },
         "workout_description": { "type": "string" },
+        "workout_level_text": { "type": "string" },
         "workout_description_long": { "type": "string" },
         "reference": { "type": "string" },
         "duration": { "type": "integer" },
@@ -15,8 +18,9 @@
                 "dependencies": {
                     "time_exercise": ["time_pause"]
                 }
-                }
+            }
         } 
     },
-    "required": ["workout_name", "exercises"]
+    "required": ["workout_name", "exercises"],
+    "additionalProperties": false
 }

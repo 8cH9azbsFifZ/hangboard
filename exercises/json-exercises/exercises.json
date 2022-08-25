@@ -39,6 +39,10 @@
 
 ,
 
+{"exercise_name": "Hang"}
+
+,
+
 {"exercise_name": "Basistraining Pyramide", "needs_climbingwall": true, "reference": "Vertical Life", "route_grades_range": ["Onsight -2", "Onsight -2", "Onsight -1", "Onsight +1", "Onsight", "Onsight -1", "Onsight -2"]}
 
 ]

@@ -16,6 +16,8 @@
         "sub_type": { "type": "string" },
         "level_text": { "type": "string" },
         "focus": { "type": "string"}, 
+        "left_hold": { "type": "string"}, 
+        "right_hold": { "type": "string"}, 
         "reference": { "type": "string" },
         "needs_rings": { "type": "boolean"},
         "needs_pullupbar": { "type": "boolean"},
@@ -30,11 +32,11 @@
         },
         "url_video": { "type": "string"},
         "url_image": { "type": "string"},
-        "test":{
-            "type": "array",
+        "grip":{
+            "type": "string",
             "items": {
                 "type": "string",
-                "enum": ["one", "two", "three"]
+                "enum": ["4 Fingers", "4 Fingers half crimp", "4 Fingers crimped ", "4 Fingers chisel", "open 3", "front 3 half crimp", "back 3 fingers half crimp", "front 2", "middle 2", "back 2", "middle finger mono"]
             }   
         }
     },
