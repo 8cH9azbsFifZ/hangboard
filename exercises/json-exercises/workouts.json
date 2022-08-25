@@ -27,5 +27,17 @@
                 {"exercise_name": "Extensor Stretch", "sets": 4, "reps": 2, "time_exercise": 30, "time_pause": 10, "time_pause_set": 10}
             ]
         }
+        ,
+        {
+            "workout_name": "Active Posterior Chain Mobility A",
+            "workout_description": "Hamstring flexibility training to develop strength in a bigger range of movement",
+            "reference": "CRIMPD",
+            "duration": 1200,
+            "exercises": [
+                {"exercise_name": "RDLs", "sets": 3, "reps": 5,  "time_pause_set": 60},
+                {"exercise_name": "Side Toe Touches", "sets": 6, "reps": 5, "time_pause_set": 60},
+                {"exercise_name": "Pancake Reaches", "sets": 4, "reps": 5, "time_pause_set": 60}
+            ]
+        }
     ]
 }

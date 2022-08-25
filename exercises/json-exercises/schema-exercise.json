@@ -15,10 +15,19 @@
         "type": { "type": "string" },
         "sub_type": { "type": "string" },
         "level_text": { "type": "string" },
+        "focus": { "type": "string"}, 
         "reference": { "type": "string" },
         "needs_rings": { "type": "boolean"},
         "needs_pullupbar": { "type": "boolean"},
         "needs_mat": { "type": "boolean"},
+        "needs_weights": { "type": "boolean"},
+        "needs_climbingwall": { "type": "boolean"},
+        "route_grades_range": { 
+            "type": "array", 
+            "items": {
+                "type": "string"
+            }
+        },
         "url_video": { "type": "string"},
         "url_image": { "type": "string"},
         "test":{

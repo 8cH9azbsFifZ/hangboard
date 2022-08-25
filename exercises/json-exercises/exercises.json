@@ -31,6 +31,15 @@
 {"exercise_name": "Flexor Stretch", "reference": "CRIMPD", "url_video": "https://www.youtube.com/watch?v=ZJr5aORnEGA&ab_channel=LatticeTraining"},
 {"exercise_name": "Extensor Stretch", "reference": "CRIMPD"}
 
+,
+
+{"exercise_name": "RDLs", "reference": "CRIMPD", "focus": "Focus on rotating from the hip keeping a straight lower back. Keep straight legs only a slight bend at the knee."},
+{"exercise_name": "Side Toe Touches", "reference": "CRIMPD", "focus": "Aim to rotate sidewards along the length of your leg. Reach for your toes slowly before returning to upright."},
+{"exercise_name": "Pancake Reaches", "reference": "CRIMPD", "focus": "Tilt form the hips forward. Start sitting on a block if you find this callenging. Don't worry about rounging your back to begin with."}
+
+,
+
+{"exercise_name": "Basistraining Pyramide", "needs_climbingwall": true, "reference": "Vertical Life", "route_grades_range": ["Onsight -2", "Onsight -2", "Onsight -1", "Onsight +1", "Onsight", "Onsight -1", "Onsight -2"]}
 
 ]
 }
