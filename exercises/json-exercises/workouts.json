@@ -47,6 +47,7 @@
             "workout_name": "Beasty 5a",
             "workout_type": "Strength, Crimp",
             "workout_description": "12 sets, 47:00 Minutes",
+            "duration": 2820,
             "workout_level_text": "Beginner",
             "exercises":
             [
@@ -57,7 +58,6 @@
                 { "sets": 2, "time_pause_set": 150, "exercise_name": "Hang", "time_exercise": 7, "time_pause": 3, "reps": 7, "left_hold": "JUG", "right_hold": "JUG", "grip": "4 Fingers"} ,
                 { "sets": 2, "time_pause_set": 150, "exercise_name": "Hang", "time_exercise": 7, "time_pause": 3, "reps": 7, "left_hold": "45mm", "right_hold": "45mm", "grip": "open 3"} ,
                 { "sets": 2, "time_pause_set": 150, "exercise_name": "Hang", "time_exercise": 7, "time_pause": 3, "reps": 7, "left_hold": "45mm", "right_hold": "45mm", "grip": "4 Fingers"} 
-    
             ]
         }
     ]

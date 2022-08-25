@@ -8,6 +8,11 @@
         "workout_description": { "type": "string" },
         "workout_level_text": { "type": "string" },
         "workout_description_long": { "type": "string" },
+        "needs_rings": { "type": "boolean"},
+        "needs_pullupbar": { "type": "boolean"},
+        "needs_mat": { "type": "boolean"},
+        "needs_weights": { "type": "boolean"},
+        "needs_climbingwall": { "type": "boolean"},
         "reference": { "type": "string" },
         "duration": { "type": "integer" },
         "exercises": {
