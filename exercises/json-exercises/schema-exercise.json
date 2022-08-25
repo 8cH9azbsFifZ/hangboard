@@ -13,8 +13,14 @@
         "time_pause_set": { "type": "integer" },
         "type": { "type": "string" },
         "level_text": { "type": "string" },
-        "reference": { "type": "string" }
-
+        "reference": { "type": "string" },
+        "test":{
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": ["one", "two", "three"]
+            }   
+        }
     },
     "required": ["exercise_name"]
 }
