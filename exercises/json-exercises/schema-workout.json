@@ -4,6 +4,7 @@
     "properties": {
         "workout_name": { "type": "string" },
         "workout_description": { "type": "string" },
+        "workout_description_long": { "type": "string" },
         "reference": { "type": "string" },
         "duration": { "type": "integer" },
         "exercises": {

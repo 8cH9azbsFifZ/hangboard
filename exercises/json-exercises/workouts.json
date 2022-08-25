@@ -30,7 +30,8 @@
         ,
         {
             "workout_name": "Active Posterior Chain Mobility A",
-            "workout_description": "Hamstring flexibility training to develop strength in a bigger range of movement",
+            "workout_description": "Hamstring flexibility training to develop strength in a bigger range of movement.",
+            "workout_description_long": "This workout is designed to improve flexibility in the posterior chain, specifically the muscles down the backs of the legs. This will improve techiques and efficiency on the wall. This is achieved by strengthening the muscles through a greater range of movement. Complete each exercise focusing on form and complete each movement slowly and in control. Look for small gains in each workout to make the biggest impact on your performance. ",
             "reference": "CRIMPD",
             "duration": 1200,
             "exercises": [
