@@ -11,3 +11,4 @@ evaluations/out.txt
 progess.ppm
 output.mp4
 .vscode/dryrun.log
+.vscode/targets.log
