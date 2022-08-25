@@ -19,7 +19,7 @@
             "type": "array",
             "items": {
                 "$ref": "./schema-exercise.json",
-                "required": ["exercise_name", "sets", "time_pause_set"],
+                "required": ["exercise_name", "sets", "reps", "time_pause_set"],
                 "dependencies": {
                     "time_exercise": ["time_pause"]
                 }
