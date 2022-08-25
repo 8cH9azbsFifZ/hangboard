@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+        "workout_name": { "type": "string" },
+        "exercises": {
+            "type": "array",
+            "items": {
+                "$ref": "./schema-exercise.json",
+                "required": ["exercise_name", "sets", "time_pause_set"],
+                "dependencies": {
+                    "time_exercise": ["time_pause"]
+                }
+                }
+        } 
+    },
+    "required": ["workout_name", "exercises"]
+}

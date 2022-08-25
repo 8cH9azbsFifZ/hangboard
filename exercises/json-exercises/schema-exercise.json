@@ -4,6 +4,7 @@
     "properties": {
         "exercise_name": { "type": "string" },
         "exercise_description": { "type": "string" },
+        "needs_timer": { "type": "boolean" },
         "reps": { "type": "integer" },
         "reps_range": { "type": "string" },
         "sets": { "type": "integer" },
