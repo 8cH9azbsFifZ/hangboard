@@ -3,7 +3,9 @@
     "version": "25.08.2022",
     "workouts": [
         {
-            "workout_name": "Test 1",
+            "workout_name": "Extended Core A",
+            "workout_description": "A core workout designed to develop body tension in extended positions.",
+            "reference": "CRIMPD",
             "exercises": [
                 {"sets": 1, "reps": 1, "exercise_name": "Test", "time_pause_set": 60},
                 {"sets": 1, "time_exercise": 0, "exercise_name": "Test 2", "time_pause": 0, "time_pause_set": 20},

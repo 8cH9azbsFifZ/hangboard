@@ -17,6 +17,11 @@
         "sub_type": { "type": "string" },
         "level_text": { "type": "string" },
         "reference": { "type": "string" },
+        "needs_rings": { "type": "boolean"},
+        "needs_pullupbar": { "type": "boolean"},
+        "needs_mat": { "type": "boolean"},
+        "url_video": { "type": "string"},
+        "url_image": { "type": "string"},
         "test":{
             "type": "array",
             "items": {

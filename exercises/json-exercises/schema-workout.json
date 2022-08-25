@@ -3,6 +3,8 @@
     "type": "object",
     "properties": {
         "workout_name": { "type": "string" },
+        "workout_description": { "type": "string" },
+        "reference": { "type": "string" },
         "exercises": {
             "type": "array",
             "items": {
