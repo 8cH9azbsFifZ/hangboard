@@ -1,0 +1,9 @@
+{
+    "$schema": "./schema.json",
+    "exercise_name": "Band Finger Extension",
+    "reps_range": "12-25",
+    "sets_range": "1-2", 
+    "type": "Wrist & Forearm Stabillizers",
+    "level_text": "Entry-level exercises shown in GREEN -- appropriate for all climbers.",
+    "reference": "Eric Hörsts Training for Climbing Program"
+}
