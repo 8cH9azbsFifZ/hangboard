@@ -6,9 +6,25 @@
             "workout_name": "Extended Core A",
             "workout_description": "A core workout designed to develop body tension in extended positions.",
             "reference": "CRIMPD",
+            "duration": 1500,
+            "needs_mat": true,
+            "needs_pullupbar": true,
+            "needs_rings": true,
             "exercises": [
-                {"sets": 1, "reps": 1, "exercise_name": "Test", "time_pause_set": 60},
-                {"sets": 1, "time_exercise": 0, "exercise_name": "Test 2", "time_pause": 0, "time_pause_set": 20},
+                {"exercise_name": "Hanging Knee Raises", "sets": 3, "reps": 5, "time_pause_set": 120},
+                {"exercise_name": "Jack Knives", "sets": 3, "reps": 5, "time_pause_set": 120},
+                {"exercise_name": "Upper Ab Crunch", "sets": 3, "reps": 10, "time_pause_set": 120}
+            ]
+        }
+        ,
+        {
+            "workout_name": "Forearm Mobility",
+            "workout_description": "Forearm flexor and extensor stretches",
+            "reference": "CRIMPD",
+            "duration": 900,
+            "exercises": [
+                {"exercise_name": "Flexor Stretch", "sets": 4, "reps": 2, "time_exercise": 30, "time_pause": 10, "time_pause_set": 10},
+                {"exercise_name": "Extensor Stretch", "sets": 4, "reps": 2, "time_exercise": 30, "time_pause": 10, "time_pause_set": 10}
             ]
         }
     ]

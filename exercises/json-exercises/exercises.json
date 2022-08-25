@@ -22,10 +22,14 @@
 
 ,
 
-{"exercise_name": "Hanging Knee Raises", "sets": 3, "reps": 5, "time_pause_set": 120, "reference": "CRIMPD"},
-{"exercise_name": "Jack Knives", "sets": 3, "reps": 5, "time_pause_set": 120, "reference": "CRIMPD"},
-{"exercise_name": "Upper Ab Crunch", "sets": 3, "reps": 10, "time_pause_set": 120, "reference": "CRIMPD"}
+{"exercise_name": "Hanging Knee Raises", "needs_pullupbar": true, "reference": "CRIMPD"},
+{"exercise_name": "Jack Knives", "needs_rings": true, "reference": "CRIMPD"},
+{"exercise_name": "Upper Ab Crunch", "reference": "CRIMPD"}
 
+,
+
+{"exercise_name": "Flexor Stretch", "reference": "CRIMPD", "url_video": "https://www.youtube.com/watch?v=ZJr5aORnEGA&ab_channel=LatticeTraining"},
+{"exercise_name": "Extensor Stretch", "reference": "CRIMPD"}
 
 
 ]

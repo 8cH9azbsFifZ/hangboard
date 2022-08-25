@@ -5,6 +5,7 @@
         "workout_name": { "type": "string" },
         "workout_description": { "type": "string" },
         "reference": { "type": "string" },
+        "duration": { "type": "integer" },
         "exercises": {
             "type": "array",
             "items": {
