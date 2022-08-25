@@ -9,9 +9,11 @@
         "sets": { "type": "integer" },
         "sets_range": { "type": "string" },
         "time_exercise": { "type": "integer" },
+        "time_exercise_range": { "type": "string" },
         "time_pause": { "type": "integer" },
         "time_pause_set": { "type": "integer" },
         "type": { "type": "string" },
+        "sub_type": { "type": "string" },
         "level_text": { "type": "string" },
         "reference": { "type": "string" },
         "test":{
@@ -22,5 +24,6 @@
             }   
         }
     },
+    "additionalProperties": false,
     "required": ["exercise_name"]
 }
