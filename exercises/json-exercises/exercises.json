@@ -1,5 +1,5 @@
 {
-    "$schema": "./schema-exercises.json",
+    "$schema": "./schema/schema-exercises.json",
     "version": "25.08.2022",
     "exercises": [
 
