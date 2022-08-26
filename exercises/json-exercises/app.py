@@ -1,17 +1,25 @@
 #!/usr/bin/env pyhton
 from flask import Flask, request
 import json
-
-file_workout = "./workouts.json"
-file_exercises = "./exercises.json"
+from urllib.request import urlopen
 
 app = Flask(__name__)
 
-with open (file_workout) as json_file:
-    workouts = json.load(json_file)
+#file_workout = "./workouts.json"
+#file_exercises = "./exercises.json"
+# with open (file_workout) as json_file:
+#     workouts = json.load(json_file)
+# with open (file_exercises) as json_file:
+#     exercises = json.load(json_file)
 
-with open (file_exercises) as json_file:
-    exercises = json.load(json_file)
+url_workout = "https://raw.githubusercontent.com/8cH9azbsFifZ/hangboard/dev/exercises/json-exercises/workouts.json"
+url_exercises = "https://raw.githubusercontent.com/8cH9azbsFifZ/hangboard/dev/exercises/json-exercises/exercises.json"
+response_workout = urlopen(url_workout)
+response_exercises = urlopen(url_exercises)
+workouts = json.loads(response_workout.read())
+exercises = json.loads(response_exercises.read())
+
+
 
 def display_workouts(short=0):
     i = 0
