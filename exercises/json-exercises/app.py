@@ -1,5 +1,5 @@
 #!/usr/bin/env pyhton
-from flask import Flask
+from flask import Flask, request
 import json
 
 file_workout = "./workouts.json"
@@ -13,13 +13,21 @@ with open (file_workout) as json_file:
 with open (file_exercises) as json_file:
     exercises = json.load(json_file)
 
-def display_workouts():
+def display_workouts(short=0):
     i = 0
     res = ""
+    res_short = {"workouts": []}
     for w in workouts["workouts"]:
         i += 1
         res = res + "<br/>\n" + "{} {}".format(i, w["workout_name"])
+        w_short = {}
+        for k in ["workout_name", "duration"]:
+            w_short [k] = w[k]
+        res_short["workouts"].append(w_short) 
     print (res)
+    print (res_short)
+    if short == 1:
+        return (res_short)
     return (res)
 
 def display_workout():
@@ -50,5 +58,7 @@ def page_workout():
 
 @app.route('/workouts')
 def page_workouts():
-    a = display_workouts()
+    short = request.args.get("short", default = 0, type=int)
+    a = display_workouts(short)
+
     return (a)
