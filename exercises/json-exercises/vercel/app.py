@@ -1,4 +1,3 @@
-#!/usr/bin/env pyhton
 from flask import Flask, request
 import json
 from urllib.request import urlopen
