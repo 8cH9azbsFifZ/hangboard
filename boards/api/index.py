@@ -6,9 +6,6 @@ from board import Board
 boardname = "zlagboard_evo" # FIXME: config
 a = Board(boardname=boardname,basedir="../../boards/")
 
-assets_dir = "../../assets/"
-sounds_dir = assets_dir + "sounds/"
-
 api = Flask(__name__)
 
 @api.route('/', methods=['GET'])
@@ -37,11 +34,6 @@ def get_img_left_right(left,right):
 def get_img():
   fname = a.boardimagename_png
   return send_file(fname, mimetype='image/png')
-
-@api.route('/board/sound/<sound>', methods=['GET']) # FIXME: slashes safe?
-def get_sound(sound):
-  fname = sounds_dir + sound + ".mp3"
-  return send_file(fname, mimetype='audio/mp3')
 
 if __name__ == '__main__':
     api.run() 
