@@ -93,6 +93,19 @@
         }
         ,
         {
+            "workout_name": "Upper Body Mobility - A",
+            "workout_description": "Chest stretch, cat stretch, and bicep stretch ",
+            "workout_description_long": "Complete 4 sets of each of the following static positions.  Hold the most stretched position possible where you feel slight discomfort but not pain.  Complete all sets of each position before moving to the next exercise.  Rest for 1 minute between sets and 2 minutes between exercises. To maintain flexibility, hold each position for 30 seconds.  To develop flexibility, hold each position for 90 seconds.",
+            "reference": "CRIMPD",
+            "duration": 1500,
+            "exercises": [
+                {"exercise_name": "Chest Stretch", "sets": 4, "reps": 2, "time_exercise": 30, "time_pause": 15, "time_pause_set": 60},
+                {"exercise_name": "Cat Stretch", "sets": 4, "reps": 2, "time_exercise": 30, "time_pause": 0,  "time_pause_set": 60},
+                {"exercise_name": "Biceps Stretch", "sets": 4, "reps": 1,  "time_exercise": 30, "time_pause": 0, "time_pause_set": 30}
+            ]
+        }
+        ,
+        {
             "workout_id": "BEASTY-5A",
             "workout_name": "Beasty 5a",
             "workout_type": "Strength, Crimp",
