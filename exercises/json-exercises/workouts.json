@@ -80,6 +80,19 @@
         }
         ,
         {
+            "workout_name": "Active Hip Mobility - A",
+            "workout_description": "Hip mobility training to develop strength in a bigger range of movement",
+            "workout_description_long": "This workout is designed to improve hip mobility and become better at moving on the wall. This is achieved by strengthening the muscles through a greater range of movement. Complete each exercise focusing on form and complete each movement slowly and in control. Look for small gains in each workout to make the biggest impact on your performance. ",
+            "reference": "CRIMPD",
+            "duration": 900,
+            "exercises": [
+                {"exercise_name": "Side Lunges", "sets": 3, "reps": 10, "time_pause_set": 60},
+                {"exercise_name": "Horse Suqats", "sets": 3, "reps": 5, "time_pause_set": 60},
+                {"exercise_name": "Front Split Pulses", "sets": 6, "reps": 5, "time_pause_set": 30}
+            ]
+        }
+        ,
+        {
             "workout_id": "BEASTY-5A",
             "workout_name": "Beasty 5a",
             "workout_type": "Strength, Crimp",
