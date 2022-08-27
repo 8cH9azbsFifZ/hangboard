@@ -54,7 +54,30 @@
                 {"exercise_name": "High Step", "sets": 4, "reps": 2, "time_exercise": 60, "time_pause": 20, "time_pause_set": 60}
             ]
         }
-
+        ,
+        {
+            "workout_name": "Finger Curl Hypertrophy",
+            "workout_description": "8 sets of heavy finger curls with minimal rest",
+            "workout_description_long": "This exercise is designed to increase the training stimulus to the forearm muscles and fingers without requiring hanging from climbing holds. This is a great session to do in combination with finger board workouts to increase finger strength or as forearm maintenance exercise if a finger board or climbing wall is not available. Complete 8 sets of heavy finger curls using a heavy weight.  Rest 30 seconds before repeating the same exercise on the other arm for the second set. 8 sets should be completed in total, 4 on each arm.  Aim to complete 10 heavy finger curls during each set. Ideally you should use a dumbbell weight. As a replacement you can use a loaded bag attached to a broom handle or rolling pin. To start, hold the bar with your hands in a fist palms facing away from your body. Slowly allow your hand to open until the bar is hanging from the last joint of your fingers. Now roll the bar back up to your palm by closing your fingers back into a tight fist. This is one rep. ",
+            "reference": "CRIMPD",
+            "duration": 600,
+            "needs_weights": true,
+            "exercises": [
+                {"exercise_name": "Heavy Finger Curls", "sets": 8, "reps": 1, "time_exercise": 30, "time_pause": 0, "time_pause_set": 30}
+            ]
+        }
+        ,
+        {
+            "workout_name": "Wrist Curl Hypertrophy",
+            "workout_description": "10 sets of heavy flexor curls with minimal rest",
+            "workout_description_long": "The goal of this exercise is to target muscle hypertrophy in the forearm flexor muscle. Aim to use a heavy weight as you should feel close to failure due to powering out on the final set. ONLY complete this exercise AFTER finger boarding and climbing or during a separate session. Complete 10 sets wrist curls.  You have 30 seconds to complete each set of curls before alternating to the other arm for the next set. This means you will complete 10 sets total (5 on each side) over a 5 minute period. You should aim for performing a total of 10 flexor curls during each set. Ideally you will use a dumbbell weight for this exercise but alternatives can be utilized. A broom handle with a loaded bag attached on either side is a good example of how to adapt a home set up to suit your needs. Start in a sitting position on a chair or bench with your feet on the floor and knees at 90 degrees. Your thigh should be close to horizontal.  Rest your forearm along your thigh with your wrist hanging off the end of your knee with your palm facing upwards. Curl the wrist to lift the dumbbell in one small movement as high as possible without lifting your forearm off your thigh. Once at the top of the possible movement, pause and slowly lower the dumbbell to the starting position. ",
+            "reference": "CRIMPD",
+            "duration": 600,
+            "needs_weights": true,
+            "exercises": [
+                {"exercise_name": "Flexor Curl", "sets": 10, "reps": 1, "time_exercise": 30, "time_pause": 0, "time_pause_set": 5}
+            ]
+        }
         ,
         {
             "workout_id": "BEASTY-5A",
