@@ -40,6 +40,20 @@
                 {"exercise_name": "Pancake Reaches", "sets": 4, "reps": 5, "time_pause_set": 60}
             ]
         }
+        ,
+        {
+            "workout_name": "Hip & Leg Flexibility - B",
+            "workout_description": "Box Split, Butterfly, Hip Flexor Stretch, and High Step",
+            "workout_description_long": "Complete 4 sets of each of the following static positions.  For exercises targeted one side of the body at a time - two reps will be included. Complete all sets of each position before moving to the next exercise, resting for 20 seconds between reps, 1 minute between sets, and 2 minutes between exercises. This session is designed to help build the capacity to hold static stretches for 90 seconds in progression C.  Hold the most stretched position possible where you feel slight discomfort but not pain.  Focus on taking deep breaths and trying to relax into the stretch as much as possible.",
+            "reference": "CRIMPD",
+            "duration": 2100,
+            "exercises": [
+                {"exercise_name": "Box Split", "sets": 4, "reps": 1, "time_exercise": 60, "time_pause": 0, "time_pause_set": 60},
+                {"exercise_name": "Butterfly", "sets": 3, "reps": 1, "time_exercise": 60, "time_pause": 0, "time_pause_set": 60},
+                {"exercise_name": "Hip Flexor Stretch", "sets": 3, "reps": 2, "time_exercise": 60, "time_pause": 20, "time_pause_set": 60},
+                {"exercise_name": "High Step", "sets": 4, "reps": 2, "time_exercise": 60, "time_pause": 20, "time_pause_set": 60}
+            ]
+        }
 
         ,
         {
