@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, request
 import json
 from urllib.request import urlopen
@@ -70,4 +71,17 @@ def page_workouts():
     short = request.args.get("short", default = 0, type=int)
     a = display_workouts(short)
 
+    return (a)
+
+@app.route('/workouts1')
+def page_workouts():
+    short = 1
+    a = display_workouts(short)
+
+    return (a)
+
+@app.route('/api', methods=['POST'])
+def returnapi():
+    short = request.form.get("short", default=0, type=int)
+    a = display_workouts(short)
     return (a)
