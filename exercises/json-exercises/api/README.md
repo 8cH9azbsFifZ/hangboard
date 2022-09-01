@@ -1,5 +1,5 @@
 Deployed to: https://exercises-ashen.vercel.app/ (exercises.service.ziegenhain.com)
 
-Deploy using
++ https://exercises-ashen.vercel.app/workouts?short=1
 
-vercel --prod
++ Deploy using `vercel --prod`
