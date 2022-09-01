@@ -74,7 +74,7 @@ def page_workouts():
     return (a)
 
 @app.route('/workouts1')
-def page_workouts():
+def page_workouts2():
     short = 1
     a = display_workouts(short)
 
